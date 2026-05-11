@@ -37,20 +37,15 @@ function Get-InvestingCalendar {
         'Cache-Control'    = 'no-cache'
     }
 
+    # Simpler approach: direct POST without session pre-priming.
+    # The pre-prime (GET /economic-calendar/ before POST) was hitting Cloudflare
+    # interstitial redirects (308) and breaking the cookie state. curl works
+    # fine with just the direct POST, so do the same.
     try {
-        # Use Invoke-WebRequest for richer error handling + session support
-        $session = New-Object Microsoft.PowerShell.Commands.WebRequestSession
-        $session.UserAgent = $UA
-        # Prime cookies by hitting the page first (helps avoid 403 anti-bot)
-        $null = Invoke-WebRequest -Uri 'https://www.investing.com/economic-calendar/' `
-            -WebSession $session -UseBasicParsing -TimeoutSec 15 -ErrorAction SilentlyContinue
-        Start-Sleep -Milliseconds 400
-
-        $r = Invoke-WebRequest -Uri $url -Method POST -Body $body -Headers $headers `
+        $r = Invoke-RestMethod -Uri $url -Method POST -Body $body -Headers $headers `
             -ContentType 'application/x-www-form-urlencoded' -TimeoutSec 25 `
-            -WebSession $session -UseBasicParsing
-        $parsed = $r.Content | ConvertFrom-Json
-        return $parsed.data
+            -UserAgent $UA
+        return $r.data
     } catch {
         Write-Warning ("Calendar fetch failed: {0}" -f $_.Exception.Message)
         return $null
