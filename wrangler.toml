@@ -1,0 +1,15 @@
+# Cloudflare Workers / Pages configuration for static-asset deployment.
+#
+# This tells `wrangler deploy` to upload the repo as a static site:
+# all files in the project root become accessible at:
+#   https://<project-name>.pages.dev/<filename>
+#
+# We don't need a Worker script — just static assets.
+
+name = "reverent-dashboard"
+compatibility_date = "2026-05-11"
+
+# Serve everything in the repo root as static files.
+# Files matching .assetsignore are excluded from upload.
+[assets]
+directory = "./"

@@ -1,0 +1,35 @@
+# Files to exclude from Cloudflare static asset deployment.
+# Similar syntax to .gitignore.
+
+# Backend scripts (not needed for static viewer)
+*.ps1
+*.bat
+*.sh
+
+# Binaries
+*.exe
+cloudflared.exe
+
+# Logs and runtime files
+*.log
+*.err
+tunnel.log*
+
+# Server-only config (not for public)
+system-prompt.txt
+config.json
+config.json.example
+
+# Git metadata
+.git/
+.github/
+.gitignore
+.assetsignore
+
+# wrangler.toml itself isn't needed at runtime
+wrangler.toml
+
+# OS clutter
+.DS_Store
+Thumbs.db
+desktop.ini
