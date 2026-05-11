@@ -1,0 +1,393 @@
+{
+    "updated":  "2026-05-11T08:04:19Z",
+    "updatedKr":  "2026-05-11 17:04:19",
+    "index":  [
+                  {
+                      "key":  "KOSPI",
+                      "symbol":  "^KS11",
+                      "current":  7822.24,
+                      "wow":  18.54,
+                      "mom":  42.36,
+                      "ytd":  81.51,
+                      "type":  "pct",
+                      "asOf":  "2026-05-11T15:32:50",
+                      "ok":  true
+                  },
+                  {
+                      "key":  "KOSDAQ",
+                      "symbol":  "^KQ11",
+                      "current":  1207.34,
+                      "wow":  1.26,
+                      "mom":  16.46,
+                      "ytd":  27.68,
+                      "type":  "pct",
+                      "asOf":  "2026-05-11T15:32:10",
+                      "ok":  true
+                  },
+                  {
+                      "key":  "DOW",
+                      "symbol":  "^DJI",
+                      "current":  49609.16,
+                      "wow":  0.22,
+                      "mom":  3.55,
+                      "ytd":  2.54,
+                      "type":  "pct",
+                      "asOf":  "2026-05-09T05:46:56",
+                      "ok":  true
+                  },
+                  {
+                      "key":  "SPX",
+                      "symbol":  "^GSPC",
+                      "current":  7398.93,
+                      "wow":  2.33,
+                      "mom":  9.08,
+                      "ytd":  7.88,
+                      "type":  "pct",
+                      "asOf":  "2026-05-09T05:46:46",
+                      "ok":  true
+                  },
+                  {
+                      "key":  "NASDAQ",
+                      "symbol":  "^IXIC",
+                      "current":  26247.076,
+                      "wow":  4.51,
+                      "mom":  15.96,
+                      "ytd":  12.96,
+                      "type":  "pct",
+                      "asOf":  "2026-05-09T06:15:59",
+                      "ok":  true
+                  },
+                  {
+                      "key":  "SHANGHAI",
+                      "symbol":  "000001.SS",
+                      "current":  4225.0205,
+                      "wow":  2.86,
+                      "mom":  8.89,
+                      "ytd":  5.01,
+                      "type":  "pct",
+                      "asOf":  "2026-05-11T16:00:34",
+                      "ok":  true
+                  }
+              ],
+    "rate":  [
+                 {
+                     "mom":  21,
+                     "current":  3.56,
+                     "static":  true,
+                     "ok":  true,
+                     "key":  "KR3Y",
+                     "type":  "bp",
+                     "wow":  -3,
+                     "ytd":  63
+                 },
+                 {
+                     "mom":  23,
+                     "current":  3.91,
+                     "static":  true,
+                     "ok":  true,
+                     "key":  "KR10Y",
+                     "type":  "bp",
+                     "wow":  7,
+                     "ytd":  53
+                 },
+                 {
+                     "mom":  -1,
+                     "current":  2.81,
+                     "static":  true,
+                     "ok":  true,
+                     "key":  "CD91",
+                     "type":  "bp",
+                     "wow":  0,
+                     "ytd":  4
+                 },
+                 {
+                     "key":  "US2Y",
+                     "symbol":  "^FVX",
+                     "current":  4.013,
+                     "wow":  -1,
+                     "mom":  9,
+                     "ytd":  27,
+                     "type":  "bp",
+                     "asOf":  "2026-05-09T03:59:54",
+                     "ok":  true
+                 },
+                 {
+                     "key":  "US10Y",
+                     "symbol":  "^TNX",
+                     "current":  4.364,
+                     "wow":  -1,
+                     "mom":  7,
+                     "ytd":  18,
+                     "type":  "bp",
+                     "asOf":  "2026-05-09T03:59:54",
+                     "ok":  true
+                 },
+                 {
+                     "key":  "US30Y",
+                     "symbol":  "^TYX",
+                     "current":  4.947,
+                     "wow":  -2,
+                     "mom":  6,
+                     "ytd":  8,
+                     "type":  "bp",
+                     "asOf":  "2026-05-09T03:59:54",
+                     "ok":  true
+                 }
+             ],
+    "commodity":  [
+                      {
+                          "key":  "WTI",
+                          "symbol":  "CL=F",
+                          "current":  98.88,
+                          "wow":  -7.09,
+                          "mom":  1.03,
+                          "ytd":  72.51,
+                          "type":  "pct",
+                          "asOf":  "2026-05-11T16:54:09",
+                          "ok":  true
+                      },
+                      {
+                          "key":  "GOLD",
+                          "symbol":  "GC=F",
+                          "current":  4678.6,
+                          "wow":  3.52,
+                          "mom":  -2.37,
+                          "ytd":  8.44,
+                          "type":  "pct",
+                          "asOf":  "2026-05-11T16:54:20",
+                          "ok":  true
+                      },
+                      {
+                          "key":  "COPPER",
+                          "symbol":  "HG=F",
+                          "current":  6.322,
+                          "wow":  9.09,
+                          "mom":  9.99,
+                          "ytd":  12.09,
+                          "type":  "pct",
+                          "asOf":  "2026-05-11T16:54:14",
+                          "ok":  true
+                      },
+                      {
+                          "key":  "WHEAT",
+                          "symbol":  "ZW=F",
+                          "current":  621.25,
+                          "wow":  -1.31,
+                          "mom":  8.14,
+                          "ytd":  22.66,
+                          "type":  "pct",
+                          "asOf":  "2026-05-11T16:54:19",
+                          "ok":  true
+                      },
+                      {
+                          "mom":  35.3,
+                          "current":  2978,
+                          "static":  true,
+                          "ok":  true,
+                          "key":  "BDI",
+                          "type":  "pct",
+                          "wow":  13.1,
+                          "ytd":  58.2
+                      }
+                  ],
+    "fx":  [
+               {
+                   "key":  "USDKRW",
+                   "symbol":  "KRW=X",
+                   "current":  1471.68,
+                   "wow":  0,
+                   "mom":  -0.4,
+                   "ytd":  1.94,
+                   "type":  "pct",
+                   "asOf":  "2026-05-11T17:04:24",
+                   "ok":  true
+               },
+               {
+                   "key":  "USDEUR",
+                   "symbol":  "EURUSD=X",
+                   "current":  0.849,
+                   "wow":  -0.44,
+                   "mom":  -1.02,
+                   "ytd":  -0.24,
+                   "type":  "pct",
+                   "asOf":  "2026-05-11T17:04:21",
+                   "ok":  true
+               },
+               {
+                   "key":  "USDJPY",
+                   "symbol":  "JPY=X",
+                   "current":  157.116,
+                   "wow":  0.17,
+                   "mom":  -0.96,
+                   "ytd":  0.25,
+                   "type":  "pct",
+                   "asOf":  "2026-05-11T17:04:24",
+                   "ok":  true
+               },
+               {
+                   "key":  "USDCNY",
+                   "symbol":  "CNY=X",
+                   "current":  6.7954,
+                   "wow":  -0.47,
+                   "mom":  -0.49,
+                   "ytd":  -2.87,
+                   "type":  "pct",
+                   "asOf":  "2026-05-11T17:04:03",
+                   "ok":  true
+               },
+               {
+                   "key":  "DXY",
+                   "symbol":  "DX-Y.NYB",
+                   "current":  97.987,
+                   "wow":  -0.49,
+                   "mom":  -0.84,
+                   "ytd":  -0.44,
+                   "type":  "pct",
+                   "asOf":  "2026-05-11T16:54:24",
+                   "ok":  true
+               }
+           ],
+    "cds":  [
+                {
+                    "current":  35.1,
+                    "mom":  -0.5,
+                    "wow":  0,
+                    "type":  "bp_abs",
+                    "ytd":  8.5,
+                    "key":  "CDS_US",
+                    "ok":  true
+                },
+                {
+                    "current":  41.9,
+                    "mom":  -6.7,
+                    "wow":  -2.3,
+                    "type":  "bp_abs",
+                    "ytd":  -1.9,
+                    "key":  "CDS_CN",
+                    "ok":  true
+                }
+            ],
+    "sector":  [
+                   {
+                       "key":  "IT",
+                       "symbol":  "XLK",
+                       "current":  175.52,
+                       "wow":  8.43,
+                       "mom":  23.88,
+                       "ytd":  21.64,
+                       "type":  "pct",
+                       "asOf":  "2026-05-09T05:00:02",
+                       "ok":  true
+                   },
+                   {
+                       "key":  "HEALTHCARE",
+                       "symbol":  "XLV",
+                       "current":  143.49,
+                       "wow":  -1.15,
+                       "mom":  -4.13,
+                       "ytd":  -7.73,
+                       "type":  "pct",
+                       "asOf":  "2026-05-09T05:00:00",
+                       "ok":  true
+                   },
+                   {
+                       "key":  "DISCRET",
+                       "symbol":  "XLY",
+                       "current":  120.2,
+                       "wow":  1.32,
+                       "mom":  8.46,
+                       "ytd":  1.56,
+                       "type":  "pct",
+                       "asOf":  "2026-05-09T05:00:00",
+                       "ok":  true
+                   },
+                   {
+                       "key":  "INDUSTRIALS",
+                       "symbol":  "XLI",
+                       "current":  173.2,
+                       "wow":  0.14,
+                       "mom":  1.62,
+                       "ytd":  9.63,
+                       "type":  "pct",
+                       "asOf":  "2026-05-09T05:00:00",
+                       "ok":  true
+                   },
+                   {
+                       "key":  "STAPLES",
+                       "symbol":  "XLP",
+                       "current":  84.18,
+                       "wow":  0.01,
+                       "mom":  1.69,
+                       "ytd":  8.35,
+                       "type":  "pct",
+                       "asOf":  "2026-05-09T05:00:00",
+                       "ok":  true
+                   },
+                   {
+                       "key":  "ENERGY",
+                       "symbol":  "XLE",
+                       "current":  55.7,
+                       "wow":  -5.35,
+                       "mom":  -4.05,
+                       "ytd":  22.02,
+                       "type":  "pct",
+                       "asOf":  "2026-05-09T05:00:00",
+                       "ok":  true
+                   },
+                   {
+                       "key":  "FINANCIALS",
+                       "symbol":  "XLF",
+                       "current":  51.24,
+                       "wow":  -1.31,
+                       "mom":  0.08,
+                       "ytd":  -6.72,
+                       "type":  "pct",
+                       "asOf":  "2026-05-09T05:00:00",
+                       "ok":  true
+                   },
+                   {
+                       "key":  "MATERIALS",
+                       "symbol":  "XLB",
+                       "current":  51.59,
+                       "wow":  0.47,
+                       "mom":  -0.31,
+                       "ytd":  11.86,
+                       "type":  "pct",
+                       "asOf":  "2026-05-09T05:00:00",
+                       "ok":  true
+                   },
+                   {
+                       "key":  "UTILITIES",
+                       "symbol":  "XLU",
+                       "current":  44.72,
+                       "wow":  -3.93,
+                       "mom":  -4.4,
+                       "ytd":  3.57,
+                       "type":  "pct",
+                       "asOf":  "2026-05-09T05:00:00",
+                       "ok":  true
+                   },
+                   {
+                       "key":  "REALESTATE",
+                       "symbol":  "XLRE",
+                       "current":  44.41,
+                       "wow":  0.2,
+                       "mom":  4.64,
+                       "ytd":  9.98,
+                       "type":  "pct",
+                       "asOf":  "2026-05-09T05:00:00",
+                       "ok":  true
+                   },
+                   {
+                       "key":  "COMM",
+                       "symbol":  "XLC",
+                       "current":  116.94,
+                       "wow":  0.19,
+                       "mom":  2.75,
+                       "ytd":  0.03,
+                       "type":  "pct",
+                       "asOf":  "2026-05-09T05:00:00",
+                       "ok":  true
+                   }
+               ]
+}

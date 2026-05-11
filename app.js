@@ -9,6 +9,14 @@ const CAL_WEEK_URL = './calendar-week.json';
 const REFRESH_MS   = 60_000;
 const MIN_IMPORTANCE = 2;   // 표시할 최소 importance (1=낮음, 2=중간, 3=높음)
 
+// ─── Static deploy mode detection ─────────────────────────
+// On localhost we're running serve.ps1 (full features).
+// On a deployed host (Cloudflare Pages, etc.) there's no backend → switch
+// to read-only mode: hide refresh/AI chat, read news/index.json instead of
+// /news/list endpoint.
+const IS_STATIC = !/^(localhost|127\.|0\.0\.0\.0|\[::1\])/i.test(window.location.hostname);
+const NEWS_INDEX_URL = IS_STATIC ? './news/index.json' : '/news/list';
+
 const FLAG_EMOJI = {
   United_States: '🇺🇸',
   South_Korea: '🇰🇷',
@@ -504,7 +512,7 @@ let newsState = { dates: [], current: null, cache: {}, sectorFilter: 'ALL' };
 
 async function loadNewsIndex() {
   try {
-    const res = await fetch('/news/list?_=' + Date.now(), { cache: 'no-store' });
+    const res = await fetch(`${NEWS_INDEX_URL}?_=${Date.now()}`, { cache: 'no-store' });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const data = await res.json();
     newsState.dates = data.dates || [];
@@ -566,8 +574,9 @@ function renderNewsEmpty() {
     <div class="news-empty">
       <div class="news-empty-icon">📭</div>
       <h3>아직 저장된 클리핑이 없습니다</h3>
-      <p>Claude Code 세션에서 <code>/news-clipping</code> 을 실행하면 결과가 자동으로 <code>dashboard/news/YYYY-MM-DD.md</code> 에 저장되고 여기에 표시됩니다.</p>
-      <p>또는 매일 09:03 KST에 자동 실행되는 스케줄이 다음번 실행 시 자동 채워줍니다.</p>
+      <p>이 페이지는 매일 자동 생성되는 뉴스 클리핑을 6개 섹터 카드로 보여줍니다.</p>
+      <p>⏰ <strong>다음 자동 실행</strong>: 내일 아침 09:03 KST</p>
+      <p>지금 즉시 보고 싶으면: 새 Claude Code 세션에서 <code>/news-clipping</code> 수동 실행 (약 5~10분).</p>
     </div>`;
 }
 
@@ -799,8 +808,27 @@ function setupRouter() {
   showView(location.hash.replace('#', '') || 'home');
 }
 
+// ─── Static mode UI adjustments ──────────────────────────
+if (IS_STATIC) {
+  // Hide refresh button (no backend to call /refresh)
+  const rb = document.getElementById('refreshBtn');
+  if (rb) rb.style.display = 'none';
+
+  // Replace "수동 갱신 모드" badge with view-only indicator
+  const badge = document.querySelector('.manual-mode-badge');
+  if (badge) {
+    badge.innerHTML = '<span class="dot" style="background:#22c55e"></span> View-only · 공개 배포본';
+    badge.title = 'Cloudflare Pages에 배포된 공개 뷰. 데이터는 마지막 git push 시점 기준.';
+  }
+
+  // Hide AI chat widget (uses owner's API key — keep private)
+  const chat = document.getElementById('chatWidget');
+  if (chat) chat.style.display = 'none';
+}
+
 // ─── Init ────────────────────────────────────────────────
-document.getElementById('refreshBtn').addEventListener('click', forceRefresh);
+const refreshBtnEl = document.getElementById('refreshBtn');
+if (refreshBtnEl) refreshBtnEl.addEventListener('click', forceRefresh);
 
 updateClock();
 setInterval(updateClock, 1000);
