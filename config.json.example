@@ -1,0 +1,6 @@
+{
+  "_comment": "Copy this file to config.json and paste your Anthropic API key. Get one at https://console.anthropic.com/",
+  "ANTHROPIC_API_KEY": "mn.bae@revernetpartners.com",
+  "MODEL": "claude-opus-4-7",
+  "MAX_TOKENS": 2048
+}

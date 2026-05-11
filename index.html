@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reverent Partners | Live Dashboard</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<div class="app-shell">
+
+  <!-- =================== SIDEBAR =================== -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <div class="logo-text">REVERENT</div>
+      <div class="logo-text">PARTNERS</div>
+      <div class="tag">Live Dashboard</div>
+    </div>
+
+    <div class="sidebar-section-label">WORKSPACE</div>
+    <nav class="sidebar-nav">
+      <a href="#home" class="sidebar-item" data-view="home">
+        <span class="sb-ico">📊</span>
+        <span class="sb-text">Dashboard</span>
+      </a>
+      <a href="#weekly" class="sidebar-item" data-view="weekly">
+        <span class="sb-ico">📅</span>
+        <span class="sb-text">Weekly Calendar</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-section-label">PINNED</div>
+    <div class="sidebar-nav">
+      <a href="#news" class="sidebar-item" data-view="news">
+        <span class="sb-ico">📰</span>
+        <span class="sb-text">News Clipping</span>
+      </a>
+      <a class="sidebar-item disabled" title="준비 중">
+        <span class="sb-ico">💼</span>
+        <span class="sb-text">Deal Flow <small>(soon)</small></span>
+      </a>
+    </div>
+
+    <div class="sidebar-spacer"></div>
+
+    <div class="sidebar-footer">
+      <div class="sb-foot-row">
+        <span class="sb-foot-label">현재 (KST)</span>
+        <span id="currentDateTime" class="sb-foot-val">—</span>
+      </div>
+      <div class="sb-foot-row">
+        <span class="sb-foot-label">마지막 갱신</span>
+        <span id="lastUpdate" class="sb-foot-val">—</span>
+      </div>
+      <div class="manual-mode-badge" title="자동 갱신 비활성 — 아래 버튼으로 수동 갱신하세요">
+        <span class="dot"></span> 수동 갱신 모드
+      </div>
+      <button id="refreshBtn" class="btn-refresh">↻ 지금 갱신 (Yahoo + Investing)</button>
+    </div>
+  </aside>
+
+  <!-- =================== MAIN AREA =================== -->
+  <main class="main-area">
+
+    <!-- ===== HOME VIEW ===== -->
+    <section class="view" id="view-home">
+
+      <div class="page-header">
+        <div class="page-breadcrumb">Workspace › Dashboard</div>
+        <h1 class="page-title">📊 Dashboard</h1>
+        <p class="page-subtitle">실시간 시장 데이터 + 오늘의 경제 이벤트</p>
+      </div>
+
+      <!-- Section 1: Macro Economy (Today) -->
+      <section class="block">
+        <h2 class="block-title"><span class="num">1</span> Market Update — Macro Economy</h2>
+        <h3 class="sub-title">오늘의 경제 지표 (Today) <a href="#weekly" class="see-all">이번주 전체 보기 →</a></h3>
+        <div class="table-wrap">
+          <table class="indicator-table">
+            <thead>
+              <tr>
+                <th>국가</th><th>날짜</th><th>지표</th><th>기간</th>
+                <th class="num-col">실제</th><th class="num-col">전망</th><th class="num-col">이전</th><th>단위</th>
+              </tr>
+            </thead>
+            <tbody id="macroBody"></tbody>
+          </table>
+        </div>
+        <p class="note">매크로 지표 — Investing.com (미국·한국·일본). 중요도 ★★ 이상 표시.</p>
+      </section>
+
+      <!-- Section 2: Capital Market -->
+      <section class="block">
+        <h2 class="block-title"><span class="num">2</span> Capital Market</h2>
+
+        <div class="grid-2">
+
+          <div class="card">
+            <h3 class="card-title">Index</h3>
+            <table class="market-table" id="indexTable">
+              <thead><tr><th>Index</th><th class="num-col">Current</th><th class="num-col">WoW</th><th class="num-col">MoM</th><th class="num-col">YTD</th></tr></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+
+          <div class="card">
+            <h3 class="card-title">금리 (%, bp)</h3>
+            <table class="market-table" id="rateTable">
+              <thead><tr><th>금리</th><th class="num-col">Current</th><th class="num-col">WoW</th><th class="num-col">MoM</th><th class="num-col">YTD</th></tr></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+
+          <div class="card">
+            <h3 class="card-title">원자재</h3>
+            <table class="market-table" id="commodityTable">
+              <thead><tr><th>원자재</th><th class="num-col">Current</th><th class="num-col">WoW</th><th class="num-col">MoM</th><th class="num-col">YTD</th></tr></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+
+          <div class="card">
+            <h3 class="card-title">FX (Δ, %)</h3>
+            <table class="market-table" id="fxTable">
+              <thead><tr><th>FX</th><th class="num-col">Current</th><th class="num-col">WoW</th><th class="num-col">MoM</th><th class="num-col">YTD</th></tr></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+
+          <div class="card">
+            <h3 class="card-title">CDS (bp)</h3>
+            <table class="market-table" id="cdsTable">
+              <thead><tr><th>국가</th><th class="num-col">Current</th><th class="num-col">WoW</th><th class="num-col">MoM</th><th class="num-col">YTD</th></tr></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+
+          <div class="card span-2">
+            <h3 class="card-title">Sector (S&P 500 SPDR ETF 기준)</h3>
+            <table class="market-table" id="sectorTable">
+              <thead><tr><th>Sector</th><th class="num-col">Current</th><th class="num-col">WoW</th><th class="num-col">MoM</th><th class="num-col">YTD</th></tr></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <footer class="site-footer">
+        <p>Data: Yahoo Finance + Investing.com · 미국 시장은 실시간, 한국·일본은 EOD. © Reverent Partners</p>
+      </footer>
+    </section>
+
+    <!-- ===== WEEKLY CALENDAR VIEW ===== -->
+    <section class="view" id="view-weekly" hidden>
+
+      <div class="page-header">
+        <div class="page-breadcrumb">Workspace › Weekly Calendar</div>
+        <h1 class="page-title">📅 Weekly Economic Calendar</h1>
+        <p class="page-subtitle">이번주 미국·한국·일본 경제 지표 (발표 완료 + 예정)</p>
+      </div>
+
+      <div class="weekly-controls">
+        <div class="weekly-filters">
+          <span class="filter-label">중요도</span>
+          <div class="filter-btns" id="impFilter">
+            <button class="filter-btn" data-imp="1">전체 (★)</button>
+            <button class="filter-btn active" data-imp="2">중간↑ (★★)</button>
+            <button class="filter-btn" data-imp="3">높음 (★★★)</button>
+          </div>
+        </div>
+        <div class="weekly-filters">
+          <span class="filter-label">국가</span>
+          <div class="filter-btns" id="countryFilter">
+            <button class="filter-btn active" data-country="ALL">전체</button>
+            <button class="filter-btn" data-country="United_States">🇺🇸 미국</button>
+            <button class="filter-btn" data-country="South_Korea">🇰🇷 한국</button>
+            <button class="filter-btn" data-country="Japan">🇯🇵 일본</button>
+          </div>
+        </div>
+        <div class="weekly-meta">
+          <span id="weeklyStats"></span>
+        </div>
+      </div>
+
+      <div id="weeklyBody" class="weekly-body">
+        <p class="loading" style="padding:40px;text-align:center;">캘린더 로딩 중…</p>
+      </div>
+
+      <footer class="site-footer">
+        <p>Source: Investing.com · 시간대: KST (UTC+9) · 갱신: 5분 간격</p>
+      </footer>
+    </section>
+
+    <!-- ===== NEWS CLIPPING VIEW ===== -->
+    <section class="view" id="view-news" hidden>
+
+      <div class="page-header">
+        <div class="page-breadcrumb">Workspace › News Clipping</div>
+        <h1 class="page-title">📰 News Clipping</h1>
+        <p class="page-subtitle">매일 09:03 KST 자동 실행 · 6개 섹터 24시간 뉴스 클리핑·요약</p>
+      </div>
+
+      <div class="news-controls">
+        <div class="news-date-row">
+          <span class="filter-label">날짜</span>
+          <div class="news-date-pills" id="newsDatePills">
+            <span class="loading" style="padding:6px 12px;">로딩 중…</span>
+          </div>
+        </div>
+        <div class="news-sector-row">
+          <span class="filter-label">섹터</span>
+          <div class="filter-btns" id="newsSectorFilter">
+            <button class="filter-btn active" data-sector="ALL">전체</button>
+            <button class="filter-btn" data-sector="1">Tech</button>
+            <button class="filter-btn" data-sector="2">IT SW</button>
+            <button class="filter-btn" data-sector="3">Healthcare</button>
+            <button class="filter-btn" data-sector="4">Electrification</button>
+            <button class="filter-btn" data-sector="5">Defense</button>
+            <button class="filter-btn" data-sector="6">Deal</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="newsBody" class="news-body">
+        <div class="news-empty">
+          <div class="news-empty-icon">📭</div>
+          <h3>아직 저장된 클리핑이 없습니다</h3>
+          <p>Claude Code 세션에서 <code>/news-clipping</code> 을 실행하면 결과가 자동으로 이 폴더 (<code>dashboard/news/YYYY-MM-DD.md</code>) 에 저장되고 여기에 표시됩니다.</p>
+          <p>또는 매일 09:03 KST에 자동 실행되는 스케줄이 다음번 실행 시 자동 채워줍니다.</p>
+        </div>
+      </div>
+
+      <footer class="site-footer">
+        <p>Source: 6개 섹터별 신뢰 언론 (Bloomberg, Nikkei, 한경, 매경, dealsite, the bell 등) · 자동 스케줄: 매일 09:03 KST</p>
+      </footer>
+    </section>
+
+  </main>
+
+</div>
+
+<!-- =================== AI Chat Widget =================== -->
+<div id="chatWidget">
+  <button id="chatToggle" class="chat-toggle" title="AI Assistant" aria-label="AI 채팅 열기">
+    <span class="chat-icon">💬</span>
+    <span class="chat-toggle-label">AI Analyst</span>
+  </button>
+  <div id="chatPanel" class="chat-panel" aria-hidden="true">
+    <div class="chat-header">
+      <div class="chat-title">
+        <span class="chat-title-main">AI Analyst</span>
+        <span class="chat-title-sub">Claude Opus 4.7 · Reverent Partners</span>
+      </div>
+      <button id="chatClose" class="chat-close" aria-label="닫기">×</button>
+    </div>
+    <div id="chatMessages" class="chat-messages">
+      <div class="chat-message assistant">
+        <div class="chat-bubble">
+          안녕하세요. 현재 대시보드의 시장 데이터와 오늘의 경제 캘린더를 보고 있습니다. 시장·매크로 관련해서 무엇이든 물어보세요.
+          <div class="chat-suggestions">
+            <button class="chat-suggest" data-q="오늘 발표된 경제지표 핵심만 요약해줘">📊 오늘 경제지표 요약</button>
+            <button class="chat-suggest" data-q="이번 주 자본시장 동향을 3줄로 정리해줘">📈 자본시장 3줄 요약</button>
+            <button class="chat-suggest" data-q="KOSPI가 왜 이렇게 올랐지? 데이터 기반으로 분석해줘">🇰🇷 KOSPI 급등 원인</button>
+            <button class="chat-suggest" data-q="현재 시점에서 주목해야 할 섹터는?">🎯 주목 섹터</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="chat-input-area">
+      <textarea id="chatInput" placeholder="질문을 입력하세요 (Shift+Enter 줄바꿈, Enter 전송)" rows="2"></textarea>
+      <button id="chatSend" class="chat-send" title="전송">↑</button>
+    </div>
+    <div class="chat-footer">
+      <span id="chatStatus" class="chat-status"></span>
+    </div>
+  </div>
+</div>
+
+<script src="macro.js"></script>
+<script src="app.js"></script>
+<script src="chat.js"></script>
+</body>
+</html>
