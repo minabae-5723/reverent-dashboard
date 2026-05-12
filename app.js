@@ -1098,6 +1098,11 @@ function renderDealsEmpty() {
 //   ## 2. 주요 거래 동향
 //   ### 헤드라인 (YYYY.MM.DD)
 //   - bullet
+//   #### Valuation (단위: 억원, FY25)         ← optional, page 6 only
+//   | 항목 | 값 |
+//   |---|---|
+//   | 매출액 | 3,159 |
+//   ...
 //   ## 3. Deal Summary
 //   | ... | ... |  (markdown table)
 function parseDealFlow(md) {
@@ -1106,11 +1111,12 @@ function parseDealFlow(md) {
   let section = null;
   let article = null;
   let tableLines = [];
-  let inTable = false;
+  let inValuation = false;
 
   const closeArticle = () => {
     if (article && section) section.articles.push(article);
     article = null;
+    inValuation = false;
   };
 
   for (const line of lines) {
@@ -1125,9 +1131,7 @@ function parseDealFlow(md) {
     const h2 = line.match(/^##\s+(.+?)\s*$/);
     if (h2) {
       closeArticle();
-      inTable = false;
       const name = h2[1].trim();
-      // Detect summary section by keyword
       if (/Deal\s*Summary|딜\s*요약|거래\s*요약/i.test(name)) {
         section = { name, articles: [], isSummary: true };
         tableLines = [];
@@ -1147,7 +1151,18 @@ function parseDealFlow(md) {
         date = dm[1];
         head = head.replace(/\s*\([0-9]{4}\.[0-9]{2}\.[0-9]{2}\)\s*$/, '').trim();
       }
-      article = { headline: head, date, bullets: [] };
+      article = { headline: head, date, bullets: [], valuationTitle: '', valuationLines: [] };
+      continue;
+    }
+    // H4 — Valuation sub-section inside an article
+    const h4 = line.match(/^####\s+(.+?)\s*$/);
+    if (h4 && article) {
+      if (/Valuation|밸류에이션|가치평가/i.test(h4[1])) {
+        article.valuationTitle = h4[1].trim();
+        inValuation = true;
+      } else {
+        inValuation = false;
+      }
       continue;
     }
     // Collect table lines in summary section
@@ -1158,13 +1173,41 @@ function parseDealFlow(md) {
       }
       continue;
     }
+    // Valuation table lines
+    if (inValuation && article) {
+      if (/^\s*\|/.test(line)) {
+        article.valuationLines.push(line);
+        continue;
+      }
+      // Non-table, non-empty line exits valuation mode (but keeps article)
+      if (line.trim() !== '') inValuation = false;
+    }
     // Bullets for article
-    if (article) {
+    if (article && !inValuation) {
       const bm = line.match(/^[-•]\s+(.+)$/);
       if (bm) article.bullets.push(bm[1].trim());
     }
   }
   closeArticle();
+  return out;
+}
+
+// Extract { label → raw cell string } from a markdown two-column key/value table.
+// Skips header + separator rows.
+function parseValuationTable(lines) {
+  if (!lines || lines.length < 2) return null;
+  const rows = lines
+    .map(l => l.trim())
+    .filter(l => l.startsWith('|'))
+    .map(l => l.replace(/^\||\|$/g, '').split('|').map(c => c.trim()));
+  if (rows.length < 2) return null;
+  // Detect separator row; data rows are after it. If no separator, drop only header.
+  const sepIdx = rows.findIndex(r => r.every(c => /^:?-+:?$/.test(c)));
+  const dataRows = sepIdx >= 0 ? rows.slice(sepIdx + 1) : rows.slice(1);
+  const out = {};
+  for (const r of dataRows) {
+    if (r.length >= 2 && r[0]) out[r[0]] = (r[1] || '').trim();
+  }
   return out;
 }
 
@@ -1192,11 +1235,16 @@ function renderMdTable(tableLines) {
 function renderDealsContent(md) {
   const body = document.getElementById('dealsBody');
   if (!body) return;
+  _valuationCounter = 0; // reset per-render so card ids start at val-0
   const p = parseDealFlow(md);
   if (!p.title || p.sections.length === 0) {
     body.innerHTML = `<div class="news-empty"><h3>파싱 실패</h3><p>이 파일에서 섹션을 찾을 수 없습니다.</p></div>`;
     return;
   }
+  // localStorage key needs a stable per-week scope
+  const weekDate = dealsState.current
+    || (p.title.match(/(\d{4}-\d{2}-\d{2})/) || [])[1]
+    || 'unknown';
 
   const header = `
     <div class="market-brief-header">
@@ -1219,7 +1267,7 @@ function renderDealsContent(md) {
       `;
     }
     const articles = s.articles.length > 0
-      ? s.articles.map(renderDealArticle).join('')
+      ? s.articles.map(a => renderDealArticle(a, weekDate)).join('')
       : '<div class="news-card" style="color:var(--text-muted);font-style:italic;">이번 주 해당 카테고리 항목 없음</div>';
     return `
       <div class="news-sector-block">
@@ -1233,15 +1281,31 @@ function renderDealsContent(md) {
   }).join('');
 
   body.innerHTML = header + sectionsHtml;
+
+  // Initial compute pass for every valuation card just rendered
+  body.querySelectorAll('.valuation-card[id]').forEach(card => {
+    if (window.computeValuation) window.computeValuation(card.id);
+  });
 }
 
-function renderDealArticle(a) {
+// Counter for per-render valuation card ids — reset every renderDealsContent call
+let _valuationCounter = 0;
+
+function renderDealArticle(a, weekDate) {
   const dateBadge = a.date
     ? `<span class="deals-date-badge">${escapeHtml(a.date)}</span>`
     : '';
   const bulletsHtml = a.bullets.length > 0
     ? `<ul class="deals-bullets">${a.bullets.map(b => `<li>${linkifyInline(b)}</li>`).join('')}</ul>`
     : '';
+  let valuationHtml = '';
+  if (a.valuationLines && a.valuationLines.length > 0) {
+    const data = parseValuationTable(a.valuationLines);
+    if (data) {
+      const cardId = `val-${_valuationCounter++}`;
+      valuationHtml = renderValuationCard(cardId, weekDate || 'unknown', a.headline, a.valuationTitle, data);
+    }
+  }
   return `
     <div class="news-card deals-card">
       <div class="news-card-head">
@@ -1249,9 +1313,266 @@ function renderDealArticle(a) {
         <h3 class="news-headline">${linkifyInline(a.headline)}</h3>
       </div>
       ${bulletsHtml}
+      ${valuationHtml}
     </div>
   `;
 }
+
+// ─── Valuation card (Page 6 only) ────────────────────────
+const VAL_PNL_FIELDS = [
+  { key: '매출액',          ph: '예: 3,159' },
+  { key: '영업이익',        ph: '예: 172' },
+  { key: '감가상각비(D&A)', ph: '+영업이익 = EBITDA' },
+  { key: 'EBITDA',          ph: '비워두면 자동 계산' },
+  { key: '당기순이익',      ph: '예: 11' },
+];
+const VAL_DEBT_FIELDS = [
+  { key: '단기차입금' },
+  { key: '유동성장기차입금' },
+  { key: '유동리스부채' },
+  { key: '장기차입금' },
+  { key: '리스부채' },
+];
+const VAL_CASH_FIELDS = [
+  { key: '현금및현금성자산' },
+  { key: '단기금융상품' },
+];
+const VAL_DEAL_FIELDS = [
+  { key: 'Deal Value',      ph: '거래대금' },
+  { key: '% Stake',         ph: '0~100' },
+  { key: '시가총액',        ph: '상장사만' },
+];
+
+// ─── Valuation persistence (localStorage) ────────────────
+function simpleHash(s) {
+  let h = 0;
+  for (let i = 0; i < s.length; i++) {
+    h = ((h << 5) - h) + s.charCodeAt(i);
+    h |= 0;
+  }
+  return Math.abs(h).toString(36);
+}
+
+function valuationStorageKey(weekDate, headline) {
+  return `rp::valuation::${weekDate}::${simpleHash(headline)}`;
+}
+
+function loadSavedValuation(weekDate, headline) {
+  try {
+    const raw = localStorage.getItem(valuationStorageKey(weekDate, headline));
+    if (!raw) return null;
+    return JSON.parse(raw);
+  } catch { return null; }
+}
+
+function renderValuationCard(cardId, weekDate, headline, title, data) {
+  data = data || {};
+  const saved = loadSavedValuation(weekDate, headline);
+  const merged = saved ? { ...data, ...saved.values } : data;
+  const dealType = merged['Deal Type'] || '';
+  const renderInput = (f) => {
+    const v = merged[f.key] !== undefined ? merged[f.key] : '';
+    const ph = f.ph ? ` placeholder="${escapeHtml(f.ph)}"` : '';
+    return `<tr>
+      <th>${escapeHtml(f.key)}</th>
+      <td><input type="text" inputmode="decimal" data-key="${escapeHtml(f.key)}" value="${escapeHtml(v)}"${ph} oninput="computeValuation('${cardId}')" /></td>
+    </tr>`;
+  };
+  const titleStr = title || 'Valuation';
+  const savedBadge = saved
+    ? `<span class="valuation-saved-badge" title="${escapeHtml(saved.savedAt)} 저장">📌 저장됨</span>`
+    : '';
+  return `
+    <div class="valuation-card" id="${cardId}" data-week="${escapeHtml(weekDate)}" data-headline="${escapeHtml(headline)}">
+      <div class="valuation-head">
+        <span class="valuation-title">💹 ${escapeHtml(titleStr)}</span>
+        ${dealType ? `<span class="valuation-dealtype">${escapeHtml(dealType)}</span>` : ''}
+        ${savedBadge}
+      </div>
+      <div class="valuation-grid">
+
+        <div class="val-col">
+          <div class="val-col-title">손익</div>
+          <table class="val-input-table">
+            <tbody>${VAL_PNL_FIELDS.map(renderInput).join('')}</tbody>
+          </table>
+        </div>
+
+        <div class="val-col">
+          <div class="val-col-title">Net Debt 항목</div>
+          <table class="val-input-table">
+            <tbody>
+              ${VAL_DEBT_FIELDS.map(renderInput).join('')}
+              <tr class="val-subtotal"><th>IBD 총계</th><td data-out="IBD">—</td></tr>
+              ${VAL_CASH_FIELDS.map(renderInput).join('')}
+              <tr class="val-subtotal"><th>현금성 총계</th><td data-out="Cash">—</td></tr>
+              <tr class="val-subtotal val-emphasis"><th>Net Debt</th><td data-out="NetDebt">—</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="val-col">
+          <div class="val-col-title">Deal · Multiples</div>
+          <table class="val-input-table">
+            <tbody>
+              ${VAL_DEAL_FIELDS.map(renderInput).join('')}
+              <tr class="val-subtotal"><th>Equity Value</th><td data-out="EquityValue">—</td></tr>
+              <tr class="val-subtotal val-emphasis"><th>EV</th><td data-out="EV">—</td></tr>
+              <tr class="val-subtotal"><th>EBITDA (계산)</th><td data-out="EBITDA">—</td></tr>
+              <tr class="val-multiple"><th>EV / EBITDA</th><td data-out="EV_EBITDA">—</td></tr>
+              <tr class="val-multiple"><th>EV / 매출</th><td data-out="EV_Sales">—</td></tr>
+              <tr class="val-multiple"><th>PER</th><td data-out="PER">—</td></tr>
+              <tr class="val-multiple"><th>Premium vs 시총</th><td data-out="Premium">—</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+      <div class="valuation-foot">
+        <div class="valuation-actions">
+          <button type="button" class="val-action-btn val-action-fix" onclick="saveValuationByCard('${cardId}')" title="현재 입력값을 브라우저에 영구 저장">📌 Fix (저장)</button>
+          <button type="button" class="val-action-btn val-action-reset" onclick="resetValuationByCard('${cardId}')" title="저장값을 삭제하고 MD 기본값으로 되돌림">↺ 초기화</button>
+        </div>
+        <span class="valuation-status" id="${cardId}-status">${saved ? `📌 ${escapeHtml(saved.savedAt)} 저장됨` : '단위: 억원 · 입력 후 Fix 버튼으로 영구 저장'}</span>
+      </div>
+    </div>
+  `;
+}
+
+// Window-exposed handlers for inline onclick
+window.saveValuationByCard = function (cardId) {
+  const card = document.getElementById(cardId);
+  if (!card) return;
+  const weekDate = card.dataset.week;
+  const headline = card.dataset.headline;
+  const inputs = card.querySelectorAll('input[data-key]');
+  const values = {};
+  inputs.forEach(el => {
+    const k = el.dataset.key;
+    const v = el.value.trim();
+    if (v !== '') values[k] = v;
+  });
+  const savedAt = new Date().toLocaleString('ko-KR', { hour12: false });
+  const payload = { values, savedAt };
+  localStorage.setItem(valuationStorageKey(weekDate, headline), JSON.stringify(payload));
+  // Update status + badge in place
+  const status = document.getElementById(`${cardId}-status`);
+  if (status) status.textContent = `📌 ${savedAt} 저장됨`;
+  let badge = card.querySelector('.valuation-saved-badge');
+  if (!badge) {
+    badge = document.createElement('span');
+    badge.className = 'valuation-saved-badge';
+    card.querySelector('.valuation-head').appendChild(badge);
+  }
+  badge.textContent = '📌 저장됨';
+  badge.title = `${savedAt} 저장`;
+};
+
+window.resetValuationByCard = function (cardId) {
+  const card = document.getElementById(cardId);
+  if (!card) return;
+  const weekDate = card.dataset.week;
+  const headline = card.dataset.headline;
+  if (!confirm('이 거래의 저장된 입력값을 모두 삭제하고 MD 기본값으로 되돌립니다. 계속할까요?')) return;
+  localStorage.removeItem(valuationStorageKey(weekDate, headline));
+  // Re-render the whole deals view so MD defaults are restored
+  if (dealsState.current && dealsState.cache[dealsState.current]) {
+    renderDealsContent(dealsState.cache[dealsState.current]);
+  }
+};
+
+// Number parser tolerates commas, parentheses (negative), and units like 억원
+function parseValNum(s) {
+  if (s === null || s === undefined) return null;
+  const t = String(s).replace(/[,\s억원원KRW]/g, '').trim();
+  if (t === '' || t === '-') return null;
+  let neg = false;
+  let body = t;
+  if (body.startsWith('(') && body.endsWith(')')) { neg = true; body = body.slice(1, -1); }
+  if (body.startsWith('-')) { neg = true; body = body.slice(1); }
+  const n = Number(body);
+  if (!isFinite(n)) return null;
+  return neg ? -n : n;
+}
+
+function fmtVal(n, digits = 0) {
+  if (n === null || !isFinite(n)) return '—';
+  return n.toLocaleString('ko-KR', { minimumFractionDigits: digits, maximumFractionDigits: digits });
+}
+
+function fmtMultiple(n) {
+  if (n === null || !isFinite(n)) return '—';
+  return n.toFixed(1) + 'x';
+}
+
+function fmtPercent(n) {
+  if (n === null || !isFinite(n)) return '—';
+  return (n >= 0 ? '+' : '') + n.toFixed(1) + '%';
+}
+
+// Live recompute — exposed on window for inline oninput handlers
+window.computeValuation = function (cardId) {
+  const card = document.getElementById(cardId);
+  if (!card) return;
+  const read = (key) => parseValNum(card.querySelector(`[data-key="${key}"]`)?.value);
+  const setOut = (k, html) => {
+    const el = card.querySelector(`[data-out="${k}"]`);
+    if (el) el.textContent = html;
+  };
+
+  const revenue   = read('매출액');
+  const opIncome  = read('영업이익');
+  const da        = read('감가상각비(D&A)');
+  const ebitdaRaw = read('EBITDA');
+  const netIncome = read('당기순이익');
+
+  // EBITDA: direct input first, else 영업이익 + D&A
+  const ebitda = ebitdaRaw !== null
+    ? ebitdaRaw
+    : (opIncome !== null && da !== null ? opIncome + da : null);
+
+  const debt = ['단기차입금', '유동성장기차입금', '유동리스부채', '장기차입금', '리스부채']
+    .map(read).filter(v => v !== null);
+  const ibd = debt.length ? debt.reduce((a, b) => a + b, 0) : null;
+
+  const cash = ['현금및현금성자산', '단기금융상품']
+    .map(read).filter(v => v !== null);
+  const cashTotal = cash.length ? cash.reduce((a, b) => a + b, 0) : null;
+
+  const netDebt = (ibd !== null || cashTotal !== null)
+    ? (ibd || 0) - (cashTotal || 0)
+    : null;
+
+  const dealValue = read('Deal Value');
+  const stake     = read('% Stake');
+  const mktCap    = read('시가총액');
+
+  // Equity Value:
+  //   1순위: Deal Value / Stake (control 거래 implied)
+  //   2순위: 시가총액 (소수지분·listed 케이스 fallback)
+  const equity = (dealValue !== null && stake !== null && stake > 0)
+    ? dealValue / (stake / 100)
+    : (mktCap !== null ? mktCap : null);
+
+  const ev = (equity !== null && netDebt !== null) ? equity + netDebt
+           : (equity !== null ? equity : null);
+
+  const evEbitda = (ev !== null && ebitda && ebitda !== 0) ? ev / ebitda : null;
+  const evSales  = (ev !== null && revenue && revenue !== 0) ? ev / revenue : null;
+  const per      = (equity !== null && netIncome && netIncome !== 0) ? equity / netIncome : null;
+  const premium  = (equity !== null && mktCap && mktCap !== 0) ? (equity / mktCap - 1) * 100 : null;
+
+  setOut('IBD',        fmtVal(ibd));
+  setOut('Cash',       fmtVal(cashTotal));
+  setOut('NetDebt',    fmtVal(netDebt));
+  setOut('EquityValue',fmtVal(equity));
+  setOut('EV',         fmtVal(ev));
+  setOut('EBITDA',     fmtVal(ebitda));
+  setOut('EV_EBITDA',  fmtMultiple(evEbitda));
+  setOut('EV_Sales',   fmtMultiple(evSales));
+  setOut('PER',        fmtMultiple(per));
+  setOut('Premium',    fmtPercent(premium));
+};
 
 // ─── View Router ──────────────────────────────────────────
 function showView(name) {

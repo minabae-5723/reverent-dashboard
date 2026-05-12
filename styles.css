@@ -1550,3 +1550,206 @@ html, body {
 .deals-summary-table tbody tr:hover td {
   background: var(--highlight);
 }
+
+/* =============================================================
+   Valuation card (Page 6 only, inside .deals-card)
+   ============================================================= */
+.valuation-card {
+  margin-top: 14px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: #fafbfc;
+  padding: 10px 12px;
+  font-size: 12px;
+}
+
+.valuation-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 10px;
+}
+
+.valuation-title {
+  font-weight: 700;
+  color: var(--navy-dark);
+  font-size: 13px;
+}
+
+.valuation-dealtype {
+  display: inline-block;
+  padding: 2px 8px;
+  background: var(--navy);
+  color: #fff;
+  border-radius: 3px;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.valuation-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+}
+
+.val-col-title {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  padding-bottom: 3px;
+  border-bottom: 1px dashed var(--border);
+}
+
+.val-input-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+}
+
+.val-input-table th {
+  text-align: left;
+  font-weight: 500;
+  color: var(--text);
+  padding: 3px 6px 3px 0;
+  font-size: 11.5px;
+  width: 55%;
+  white-space: nowrap;
+}
+
+.val-input-table td {
+  padding: 2px 0;
+  text-align: right;
+}
+
+.val-input-table input {
+  width: 100%;
+  padding: 3px 6px;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  font: inherit;
+  font-size: 12px;
+  text-align: right;
+  background: #fff;
+  font-variant-numeric: tabular-nums;
+}
+
+.val-input-table input:focus {
+  outline: none;
+  border-color: var(--navy);
+  background: #fffef7;
+}
+
+.val-input-table input::placeholder {
+  color: var(--text-light);
+  font-size: 10.5px;
+  font-style: italic;
+}
+
+.val-subtotal th,
+.val-subtotal td {
+  border-top: 1px solid var(--border);
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-weight: 600;
+}
+
+.val-subtotal td {
+  color: var(--navy-dark);
+  padding-right: 6px;
+}
+
+.val-emphasis th,
+.val-emphasis td {
+  background: var(--highlight);
+  color: var(--navy-dark);
+  font-weight: 700;
+}
+
+.val-multiple th {
+  color: var(--text-muted);
+  font-size: 11px;
+}
+
+.val-multiple td {
+  font-weight: 700;
+  color: var(--gold);
+  padding-right: 6px;
+  font-size: 12px;
+}
+
+.valuation-foot {
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px dashed var(--border);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.valuation-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.val-action-btn {
+  padding: 5px 10px;
+  border-radius: 3px;
+  border: 1px solid var(--border);
+  background: #fff;
+  cursor: pointer;
+  font: inherit;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.val-action-fix {
+  background: var(--navy);
+  color: #fff;
+  border-color: var(--navy-dark);
+}
+
+.val-action-fix:hover {
+  background: var(--navy-light);
+}
+
+.val-action-reset {
+  color: var(--text-muted);
+}
+
+.val-action-reset:hover {
+  border-color: var(--negative);
+  color: var(--negative);
+}
+
+.valuation-status {
+  font-size: 10.5px;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.valuation-saved-badge {
+  display: inline-block;
+  margin-left: auto;
+  padding: 2px 8px;
+  background: var(--highlight-strong);
+  color: var(--navy-dark);
+  border-radius: 10px;
+  font-size: 10.5px;
+  font-weight: 700;
+}
+
+@media (max-width: 1100px) {
+  .valuation-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 700px) {
+  .valuation-grid { grid-template-columns: 1fr; }
+}
