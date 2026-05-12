@@ -42,6 +42,11 @@ $thisYear = (Get-Date).Year
 $startYear = $thisYear - 1
 & powershell -NoProfile -ExecutionPolicy Bypass -File $tradeScript -StartYear $startYear
 
+# 2.7. Refresh Shiller P/E (CAPE)
+Write-Host ""
+Write-Host "[2.7/5] Refresh Shiller P/E ratio..." -ForegroundColor Yellow
+& powershell -NoProfile -ExecutionPolicy Bypass -File (Join-Path $root 'fetch-shiller.ps1')
+
 # 3. Regenerate index.json for every clipping folder
 Write-Host ""
 Write-Host "[3/4] Regenerate index.json for clipping folders..." -ForegroundColor Yellow

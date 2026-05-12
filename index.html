@@ -34,7 +34,7 @@
     <div class="sidebar-nav">
       <a href="#market" class="sidebar-item" data-view="market">
         <span class="sb-ico">🌅</span>
-        <span class="sb-text">시황정리</span>
+        <span class="sb-text">Daily Market Briefing</span>
       </a>
       <a href="#news" class="sidebar-item" data-view="news">
         <span class="sb-ico">📰</span>
@@ -154,6 +154,27 @@
         </div>
       </section>
 
+      <!-- Section 3: Shiller P/E (CAPE) Ratio -->
+      <section class="block">
+        <h2 class="block-title"><span class="num">3</span> Shiller P/E (CAPE) Ratio</h2>
+        <div class="shiller-head">
+          <div class="shiller-stats">
+            <div class="shiller-current">
+              <span class="shiller-label">현재</span>
+              <span class="shiller-value" id="shillerCurrent">—</span>
+              <span class="shiller-date" id="shillerDate"></span>
+            </div>
+          </div>
+          <div class="filter-btns" id="shillerRangeFilter">
+            <button class="filter-btn" data-range="5y">5년</button>
+            <button class="filter-btn active" data-range="10y">10년</button>
+            <button class="filter-btn" data-range="all">전체 (1871~)</button>
+          </div>
+        </div>
+        <div class="shiller-chart-wrap"><canvas id="shillerChart"></canvas></div>
+        <p class="note">Source: <a href="https://www.multpl.com/shiller-pe/table/by-month" target="_blank" rel="noopener">multpl.com</a> · 현재 값은 일별 갱신, 과거는 월말 종가 기준 CAPE.</p>
+      </section>
+
       <footer class="site-footer">
         <p>Data: Yahoo Finance + Investing.com · 미국 시장은 실시간, 한국·일본은 EOD. © Reverent Partners</p>
       </footer>
@@ -204,8 +225,8 @@
     <section class="view" id="view-market" hidden>
 
       <div class="page-header">
-        <div class="page-breadcrumb">Workspace › 시황정리</div>
-        <h1 class="page-title">🌅 시황정리</h1>
+        <div class="page-breadcrumb">Workspace › Daily Market Briefing</div>
+        <h1 class="page-title">🌅 Daily Market Briefing</h1>
         <p class="page-subtitle">매일 08:00 KST 자동 실행 · 미 증시 마감 시황 + 특징주</p>
       </div>
 

@@ -19,6 +19,7 @@ const NEWS_INDEX_URL = IS_STATIC ? './news/index.json' : '/news/list';
 const MARKET_INDEX_URL = IS_STATIC ? './market/index.json' : '/market/list';
 const DEALS_INDEX_URL = IS_STATIC ? './deals/index.json' : '/deals/list';
 const TRADE_URL = './trade.json';
+const SHILLER_URL = './shiller.json';
 
 const FLAG_EMOJI = {
   United_States: '🇺🇸',
@@ -1807,6 +1808,124 @@ function renderSemicon() {
   });
 }
 
+// ─── Shiller P/E (CAPE) — bottom of Home view ─────────────
+let shillerCache = null;
+let shillerChart = null;
+let shillerRange = '10y';
+
+async function loadShiller() {
+  if (shillerCache) { renderShiller(); return; }
+  try {
+    const res = await fetch(`${SHILLER_URL}?_=${Date.now()}`, { cache: 'no-store' });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    shillerCache = await res.json();
+    renderShiller();
+  } catch (err) {
+    console.warn('Shiller fetch failed:', err);
+    const cur = document.getElementById('shillerCurrent');
+    if (cur) cur.textContent = 'N/A';
+  }
+}
+
+function renderShiller() {
+  if (!shillerCache) return;
+
+  // Latest spot
+  const latest = shillerCache.latest;
+  const curEl = document.getElementById('shillerCurrent');
+  const dateEl = document.getElementById('shillerDate');
+  if (curEl && latest) curEl.textContent = latest.value.toFixed(2);
+  if (dateEl && latest) dateEl.textContent = '(' + (latest.raw || latest.date) + ')';
+
+  // Filter monthly series
+  const all = shillerCache.monthly || [];
+  let filtered = all;
+  if (shillerRange === '5y' || shillerRange === '10y') {
+    const yrsBack = shillerRange === '5y' ? 5 : 10;
+    const cutoff = new Date();
+    cutoff.setFullYear(cutoff.getFullYear() - yrsBack);
+    const cutoffStr = cutoff.toISOString().slice(0, 7);
+    filtered = all.filter(d => d.month >= cutoffStr);
+  }
+
+  drawShillerChart(filtered);
+}
+
+function drawShillerChart(series) {
+  if (typeof Chart === 'undefined') return;
+  const ctx = document.getElementById('shillerChart');
+  if (!ctx) return;
+  if (shillerChart) shillerChart.destroy();
+
+  // Historical mean ≈ 17.0, standard deviation lines for context
+  const labels = series.map(d => d.month);
+  const values = series.map(d => d.value);
+  const mean = 17.0;
+  const meanLine = new Array(series.length).fill(mean);
+
+  shillerChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels,
+      datasets: [
+        {
+          label: 'Shiller P/E (CAPE)',
+          data: values,
+          borderColor: '#1e3a5f',
+          backgroundColor: '#1e3a5f22',
+          borderWidth: 2,
+          pointRadius: 0,
+          pointHoverRadius: 5,
+          tension: 0.1,
+          fill: true,
+        },
+        {
+          label: 'Historical mean (~17.0)',
+          data: meanLine,
+          borderColor: '#b89968',
+          borderWidth: 1.5,
+          borderDash: [5, 5],
+          pointRadius: 0,
+          fill: false,
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      interaction: { mode: 'index', intersect: false },
+      plugins: {
+        legend: { display: true, position: 'top', labels: { font: { size: 11 } } },
+        tooltip: {
+          callbacks: { label: (c) => `${c.dataset.label}: ${c.parsed.y.toFixed(2)}` },
+        },
+      },
+      scales: {
+        x: {
+          ticks: { maxRotation: 0, autoSkip: true, maxTicksLimit: 12, font: { size: 11 } },
+          grid: { display: false },
+        },
+        y: {
+          beginAtZero: false,
+          ticks: { font: { size: 11 } },
+          grid: { color: '#e9ecf0' },
+        },
+      },
+    },
+  });
+}
+
+function setupShillerFilters() {
+  document.querySelectorAll('#shillerRangeFilter .filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('#shillerRangeFilter .filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      shillerRange = btn.dataset.range;
+      renderShiller();
+    });
+  });
+}
+
 function setupSemiconFilters() {
   document.querySelectorAll('#semiconRangeFilter .filter-btn').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -1837,9 +1956,11 @@ setupRouter();
 setupWeeklyFilters();
 setupNewsFilters();
 setupSemiconFilters();
+setupShillerFilters();
 loadCalendar();
 loadData();
 loadWeeklyCalendar();
+loadShiller();
 // Manual refresh mode — no setInterval. Data is re-fetched only when:
 //   - User clicks the ↻ 새로고침 button (forceRefresh → /refresh → Yahoo + Investing)
 //   - User reloads the page
