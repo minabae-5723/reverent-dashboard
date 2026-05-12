@@ -44,6 +44,10 @@
         <span class="sb-ico">💼</span>
         <span class="sb-text">Deal Flow</span>
       </a>
+      <a href="#semicon" class="sidebar-item" data-view="semicon">
+        <span class="sb-ico">🔌</span>
+        <span class="sb-text">반도체 수출입</span>
+      </a>
     </div>
 
     <div class="sidebar-spacer"></div>
@@ -306,6 +310,80 @@
       </footer>
     </section>
 
+    <!-- ===== SEMICONDUCTOR 수출입 VIEW ===== -->
+    <section class="view" id="view-semicon" hidden>
+
+      <div class="page-header">
+        <div class="page-breadcrumb">Workspace › 반도체 수출입</div>
+        <h1 class="page-title">🔌 Semiconductor 수출입 동향</h1>
+        <p class="page-subtitle">SSD · NAND · DRAM 월별 수출액 (관세청 HS Code 기반)</p>
+      </div>
+
+      <div class="semicon-controls">
+        <div class="weekly-filters">
+          <span class="filter-label">기간</span>
+          <div class="filter-btns" id="semiconRangeFilter">
+            <button class="filter-btn" data-range="3y">최근 3년</button>
+            <button class="filter-btn active" data-range="5y">최근 5년</button>
+            <button class="filter-btn" data-range="all">전체 (2007~)</button>
+          </div>
+        </div>
+        <div class="weekly-filters">
+          <span class="filter-label">지표</span>
+          <div class="filter-btns" id="semiconMetricFilter">
+            <button class="filter-btn active" data-metric="value">수출액 ($mn)</button>
+            <button class="filter-btn" data-metric="weight">수출중량 (kg)</button>
+            <button class="filter-btn" data-metric="unitPrice">단가 ($/kg)</button>
+          </div>
+        </div>
+        <div class="weekly-meta">
+          <span id="semiconUpdated"></span>
+        </div>
+      </div>
+
+      <div id="semiconBody" class="semicon-body">
+        <div class="semicon-card" data-key="ssd">
+          <div class="semicon-card-head">
+            <div class="semicon-title">
+              <span class="semicon-emoji">💾</span>
+              <span class="semicon-name">SSD</span>
+              <span class="semicon-hs">HS Code: 8523511000</span>
+            </div>
+            <div class="semicon-stats" id="ssdStats">—</div>
+          </div>
+          <div class="semicon-chart-wrap"><canvas id="ssdChart"></canvas></div>
+        </div>
+
+        <div class="semicon-card" data-key="nand">
+          <div class="semicon-card-head">
+            <div class="semicon-title">
+              <span class="semicon-emoji">📀</span>
+              <span class="semicon-name">NAND</span>
+              <span class="semicon-hs">HS Code: 8542321030</span>
+            </div>
+            <div class="semicon-stats" id="nandStats">—</div>
+          </div>
+          <div class="semicon-chart-wrap"><canvas id="nandChart"></canvas></div>
+        </div>
+
+        <div class="semicon-card" data-key="dram">
+          <div class="semicon-card-head">
+            <div class="semicon-title">
+              <span class="semicon-emoji">🧠</span>
+              <span class="semicon-name">DRAM</span>
+              <span class="semicon-hs">HS Code: 8542321010 (칩, 모듈 제외)</span>
+            </div>
+            <div class="semicon-stats" id="dramStats">—</div>
+          </div>
+          <div class="semicon-chart-wrap"><canvas id="dramChart"></canvas></div>
+        </div>
+      </div>
+
+      <footer class="site-footer">
+        <p>Source: 관세청 무역통계 (수기 import — Phase 2에서 TRASS 자동 갱신 예정) · 단위: USD million</p>
+      </footer>
+    </section>
+
   </main>
 
 </div>
@@ -347,6 +425,7 @@
   </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.6/dist/chart.umd.min.js"></script>
 <script src="macro.js"></script>
 <script src="app.js"></script>
 <script src="chat.js"></script>

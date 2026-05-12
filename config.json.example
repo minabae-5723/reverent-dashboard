@@ -1,6 +1,7 @@
 {
-  "_comment": "Copy this file to config.json and paste your Anthropic API key. Get one at https://console.anthropic.com/",
-  "ANTHROPIC_API_KEY": "mn.bae@revernetpartners.com",
+  "_comment": "Copy this file to config.json and fill in personal credentials. The real config.json is gitignored — never commit. Each teammate maintains their own.",
+  "ANTHROPIC_API_KEY": "sk-ant-api03-PASTE-YOUR-KEY-HERE",
   "MODEL": "claude-opus-4-7",
-  "MAX_TOKENS": 2048
+  "MAX_TOKENS": 2048,
+  "DATA_GO_KR_API_KEY": "PASTE-YOUR-DATA-GO-KR-SERVICE-KEY-HERE"
 }

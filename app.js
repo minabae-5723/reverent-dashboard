@@ -18,6 +18,7 @@ const IS_STATIC = !/^(localhost|127\.|0\.0\.0\.0|\[::1\])/i.test(window.location
 const NEWS_INDEX_URL = IS_STATIC ? './news/index.json' : '/news/list';
 const MARKET_INDEX_URL = IS_STATIC ? './market/index.json' : '/market/list';
 const DEALS_INDEX_URL = IS_STATIC ? './deals/index.json' : '/deals/list';
+const TRADE_URL = './trade.json';
 
 const FLAG_EMOJI = {
   United_States: '🇺🇸',
@@ -1576,7 +1577,7 @@ window.computeValuation = function (cardId) {
 
 // ─── View Router ──────────────────────────────────────────
 function showView(name) {
-  const valid = ['home', 'weekly', 'news', 'market', 'deals'];
+  const valid = ['home', 'weekly', 'news', 'market', 'deals', 'semicon'];
   if (!valid.includes(name)) name = 'home';
 
   document.querySelectorAll('.view').forEach(v => {
@@ -1590,6 +1591,7 @@ function showView(name) {
   if (name === 'news') loadNewsIndex();
   if (name === 'market') loadMarketIndex();
   if (name === 'deals') loadDealsIndex();
+  if (name === 'semicon') loadSemicon();
   window.scrollTo({ top: 0 });
 }
 
@@ -1618,6 +1620,212 @@ if (IS_STATIC) {
   if (chat) chat.style.display = 'none';
 }
 
+// ─── Semiconductor 수출입 View ────────────────────────────
+let tradeCache = null;
+let semiconCharts = { ssd: null, nand: null, dram: null };
+let semiconRange = '5y';
+let semiconMetric = 'value';  // 'value' | 'weight' | 'unitPrice'
+
+const SEMICON_METRIC_LABELS = {
+  value:     { label: '수출액',    unit: '$mn',  field: 'value',     digits: 0 },
+  weight:    { label: '수출중량',  unit: 'kg',   field: 'weight',    digits: 0 },
+  unitPrice: { label: '단가',      unit: '$/kg', field: 'unitPrice', digits: 1 },
+};
+
+function metricCfg() { return SEMICON_METRIC_LABELS[semiconMetric] || SEMICON_METRIC_LABELS.value; }
+
+async function loadSemicon() {
+  if (!tradeCache) {
+    try {
+      const res = await fetch(`${TRADE_URL}?_=${Date.now()}`, { cache: 'no-store' });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      tradeCache = await res.json();
+    } catch (err) {
+      console.warn('Trade data load failed:', err);
+      document.getElementById('semiconBody').innerHTML =
+        `<div class="news-empty"><h3>trade.json 로딩 실패</h3><p>${err.message}</p></div>`;
+      return;
+    }
+  }
+  const ts = document.getElementById('semiconUpdated');
+  if (ts && tradeCache.updatedKr) ts.textContent = `데이터 기준: ${tradeCache.updatedKr.slice(0, 10)}`;
+  renderSemicon();
+}
+
+function filterByRange(series, range) {
+  if (!series || series.length === 0) return [];
+  if (range === 'all') return series;
+  const monthsBack = range === '3y' ? 36 : 60;
+  const latestMonth = series[series.length - 1].month;
+  const [latestY, latestM] = latestMonth.split('-').map(Number);
+  // total months from year 0 helps comparison
+  const latestIdx = latestY * 12 + latestM;
+  const cutoff = latestIdx - monthsBack + 1;
+  return series.filter(d => {
+    const [y, m] = d.month.split('-').map(Number);
+    return (y * 12 + m) >= cutoff;
+  });
+}
+
+function computeStats(series) {
+  const cfg = metricCfg();
+  const f = cfg.field;
+  if (!series || series.length < 13) return null;
+  const latest = series[series.length - 1];
+  const prev1  = series[series.length - 2];
+  const prev12 = series[series.length - 13];
+  const lv = latest?.[f];
+  const p1 = prev1?.[f];
+  const p12 = prev12?.[f];
+  const mom = (p1 != null && p1 !== 0) ? ((lv - p1) / p1) * 100 : null;
+  const yoy = (p12 != null && p12 !== 0) ? ((lv - p12) / p12) * 100 : null;
+  return {
+    latest: lv,
+    latestMonth: latest.month,
+    mom,
+    yoy,
+    unit: cfg.unit,
+    digits: cfg.digits,
+  };
+}
+
+function renderStatsBlock(stats) {
+  if (!stats) return '<span class="loading">데이터 부족</span>';
+  const mom = stats.mom;
+  const yoy = stats.yoy;
+  const momCls = mom > 0 ? 'pos' : mom < 0 ? 'neg' : '';
+  const yoyCls = yoy > 0 ? 'pos' : yoy < 0 ? 'neg' : '';
+  const momTxt = mom === null || isNaN(mom) ? '—' : `${mom >= 0 ? '+' : ''}${mom.toFixed(1)}%`;
+  const yoyTxt = yoy === null || isNaN(yoy) ? '—' : `${yoy >= 0 ? '+' : ''}${yoy.toFixed(1)}%`;
+  const latest = stats.latest != null
+    ? `${Number(stats.latest).toLocaleString('en-US', { maximumFractionDigits: stats.digits })} ${stats.unit}`
+    : '—';
+  return `
+    <div class="semicon-stat">
+      <span class="stat-label">${stats.latestMonth}</span>
+      <span class="stat-value">${latest}</span>
+    </div>
+    <div class="semicon-stat">
+      <span class="stat-label">MoM</span>
+      <span class="stat-value ${momCls}">${momTxt}</span>
+    </div>
+    <div class="semicon-stat">
+      <span class="stat-label">YoY</span>
+      <span class="stat-value ${yoyCls}">${yoyTxt}</span>
+    </div>
+  `;
+}
+
+function drawChart(canvasId, label, series, color) {
+  if (typeof Chart === 'undefined') {
+    console.warn('Chart.js not loaded yet');
+    return;
+  }
+  const ctx = document.getElementById(canvasId);
+  if (!ctx) return;
+  const cfg = metricCfg();
+  const f = cfg.field;
+  const labels = series.map(d => d.month);
+  const values = series.map(d => d[f]);
+
+  const key = canvasId.replace('Chart', '');
+  if (semiconCharts[key]) semiconCharts[key].destroy();
+
+  const chart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels,
+      datasets: [{
+        label: `${label} ${cfg.label} (${cfg.unit})`,
+        data: values,
+        borderColor: color,
+        backgroundColor: color + '22',
+        borderWidth: 2,
+        pointRadius: 0,
+        pointHoverRadius: 5,
+        tension: 0.15,
+        fill: true,
+      }],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      interaction: { mode: 'index', intersect: false },
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label: (c) => {
+              const v = c.parsed.y;
+              const txt = v == null
+                ? '—'
+                : Number(v).toLocaleString('en-US', { maximumFractionDigits: cfg.digits });
+              return `${txt} ${cfg.unit}`;
+            },
+          },
+        },
+      },
+      scales: {
+        x: {
+          ticks: {
+            maxRotation: 0,
+            autoSkip: true,
+            maxTicksLimit: 12,
+            font: { size: 11 },
+          },
+          grid: { display: false },
+        },
+        y: {
+          beginAtZero: cfg.field !== 'unitPrice',
+          ticks: {
+            callback: (v) => Number(v).toLocaleString('en-US', { maximumFractionDigits: cfg.digits }),
+            font: { size: 11 },
+          },
+          grid: { color: '#e9ecf0' },
+        },
+      },
+    },
+  });
+
+  semiconCharts[key] = chart;
+}
+
+function renderSemicon() {
+  if (!tradeCache) return;
+  const palette = {
+    ssd:  '#1e3a5f',
+    nand: '#b89968',
+    dram: '#2c5282',
+  };
+  ['ssd', 'nand', 'dram'].forEach(key => {
+    const full = tradeCache[key] || [];
+    const filtered = filterByRange(full, semiconRange);
+    const stats = computeStats(full); // stats always from full series (latest is latest)
+    const statsEl = document.getElementById(`${key}Stats`);
+    if (statsEl) statsEl.innerHTML = renderStatsBlock(stats);
+    drawChart(`${key}Chart`, key.toUpperCase(), filtered, palette[key]);
+  });
+}
+
+function setupSemiconFilters() {
+  document.querySelectorAll('#semiconRangeFilter .filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('#semiconRangeFilter .filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      semiconRange = btn.dataset.range;
+      if (tradeCache) renderSemicon();
+    });
+  });
+  document.querySelectorAll('#semiconMetricFilter .filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('#semiconMetricFilter .filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      semiconMetric = btn.dataset.metric;
+      if (tradeCache) renderSemicon();
+    });
+  });
+}
+
 // ─── Init ────────────────────────────────────────────────
 const refreshBtnEl = document.getElementById('refreshBtn');
 if (refreshBtnEl) refreshBtnEl.addEventListener('click', forceRefresh);
@@ -1628,6 +1836,7 @@ setInterval(updateClock, 1000);
 setupRouter();
 setupWeeklyFilters();
 setupNewsFilters();
+setupSemiconFilters();
 loadCalendar();
 loadData();
 loadWeeklyCalendar();

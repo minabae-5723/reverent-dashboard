@@ -31,8 +31,16 @@ Write-Host "[1/4] Refresh market data..." -ForegroundColor Yellow
 
 # 2. Refresh calendar (Investing.com -- may fail if Cloudflare blocking)
 Write-Host ""
-Write-Host "[2/4] Refresh calendar data..." -ForegroundColor Yellow
+Write-Host "[2/5] Refresh calendar data..." -ForegroundColor Yellow
 & powershell -NoProfile -ExecutionPolicy Bypass -File (Join-Path $root 'fetch-calendar.ps1')
+
+# 2.5. Refresh semiconductor trade data (Korea Customs OpenAPI) — last 2 years only
+Write-Host ""
+Write-Host "[2.5/5] Refresh trade data (SSD/NAND/DRAM, last 2 years)..." -ForegroundColor Yellow
+$tradeScript = Join-Path $root 'fetch-trade.ps1'
+$thisYear = (Get-Date).Year
+$startYear = $thisYear - 1
+& powershell -NoProfile -ExecutionPolicy Bypass -File $tradeScript -StartYear $startYear
 
 # 3. Regenerate index.json for every clipping folder
 Write-Host ""
