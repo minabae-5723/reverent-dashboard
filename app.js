@@ -1858,11 +1858,19 @@ function drawShillerChart(series) {
   if (!ctx) return;
   if (shillerChart) shillerChart.destroy();
 
-  // Historical mean ≈ 17.0, standard deviation lines for context
+  // Mean of the *selected range* (not a hardcoded historical constant) —
+  // so the toggle (5년 / 20년 / 전체) re-computes the dashed reference line.
   const labels = series.map(d => d.month);
   const values = series.map(d => d.value);
-  const mean = 17.0;
+  const mean = values.length
+    ? values.reduce((sum, v) => sum + v, 0) / values.length
+    : 0;
   const meanLine = new Array(series.length).fill(mean);
+
+  // Label like "5년 평균: 35.42" — uses the active range button text if available
+  const activeBtn = document.querySelector('#shillerRangeFilter .filter-btn.active');
+  const rangeLbl = activeBtn ? activeBtn.textContent.trim() : '선택 기간';
+  const meanLbl = `${rangeLbl} 평균: ${mean.toFixed(2)}`;
 
   shillerChart = new Chart(ctx, {
     type: 'line',
@@ -1881,7 +1889,7 @@ function drawShillerChart(series) {
           fill: true,
         },
         {
-          label: 'Historical mean (~17.0)',
+          label: meanLbl,
           data: meanLine,
           borderColor: '#b89968',
           borderWidth: 1.5,
