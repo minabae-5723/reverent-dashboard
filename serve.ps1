@@ -230,6 +230,48 @@ try {
                 continue
             }
 
+            # /market/list — returns available market brief dates
+            if ($relPath -eq '/market/list') {
+                $marketDir = Join-Path $root 'market'
+                $dates = @()
+                if (Test-Path $marketDir) {
+                    $dates = Get-ChildItem -LiteralPath $marketDir -Filter '*.md' -ErrorAction SilentlyContinue |
+                        ForEach-Object { $_.BaseName } |
+                        Where-Object { $_ -match '^\d{4}-\d{2}-\d{2}$' } |
+                        Sort-Object -Descending
+                }
+                $msg = @{ dates = @($dates) } | ConvertTo-Json -Compress
+                $bytes = [System.Text.Encoding]::UTF8.GetBytes($msg)
+                $res.ContentType = 'application/json; charset=utf-8'
+                $res.Headers.Add('Cache-Control', 'no-store')
+                $res.ContentLength64 = $bytes.Length
+                $res.OutputStream.Write($bytes, 0, $bytes.Length)
+                Write-Host "[$stamp] GET /market/list -> $($dates.Count) dates" -ForegroundColor DarkGray
+                $res.Close()
+                continue
+            }
+
+            # /deals/list — returns available weekly deal flow dates (Friday end-of-week)
+            if ($relPath -eq '/deals/list') {
+                $dealsDir = Join-Path $root 'deals'
+                $dates = @()
+                if (Test-Path $dealsDir) {
+                    $dates = Get-ChildItem -LiteralPath $dealsDir -Filter '*.md' -ErrorAction SilentlyContinue |
+                        ForEach-Object { $_.BaseName } |
+                        Where-Object { $_ -match '^\d{4}-\d{2}-\d{2}$' } |
+                        Sort-Object -Descending
+                }
+                $msg = @{ dates = @($dates) } | ConvertTo-Json -Compress
+                $bytes = [System.Text.Encoding]::UTF8.GetBytes($msg)
+                $res.ContentType = 'application/json; charset=utf-8'
+                $res.Headers.Add('Cache-Control', 'no-store')
+                $res.ContentLength64 = $bytes.Length
+                $res.OutputStream.Write($bytes, 0, $bytes.Length)
+                Write-Host "[$stamp] GET /deals/list -> $($dates.Count) weeks" -ForegroundColor DarkGray
+                $res.Close()
+                continue
+            }
+
             # /chat — POST { messages: [...] } → Anthropic API
             if ($relPath -eq '/chat') {
                 if ($req.HttpMethod -ne 'POST') {

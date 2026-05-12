@@ -32,13 +32,17 @@
 
     <div class="sidebar-section-label">PINNED</div>
     <div class="sidebar-nav">
+      <a href="#market" class="sidebar-item" data-view="market">
+        <span class="sb-ico">🌅</span>
+        <span class="sb-text">시황정리</span>
+      </a>
       <a href="#news" class="sidebar-item" data-view="news">
         <span class="sb-ico">📰</span>
         <span class="sb-text">News Clipping</span>
       </a>
-      <a class="sidebar-item disabled" title="준비 중">
+      <a href="#deals" class="sidebar-item" data-view="deals">
         <span class="sb-ico">💼</span>
-        <span class="sb-text">Deal Flow <small>(soon)</small></span>
+        <span class="sb-text">Deal Flow</span>
       </a>
     </div>
 
@@ -192,6 +196,39 @@
       </footer>
     </section>
 
+    <!-- ===== MARKET BRIEF VIEW ===== -->
+    <section class="view" id="view-market" hidden>
+
+      <div class="page-header">
+        <div class="page-breadcrumb">Workspace › 시황정리</div>
+        <h1 class="page-title">🌅 시황정리</h1>
+        <p class="page-subtitle">매일 08:00 KST 자동 실행 · 미 증시 마감 시황 + 특징주</p>
+      </div>
+
+      <div class="news-controls">
+        <div class="news-date-row">
+          <span class="filter-label">날짜</span>
+          <div class="news-date-pills" id="marketDatePills">
+            <span class="loading" style="padding:6px 12px;">로딩 중…</span>
+          </div>
+        </div>
+      </div>
+
+      <div id="marketBody" class="market-body">
+        <div class="news-empty">
+          <div class="news-empty-icon">🌅</div>
+          <h3>아직 저장된 시황이 없습니다</h3>
+          <p>이 페이지는 매일 자동 생성되는 미 증시 마감 시황 대시보드를 보여줍니다.</p>
+          <p>⏰ <strong>다음 자동 실행</strong>: 내일 아침 08:00 KST</p>
+          <p>지금 즉시 보고 싶으면: 새 Claude Code 세션에서 <code>/morning-market</code> 수동 실행.</p>
+        </div>
+      </div>
+
+      <footer class="site-footer">
+        <p>Source: 텔레그램 시황 채널 (@globalmktinsight, @ehdwl) + Bloomberg/CNBC/Investing 보강 · 자동 스케줄: 매일 08:00 KST</p>
+      </footer>
+    </section>
+
     <!-- ===== NEWS CLIPPING VIEW ===== -->
     <section class="view" id="view-news" hidden>
 
@@ -234,6 +271,38 @@
 
       <footer class="site-footer">
         <p>Source: 6개 섹터별 신뢰 언론 (Bloomberg, Nikkei, 한경, 매경, dealsite, the bell 등) · 자동 스케줄: 매일 09:03 KST</p>
+      </footer>
+    </section>
+
+    <!-- ===== DEAL FLOW VIEW ===== -->
+    <section class="view" id="view-deals" hidden>
+
+      <div class="page-header">
+        <div class="page-breadcrumb">Workspace › Deal Flow</div>
+        <h1 class="page-title">💼 Deal Flow</h1>
+        <p class="page-subtitle">매주 금요일 16:00 KST · 자본시장 동향 + 주요 거래 동향 (M&A · PE · IPO · 인수금융)</p>
+      </div>
+
+      <div class="news-controls">
+        <div class="news-date-row">
+          <span class="filter-label">주차</span>
+          <div class="news-date-pills" id="dealsDatePills">
+            <span class="loading" style="padding:6px 12px;">로딩 중…</span>
+          </div>
+        </div>
+      </div>
+
+      <div id="dealsBody" class="deals-body">
+        <div class="news-empty">
+          <div class="news-empty-icon">💼</div>
+          <h3>아직 저장된 Deal Flow 가 없습니다</h3>
+          <p>이 페이지는 매주 금요일 오후에 갱신되는 자본시장·딜 동향 요약을 보여줍니다.</p>
+          <p>⏰ <strong>다음 자동 갱신</strong>: 다가오는 금요일 16:00 KST</p>
+        </div>
+      </div>
+
+      <footer class="site-footer">
+        <p>Source: 더벨 · 딜사이트 · 인베스트조선 · 한경 마켓인사이트 등 · 주간 갱신: 매주 금요일 16:00 KST</p>
       </footer>
     </section>
 

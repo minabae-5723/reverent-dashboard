@@ -1320,3 +1320,233 @@ html, body {
   .chat-toggle-label { display: none; }
   .chat-toggle { padding: 14px; border-radius: 50%; }
 }
+
+/* =========================================================
+   Market Brief View (시황정리)
+   ========================================================= */
+.market-body { padding: 0; }
+
+.market-brief-header {
+  padding: 18px 0 14px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 22px;
+}
+.market-brief-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0 0 6px;
+  letter-spacing: -0.3px;
+}
+.market-brief-meta {
+  font-size: 13px;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.market-brief-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-bottom: 24px;
+}
+.market-brief-block {
+  background: var(--card-bg, #fff);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px 18px;
+}
+.market-brief-block h3 {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0 0 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+.market-brief-block-full {
+  grid-column: 1 / -1;
+  margin-bottom: 18px;
+}
+
+.market-brief-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.market-brief-table th {
+  text-align: left;
+  font-weight: 500;
+  color: var(--text-muted);
+  padding: 6px 0;
+  width: 38%;
+  white-space: nowrap;
+}
+.market-brief-table td {
+  text-align: right;
+  font-family: 'SF Mono', Menlo, Consolas, monospace;
+  font-size: 12.5px;
+  color: var(--text);
+  padding: 6px 0;
+}
+.market-brief-table tr + tr th,
+.market-brief-table tr + tr td {
+  border-top: 1px dashed var(--border);
+}
+.chg.up { color: #16a34a; font-weight: 600; }
+.chg.down { color: #dc2626; font-weight: 600; }
+.chg.flat { color: var(--text-muted); }
+
+.market-brief-commentary {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--text);
+}
+.market-brief-commentary p {
+  margin: 0 0 12px;
+}
+.market-brief-commentary p:last-child { margin-bottom: 0; }
+
+.market-brief-stocks {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+.market-stock-card {
+  background: var(--bg, #fafafa);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px 16px;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.market-stock-card:hover {
+  border-color: #94a3b8;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+.market-stock-head {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+.market-stock-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+}
+.market-stock-change {
+  font-family: 'SF Mono', Menlo, Consolas, monospace;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+.market-stock-change.up { color: #16a34a; background: rgba(22,163,74,0.08); }
+.market-stock-change.down { color: #dc2626; background: rgba(220,38,38,0.08); }
+.market-stock-change.flat { color: var(--text-muted); background: rgba(100,116,139,0.08); }
+.market-stock-body {
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--text);
+  white-space: pre-wrap;
+}
+
+@media (max-width: 900px) {
+  .market-brief-grid { grid-template-columns: 1fr; }
+  .market-brief-stocks { grid-template-columns: 1fr; }
+}
+
+/* =============================================================
+   Deal Flow View
+   ============================================================= */
+.deals-body { padding: 0 4px; }
+
+.deals-card .news-card-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.deals-date-badge {
+  display: inline-block;
+  padding: 3px 8px;
+  background: var(--navy);
+  color: #fff;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.deals-bullets {
+  margin: 10px 0 0 0;
+  padding-left: 20px;
+  list-style: none;
+}
+
+.deals-bullets li {
+  position: relative;
+  margin: 6px 0;
+  padding-left: 14px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--text);
+}
+
+.deals-bullets li::before {
+  content: '●';
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--navy-light);
+  font-size: 9px;
+  line-height: 1.9;
+}
+
+.deals-bullets strong {
+  color: var(--navy-dark);
+  font-weight: 700;
+}
+
+.deals-summary-wrap {
+  padding: 16px;
+  overflow-x: auto;
+}
+
+.deals-summary-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+
+.deals-summary-table thead th {
+  background: var(--navy);
+  color: #fff;
+  padding: 9px 12px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border: 1px solid var(--navy-dark);
+}
+
+.deals-summary-table tbody td {
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  background: #fff;
+}
+
+.deals-summary-table tbody tr:nth-child(even) td {
+  background: #fafbfc;
+}
+
+.deals-summary-table tbody tr:hover td {
+  background: var(--highlight);
+}

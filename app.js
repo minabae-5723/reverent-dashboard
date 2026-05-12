@@ -16,6 +16,8 @@ const MIN_IMPORTANCE = 2;   // 표시할 최소 importance (1=낮음, 2=중간, 
 // /news/list endpoint.
 const IS_STATIC = !/^(localhost|127\.|0\.0\.0\.0|\[::1\])/i.test(window.location.hostname);
 const NEWS_INDEX_URL = IS_STATIC ? './news/index.json' : '/news/list';
+const MARKET_INDEX_URL = IS_STATIC ? './market/index.json' : '/market/list';
+const DEALS_INDEX_URL = IS_STATIC ? './deals/index.json' : '/deals/list';
 
 const FLAG_EMOJI = {
   United_States: '🇺🇸',
@@ -784,9 +786,476 @@ function setupNewsFilters() {
   });
 }
 
+// ─── Market Brief View ───────────────────────────────────
+let marketState = { dates: [], current: null, cache: {} };
+
+async function loadMarketIndex() {
+  try {
+    const res = await fetch(`${MARKET_INDEX_URL}?_=${Date.now()}`, { cache: 'no-store' });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+    marketState.dates = data.dates || [];
+    renderMarketDatePills();
+    if (marketState.dates.length > 0) {
+      const target = marketState.current && marketState.dates.includes(marketState.current)
+        ? marketState.current
+        : marketState.dates[0];
+      await loadMarketDate(target);
+    } else {
+      renderMarketEmpty();
+    }
+  } catch (err) {
+    console.warn('Market index load failed:', err);
+    renderMarketEmpty();
+  }
+}
+
+function renderMarketDatePills() {
+  const el = document.getElementById('marketDatePills');
+  if (!el) return;
+  if (marketState.dates.length === 0) {
+    el.innerHTML = '<span style="color:var(--text-muted);font-size:13px;">저장된 시황 없음</span>';
+    return;
+  }
+  const today = todayKr();
+  el.innerHTML = marketState.dates.map(d => {
+    const rel = (d === today) ? '<span class="pill-rel">오늘</span>' : '';
+    const active = (d === marketState.current) ? ' active' : '';
+    return `<button class="news-date-pill${active}" data-date="${d}">${d}${rel}</button>`;
+  }).join('');
+  el.querySelectorAll('.news-date-pill').forEach(btn => {
+    btn.addEventListener('click', () => loadMarketDate(btn.dataset.date));
+  });
+}
+
+async function loadMarketDate(date) {
+  marketState.current = date;
+  renderMarketDatePills();
+  let md = marketState.cache[date];
+  if (!md) {
+    try {
+      const res = await fetch(`./market/${date}.md?_=${Date.now()}`, { cache: 'no-store' });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      md = await res.text();
+      marketState.cache[date] = md;
+    } catch (err) {
+      document.getElementById('marketBody').innerHTML =
+        `<div class="news-empty"><h3>로딩 실패</h3><p>${err.message}</p></div>`;
+      return;
+    }
+  }
+  renderMarketContent(md);
+}
+
+function renderMarketEmpty() {
+  document.getElementById('marketBody').innerHTML = `
+    <div class="news-empty">
+      <div class="news-empty-icon">🌅</div>
+      <h3>아직 저장된 시황이 없습니다</h3>
+      <p>이 페이지는 매일 자동 생성되는 미 증시 마감 시황 대시보드를 보여줍니다.</p>
+      <p>⏰ <strong>다음 자동 실행</strong>: 내일 아침 08:00 KST</p>
+      <p>지금 즉시 보고 싶으면: 새 Claude Code 세션에서 <code>/morning-market</code> 수동 실행.</p>
+    </div>
+  `;
+}
+
+// Parse the morning-market markdown into structured sections.
+// Expected format:
+//   # 🌅 일일 시황 대시보드 — YYYY년 M월 D일
+//   > 데이터 기준: ...
+//   ## ◆ 미국 증시
+//   - DOW: ...
+//   ## ◆ 미국 국채시장
+//   ## ◆ 외환 & 상품시장
+//   ## ◆ 시황 코멘트
+//   (paragraphs)
+//   ## ◆ 특징주
+//   ### 종목명 (±X.XX%)
+//   (body)
+function parseMarketBrief(md) {
+  const out = { title: '', meta: '', indices: [], rates: [], fx: [], commentary: '', stocks: [] };
+  const lines = md.split(/\r?\n/);
+  let section = null;          // 'indices'|'rates'|'fx'|'commentary'|'stocks'
+  let stockBuf = null;         // { name, change, body[] }
+  const commentaryLines = [];
+
+  const SECTION_MAP = {
+    '미국 증시': 'indices',
+    '미국 국채시장': 'rates',
+    '외환 & 상품시장': 'fx',
+    '외환&상품시장': 'fx',
+    '시황 코멘트': 'commentary',
+    '특징주': 'stocks',
+  };
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+
+    // Title (first H1)
+    if (!out.title && /^#\s+/.test(line)) {
+      out.title = line.replace(/^#\s+/, '').trim();
+      continue;
+    }
+    // Meta blockquote (> 데이터 기준: ...)
+    if (!out.meta && /^>\s+/.test(line)) {
+      out.meta = line.replace(/^>\s+/, '').trim();
+      continue;
+    }
+    // Section header (## ◆ Name) or (## Name)
+    const h2 = line.match(/^##\s+(?:◆\s+)?(.+?)\s*$/);
+    if (h2) {
+      // flush previous stock card if any
+      if (stockBuf) { out.stocks.push(stockBuf); stockBuf = null; }
+      section = SECTION_MAP[h2[1].trim()] || null;
+      continue;
+    }
+    // Stock header (### 종목명 (±X.XX%))
+    const h3 = line.match(/^###\s+(.+?)\s*$/);
+    if (h3 && section === 'stocks') {
+      if (stockBuf) out.stocks.push(stockBuf);
+      const m = h3[1].match(/^(.+?)\s*\(([+-]?[\d.,]+%?)\)\s*$/);
+      stockBuf = m
+        ? { name: m[1].trim(), change: m[2].trim(), body: [] }
+        : { name: h3[1].trim(), change: '', body: [] };
+      continue;
+    }
+
+    // Body of each section
+    if (section === 'indices' || section === 'rates' || section === 'fx') {
+      const m = line.match(/^-\s+(.+?)\s*:\s*(.+?)\s*$/);
+      if (m) {
+        out[section].push({ label: m[1].trim(), value: m[2].trim() });
+      }
+    } else if (section === 'commentary') {
+      commentaryLines.push(line);
+    } else if (section === 'stocks' && stockBuf) {
+      stockBuf.body.push(line);
+    }
+  }
+  if (stockBuf) out.stocks.push(stockBuf);
+
+  // Commentary: trim leading/trailing empty lines, collapse runs
+  out.commentary = commentaryLines.join('\n').replace(/^\s+|\s+$/g, '');
+
+  return out;
+}
+
+function renderMarketContent(md) {
+  const body = document.getElementById('marketBody');
+  if (!body) return;
+  const p = parseMarketBrief(md);
+
+  if (!p.title) {
+    body.innerHTML = `<div class="news-empty"><h3>파싱 실패</h3><p>제목을 찾을 수 없습니다.</p></div>`;
+    return;
+  }
+
+  const tableHtml = (rows) => rows.length === 0 ? '' : `
+    <table class="market-brief-table">
+      <tbody>
+        ${rows.map(r => `<tr><th>${escapeHtml(r.label)}</th><td>${formatChangeValue(r.value)}</td></tr>`).join('')}
+      </tbody>
+    </table>
+  `;
+
+  const commentaryHtml = p.commentary
+    ? `<div class="market-brief-commentary">${
+        p.commentary.split(/\n\s*\n/).map(par =>
+          `<p>${linkifyInline(par.replace(/\n/g, ' '))}</p>`
+        ).join('')
+      }</div>`
+    : '';
+
+  const stocksHtml = p.stocks.length === 0 ? '' : `
+    <div class="market-brief-stocks">
+      ${p.stocks.map(s => {
+        const chgClass = s.change.startsWith('-') ? 'down' : (s.change.startsWith('+') ? 'up' : 'flat');
+        const bodyText = s.body.join('\n').trim();
+        return `
+          <div class="market-stock-card">
+            <div class="market-stock-head">
+              <span class="market-stock-name">${escapeHtml(s.name)}</span>
+              ${s.change ? `<span class="market-stock-change ${chgClass}">${escapeHtml(s.change)}</span>` : ''}
+            </div>
+            <div class="market-stock-body">${linkifyInline(bodyText)}</div>
+          </div>
+        `;
+      }).join('')}
+    </div>
+  `;
+
+  body.innerHTML = `
+    <div class="market-brief-header">
+      <h2 class="market-brief-title">${escapeHtml(p.title)}</h2>
+      ${p.meta ? `<div class="market-brief-meta">${escapeHtml(p.meta)}</div>` : ''}
+    </div>
+
+    <div class="market-brief-grid">
+      ${p.indices.length ? `<div class="market-brief-block"><h3>◆ 미국 증시</h3>${tableHtml(p.indices)}</div>` : ''}
+      ${p.rates.length ? `<div class="market-brief-block"><h3>◆ 미국 국채시장</h3>${tableHtml(p.rates)}</div>` : ''}
+      ${p.fx.length ? `<div class="market-brief-block"><h3>◆ 외환 & 상품시장</h3>${tableHtml(p.fx)}</div>` : ''}
+    </div>
+
+    ${commentaryHtml ? `<div class="market-brief-block market-brief-block-full"><h3>◆ 시황 코멘트</h3>${commentaryHtml}</div>` : ''}
+
+    ${p.stocks.length ? `<div class="market-brief-block market-brief-block-full"><h3>◆ 특징주</h3>${stocksHtml}</div>` : ''}
+  `;
+}
+
+// Color-code numeric change values inline: +x.xx% (green) / -x.xx% (red)
+function formatChangeValue(text) {
+  return escapeHtml(text)
+    .replace(/(\(\s*)([+\-][\d,.]+(?:bp|p|%)?)([^)]*?)(\s*\))/g, (m, lp, n1, rest, rp) => {
+      const cls = n1.startsWith('-') ? 'down' : 'up';
+      return `${lp}<span class="chg ${cls}">${n1}</span>${rest}${rp}`;
+    });
+}
+
+// ─── Deal Flow View ──────────────────────────────────────
+//
+// Update algorithm: Claude Code 세션에서 사용자가 매주 큐레이션 → deals/YYYY-MM-DD.md 저장.
+// 대시보드는 정적 MD 파일만 읽음 (별도 API 호출/과금 없음, news·market 패턴과 동일).
+//
+let dealsState = { dates: [], current: null, cache: {} };
+
+async function loadDealsIndex() {
+  try {
+    const res = await fetch(`${DEALS_INDEX_URL}?_=${Date.now()}`, { cache: 'no-store' });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+    dealsState.dates = data.dates || [];
+    renderDealsDatePills();
+    if (dealsState.dates.length > 0) {
+      const target = dealsState.current && dealsState.dates.includes(dealsState.current)
+        ? dealsState.current
+        : dealsState.dates[0];
+      await loadDealsDate(target);
+    } else {
+      renderDealsEmpty();
+    }
+  } catch (err) {
+    console.warn('Deals index load failed:', err);
+    renderDealsEmpty();
+  }
+}
+
+function renderDealsDatePills() {
+  const el = document.getElementById('dealsDatePills');
+  if (!el) return;
+  if (dealsState.dates.length === 0) {
+    el.innerHTML = '<span style="color:var(--text-muted);font-size:13px;">저장된 Deal Flow 없음</span>';
+    return;
+  }
+  const today = todayKr();
+  el.innerHTML = dealsState.dates.map(d => {
+    // d is the Friday end-of-week date (YYYY-MM-DD)
+    const rel = (d >= today) ? '<span class="pill-rel">이번주</span>' : '';
+    const active = (d === dealsState.current) ? ' active' : '';
+    return `<button class="news-date-pill${active}" data-date="${d}">W/E ${d}${rel}</button>`;
+  }).join('');
+  el.querySelectorAll('.news-date-pill').forEach(btn => {
+    btn.addEventListener('click', () => loadDealsDate(btn.dataset.date));
+  });
+}
+
+async function loadDealsDate(date) {
+  dealsState.current = date;
+  renderDealsDatePills();
+  let md = dealsState.cache[date];
+  if (!md) {
+    try {
+      const res = await fetch(`./deals/${date}.md?_=${Date.now()}`, { cache: 'no-store' });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      md = await res.text();
+      dealsState.cache[date] = md;
+    } catch (err) {
+      document.getElementById('dealsBody').innerHTML =
+        `<div class="news-empty"><h3>로딩 실패</h3><p>${err.message}</p></div>`;
+      return;
+    }
+  }
+  renderDealsContent(md);
+}
+
+function renderDealsEmpty() {
+  document.getElementById('dealsBody').innerHTML = `
+    <div class="news-empty">
+      <div class="news-empty-icon">💼</div>
+      <h3>아직 저장된 Deal Flow 가 없습니다</h3>
+      <p>이 페이지는 매주 금요일 오후에 갱신되는 자본시장·딜 동향 요약을 보여줍니다.</p>
+      <p>⏰ <strong>다음 자동 갱신</strong>: 다가오는 금요일 16:00 KST</p>
+    </div>
+  `;
+}
+
+// Parse weekly deal flow markdown
+//   # 💼 Weekly Deal Flow — ...
+//   > 데이터 기준: ...
+//   ## 1. 자본시장 동향
+//   ### 헤드라인 (YYYY.MM.DD)
+//   - bullet
+//   - bullet
+//   ## 2. 주요 거래 동향
+//   ### 헤드라인 (YYYY.MM.DD)
+//   - bullet
+//   ## 3. Deal Summary
+//   | ... | ... |  (markdown table)
+function parseDealFlow(md) {
+  const out = { title: '', meta: '', sections: [], summaryTable: null };
+  const lines = md.split(/\r?\n/);
+  let section = null;
+  let article = null;
+  let tableLines = [];
+  let inTable = false;
+
+  const closeArticle = () => {
+    if (article && section) section.articles.push(article);
+    article = null;
+  };
+
+  for (const line of lines) {
+    if (!out.title && /^#\s+/.test(line)) {
+      out.title = line.replace(/^#\s+/, '').trim();
+      continue;
+    }
+    if (!out.meta && /^>\s+/.test(line)) {
+      out.meta = line.replace(/^>\s+/, '').trim();
+      continue;
+    }
+    const h2 = line.match(/^##\s+(.+?)\s*$/);
+    if (h2) {
+      closeArticle();
+      inTable = false;
+      const name = h2[1].trim();
+      // Detect summary section by keyword
+      if (/Deal\s*Summary|딜\s*요약|거래\s*요약/i.test(name)) {
+        section = { name, articles: [], isSummary: true };
+        tableLines = [];
+      } else {
+        section = { name, articles: [], isSummary: false };
+      }
+      out.sections.push(section);
+      continue;
+    }
+    const h3 = line.match(/^###\s+(.+?)\s*$/);
+    if (h3 && section && !section.isSummary) {
+      closeArticle();
+      let head = h3[1].trim();
+      let date = '';
+      const dm = head.match(/\(([0-9]{4}\.[0-9]{2}\.[0-9]{2})\)\s*$/);
+      if (dm) {
+        date = dm[1];
+        head = head.replace(/\s*\([0-9]{4}\.[0-9]{2}\.[0-9]{2}\)\s*$/, '').trim();
+      }
+      article = { headline: head, date, bullets: [] };
+      continue;
+    }
+    // Collect table lines in summary section
+    if (section && section.isSummary) {
+      if (/^\s*\|/.test(line)) {
+        tableLines.push(line);
+        section.tableLines = tableLines;
+      }
+      continue;
+    }
+    // Bullets for article
+    if (article) {
+      const bm = line.match(/^[-•]\s+(.+)$/);
+      if (bm) article.bullets.push(bm[1].trim());
+    }
+  }
+  closeArticle();
+  return out;
+}
+
+function renderMdTable(tableLines) {
+  if (!tableLines || tableLines.length < 2) return '';
+  const rows = tableLines
+    .map(l => l.trim())
+    .filter(l => l.startsWith('|'))
+    .map(l => l.replace(/^\||\|$/g, '').split('|').map(c => c.trim()));
+  // Detect separator row like |---|---|
+  const headerIdx = 0;
+  const sepIdx = rows.findIndex(r => r.every(c => /^:?-+:?$/.test(c)));
+  const header = rows[headerIdx];
+  const body = sepIdx >= 0 ? rows.slice(sepIdx + 1) : rows.slice(1);
+  return `
+    <table class="deals-summary-table">
+      <thead><tr>${header.map(h => `<th>${linkifyInline(h)}</th>`).join('')}</tr></thead>
+      <tbody>
+        ${body.map(r => `<tr>${r.map(c => `<td>${linkifyInline(c)}</td>`).join('')}</tr>`).join('')}
+      </tbody>
+    </table>
+  `;
+}
+
+function renderDealsContent(md) {
+  const body = document.getElementById('dealsBody');
+  if (!body) return;
+  const p = parseDealFlow(md);
+  if (!p.title || p.sections.length === 0) {
+    body.innerHTML = `<div class="news-empty"><h3>파싱 실패</h3><p>이 파일에서 섹션을 찾을 수 없습니다.</p></div>`;
+    return;
+  }
+
+  const header = `
+    <div class="market-brief-header">
+      <h2 class="market-brief-title">${escapeHtml(p.title)}</h2>
+      ${p.meta ? `<div class="market-brief-meta">${escapeHtml(p.meta)}</div>` : ''}
+    </div>
+  `;
+
+  const sectionsHtml = p.sections.map(s => {
+    if (s.isSummary) {
+      const tbl = renderMdTable(s.tableLines);
+      if (!tbl) return '';
+      return `
+        <div class="news-sector-block">
+          <div class="news-sector-header">
+            <span class="news-sector-title">${escapeHtml(s.name)}</span>
+          </div>
+          <div class="deals-summary-wrap">${tbl}</div>
+        </div>
+      `;
+    }
+    const articles = s.articles.length > 0
+      ? s.articles.map(renderDealArticle).join('')
+      : '<div class="news-card" style="color:var(--text-muted);font-style:italic;">이번 주 해당 카테고리 항목 없음</div>';
+    return `
+      <div class="news-sector-block">
+        <div class="news-sector-header">
+          <span class="news-sector-title">${escapeHtml(s.name)}</span>
+          <span class="news-sector-count">${s.articles.length}건</span>
+        </div>
+        <div class="news-articles">${articles}</div>
+      </div>
+    `;
+  }).join('');
+
+  body.innerHTML = header + sectionsHtml;
+}
+
+function renderDealArticle(a) {
+  const dateBadge = a.date
+    ? `<span class="deals-date-badge">${escapeHtml(a.date)}</span>`
+    : '';
+  const bulletsHtml = a.bullets.length > 0
+    ? `<ul class="deals-bullets">${a.bullets.map(b => `<li>${linkifyInline(b)}</li>`).join('')}</ul>`
+    : '';
+  return `
+    <div class="news-card deals-card">
+      <div class="news-card-head">
+        ${dateBadge}
+        <h3 class="news-headline">${linkifyInline(a.headline)}</h3>
+      </div>
+      ${bulletsHtml}
+    </div>
+  `;
+}
+
 // ─── View Router ──────────────────────────────────────────
 function showView(name) {
-  const valid = ['home', 'weekly', 'news'];
+  const valid = ['home', 'weekly', 'news', 'market', 'deals'];
   if (!valid.includes(name)) name = 'home';
 
   document.querySelectorAll('.view').forEach(v => {
@@ -798,6 +1267,8 @@ function showView(name) {
 
   if (name === 'weekly' && !weeklyCache) loadWeeklyCalendar();
   if (name === 'news') loadNewsIndex();
+  if (name === 'market') loadMarketIndex();
+  if (name === 'deals') loadDealsIndex();
   window.scrollTo({ top: 0 });
 }
 
