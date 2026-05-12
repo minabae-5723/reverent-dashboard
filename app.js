@@ -1811,7 +1811,7 @@ function renderSemicon() {
 // ─── Shiller P/E (CAPE) — bottom of Home view ─────────────
 let shillerCache = null;
 let shillerChart = null;
-let shillerRange = '10y';
+let shillerRange = '20y';
 
 async function loadShiller() {
   if (shillerCache) { renderShiller(); return; }
@@ -1837,11 +1837,12 @@ function renderShiller() {
   if (curEl && latest) curEl.textContent = latest.value.toFixed(2);
   if (dateEl && latest) dateEl.textContent = '(' + (latest.raw || latest.date) + ')';
 
-  // Filter monthly series
+  // Filter monthly series — supports any "<N>y" range (e.g. "5y", "20y", "50y")
   const all = shillerCache.monthly || [];
   let filtered = all;
-  if (shillerRange === '5y' || shillerRange === '10y') {
-    const yrsBack = shillerRange === '5y' ? 5 : 10;
+  const m = String(shillerRange).match(/^(\d+)y$/);
+  if (m) {
+    const yrsBack = parseInt(m[1], 10);
     const cutoff = new Date();
     cutoff.setFullYear(cutoff.getFullYear() - yrsBack);
     const cutoffStr = cutoff.toISOString().slice(0, 7);
