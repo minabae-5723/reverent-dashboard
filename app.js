@@ -1883,7 +1883,9 @@ function renderPeer() {
           ${catCell}
           <td class="num-col">${fmtMcap(c.mcap)}</td>
           <td class="num-col">${fmtMult(c.per)}</td>
+          <td class="num-col peer-fwd">${fmtMult(c.fwdPer)}</td>
           <td class="num-col">${fmtMult(c.pbr)}</td>
+          <td class="num-col peer-fwd">${fmtMult(c.fwdPbr)}</td>
           <td class="num-col">${fmtPct(c.wow)}</td>
           <td class="num-col">${fmtPct(c.ytd)}</td>
         </tr>

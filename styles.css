@@ -680,6 +680,21 @@ html, body {
   font-style: italic;
 }
 
+/* Forward (consensus) multiple cells — subtle blue tint to distinguish from TTM */
+.peer-table tbody td.peer-fwd {
+  background: #f0f6fc;
+  color: #234a7b;
+  font-weight: 600;
+}
+
+.peer-table tbody tr:nth-child(even) td.peer-fwd {
+  background: #e8f0f9;
+}
+
+.peer-table tbody tr:hover td.peer-fwd {
+  background: #d8e7f5;
+}
+
 .ipo-table .ipo-date {
   font-variant-numeric: tabular-nums;
   color: var(--text-muted);

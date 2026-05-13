@@ -77,7 +77,7 @@ function Get-NaverSnapshot {
         $rawBytes = [System.Text.Encoding]::GetEncoding('iso-8859-1').GetBytes($r.Content)
         $html = [System.Text.Encoding]::GetEncoding('EUC-KR').GetString($rawBytes)
 
-        $result = [ordered]@{ mcap=$null; per=$null; pbr=$null; eps=$null; bps=$null }
+        $result = [ordered]@{ mcap=$null; per=$null; pbr=$null; eps=$null; bps=$null; fwdPer=$null; fwdPbr=$null }
 
         # Market cap: Naver renders inside <em id="_market_sum"> ... </em>
         #   Large caps (>= 1 trillion KRW): "1,655<JO> 9,584" (two numbers, first=jo, second=eok)
@@ -108,6 +108,27 @@ function Get-NaverSnapshot {
                 }
             }
         }
+
+        # Forward (FY1) PER & PBR from 기업실적분석 table.
+        # Layout: 3 actual annual columns + 1 FY1 estimate annual + 6 quarterly columns.
+        # PER row anchored on class th_cop_anal20, PBR row on th_cop_anal21.
+        # The 4th <td> in document order = FY1 (next fiscal year) estimate.
+        $fwdMap = @{ fwdPer = 'th_cop_anal20'; fwdPbr = 'th_cop_anal21' }
+        foreach ($key in $fwdMap.Keys) {
+            $cls = $fwdMap[$key]
+            $rowM = [regex]::Match($html, ('<tr[^>]*>\s*<th[^>]*' + $cls + '[^>]*>.*?</tr>'), 'Singleline')
+            if ($rowM.Success) {
+                $tdMatches = [regex]::Matches($rowM.Value, '<td[^>]*>(.*?)</td>', 'Singleline')
+                if ($tdMatches.Count -ge 4) {
+                    $cell = $tdMatches[3].Groups[1].Value
+                    $val = ($cell -replace '<[^>]+>', '' -replace '&nbsp;', '' -replace '[,\s]', '').Trim()
+                    if ($val -match '^-?\d+(\.\d+)?$') {
+                        $result[$key] = [double]$val
+                    }
+                }
+            }
+        }
+
         return $result
     } catch {
         Write-Host ("    Naver error " + $code + ": " + $_.Exception.Message) -ForegroundColor DarkYellow
@@ -163,6 +184,8 @@ foreach ($t in $tickers) {
         mcap      = $naver.mcap
         per       = $naver.per
         pbr       = $naver.pbr
+        fwdPer    = $naver.fwdPer
+        fwdPbr    = $naver.fwdPbr
         eps       = $naver.eps
         bps       = $naver.bps
         wow       = $wowPct
@@ -172,9 +195,10 @@ foreach ($t in $tickers) {
         priceYtd  = if ($closeYtd)  { @{ date=$closeYtd.date;  close=$closeYtd.close }  } else { $null }
     }
 
-    $perDisp = if ($null -ne $naver.per) { "PER=" + $naver.per } else { "PER=NM" }
-    $wowDisp = if ($null -ne $wowPct) { ("{0:P1}" -f $wowPct) } else { "-" }
-    Write-Host ("    price=" + $price + " | mcap=" + $naver.mcap + " | " + $perDisp + " | WoW=" + $wowDisp) -ForegroundColor DarkGray
+    $perDisp    = if ($null -ne $naver.per)    { "PER=" + $naver.per }       else { "PER=NM" }
+    $fwdPerDisp = if ($null -ne $naver.fwdPer) { "fPER=" + $naver.fwdPer }    else { "fPER=-" }
+    $wowDisp    = if ($null -ne $wowPct)       { ("{0:P1}" -f $wowPct) }      else { "-" }
+    Write-Host ("    price=" + $price + " | mcap=" + $naver.mcap + " | " + $perDisp + " | " + $fwdPerDisp + " | WoW=" + $wowDisp) -ForegroundColor DarkGray
 }
 
 # ----------- Save -----------
