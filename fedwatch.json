@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-05-13T01:42:08Z",
-    "updatedKr":  "2026-05-13 10:42:08",
+    "updated":  "2026-05-13T01:47:08Z",
+    "updatedKr":  "2026-05-13 10:47:08",
     "source":  "investing.com/central-banks/fed-rate-monitor (CME Fed Funds Futures)",
     "meetings":  [
                      {
@@ -9,7 +9,7 @@
                          "iso":  "2026-06-17",
                          "meetingTime":  "Jun 17, 2026 02:00PM ET",
                          "futurePrice":  96.37,
-                         "lastUpdate":  "May 12, 2026 09:15PM EDT",
+                         "lastUpdate":  "May 12, 2026 09:25PM EDT",
                          "probabilities":  [
                                                {
                                                    "range":  "3.25 - 3.50",
@@ -31,7 +31,7 @@
                          "iso":  "2026-07-29",
                          "meetingTime":  "Jul 29, 2026 02:00PM ET",
                          "futurePrice":  96.37,
-                         "lastUpdate":  "May 12, 2026 09:15PM EDT",
+                         "lastUpdate":  "May 12, 2026 09:25PM EDT",
                          "probabilities":  [
                                                {
                                                    "range":  "3.00 - 3.25",
@@ -59,7 +59,7 @@
                          "iso":  "2026-09-16",
                          "meetingTime":  "Sep 16, 2026 02:00PM ET",
                          "futurePrice":  96.36,
-                         "lastUpdate":  "May 12, 2026 09:15PM EDT",
+                         "lastUpdate":  "May 12, 2026 09:25PM EDT",
                          "probabilities":  [
                                                {
                                                    "range":  "3.00 - 3.25",
@@ -93,7 +93,7 @@
                          "iso":  "2026-10-28",
                          "meetingTime":  "Oct 28, 2026 02:00PM ET",
                          "futurePrice":  96.35,
-                         "lastUpdate":  "May 12, 2026 09:15PM EDT",
+                         "lastUpdate":  "May 12, 2026 09:25PM EDT",
                          "probabilities":  [
                                                {
                                                    "range":  "3.00 - 3.25",
@@ -133,7 +133,7 @@
                          "iso":  "2026-12-09",
                          "meetingTime":  "Dec 09, 2026 02:00PM ET",
                          "futurePrice":  96.28,
-                         "lastUpdate":  "May 12, 2026 09:15PM EDT",
+                         "lastUpdate":  "May 12, 2026 09:25PM EDT",
                          "probabilities":  [
                                                {
                                                    "range":  "3.00 - 3.25",
@@ -179,7 +179,7 @@
                          "iso":  "2027-01-27",
                          "meetingTime":  "Jan 27, 2027 01:00PM ET",
                          "futurePrice":  96.265,
-                         "lastUpdate":  "May 12, 2026 09:15PM EDT",
+                         "lastUpdate":  "May 12, 2026 09:25PM EDT",
                          "probabilities":  [
                                                {
                                                    "range":  "3.00 - 3.25",
@@ -231,7 +231,7 @@
                          "iso":  "2027-03-17",
                          "meetingTime":  "Mar 17, 2027 02:00PM ET",
                          "futurePrice":  96.21,
-                         "lastUpdate":  "May 12, 2026 09:15PM EDT",
+                         "lastUpdate":  "May 12, 2026 09:25PM EDT",
                          "probabilities":  [
                                                {
                                                    "range":  "3.00 - 3.25",
@@ -289,7 +289,7 @@
                          "iso":  "2027-04-28",
                          "meetingTime":  "Apr 28, 2027 02:00PM ET",
                          "futurePrice":  96.185,
-                         "lastUpdate":  "May 12, 2026 09:15PM EDT",
+                         "lastUpdate":  "May 12, 2026 09:25PM EDT",
                          "probabilities":  [
                                                {
                                                    "range":  "3.00 - 3.25",
@@ -353,7 +353,7 @@
                          "iso":  "2027-06-09",
                          "meetingTime":  "Jun 09, 2027 02:00PM ET",
                          "futurePrice":  96.155,
-                         "lastUpdate":  "May 12, 2026 09:15PM EDT",
+                         "lastUpdate":  "May 12, 2026 09:25PM EDT",
                          "probabilities":  [
                                                {
                                                    "range":  "2.75 - 3.00",
@@ -429,7 +429,7 @@
                          "iso":  "2027-07-28",
                          "meetingTime":  "Jul 28, 2027 02:00PM ET",
                          "futurePrice":  96.155,
-                         "lastUpdate":  "May 12, 2026 09:15PM EDT",
+                         "lastUpdate":  "May 12, 2026 09:25PM EDT",
                          "probabilities":  [
                                                {
                                                    "range":  "2.50 - 2.75",
@@ -511,7 +511,7 @@
                          "iso":  "2027-09-15",
                          "meetingTime":  "Sep 15, 2027 02:00PM ET",
                          "futurePrice":  96.19,
-                         "lastUpdate":  "May 12, 2026 09:15PM EDT",
+                         "lastUpdate":  "May 12, 2026 09:25PM EDT",
                          "probabilities":  [
                                                {
                                                    "range":  "2.25 - 2.50",
@@ -599,7 +599,7 @@
                          "iso":  "2027-10-27",
                          "meetingTime":  "Oct 27, 2027 02:00PM ET",
                          "futurePrice":  96.21,
-                         "lastUpdate":  "May 12, 2026 09:15PM EDT",
+                         "lastUpdate":  "May 12, 2026 09:25PM EDT",
                          "probabilities":  [
                                                {
                                                    "range":  "2.00 - 2.25",
@@ -693,7 +693,7 @@
                          "iso":  "2027-12-08",
                          "meetingTime":  "Dec 08, 2027 01:00PM ET",
                          "futurePrice":  96.305,
-                         "lastUpdate":  "May 12, 2026 09:15PM EDT",
+                         "lastUpdate":  "May 12, 2026 09:25PM EDT",
                          "probabilities":  [
                                                {
                                                    "range":  "2.00 - 2.25",
