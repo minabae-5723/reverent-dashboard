@@ -47,6 +47,11 @@ Write-Host ""
 Write-Host "[2.7/5] Refresh Shiller P/E ratio..." -ForegroundColor Yellow
 & powershell -NoProfile -ExecutionPolicy Bypass -File (Join-Path $root 'fetch-shiller.ps1')
 
+# 2.8. Refresh FedWatch (Fed rate probability)
+Write-Host ""
+Write-Host "[2.8/5] Refresh FedWatch (Fed rate probability)..." -ForegroundColor Yellow
+& powershell -NoProfile -ExecutionPolicy Bypass -File (Join-Path $root 'fetch-fedwatch.ps1')
+
 # 3. Regenerate index.json for every clipping folder
 Write-Host ""
 Write-Host "[3/4] Regenerate index.json for clipping folders..." -ForegroundColor Yellow
@@ -75,7 +80,7 @@ if ([string]::IsNullOrWhiteSpace($gitStatus)) {
     Write-Host "  No changes detected -- nothing to commit." -ForegroundColor DarkGray
 } else {
     # Force-add data snapshots (gitignored normally) + all index.json files
-    $forceFiles = @('data.json', 'calendar.json', 'calendar-week.json') +
+    $forceFiles = @('data.json', 'calendar.json', 'calendar-week.json', 'trade.json', 'shiller.json', 'fedwatch.json') +
                   ($INDEXED_FOLDERS | ForEach-Object { "$_/index.json" })
     git add -f $forceFiles 2>&1 | Out-Null
     # Add anything else (new .md files, code changes, etc.)

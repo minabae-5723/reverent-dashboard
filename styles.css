@@ -580,9 +580,381 @@ html, body {
   width: 100%;
 }
 
+/* ============================================================
+   FedWatch section (Fed rate probability)
+   ============================================================ */
+.fedwatch-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.fedwatch-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.fedwatch-source-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+}
+
+.fedwatch-updated {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.fedwatch-next {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+  color: white;
+  border-radius: 8px;
+  padding: 18px 22px;
+  margin-bottom: 14px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 24px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+.fedwatch-next-loading {
+  font-size: 13px;
+  color: rgba(255,255,255,0.85);
+}
+
+.fedwatch-next-block {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.fedwatch-next-label {
+  font-size: 10.5px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.65);
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+}
+
+.fedwatch-next-value {
+  font-size: 22px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.2px;
+}
+
+.fedwatch-next-value.small {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.fedwatch-next-value.big {
+  font-size: 30px;
+}
+
+.fedwatch-next-sub {
+  font-size: 11.5px;
+  color: rgba(255,255,255,0.75);
+}
+
+.fedwatch-matrix-wrap {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 14px 16px 12px;
+  margin-bottom: 14px;
+}
+
+.fedwatch-matrix-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.fedwatch-matrix-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--navy);
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  margin: 0;
+}
+
+.fedwatch-matrix-legend {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10.5px;
+  color: var(--text-muted);
+}
+
+.legend-chip {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+  margin-right: 2px;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+
+.legend-chip.legend-max     { background: #b6e0fe; border: 1px solid #74b9e8; }
+.legend-chip.legend-current { background: #fff4c2; border: 1px solid #e8c963; }
+.legend-chip.legend-cut     { background: #fdecec; border: 1px solid #e8a3a3; }
+.legend-chip.legend-hold    { background: #fff4c2; border: 1px solid #e8c963; }
+.legend-chip.legend-hike    { background: #e6f4ea; border: 1px solid #92c5a3; }
+
+.fedwatch-matrix-scroll {
+  overflow-x: auto;
+  width: 100%;
+}
+
+.fedwatch-matrix-table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 11.5px;
+  font-variant-numeric: tabular-nums;
+  min-width: 760px;
+}
+
+.fedwatch-matrix-table th,
+.fedwatch-matrix-table td {
+  border: 1px solid #e6e9ee;
+  padding: 6px 6px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.fedwatch-matrix-table thead th {
+  background: #f5f6f9;
+  font-weight: 700;
+  font-size: 10.5px;
+  color: var(--navy);
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.fedwatch-matrix-table thead th.col-current {
+  background: #fff4c2;
+}
+
+.fedwatch-matrix-table td.meeting-cell {
+  background: #f5f6f9;
+  font-weight: 700;
+  color: var(--navy);
+  text-align: center;
+}
+
+.fedwatch-matrix-table td.matrix-zero {
+  color: #b8bcc4;
+}
+
+.fedwatch-matrix-table td.matrix-current {
+  background: #fff4c2;
+}
+
+.fedwatch-matrix-table td.matrix-max {
+  background: #b6e0fe;
+  font-weight: 700;
+  color: var(--navy);
+}
+
+/* Compare mode: delta vs prev week shown beside the % */
+.matrix-delta {
+  display: inline-block;
+  margin-left: 4px;
+  font-size: 9.5px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.matrix-delta.up   { color: #c62828; }
+.matrix-delta.down { color: #2e7d32; }
+
+/* Aggregated mode: per-meeting summary */
+.fedwatch-matrix-table th.agg-col-cut  { background: #fdecec; color: #c62828; }
+.fedwatch-matrix-table th.agg-col-hold { background: #fff4c2; color: #8a6d3b; }
+.fedwatch-matrix-table th.agg-col-hike { background: #e6f4ea; color: #2e7d32; }
+
+.fedwatch-matrix-table td.agg-implied {
+  font-weight: 700;
+  color: var(--navy);
+  font-size: 12.5px;
+}
+
+.fedwatch-matrix-table td.agg-most-likely {
+  text-align: center;
+}
+
+.fedwatch-matrix-table .agg-range {
+  font-weight: 700;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+  margin-right: 6px;
+}
+
+.fedwatch-matrix-table .agg-pct {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.fedwatch-matrix-table td.agg-bucket {
+  font-variant-numeric: tabular-nums;
+}
+
+.fedwatch-matrix-table td.agg-cut-cell  { color: #c62828; }
+.fedwatch-matrix-table td.agg-hold-cell { color: #8a6d3b; }
+.fedwatch-matrix-table td.agg-hike-cell { color: #2e7d32; }
+
+.fedwatch-matrix-table td.agg-bucket-max {
+  font-weight: 700;
+}
+
+.fedwatch-matrix-table td.agg-cut-cell.agg-bucket-max  { background: #fdecec; }
+.fedwatch-matrix-table td.agg-hold-cell.agg-bucket-max { background: #fff4c2; }
+.fedwatch-matrix-table td.agg-hike-cell.agg-bucket-max { background: #e6f4ea; }
+
+.fedwatch-meeting-tabs {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+  padding: 4px;
+  background: #f0f2f5;
+  border-radius: 6px;
+}
+
+.fedwatch-meeting-tab {
+  background: transparent;
+  border: 0;
+  padding: 7px 14px;
+  font-size: 12px;
+  font-weight: 500;
+  border-radius: 4px;
+  cursor: pointer;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+  transition: all 0.12s ease;
+}
+
+.fedwatch-meeting-tab:hover { color: var(--text); }
+
+.fedwatch-meeting-tab.active {
+  background: white;
+  color: var(--navy);
+  font-weight: 700;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+.fedwatch-table-wrap {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 14px 18px;
+  margin-top: 14px;
+}
+
+.fedwatch-prob-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.fedwatch-prob-table th {
+  text-align: left;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--border);
+}
+
+.fedwatch-prob-table th.num-col { text-align: right; }
+.fedwatch-prob-table th.fedwatch-bar-col { width: 38%; }
+
+.fedwatch-prob-table td {
+  padding: 9px 10px;
+  border-bottom: 1px solid #f1f2f4;
+  font-variant-numeric: tabular-nums;
+}
+
+.fedwatch-prob-table td.num-col { text-align: right; }
+
+.fedwatch-prob-table tr:last-child td { border-bottom: 0; }
+
+.fedwatch-prob-table tr.highlight td {
+  background: #fff8e8;
+  font-weight: 700;
+}
+
+.fedwatch-prob-table tr.highlight td:first-child {
+  border-left: 3px solid #e8a500;
+  padding-left: 7px;
+}
+
+.fedwatch-delta-up   { color: #c62828; font-size: 11px; margin-left: 4px; }
+.fedwatch-delta-down { color: #2e7d32; font-size: 11px; margin-left: 4px; }
+.fedwatch-delta-flat { color: var(--text-muted); font-size: 11px; margin-left: 4px; }
+
+.fedwatch-bar-cell { padding: 6px 10px; }
+
+.fedwatch-bar-group {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.fedwatch-bar-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 10.5px;
+  color: var(--text-muted);
+}
+
+.fedwatch-bar-row .lab { width: 36px; flex-shrink: 0; }
+.fedwatch-bar-row .pct { width: 42px; text-align: right; flex-shrink: 0; font-variant-numeric: tabular-nums; }
+
+.fedwatch-bar-track {
+  flex: 1;
+  height: 8px;
+  background: #f0f2f5;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.fedwatch-bar-fill {
+  height: 100%;
+  background: var(--navy);
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+.fedwatch-bar-fill.prev-day  { background: #6b8db5; }
+.fedwatch-bar-fill.prev-week { background: #b8c7d8; }
+
 @media (max-width: 720px) {
   .semicon-chart-wrap { height: 180px; }
   .semicon-stats { gap: 12px; flex-wrap: wrap; }
+  .fedwatch-next { gap: 14px; padding: 14px 16px; }
+  .fedwatch-next-value { font-size: 18px; }
+  .fedwatch-next-value.big { font-size: 22px; }
+  .fedwatch-prob-table th.fedwatch-bar-col,
+  .fedwatch-prob-table td.fedwatch-bar-cell { display: none; }
 }
 
 .weekly-filters {

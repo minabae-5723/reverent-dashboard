@@ -20,6 +20,7 @@ const MARKET_INDEX_URL = IS_STATIC ? './market/index.json' : '/market/list';
 const DEALS_INDEX_URL = IS_STATIC ? './deals/index.json' : '/deals/list';
 const TRADE_URL = './trade.json';
 const SHILLER_URL = './shiller.json';
+const FEDWATCH_URL = './fedwatch.json';
 
 const FLAG_EMOJI = {
   United_States: '🇺🇸',
@@ -1808,6 +1809,343 @@ function renderSemicon() {
   });
 }
 
+// ─── FedWatch (Fed rate probability) — Home Section 2 ────
+let fedwatchCache = null;
+let fedwatchView = 'current'; // 'current' | 'compare' | 'aggregated'
+let fedwatchActiveMeetingIdx = 0;
+
+async function loadFedWatch() {
+  if (fedwatchCache) { renderFedWatch(); return; }
+  try {
+    const res = await fetch(`${FEDWATCH_URL}?_=${Date.now()}`, { cache: 'no-store' });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    fedwatchCache = await res.json();
+    renderFedWatch();
+  } catch (err) {
+    console.warn('FedWatch fetch failed:', err);
+    const nxt = document.getElementById('fedwatchNext');
+    if (nxt) nxt.innerHTML = '<div class="fedwatch-next-loading">FedWatch 데이터를 불러올 수 없습니다.</div>';
+  }
+}
+
+function fedwatchTopProb(probs) {
+  if (!probs || !probs.length) return null;
+  return probs.reduce((best, p) => (p.current > (best?.current ?? -1) ? p : best), null);
+}
+
+function fedwatchDaysUntil(iso) {
+  if (!iso) return null;
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const meet = new Date(iso + 'T00:00:00');
+  const diff = Math.round((meet - today) / 86400000);
+  return diff;
+}
+
+// Implied rate from Fed funds futures price: rate = 100 - price
+function fedwatchImpliedRate(futurePrice) {
+  if (futurePrice == null) return null;
+  return 100 - futurePrice;
+}
+
+function renderFedWatch() {
+  if (!fedwatchCache) return;
+  const meetings = (fedwatchCache.meetings || []).filter(m => m.probabilities && m.probabilities.length);
+  if (!meetings.length) return;
+
+  // Updated label
+  const updEl = document.getElementById('fedwatchUpdated');
+  if (updEl) {
+    const m0 = meetings[0];
+    updEl.textContent = m0.lastUpdate ? `Updated: ${m0.lastUpdate}` : `Updated: ${fedwatchCache.updatedKr || ''}`;
+  }
+
+  // Next FOMC highlight card
+  const next = meetings[0];
+  const top = fedwatchTopProb(next.probabilities);
+  const daysLeft = fedwatchDaysUntil(next.iso);
+  const impRate = fedwatchImpliedRate(next.futurePrice);
+  const nxtEl = document.getElementById('fedwatchNext');
+  if (nxtEl) {
+    nxtEl.innerHTML = `
+      <div class="fedwatch-next-block">
+        <span class="fedwatch-next-label">다음 FOMC</span>
+        <span class="fedwatch-next-value">${next.date}</span>
+        ${daysLeft != null ? `<span class="fedwatch-next-sub">D-${daysLeft} · ${next.meetingTime || ''}</span>` : ''}
+      </div>
+      <div class="fedwatch-next-block">
+        <span class="fedwatch-next-label">시장 컨센서스 (최고확률)</span>
+        <span class="fedwatch-next-value big">${top ? top.range : '—'}</span>
+        <span class="fedwatch-next-sub">${top ? top.current.toFixed(1) + '%' : ''} · 전주 ${top ? top.prevWeek.toFixed(1) + '%' : ''}</span>
+      </div>
+      <div class="fedwatch-next-block">
+        <span class="fedwatch-next-label">Implied Rate</span>
+        <span class="fedwatch-next-value">${impRate != null ? impRate.toFixed(3) + '%' : '—'}</span>
+        <span class="fedwatch-next-sub">${next.futurePrice != null ? 'Fed Funds Futures @ ' + next.futurePrice : ''}</span>
+      </div>
+    `;
+  }
+
+  renderFedWatchMatrix(meetings);
+
+  // View toggle: render prob-table for Current/Compare; hide for Aggregated
+  // (Aggregated view uses the matrix above only — no per-meeting cards).
+  const tableWrap = document.getElementById('fedwatchTableWrap');
+  if (tableWrap) {
+    if (fedwatchView === 'aggregated') {
+      tableWrap.hidden = true;
+    } else {
+      tableWrap.hidden = false;
+      renderFedWatchTable(meetings);
+    }
+  }
+}
+
+function renderFedWatchTable(meetings) {
+  const tabsEl = document.getElementById('fedwatchMeetingTabs');
+  if (tabsEl) {
+    tabsEl.innerHTML = meetings.map((m, i) => {
+      const cls = (i === fedwatchActiveMeetingIdx) ? 'fedwatch-meeting-tab active' : 'fedwatch-meeting-tab';
+      return `<button class="${cls}" data-idx="${i}">${m.date}</button>`;
+    }).join('');
+    tabsEl.querySelectorAll('.fedwatch-meeting-tab').forEach(btn => {
+      btn.addEventListener('click', () => {
+        fedwatchActiveMeetingIdx = parseInt(btn.dataset.idx, 10);
+        renderFedWatch();
+      });
+    });
+  }
+
+  const idx = Math.min(fedwatchActiveMeetingIdx, meetings.length - 1);
+  const meeting = meetings[idx];
+  const top = fedwatchTopProb(meeting.probabilities);
+  const body = document.getElementById('fedwatchProbBody');
+  if (!body) return;
+
+  const showCompare = (fedwatchView === 'compare');
+
+  body.innerHTML = meeting.probabilities.map(p => {
+    const isTop = (top && p.range === top.range);
+    const cls = isTop ? 'highlight' : '';
+    const dCurDay = p.current - p.prevDay;
+    const dCurWk  = p.current - p.prevWeek;
+    const fmt = (v) => v == null ? '—' : v.toFixed(1);
+    const arrow = (d) => {
+      if (Math.abs(d) < 0.05) return '<span class="fedwatch-delta-flat">·</span>';
+      return d > 0
+        ? `<span class="fedwatch-delta-up">▲${Math.abs(d).toFixed(1)}</span>`
+        : `<span class="fedwatch-delta-down">▼${Math.abs(d).toFixed(1)}</span>`;
+    };
+
+    let barHtml;
+    if (showCompare) {
+      barHtml = `
+        <div class="fedwatch-bar-group">
+          <div class="fedwatch-bar-row"><span class="lab">현재</span><div class="fedwatch-bar-track"><div class="fedwatch-bar-fill" style="width:${p.current}%"></div></div><span class="pct">${fmt(p.current)}%</span></div>
+          <div class="fedwatch-bar-row"><span class="lab">전일</span><div class="fedwatch-bar-track"><div class="fedwatch-bar-fill prev-day" style="width:${p.prevDay}%"></div></div><span class="pct">${fmt(p.prevDay)}%</span></div>
+          <div class="fedwatch-bar-row"><span class="lab">전주</span><div class="fedwatch-bar-track"><div class="fedwatch-bar-fill prev-week" style="width:${p.prevWeek}%"></div></div><span class="pct">${fmt(p.prevWeek)}%</span></div>
+        </div>
+      `;
+    } else {
+      barHtml = `
+        <div class="fedwatch-bar-group">
+          <div class="fedwatch-bar-row"><div class="fedwatch-bar-track"><div class="fedwatch-bar-fill" style="width:${p.current}%"></div></div><span class="pct">${fmt(p.current)}%</span></div>
+        </div>
+      `;
+    }
+
+    return `
+      <tr class="${cls}">
+        <td>${p.range}</td>
+        <td class="num-col">${fmt(p.current)}%</td>
+        <td class="num-col">${fmt(p.prevDay)}%${arrow(dCurDay)}</td>
+        <td class="num-col">${fmt(p.prevWeek)}%${arrow(dCurWk)}</td>
+        <td class="fedwatch-bar-cell">${barHtml}</td>
+      </tr>
+    `;
+  }).join('');
+}
+
+function setupFedWatchFilters() {
+  document.querySelectorAll('#fedwatchViewFilter .filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('#fedwatchViewFilter .filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      fedwatchView = btn.dataset.view;
+      renderFedWatch();
+    });
+  });
+}
+
+// CME FedWatch–style conditional probability matrix.
+// Branches on fedwatchView:
+//   - 'current'    → cells show current %
+//   - 'compare'    → cells show current % + ▲▼ delta vs previous week
+//   - 'aggregated' → table reshapes into per-meeting summary
+//                    (Implied Rate / Most Likely / CUT / HOLD / HIKE vs current rate)
+function renderFedWatchMatrix(meetings) {
+  if (!meetings || !meetings.length) return;
+  const headEl = document.getElementById('fedwatchMatrixHead');
+  const bodyEl = document.getElementById('fedwatchMatrixBody');
+  const legendEl = document.getElementById('fedwatchMatrixLegend');
+  if (!headEl || !bodyEl) return;
+
+  // Current rate column = top probability range of the nearest meeting (shared by all modes).
+  const top0 = fedwatchTopProb(meetings[0].probabilities);
+  const currentRange = top0 ? top0.range : null;
+
+  // Legend differs per view mode.
+  if (legendEl) {
+    if (fedwatchView === 'aggregated') {
+      legendEl.innerHTML = `
+        <span class="legend-chip legend-cut"></span>CUT
+        <span class="legend-chip legend-hold"></span>HOLD
+        <span class="legend-chip legend-hike"></span>HIKE
+      `;
+    } else {
+      legendEl.innerHTML = `
+        <span class="legend-chip legend-max"></span>최고확률
+        <span class="legend-chip legend-current"></span>현재 금리
+      `;
+    }
+  }
+
+  if (fedwatchView === 'aggregated') {
+    renderFedWatchMatrixAggregated(meetings, currentRange, headEl, bodyEl);
+    return;
+  }
+
+  // Collect every range across all meetings, sort by lower bound ascending.
+  const rangeSet = new Set();
+  meetings.forEach(m => m.probabilities.forEach(p => rangeSet.add(p.range)));
+  const ranges = Array.from(rangeSet).sort((a, b) => {
+    const aLo = parseFloat(a.split('-')[0]);
+    const bLo = parseFloat(b.split('-')[0]);
+    return aLo - bLo;
+  });
+
+  // "3.25 - 3.50" → "325-350" (bp format like CME)
+  const fmtCol = (r) => r.split('-')
+    .map(s => Math.round(parseFloat(s.trim()) * 100))
+    .join('-');
+
+  const isCompare = (fedwatchView === 'compare');
+
+  // Header row
+  headEl.innerHTML = '<tr>'
+    + '<th>MEETING DATE</th>'
+    + ranges.map(r => {
+        const cls = (r === currentRange) ? 'col-current' : '';
+        return `<th class="${cls}">${fmtCol(r)}</th>`;
+      }).join('')
+    + '</tr>';
+
+  // Body rows
+  bodyEl.innerHTML = meetings.map(m => {
+    const probMap = {};
+    const prevWeekMap = {};
+    m.probabilities.forEach(p => {
+      probMap[p.range] = p.current;
+      prevWeekMap[p.range] = p.prevWeek;
+    });
+    const vals = Object.values(probMap).filter(v => v != null);
+    const rowMax = vals.length ? Math.max(...vals) : 0;
+
+    const cells = ranges.map(r => {
+      const v = probMap[r];
+      const pw = prevWeekMap[r];
+      const has = (v != null);
+      const isZero = !has || v === 0;
+      const isMax = has && v > 0 && v === rowMax;
+      const isCurrent = (r === currentRange);
+
+      let cls = '';
+      if (isMax) cls = 'matrix-max';
+      else if (isCurrent) cls = 'matrix-current';
+      if (isZero) cls += ' matrix-zero';
+
+      let display;
+      if (isZero) {
+        display = '0.0%';
+      } else if (isCompare && pw != null) {
+        const d = v - pw;
+        let arrow = '';
+        if (Math.abs(d) >= 0.05) {
+          arrow = d > 0
+            ? `<span class="matrix-delta up">▲${Math.abs(d).toFixed(1)}</span>`
+            : `<span class="matrix-delta down">▼${Math.abs(d).toFixed(1)}</span>`;
+        }
+        display = `${v.toFixed(1)}%${arrow}`;
+      } else {
+        display = v.toFixed(1) + '%';
+      }
+
+      return `<td class="${cls.trim()}">${display}</td>`;
+    }).join('');
+
+    return `<tr><td class="meeting-cell">${m.date}</td>${cells}</tr>`;
+  }).join('');
+}
+
+// Aggregated view: per-meeting summary.
+// Columns: MEETING / IMPLIED RATE (100 - futurePrice) / MOST LIKELY / CUT / HOLD / HIKE
+// CUT/HOLD/HIKE measured vs `currentRange` (nearest meeting's top range = current Fed Funds target).
+function renderFedWatchMatrixAggregated(meetings, currentRange, headEl, bodyEl) {
+  // Numeric lower bound of current range, used to classify each rate range as cut/hold/hike.
+  const curLo = currentRange != null ? parseFloat(currentRange.split('-')[0]) : null;
+
+  headEl.innerHTML = `
+    <tr>
+      <th>MEETING DATE</th>
+      <th>IMPLIED RATE</th>
+      <th>MOST LIKELY</th>
+      <th class="agg-col-cut">CUT</th>
+      <th class="agg-col-hold">HOLD</th>
+      <th class="agg-col-hike">HIKE</th>
+    </tr>
+  `;
+
+  bodyEl.innerHTML = meetings.map(m => {
+    const top = fedwatchTopProb(m.probabilities);
+    const implied = (m.futurePrice != null) ? (100 - m.futurePrice) : null;
+
+    let pCut = 0, pHold = 0, pHike = 0;
+    m.probabilities.forEach(p => {
+      if (p.current == null) return;
+      const lo = parseFloat(p.range.split('-')[0]);
+      if (curLo == null) {
+        pHold += p.current; // unknown current → treat all as hold
+      } else if (Math.abs(lo - curLo) < 0.01) {
+        pHold += p.current;
+      } else if (lo < curLo) {
+        pCut += p.current;
+      } else {
+        pHike += p.current;
+      }
+    });
+
+    // Highlight the dominant scenario among cut / hold / hike.
+    const maxBucket = Math.max(pCut, pHold, pHike);
+    const cutCls  = (pCut  === maxBucket && pCut  > 0) ? 'agg-bucket agg-cut-cell  agg-bucket-max' : 'agg-bucket agg-cut-cell';
+    const holdCls = (pHold === maxBucket && pHold > 0) ? 'agg-bucket agg-hold-cell agg-bucket-max' : 'agg-bucket agg-hold-cell';
+    const hikeCls = (pHike === maxBucket && pHike > 0) ? 'agg-bucket agg-hike-cell agg-bucket-max' : 'agg-bucket agg-hike-cell';
+
+    return `
+      <tr>
+        <td class="meeting-cell">${m.date}</td>
+        <td class="agg-implied">${implied != null ? implied.toFixed(3) + '%' : '—'}</td>
+        <td class="agg-most-likely">
+          <span class="agg-range">${top ? top.range : '—'}</span>
+          <span class="agg-pct">${top ? top.current.toFixed(1) + '%' : ''}</span>
+        </td>
+        <td class="${cutCls}">${pCut.toFixed(1)}%</td>
+        <td class="${holdCls}">${pHold.toFixed(1)}%</td>
+        <td class="${hikeCls}">${pHike.toFixed(1)}%</td>
+      </tr>
+    `;
+  }).join('');
+}
+
 // ─── Shiller P/E (CAPE) — bottom of Home view ─────────────
 let shillerCache = null;
 let shillerChart = null;
@@ -1966,10 +2304,12 @@ setupWeeklyFilters();
 setupNewsFilters();
 setupSemiconFilters();
 setupShillerFilters();
+setupFedWatchFilters();
 loadCalendar();
 loadData();
 loadWeeklyCalendar();
 loadShiller();
+loadFedWatch();
 // Manual refresh mode — no setInterval. Data is re-fetched only when:
 //   - User clicks the ↻ 새로고침 button (forceRefresh → /refresh → Yahoo + Investing)
 //   - User reloads the page

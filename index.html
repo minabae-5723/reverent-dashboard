@@ -80,27 +80,9 @@
         <p class="page-subtitle">실시간 시장 데이터 + 오늘의 경제 이벤트</p>
       </div>
 
-      <!-- Section 1: Macro Economy (Today) -->
+      <!-- Section 1: Capital Market -->
       <section class="block">
-        <h2 class="block-title"><span class="num">1</span> Market Update — Macro Economy</h2>
-        <h3 class="sub-title">오늘의 경제 지표 (Today) <a href="#weekly" class="see-all">이번주 전체 보기 →</a></h3>
-        <div class="table-wrap">
-          <table class="indicator-table">
-            <thead>
-              <tr>
-                <th>국가</th><th>날짜</th><th>지표</th><th>기간</th>
-                <th class="num-col">실제</th><th class="num-col">전망</th><th class="num-col">이전</th><th>단위</th>
-              </tr>
-            </thead>
-            <tbody id="macroBody"></tbody>
-          </table>
-        </div>
-        <p class="note">매크로 지표 — Investing.com (미국·한국·일본). 중요도 ★★ 이상 표시.</p>
-      </section>
-
-      <!-- Section 2: Capital Market -->
-      <section class="block">
-        <h2 class="block-title"><span class="num">2</span> Capital Market</h2>
+        <h2 class="block-title"><span class="num">1</span> Capital Market</h2>
 
         <div class="grid-2">
 
@@ -154,9 +136,82 @@
         </div>
       </section>
 
-      <!-- Section 3: Shiller P/E (CAPE) Ratio -->
+      <!-- Section 2: FedWatch — Fed Rate Probability -->
       <section class="block">
-        <h2 class="block-title"><span class="num">3</span> Shiller P/E (CAPE) Ratio</h2>
+        <h2 class="block-title"><span class="num">2</span> FedWatch — Fed Rate Probability</h2>
+
+        <div class="fedwatch-head">
+          <div class="fedwatch-meta">
+            <span class="fedwatch-source-label">CME Fed Funds Futures 기반 · 일일 갱신</span>
+            <span id="fedwatchUpdated" class="fedwatch-updated">—</span>
+          </div>
+          <div class="filter-btns" id="fedwatchViewFilter">
+            <button class="filter-btn active" data-view="current">Current</button>
+            <button class="filter-btn" data-view="compare">Compare (전일·전주)</button>
+            <button class="filter-btn" data-view="aggregated">Aggregated (전체 회의)</button>
+          </div>
+        </div>
+
+        <!-- Next FOMC meeting highlight -->
+        <div id="fedwatchNext" class="fedwatch-next">
+          <div class="fedwatch-next-loading">FedWatch 데이터 로딩 중…</div>
+        </div>
+
+        <!-- CME-style Conditional Meeting Probabilities matrix -->
+        <div class="fedwatch-matrix-wrap">
+          <div class="fedwatch-matrix-head">
+            <h3 class="fedwatch-matrix-title">Conditional Meeting Probabilities</h3>
+            <div class="fedwatch-matrix-legend" id="fedwatchMatrixLegend"></div>
+          </div>
+          <div class="fedwatch-matrix-scroll">
+            <table class="fedwatch-matrix-table" id="fedwatchMatrixTable">
+              <thead id="fedwatchMatrixHead"></thead>
+              <tbody id="fedwatchMatrixBody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Probability table for selected meeting (Current / Compare views) -->
+        <div id="fedwatchTableWrap" class="fedwatch-table-wrap" hidden>
+          <div class="fedwatch-meeting-tabs" id="fedwatchMeetingTabs"></div>
+          <table class="fedwatch-prob-table" id="fedwatchProbTable">
+            <thead>
+              <tr>
+                <th>Target Rate (bp)</th>
+                <th class="num-col">Current</th>
+                <th class="num-col">전일</th>
+                <th class="num-col">전주</th>
+                <th class="fedwatch-bar-col">Probability</th>
+              </tr>
+            </thead>
+            <tbody id="fedwatchProbBody"></tbody>
+          </table>
+        </div>
+
+        <p class="note">Source: <a href="https://www.investing.com/central-banks/fed-rate-monitor" target="_blank" rel="noopener">Investing.com Fed Rate Monitor</a> (CME Fed Funds Futures-implied probabilities, CME FedWatch과 동일 underlying).</p>
+      </section>
+
+      <!-- Section 3: Macro Economy (Today) -->
+      <section class="block">
+        <h2 class="block-title"><span class="num">3</span> Market Update — Macro Economy</h2>
+        <h3 class="sub-title">오늘의 경제 지표 (Today) <a href="#weekly" class="see-all">이번주 전체 보기 →</a></h3>
+        <div class="table-wrap">
+          <table class="indicator-table">
+            <thead>
+              <tr>
+                <th>국가</th><th>날짜</th><th>지표</th><th>기간</th>
+                <th class="num-col">실제</th><th class="num-col">전망</th><th class="num-col">이전</th><th>단위</th>
+              </tr>
+            </thead>
+            <tbody id="macroBody"></tbody>
+          </table>
+        </div>
+        <p class="note">매크로 지표 — Investing.com (미국·한국·일본). 중요도 ★★ 이상 표시.</p>
+      </section>
+
+      <!-- Section 4: Shiller P/E (CAPE) Ratio -->
+      <section class="block">
+        <h2 class="block-title"><span class="num">4</span> Shiller P/E (CAPE) Ratio</h2>
         <div class="shiller-head">
           <div class="shiller-stats">
             <div class="shiller-current">
