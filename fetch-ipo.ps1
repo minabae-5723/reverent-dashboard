@@ -89,7 +89,12 @@ function Parse-Num {
     return $null
 }
 
+# Korean "스팩" (SPAC) — built from code points so the .ps1 stays ASCII-safe
+# under PS 5.1's cp949 source decoding.
+$spacKo = [string]([char]0xC2A4 + [char]0xD329)
+
 $companies = @()
+$skippedSpac = 0
 foreach ($rm in $rowMatches) {
     $rowHtml = $rm.Groups[1].Value
 
@@ -124,6 +129,12 @@ foreach ($rm in $rowMatches) {
 
     if ([string]::IsNullOrWhiteSpace($name)) { continue }
 
+    # Skip SPACs — name contains "스팩" or "SPAC".
+    if ($name -match ($spacKo + '|SPAC')) {
+        $skippedSpac++
+        continue
+    }
+
     $companies += [PSCustomObject]@{
         name        = $name
         listDate    = $listDate
@@ -140,7 +151,7 @@ foreach ($rm in $rowMatches) {
     }
 }
 
-Write-Host (" Parsed " + $companies.Count + " IPO rows from 38.co.kr") -ForegroundColor Green
+Write-Host (" Parsed " + $companies.Count + " IPO rows from 38.co.kr (skipped " + $skippedSpac + " SPACs)") -ForegroundColor Green
 
 # ---------- 2. Augment with Naver Finance 시가총액 ----------
 

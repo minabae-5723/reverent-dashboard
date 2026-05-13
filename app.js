@@ -1895,6 +1895,22 @@ function renderPeer() {
   body.innerHTML = html;
 }
 
+// Pre-IPO market cap user overrides — stored in localStorage so the user
+// can fill in values from the prospectus before the company starts trading.
+function getIpoMcapOverride(code) {
+  if (!code) return null;
+  const v = parseFloat(localStorage.getItem('ipo-mcap-' + code));
+  return (isFinite(v) && v > 0) ? v : null;
+}
+function setIpoMcapOverride(code, value) {
+  if (!code) return;
+  localStorage.setItem('ipo-mcap-' + code, String(value));
+}
+function clearIpoMcapOverride(code) {
+  if (!code) return;
+  localStorage.removeItem('ipo-mcap-' + code);
+}
+
 function renderIpo() {
   if (!ipoCache) return;
   const setText = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = v ?? '—'; };
@@ -1912,22 +1928,76 @@ function renderIpo() {
   const fmtNum = (v) => v == null ? '—' : Math.round(v).toLocaleString();
   const fmtDate = (s) => {
     if (!s) return '—';
-    // "2026/05/11" → "26.05.11" to match PDF style
     const m = s.match(/^(\d{4})\/(\d{2})\/(\d{2})$/);
     if (m) return `${m[1].slice(2)}.${m[2]}.${m[3]}`;
     return s;
   };
 
-  body.innerHTML = ipoCache.companies.map(c => `
-    <tr>
-      <td class="peer-name">${c.name}</td>
-      <td class="ipo-date">${fmtDate(c.listDate)}</td>
-      <td class="num-col">${fmtNum(c.ipoPrice)}</td>
-      <td class="num-col">${fmtNum(c.curPrice)}</td>
-      <td class="num-col">${fmtNum(c.mcap)}</td>
-      <td class="num-col">${fmtPct(c.curVsIpo)}</td>
-    </tr>
-  `).join('');
+  // Pre-IPO = no current price yet (company hasn't started trading).
+  const isPreIpo = (c) => c.curPrice == null;
+
+  body.innerHTML = ipoCache.companies.map(c => {
+    // mcap rendering: locked override > scraped value > input UI for pre-IPOs > "—"
+    let mcapCell;
+    const override = getIpoMcapOverride(c.code);
+    if (c.mcap != null) {
+      mcapCell = fmtNum(c.mcap);
+    } else if (override != null) {
+      mcapCell = `
+        <span class="ipo-mcap-fixed">${fmtNum(override)}</span>
+        <button class="ipo-mcap-edit" data-code="${c.code}" title="값 수정">✎</button>
+      `;
+    } else if (isPreIpo(c) && c.code) {
+      mcapCell = `
+        <input class="ipo-mcap-input" type="number" min="0" step="1" placeholder="입력" data-code="${c.code}" />
+        <button class="ipo-mcap-fix" data-code="${c.code}">FIX</button>
+      `;
+    } else {
+      mcapCell = '—';
+    }
+
+    const rowCls = isPreIpo(c) ? 'ipo-row pre-ipo' : 'ipo-row';
+    return `
+      <tr class="${rowCls}">
+        <td class="peer-name">${c.name}</td>
+        <td class="ipo-date">${fmtDate(c.listDate)}</td>
+        <td class="num-col">${fmtNum(c.ipoPrice)}</td>
+        <td class="num-col">${fmtNum(c.curPrice)}</td>
+        <td class="num-col ipo-mcap-cell">${mcapCell}</td>
+        <td class="num-col">${fmtPct(c.curVsIpo)}</td>
+      </tr>
+    `;
+  }).join('');
+
+  // Wire up FIX / Edit / Enter-to-save.
+  body.querySelectorAll('.ipo-mcap-fix').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const code = btn.dataset.code;
+      const input = body.querySelector(`.ipo-mcap-input[data-code="${code}"]`);
+      const val = parseFloat(input?.value);
+      if (!isFinite(val) || val <= 0) {
+        input?.focus();
+        return;
+      }
+      setIpoMcapOverride(code, val);
+      renderIpo();
+    });
+  });
+  body.querySelectorAll('.ipo-mcap-input').forEach(input => {
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        const btn = body.querySelector(`.ipo-mcap-fix[data-code="${input.dataset.code}"]`);
+        btn?.click();
+      }
+    });
+  });
+  body.querySelectorAll('.ipo-mcap-edit').forEach(btn => {
+    btn.addEventListener('click', () => {
+      clearIpoMcapOverride(btn.dataset.code);
+      renderIpo();
+    });
+  });
 }
 
 // ─── FedWatch (Fed rate probability) — Home Section 2 ────

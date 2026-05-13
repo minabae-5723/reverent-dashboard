@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-05-13T05:35:27Z",
-    "updatedKr":  "2026-05-13 14:35:27",
+    "updated":  "2026-05-13T05:46:54Z",
+    "updatedKr":  "2026-05-13 14:46:54",
     "source":  "38.co.kr new-listings (o=nw) + Naver Finance (market cap)",
     "companies":  [
                       {
@@ -46,20 +46,6 @@
                           "mcap":  13020
                       },
                       {
-                          "name":  "신한스팩18호",
-                          "listDate":  "2026/04/30",
-                          "listIso":  "2026-04-30",
-                          "code":  "0129K0",
-                          "detailNo":  2284,
-                          "ipoPrice":  2000,
-                          "curPrice":  1986,
-                          "openPrice":  6070,
-                          "todayChg":  -0.003,
-                          "curVsIpo":  -0.0069999999999999993,
-                          "openVsIpo":  2.035,
-                          "mcap":  null
-                      },
-                      {
                           "name":  "채비(구.대영채비)",
                           "listDate":  "2026/04/29",
                           "listIso":  "2026-04-29",
@@ -71,34 +57,6 @@
                           "todayChg":  -0.0776,
                           "curVsIpo":  0.31379999999999997,
                           "openVsIpo":  0.2398,
-                          "mcap":  null
-                      },
-                      {
-                          "name":  "키움히어로스팩2호",
-                          "listDate":  "2026/04/23",
-                          "listIso":  "2026-04-23",
-                          "code":  "0131D0",
-                          "detailNo":  2282,
-                          "ipoPrice":  2000,
-                          "curPrice":  1985,
-                          "openPrice":  4790,
-                          "todayChg":  -0.0025,
-                          "curVsIpo":  -0.0075,
-                          "openVsIpo":  1.395,
-                          "mcap":  null
-                      },
-                      {
-                          "name":  "교보스팩20호",
-                          "listDate":  "2026/04/02",
-                          "listIso":  "2026-04-02",
-                          "code":  "0132G0",
-                          "detailNo":  2279,
-                          "ipoPrice":  2000,
-                          "curPrice":  1998,
-                          "openPrice":  4900,
-                          "todayChg":  -0.001,
-                          "curVsIpo":  -0.001,
-                          "openVsIpo":  1.45,
                           "mcap":  null
                       },
                       {
@@ -116,20 +74,6 @@
                           "mcap":  null
                       },
                       {
-                          "name":  "신한스팩17호",
-                          "listDate":  "2026/04/01",
-                          "listIso":  "2026-04-01",
-                          "code":  "0130D0",
-                          "detailNo":  2280,
-                          "ipoPrice":  2000,
-                          "curPrice":  1989,
-                          "openPrice":  5760,
-                          "todayChg":  -0.0045000000000000005,
-                          "curVsIpo":  -0.0055000000000000005,
-                          "openVsIpo":  1.88,
-                          "mcap":  null
-                      },
-                      {
                           "name":  "리센스메디컬",
                           "listDate":  "2026/03/31",
                           "listIso":  "2026-03-31",
@@ -142,20 +86,6 @@
                           "curVsIpo":  1.6727,
                           "openVsIpo":  2.4182,
                           "mcap":  3152
-                      },
-                      {
-                          "name":  "NH스팩33호",
-                          "listDate":  "2026/03/27",
-                          "listIso":  "2026-03-27",
-                          "code":  "0130H0",
-                          "detailNo":  2277,
-                          "ipoPrice":  2000,
-                          "curPrice":  1999,
-                          "openPrice":  3460,
-                          "todayChg":  -0.0005,
-                          "curVsIpo":  -0.0005,
-                          "openVsIpo":  0.73,
-                          "mcap":  null
                       },
                       {
                           "name":  "메쥬",
@@ -183,7 +113,7 @@
                           "todayChg":  -0.0151,
                           "curVsIpo":  -0.3153,
                           "openVsIpo":  0.9526,
-                          "mcap":  1335
+                          "mcap":  1328
                       },
                       {
                           "name":  "아이엠바이오로직스",
@@ -239,7 +169,7 @@
                           "todayChg":  -0.0454,
                           "curVsIpo":  -0.084700000000000011,
                           "openVsIpo":  2.6058999999999997,
-                          "mcap":  674
+                          "mcap":  673
                       },
                       {
                           "name":  "케이뱅크(유가)",
@@ -267,20 +197,6 @@
                           "todayChg":  -0.0437,
                           "curVsIpo":  0.795,
                           "openVsIpo":  1.105,
-                          "mcap":  null
-                      },
-                      {
-                          "name":  "삼성스팩13호",
-                          "listDate":  "2026/01/21",
-                          "listIso":  "2026-01-21",
-                          "code":  "0115H0",
-                          "detailNo":  2266,
-                          "ipoPrice":  2000,
-                          "curPrice":  2005,
-                          "openPrice":  4890,
-                          "todayChg":  -0.005,
-                          "curVsIpo":  0.0025,
-                          "openVsIpo":  1.445,
                           "mcap":  null
                       }
                   ]
