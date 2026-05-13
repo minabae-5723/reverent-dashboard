@@ -48,6 +48,10 @@
         <span class="sb-ico">🔌</span>
         <span class="sb-text">반도체 수출입</span>
       </a>
+      <a href="#peer" class="sidebar-item" data-view="peer">
+        <span class="sb-ico">📈</span>
+        <span class="sb-text">반도체 Peer &amp; IPO</span>
+      </a>
     </div>
 
     <div class="sidebar-spacer"></div>
@@ -457,6 +461,76 @@
 
       <footer class="site-footer">
         <p>Source: 관세청 무역통계 (수기 import — Phase 2에서 TRASS 자동 갱신 예정) · 단위: USD million</p>
+      </footer>
+    </section>
+
+    <!-- ===== SEMICONDUCTOR PEER & IPO VIEW ===== -->
+    <section class="view" id="view-peer" hidden>
+
+      <div class="page-header">
+        <div class="page-breadcrumb">Workspace › 반도체 Peer &amp; IPO</div>
+        <h1 class="page-title">📈 Semiconductor Peer &amp; IPO</h1>
+        <p class="page-subtitle">매주 금요일 16:30 KST 갱신 · 주요 반도체 상장사 + 신규 상장 IPO</p>
+      </div>
+
+      <!-- Section 1: Peer Table -->
+      <section class="block">
+        <h2 class="block-title"><span class="num">1</span> 반도체 Peer Group</h2>
+        <div class="peer-meta">
+          <span class="peer-meta-label">기준일</span>
+          <span id="peerRefDate" class="peer-meta-val">—</span>
+          <span class="peer-meta-sep">·</span>
+          <span class="peer-meta-label">대비</span>
+          <span id="peerPrevDate" class="peer-meta-val">—</span>
+          <span class="peer-meta-label">/ 연초</span>
+          <span id="peerYtdDate" class="peer-meta-val">—</span>
+        </div>
+        <div class="table-wrap">
+          <table class="peer-table" id="peerTable">
+            <thead>
+              <tr>
+                <th>기업명</th>
+                <th>사업내용</th>
+                <th class="num-col">시가총액<br>(억원)</th>
+                <th class="num-col">PER<br>(TTM)</th>
+                <th class="num-col">PBR<br>(TTM)</th>
+                <th class="num-col">WoW</th>
+                <th class="num-col">YTD</th>
+              </tr>
+            </thead>
+            <tbody id="peerBody"></tbody>
+          </table>
+        </div>
+        <p class="note">Source: Yahoo Finance (close prices) + Naver Finance (시가총액 / PER / PBR). PER이 NM인 종목은 적자 또는 직전 4분기 합계가 음수.</p>
+      </section>
+
+      <!-- Section 2: IPO Table -->
+      <section class="block">
+        <h2 class="block-title"><span class="num">2</span> 신규 상장 IPO</h2>
+        <div class="peer-meta">
+          <span class="peer-meta-label">최신 갱신</span>
+          <span id="ipoUpdated" class="peer-meta-val">—</span>
+        </div>
+        <div class="table-wrap">
+          <table class="peer-table ipo-table" id="ipoTable">
+            <thead>
+              <tr>
+                <th>회사명</th>
+                <th>상장일</th>
+                <th class="num-col">공모가<br>(원)</th>
+                <th class="num-col">현재가<br>(원)</th>
+                <th class="num-col">시가총액<br>(억원)</th>
+                <th class="num-col">등락률<br>(vs 공모가)</th>
+              </tr>
+            </thead>
+            <tbody id="ipoBody"></tbody>
+          </table>
+        </div>
+        <p class="note">Source: <a href="http://www.38.co.kr/html/fund/?o=nw" target="_blank" rel="noopener">38커뮤니케이션 신규상장</a> + Naver Finance (시가총액). SPAC·기타 비정규 코드는 시가총액 미표기.</p>
+      </section>
+
+      <footer class="site-footer">
+        <p>자동 갱신: 매주 금요일 16:30 KST (KOSPI/KOSDAQ 종가 기준)</p>
       </footer>
     </section>
 

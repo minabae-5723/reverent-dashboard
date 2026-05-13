@@ -581,6 +581,117 @@ html, body {
 }
 
 /* ============================================================
+   Semiconductor Peer & IPO view
+   ============================================================ */
+.peer-meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 12px;
+  font-size: 11.5px;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.peer-meta-label {
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 10.5px;
+  letter-spacing: 0.5px;
+}
+
+.peer-meta-val {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.peer-meta-sep {
+  color: #ccc;
+  margin: 0 4px;
+}
+
+.peer-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12.5px;
+  background: white;
+}
+
+.peer-table thead th {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+  color: white;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.4px;
+  padding: 9px 8px;
+  text-align: left;
+  border: 1px solid var(--navy);
+  line-height: 1.3;
+}
+
+.peer-table thead th.num-col {
+  text-align: right;
+}
+
+.peer-table tbody td {
+  border: 1px solid var(--border);
+  padding: 7px 9px;
+  font-variant-numeric: tabular-nums;
+  vertical-align: middle;
+}
+
+.peer-table tbody td.num-col {
+  text-align: right;
+}
+
+.peer-table tbody tr:nth-child(even) td {
+  background: #f9fafb;
+}
+
+.peer-table tbody tr:hover td {
+  background: #eef4fa;
+}
+
+.peer-name {
+  font-weight: 700;
+  color: var(--navy);
+}
+
+.peer-cat-cell {
+  background: #f0f3f7 !important;
+  font-weight: 600;
+  color: var(--text-muted);
+  font-size: 11.5px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.peer-pct {
+  font-weight: 600;
+}
+
+.peer-pct.up   { color: #c62828; }
+.peer-pct.down { color: #1565c0; }
+.peer-pct.flat { color: var(--text-muted); }
+
+.peer-nm {
+  color: var(--text-muted);
+  font-size: 11.5px;
+  font-style: italic;
+}
+
+.ipo-table .ipo-date {
+  font-variant-numeric: tabular-nums;
+  color: var(--text-muted);
+  font-size: 12px;
+}
+
+@media (max-width: 720px) {
+  .peer-table { font-size: 11px; }
+  .peer-table thead th, .peer-table tbody td { padding: 6px 5px; }
+}
+
+/* ============================================================
    FedWatch section (Fed rate probability)
    ============================================================ */
 .fedwatch-head {

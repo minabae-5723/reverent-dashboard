@@ -21,6 +21,8 @@ const DEALS_INDEX_URL = IS_STATIC ? './deals/index.json' : '/deals/list';
 const TRADE_URL = './trade.json';
 const SHILLER_URL = './shiller.json';
 const FEDWATCH_URL = './fedwatch.json';
+const PEER_URL = './peer.json';
+const IPO_URL = './ipo.json';
 
 const FLAG_EMOJI = {
   United_States: '🇺🇸',
@@ -1579,7 +1581,7 @@ window.computeValuation = function (cardId) {
 
 // ─── View Router ──────────────────────────────────────────
 function showView(name) {
-  const valid = ['home', 'weekly', 'news', 'market', 'deals', 'semicon'];
+  const valid = ['home', 'weekly', 'news', 'market', 'deals', 'semicon', 'peer'];
   if (!valid.includes(name)) name = 'home';
 
   document.querySelectorAll('.view').forEach(v => {
@@ -1594,6 +1596,7 @@ function showView(name) {
   if (name === 'market') loadMarketIndex();
   if (name === 'deals') loadDealsIndex();
   if (name === 'semicon') loadSemicon();
+  if (name === 'peer') loadPeer();
   window.scrollTo({ top: 0 });
 }
 
@@ -1807,6 +1810,122 @@ function renderSemicon() {
     if (statsEl) statsEl.innerHTML = renderStatsBlock(stats);
     drawChart(`${key}Chart`, key.toUpperCase(), filtered, palette[key]);
   });
+}
+
+// ─── Semiconductor Peer & IPO View ───────────────────────
+let peerCache = null;
+let ipoCache  = null;
+
+async function loadPeer() {
+  if (!peerCache) {
+    try {
+      const res = await fetch(`${PEER_URL}?_=${Date.now()}`, { cache: 'no-store' });
+      if (res.ok) peerCache = await res.json();
+    } catch (err) { console.warn('peer.json fetch failed:', err); }
+  }
+  if (!ipoCache) {
+    try {
+      const res = await fetch(`${IPO_URL}?_=${Date.now()}`, { cache: 'no-store' });
+      if (res.ok) ipoCache = await res.json();
+    } catch (err) { console.warn('ipo.json fetch failed:', err); }
+  }
+  renderPeer();
+  renderIpo();
+}
+
+function renderPeer() {
+  if (!peerCache) return;
+
+  // Header meta
+  const setText = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = v ?? '—'; };
+  setText('peerRefDate',  peerCache.refDate);
+  setText('peerPrevDate', peerCache.prevDate);
+  setText('peerYtdDate',  peerCache.ytdDate);
+
+  const body = document.getElementById('peerBody');
+  if (!body) return;
+
+  const fmtPct = (v) => {
+    if (v == null) return '—';
+    const cls = v > 0 ? 'up' : (v < 0 ? 'down' : 'flat');
+    const sign = v > 0 ? '+' : '';
+    return `<span class="peer-pct ${cls}">${sign}${(v * 100).toFixed(1)}%</span>`;
+  };
+  const fmtMcap = (v) => {
+    if (v == null) return '—';
+    return Math.round(v).toLocaleString();
+  };
+  const fmtMult = (v) => {
+    if (v == null) return '<span class="peer-nm">NM</span>';
+    return v.toFixed(1) + 'x';
+  };
+
+  // Group by category in the order they first appear (preserves Excel layout).
+  const groups = [];
+  const groupMap = {};
+  for (const c of peerCache.companies) {
+    if (!groupMap[c.category]) {
+      groupMap[c.category] = [];
+      groups.push(c.category);
+    }
+    groupMap[c.category].push(c);
+  }
+
+  let html = '';
+  for (const cat of groups) {
+    const rows = groupMap[cat];
+    rows.forEach((c, i) => {
+      const rowSpan = (i === 0) ? ` rowspan="${rows.length}"` : '';
+      const catCell = (i === 0) ? `<td class="peer-cat-cell"${rowSpan}>${cat}</td>` : '';
+      html += `
+        <tr>
+          <td class="peer-name">${c.name}</td>
+          ${catCell}
+          <td class="num-col">${fmtMcap(c.mcap)}</td>
+          <td class="num-col">${fmtMult(c.per)}</td>
+          <td class="num-col">${fmtMult(c.pbr)}</td>
+          <td class="num-col">${fmtPct(c.wow)}</td>
+          <td class="num-col">${fmtPct(c.ytd)}</td>
+        </tr>
+      `;
+    });
+  }
+  body.innerHTML = html;
+}
+
+function renderIpo() {
+  if (!ipoCache) return;
+  const setText = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = v ?? '—'; };
+  setText('ipoUpdated', ipoCache.updatedKr);
+
+  const body = document.getElementById('ipoBody');
+  if (!body) return;
+
+  const fmtPct = (v) => {
+    if (v == null) return '—';
+    const cls = v > 0 ? 'up' : (v < 0 ? 'down' : 'flat');
+    const sign = v > 0 ? '+' : '';
+    return `<span class="peer-pct ${cls}">${sign}${(v * 100).toFixed(1)}%</span>`;
+  };
+  const fmtNum = (v) => v == null ? '—' : Math.round(v).toLocaleString();
+  const fmtDate = (s) => {
+    if (!s) return '—';
+    // "2026/05/11" → "26.05.11" to match PDF style
+    const m = s.match(/^(\d{4})\/(\d{2})\/(\d{2})$/);
+    if (m) return `${m[1].slice(2)}.${m[2]}.${m[3]}`;
+    return s;
+  };
+
+  body.innerHTML = ipoCache.companies.map(c => `
+    <tr>
+      <td class="peer-name">${c.name}</td>
+      <td class="ipo-date">${fmtDate(c.listDate)}</td>
+      <td class="num-col">${fmtNum(c.ipoPrice)}</td>
+      <td class="num-col">${fmtNum(c.curPrice)}</td>
+      <td class="num-col">${fmtNum(c.mcap)}</td>
+      <td class="num-col">${fmtPct(c.curVsIpo)}</td>
+    </tr>
+  `).join('');
 }
 
 // ─── FedWatch (Fed rate probability) — Home Section 2 ────

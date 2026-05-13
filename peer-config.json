@@ -1,0 +1,26 @@
+{
+  "tickers": [
+    { "code": "005930", "market": "KS", "name": "삼성전자",        "category": "반도체 IDM" },
+    { "code": "000660", "market": "KS", "name": "SK하이닉스",      "category": "반도체 IDM" },
+    { "code": "042700", "market": "KS", "name": "한미반도체",      "category": "반도체 장비" },
+    { "code": "403870", "market": "KQ", "name": "HPSP",            "category": "반도체 장비" },
+    { "code": "039030", "market": "KQ", "name": "이오테크닉스",    "category": "반도체 장비" },
+    { "code": "240810", "market": "KQ", "name": "원익IPS",         "category": "반도체 장비" },
+    { "code": "095610", "market": "KQ", "name": "테스",            "category": "반도체 장비" },
+    { "code": "140860", "market": "KQ", "name": "파크시스템스",    "category": "반도체 장비" },
+    { "code": "014680", "market": "KS", "name": "한솔케미칼",      "category": "반도체 소재/부품" },
+    { "code": "357780", "market": "KQ", "name": "솔브레인",        "category": "반도체 소재/부품" },
+    { "code": "058470", "market": "KQ", "name": "리노공업",        "category": "반도체 소재/부품" },
+    { "code": "095340", "market": "KQ", "name": "ISC",             "category": "반도체 소재/부품" },
+    { "code": "074600", "market": "KQ", "name": "원익QnC",         "category": "반도체 소재/부품" },
+    { "code": "166090", "market": "KQ", "name": "하나머티리얼즈",  "category": "반도체 소재/부품" },
+    { "code": "064760", "market": "KQ", "name": "티씨케이",        "category": "반도체 소재/부품" },
+    { "code": "272110", "market": "KQ", "name": "케이엔제이",      "category": "반도체 소재/부품" },
+    { "code": "101160", "market": "KQ", "name": "월덱스",          "category": "반도체 소재/부품" },
+    { "code": "067310", "market": "KQ", "name": "하나마이크론",    "category": "반도체 OSAT" },
+    { "code": "131970", "market": "KQ", "name": "두산테스나",      "category": "반도체 OSAT" },
+    { "code": "440110", "market": "KQ", "name": "파두",            "category": "반도체 팹리스" },
+    { "code": "445090", "market": "KQ", "name": "에이직랜드",      "category": "반도체 디자인하우스" },
+    { "code": "394280", "market": "KQ", "name": "오픈엣지테크놀로지", "category": "반도체 IP" }
+  ]
+}
