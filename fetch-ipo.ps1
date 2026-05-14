@@ -155,12 +155,14 @@ Write-Host (" Parsed " + $companies.Count + " IPO rows from 38.co.kr (skipped " 
 
 # ---------- 2. Augment with Naver Finance 시가총액 ----------
 
-function Get-NaverMcap {
+function Get-NaverSnapshot {
+    # Returns @{ mcap = <억원>; curPrice = <원> } from Naver Finance's main page.
+    # Naver accepts both numeric (005930) and alphanumeric (0011T0) codes —
+    # the latter are used for newer listings, preferred classes, etc.
     param([string]$code)
-    # Naver accepts both numeric (e.g. 005930) and alphanumeric (e.g. 0011T0)
-    # codes — the latter are used for newer listings, preferred classes, etc.
-    # Reject only empty / too-short codes.
-    if ([string]::IsNullOrWhiteSpace($code) -or $code.Length -lt 6) { return $null }
+    if ([string]::IsNullOrWhiteSpace($code) -or $code.Length -lt 6) {
+        return @{ mcap = $null; curPrice = $null }
+    }
     $url = "https://finance.naver.com/item/main.naver?code=${code}"
     try {
         $wc = New-Object System.Net.WebClient
@@ -168,30 +170,47 @@ function Get-NaverMcap {
         $raw = $wc.DownloadData($url)
         $wc.Dispose()
         $html = [System.Text.Encoding]::GetEncoding('EUC-KR').GetString($raw)
+
+        $mcap = $null
+        $price = $null
+
+        # Market cap — em id="_market_sum" wraps "<jo> <eok>" digit groups.
         $mcapM = [regex]::Match($html, 'id="_market_sum"[^>]*>(.*?)</em>', 'Singleline')
         if ($mcapM.Success) {
             $inner = $mcapM.Groups[1].Value -replace '<[^>]+>', '' -replace '&nbsp;', ' '
             $nums = @([regex]::Matches($inner, '[\d,]+') | ForEach-Object { [double]($_.Value -replace ',', '') })
-            if ($nums.Count -ge 2) { return ($nums[0] * 10000) + $nums[1] }
-            elseif ($nums.Count -eq 1) { return $nums[0] }
+            if ($nums.Count -ge 2) { $mcap = ($nums[0] * 10000) + $nums[1] }
+            elseif ($nums.Count -eq 1) { $mcap = $nums[0] }
         }
-    } catch {}
-    return $null
+
+        # Current price — `<p class="no_today">` block contains
+        #   <span class="blind">283,250</span>  (accessibility-friendly full number)
+        # Capture the first such span inside no_today.
+        $priceM = [regex]::Match($html, 'class="no_today">.*?class="blind">([\d,]+)</span>', 'Singleline')
+        if ($priceM.Success) {
+            $price = [double]($priceM.Groups[1].Value -replace ',', '')
+        }
+
+        return @{ mcap = $mcap; curPrice = $price }
+    } catch {
+        return @{ mcap = $null; curPrice = $null }
+    }
 }
 
-Write-Host " Augmenting market caps via Naver (numeric + alphanumeric codes)..."
+Write-Host " Augmenting market caps + current prices via Naver..."
 $augCount = 0
 $preIpoCount = 0
 foreach ($c in $companies) {
     if (-not $c.code) { continue }
-    $mcap = Get-NaverMcap -code $c.code
-    if ($null -ne $mcap) {
-        $c.mcap = $mcap
-        $augCount++
-    } else {
-        # Pre-IPO companies have no Naver page yet — user fills via FIX button.
-        $preIpoCount++
+    $snap = Get-NaverSnapshot -code $c.code
+    $touched = $false
+    if ($null -ne $snap.mcap)     { $c.mcap     = $snap.mcap;     $touched = $true }
+    if ($null -ne $snap.curPrice) { $c.curPrice = $snap.curPrice; $touched = $true }
+    # Recompute "(curPrice - ipoPrice) / ipoPrice" with the updated current price.
+    if ($null -ne $c.curPrice -and $null -ne $c.ipoPrice -and $c.ipoPrice -gt 0) {
+        $c.curVsIpo = [Math]::Round(($c.curPrice - $c.ipoPrice) / $c.ipoPrice, 4)
     }
+    if ($touched) { $augCount++ } else { $preIpoCount++ }
     Start-Sleep -Milliseconds 200
 }
 Write-Host (" Augmented " + $augCount + " / " + $companies.Count + " (pre-IPO without Naver page: " + $preIpoCount + ")") -ForegroundColor Green
