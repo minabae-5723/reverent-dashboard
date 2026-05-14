@@ -2027,7 +2027,7 @@ function renderIpo() {
 
 // ─── FedWatch (Fed rate probability) — Home Section 2 ────
 let fedwatchCache = null;
-let fedwatchView = 'current'; // 'current' | 'compare' | 'aggregated'
+let fedwatchView = 'current'; // 'current' | 'aggregated' | 'direction'
 let fedwatchActiveMeetingIdx = 0;
 
 async function loadFedWatch() {
@@ -2108,11 +2108,13 @@ function renderFedWatch() {
   // (Aggregated view uses the matrix above only — no per-meeting cards).
   const tableWrap = document.getElementById('fedwatchTableWrap');
   if (tableWrap) {
-    if (fedwatchView === 'aggregated') {
-      tableWrap.hidden = true;
-    } else {
+    // Single-meeting drill-down only makes sense in Current view; the
+    // Aggregated and Direction views show summarized data in the matrix above.
+    if (fedwatchView === 'current') {
       tableWrap.hidden = false;
       renderFedWatchTable(meetings);
+    } else {
+      tableWrap.hidden = true;
     }
   }
 }
@@ -2138,8 +2140,6 @@ function renderFedWatchTable(meetings) {
   const body = document.getElementById('fedwatchProbBody');
   if (!body) return;
 
-  const showCompare = (fedwatchView === 'compare');
-
   body.innerHTML = meeting.probabilities.map(p => {
     const isTop = (top && p.range === top.range);
     const cls = isTop ? 'highlight' : '';
@@ -2153,22 +2153,11 @@ function renderFedWatchTable(meetings) {
         : `<span class="fedwatch-delta-down">▼${Math.abs(d).toFixed(1)}</span>`;
     };
 
-    let barHtml;
-    if (showCompare) {
-      barHtml = `
-        <div class="fedwatch-bar-group">
-          <div class="fedwatch-bar-row"><span class="lab">현재</span><div class="fedwatch-bar-track"><div class="fedwatch-bar-fill" style="width:${p.current}%"></div></div><span class="pct">${fmt(p.current)}%</span></div>
-          <div class="fedwatch-bar-row"><span class="lab">전일</span><div class="fedwatch-bar-track"><div class="fedwatch-bar-fill prev-day" style="width:${p.prevDay}%"></div></div><span class="pct">${fmt(p.prevDay)}%</span></div>
-          <div class="fedwatch-bar-row"><span class="lab">전주</span><div class="fedwatch-bar-track"><div class="fedwatch-bar-fill prev-week" style="width:${p.prevWeek}%"></div></div><span class="pct">${fmt(p.prevWeek)}%</span></div>
-        </div>
-      `;
-    } else {
-      barHtml = `
+    const barHtml = `
         <div class="fedwatch-bar-group">
           <div class="fedwatch-bar-row"><div class="fedwatch-bar-track"><div class="fedwatch-bar-fill" style="width:${p.current}%"></div></div><span class="pct">${fmt(p.current)}%</span></div>
         </div>
       `;
-    }
 
     return `
       <tr class="${cls}">
@@ -2249,8 +2238,6 @@ function renderFedWatchMatrix(meetings) {
     .map(s => Math.round(parseFloat(s.trim()) * 100))
     .join('-');
 
-  const isCompare = (fedwatchView === 'compare');
-
   // Header row
   headEl.innerHTML = '<tr>'
     + '<th>MEETING DATE</th>'
@@ -2263,17 +2250,12 @@ function renderFedWatchMatrix(meetings) {
   // Body rows
   bodyEl.innerHTML = meetings.map(m => {
     const probMap = {};
-    const prevWeekMap = {};
-    m.probabilities.forEach(p => {
-      probMap[p.range] = p.current;
-      prevWeekMap[p.range] = p.prevWeek;
-    });
+    m.probabilities.forEach(p => { probMap[p.range] = p.current; });
     const vals = Object.values(probMap).filter(v => v != null);
     const rowMax = vals.length ? Math.max(...vals) : 0;
 
     const cells = ranges.map(r => {
       const v = probMap[r];
-      const pw = prevWeekMap[r];
       const has = (v != null);
       const isZero = !has || v === 0;
       const isMax = has && v > 0 && v === rowMax;
@@ -2284,22 +2266,7 @@ function renderFedWatchMatrix(meetings) {
       else if (isCurrent) cls = 'matrix-current';
       if (isZero) cls += ' matrix-zero';
 
-      let display;
-      if (isZero) {
-        display = '0.0%';
-      } else if (isCompare && pw != null) {
-        const d = v - pw;
-        let arrow = '';
-        if (Math.abs(d) >= 0.05) {
-          arrow = d > 0
-            ? `<span class="matrix-delta up">▲${Math.abs(d).toFixed(1)}</span>`
-            : `<span class="matrix-delta down">▼${Math.abs(d).toFixed(1)}</span>`;
-        }
-        display = `${v.toFixed(1)}%${arrow}`;
-      } else {
-        display = v.toFixed(1) + '%';
-      }
-
+      const display = isZero ? '0.0%' : v.toFixed(1) + '%';
       return `<td class="${cls.trim()}">${display}</td>`;
     }).join('');
 
