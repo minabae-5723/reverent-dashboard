@@ -273,13 +273,38 @@ function renderMacroFallback() {
 }
 
 async function loadCalendar() {
+  // 1) Try calendar.json (today-only feed)
+  let data = null;
   try {
     const res = await fetch(`${CAL_URL}?_=${Date.now()}`, { cache: 'no-store' });
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const data = await res.json();
-    renderMacroFromCalendar(data);
+    if (res.ok) data = await res.json();
   } catch (err) {
-    console.warn('Calendar load failed, using static fallback:', err);
+    console.warn('calendar.json fetch failed:', err);
+  }
+
+  // 2) If empty (e.g. Investing.com 503'd at fetch time), filter today's events
+  //    out of the weekly feed instead of falling back to stale macro.js data.
+  if (!data || !data.events || data.events.length === 0) {
+    try {
+      const wRes = await fetch(`${CAL_WEEK_URL}?_=${Date.now()}`, { cache: 'no-store' });
+      if (wRes.ok) {
+        const weekData = await wRes.json();
+        const today = new Date();
+        const todayKey = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
+        const todayEvents = (weekData.events || []).filter(e => e.iso === todayKey || e.date === todayKey);
+        if (todayEvents.length > 0) {
+          data = Object.assign({}, weekData, { events: todayEvents });
+        }
+      }
+    } catch (err) {
+      console.warn('calendar-week.json fetch failed:', err);
+    }
+  }
+
+  // 3) Render — falls through to static macro.js only if BOTH sources empty.
+  if (data && data.events && data.events.length > 0) {
+    renderMacroFromCalendar(data);
+  } else {
     renderMacroFallback();
   }
 }
