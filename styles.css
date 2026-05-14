@@ -1206,6 +1206,7 @@ html, body {
 
 .filter-btns {
   display: flex;
+  flex-wrap: wrap;
   gap: 4px;
   background: #f0f2f5;
   padding: 3px;
@@ -1787,6 +1788,13 @@ html, body {
   }
   .sidebar-spacer { display: none; }
   .main-area { padding: 16px; }
+
+  /* ----- News / Deals / Market controls: compact filter rows ----- */
+  .news-controls { padding: 12px 12px; }
+  .news-date-row, .news-sector-row { gap: 6px; }
+  .news-date-pill { padding: 4px 9px; font-size: 11px; }
+  .filter-btn { padding: 4px 8px; font-size: 11px; }
+  .filter-label { font-size: 10px; }
 
   /* ----- Home: Capital Market cards + Market Update indicator table ----- */
   .card { padding: 12px 10px; }
