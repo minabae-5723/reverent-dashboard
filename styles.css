@@ -1787,6 +1787,36 @@ html, body {
   }
   .sidebar-spacer { display: none; }
   .main-area { padding: 16px; }
+
+  /* ----- Home: Capital Market cards + Market Update indicator table ----- */
+  .card { padding: 12px 10px; }
+
+  /* Horizontal scroll fallback for tables that don't fit narrow viewports.
+     The Market Update table has 8 columns and will need to scroll;
+     Capital Market tables (5 cols) should fit after the font/padding shrink. */
+  .table-wrap,
+  .card {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .market-table,
+  .indicator-table {
+    font-size: 11px;
+  }
+  .market-table th,
+  .market-table td,
+  .indicator-table th,
+  .indicator-table td {
+    padding: 5px 5px;
+    white-space: nowrap;
+  }
+  .market-table th,
+  .indicator-table th {
+    font-size: 9.5px;
+    letter-spacing: 0.3px;
+    padding: 6px 5px;
+  }
 }
 
 /* ============================================================
