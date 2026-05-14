@@ -960,6 +960,15 @@ html, body {
   color: var(--navy);
 }
 
+/* Aggregated view: "0bp (현재)" sub-label under column header */
+.fedwatch-matrix-table thead th .bp-current-mark {
+  font-size: 9px;
+  font-weight: 500;
+  color: #8a6d3b;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
 /* Compare mode: delta vs prev week shown beside the % */
 .matrix-delta {
   display: inline-block;

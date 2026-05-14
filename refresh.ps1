@@ -23,7 +23,8 @@ $INSTRUMENTS = @{
         @{ key='SHANGHAI'; symbol='000001.SS' }
     )
     rate = @(
-        @{ key='US2Y';  symbol='^FVX'; type='bp' }
+        # US2Y (real 2-year) is sourced from Investing instead — Yahoo has no 2Y symbol.
+        # ^FVX is a 5-year Treasury yield, kept here only as a historical reference if needed.
         @{ key='US10Y'; symbol='^TNX'; type='bp' }
         @{ key='US30Y'; symbol='^TYX'; type='bp' }
     )
@@ -62,13 +63,92 @@ $STATIC_DATA = @{
         @{ key='CDS_CN'; current=41.9; wow=-2.3; mom=-6.7; ytd=-1.9; type='bp_abs'; ok=$true }
     )
     rate_kr = @(
+        # KR3Y / KR10Y are now auto-fetched from Investing (Get-InvestingYield).
+        # These static fallbacks are only used when the scrape fails.
         @{ key='KR3Y';  current=3.56; wow=-3; mom=21; ytd=63; type='bp'; ok=$true; static=$true }
         @{ key='KR10Y'; current=3.91; wow=7;  mom=23; ytd=53; type='bp'; ok=$true; static=$true }
+        # CD91 stays static — Investing doesn't have a clean page for Korean CD rate.
         @{ key='CD91';  current=2.81; wow=0;  mom=-1; ytd=4;  type='bp'; ok=$true; static=$true }
     )
     commodity_extra = @(
         @{ key='BDI'; current=2978; wow=13.1; mom=35.3; ytd=58.2; type='pct'; ok=$true; static=$true }
     )
+}
+
+# ----------------------------------------------------------------
+# Investing.com bond-yield fetch (auto-replacement for STATIC values).
+# Extracts current yield + WoW/MoM/YTD bp change from priceChanges JSON
+# embedded in __NEXT_DATA__.
+# ----------------------------------------------------------------
+function Get-InvestingYield {
+    param([string]$BondUrl, [string]$Key)
+    try {
+        $r = Invoke-WebRequest -Uri $BondUrl -UseBasicParsing -UserAgent $UserAgent -TimeoutSec 15
+        $html = $r.Content
+
+        # Current yield (e.g. "data-test=\"instrument-price-last\">3.973")
+        $priceM = [regex]::Match($html, 'data-test="instrument-price-last">\s*([\d\.,]+)')
+        if (-not $priceM.Success) { return $null }
+        $current = [double]($priceM.Groups[1].Value -replace ',', '')
+
+        # priceChanges JSON object embedded in Next.js data
+        $pcM = [regex]::Match($html, '"priceChanges"\s*:\s*\{([^\}]+)\}', 'Singleline')
+        if (-not $pcM.Success) { return $null }
+        # Parse inner object as JSON
+        $pcObj = ('{' + $pcM.Groups[1].Value + '}') | ConvertFrom-Json
+
+        # Convert pct-change in yield -> bp delta.
+        # prior_yield = current / (1 + pct/100)
+        # bp_change   = (current - prior_yield) * 100
+        $bp = {
+            param($pct)
+            if ($null -eq $pct) { return $null }
+            $p = [double]$pct
+            $prior = $current / (1 + $p / 100)
+            return [Math]::Round(($current - $prior) * 100, 0)
+        }
+
+        return [PSCustomObject]@{
+            key     = $Key
+            current = [Math]::Round($current, 3)
+            wow     = & $bp $pcObj.pct_1w
+            mom     = & $bp $pcObj.pct_1m
+            ytd     = & $bp $pcObj.pct_ytd
+            type    = 'bp'
+            asOf    = $pcObj.updated_at
+            ok      = $true
+            source  = 'investing'
+        }
+    } catch {
+        Write-Warning ("Investing yield fail [{0}]: {1}" -f $Key, $_.Exception.Message)
+        return $null
+    }
+}
+
+# Fetch KR3Y, KR10Y, US2Y from Investing. Falls back to STATIC_DATA on failure.
+function Fetch-InvestingYields {
+    $urls = [ordered]@{
+        KR3Y  = 'https://www.investing.com/rates-bonds/south-korea-3-year-bond-yield'
+        KR10Y = 'https://www.investing.com/rates-bonds/south-korea-10-year-bond-yield'
+        US2Y  = 'https://www.investing.com/rates-bonds/u.s.-2-year-bond-yield'
+    }
+    $rows = @()
+    foreach ($key in $urls.Keys) {
+        $y = Get-InvestingYield -BondUrl $urls[$key] -Key $key
+        if ($y) {
+            $rows += $y
+        } else {
+            # fallback to static row with same key (preserves dashboard layout)
+            $fallback = $STATIC_DATA.rate_kr | Where-Object { $_.key -eq $key }
+            if (-not $fallback -and $key -eq 'US2Y') {
+                # No static fallback for US2Y — emit placeholder
+                $fallback = @{ key=$key; ok=$false; error='Investing fetch failed' }
+            }
+            if ($fallback) { $rows += $fallback }
+        }
+        Start-Sleep -Milliseconds 200
+    }
+    return $rows
 }
 
 # Yahoo Finance v8 fetch
@@ -205,7 +285,10 @@ do {
         updated   = $start.ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ")
         updatedKr = $start.ToString('yyyy-MM-dd HH:mm:ss')
         index     = @(Fetch-Group $INSTRUMENTS.index)
-        rate      = @($STATIC_DATA.rate_kr) + @(Fetch-Group $INSTRUMENTS.rate)
+        # KR3Y / KR10Y / US2Y auto-fetched from Investing; CD91 stays static.
+        rate      = @(Fetch-InvestingYields) +
+                    @($STATIC_DATA.rate_kr | Where-Object { $_.key -eq 'CD91' }) +
+                    @(Fetch-Group $INSTRUMENTS.rate)
         commodity = @(Fetch-Group $INSTRUMENTS.commodity) + @($STATIC_DATA.commodity_extra)
         fx        = @(Fetch-Group $INSTRUMENTS.fx)
         cds       = @($STATIC_DATA.cds)

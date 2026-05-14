@@ -84,7 +84,7 @@ const LABELS = {
 
   // Rates
   KR3Y: '국고채 3년', KR10Y: '국고채 10년', CD91: 'CD (91일)',
-  US2Y: '미국채 5년 (^FVX)', US10Y: '미국채 10년', US30Y: '미국채 30년',
+  US2Y: '미국채 2년', US10Y: '미국채 10년', US30Y: '미국채 30년',
 
   // Commodities
   WTI: 'WTI', GOLD: '금', COPPER: '구리', WHEAT: '밀', BDI: 'BDI',
@@ -2212,7 +2212,7 @@ function renderFedWatchMatrix(meetings) {
 
   // Legend differs per view mode.
   if (legendEl) {
-    if (fedwatchView === 'aggregated') {
+    if (fedwatchView === 'direction') {
       legendEl.innerHTML = `
         <span class="legend-chip legend-cut"></span>CUT
         <span class="legend-chip legend-hold"></span>HOLD
@@ -2221,13 +2221,17 @@ function renderFedWatchMatrix(meetings) {
     } else {
       legendEl.innerHTML = `
         <span class="legend-chip legend-max"></span>최고확률
-        <span class="legend-chip legend-current"></span>현재 금리
+        <span class="legend-chip legend-current"></span>현재 금리 / 0bp
       `;
     }
   }
 
+  if (fedwatchView === 'direction') {
+    renderFedWatchMatrixDirection(meetings, currentRange, headEl, bodyEl);
+    return;
+  }
   if (fedwatchView === 'aggregated') {
-    renderFedWatchMatrixAggregated(meetings, currentRange, headEl, bodyEl);
+    renderFedWatchMatrixCumulative(meetings, currentRange, headEl, bodyEl);
     return;
   }
 
@@ -2303,10 +2307,76 @@ function renderFedWatchMatrix(meetings) {
   }).join('');
 }
 
-// Aggregated view: per-meeting summary.
+// CME-style Aggregated view: bp-shift matrix.
+// Same probabilities as Current, but columns are reframed as cumulative bp
+// change from today's Fed Funds target rate. E.g. if current = 3.50-3.75,
+// the 3.50-3.75 band is the "0bp" column, 3.75-4.00 is "+25bp", etc.
+function renderFedWatchMatrixCumulative(meetings, currentRange, headEl, bodyEl) {
+  // Midpoint of current rate range (in % points), e.g. "3.50 - 3.75" -> 3.625
+  const midpoint = (rangeStr) => {
+    if (!rangeStr) return null;
+    const parts = rangeStr.split('-').map(s => parseFloat(s.trim()));
+    if (parts.length !== 2 || parts.some(isNaN)) return null;
+    return (parts[0] + parts[1]) / 2;
+  };
+  const curMid = midpoint(currentRange);
+
+  // Build the column set: every unique bp shift across all meetings/ranges.
+  const bpSet = new Set();
+  meetings.forEach(m => m.probabilities.forEach(p => {
+    const mid = midpoint(p.range);
+    if (mid != null && curMid != null) {
+      const bp = Math.round((mid - curMid) * 100); // % point -> bp
+      bpSet.add(bp);
+    }
+  }));
+  const bpCols = Array.from(bpSet).sort((a, b) => a - b);
+
+  // Header: MEETING | -50bp | -25bp | 0bp(현재) | +25bp | +50bp …
+  const fmtBpCol = (bp) => {
+    if (bp === 0) return '0bp<br><span class="bp-current-mark">(현재)</span>';
+    return (bp > 0 ? '+' : '') + bp + 'bp';
+  };
+  headEl.innerHTML = '<tr>'
+    + '<th>MEETING DATE</th>'
+    + bpCols.map(bp => {
+        const cls = (bp === 0) ? 'col-current' : '';
+        return `<th class="${cls}">${fmtBpCol(bp)}</th>`;
+      }).join('')
+    + '</tr>';
+
+  // Body: per meeting, distribute probabilities into bp columns.
+  bodyEl.innerHTML = meetings.map(m => {
+    const bpMap = {};
+    let rowMax = 0;
+    m.probabilities.forEach(p => {
+      const mid = midpoint(p.range);
+      if (mid == null || curMid == null) return;
+      const bp = Math.round((mid - curMid) * 100);
+      bpMap[bp] = (bpMap[bp] || 0) + (p.current || 0);
+      if (bpMap[bp] > rowMax) rowMax = bpMap[bp];
+    });
+
+    const cells = bpCols.map(bp => {
+      const v = bpMap[bp] ?? 0;
+      const isZero = v === 0;
+      const isMax = v > 0 && v === rowMax;
+      const isCurrent = (bp === 0);
+      let cls = '';
+      if (isMax) cls = 'matrix-max';
+      else if (isCurrent) cls = 'matrix-current';
+      if (isZero) cls += ' matrix-zero';
+      return `<td class="${cls.trim()}">${isZero ? '0.0%' : v.toFixed(1) + '%'}</td>`;
+    }).join('');
+
+    return `<tr><td class="meeting-cell">${m.date}</td>${cells}</tr>`;
+  }).join('');
+}
+
+// Direction view: per-meeting summary collapsing all bands into CUT/HOLD/HIKE.
 // Columns: MEETING / IMPLIED RATE (100 - futurePrice) / MOST LIKELY / CUT / HOLD / HIKE
 // CUT/HOLD/HIKE measured vs `currentRange` (nearest meeting's top range = current Fed Funds target).
-function renderFedWatchMatrixAggregated(meetings, currentRange, headEl, bodyEl) {
+function renderFedWatchMatrixDirection(meetings, currentRange, headEl, bodyEl) {
   // Numeric lower bound of current range, used to classify each rate range as cut/hold/hike.
   const curLo = currentRange != null ? parseFloat(currentRange.split('-')[0]) : null;
 
