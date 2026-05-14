@@ -79,7 +79,20 @@ foreach ($cm in $cardMatches) {
         $cur  = ($rm.Groups[2].Value -replace '[%\s,]', '')
         $prev = ($rm.Groups[3].Value -replace '[%\s,]', '')
         $week = ($rm.Groups[4].Value -replace '[%\s,]', '')
-        $parse = { param($s) if ($s -match '^-?\d+(\.\d+)?$') { [double]$s } else { $null } }
+        # Investing.com uses "&mdash;" (HTML entity for em-dash) or a hyphen
+        # for cells with no data — semantically 0% (the rate band has zero
+        # probability or did not exist in the previous snapshot). Treat as 0
+        # so the matrix renders correctly. Em-dash code points (U+2014, U+2013)
+        # are checked via [char] to keep the .ps1 ASCII-safe under PS5.1.
+        $mdash1 = [string][char]0x2014  # em dash
+        $mdash2 = [string][char]0x2013  # en dash
+        $parse = {
+            param($s)
+            if ($s -match '^-?\d+(\.\d+)?$') { return [double]$s }
+            if ($s -eq '&mdash;' -or $s -eq '-' -or $s -eq '' -or
+                $s -eq $mdash1 -or $s -eq $mdash2) { return 0.0 }
+            return $null
+        }.GetNewClosure()
         $probs += [PSCustomObject]@{
             range    = $rangeText
             current  = & $parse $cur
