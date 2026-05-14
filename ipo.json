@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-05-14T00:05:05Z",
-    "updatedKr":  "2026-05-14 09:05:05",
+    "updated":  "2026-05-14T01:13:33Z",
+    "updatedKr":  "2026-05-14 10:13:33",
     "source":  "38.co.kr new-listings (o=nw) + Naver Finance (market cap)",
     "companies":  [
                       {
@@ -43,7 +43,7 @@
                           "todayChg":  0.29969999999999997,
                           "curVsIpo":  5.7583,
                           "openVsIpo":  2.9167,
-                          "mcap":  15701
+                          "mcap":  16921
                       },
                       {
                           "name":  "채비(구.대영채비)",
@@ -57,7 +57,7 @@
                           "todayChg":  0.0291,
                           "curVsIpo":  0.35200000000000004,
                           "openVsIpo":  0.2398,
-                          "mcap":  null
+                          "mcap":  8272
                       },
                       {
                           "name":  "인벤테라",
@@ -71,7 +71,7 @@
                           "todayChg":  -0.0218,
                           "curVsIpo":  0.10779999999999999,
                           "openVsIpo":  1.3584,
-                          "mcap":  null
+                          "mcap":  1632
                       },
                       {
                           "name":  "리센스메디컬",
@@ -85,7 +85,7 @@
                           "todayChg":  -0.0255,
                           "curVsIpo":  1.6044999999999998,
                           "openVsIpo":  2.4182,
-                          "mcap":  3087
+                          "mcap":  3103
                       },
                       {
                           "name":  "메쥬",
@@ -99,7 +99,7 @@
                           "todayChg":  -0.0605,
                           "curVsIpo":  0.3657,
                           "openVsIpo":  2.0556,
-                          "mcap":  null
+                          "mcap":  2885
                       },
                       {
                           "name":  "한패스",
@@ -113,7 +113,7 @@
                           "todayChg":  -0.0377,
                           "curVsIpo":  -0.3411,
                           "openVsIpo":  0.9526,
-                          "mcap":  1323
+                          "mcap":  1299
                       },
                       {
                           "name":  "아이엠바이오로직스",
@@ -127,7 +127,7 @@
                           "todayChg":  -0.065099999999999991,
                           "curVsIpo":  0.4077,
                           "openVsIpo":  3,
-                          "mcap":  5463
+                          "mcap":  5899
                       },
                       {
                           "name":  "카나프테라퓨틱스",
@@ -141,7 +141,7 @@
                           "todayChg":  -0.068600000000000008,
                           "curVsIpo":  0.3925,
                           "openVsIpo":  2.405,
-                          "mcap":  null
+                          "mcap":  3800
                       },
                       {
                           "name":  "액스비스",
@@ -155,7 +155,7 @@
                           "todayChg":  -0.0173,
                           "curVsIpo":  0.9739,
                           "openVsIpo":  3,
-                          "mcap":  null
+                          "mcap":  2301
                       },
                       {
                           "name":  "에스팀",
@@ -169,7 +169,7 @@
                           "todayChg":  -0.0129,
                           "curVsIpo":  -0.0965,
                           "openVsIpo":  2.6058999999999997,
-                          "mcap":  676
+                          "mcap":  677
                       },
                       {
                           "name":  "케이뱅크(유가)",
@@ -183,7 +183,7 @@
                           "todayChg":  0.0182,
                           "curVsIpo":  -0.3265,
                           "openVsIpo":  0.0843,
-                          "mcap":  22557
+                          "mcap":  22354
                       },
                       {
                           "name":  "덕양에너젠",
@@ -197,7 +197,7 @@
                           "todayChg":  -0.0524,
                           "curVsIpo":  0.701,
                           "openVsIpo":  1.105,
-                          "mcap":  null
+                          "mcap":  4167
                       }
                   ]
 }

@@ -157,8 +157,10 @@ Write-Host (" Parsed " + $companies.Count + " IPO rows from 38.co.kr (skipped " 
 
 function Get-NaverMcap {
     param([string]$code)
-    # Only numeric 6-digit codes are supported by Naver's main.naver?code= path.
-    if ($code -notmatch '^\d{6}$') { return $null }
+    # Naver accepts both numeric (e.g. 005930) and alphanumeric (e.g. 0011T0)
+    # codes — the latter are used for newer listings, preferred classes, etc.
+    # Reject only empty / too-short codes.
+    if ([string]::IsNullOrWhiteSpace($code) -or $code.Length -lt 6) { return $null }
     $url = "https://finance.naver.com/item/main.naver?code=${code}"
     try {
         $wc = New-Object System.Net.WebClient
@@ -177,19 +179,22 @@ function Get-NaverMcap {
     return $null
 }
 
-Write-Host " Augmenting market caps via Naver..."
+Write-Host " Augmenting market caps via Naver (numeric + alphanumeric codes)..."
 $augCount = 0
+$preIpoCount = 0
 foreach ($c in $companies) {
-    if ($c.code -and $c.code -match '^\d{6}$') {
-        $mcap = Get-NaverMcap -code $c.code
-        if ($null -ne $mcap) {
-            $c.mcap = $mcap
-            $augCount++
-        }
-        Start-Sleep -Milliseconds 200
+    if (-not $c.code) { continue }
+    $mcap = Get-NaverMcap -code $c.code
+    if ($null -ne $mcap) {
+        $c.mcap = $mcap
+        $augCount++
+    } else {
+        # Pre-IPO companies have no Naver page yet — user fills via FIX button.
+        $preIpoCount++
     }
+    Start-Sleep -Milliseconds 200
 }
-Write-Host (" Augmented " + $augCount + " / " + $companies.Count) -ForegroundColor Green
+Write-Host (" Augmented " + $augCount + " / " + $companies.Count + " (pre-IPO without Naver page: " + $preIpoCount + ")") -ForegroundColor Green
 
 # ---------- 3. Sort + save ----------
 
