@@ -1063,6 +1063,10 @@ html, body {
   border-radius: 6px;
   padding: 14px 18px;
   margin-top: 14px;
+  /* Let the inner table scroll horizontally when its content
+     overflows on narrow screens instead of bursting the layout. */
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .fedwatch-prob-table {
@@ -1149,11 +1153,41 @@ html, body {
 @media (max-width: 720px) {
   .semicon-chart-wrap { height: 180px; }
   .semicon-stats { gap: 12px; flex-wrap: wrap; }
+
+  /* Hero "Next FOMC" card */
   .fedwatch-next { gap: 14px; padding: 14px 16px; }
   .fedwatch-next-value { font-size: 18px; }
   .fedwatch-next-value.big { font-size: 22px; }
+
+  /* Header row: stack source/toggle vertically so wide toggle labels
+     ("Aggregated (CME 원본 · bp 변동)") don't shove things off-screen. */
+  .fedwatch-head { flex-direction: column; align-items: stretch; }
+  #fedwatchViewFilter { flex-wrap: wrap; gap: 4px; }
+  #fedwatchViewFilter .filter-btn { padding: 5px 9px; font-size: 11px; }
+
+  /* Meeting tab grid — slightly tighter */
+  .fedwatch-meeting-tab { padding: 5px 9px; font-size: 11px; }
+
+  /* Prob-table cells: trim padding + font so 4 columns fit a 360px viewport.
+     The hidden bar-col is preserved from before (display:none). */
+  .fedwatch-table-wrap { padding: 10px 10px; }
+  .fedwatch-prob-table { font-size: 11.5px; }
+  .fedwatch-prob-table th { padding: 6px 5px; font-size: 9.5px; letter-spacing: 0.3px; }
+  .fedwatch-prob-table td { padding: 6px 5px; }
   .fedwatch-prob-table th.fedwatch-bar-col,
   .fedwatch-prob-table td.fedwatch-bar-cell { display: none; }
+
+  /* Compact delta arrows */
+  .fedwatch-delta-up,
+  .fedwatch-delta-down,
+  .fedwatch-delta-flat { font-size: 9.5px; margin-left: 2px; }
+
+  /* Matrix table — keep horizontal-scroll behavior but shrink default font.
+     min-width on matrix-table already triggers .matrix-scroll overflow. */
+  .fedwatch-matrix-wrap { padding: 10px 10px; }
+  .fedwatch-matrix-table { font-size: 10.5px; }
+  .fedwatch-matrix-table th,
+  .fedwatch-matrix-table td { padding: 4px 5px; }
 }
 
 .weekly-filters {
