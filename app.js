@@ -2526,6 +2526,73 @@ function setupShillerFilters() {
   });
 }
 
+// ─── Capital Market: per-card weekly comment (localStorage) ──
+// Each card (Index / Rate / Commodity / FX) has an editable comment toggle.
+// User types → FIX → saved to localStorage under `capmkt-comment-{key}`,
+// and timestamp under `capmkt-comment-time-{key}`. Persists per browser.
+function setupCapMktComments() {
+  const keys = ['index', 'rate', 'commodity', 'fx'];
+  for (const k of keys) initCardComment(k);
+}
+
+function initCardComment(key) {
+  const toggle  = document.querySelector(`.card-comment-toggle[data-key="${key}"]`);
+  const wrap    = document.querySelector(`.card-comment[data-key="${key}"]`);
+  const input   = document.querySelector(`.card-comment-input[data-key="${key}"]`);
+  const fixBtn  = document.querySelector(`.card-comment-fix[data-key="${key}"]`);
+  const timeEl  = document.querySelector(`.card-comment-saved-time[data-key="${key}"]`);
+  const badge   = toggle?.querySelector('.toggle-badge');
+  if (!toggle || !wrap || !input || !fixBtn) return;
+
+  const storageKey = `capmkt-comment-${key}`;
+  const timeKey    = `capmkt-comment-time-${key}`;
+
+  // Hydrate from localStorage
+  const saved     = localStorage.getItem(storageKey);
+  const savedTime = localStorage.getItem(timeKey);
+  if (saved) {
+    input.value = saved;
+    if (badge)  badge.hidden = false;
+    if (timeEl && savedTime) timeEl.textContent = `Saved · ${savedTime}`;
+  }
+
+  // Toggle expand/collapse
+  toggle.addEventListener('click', () => {
+    const willOpen = wrap.hidden;
+    wrap.hidden = !willOpen;
+    toggle.classList.toggle('expanded', willOpen);
+    toggle.setAttribute('aria-expanded', String(willOpen));
+    if (willOpen) input.focus();
+  });
+
+  // FIX: save (or clear if empty)
+  fixBtn.addEventListener('click', () => {
+    const val = input.value.trim();
+    if (val) {
+      localStorage.setItem(storageKey, val);
+      const now = new Date().toLocaleString('ko-KR', {
+        year: '2-digit', month: '2-digit', day: '2-digit',
+        hour: '2-digit', minute: '2-digit',
+      });
+      localStorage.setItem(timeKey, now);
+      if (timeEl) timeEl.textContent = `Saved · ${now}`;
+      if (badge)  badge.hidden = false;
+      fixBtn.classList.add('saved');
+      fixBtn.textContent = '✓ Saved';
+      setTimeout(() => {
+        fixBtn.classList.remove('saved');
+        fixBtn.textContent = 'FIX';
+      }, 1500);
+    } else {
+      // Empty input → clear saved comment
+      localStorage.removeItem(storageKey);
+      localStorage.removeItem(timeKey);
+      if (timeEl) timeEl.textContent = '';
+      if (badge)  badge.hidden = true;
+    }
+  });
+}
+
 function setupSemiconFilters() {
   document.querySelectorAll('#semiconRangeFilter .filter-btn').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -2558,6 +2625,7 @@ setupNewsFilters();
 setupSemiconFilters();
 setupShillerFilters();
 setupFedWatchFilters();
+setupCapMktComments();
 loadCalendar();
 loadData();
 loadWeeklyCalendar();

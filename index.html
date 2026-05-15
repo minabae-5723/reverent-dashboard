@@ -91,35 +91,91 @@
         <div class="grid-2">
 
           <div class="card">
-            <h3 class="card-title">Index</h3>
+            <h3 class="card-title">
+              <span class="card-title-text">Index</span>
+              <button class="card-comment-toggle" data-key="index" type="button" aria-expanded="false">
+                <span class="toggle-icon">▸</span>
+                <span class="toggle-label">Weekly Comment</span>
+                <span class="toggle-badge" hidden>●</span>
+              </button>
+            </h3>
             <table class="market-table" id="indexTable">
               <thead><tr><th>Index</th><th class="num-col">Current</th><th class="num-col">WoW</th><th class="num-col">MoM</th><th class="num-col">YTD</th></tr></thead>
               <tbody></tbody>
             </table>
+            <div class="card-comment" data-key="index" hidden>
+              <textarea class="card-comment-input" data-key="index" placeholder="이번 주 Index 코멘트…" rows="3"></textarea>
+              <div class="card-comment-bottom">
+                <span class="card-comment-saved-time" data-key="index"></span>
+                <button class="card-comment-fix" data-key="index" type="button">FIX</button>
+              </div>
+            </div>
           </div>
 
           <div class="card">
-            <h3 class="card-title">금리 (%, bp)</h3>
+            <h3 class="card-title">
+              <span class="card-title-text">금리 (%, bp)</span>
+              <button class="card-comment-toggle" data-key="rate" type="button" aria-expanded="false">
+                <span class="toggle-icon">▸</span>
+                <span class="toggle-label">Weekly Comment</span>
+                <span class="toggle-badge" hidden>●</span>
+              </button>
+            </h3>
             <table class="market-table" id="rateTable">
               <thead><tr><th>금리</th><th class="num-col">Current</th><th class="num-col">WoW</th><th class="num-col">MoM</th><th class="num-col">YTD</th></tr></thead>
               <tbody></tbody>
             </table>
+            <div class="card-comment" data-key="rate" hidden>
+              <textarea class="card-comment-input" data-key="rate" placeholder="이번 주 금리 코멘트…" rows="3"></textarea>
+              <div class="card-comment-bottom">
+                <span class="card-comment-saved-time" data-key="rate"></span>
+                <button class="card-comment-fix" data-key="rate" type="button">FIX</button>
+              </div>
+            </div>
           </div>
 
           <div class="card">
-            <h3 class="card-title">원자재</h3>
+            <h3 class="card-title">
+              <span class="card-title-text">원자재</span>
+              <button class="card-comment-toggle" data-key="commodity" type="button" aria-expanded="false">
+                <span class="toggle-icon">▸</span>
+                <span class="toggle-label">Weekly Comment</span>
+                <span class="toggle-badge" hidden>●</span>
+              </button>
+            </h3>
             <table class="market-table" id="commodityTable">
               <thead><tr><th>원자재</th><th class="num-col">Current</th><th class="num-col">WoW</th><th class="num-col">MoM</th><th class="num-col">YTD</th></tr></thead>
               <tbody></tbody>
             </table>
+            <div class="card-comment" data-key="commodity" hidden>
+              <textarea class="card-comment-input" data-key="commodity" placeholder="이번 주 원자재 코멘트…" rows="3"></textarea>
+              <div class="card-comment-bottom">
+                <span class="card-comment-saved-time" data-key="commodity"></span>
+                <button class="card-comment-fix" data-key="commodity" type="button">FIX</button>
+              </div>
+            </div>
           </div>
 
           <div class="card">
-            <h3 class="card-title">FX (Δ, %)</h3>
+            <h3 class="card-title">
+              <span class="card-title-text">FX (Δ, %)</span>
+              <button class="card-comment-toggle" data-key="fx" type="button" aria-expanded="false">
+                <span class="toggle-icon">▸</span>
+                <span class="toggle-label">Weekly Comment</span>
+                <span class="toggle-badge" hidden>●</span>
+              </button>
+            </h3>
             <table class="market-table" id="fxTable">
               <thead><tr><th>FX</th><th class="num-col">Current</th><th class="num-col">WoW</th><th class="num-col">MoM</th><th class="num-col">YTD</th></tr></thead>
               <tbody></tbody>
             </table>
+            <div class="card-comment" data-key="fx" hidden>
+              <textarea class="card-comment-input" data-key="fx" placeholder="이번 주 FX 코멘트…" rows="3"></textarea>
+              <div class="card-comment-bottom">
+                <span class="card-comment-saved-time" data-key="fx"></span>
+                <button class="card-comment-fix" data-key="fx" type="button">FIX</button>
+              </div>
+            </div>
           </div>
 
           <div class="card">
