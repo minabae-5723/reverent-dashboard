@@ -77,11 +77,11 @@
                        "flagKey":  "United_States",
                        "currency":  "USD",
                        "importance":  3,
-                       "indicator":  "S&P Global Composite PMI",
+                       "indicator":  "S&P Global Manufacturing PMI",
                        "period":  "May",
                        "actual":  "",
                        "forecast":  "",
-                       "previous":  "",
+                       "previous":  "54.5",
                        "type":  "preview"
                    },
                    {
@@ -92,11 +92,11 @@
                        "flagKey":  "United_States",
                        "currency":  "USD",
                        "importance":  3,
-                       "indicator":  "S&P Global Manufacturing PMI",
+                       "indicator":  "S&P Global Services PMI",
                        "period":  "May",
                        "actual":  "",
                        "forecast":  "",
-                       "previous":  "",
+                       "previous":  "51.3",
                        "type":  "preview"
                    },
                    {
