@@ -6,6 +6,7 @@
 const DATA_URL     = './data.json';
 const CAL_URL      = './calendar.json';
 const CAL_WEEK_URL = './calendar-week.json';
+const CAL_NEXT_WEEK_URL = './calendar-next-week.json';
 const REFRESH_MS   = 60_000;
 const MIN_IMPORTANCE = 2;   // 표시할 최소 importance (1=낮음, 2=중간, 3=높음)
 
@@ -1046,13 +1047,33 @@ function formatChangeValue(text) {
 // Update algorithm: Claude Code 세션에서 사용자가 매주 큐레이션 → deals/YYYY-MM-DD.md 저장.
 // 대시보드는 정적 MD 파일만 읽음 (별도 API 호출/과금 없음, news·market 패턴과 동일).
 //
-let dealsState = { dates: [], current: null, cache: {} };
+let dealsState = { dates: [], current: null, cache: {}, calThisWeek: null, calNextWeek: null };
+
+async function loadDealsCalendars() {
+  if (dealsState.calThisWeek && dealsState.calNextWeek) return;
+  const fetchJson = async (url) => {
+    try {
+      const res = await fetch(`${url}?_=${Date.now()}`, { cache: 'no-store' });
+      if (!res.ok) return null;
+      return await res.json();
+    } catch (e) { return null; }
+  };
+  const [tw, nw] = await Promise.all([
+    fetchJson(CAL_WEEK_URL),
+    fetchJson(CAL_NEXT_WEEK_URL),
+  ]);
+  dealsState.calThisWeek = tw;
+  dealsState.calNextWeek = nw;
+}
 
 async function loadDealsIndex() {
   try {
-    const res = await fetch(`${DEALS_INDEX_URL}?_=${Date.now()}`, { cache: 'no-store' });
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const data = await res.json();
+    const [idxRes] = await Promise.all([
+      fetch(`${DEALS_INDEX_URL}?_=${Date.now()}`, { cache: 'no-store' }),
+      loadDealsCalendars(),
+    ]);
+    if (!idxRes.ok) throw new Error(`HTTP ${idxRes.status}`);
+    const data = await idxRes.json();
     dealsState.dates = data.dates || [];
     renderDealsDatePills();
     if (dealsState.dates.length > 0) {
@@ -1262,6 +1283,101 @@ function renderMdTable(tableLines) {
   `;
 }
 
+// Filter calendar events: US + KR + importance === 3
+function _filterMacroEvents(cal) {
+  if (!cal || !cal.events) return [];
+  return cal.events.filter(e =>
+    (e.importance || 0) === 3 &&
+    (e.flagKey === 'United_States' || e.flagKey === 'South_Korea')
+  );
+}
+
+function _renderMacroEventRow(e, mode) {
+  const flag = FLAG_EMOJI[e.flagKey] || '';
+  const indicator = (typeof INDICATOR_KR !== 'undefined' && INDICATOR_KR[e.indicator]) || e.indicator || '—';
+  const period = e.period ? ` <span class="period-tag">(${e.period})</span>` : '';
+  const cells = [];
+  if (mode === 'review') {
+    cells.push(`<span class="mc-cell mc-actual"><em>실제</em>${e.actual || '—'}</span>`);
+    cells.push(`<span class="mc-cell"><em>전망</em>${e.forecast || '—'}</span>`);
+    cells.push(`<span class="mc-cell"><em>이전</em>${e.previous || '—'}</span>`);
+  } else {
+    cells.push(`<span class="mc-cell"><em>전망</em>${e.forecast || '—'}</span>`);
+    cells.push(`<span class="mc-cell"><em>이전</em>${e.previous || '—'}</span>`);
+  }
+  return `
+    <div class="mc-row">
+      <span class="mc-time">${e.time || '—'}</span>
+      <span class="mc-flag">${flag}</span>
+      <span class="mc-indicator">${escapeHtml(indicator)}${period}</span>
+      <span class="mc-nums">${cells.join('')}</span>
+    </div>
+  `;
+}
+
+function _renderMacroCalendarColumn(title, events, mode) {
+  if (!events || events.length === 0) {
+    return `
+      <div class="mc-col">
+        <div class="mc-col-title">${escapeHtml(title)}</div>
+        <div class="mc-empty">데이터 없음 — calendar-${mode === 'review' ? 'week' : 'next-week'}.json 갱신 필요</div>
+      </div>
+    `;
+  }
+  // group by date key
+  const groups = new Map();
+  events.forEach(e => {
+    const dt = parseInvestingDateTime(e.datetime);
+    if (!dt) return;
+    const key = dateKey(dt);
+    if (!groups.has(key)) groups.set(key, { date: dt, items: [] });
+    groups.get(key).items.push(e);
+  });
+  const sortedKeys = Array.from(groups.keys()).sort();
+  const daysHtml = sortedKeys.map(key => {
+    const { date, items } = groups.get(key);
+    const dayLabel = formatDayLabel(date);
+    const weekday = KR_WEEKDAY[date.getDay()];
+    return `
+      <div class="mc-day">
+        <div class="mc-day-head">
+          <span class="mc-day-date">${dayLabel}</span>
+          <span class="mc-day-weekday">${weekday}</span>
+          <span class="mc-day-count">${items.length}건</span>
+        </div>
+        <div class="mc-day-events">${items.map(e => _renderMacroEventRow(e, mode)).join('')}</div>
+      </div>
+    `;
+  }).join('');
+  return `
+    <div class="mc-col">
+      <div class="mc-col-title">${escapeHtml(title)}</div>
+      ${daysHtml}
+    </div>
+  `;
+}
+
+function renderMacroCalendarCard() {
+  const thisWeek = _filterMacroEvents(dealsState.calThisWeek);
+  const nextWeek = _filterMacroEvents(dealsState.calNextWeek);
+  if (thisWeek.length === 0 && nextWeek.length === 0) return '';
+  return `
+    <div class="macro-cal-card">
+      <div class="macro-cal-header">
+        <span class="macro-cal-title">📅 주간 주요 경제지표 (★★★ · 🇺🇸 미국 · 🇰🇷 한국)</span>
+      </div>
+      <div class="macro-cal-grid">
+        ${_renderMacroCalendarColumn('이번 주 Review', thisWeek, 'review')}
+        ${_renderMacroCalendarColumn('다음 주 Preview', nextWeek, 'preview')}
+      </div>
+    </div>
+  `;
+}
+
+function _isMacroSection(name) {
+  return /macro|매크로/i.test(name || '');
+}
+
 function renderDealsContent(md) {
   const body = document.getElementById('dealsBody');
   if (!body) return;
@@ -1283,6 +1399,12 @@ function renderDealsContent(md) {
     </div>
   `;
 
+  const commentStorageKey = `macro-comment-${weekDate}`;
+  const savedComment = (() => {
+    try { return localStorage.getItem(commentStorageKey) || ''; }
+    catch (e) { return ''; }
+  })();
+
   const sectionsHtml = p.sections.map(s => {
     if (s.isSummary) {
       const tbl = renderMdTable(s.tableLines);
@@ -1299,12 +1421,25 @@ function renderDealsContent(md) {
     const articles = s.articles.length > 0
       ? s.articles.map(a => renderDealArticle(a, weekDate)).join('')
       : '<div class="news-card" style="color:var(--text-muted);font-style:italic;">이번 주 해당 카테고리 항목 없음</div>';
+    const isMacro = _isMacroSection(s.name);
+    const macroCalendar = isMacro ? renderMacroCalendarCard() : '';
+    const macroComment = isMacro ? `
+      <div class="macro-comment-block">
+        <label class="macro-comment-label" for="macroCommentArea">💬 매크로 코멘트</label>
+        <textarea id="macroCommentArea" class="macro-comment-area"
+                  data-storage-key="${escapeHtml(commentStorageKey)}"
+                  placeholder="이번 주 매크로 흐름·다음 주 관전 포인트를 자유롭게 메모하세요 (자동 저장)">${escapeHtml(savedComment)}</textarea>
+        <div class="macro-comment-status" id="macroCommentStatus"></div>
+      </div>
+    ` : '';
     return `
       <div class="news-sector-block">
         <div class="news-sector-header">
           <span class="news-sector-title">${escapeHtml(s.name)}</span>
           <span class="news-sector-count">${s.articles.length}건</span>
         </div>
+        ${macroCalendar}
+        ${macroComment}
         <div class="news-articles">${articles}</div>
       </div>
     `;
@@ -1316,6 +1451,30 @@ function renderDealsContent(md) {
   body.querySelectorAll('.valuation-card[id]').forEach(card => {
     if (window.computeValuation) window.computeValuation(card.id);
   });
+
+  // Wire up macro comment auto-save
+  const commentEl = body.querySelector('#macroCommentArea');
+  if (commentEl) {
+    const statusEl = body.querySelector('#macroCommentStatus');
+    let saveTimer = null;
+    commentEl.addEventListener('input', () => {
+      if (statusEl) statusEl.textContent = '저장 중…';
+      clearTimeout(saveTimer);
+      saveTimer = setTimeout(() => {
+        try {
+          localStorage.setItem(commentEl.dataset.storageKey, commentEl.value);
+          if (statusEl) {
+            const t = new Date();
+            const hh = String(t.getHours()).padStart(2, '0');
+            const mm = String(t.getMinutes()).padStart(2, '0');
+            statusEl.textContent = `✓ ${hh}:${mm} 자동 저장됨`;
+          }
+        } catch (e) {
+          if (statusEl) statusEl.textContent = '저장 실패 (localStorage)';
+        }
+      }, 400);
+    });
+  }
 }
 
 // Counter for per-render valuation card ids — reset every renderDealsContent call
@@ -2542,7 +2701,7 @@ function initCardComment(key) {
   const fixBtn  = document.querySelector(`.card-comment-fix[data-key="${key}"]`);
   const timeEl  = document.querySelector(`.card-comment-saved-time[data-key="${key}"]`);
   const badge   = toggle?.querySelector('.toggle-badge');
-  if (!toggle || !wrap || !input || !fixBtn) return;
+  if (!toggle || !wrap || !input) return;
 
   const storageKey = `capmkt-comment-${key}`;
   const timeKey    = `capmkt-comment-time-${key}`;
@@ -2565,32 +2724,33 @@ function initCardComment(key) {
     if (willOpen) input.focus();
   });
 
-  // FIX: save (or clear if empty)
-  fixBtn.addEventListener('click', () => {
-    const val = input.value.trim();
-    if (val) {
-      localStorage.setItem(storageKey, val);
-      const now = new Date().toLocaleString('ko-KR', {
-        year: '2-digit', month: '2-digit', day: '2-digit',
-        hour: '2-digit', minute: '2-digit',
-      });
-      localStorage.setItem(timeKey, now);
-      if (timeEl) timeEl.textContent = `Saved · ${now}`;
-      if (badge)  badge.hidden = false;
-      fixBtn.classList.add('saved');
-      fixBtn.textContent = '✓ Saved';
-      setTimeout(() => {
-        fixBtn.classList.remove('saved');
-        fixBtn.textContent = 'FIX';
-      }, 1500);
-    } else {
-      // Empty input → clear saved comment
-      localStorage.removeItem(storageKey);
-      localStorage.removeItem(timeKey);
-      if (timeEl) timeEl.textContent = '';
-      if (badge)  badge.hidden = true;
-    }
+  // Auto-save with 400ms debounce — same UX as macro comment
+  let saveTimer = null;
+  input.addEventListener('input', () => {
+    if (timeEl) timeEl.textContent = '저장 중…';
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(() => {
+      const val = input.value.trim();
+      if (val) {
+        localStorage.setItem(storageKey, val);
+        const now = new Date().toLocaleString('ko-KR', {
+          year: '2-digit', month: '2-digit', day: '2-digit',
+          hour: '2-digit', minute: '2-digit',
+        });
+        localStorage.setItem(timeKey, now);
+        if (timeEl) timeEl.textContent = `✓ Saved · ${now}`;
+        if (badge)  badge.hidden = false;
+      } else {
+        localStorage.removeItem(storageKey);
+        localStorage.removeItem(timeKey);
+        if (timeEl) timeEl.textContent = '';
+        if (badge)  badge.hidden = true;
+      }
+    }, 400);
   });
+
+  // Hide legacy FIX button — auto-save makes it redundant
+  if (fixBtn) fixBtn.style.display = 'none';
 }
 
 function setupSemiconFilters() {
