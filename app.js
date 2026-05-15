@@ -1073,7 +1073,7 @@ function renderDealsDatePills() {
   const el = document.getElementById('dealsDatePills');
   if (!el) return;
   if (dealsState.dates.length === 0) {
-    el.innerHTML = '<span style="color:var(--text-muted);font-size:13px;">저장된 자본시장/거래동향 없음</span>';
+    el.innerHTML = '<span style="color:var(--text-muted);font-size:13px;">저장된 Macro/자본시장/거래동향 없음</span>';
     return;
   }
   const today = todayKr();
@@ -1111,7 +1111,7 @@ function renderDealsEmpty() {
   document.getElementById('dealsBody').innerHTML = `
     <div class="news-empty">
       <div class="news-empty-icon">💼</div>
-      <h3>아직 저장된 자본시장/거래동향이 없습니다</h3>
+      <h3>아직 저장된 Macro/자본시장/거래동향이 없습니다</h3>
       <p>이 페이지는 매주 금요일 오후에 갱신되는 자본시장·딜 동향 요약을 보여줍니다.</p>
       <p>⏰ <strong>다음 자동 갱신</strong>: 다가오는 금요일 16:00 KST</p>
     </div>
