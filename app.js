@@ -1621,8 +1621,11 @@ function renderDealsContent(md) {
         <label class="macro-comment-label" for="macroCommentArea">💬 매크로 코멘트</label>
         <textarea id="macroCommentArea" class="macro-comment-area"
                   data-storage-key="${escapeHtml(commentStorageKey)}"
-                  placeholder="이번 주 매크로 흐름·다음 주 관전 포인트를 자유롭게 메모하세요 (자동 저장)">${escapeHtml(savedComment)}</textarea>
-        <div class="macro-comment-status" id="macroCommentStatus"></div>
+                  placeholder="이번 주 매크로 흐름·다음 주 관전 포인트를 자유롭게 메모하세요. 작성 후 FIX 버튼을 눌러 저장하세요.">${escapeHtml(savedComment)}</textarea>
+        <div class="macro-comment-bottom">
+          <span class="macro-comment-status" id="macroCommentStatus"></span>
+          <button type="button" class="macro-comment-fix" id="macroCommentFix" disabled>FIX</button>
+        </div>
       </div>
     ` : '';
     return `
@@ -1653,28 +1656,57 @@ function renderDealsContent(md) {
     _ensureMacroPasteHandler();
   }
 
-  // Wire up macro comment auto-save
+  // Wire up macro comment — explicit save via FIX button (no auto-save)
   const commentEl = body.querySelector('#macroCommentArea');
   if (commentEl) {
     const statusEl = body.querySelector('#macroCommentStatus');
-    let saveTimer = null;
-    commentEl.addEventListener('input', () => {
-      if (statusEl) statusEl.textContent = '저장 중…';
-      clearTimeout(saveTimer);
-      saveTimer = setTimeout(() => {
-        try {
-          localStorage.setItem(commentEl.dataset.storageKey, commentEl.value);
-          if (statusEl) {
-            const t = new Date();
-            const hh = String(t.getHours()).padStart(2, '0');
-            const mm = String(t.getMinutes()).padStart(2, '0');
-            statusEl.textContent = `✓ ${hh}:${mm} 자동 저장됨`;
-          }
-        } catch (e) {
-          if (statusEl) statusEl.textContent = '저장 실패 (localStorage)';
-        }
-      }, 400);
+    const fixBtn   = body.querySelector('#macroCommentFix');
+    const storageKey = commentEl.dataset.storageKey;
+
+    let savedValue = commentEl.value;
+    const setStatus = (text, cls) => {
+      if (!statusEl) return;
+      statusEl.textContent = text;
+      statusEl.classList.remove('dirty', 'saved');
+      if (cls) statusEl.classList.add(cls);
+    };
+    const refreshButtonState = () => {
+      const dirty = commentEl.value !== savedValue;
+      if (fixBtn) fixBtn.disabled = !dirty;
+      if (dirty) setStatus('● 저장되지 않은 변경', 'dirty');
+    };
+
+    // Show last-saved timestamp on load (if any saved value exists)
+    if (savedValue) {
+      const savedAt = localStorage.getItem(`${storageKey}-time`);
+      if (savedAt) setStatus(`✓ ${savedAt} 저장됨`, 'saved');
+    }
+
+    commentEl.addEventListener('input', refreshButtonState);
+
+    // Ctrl+Enter as a save shortcut
+    commentEl.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) {
+        e.preventDefault();
+        if (fixBtn && !fixBtn.disabled) fixBtn.click();
+      }
     });
+
+    if (fixBtn) {
+      fixBtn.addEventListener('click', () => {
+        try {
+          localStorage.setItem(storageKey, commentEl.value);
+          savedValue = commentEl.value;
+          const t = new Date();
+          const stamp = `${String(t.getMonth() + 1).padStart(2, '0')}-${String(t.getDate()).padStart(2, '0')} ${String(t.getHours()).padStart(2, '0')}:${String(t.getMinutes()).padStart(2, '0')}`;
+          localStorage.setItem(`${storageKey}-time`, stamp);
+          setStatus(`✓ ${stamp} 저장됨`, 'saved');
+          fixBtn.disabled = true;
+        } catch (e) {
+          setStatus('저장 실패 (localStorage)', 'dirty');
+        }
+      });
+    }
   }
 }
 
