@@ -194,7 +194,25 @@ function Get-YahooChart {
     }
 }
 
-# Calculate WoW / MoM / YTD changes
+# Find the latest history entry whose date <= target (i.e., most recent trading
+# day on or before target). Falls back to history[0] if target precedes all data.
+# Assumes $History is sorted ascending by date.
+function Get-EntryOnOrBefore {
+    param([array]$History, [DateTime]$Target)
+    $best = $null
+    foreach ($bar in $History) {
+        $d = [DateTime]::Parse($bar.date)
+        if ($d -le $Target) { $best = $bar } else { break }
+    }
+    if (-not $best) { $best = $History[0] }
+    return $best
+}
+
+# Calculate WoW / MoM / YTD changes.
+# WoW = 7 calendar days back (Fri vs Fri); MoM = 1 calendar month back.
+# Uses date-based lookup so KR/JP holidays don't shift the baseline
+# (trading-day indexing misaligns the baseline for markets whose holiday
+# calendars differ from US).
 function Get-Changes {
     param([PSCustomObject]$Data, [string]$Type = 'pct', [bool]$Invert = $false)
 
@@ -205,11 +223,13 @@ function Get-Changes {
 
     if ($Invert) { $current = 1 / $current }
 
-    $wowIdx = [Math]::Max(0, $hist.Count - 1 - 5)
-    $wowBase = if ($Invert) { 1 / $hist[$wowIdx].close } else { $hist[$wowIdx].close }
+    $lastDate = [DateTime]::Parse($hist[-1].date)
 
-    $momIdx = [Math]::Max(0, $hist.Count - 1 - 22)
-    $momBase = if ($Invert) { 1 / $hist[$momIdx].close } else { $hist[$momIdx].close }
+    $wowEntry = Get-EntryOnOrBefore -History $hist -Target $lastDate.AddDays(-7)
+    $wowBase  = if ($Invert) { 1 / $wowEntry.close } else { $wowEntry.close }
+
+    $momEntry = Get-EntryOnOrBefore -History $hist -Target $lastDate.AddMonths(-1)
+    $momBase  = if ($Invert) { 1 / $momEntry.close } else { $momEntry.close }
 
     $year = (Get-Date).Year
     $ytdEntry = $hist | Where-Object { $_.date.StartsWith("$year-") } | Select-Object -First 1
