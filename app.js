@@ -1855,6 +1855,7 @@ function migrateLocalStorageToUserState() {
     'macro-comment-',
     'dashboard-macro-comment',
     'capmkt-comment-',
+    'ipo-mcap-',
   ];
   let pushed = 0;
   for (let i = 0; i < localStorage.length; i++) {
@@ -2490,20 +2491,29 @@ function renderPeer() {
   body.innerHTML = html;
 }
 
-// Pre-IPO market cap user overrides — stored in localStorage so the user
-// can fill in values from the prospectus before the company starts trading.
+// Pre-IPO market cap user overrides — persisted to localStorage + user-state.json
+// so the user can fill in values from the prospectus and they survive deploys.
 function getIpoMcapOverride(code) {
   if (!code) return null;
-  const v = parseFloat(localStorage.getItem('ipo-mcap-' + code));
+  const key = 'ipo-mcap-' + code;
+  let raw = localStorage.getItem(key);
+  if (raw === null && _userStateCache && _userStateCache[key] != null) {
+    raw = String(_userStateCache[key]);
+  }
+  const v = parseFloat(raw);
   return (isFinite(v) && v > 0) ? v : null;
 }
 function setIpoMcapOverride(code, value) {
   if (!code) return;
-  localStorage.setItem('ipo-mcap-' + code, String(value));
+  const key = 'ipo-mcap-' + code;
+  localStorage.setItem(key, String(value));
+  saveUserState(key, value);
 }
 function clearIpoMcapOverride(code) {
   if (!code) return;
-  localStorage.removeItem('ipo-mcap-' + code);
+  const key = 'ipo-mcap-' + code;
+  localStorage.removeItem(key);
+  saveUserState(key, null);
 }
 
 function renderIpo() {
@@ -3117,9 +3127,15 @@ function initCardComment(key) {
   const storageKey = `capmkt-comment-${key}`;
   const timeKey    = `capmkt-comment-time-${key}`;
 
-  // Hydrate from localStorage
-  const saved     = localStorage.getItem(storageKey);
-  const savedTime = localStorage.getItem(timeKey);
+  // Hydrate from localStorage, fall back to user-state.json cache
+  let saved     = localStorage.getItem(storageKey);
+  let savedTime = localStorage.getItem(timeKey);
+  if (!saved && _userStateCache && typeof _userStateCache[storageKey] === 'string') {
+    saved = _userStateCache[storageKey];
+  }
+  if (!savedTime && _userStateCache && typeof _userStateCache[timeKey] === 'string') {
+    savedTime = _userStateCache[timeKey];
+  }
   if (saved) {
     input.value = saved;
     if (badge)  badge.hidden = false;
@@ -3149,11 +3165,16 @@ function initCardComment(key) {
           hour: '2-digit', minute: '2-digit',
         });
         localStorage.setItem(timeKey, now);
+        // Mirror to user-state.json so deploy carries the comment everywhere
+        saveUserState(storageKey, val);
+        saveUserState(timeKey, now);
         if (timeEl) timeEl.textContent = `✓ Saved · ${now}`;
         if (badge)  badge.hidden = false;
       } else {
         localStorage.removeItem(storageKey);
         localStorage.removeItem(timeKey);
+        saveUserState(storageKey, null);
+        saveUserState(timeKey, null);
         if (timeEl) timeEl.textContent = '';
         if (badge)  badge.hidden = true;
       }
