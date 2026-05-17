@@ -1516,6 +1516,16 @@ async function _macroNotesAdd(sectionEl, weekDate, rawImage) {
 function _wireMacroNotesEvents(sectionEl, weekDate) {
   if (!sectionEl) return;
 
+  // Auto-resize every paste-card comment textarea to fit its content.
+  const autoResize = (ta) => {
+    if (!ta) return;
+    ta.style.height = 'auto';
+    ta.style.height = Math.min(ta.scrollHeight + 2, 600) + 'px';
+  };
+  sectionEl.querySelectorAll('.macro-note-comment').forEach(ta => {
+    requestAnimationFrame(() => autoResize(ta));
+  });
+
   sectionEl.addEventListener('click', (e) => {
     const action = e.target.dataset && e.target.dataset.action;
     if (action === 'add') {
@@ -1543,6 +1553,9 @@ function _wireMacroNotesEvents(sectionEl, weekDate) {
     } else if (e.target.classList.contains('macro-note-comment')) {
       notes[i].comment = e.target.value;
       _saveMacroNotes(weekDate, notes);
+      // Grow textarea to fit new content
+      e.target.style.height = 'auto';
+      e.target.style.height = Math.min(e.target.scrollHeight + 2, 600) + 'px';
     }
   });
 }
@@ -1697,6 +1710,18 @@ function wireFixSaveTextarea({ textarea, fixBtn, statusEl }) {
       }
     } catch (e) { /* ignore */ }
   }
+
+  // Auto-resize the textarea height to fit content (capped at 800px).
+  // Triggered on hydrate and every input — so the box grows as the user types
+  // instead of forcing them to scroll within a fixed-height box.
+  const resizeToFit = () => {
+    textarea.style.height = 'auto';
+    const target = Math.min(textarea.scrollHeight + 2, 800);
+    textarea.style.height = target + 'px';
+  };
+  // Initial pass — wait one frame so the browser has laid the textarea out.
+  requestAnimationFrame(resizeToFit);
+  textarea.addEventListener('input', resizeToFit);
 
   let savedValue = textarea.value;
   const setStatus = (text, cls) => {
