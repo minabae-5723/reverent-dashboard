@@ -1657,57 +1657,81 @@ function renderDealsContent(md) {
   }
 
   // Wire up macro comment — explicit save via FIX button (no auto-save)
-  const commentEl = body.querySelector('#macroCommentArea');
-  if (commentEl) {
-    const statusEl = body.querySelector('#macroCommentStatus');
-    const fixBtn   = body.querySelector('#macroCommentFix');
-    const storageKey = commentEl.dataset.storageKey;
+  wireFixSaveTextarea({
+    textarea: body.querySelector('#macroCommentArea'),
+    fixBtn:   body.querySelector('#macroCommentFix'),
+    statusEl: body.querySelector('#macroCommentStatus'),
+  });
+}
 
-    let savedValue = commentEl.value;
-    const setStatus = (text, cls) => {
-      if (!statusEl) return;
-      statusEl.textContent = text;
-      statusEl.classList.remove('dirty', 'saved');
-      if (cls) statusEl.classList.add(cls);
-    };
-    const refreshButtonState = () => {
-      const dirty = commentEl.value !== savedValue;
-      if (fixBtn) fixBtn.disabled = !dirty;
-      if (dirty) setStatus('● 저장되지 않은 변경', 'dirty');
-    };
+// ─── Reusable: textarea + FIX button + localStorage save ─────────────
+// Reads textarea.dataset.storageKey; saves text + timestamp on FIX click.
+// Status spans show "● 저장되지 않은 변경" (dirty) / "✓ MM-DD HH:MM 저장됨" (saved).
+// Loads previously saved value into the textarea if it's empty.
+function wireFixSaveTextarea({ textarea, fixBtn, statusEl }) {
+  if (!textarea) return;
+  const storageKey = textarea.dataset.storageKey;
+  if (!storageKey) {
+    console.warn('wireFixSaveTextarea: missing data-storage-key on', textarea);
+    return;
+  }
 
-    // Show last-saved timestamp on load (if any saved value exists)
-    if (savedValue) {
-      const savedAt = localStorage.getItem(`${storageKey}-time`);
-      if (savedAt) setStatus(`✓ ${savedAt} 저장됨`, 'saved');
+  // Hydrate from localStorage if textarea is empty (e.g. on dashboard load)
+  if (textarea.value === '') {
+    try {
+      const saved = localStorage.getItem(storageKey);
+      if (saved) textarea.value = saved;
+    } catch (e) { /* ignore */ }
+  }
+
+  let savedValue = textarea.value;
+  const setStatus = (text, cls) => {
+    if (!statusEl) return;
+    statusEl.textContent = text;
+    statusEl.classList.remove('dirty', 'saved');
+    if (cls) statusEl.classList.add(cls);
+  };
+  const refresh = () => {
+    const dirty = textarea.value !== savedValue;
+    if (fixBtn) fixBtn.disabled = !dirty;
+    if (dirty) setStatus('● 저장되지 않은 변경', 'dirty');
+  };
+  if (savedValue) {
+    const savedAt = localStorage.getItem(`${storageKey}-time`);
+    if (savedAt) setStatus(`✓ ${savedAt} 저장됨`, 'saved');
+  }
+
+  textarea.addEventListener('input', refresh);
+  textarea.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) {
+      e.preventDefault();
+      if (fixBtn && !fixBtn.disabled) fixBtn.click();
     }
+  });
 
-    commentEl.addEventListener('input', refreshButtonState);
-
-    // Ctrl+Enter as a save shortcut
-    commentEl.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) {
-        e.preventDefault();
-        if (fixBtn && !fixBtn.disabled) fixBtn.click();
+  if (fixBtn) {
+    fixBtn.addEventListener('click', () => {
+      try {
+        localStorage.setItem(storageKey, textarea.value);
+        savedValue = textarea.value;
+        const t = new Date();
+        const stamp = `${String(t.getMonth() + 1).padStart(2, '0')}-${String(t.getDate()).padStart(2, '0')} ${String(t.getHours()).padStart(2, '0')}:${String(t.getMinutes()).padStart(2, '0')}`;
+        localStorage.setItem(`${storageKey}-time`, stamp);
+        setStatus(`✓ ${stamp} 저장됨`, 'saved');
+        fixBtn.disabled = true;
+      } catch (e) {
+        setStatus('저장 실패 (localStorage)', 'dirty');
       }
     });
-
-    if (fixBtn) {
-      fixBtn.addEventListener('click', () => {
-        try {
-          localStorage.setItem(storageKey, commentEl.value);
-          savedValue = commentEl.value;
-          const t = new Date();
-          const stamp = `${String(t.getMonth() + 1).padStart(2, '0')}-${String(t.getDate()).padStart(2, '0')} ${String(t.getHours()).padStart(2, '0')}:${String(t.getMinutes()).padStart(2, '0')}`;
-          localStorage.setItem(`${storageKey}-time`, stamp);
-          setStatus(`✓ ${stamp} 저장됨`, 'saved');
-          fixBtn.disabled = true;
-        } catch (e) {
-          setStatus('저장 실패 (localStorage)', 'dirty');
-        }
-      });
-    }
   }
+}
+
+function setupDashboardMacroComment() {
+  wireFixSaveTextarea({
+    textarea: document.getElementById('dashboardMacroCommentArea'),
+    fixBtn:   document.getElementById('dashboardMacroCommentFix'),
+    statusEl: document.getElementById('dashboardMacroCommentStatus'),
+  });
 }
 
 // Counter for per-render valuation card ids — reset every renderDealsContent call
@@ -3019,6 +3043,7 @@ setupSemiconFilters();
 setupShillerFilters();
 setupFedWatchFilters();
 setupCapMktComments();
+setupDashboardMacroComment();
 loadCalendar();
 loadData();
 loadWeeklyCalendar();
