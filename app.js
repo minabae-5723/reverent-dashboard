@@ -1358,6 +1358,8 @@ function _renderMacroCalendarColumn(title, events, mode) {
 }
 
 function renderMacroCalendarCard() {
+  // DEPRECATED — replaced by renderMacroNotesCard (image+comment cards).
+  // Kept for reference; no longer rendered.
   const thisWeek = _filterMacroEvents(dealsState.calThisWeek);
   const nextWeek = _filterMacroEvents(dealsState.calNextWeek);
   if (thisWeek.length === 0 && nextWeek.length === 0) return '';
@@ -1372,6 +1374,197 @@ function renderMacroCalendarCard() {
       </div>
     </div>
   `;
+}
+
+// ─── Macro Notes (paste screenshots + comments, per-week localStorage) ──
+function _macroNotesKey(weekDate) { return `macro-notes-${weekDate || 'default'}`; }
+
+function _loadMacroNotes(weekDate) {
+  try {
+    const raw = localStorage.getItem(_macroNotesKey(weekDate));
+    return raw ? JSON.parse(raw) : [];
+  } catch (e) { return []; }
+}
+
+function _saveMacroNotes(weekDate, notes) {
+  try {
+    localStorage.setItem(_macroNotesKey(weekDate), JSON.stringify(notes));
+    return true;
+  } catch (e) {
+    alert('저장 실패 — 브라우저 저장 용량 초과 가능성. 오래된 카드를 삭제하세요.');
+    return false;
+  }
+}
+
+function _macroNoteUid() {
+  return Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
+}
+
+function _formatMacroNoteDate(ts) {
+  if (!ts) return '';
+  try {
+    return new Date(ts).toLocaleString('ko-KR', {
+      month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit',
+    });
+  } catch { return ''; }
+}
+
+function _compressMacroImage(dataUrl) {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.onload = () => {
+      const MAX_W = 1400;
+      const scale = Math.min(1, MAX_W / img.width);
+      const w = Math.round(img.width * scale);
+      const h = Math.round(img.height * scale);
+      const canvas = document.createElement('canvas');
+      canvas.width = w;
+      canvas.height = h;
+      const ctx = canvas.getContext('2d');
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(0, 0, w, h);
+      ctx.drawImage(img, 0, 0, w, h);
+      resolve(canvas.toDataURL('image/jpeg', 0.85));
+    };
+    img.onerror = reject;
+    img.src = dataUrl;
+  });
+}
+
+function renderMacroNotesCard(weekDate) {
+  const notes = _loadMacroNotes(weekDate);
+  const empty = `
+    <div class="macro-notes-empty">
+      <div class="empty-icon">📋</div>
+      <p class="empty-title">아직 저장된 카드가 없습니다</p>
+      <p class="empty-hint">
+        화면을 캡처하여 클립보드에 복사한 뒤 <kbd>Ctrl+V</kbd> 를 누르세요.<br>
+        또는 위의 <strong>+ 새 카드</strong> 버튼으로 빈 카드를 추가할 수 있습니다.
+      </p>
+    </div>`;
+  const cards = notes.map(n => `
+    <div class="macro-note-card" data-id="${n.id}">
+      ${n.image
+        ? `<div class="macro-note-imgwrap"><img src="${n.image}" alt="" class="macro-note-img" loading="lazy"></div>`
+        : `<div class="macro-note-imgwrap macro-note-noimage">이미지 없음 — Ctrl+V로 붙여넣기</div>`
+      }
+      <input type="text" class="macro-note-title" placeholder="제목 (선택)" value="${escapeHtml(n.title || '')}" maxlength="120">
+      <textarea class="macro-note-comment" placeholder="코멘트를 작성하세요…" rows="3">${escapeHtml(n.comment || '')}</textarea>
+      <div class="macro-note-actions">
+        <span class="macro-note-date">${_formatMacroNoteDate(n.createdAt)}</span>
+        <button class="macro-note-delete" data-action="delete" type="button">🗑 삭제</button>
+      </div>
+    </div>
+  `).join('');
+  return `
+    <div class="macro-notes-section" data-week="${escapeHtml(weekDate || 'default')}">
+      <div class="macro-notes-toolbar">
+        <button class="macro-add-btn" data-action="add" type="button">+ 새 카드</button>
+        <span class="macro-paste-hint">💡 스크린샷 복사 후 <kbd>Ctrl+V</kbd> 로 이 페이지에 붙여넣기 — 이번 주 저장소에 보관됩니다.</span>
+      </div>
+      <div class="macro-notes-grid">
+        ${notes.length === 0 ? empty : cards}
+      </div>
+    </div>
+  `;
+}
+
+function _rerenderMacroNotes(sectionEl, weekDate) {
+  const tmp = document.createElement('div');
+  tmp.innerHTML = renderMacroNotesCard(weekDate);
+  const next = tmp.firstElementChild;
+  if (next && sectionEl.parentNode) {
+    sectionEl.replaceWith(next);
+    _wireMacroNotesEvents(next, weekDate);
+    return next;
+  }
+  return sectionEl;
+}
+
+async function _macroNotesAdd(sectionEl, weekDate, rawImage) {
+  let image = '';
+  if (rawImage) {
+    try { image = await _compressMacroImage(rawImage); }
+    catch { image = rawImage; }
+  }
+  const notes = _loadMacroNotes(weekDate);
+  const note = { id: _macroNoteUid(), title: '', comment: '', image, createdAt: Date.now() };
+  notes.unshift(note);
+  if (!_saveMacroNotes(weekDate, notes)) return;
+  _rerenderMacroNotes(sectionEl, weekDate);
+  // Focus newly added card
+  setTimeout(() => {
+    const el = document.querySelector(`.macro-note-card[data-id="${note.id}"]`);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      const ta = el.querySelector('.macro-note-comment');
+      ta && ta.focus();
+    }
+  }, 60);
+}
+
+function _wireMacroNotesEvents(sectionEl, weekDate) {
+  if (!sectionEl) return;
+
+  sectionEl.addEventListener('click', (e) => {
+    const action = e.target.dataset && e.target.dataset.action;
+    if (action === 'add') {
+      _macroNotesAdd(sectionEl, weekDate, '');
+    } else if (action === 'delete') {
+      const card = e.target.closest('.macro-note-card');
+      if (!card) return;
+      if (!confirm('이 카드를 삭제할까요?')) return;
+      const notes = _loadMacroNotes(weekDate).filter(n => n.id !== card.dataset.id);
+      _saveMacroNotes(weekDate, notes);
+      _rerenderMacroNotes(sectionEl, weekDate);
+    }
+  });
+
+  sectionEl.addEventListener('input', (e) => {
+    const card = e.target.closest('.macro-note-card');
+    if (!card) return;
+    const id = card.dataset.id;
+    const notes = _loadMacroNotes(weekDate);
+    const i = notes.findIndex(n => n.id === id);
+    if (i < 0) return;
+    if (e.target.classList.contains('macro-note-title')) {
+      notes[i].title = e.target.value;
+      _saveMacroNotes(weekDate, notes);
+    } else if (e.target.classList.contains('macro-note-comment')) {
+      notes[i].comment = e.target.value;
+      _saveMacroNotes(weekDate, notes);
+    }
+  });
+}
+
+// Global paste handler — once installed, active whenever deals view is showing
+// a macro-notes-section.
+let _macroPasteAttached = false;
+function _ensureMacroPasteHandler() {
+  if (_macroPasteAttached) return;
+  _macroPasteAttached = true;
+  document.addEventListener('paste', (e) => {
+    const dealsView = document.getElementById('view-deals');
+    if (!dealsView || dealsView.hidden) return;
+    const sectionEl = dealsView.querySelector('.macro-notes-section');
+    if (!sectionEl) return;
+    const items = e.clipboardData && e.clipboardData.items;
+    if (!items || items.length === 0) return;
+    let imgItem = null;
+    for (const it of items) {
+      if (it.type && it.type.startsWith('image/')) { imgItem = it; break; }
+    }
+    if (!imgItem) return;
+    e.preventDefault();
+    const file = imgItem.getAsFile();
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = () => {
+      const weekDate = sectionEl.dataset.week || 'default';
+      _macroNotesAdd(sectionEl, weekDate, reader.result);
+    };
+    reader.readAsDataURL(file);
+  });
 }
 
 function _isMacroSection(name) {
@@ -1422,7 +1615,7 @@ function renderDealsContent(md) {
       ? s.articles.map(a => renderDealArticle(a, weekDate)).join('')
       : '<div class="news-card" style="color:var(--text-muted);font-style:italic;">이번 주 해당 카테고리 항목 없음</div>';
     const isMacro = _isMacroSection(s.name);
-    const macroCalendar = isMacro ? renderMacroCalendarCard() : '';
+    const macroCalendar = isMacro ? renderMacroNotesCard(weekDate) : '';
     const macroComment = isMacro ? `
       <div class="macro-comment-block">
         <label class="macro-comment-label" for="macroCommentArea">💬 매크로 코멘트</label>
@@ -1451,6 +1644,14 @@ function renderDealsContent(md) {
   body.querySelectorAll('.valuation-card[id]').forEach(card => {
     if (window.computeValuation) window.computeValuation(card.id);
   });
+
+  // Wire up macro notes (paste images + comments)
+  const macroNotesSection = body.querySelector('.macro-notes-section');
+  if (macroNotesSection) {
+    const weekKey = macroNotesSection.dataset.week || 'default';
+    _wireMacroNotesEvents(macroNotesSection, weekKey);
+    _ensureMacroPasteHandler();
+  }
 
   // Wire up macro comment auto-save
   const commentEl = body.querySelector('#macroCommentArea');
