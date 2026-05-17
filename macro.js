@@ -5,18 +5,21 @@
 // =============================================================
 
 const MACRO_DATA = [
-  // ─── Review (이미 발표된 지표) ───
-  { country: '미국', date: '5/5',  indicator: 'ISM 비제조업 PMI', period: '4월', actual: '53.6',   forecast: '53.7',  previous: '54.0',  unit: 'MoM', type: 'review' },
-  { country: '미국', date: '5/5',  indicator: 'JOLTs',           period: '3월', actual: '6.866M', forecast: '6.860M', previous: '6.922M', unit: 'MoM', type: 'review' },
-  { country: '미국', date: '5/6',  indicator: 'ADP 민간고용',     period: '4월', actual: '109K',   forecast: '118K',   previous: '61K',    unit: 'MoM', type: 'review' },
-  { country: '미국', date: '5/8',  indicator: '비농업고용지수',   period: '4월', actual: '115K',   forecast: '65K',    previous: '185K',   unit: 'MoM', type: 'review' },
+  // ─── Review (지난주 5/12~5/15 발표된 주요 지표) ───
+  { country: '미국', date: '5/12', indicator: 'Headline CPI',    period: '4월', actual: '',     forecast: '3.7%', previous: '3.3%', unit: 'YoY', type: 'review' },
+  { country: '미국', date: '5/12', indicator: 'Core CPI',        period: '4월', actual: '',     forecast: '',     previous: '2.6%', unit: 'YoY', type: 'review' },
+  { country: '한국', date: '5/13', indicator: '실업률',           period: '4월', actual: '',     forecast: '',     previous: '2.7%', unit: 'MoM', type: 'review' },
+  { country: '미국', date: '5/13', indicator: 'Headline PPI',    period: '4월', actual: '6.0%', forecast: '4.8%', previous: '4.0%', unit: 'YoY', type: 'review' },
+  { country: '미국', date: '5/13', indicator: 'Core PPI',        period: '4월', actual: '',     forecast: '',     previous: '3.8%', unit: 'YoY', type: 'review' },
 
-  // ─── Preview (발표 예정) ───
-  { country: '미국', date: '5/12', indicator: 'Headline CPI',    period: '4월', actual: '', forecast: '3.7%', previous: '3.3%', unit: 'YoY', type: 'preview' },
-  { country: '미국', date: '5/12', indicator: 'Core CPI',        period: '4월', actual: '', forecast: '',     previous: '2.6%', unit: 'YoY', type: 'preview' },
-  { country: '한국', date: '5/13', indicator: '실업률',           period: '4월', actual: '', forecast: '',     previous: '2.7%', unit: 'MoM', type: 'preview' },
-  { country: '미국', date: '5/13', indicator: 'Headline PPI',    period: '4월', actual: '', forecast: '',     previous: '4.0%', unit: 'YoY', type: 'preview' },
-  { country: '미국', date: '5/13', indicator: 'Core PPI',        period: '4월', actual: '', forecast: '',     previous: '3.8%', unit: 'YoY', type: 'preview' },
+  // ─── Preview (다음주 5/18~5/22 발표 예정 — investing.com importance ★★★만 선별) ───
+  { country: '미국', date: '5/19', indicator: 'Building Permits',        period: '4월', actual: '', forecast: '', previous: '1.467M', unit: 'MoM', type: 'preview' },
+  { country: '미국', date: '5/19', indicator: 'Housing Starts',          period: '4월', actual: '', forecast: '', previous: '1.324M', unit: 'MoM', type: 'preview' },
+  { country: '미국', date: '5/20', indicator: 'FOMC Meeting Minutes',    period: '4월', actual: '', forecast: '', previous: '',       unit: '—',   type: 'preview' },
+  { country: '미국', date: '5/21', indicator: 'Initial Jobless Claims',  period: '',     actual: '', forecast: '', previous: '',       unit: 'WoW', type: 'preview' },
+  { country: '미국', date: '5/21', indicator: 'S&P Global Mfg PMI',      period: '5월', actual: '', forecast: '', previous: '54.5',   unit: 'Idx', type: 'preview' },
+  { country: '미국', date: '5/21', indicator: 'S&P Global Services PMI', period: '5월', actual: '', forecast: '', previous: '51.3',   unit: 'Idx', type: 'preview' },
+  { country: '미국', date: '5/21', indicator: 'Existing Home Sales',     period: '4월', actual: '', forecast: '', previous: '4.02M',  unit: 'MoM', type: 'preview' },
 ];
 
 // =============================================================

@@ -194,25 +194,31 @@ function Get-YahooChart {
     }
 }
 
-# Find the latest history entry whose date <= target (i.e., most recent trading
-# day on or before target). Falls back to history[0] if target precedes all data.
+# Find the latest history entry whose date satisfies the comparison vs Target.
+# Mode 'le' = on-or-before (date <= target). Mode 'lt' = strictly before (date < target).
+# Falls back to history[0] if target precedes all data.
 # Assumes $History is sorted ascending by date.
-function Get-EntryOnOrBefore {
-    param([array]$History, [DateTime]$Target)
+function Get-EntryBefore {
+    param([array]$History, [DateTime]$Target, [string]$Mode = 'le')
     $best = $null
     foreach ($bar in $History) {
         $d = [DateTime]::Parse($bar.date)
-        if ($d -le $Target) { $best = $bar } else { break }
+        $match = if ($Mode -eq 'lt') { $d -lt $Target } else { $d -le $Target }
+        if ($match) { $best = $bar } else { break }
     }
     if (-not $best) { $best = $History[0] }
     return $best
 }
 
 # Calculate WoW / MoM / YTD changes.
-# WoW = 7 calendar days back (Fri vs Fri); MoM = 1 calendar month back.
-# Uses date-based lookup so KR/JP holidays don't shift the baseline
-# (trading-day indexing misaligns the baseline for markets whose holiday
-# calendars differ from US).
+# WoW: last close vs (lastDate - 7 calendar days, on-or-before trading day).
+#      e.g. 5/15 Fri vs 5/8 Fri.
+# MoM: last close vs (today - 1 calendar month, on-or-before trading day).
+#      Matches Google Finance's "past month" convention. e.g. on 5/17 Sun the
+#      target is 4/17 Fri, which is a trading day in both US & KR markets, so
+#      we use that as baseline. SPX: 4/17 close 7,126 → +3.96% (matches Google).
+# Date-based (not trading-day-index based) so KR/JP holidays don't shift the
+# baseline relative to US markets.
 function Get-Changes {
     param([PSCustomObject]$Data, [string]$Type = 'pct', [bool]$Invert = $false)
 
@@ -224,11 +230,12 @@ function Get-Changes {
     if ($Invert) { $current = 1 / $current }
 
     $lastDate = [DateTime]::Parse($hist[-1].date)
+    $today    = (Get-Date).Date
 
-    $wowEntry = Get-EntryOnOrBefore -History $hist -Target $lastDate.AddDays(-7)
+    $wowEntry = Get-EntryBefore -History $hist -Target $lastDate.AddDays(-7) -Mode 'le'
     $wowBase  = if ($Invert) { 1 / $wowEntry.close } else { $wowEntry.close }
 
-    $momEntry = Get-EntryOnOrBefore -History $hist -Target $lastDate.AddMonths(-1)
+    $momEntry = Get-EntryBefore -History $hist -Target $today.AddMonths(-1) -Mode 'le'
     $momBase  = if ($Invert) { 1 / $momEntry.close } else { $momEntry.close }
 
     $year = (Get-Date).Year
