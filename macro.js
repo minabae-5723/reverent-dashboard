@@ -5,12 +5,12 @@
 // =============================================================
 
 const MACRO_DATA = [
-  // ─── Review (지난주 5/12~5/15 발표된 주요 지표) ───
-  { country: '미국', date: '5/12', indicator: 'Headline CPI',    period: '4월', actual: '',     forecast: '3.7%', previous: '3.3%', unit: 'YoY', type: 'review' },
-  { country: '미국', date: '5/12', indicator: 'Core CPI',        period: '4월', actual: '',     forecast: '',     previous: '2.6%', unit: 'YoY', type: 'review' },
-  { country: '한국', date: '5/13', indicator: '실업률',           period: '4월', actual: '',     forecast: '',     previous: '2.7%', unit: 'MoM', type: 'review' },
-  { country: '미국', date: '5/13', indicator: 'Headline PPI',    period: '4월', actual: '6.0%', forecast: '4.8%', previous: '4.0%', unit: 'YoY', type: 'review' },
-  { country: '미국', date: '5/13', indicator: 'Core PPI',        period: '4월', actual: '',     forecast: '',     previous: '3.8%', unit: 'YoY', type: 'review' },
+  // ─── Review (지난주 5/12~5/15 발표 — investing.com 경제캘린더 확정값) ───
+  { country: '미국', date: '5/12', indicator: 'Headline CPI',    period: '4월', actual: '3.8%', forecast: '3.7%', previous: '3.3%', unit: 'YoY', type: 'review' },
+  { country: '미국', date: '5/12', indicator: 'Core CPI',        period: '4월', actual: '2.8%', forecast: '2.7%', previous: '2.6%', unit: 'YoY', type: 'review' },
+  { country: '한국', date: '5/13', indicator: '실업률',           period: '4월', actual: '2.8%', forecast: '',     previous: '2.7%', unit: 'MoM', type: 'review' },
+  { country: '미국', date: '5/13', indicator: 'Headline PPI',    period: '4월', actual: '6.0%', forecast: '4.9%', previous: '4.3%', unit: 'YoY', type: 'review' },
+  { country: '미국', date: '5/13', indicator: 'Core PPI',        period: '4월', actual: '5.2%', forecast: '4.3%', previous: '4.0%', unit: 'YoY', type: 'review' },
 
   // ─── Preview (다음주 5/18~5/22 발표 예정 — investing.com importance ★★★만 선별) ───
   { country: '미국', date: '5/19', indicator: 'Building Permits',        period: '4월', actual: '', forecast: '', previous: '1.467M', unit: 'MoM', type: 'preview' },
