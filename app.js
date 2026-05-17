@@ -1380,20 +1380,30 @@ function renderMacroCalendarCard() {
 function _macroNotesKey(weekDate) { return `macro-notes-${weekDate || 'default'}`; }
 
 function _loadMacroNotes(weekDate) {
+  const key = _macroNotesKey(weekDate);
+  // localStorage first (fresh edits)
   try {
-    const raw = localStorage.getItem(_macroNotesKey(weekDate));
-    return raw ? JSON.parse(raw) : [];
-  } catch (e) { return []; }
+    const raw = localStorage.getItem(key);
+    if (raw) return JSON.parse(raw);
+  } catch {}
+  // Then user-state.json cache (deployed values, shared across browsers)
+  if (_userStateCache && Array.isArray(_userStateCache[key])) {
+    return _userStateCache[key];
+  }
+  return [];
 }
 
 function _saveMacroNotes(weekDate, notes) {
+  const key = _macroNotesKey(weekDate);
   try {
-    localStorage.setItem(_macroNotesKey(weekDate), JSON.stringify(notes));
-    return true;
+    localStorage.setItem(key, JSON.stringify(notes));
   } catch (e) {
     alert('저장 실패 — 브라우저 저장 용량 초과 가능성. 오래된 카드를 삭제하세요.');
     return false;
   }
+  // Also persist server-side so deploy carries them to Cloudflare
+  saveUserState(key, notes);
+  return true;
 }
 
 function _macroNoteUid() {
@@ -1676,11 +1686,15 @@ function wireFixSaveTextarea({ textarea, fixBtn, statusEl }) {
     return;
   }
 
-  // Hydrate from localStorage if textarea is empty (e.g. on dashboard load)
+  // Hydrate from localStorage first, then user-state cache (deployed file).
   if (textarea.value === '') {
     try {
       const saved = localStorage.getItem(storageKey);
-      if (saved) textarea.value = saved;
+      if (saved) {
+        textarea.value = saved;
+      } else if (_userStateCache && typeof _userStateCache[storageKey] === 'string') {
+        textarea.value = _userStateCache[storageKey];
+      }
     } catch (e) { /* ignore */ }
   }
 
@@ -1697,7 +1711,8 @@ function wireFixSaveTextarea({ textarea, fixBtn, statusEl }) {
     if (dirty) setStatus('● 저장되지 않은 변경', 'dirty');
   };
   if (savedValue) {
-    const savedAt = localStorage.getItem(`${storageKey}-time`);
+    let savedAt = localStorage.getItem(`${storageKey}-time`);
+    if (!savedAt && _userStateCache) savedAt = _userStateCache[`${storageKey}-time`];
     if (savedAt) setStatus(`✓ ${savedAt} 저장됨`, 'saved');
   }
 
@@ -1717,6 +1732,9 @@ function wireFixSaveTextarea({ textarea, fixBtn, statusEl }) {
         const t = new Date();
         const stamp = `${String(t.getMonth() + 1).padStart(2, '0')}-${String(t.getDate()).padStart(2, '0')} ${String(t.getHours()).padStart(2, '0')}:${String(t.getMinutes()).padStart(2, '0')}`;
         localStorage.setItem(`${storageKey}-time`, stamp);
+        // Mirror to user-state.json so deploy carries the comment
+        saveUserState(storageKey, textarea.value);
+        saveUserState(`${storageKey}-time`, stamp);
         setStatus(`✓ ${stamp} 저장됨`, 'saved');
         fixBtn.disabled = true;
       } catch (e) {
@@ -1803,12 +1821,90 @@ function valuationStorageKey(weekDate, headline) {
   return `rp::valuation::${weekDate}::${simpleHash(headline)}`;
 }
 
-function loadSavedValuation(weekDate, headline) {
+// ─── Server-side user state (user-state.json) ────────────────────
+// Holds anything users have explicitly saved: valuation Fix values, macro
+// image-card notes, macro comments (deals + dashboard), capmkt comments.
+// Loaded once at init from /user-state.json, updated via POST /save-state.
+// On Cloudflare static site the POST 404s silently — localStorage is the
+// fallback persistence for solo browser use.
+let _userStateCache = null;
+
+async function loadUserState() {
   try {
-    const raw = localStorage.getItem(valuationStorageKey(weekDate, headline));
-    if (!raw) return null;
-    return JSON.parse(raw);
-  } catch { return null; }
+    const res = await fetch('/user-state.json?_=' + Date.now(), { cache: 'no-store' });
+    if (res.ok) {
+      const data = await res.json();
+      _userStateCache = data.entries || {};
+    } else {
+      _userStateCache = {};
+    }
+  } catch (e) {
+    _userStateCache = {};
+  }
+  return _userStateCache;
+}
+
+// One-shot migration: push any localStorage entries the server doesn't have
+// yet. Lets pre-existing localStorage saves (from before the /save-state
+// endpoint existed) propagate to user-state.json → deploy → other browsers.
+function migrateLocalStorageToUserState() {
+  if (!_userStateCache) return;
+  const prefixes = [
+    'rp::valuation::',
+    'macro-notes-',
+    'macro-comment-',
+    'dashboard-macro-comment',
+    'capmkt-comment-',
+  ];
+  let pushed = 0;
+  for (let i = 0; i < localStorage.length; i++) {
+    const key = localStorage.key(i);
+    if (!key) continue;
+    if (!prefixes.some((p) => key.startsWith(p))) continue;
+    if (Object.prototype.hasOwnProperty.call(_userStateCache, key)) continue; // already on server
+
+    let raw;
+    try { raw = localStorage.getItem(key); } catch { continue; }
+    if (raw === null || raw === '') continue;
+
+    let value = raw;
+    try {
+      const parsed = JSON.parse(raw);
+      if (parsed !== null && parsed !== undefined) value = parsed;
+    } catch { /* keep as string */ }
+
+    saveUserState(key, value);
+    pushed++;
+  }
+  if (pushed > 0) console.log(`[user-state] migrated ${pushed} localStorage entries → server`);
+}
+
+// Best-effort POST. Updates cache optimistically (so re-renders see it
+// before the server roundtrip completes).
+function saveUserState(key, value) {
+  if (_userStateCache) {
+    if (value === null || value === undefined) delete _userStateCache[key];
+    else _userStateCache[key] = value;
+  }
+  try {
+    fetch('/save-state', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ key, value }),
+    }).catch(() => {}); // silent — Cloudflare or offline
+  } catch {}
+}
+
+function loadSavedValuation(weekDate, headline) {
+  const key = valuationStorageKey(weekDate, headline);
+  try {
+    const raw = localStorage.getItem(key);
+    if (raw) return JSON.parse(raw);
+  } catch {}
+  if (_userStateCache && _userStateCache[key]) {
+    return _userStateCache[key];
+  }
+  return null;
 }
 
 function renderValuationCard(cardId, weekDate, headline, title, data) {
@@ -1821,7 +1917,7 @@ function renderValuationCard(cardId, weekDate, headline, title, data) {
     const ph = f.ph ? ` placeholder="${escapeHtml(f.ph)}"` : '';
     return `<tr>
       <th>${escapeHtml(f.key)}</th>
-      <td><input type="text" inputmode="decimal" data-key="${escapeHtml(f.key)}" value="${escapeHtml(v)}"${ph} oninput="computeValuation('${cardId}')" /></td>
+      <td><input type="text" inputmode="decimal" data-key="${escapeHtml(f.key)}" value="${escapeHtml(v)}"${ph} oninput="onValuationInput('${cardId}')" /></td>
     </tr>`;
   };
   const titleStr = title || 'Valuation';
@@ -1879,10 +1975,64 @@ function renderValuationCard(cardId, weekDate, headline, title, data) {
           <button type="button" class="val-action-btn val-action-fix" onclick="saveValuationByCard('${cardId}')" title="현재 입력값을 브라우저에 영구 저장">📌 Fix (저장)</button>
           <button type="button" class="val-action-btn val-action-reset" onclick="resetValuationByCard('${cardId}')" title="저장값을 삭제하고 MD 기본값으로 되돌림">↺ 초기화</button>
         </div>
-        <span class="valuation-status" id="${cardId}-status">${saved ? `📌 ${escapeHtml(saved.savedAt)} 저장됨` : '단위: 억원 · 입력 후 Fix 버튼으로 영구 저장'}</span>
+        <span class="valuation-status" id="${cardId}-status">${saved ? `📌 ${escapeHtml(saved.savedAt)} 자동 저장됨` : '단위: 억원 · 입력 즉시 자동 저장 (이 브라우저)'}</span>
       </div>
     </div>
   `;
+}
+
+// Debounced auto-save on input: every keystroke triggers a delayed save so
+// users never lose values to a forgotten Fix click. The Fix button remains as
+// an explicit "save now" affordance (also produces the timestamp badge).
+const _valuationSaveTimers = new Map();
+window.onValuationInput = function (cardId) {
+  // 1. Live recompute of derived cells (EBITDA, EV, multiples, etc.)
+  if (window.computeValuation) window.computeValuation(cardId);
+  // 2. Debounced persist to localStorage (400 ms idle)
+  if (_valuationSaveTimers.has(cardId)) {
+    clearTimeout(_valuationSaveTimers.get(cardId));
+  }
+  _valuationSaveTimers.set(cardId, setTimeout(() => {
+    _valuationSaveTimers.delete(cardId);
+    _autoSaveValuation(cardId);
+  }, 400));
+};
+
+function _autoSaveValuation(cardId) {
+  const card = document.getElementById(cardId);
+  if (!card) return;
+  const weekDate = card.dataset.week;
+  const headline = card.dataset.headline;
+  if (!weekDate || !headline) return;
+  const values = {};
+  card.querySelectorAll('input[data-key]').forEach(el => {
+    const k = el.dataset.key;
+    const v = el.value.trim();
+    if (v !== '') values[k] = v;
+  });
+  const savedAt = new Date().toLocaleString('ko-KR', { hour12: false });
+  const payload = { values, savedAt, weekDate, headline };
+  const key = valuationStorageKey(weekDate, headline);
+  try {
+    localStorage.setItem(key, JSON.stringify(payload));
+  } catch (e) {
+    console.warn('valuation autosave failed', e);
+    const status = document.getElementById(`${cardId}-status`);
+    if (status) status.textContent = '저장 실패 (localStorage)';
+    return;
+  }
+  // Best-effort server-side persist (writes valuations.json — survives deploy)
+  saveUserState(key, payload);
+  const status = document.getElementById(`${cardId}-status`);
+  if (status) status.textContent = `✓ ${savedAt} 자동 저장됨`;
+  let badge = card.querySelector('.valuation-saved-badge');
+  if (!badge) {
+    badge = document.createElement('span');
+    badge.className = 'valuation-saved-badge';
+    card.querySelector('.valuation-head').appendChild(badge);
+  }
+  badge.textContent = '📌 저장됨';
+  badge.title = `${savedAt} 저장`;
 }
 
 // Window-exposed handlers for inline onclick
@@ -1899,8 +2049,10 @@ window.saveValuationByCard = function (cardId) {
     if (v !== '') values[k] = v;
   });
   const savedAt = new Date().toLocaleString('ko-KR', { hour12: false });
-  const payload = { values, savedAt };
-  localStorage.setItem(valuationStorageKey(weekDate, headline), JSON.stringify(payload));
+  const payload = { values, savedAt, weekDate, headline };
+  const key = valuationStorageKey(weekDate, headline);
+  localStorage.setItem(key, JSON.stringify(payload));
+  saveUserState(key, payload);
   // Update status + badge in place
   const status = document.getElementById(`${cardId}-status`);
   if (status) status.textContent = `📌 ${savedAt} 저장됨`;
@@ -1920,7 +2072,9 @@ window.resetValuationByCard = function (cardId) {
   const weekDate = card.dataset.week;
   const headline = card.dataset.headline;
   if (!confirm('이 거래의 저장된 입력값을 모두 삭제하고 MD 기본값으로 되돌립니다. 계속할까요?')) return;
-  localStorage.removeItem(valuationStorageKey(weekDate, headline));
+  const key = valuationStorageKey(weekDate, headline);
+  localStorage.removeItem(key);
+  saveUserState(key, null);
   // Re-render the whole deals view so MD defaults are restored
   if (dealsState.current && dealsState.cache[dealsState.current]) {
     renderDealsContent(dealsState.cache[dealsState.current]);
@@ -3044,6 +3198,18 @@ setupShillerFilters();
 setupFedWatchFilters();
 setupCapMktComments();
 setupDashboardMacroComment();
+// Load deployed user-state (valuations + macro notes + comments), then
+// re-render deals view if it's already mounted
+loadUserState().then(() => {
+  // Push any localStorage-only saves (from before /save-state existed) to
+  // the server so the next deploy carries them everywhere.
+  migrateLocalStorageToUserState();
+  if (typeof dealsState !== 'undefined' &&
+      dealsState.current && dealsState.cache &&
+      dealsState.cache[dealsState.current]) {
+    renderDealsContent(dealsState.cache[dealsState.current]);
+  }
+});
 loadCalendar();
 loadData();
 loadWeeklyCalendar();

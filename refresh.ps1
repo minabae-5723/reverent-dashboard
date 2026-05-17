@@ -125,6 +125,43 @@ function Get-InvestingYield {
     }
 }
 
+# ----------------------------------------------------------------
+# Investing.com commodity fetch — reflects after-hours Globex prices
+# (Yahoo's regularMarketPrice only shows the Friday floor-close, which
+# undershoots when Sunday-evening crude has already moved).
+# Used for WTI; other commodities still use Yahoo.
+# ----------------------------------------------------------------
+function Get-InvestingCommodity {
+    param([string]$Url, [string]$Key)
+    try {
+        $r = Invoke-WebRequest -Uri $Url -UseBasicParsing -UserAgent $UserAgent -TimeoutSec 20
+        $html = $r.Content
+
+        $priceM = [regex]::Match($html, 'data-test="instrument-price-last">\s*([\d\.,]+)')
+        if (-not $priceM.Success) { return $null }
+        $current = [double]($priceM.Groups[1].Value -replace ',', '')
+
+        $pcM = [regex]::Match($html, '"priceChanges"\s*:\s*\{([^\}]+)\}', 'Singleline')
+        if (-not $pcM.Success) { return $null }
+        $pcObj = ('{' + $pcM.Groups[1].Value + '}') | ConvertFrom-Json
+
+        return [PSCustomObject]@{
+            key     = $Key
+            current = [Math]::Round($current, 2)
+            wow     = if ($null -ne $pcObj.pct_1w)  { [Math]::Round([double]$pcObj.pct_1w, 2) }  else { $null }
+            mom     = if ($null -ne $pcObj.pct_1m)  { [Math]::Round([double]$pcObj.pct_1m, 2) }  else { $null }
+            ytd     = if ($null -ne $pcObj.pct_ytd) { [Math]::Round([double]$pcObj.pct_ytd, 2) } else { $null }
+            type    = 'pct'
+            asOf    = if ($pcObj.updated_at) { $pcObj.updated_at } else { (Get-Date).ToString('s') }
+            ok      = $true
+            source  = 'investing'
+        }
+    } catch {
+        Write-Warning ("Investing commodity fail [{0}]: {1}" -f $Key, $_.Exception.Message)
+        return $null
+    }
+}
+
 # Fetch KR3Y, KR10Y, US2Y from Investing. Falls back to STATIC_DATA on failure.
 function Fetch-InvestingYields {
     $urls = [ordered]@{
@@ -301,6 +338,18 @@ function Fetch-Group {
     return $rows
 }
 
+# WTI: Investing (reflects Globex), other commodities: Yahoo CL=F via Fetch-Group.
+function _FetchCommodities {
+    $wti = Get-InvestingCommodity -Url 'https://www.investing.com/commodities/crude-oil' -Key 'WTI'
+    if (-not $wti) {
+        Write-Warning "Investing WTI failed — falling back to Yahoo CL=F"
+        $wtiYahoo = $INSTRUMENTS.commodity | Where-Object { $_.key -eq 'WTI' }
+        $wti = (Fetch-Group @($wtiYahoo))[0]
+    }
+    $others = Fetch-Group ($INSTRUMENTS.commodity | Where-Object { $_.key -ne 'WTI' })
+    return @($wti) + @($others)
+}
+
 # Main loop
 Add-Type -AssemblyName System.Web
 
@@ -316,7 +365,7 @@ do {
         rate      = @(Fetch-InvestingYields) +
                     @($STATIC_DATA.rate_kr | Where-Object { $_.key -eq 'CD91' }) +
                     @(Fetch-Group $INSTRUMENTS.rate)
-        commodity = @(Fetch-Group $INSTRUMENTS.commodity) + @($STATIC_DATA.commodity_extra)
+        commodity = @(_FetchCommodities) + @($STATIC_DATA.commodity_extra)
         fx        = @(Fetch-Group $INSTRUMENTS.fx)
         cds       = @($STATIC_DATA.cds)
         sector    = @(Fetch-Group $INSTRUMENTS.sector)

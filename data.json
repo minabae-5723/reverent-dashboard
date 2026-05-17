@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-05-17T06:34:15Z",
-    "updatedKr":  "2026-05-17 15:34:15",
+    "updated":  "2026-05-17T07:19:10Z",
+    "updatedKr":  "2026-05-17 16:19:10",
     "index":  [
                   {
                       "key":  "KOSPI",
@@ -139,14 +139,14 @@
     "commodity":  [
                       {
                           "key":  "WTI",
-                          "symbol":  "CL=F",
-                          "current":  101.02,
-                          "wow":  5.87,
-                          "mom":  20.48,
-                          "ytd":  76.24,
+                          "current":  105.42,
+                          "wow":  10.48,
+                          "mom":  25.72,
+                          "ytd":  83.63,
                           "type":  "pct",
-                          "asOf":  "2026-05-16T06:00:00",
-                          "ok":  true
+                          "asOf":  "2026-05-17T07:00:04.508Z",
+                          "ok":  true,
+                          "source":  "investing"
                       },
                       {
                           "key":  "GOLD",

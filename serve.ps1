@@ -347,6 +347,78 @@ try {
                 continue
             }
 
+            # Save valuation entry to valuations.json (POST)
+            #   Body: { key: "...", payload: {...} }
+            # The whole valuations.json is then deployable, persisting Fix
+            # values across browsers / Cloudflare reloads.
+            if ($relPath -eq '/save-state') {
+                if ($req.HttpMethod -ne 'POST') {
+                    $res.StatusCode = 405
+                    $errMsg = Get-JsonError 'POST required'
+                    $errBytes = [System.Text.Encoding]::UTF8.GetBytes($errMsg)
+                    $res.ContentType = 'application/json; charset=utf-8'
+                    $res.OutputStream.Write($errBytes, 0, $errBytes.Length)
+                    $res.Close()
+                    continue
+                }
+
+                $reader = New-Object System.IO.StreamReader($req.InputStream, [System.Text.Encoding]::UTF8)
+                $bodyStr = $reader.ReadToEnd()
+                $reader.Close()
+
+                $valPath = Join-Path $root 'user-state.json'
+                try {
+                    $body = $bodyStr | ConvertFrom-Json
+                    if (-not $body.key) { throw 'missing key' }
+                    # Accept either {key, value} (new) or {key, payload} (legacy)
+                    $newValue = if ($body.PSObject.Properties.Name -contains 'value') { $body.value } else { $body.payload }
+
+                    # Load existing valuations.json (or create skeleton)
+                    if (Test-Path -LiteralPath $valPath) {
+                        $existing = ([System.IO.File]::ReadAllText($valPath, [System.Text.Encoding]::UTF8)) | ConvertFrom-Json
+                    } else {
+                        $existing = [PSCustomObject]@{ version = 1; updated = ''; entries = [PSCustomObject]@{} }
+                    }
+                    if (-not $existing.entries) { $existing | Add-Member -NotePropertyName entries -NotePropertyValue ([PSCustomObject]@{}) -Force }
+
+                    # Convert entries to hashtable for easy mutation (PSCustomObject is immutable-ish)
+                    $entriesHash = @{}
+                    if ($existing.entries.PSObject.Properties) {
+                        foreach ($p in $existing.entries.PSObject.Properties) { $entriesHash[$p.Name] = $p.Value }
+                    }
+
+                    if ($null -ne $newValue) {
+                        $entriesHash[$body.key] = $newValue
+                    } else {
+                        # null = delete entry (matches Reset semantics)
+                        $entriesHash.Remove($body.key) | Out-Null
+                    }
+
+                    $existing.entries = [PSCustomObject]$entriesHash
+                    $existing.updated = (Get-Date).ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ")
+
+                    $json = $existing | ConvertTo-Json -Depth 10
+                    [System.IO.File]::WriteAllText($valPath, $json, (New-Object System.Text.UTF8Encoding($false)))
+
+                    $msg = "{`"ok`":true,`"key`":`"$($body.key)`",`"entries`":$($entriesHash.Count)}"
+                    $bytes = [System.Text.Encoding]::UTF8.GetBytes($msg)
+                    $res.ContentType = 'application/json; charset=utf-8'
+                    $res.Headers.Add('Cache-Control', 'no-store')
+                    $res.ContentLength64 = $bytes.Length
+                    $res.OutputStream.Write($bytes, 0, $bytes.Length)
+                    Write-Host "[$stamp] >>> /save-state key=$($body.key) (total entries=$($entriesHash.Count))" -ForegroundColor Magenta
+                } catch {
+                    $res.StatusCode = 400
+                    $errMsg = Get-JsonError "save failed: $($_.Exception.Message)"
+                    $errBytes = [System.Text.Encoding]::UTF8.GetBytes($errMsg)
+                    $res.ContentType = 'application/json; charset=utf-8'
+                    $res.OutputStream.Write($errBytes, 0, $errBytes.Length)
+                    Write-Host "[$stamp] !!! /save-state FAILED: $($_.Exception.Message)" -ForegroundColor Red
+                }
+                $res.Close()
+                continue
+            }
+
             # On-demand refresh endpoint: market data + calendar
             if ($relPath -eq '/refresh') {
                 Write-Host "[$stamp] >>> /refresh (market + calendar)..." -ForegroundColor Magenta
