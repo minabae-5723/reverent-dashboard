@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-05-18T05:19:11Z",
-    "updatedKr":  "2026-05-18 14:19:11",
+    "updated":  "2026-05-18T05:56:34Z",
+    "updatedKr":  "2026-05-18 14:56:34",
     "index":  [
                   {
                       "key":  "KOSPI",
@@ -72,23 +72,23 @@
     "rate":  [
                  {
                      "key":  "KR3Y",
-                     "current":  3.777,
-                     "wow":  17,
-                     "mom":  41,
-                     "ytd":  85,
+                     "current":  3.769,
+                     "wow":  16,
+                     "mom":  40,
+                     "ytd":  84,
                      "type":  "bp",
-                     "asOf":  "2026-05-18T05:18:47.14Z",
+                     "asOf":  "2026-05-18T05:56:36.327Z",
                      "ok":  true,
                      "source":  "investing"
                  },
                  {
                      "key":  "KR10Y",
-                     "current":  4.253,
-                     "wow":  30,
-                     "mom":  55,
-                     "ytd":  89,
+                     "current":  4.23,
+                     "wow":  28,
+                     "mom":  52,
+                     "ytd":  86,
                      "type":  "bp",
-                     "asOf":  "2026-05-18T05:18:50.162Z",
+                     "asOf":  "2026-05-18T05:56:46.303Z",
                      "ok":  true,
                      "source":  "investing"
                  },
@@ -110,7 +110,7 @@
                      "mom":  40,
                      "ytd":  63,
                      "type":  "bp",
-                     "asOf":  "2026-05-18T05:10:01.295Z",
+                     "asOf":  "2026-05-18T05:50:01.341Z",
                      "ok":  true,
                      "source":  "investing"
                  },

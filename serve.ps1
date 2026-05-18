@@ -447,13 +447,17 @@ try {
                     $res.Close()
                     continue
                 }
-                $script = Join-Path $root 'fetch-dart-valuation.ps1'
-                $args = @('-NoProfile','-ExecutionPolicy','Bypass','-File', $script, '-CorpCode', $qsCode)
-                if ($qsName) { $args += @('-CorpName', $qsName) }
-                if ($qsLtm -eq '1' -or $qsLtm -eq 'true') { $args += @('-LTM') }
+                $dartScript = Join-Path $root 'fetch-dart-valuation.ps1'
+                # $args is a PowerShell automatic variable — use a different name.
+                $dartArgs = @('-NoProfile','-ExecutionPolicy','Bypass','-File', $dartScript, '-CorpCode', $qsCode)
+                if ($qsName) { $dartArgs += @('-CorpName', $qsName) }
+                if ($qsLtm -eq '1' -or $qsLtm -eq 'true') { $dartArgs += @('-LTM') }
 
                 Write-Host "[$stamp] >>> /api/dart-valuation corp_code=$qsCode ltm=$qsLtm" -ForegroundColor Magenta
-                & powershell $args 2>&1 | Out-Null
+                $dartOutput = & powershell $dartArgs 2>&1
+                $oneLine = ($dartOutput -join ' | ')
+                if ($oneLine.Length -gt 300) { $oneLine = $oneLine.Substring(0, 300) + '...' }
+                Write-Host ("[$stamp]     fetch-dart: " + $oneLine) -ForegroundColor DarkGray
                 $valJsonPath = Join-Path $root ("valuation-" + $qsCode + ".json")
                 if (-not (Test-Path -LiteralPath $valJsonPath)) {
                     $res.StatusCode = 500

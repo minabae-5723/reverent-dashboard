@@ -1,30 +1,30 @@
 {
     "company":  "NAVER",
     "corp_code":  "00266961",
-    "fiscal_period":  "LTM Q1 2026 (FY2025 + Q12026 - Q12025)",
+    "fiscal_period":  "FY2025 Annual (Consolidated)",
     "unit":  "100M KRW",
-    "fetched_at":  "2026-05-18 14:33:44",
+    "fetched_at":  "2026-05-18 14:59:08",
     "pnl":  {
-                "revenue":  124893,
-                "operating_income":  22446,
+                "revenue":  120350,
+                "operating_income":  22081,
                 "depreciation":  null,
                 "ebitda":  null,
-                "net_income":  16861
+                "net_income":  18187
             },
     "debt":  {
-                 "st_borrowings":  23262,
+                 "st_borrowings":  1322,
                  "current_lt_borrowings":  null,
-                 "current_lease":  2627,
-                 "lt_borrowings":  9018,
-                 "nc_lease":  9946
+                 "current_lease":  2330,
+                 "lt_borrowings":  8741,
+                 "nc_lease":  9548
              },
     "cash":  {
-                 "cash_and_equivalents":  63763,
-                 "st_financial_invest":  19807
+                 "cash_and_equivalents":  59840,
+                 "st_financial_invest":  23369
              },
     "derived":  {
-                    "total_debt":  44853,
-                    "total_cash":  83570,
-                    "net_debt":  -38717
+                    "total_debt":  21941,
+                    "total_cash":  83209,
+                    "net_debt":  -61268
                 }
 }
