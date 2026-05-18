@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-05-18T05:57:10Z",
-    "updatedKr":  "2026-05-18 14:57:10",
+    "updated":  "2026-05-18T23:54:45Z",
+    "updatedKr":  "2026-05-19 08:54:45",
     "countries":  [
                       "5",
                       "35",
@@ -33,10 +33,10 @@
                        "importance":  1,
                        "indicator":  "NAHB Housing Market Index",
                        "period":  "May",
-                       "actual":  "",
+                       "actual":  "37",
                        "forecast":  "34",
                        "previous":  "34",
-                       "type":  "preview"
+                       "type":  "review"
                    },
                    {
                        "id":  "548202",
@@ -48,10 +48,10 @@
                        "importance":  1,
                        "indicator":  "6-Month Bill Auction",
                        "period":  "",
-                       "actual":  "",
+                       "actual":  "3.615%",
                        "forecast":  "",
                        "previous":  "3.615%",
-                       "type":  "preview"
+                       "type":  "review"
                    },
                    {
                        "id":  "548201",
@@ -63,10 +63,10 @@
                        "importance":  1,
                        "indicator":  "3-Month Bill Auction",
                        "period":  "",
-                       "actual":  "",
+                       "actual":  "3.600%",
                        "forecast":  "",
                        "previous":  "3.610%",
-                       "type":  "preview"
+                       "type":  "review"
                    },
                    {
                        "id":  "547151",
@@ -78,10 +78,10 @@
                        "importance":  2,
                        "indicator":  "TIC Net Long-Term Transactions",
                        "period":  "Mar",
-                       "actual":  "",
-                       "forecast":  "",
-                       "previous":  "58.6B",
-                       "type":  "preview"
+                       "actual":  "81.3B",
+                       "forecast":  "87.2B",
+                       "previous":  "57.0B",
+                       "type":  "review"
                    },
                    {
                        "id":  "547149",
@@ -93,10 +93,10 @@
                        "importance":  1,
                        "indicator":  "TIC Net Long-Term Transactions including Swaps",
                        "period":  "Mar",
-                       "actual":  "",
+                       "actual":  "81.30B",
                        "forecast":  "82.40B",
-                       "previous":  "58.60B",
-                       "type":  "preview"
+                       "previous":  "57.00B",
+                       "type":  "review"
                    },
                    {
                        "id":  "547152",
@@ -108,10 +108,10 @@
                        "importance":  1,
                        "indicator":  "US Foreign Buying, T-bonds",
                        "period":  "Mar",
-                       "actual":  "",
+                       "actual":  "13.50B",
                        "forecast":  "",
-                       "previous":  "2.00B",
-                       "type":  "preview"
+                       "previous":  "2.60B",
+                       "type":  "review"
                    },
                    {
                        "id":  "547150",
@@ -123,10 +123,10 @@
                        "importance":  1,
                        "indicator":  "Overall Net Capital Flow",
                        "period":  "Mar",
-                       "actual":  "",
+                       "actual":  "150.70B",
                        "forecast":  "",
-                       "previous":  "184.50B",
-                       "type":  "preview"
+                       "previous":  "182.70B",
+                       "type":  "review"
                    },
                    {
                        "id":  "547158",
@@ -138,10 +138,70 @@
                        "importance":  1,
                        "indicator":  "GDP External Demand (QoQ)",
                        "period":  "Q1",
-                       "actual":  "",
+                       "actual":  "0.3%",
                        "forecast":  "0.2%",
                        "previous":  "0.0%",
-                       "type":  "preview"
+                       "type":  "review"
+                   },
+                   {
+                       "id":  "547160",
+                       "datetime":  "2026/05/19 08:50:00",
+                       "date":  "5/19",
+                       "time":  "08:50",
+                       "flagKey":  "Japan",
+                       "currency":  "JPY",
+                       "importance":  1,
+                       "indicator":  "GDP Private Consumption (QoQ)",
+                       "period":  "Q1",
+                       "actual":  "0.3%",
+                       "forecast":  "0.2%",
+                       "previous":  "0.0%",
+                       "type":  "review"
+                   },
+                   {
+                       "id":  "547159",
+                       "datetime":  "2026/05/19 08:50:00",
+                       "date":  "5/19",
+                       "time":  "08:50",
+                       "flagKey":  "Japan",
+                       "currency":  "JPY",
+                       "importance":  1,
+                       "indicator":  "GDP Capital Expenditure (QoQ)",
+                       "period":  "Q1",
+                       "actual":  "0.3%",
+                       "forecast":  "0.2%",
+                       "previous":  "1.4%",
+                       "type":  "review"
+                   },
+                   {
+                       "id":  "547161",
+                       "datetime":  "2026/05/19 08:50:00",
+                       "date":  "5/19",
+                       "time":  "08:50",
+                       "flagKey":  "Japan",
+                       "currency":  "JPY",
+                       "importance":  3,
+                       "indicator":  "GDP (QoQ)",
+                       "period":  "Q1",
+                       "actual":  "0.5%",
+                       "forecast":  "0.4%",
+                       "previous":  "0.2%",
+                       "type":  "review"
+                   },
+                   {
+                       "id":  "547162",
+                       "datetime":  "2026/05/19 08:50:00",
+                       "date":  "5/19",
+                       "time":  "08:50",
+                       "flagKey":  "Japan",
+                       "currency":  "JPY",
+                       "importance":  2,
+                       "indicator":  "GDP (YoY)",
+                       "period":  "Q1",
+                       "actual":  "2.1%",
+                       "forecast":  "1.7%",
+                       "previous":  "0.8%",
+                       "type":  "review"
                    },
                    {
                        "id":  "547163",
@@ -156,66 +216,6 @@
                        "actual":  "",
                        "forecast":  "3.1%",
                        "previous":  "3.4%",
-                       "type":  "preview"
-                   },
-                   {
-                       "id":  "547160",
-                       "datetime":  "2026/05/19 08:50:00",
-                       "date":  "5/19",
-                       "time":  "08:50",
-                       "flagKey":  "Japan",
-                       "currency":  "JPY",
-                       "importance":  1,
-                       "indicator":  "GDP Private Consumption (QoQ)",
-                       "period":  "Q1",
-                       "actual":  "",
-                       "forecast":  "0.2%",
-                       "previous":  "0.3%",
-                       "type":  "preview"
-                   },
-                   {
-                       "id":  "547161",
-                       "datetime":  "2026/05/19 08:50:00",
-                       "date":  "5/19",
-                       "time":  "08:50",
-                       "flagKey":  "Japan",
-                       "currency":  "JPY",
-                       "importance":  3,
-                       "indicator":  "GDP (QoQ)",
-                       "period":  "Q1",
-                       "actual":  "",
-                       "forecast":  "0.4%",
-                       "previous":  "0.3%",
-                       "type":  "preview"
-                   },
-                   {
-                       "id":  "547162",
-                       "datetime":  "2026/05/19 08:50:00",
-                       "date":  "5/19",
-                       "time":  "08:50",
-                       "flagKey":  "Japan",
-                       "currency":  "JPY",
-                       "importance":  2,
-                       "indicator":  "GDP (YoY)",
-                       "period":  "Q1",
-                       "actual":  "",
-                       "forecast":  "1.7%",
-                       "previous":  "1.3%",
-                       "type":  "preview"
-                   },
-                   {
-                       "id":  "547159",
-                       "datetime":  "2026/05/19 08:50:00",
-                       "date":  "5/19",
-                       "time":  "08:50",
-                       "flagKey":  "Japan",
-                       "currency":  "JPY",
-                       "importance":  1,
-                       "indicator":  "GDP Capital Expenditure (QoQ)",
-                       "period":  "Q1",
-                       "actual":  "",
-                       "forecast":  "0.2%",
-                       "previous":  "1.3%",
                        "type":  "preview"
                    },
                    {

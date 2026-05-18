@@ -1,9 +1,9 @@
 {
-    "company":  "Dunamu",
+    "company":  "corp_01310241",
     "corp_code":  "01310241",
-    "fiscal_period":  "2025-FY Annual (Consolidated)",
+    "fiscal_period":  "FY2025 Annual (Consolidated)",
     "unit":  "100M KRW",
-    "fetched_at":  "2026-05-18 14:16:05",
+    "fetched_at":  "2026-05-18 15:00:56",
     "pnl":  {
                 "revenue":  15578,
                 "operating_income":  8693,
