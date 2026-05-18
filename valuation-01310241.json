@@ -1,0 +1,30 @@
+{
+    "company":  "Dunamu",
+    "corp_code":  "01310241",
+    "fiscal_period":  "2025-FY Annual (Consolidated)",
+    "unit":  "100M KRW",
+    "fetched_at":  "2026-05-18 14:16:05",
+    "pnl":  {
+                "revenue":  15578,
+                "operating_income":  8693,
+                "depreciation":  null,
+                "ebitda":  null,
+                "net_income":  7089
+            },
+    "debt":  {
+                 "st_borrowings":  null,
+                 "current_lt_borrowings":  null,
+                 "current_lease":  64,
+                 "lt_borrowings":  4203,
+                 "nc_lease":  53
+             },
+    "cash":  {
+                 "cash_and_equivalents":  4032,
+                 "st_financial_invest":  79163
+             },
+    "derived":  {
+                    "total_debt":  4320,
+                    "total_cash":  83195,
+                    "net_debt":  -78875
+                }
+}

@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-05-17T23:41:02Z",
-    "updatedKr":  "2026-05-18 08:41:02",
+    "updated":  "2026-05-18T04:58:51Z",
+    "updatedKr":  "2026-05-18 13:58:51",
     "countries":  [
                       "5",
                       "35",
@@ -18,10 +18,10 @@
                        "importance":  1,
                        "indicator":  "5-Year JGB Auction",
                        "period":  "",
-                       "actual":  "",
+                       "actual":  "2.024%",
                        "forecast":  "",
                        "previous":  "1.826%",
-                       "type":  "preview"
+                       "type":  "review"
                    },
                    {
                        "id":  "547147",
