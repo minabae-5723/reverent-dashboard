@@ -16,7 +16,8 @@
 param(
     [string]$CorpName = '',
     [string]$CorpCode = '',
-    [int]$Year       = 2025
+    [int]$Year       = 2025,
+    [switch]$LTM     = $false   # Build LTM = FY + Q1_next - Q1_curr (income); BS = latest quarter
 )
 
 $ErrorActionPreference = 'Stop'
@@ -87,17 +88,49 @@ function Get-ValueByName {
     try { return [double]$clean } catch { return $null }
 }
 
+# ── Fetch base statements (FY annual = anchor for both modes) ──
 $reportName = "FY$Year Annual"
 Write-Host ("Fetching " + $reportName + " (CFS)...") -ForegroundColor Yellow
-$rowsCfs = Fetch-DartStatements -Corp $CorpCode -BsnsYear $Year -ReprtCode 11011 -FsDiv 'CFS'
-if (-not $rowsCfs) {
+$rowsAnnual = Fetch-DartStatements -Corp $CorpCode -BsnsYear $Year -ReprtCode 11011 -FsDiv 'CFS'
+if (-not $rowsAnnual) {
     Write-Host "Falling back to OFS (single-company)..." -ForegroundColor Yellow
-    $rowsCfs = Fetch-DartStatements -Corp $CorpCode -BsnsYear $Year -ReprtCode 11011 -FsDiv 'OFS'
+    $rowsAnnual = Fetch-DartStatements -Corp $CorpCode -BsnsYear $Year -ReprtCode 11011 -FsDiv 'OFS'
 }
-if (-not $rowsCfs) {
+if (-not $rowsAnnual) {
     Write-Host "ERROR: no financial data" -ForegroundColor Red
     exit 1
 }
+
+# ── LTM: also fetch Q1 of (Year+1) and Q1 of Year ──
+# LTM_PnL[i] = annual[i] + q1_next[i] - q1_curr[i]   (for income statement)
+# LTM_BS[i]  = q1_next[i] (latest balance)
+$rowsQ1Next = $null
+$rowsQ1Curr = $null
+$useLtm = $false
+if ($LTM) {
+    Write-Host ("Fetching Q1 " + ($Year + 1) + " (CFS) for LTM...") -ForegroundColor Yellow
+    $rowsQ1Next = Fetch-DartStatements -Corp $CorpCode -BsnsYear ($Year + 1) -ReprtCode 11013 -FsDiv 'CFS'
+    if (-not $rowsQ1Next) {
+        $rowsQ1Next = Fetch-DartStatements -Corp $CorpCode -BsnsYear ($Year + 1) -ReprtCode 11013 -FsDiv 'OFS'
+    }
+    Write-Host ("Fetching Q1 " + $Year + " (CFS) for LTM baseline...") -ForegroundColor Yellow
+    $rowsQ1Curr = Fetch-DartStatements -Corp $CorpCode -BsnsYear $Year -ReprtCode 11013 -FsDiv 'CFS'
+    if (-not $rowsQ1Curr) {
+        $rowsQ1Curr = Fetch-DartStatements -Corp $CorpCode -BsnsYear $Year -ReprtCode 11013 -FsDiv 'OFS'
+    }
+    if ($rowsQ1Next -and $rowsQ1Curr) {
+        $useLtm = $true
+        Write-Host (" -> LTM mode active: FY$Year + Q1$($Year+1) - Q1$Year") -ForegroundColor Green
+    } else {
+        Write-Host (" -> Q1 data missing — using FY only") -ForegroundColor Yellow
+    }
+}
+
+# Decide which rows to use for P&L vs BS.
+# (Balance-sheet items always read from the most-recent quarter; income from
+#  either FY-only or LTM construction.)
+$rowsPnL = $rowsAnnual   # may be combined below for LTM
+$rowsBS  = if ($useLtm) { $rowsQ1Next } else { $rowsAnnual }
 
 # Korean account_nm strings from code points (PS 5.1 cp949 safe).
 # (Useful when the IFRS-tagged account_id isn't present and only the
@@ -112,33 +145,75 @@ $kn = @{
     stFinanceInst= [string]([char]0xB2E8 + [char]0xAE30 + [char]0xAE08 + [char]0xC735 + [char]0xC0C1 + [char]0xD488)   # 단기금융상품
 }
 
-# ── Extract values (units: raw won) ──
-$revenue   = Get-Value -Rows $rowsCfs -AccountIds @('ifrs-full_GrossProfit','ifrs-full_Revenue')
-if ($null -eq $revenue) { $revenue = Get-ValueByName -Rows $rowsCfs -NameKr $kn.revenue }
-if ($null -eq $revenue) { $revenue = Get-ValueByName -Rows $rowsCfs -NameKr $kn.revenue2 }
+# ── P&L extraction helper that supports LTM combining ──
+# For LTM: ltm = annual + q1_next - q1_curr  (whichever values exist)
+function Get-PnL {
+    param(
+        [string[]]$AccountIds,
+        [string]$NameKr1 = '',
+        [string]$NameKr2 = ''
+    )
+    $tryGet = {
+        param([array]$rows)
+        if (-not $rows) { return $null }
+        $v = Get-Value -Rows $rows -AccountIds $AccountIds
+        if ($null -eq $v -and $NameKr1) { $v = Get-ValueByName -Rows $rows -NameKr $NameKr1 }
+        if ($null -eq $v -and $NameKr2) { $v = Get-ValueByName -Rows $rows -NameKr $NameKr2 }
+        return $v
+    }
+    $annual = & $tryGet $rowsAnnual
+    if (-not $useLtm) { return $annual }
 
-$opInc     = Get-Value -Rows $rowsCfs -AccountIds @('dart_OperatingIncomeLoss','ifrs-full_ProfitLossFromOperatingActivities')
-if ($null -eq $opInc) { $opInc = Get-ValueByName -Rows $rowsCfs -NameKr $kn.opIncome }
-$netIncome = Get-Value -Rows $rowsCfs -AccountIds @('ifrs-full_ProfitLoss')
+    $q1Next = & $tryGet $rowsQ1Next
+    $q1Curr = & $tryGet $rowsQ1Curr
+    if ($null -eq $annual -or $null -eq $q1Next -or $null -eq $q1Curr) {
+        # Insufficient data for LTM — fall back to annual
+        return $annual
+    }
+    return ($annual + $q1Next - $q1Curr)
+}
 
-# Debt-like
-$curBorrow   = Get-ValueByName -Rows $rowsCfs -NameKr $kn.stBorrowing
-$curLTBorrow = Get-ValueByName -Rows $rowsCfs -NameKr $kn.curLtBorrow
-$curLease    = Get-Value -Rows $rowsCfs -AccountIds @('ifrs-full_CurrentLeaseLiabilities')
-$ltBorrow    = Get-ValueByName -Rows $rowsCfs -NameKr $kn.ltBorrowing
-if ($null -eq $ltBorrow) { $ltBorrow = Get-Value -Rows $rowsCfs -AccountIds @('ifrs-full_NoncurrentFinancialLiabilitiesAtAmortisedCost') }
-$ncLease     = Get-Value -Rows $rowsCfs -AccountIds @('ifrs-full_NoncurrentLeaseLiabilities')
+# ── BS extraction (always from most-recent quarter; rowsBS) ──
+function Get-BS {
+    param([string[]]$AccountIds, [string]$NameKr = '')
+    $v = Get-Value -Rows $rowsBS -AccountIds $AccountIds
+    if ($null -eq $v -and $NameKr) { $v = Get-ValueByName -Rows $rowsBS -NameKr $NameKr }
+    return $v
+}
 
-# Cash
-$cash        = Get-Value -Rows $rowsCfs -AccountIds @('ifrs-full_CashAndCashEquivalents')
-$stFI        = Get-ValueByName -Rows $rowsCfs -NameKr $kn.stFinanceInst
+# ── P&L ──
+$revenue   = Get-PnL -AccountIds @('ifrs-full_GrossProfit','ifrs-full_Revenue') -NameKr1 $kn.revenue -NameKr2 $kn.revenue2
+$opInc     = Get-PnL -AccountIds @('dart_OperatingIncomeLoss','ifrs-full_ProfitLossFromOperatingActivities') -NameKr1 $kn.opIncome
+$netIncome = Get-PnL -AccountIds @('ifrs-full_ProfitLoss')
+
+# ── Debt-like ──
+$curBorrow   = Get-BS -AccountIds @('ifrs-full_ShorttermBorrowings') -NameKr $kn.stBorrowing
+$curLTBorrow = Get-BS -AccountIds @() -NameKr $kn.curLtBorrow
+$curLease    = Get-BS -AccountIds @('ifrs-full_CurrentLeaseLiabilities')
+$ltBorrow    = Get-BS -AccountIds @('ifrs-full_LongtermBorrowings','ifrs-full_NoncurrentFinancialLiabilitiesAtAmortisedCost') -NameKr $kn.ltBorrowing
+$ncLease     = Get-BS -AccountIds @('ifrs-full_NoncurrentLeaseLiabilities')
+
+# ── Cash / ST Financial Instruments ──
+# Try Korean name first ("단기금융상품" — most common), then a broad list of IFRS IDs
+# that different filers use for short-term financial instruments / investments.
+$cash = Get-BS -AccountIds @('ifrs-full_CashAndCashEquivalents')
+
+$stFI = Get-BS -AccountIds @('ifrs-full_ShorttermDepositsNotClassifiedAsCashEquivalents') -NameKr $kn.stFinanceInst
 if ($null -eq $stFI) {
-    $stAmort = Get-Value -Rows $rowsCfs -AccountIds @('ifrs-full_CurrentFinancialAssetsAtAmortisedCost')
-    $stFvtpl = Get-Value -Rows $rowsCfs -AccountIds @('ifrs-full_CurrentFinancialAssetsAtFairValueThroughProfitOrLossMandatorilyMeasuredAtFairValue')
+    # Broad fallback: sum of all "current financial assets" line items present
+    $stCandidates = @(
+        'ifrs-full_CurrentFinancialAssetsAtAmortisedCost'
+        'ifrs-full_CurrentFinancialAssetsAtFairValueThroughProfitOrLossMandatorilyMeasuredAtFairValue'
+        'ifrs-full_CurrentFinancialAssetsAtFairValueThroughOtherComprehensiveIncome'
+        'dart_CurrentFinancialAssetDesignationAsAtFairValueThroughProfitOrLoss'
+        'dart_CurrentFinancialAssetAtFairValueThroughProfitOrLoss'
+    )
     $sum = 0.0
     $any = $false
-    if ($null -ne $stAmort) { $sum += $stAmort; $any = $true }
-    if ($null -ne $stFvtpl) { $sum += $stFvtpl; $any = $true }
+    foreach ($id in $stCandidates) {
+        $v = Get-Value -Rows $rowsBS -AccountIds @($id)
+        if ($null -ne $v) { $sum += $v; $any = $true }
+    }
     if ($any) { $stFI = $sum }
 }
 
@@ -148,7 +223,7 @@ $toEok = { param($v) if ($null -eq $v) { $null } else { [Math]::Round($v / 10000
 $out = [ordered]@{
     company         = $CorpName
     corp_code       = $CorpCode
-    fiscal_period   = "$Year-FY Annual (Consolidated)"
+    fiscal_period   = if ($useLtm) { ("LTM Q1 " + ($Year + 1) + " (FY$Year + Q1$($Year+1) - Q1$Year)") } else { "FY$Year Annual (Consolidated)" }
     unit            = "100M KRW"
     fetched_at      = (Get-Date).ToString('yyyy-MM-dd HH:mm:ss')
     pnl             = [ordered]@{

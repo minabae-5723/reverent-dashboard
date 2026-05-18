@@ -419,6 +419,60 @@ try {
                 continue
             }
 
+            # DART OpenAPI valuation lookup (GET)
+            #   /api/dart-valuation?corp_code=01310241[&ltm=1]
+            # Runs fetch-dart-valuation.ps1 with the given corp_code and
+            # streams the resulting JSON back to the browser. Used by the
+            # "DART 자동 채우기" button on valuation cards.
+            if ($relPath -eq '/api/dart-valuation') {
+                $qsCode = $req.QueryString['corp_code']
+                $qsName = $req.QueryString['name']
+                $qsLtm  = $req.QueryString['ltm']
+                if (-not $qsCode) {
+                    $res.StatusCode = 400
+                    $errMsg = Get-JsonError 'corp_code required'
+                    $errBytes = [System.Text.Encoding]::UTF8.GetBytes($errMsg)
+                    $res.ContentType = 'application/json; charset=utf-8'
+                    $res.OutputStream.Write($errBytes, 0, $errBytes.Length)
+                    $res.Close()
+                    continue
+                }
+                # Validate: 8-digit numeric only
+                if ($qsCode -notmatch '^\d{8}$') {
+                    $res.StatusCode = 400
+                    $errMsg = Get-JsonError 'corp_code must be 8 digits'
+                    $errBytes = [System.Text.Encoding]::UTF8.GetBytes($errMsg)
+                    $res.ContentType = 'application/json; charset=utf-8'
+                    $res.OutputStream.Write($errBytes, 0, $errBytes.Length)
+                    $res.Close()
+                    continue
+                }
+                $script = Join-Path $root 'fetch-dart-valuation.ps1'
+                $args = @('-NoProfile','-ExecutionPolicy','Bypass','-File', $script, '-CorpCode', $qsCode)
+                if ($qsName) { $args += @('-CorpName', $qsName) }
+                if ($qsLtm -eq '1' -or $qsLtm -eq 'true') { $args += @('-LTM') }
+
+                Write-Host "[$stamp] >>> /api/dart-valuation corp_code=$qsCode ltm=$qsLtm" -ForegroundColor Magenta
+                & powershell $args 2>&1 | Out-Null
+                $valJsonPath = Join-Path $root ("valuation-" + $qsCode + ".json")
+                if (-not (Test-Path -LiteralPath $valJsonPath)) {
+                    $res.StatusCode = 500
+                    $errMsg = Get-JsonError "DART fetch failed (no output file)"
+                    $errBytes = [System.Text.Encoding]::UTF8.GetBytes($errMsg)
+                    $res.ContentType = 'application/json; charset=utf-8'
+                    $res.OutputStream.Write($errBytes, 0, $errBytes.Length)
+                    $res.Close()
+                    continue
+                }
+                $valBytes = [System.IO.File]::ReadAllBytes($valJsonPath)
+                $res.ContentType = 'application/json; charset=utf-8'
+                $res.Headers.Add('Cache-Control', 'no-store')
+                $res.ContentLength64 = $valBytes.Length
+                $res.OutputStream.Write($valBytes, 0, $valBytes.Length)
+                $res.Close()
+                continue
+            }
+
             # On-demand refresh endpoint: market data + calendar
             if ($relPath -eq '/refresh') {
                 Write-Host "[$stamp] >>> /refresh (market + calendar)..." -ForegroundColor Magenta

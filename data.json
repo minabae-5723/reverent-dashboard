@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-05-18T04:57:50Z",
-    "updatedKr":  "2026-05-18 13:57:50",
+    "updated":  "2026-05-18T05:19:11Z",
+    "updatedKr":  "2026-05-18 14:19:11",
     "index":  [
                   {
                       "key":  "KOSPI",
@@ -72,23 +72,23 @@
     "rate":  [
                  {
                      "key":  "KR3Y",
-                     "current":  3.773,
-                     "wow":  16,
-                     "mom":  40,
-                     "ytd":  84,
+                     "current":  3.777,
+                     "wow":  17,
+                     "mom":  41,
+                     "ytd":  85,
                      "type":  "bp",
-                     "asOf":  "2026-05-18T04:57:47.36Z",
+                     "asOf":  "2026-05-18T05:18:47.14Z",
                      "ok":  true,
                      "source":  "investing"
                  },
                  {
                      "key":  "KR10Y",
-                     "current":  4.25,
-                     "wow":  29,
-                     "mom":  54,
-                     "ytd":  88,
+                     "current":  4.253,
+                     "wow":  30,
+                     "mom":  55,
+                     "ytd":  89,
                      "type":  "bp",
-                     "asOf":  "2026-05-18T04:57:25.985Z",
+                     "asOf":  "2026-05-18T05:18:50.162Z",
                      "ok":  true,
                      "source":  "investing"
                  },
@@ -105,12 +105,12 @@
                  },
                  {
                      "key":  "US2Y",
-                     "current":  4.103,
-                     "wow":  16,
+                     "current":  4.101,
+                     "wow":  15,
                      "mom":  40,
                      "ytd":  63,
                      "type":  "bp",
-                     "asOf":  "2026-05-18T04:50:01.325Z",
+                     "asOf":  "2026-05-18T05:10:01.295Z",
                      "ok":  true,
                      "source":  "investing"
                  },

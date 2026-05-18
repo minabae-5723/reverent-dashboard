@@ -2619,6 +2619,17 @@ html, body {
   color: var(--negative);
 }
 
+.val-action-dart {
+  background: #fff7e6;
+  color: #b86700;
+  border-color: #e8b66b;
+}
+
+.val-action-dart:hover {
+  background: #ffeec9;
+  border-color: #b86700;
+}
+
 .valuation-status {
   font-size: 10.5px;
   color: var(--text-muted);

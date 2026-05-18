@@ -1998,6 +1998,7 @@ function renderValuationCard(cardId, weekDate, headline, title, data) {
       </div>
       <div class="valuation-foot">
         <div class="valuation-actions">
+          <button type="button" class="val-action-btn val-action-dart" onclick="autoFillValuationFromDart('${cardId}')" title="DART OpenAPI로 P&L/Net Debt 항목 자동 채우기 (corp_code 입력 필요)">📥 DART 자동 채우기</button>
           <button type="button" class="val-action-btn val-action-fix" onclick="saveValuationByCard('${cardId}')" title="현재 입력값을 브라우저에 영구 저장">📌 Fix (저장)</button>
           <button type="button" class="val-action-btn val-action-reset" onclick="resetValuationByCard('${cardId}')" title="저장값을 삭제하고 MD 기본값으로 되돌림">↺ 초기화</button>
         </div>
@@ -2062,6 +2063,78 @@ function _autoSaveValuation(cardId) {
 }
 
 // Window-exposed handlers for inline onclick
+// ─── DART OpenAPI auto-fill ─────────────────────────────────────
+// Fetches financials via serve.ps1 backend (/api/dart-valuation?corp_code=…)
+// and populates P&L + Debt + Cash inputs on the valuation card.
+// Maps DART fields → Korean input labels used in VAL_PNL_FIELDS etc.
+window.autoFillValuationFromDart = async function (cardId) {
+  const card = document.getElementById(cardId);
+  if (!card) return;
+  if (IS_STATIC) {
+    alert('DART 자동 채우기는 로컬 서버(localhost:8000)에서만 동작합니다.\nCloudflare 배포 페이지에서는 사용 불가.');
+    return;
+  }
+
+  const corpCode = (prompt('회사의 DART corp_code (8자리)를 입력하세요.\n예) 두나무=01310241, NAVER=00266961, 삼성전자=00126380', '') || '').trim();
+  if (!corpCode) return;
+  if (!/^\d{8}$/.test(corpCode)) {
+    alert('corp_code는 8자리 숫자여야 합니다.');
+    return;
+  }
+  const useLtm = confirm('LTM (최신분기 누적) 기준으로 가져올까요?\n- 확인: LTM = FY + 최신 Q1 - 직전 Q1\n- 취소: 가장 최근 사업보고서 (FY) 만 사용');
+
+  const status = document.getElementById(`${cardId}-status`);
+  if (status) status.textContent = '⏳ DART에서 데이터를 가져오는 중…';
+
+  try {
+    const url = `/api/dart-valuation?corp_code=${corpCode}` + (useLtm ? '&ltm=1' : '');
+    const res = await fetch(url, { cache: 'no-store' });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({ error: `HTTP ${res.status}` }));
+      throw new Error(err.error || `HTTP ${res.status}`);
+    }
+    const data = await res.json();
+
+    // Map DART JSON → input keys (Korean labels used in VAL_PNL_FIELDS etc.)
+    const fieldMap = {
+      // P&L
+      '매출액':           data.pnl?.revenue,
+      '영업이익':         data.pnl?.operating_income,
+      '당기순이익':       data.pnl?.net_income,
+      // (감가상각비 / EBITDA: not auto-filled — left for manual / Excel input)
+      // Debt
+      '단기차입금':       data.debt?.st_borrowings,
+      '유동성장기차입금': data.debt?.current_lt_borrowings,
+      '유동리스부채':     data.debt?.current_lease,
+      '장기차입금':       data.debt?.lt_borrowings,
+      '리스부채':         data.debt?.nc_lease,
+      // Cash
+      '현금및현금성자산': data.cash?.cash_and_equivalents,
+      '단기금융상품':     data.cash?.st_financial_invest,
+    };
+
+    let filled = 0;
+    Object.entries(fieldMap).forEach(([k, v]) => {
+      if (v == null) return;
+      const el = card.querySelector(`input[data-key="${k}"]`);
+      if (!el) return;
+      el.value = Number(v).toLocaleString('en-US');
+      filled++;
+    });
+
+    // Recompute derived (EBITDA, EV, multiples) + auto-save
+    if (window.computeValuation) window.computeValuation(cardId);
+    _autoSaveValuation(cardId);
+
+    if (status) {
+      status.textContent = `✓ DART ${data.fiscal_period} → ${filled}개 항목 채움 (단위: 억원)`;
+    }
+  } catch (err) {
+    if (status) status.textContent = `❌ DART fetch 실패: ${err.message}`;
+    alert(`DART fetch 실패: ${err.message}`);
+  }
+};
+
 window.saveValuationByCard = function (cardId) {
   const card = document.getElementById(cardId);
   if (!card) return;
