@@ -162,6 +162,86 @@ function Get-InvestingCommodity {
     }
 }
 
+# CD91 (Korean 91-day CD rate) auto-fetch from Naver mobile market index API.
+# Maintains cd91-history.json (daily snapshots) so WoW/MoM/YTD can be computed
+# once enough history accumulates. Falls back to STATIC_DATA for deltas if
+# history is too short.
+function Get-NaverCD91 {
+    try {
+        $wc = New-Object System.Net.WebClient
+        $wc.Headers.Add('User-Agent', $UserAgent)
+        $raw = $wc.DownloadData('https://api.stock.naver.com/marketindex/domesticInterest/KFIA114000')
+        $wc.Dispose()
+        $obj = [System.Text.Encoding]::UTF8.GetString($raw) | ConvertFrom-Json
+        $cur = [double]$obj.closePrice
+        $tradedDate = ([DateTime]::Parse($obj.localTradedAt)).ToString('yyyy-MM-dd')
+
+        # Load or initialize history
+        $histFile = Join-Path $PSScriptRoot 'cd91-history.json'
+        $hist = @()
+        if (Test-Path $histFile) {
+            try {
+                $loaded = (Get-Content $histFile -Raw -Encoding UTF8 | ConvertFrom-Json).history
+                if ($loaded) { $hist = @($loaded) }
+            } catch {}
+        }
+        # Upsert today's value (or update if rate changed)
+        $existing = $hist | Where-Object { $_.date -eq $tradedDate }
+        if ($existing) {
+            $existing.close = $cur
+        } else {
+            $hist += [PSCustomObject]@{ date = $tradedDate; close = $cur }
+        }
+        $hist = @($hist | Sort-Object date) | Select-Object -Last 400
+        $out = @{ history = $hist }
+        [System.IO.File]::WriteAllText($histFile, ($out | ConvertTo-Json -Depth 5), (New-Object System.Text.UTF8Encoding($false)))
+
+        # Compute deltas from history
+        $today = [DateTime]::Parse($tradedDate)
+        $wowTarget = $today.AddDays(-7).ToString('yyyy-MM-dd')
+        $momTarget = $today.AddMonths(-1).ToString('yyyy-MM-dd')
+        $year      = $today.Year
+
+        $findClosest = {
+            param($targetStr)
+            $best = $null
+            foreach ($h in $hist) {
+                if ($h.date -le $targetStr) {
+                    if (-not $best -or $h.date -gt $best.date) { $best = $h }
+                }
+            }
+            return $best
+        }
+        $wowBase = & $findClosest $wowTarget
+        $momBase = & $findClosest $momTarget
+        $ytdBase = $hist | Where-Object { $_.date.StartsWith("$year-") } | Select-Object -First 1
+
+        # When history is brand new, the "first entry of year" lookups can
+        # equal today's entry — treat that as no baseline so the static
+        # fallback fills in deltas instead of returning a spurious 0.
+        if ($wowBase -and $wowBase.date -eq $tradedDate) { $wowBase = $null }
+        if ($momBase -and $momBase.date -eq $tradedDate) { $momBase = $null }
+        if ($ytdBase -and $ytdBase.date -eq $tradedDate) { $ytdBase = $null }
+
+        $bp = { param($prev) if ($prev) { [Math]::Round(($cur - [double]$prev.close) * 100, 0) } else { $null } }
+
+        return [PSCustomObject]@{
+            key     = 'CD91'
+            current = [Math]::Round($cur, 3)
+            wow     = & $bp $wowBase
+            mom     = & $bp $momBase
+            ytd     = & $bp $ytdBase
+            type    = 'bp'
+            asOf    = $tradedDate
+            ok      = $true
+            source  = 'naver-mobile'
+        }
+    } catch {
+        Write-Warning ("CD91 fetch fail: " + $_.Exception.Message)
+        return $null
+    }
+}
+
 # Fetch KR3Y, KR10Y, US2Y from Investing. Falls back to STATIC_DATA on failure.
 function Fetch-InvestingYields {
     $urls = [ordered]@{
@@ -231,6 +311,36 @@ function Get-YahooChart {
     }
 }
 
+# Find the most recent Friday entry in a daily-history array.
+# Used by Friday-freeze mode: regardless of what day refresh runs, the dashboard
+# always displays the most recent completed Friday close (Yahoo only appends
+# today's close to history AFTER that exchange's session ends, so this naturally
+# becomes "last Friday's close" Mon-Thu and "today's close" on Fri post-close).
+function Get-LastFridayEntry {
+    param([array]$History)
+    for ($i = $History.Count - 1; $i -ge 0; $i--) {
+        $dt = [DateTime]::Parse($History[$i].date)
+        if ($dt.DayOfWeek -eq [System.DayOfWeek]::Friday) {
+            return [PSCustomObject]@{ idx = $i; entry = $History[$i] }
+        }
+    }
+    return $null
+}
+
+# Find the N-th previous Friday in history (going backward from a given index).
+function Get-PrevFridayEntry {
+    param([array]$History, [int]$FromIdx, [int]$WeeksBack = 1)
+    $count = 0
+    for ($i = $FromIdx - 1; $i -ge 0; $i--) {
+        $dt = [DateTime]::Parse($History[$i].date)
+        if ($dt.DayOfWeek -eq [System.DayOfWeek]::Friday) {
+            $count++
+            if ($count -eq $WeeksBack) { return $History[$i] }
+        }
+    }
+    return $null
+}
+
 # Find the latest history entry whose date satisfies the comparison vs Target.
 # Mode 'le' = on-or-before (date <= target). Mode 'lt' = strictly before (date < target).
 # Falls back to history[0] if target precedes all data.
@@ -257,25 +367,51 @@ function Get-EntryBefore {
 # Date-based (not trading-day-index based) so KR/JP holidays don't shift the
 # baseline relative to US markets.
 function Get-Changes {
-    param([PSCustomObject]$Data, [string]$Type = 'pct', [bool]$Invert = $false)
+    param(
+        [PSCustomObject]$Data,
+        [string]$Type = 'pct',
+        [bool]$Invert = $false,
+        [bool]$FreezeFriday = $false
+    )
 
     if (-not $Data -or $Data.history.Count -lt 2) { return $null }
 
     $hist = $Data.history
-    $current = $Data.current
 
-    if ($Invert) { $current = 1 / $current }
+    # ── Friday-freeze mode ──
+    # current = most recent Friday close (= last week's Friday Mon-Thu,
+    # = today's Friday after market close on a Friday).
+    # WoW = previous Friday close. MoM = ~4 Fridays earlier.
+    # YTD = first trading day of the year (unchanged).
+    if ($FreezeFriday) {
+        $curFri = Get-LastFridayEntry -History $hist
+        if (-not $curFri) { return $null }
+        $current = if ($Invert) { 1 / $curFri.entry.close } else { $curFri.entry.close }
+        $asOf    = $curFri.entry.date
 
-    $lastDate = [DateTime]::Parse($hist[-1].date)
-    $today    = (Get-Date).Date
+        $wowEntry = Get-PrevFridayEntry -History $hist -FromIdx $curFri.idx -WeeksBack 1
+        $momEntry = Get-PrevFridayEntry -History $hist -FromIdx $curFri.idx -WeeksBack 4
+        $wowBase = if ($wowEntry) { if ($Invert) { 1 / $wowEntry.close } else { $wowEntry.close } } else { $null }
+        $momBase = if ($momEntry) { if ($Invert) { 1 / $momEntry.close } else { $momEntry.close } } else { $null }
 
-    $wowEntry = Get-EntryBefore -History $hist -Target $lastDate.AddDays(-7) -Mode 'le'
-    $wowBase  = if ($Invert) { 1 / $wowEntry.close } else { $wowEntry.close }
+        $year = ([DateTime]::Parse($curFri.entry.date)).Year
+    } else {
+        $current = $Data.current
+        if ($Invert) { $current = 1 / $current }
+        $asOf = $Data.asOf
 
-    $momEntry = Get-EntryBefore -History $hist -Target $today.AddMonths(-1) -Mode 'le'
-    $momBase  = if ($Invert) { 1 / $momEntry.close } else { $momEntry.close }
+        $lastDate = [DateTime]::Parse($hist[-1].date)
+        $today    = (Get-Date).Date
 
-    $year = (Get-Date).Year
+        $wowEntry = Get-EntryBefore -History $hist -Target $lastDate.AddDays(-7) -Mode 'le'
+        $wowBase  = if ($Invert) { 1 / $wowEntry.close } else { $wowEntry.close }
+
+        $momEntry = Get-EntryBefore -History $hist -Target $today.AddMonths(-1) -Mode 'le'
+        $momBase  = if ($Invert) { 1 / $momEntry.close } else { $momEntry.close }
+
+        $year = (Get-Date).Year
+    }
+
     $ytdEntry = $hist | Where-Object { $_.date.StartsWith("$year-") } | Select-Object -First 1
     $ytdBase = $null
     if ($ytdEntry) {
@@ -285,33 +421,33 @@ function Get-Changes {
     if ($Type -eq 'bp') {
         return [PSCustomObject]@{
             current = [Math]::Round($current, 3)
-            wow     = [Math]::Round(($current - $wowBase) * 100, 0)
-            mom     = [Math]::Round(($current - $momBase) * 100, 0)
+            wow     = if ($null -ne $wowBase) { [Math]::Round(($current - $wowBase) * 100, 0) } else { $null }
+            mom     = if ($null -ne $momBase) { [Math]::Round(($current - $momBase) * 100, 0) } else { $null }
             ytd     = if ($null -ne $ytdBase) { [Math]::Round(($current - $ytdBase) * 100, 0) } else { $null }
             type    = 'bp'
-            asOf    = $Data.asOf
+            asOf    = $asOf
         }
     }
 
     return [PSCustomObject]@{
         current = [Math]::Round($current, 4)
-        wow     = [Math]::Round((($current - $wowBase) / $wowBase) * 100, 2)
-        mom     = [Math]::Round((($current - $momBase) / $momBase) * 100, 2)
+        wow     = if ($null -ne $wowBase) { [Math]::Round((($current - $wowBase) / $wowBase) * 100, 2) } else { $null }
+        mom     = if ($null -ne $momBase) { [Math]::Round((($current - $momBase) / $momBase) * 100, 2) } else { $null }
         ytd     = if ($null -ne $ytdBase) { [Math]::Round((($current - $ytdBase) / $ytdBase) * 100, 2) } else { $null }
         type    = 'pct'
-        asOf    = $Data.asOf
+        asOf    = $asOf
     }
 }
 
 function Fetch-Group {
-    param([array]$Items)
+    param([array]$Items, [bool]$FreezeFriday = $false)
 
     $rows = @()
     foreach ($item in $Items) {
         $data = Get-YahooChart -Symbol $item.symbol
         $invert = [bool]$item.invert
         $type = if ($item.type) { $item.type } else { 'pct' }
-        $changes = Get-Changes -Data $data -Type $type -Invert $invert
+        $changes = Get-Changes -Data $data -Type $type -Invert $invert -FreezeFriday $FreezeFriday
 
         if ($changes) {
             $rows += [PSCustomObject]@{
@@ -338,16 +474,12 @@ function Fetch-Group {
     return $rows
 }
 
-# WTI: Investing (reflects Globex), other commodities: Yahoo CL=F via Fetch-Group.
+# All commodities now come from Yahoo with Friday-freeze (so the dashboard
+# shows last Friday's settlement and stays put through the week).
+# (Investing-WTI was previously used for Globex after-hours — that's the
+#  opposite of what we want now: a fixed Friday snapshot.)
 function _FetchCommodities {
-    $wti = Get-InvestingCommodity -Url 'https://www.investing.com/commodities/crude-oil' -Key 'WTI'
-    if (-not $wti) {
-        Write-Warning "Investing WTI failed — falling back to Yahoo CL=F"
-        $wtiYahoo = $INSTRUMENTS.commodity | Where-Object { $_.key -eq 'WTI' }
-        $wti = (Fetch-Group @($wtiYahoo))[0]
-    }
-    $others = Fetch-Group ($INSTRUMENTS.commodity | Where-Object { $_.key -ne 'WTI' })
-    return @($wti) + @($others)
+    return @(Fetch-Group $INSTRUMENTS.commodity -FreezeFriday $true)
 }
 
 # Main loop
@@ -357,18 +489,44 @@ do {
     $start = Get-Date
     Write-Host ("[{0}] Fetching..." -f $start.ToString('HH:mm:ss')) -ForegroundColor Cyan
 
+    # Build rate group in user-requested order:
+    #   KR3Y → KR10Y → CD91 → US2Y → US10Y → US30Y
+    $kr3y  = (Fetch-InvestingYields | Where-Object { $_.key -eq 'KR3Y' })
+    $kr10y = (Fetch-InvestingYields | Where-Object { $_.key -eq 'KR10Y' })
+    $us2y  = (Fetch-InvestingYields | Where-Object { $_.key -eq 'US2Y' })
+    # Re-fetch is wasteful — store in variable
+    $invYields = Fetch-InvestingYields
+    $cd91 = Get-NaverCD91
+    if (-not $cd91) {
+        $cd91 = $STATIC_DATA.rate_kr | Where-Object { $_.key -eq 'CD91' }
+    } elseif ($null -eq $cd91.wow -or $null -eq $cd91.mom -or $null -eq $cd91.ytd) {
+        # History too short — fill missing deltas from static fallback
+        $static = $STATIC_DATA.rate_kr | Where-Object { $_.key -eq 'CD91' }
+        if ($static) {
+            if ($null -eq $cd91.wow) { $cd91.wow = $static.wow }
+            if ($null -eq $cd91.mom) { $cd91.mom = $static.mom }
+            if ($null -eq $cd91.ytd) { $cd91.ytd = $static.ytd }
+        }
+    }
+    $rateOrdered = @()
+    $rateOrdered += ($invYields | Where-Object { $_.key -eq 'KR3Y' })
+    $rateOrdered += ($invYields | Where-Object { $_.key -eq 'KR10Y' })
+    $rateOrdered += $cd91
+    $rateOrdered += ($invYields | Where-Object { $_.key -eq 'US2Y' })
+    $rateOrdered += @(Fetch-Group $INSTRUMENTS.rate)
+
     $output = [ordered]@{
         updated   = $start.ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ")
         updatedKr = $start.ToString('yyyy-MM-dd HH:mm:ss')
-        index     = @(Fetch-Group $INSTRUMENTS.index)
-        # KR3Y / KR10Y / US2Y auto-fetched from Investing; CD91 stays static.
-        rate      = @(Fetch-InvestingYields) +
-                    @($STATIC_DATA.rate_kr | Where-Object { $_.key -eq 'CD91' }) +
-                    @(Fetch-Group $INSTRUMENTS.rate)
+        # Friday-freeze: dashboard shows last Friday's regular-session close
+        # (KOSPI/KOSDAQ at 15:30 KST; US-listed at 16:00 ET). Holds steady
+        # through the week until next Friday's close.
+        index     = @(Fetch-Group $INSTRUMENTS.index -FreezeFriday $true)
+        rate      = $rateOrdered
         commodity = @(_FetchCommodities) + @($STATIC_DATA.commodity_extra)
-        fx        = @(Fetch-Group $INSTRUMENTS.fx)
+        fx        = @(Fetch-Group $INSTRUMENTS.fx -FreezeFriday $true)
         cds       = @($STATIC_DATA.cds)
-        sector    = @(Fetch-Group $INSTRUMENTS.sector)
+        sector    = @(Fetch-Group $INSTRUMENTS.sector -FreezeFriday $true)
     }
 
     $json = $output | ConvertTo-Json -Depth 8
