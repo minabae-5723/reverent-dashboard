@@ -41,18 +41,21 @@ $INSTRUMENTS = @{
         @{ key='USDCNY'; symbol='CNY=X'    }
         @{ key='DXY';    symbol='DX-Y.NYB' }
     )
+    # Sector indices: S&P 500 GICS sector indices (not SPDR ETFs).
+    # ^SP500-NN uses the 2-digit GICS sector code; ENERGY needs ^GSPE.
+    # Cleaner benchmark than ETFs (no expense-ratio drag, matches headline prints).
     sector = @(
-        @{ key='IT';          symbol='XLK'  }
-        @{ key='HEALTHCARE';  symbol='XLV'  }
-        @{ key='DISCRET';     symbol='XLY'  }
-        @{ key='INDUSTRIALS'; symbol='XLI'  }
-        @{ key='STAPLES';     symbol='XLP'  }
-        @{ key='ENERGY';      symbol='XLE'  }
-        @{ key='FINANCIALS';  symbol='XLF'  }
-        @{ key='MATERIALS';   symbol='XLB'  }
-        @{ key='UTILITIES';   symbol='XLU'  }
-        @{ key='REALESTATE';  symbol='XLRE' }
-        @{ key='COMM';        symbol='XLC'  }
+        @{ key='IT';          symbol='^SP500-45' }
+        @{ key='HEALTHCARE';  symbol='^SP500-35' }
+        @{ key='DISCRET';     symbol='^SP500-25' }
+        @{ key='INDUSTRIALS'; symbol='^SP500-20' }
+        @{ key='STAPLES';     symbol='^SP500-30' }
+        @{ key='ENERGY';      symbol='^GSPE'     }
+        @{ key='FINANCIALS';  symbol='^SP500-40' }
+        @{ key='MATERIALS';   symbol='^SP500-15' }
+        @{ key='UTILITIES';   symbol='^SP500-55' }
+        @{ key='REALESTATE';  symbol='^SP500-60' }
+        @{ key='COMM';        symbol='^SP500-50' }
     )
 }
 

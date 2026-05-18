@@ -97,11 +97,11 @@ const LABELS = {
   // CDS
   CDS_US: '미국', CDS_CN: '중국',
 
-  // Sectors
-  IT: 'IT (XLK)', HEALTHCARE: '헬스케어 (XLV)', DISCRET: '자유소비재 (XLY)',
-  INDUSTRIALS: 'Industrials (XLI)', STAPLES: '필수소비재 (XLP)',
-  ENERGY: '에너지 (XLE)', FINANCIALS: '금융 (XLF)', MATERIALS: '원자재 (XLB)',
-  UTILITIES: '유틸리티 (XLU)', REALESTATE: '부동산 (XLRE)', COMM: '통신 (XLC)',
+  // Sectors — S&P 500 GICS sector indices (^SP500-NN / ^GSPE)
+  IT: 'IT (Tech)', HEALTHCARE: '헬스케어', DISCRET: '자유소비재',
+  INDUSTRIALS: 'Industrials', STAPLES: '필수소비재',
+  ENERGY: '에너지', FINANCIALS: '금융', MATERIALS: '원자재',
+  UTILITIES: '유틸리티', REALESTATE: '부동산', COMM: '통신',
 };
 
 // ─── Format helpers ───────────────────────────────────────
