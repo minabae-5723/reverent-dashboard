@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-05-18T23:54:45Z",
-    "updatedKr":  "2026-05-19 08:54:45",
+    "updated":  "2026-05-19T00:14:05Z",
+    "updatedKr":  "2026-05-19 09:14:05",
     "countries":  [
                       "5",
                       "35",
@@ -144,6 +144,21 @@
                        "type":  "review"
                    },
                    {
+                       "id":  "547163",
+                       "datetime":  "2026/05/19 08:50:00",
+                       "date":  "5/19",
+                       "time":  "08:50",
+                       "flagKey":  "Japan",
+                       "currency":  "JPY",
+                       "importance":  2,
+                       "indicator":  "GDP Price Index (YoY)",
+                       "period":  "Q1",
+                       "actual":  "3.4%",
+                       "forecast":  "3.1%",
+                       "previous":  "3.4%",
+                       "type":  "review"
+                   },
+                   {
                        "id":  "547160",
                        "datetime":  "2026/05/19 08:50:00",
                        "date":  "5/19",
@@ -156,21 +171,6 @@
                        "actual":  "0.3%",
                        "forecast":  "0.2%",
                        "previous":  "0.0%",
-                       "type":  "review"
-                   },
-                   {
-                       "id":  "547159",
-                       "datetime":  "2026/05/19 08:50:00",
-                       "date":  "5/19",
-                       "time":  "08:50",
-                       "flagKey":  "Japan",
-                       "currency":  "JPY",
-                       "importance":  1,
-                       "indicator":  "GDP Capital Expenditure (QoQ)",
-                       "period":  "Q1",
-                       "actual":  "0.3%",
-                       "forecast":  "0.2%",
-                       "previous":  "1.4%",
                        "type":  "review"
                    },
                    {
@@ -204,19 +204,19 @@
                        "type":  "review"
                    },
                    {
-                       "id":  "547163",
+                       "id":  "547159",
                        "datetime":  "2026/05/19 08:50:00",
                        "date":  "5/19",
                        "time":  "08:50",
                        "flagKey":  "Japan",
                        "currency":  "JPY",
-                       "importance":  2,
-                       "indicator":  "GDP Price Index (YoY)",
+                       "importance":  1,
+                       "indicator":  "GDP Capital Expenditure (QoQ)",
                        "period":  "Q1",
-                       "actual":  "",
-                       "forecast":  "3.1%",
-                       "previous":  "3.4%",
-                       "type":  "preview"
+                       "actual":  "0.3%",
+                       "forecast":  "0.2%",
+                       "previous":  "1.4%",
+                       "type":  "review"
                    },
                    {
                        "id":  "547167",
