@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-05-20T23:41:00Z",
-    "updatedKr":  "2026-05-21 08:41:00",
+    "updated":  "2026-05-21T00:15:11Z",
+    "updatedKr":  "2026-05-21 09:15:11",
     "index":  [
                   {
                       "key":  "KOSPI",
@@ -105,12 +105,12 @@
                  },
                  {
                      "key":  "US2Y",
-                     "current":  4.064,
+                     "current":  4.066,
                      "wow":  7,
-                     "mom":  35,
+                     "mom":  29,
                      "ytd":  59,
                      "type":  "bp",
-                     "asOf":  "2026-05-20T23:40:00.636Z",
+                     "asOf":  "2026-05-21T00:10:00.568Z",
                      "ok":  true,
                      "source":  "investing"
                  },
