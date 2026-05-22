@@ -110,7 +110,7 @@ if ([string]::IsNullOrWhiteSpace($gitStatus)) {
     Write-Host "  No changes detected -- nothing to commit." -ForegroundColor DarkGray
 } else {
     # Force-add data snapshots (gitignored normally) + all index.json files
-    $forceFiles = @('data.json', 'calendar.json', 'calendar-week.json', 'trade.json', 'shiller.json', 'fedwatch.json', 'user-state.json') +
+    $forceFiles = @('data.json', 'calendar.json', 'calendar-week.json', 'calendar-next-week.json', 'market-update-frozen.json', 'trade.json', 'shiller.json', 'fedwatch.json', 'user-state.json') +
                   ($INDEXED_FOLDERS | ForEach-Object { "$_/index.json" })
     git add -f $forceFiles 2>&1 | Out-Null
     # Add anything else (new .md files, code changes, etc.)

@@ -20,6 +20,7 @@ const NEWS_INDEX_URL = IS_STATIC ? './news/index.json' : '/news/list';
 const MARKET_INDEX_URL = IS_STATIC ? './market/index.json' : '/market/list';
 const DEALS_INDEX_URL = IS_STATIC ? './deals/index.json' : '/deals/list';
 const TRADE_URL = './trade.json';
+const MACRO_FROZEN_URL = './market-update-frozen.json';
 const SHILLER_URL = './shiller.json';
 const FEDWATCH_URL = './fedwatch.json';
 const PEER_URL = './peer.json';
@@ -274,40 +275,54 @@ function renderMacroFallback() {
 }
 
 async function loadCalendar() {
-  // 1) Try calendar.json (today-only feed)
-  let data = null;
+  // Market Update now shows a frozen weekly digest (this week + next week,
+  // top 5 each), updated at weekend by fetch-calendar.ps1. The legacy "today"
+  // single-table rendering and macro.js static fallback are gone.
   try {
-    const res = await fetch(`${CAL_URL}?_=${Date.now()}`, { cache: 'no-store' });
-    if (res.ok) data = await res.json();
+    const res = await fetch(`${MACRO_FROZEN_URL}?_=${Date.now()}`, { cache: 'no-store' });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+    renderMacroWeekly(data);
   } catch (err) {
-    console.warn('calendar.json fetch failed:', err);
+    console.warn('market-update-frozen.json fetch failed:', err);
+    renderMacroWeekly(null);
   }
+}
 
-  // 2) If empty (e.g. Investing.com 503'd at fetch time), filter today's events
-  //    out of the weekly feed instead of falling back to stale macro.js data.
-  if (!data || !data.events || data.events.length === 0) {
-    try {
-      const wRes = await fetch(`${CAL_WEEK_URL}?_=${Date.now()}`, { cache: 'no-store' });
-      if (wRes.ok) {
-        const weekData = await wRes.json();
-        const today = new Date();
-        const todayKey = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
-        const todayEvents = (weekData.events || []).filter(e => e.iso === todayKey || e.date === todayKey);
-        if (todayEvents.length > 0) {
-          data = Object.assign({}, weekData, { events: todayEvents });
-        }
-      }
-    } catch (err) {
-      console.warn('calendar-week.json fetch failed:', err);
+function renderMacroWeekly(data) {
+  const stamp = document.getElementById('macroFrozenStamp');
+  if (stamp) {
+    if (data && data.updatedKr) {
+      stamp.textContent = `${data.updatedKr} (${data.frozenDow || ''})`;
+    } else {
+      stamp.textContent = '데이터 없음';
     }
   }
+  renderMacroSide('macroThisWeekBody', data?.thisWeek);
+  renderMacroSide('macroNextWeekBody', data?.nextWeek);
+}
 
-  // 3) Render — falls through to static macro.js only if BOTH sources empty.
-  if (data && data.events && data.events.length > 0) {
-    renderMacroFromCalendar(data);
-  } else {
-    renderMacroFallback();
+function renderMacroSide(tbodyId, events) {
+  const tbody = document.getElementById(tbodyId);
+  if (!tbody) return;
+  if (!events || events.length === 0) {
+    tbody.innerHTML = `<tr><td colspan="6" class="loading" style="text-align:center;color:var(--text-muted);">데이터 없음</td></tr>`;
+    return;
   }
+  tbody.innerHTML = events.map(e => {
+    const actual   = (e.actual && e.actual !== '') ? `<td class="num-col actual">${e.actual}</td>` : `<td class="num-col actual">—</td>`;
+    const forecast = (e.forecast && e.forecast !== '') ? `<td class="num-col">${e.forecast}</td>` : `<td class="num-col">—</td>`;
+    const previous = (e.previous && e.previous !== '') ? `<td class="num-col previous">${e.previous}</td>` : `<td class="num-col previous">—</td>`;
+    const dateTime = e.time ? `${e.date} ${e.time}` : (e.date || '—');
+    return `<tr class="${e.type || ''}">
+      <td>${countryLabel(e.flagKey, e.currency)}</td>
+      <td title="${e.datetime || ''}">${dateTime}</td>
+      <td>${indicatorLabel(e.indicator)} ${importanceStars(e.importance)}</td>
+      ${actual}
+      ${forecast}
+      ${previous}
+    </tr>`;
+  }).join('');
 }
 
 // ─── Re-read data.json only (fast, ~ms) ───────────────────

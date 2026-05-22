@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-05-22T01:05:42Z",
-    "updatedKr":  "2026-05-22 10:05:42",
+    "updated":  "2026-05-22T07:39:59Z",
+    "updatedKr":  "2026-05-22 16:39:59",
     "countries":  [
                       "5",
                       "35",
@@ -1310,7 +1310,7 @@
                        "period":  "May",
                        "actual":  "",
                        "forecast":  "48.2",
-                       "previous":  "48.2",
+                       "previous":  "49.8",
                        "type":  "preview"
                    },
                    {
@@ -1325,7 +1325,7 @@
                        "period":  "May",
                        "actual":  "",
                        "forecast":  "47.8",
-                       "previous":  "47.8",
+                       "previous":  "52.5",
                        "type":  "preview"
                    },
                    {
@@ -1400,7 +1400,7 @@
                        "period":  "May",
                        "actual":  "",
                        "forecast":  "3.4%",
-                       "previous":  "3.4%",
+                       "previous":  "3.5%",
                        "type":  "preview"
                    },
                    {
