@@ -120,15 +120,20 @@ score = 0.30 × policy_impact      # 자본시장 전반 영향력
 - 5: 증권사 개별 조직 개편·IB 채용 동향
 - 3: 단발성 인사·간행물
 
-#### Page 6 score 공식
+#### Page 6 score 공식 (v2.1 — Deal Value 산출 가능성 최우선)
 ```
-score = 0.30 × deal_stage         # SPA > 본입찰 > 예비입찰 > 매각 검토
-      + 0.20 × valuation_coverage # EV/EBITDA·매출·EBITDA 공개 정도
+score = 0.30 × valuation_coverage # 🔴 최우선 — Deal Value 산출 가능 정보 보유 정도
+      + 0.25 × deal_stage         # SPA > 본입찰 > 예비입찰 > 매각 검토
       + 0.15 × deal_size          # 조 단위>천억 단위>백억 단위
-      + 0.15 × weekly_signal      # Phase 0 누적 신호 + 단계 진전 부스트
+      + 0.10 × weekly_signal      # Phase 0 누적 신호 + 단계 진전 부스트
       + 0.10 × source_diversity   # 매체 cross-ref
       + 0.10 × strategic_signal   # K-방산·K-푸드·AI 같은 산업 트렌드 연결
 ```
+
+🔴 **HARD FILTER** (v2.1 신설 — 사용자 지정):
+- Page 6 후보 10건 중 **최소 7건은 valuation_coverage ≥ 4** (Deal Value 추정치 이상 보도된 사안) 의무
+- valuation_coverage == 1 (Deal Value도 비공개) 후보는 **10건 중 최대 2건**까지만 허용
+- 이 조건을 충족하지 못하면 1차 fetch 페이지를 더 확장해 정량 정보 있는 사안을 추가 발굴 (`thebell.co.kr` 페이지 4·5, `dealsite.co.kr` 페이지 4 등)
 
 **deal_stage 척도**:
 - 10: SPA 체결·딜 클로징
@@ -137,11 +142,17 @@ score = 0.30 × deal_stage         # SPA > 본입찰 > 예비입찰 > 매각 검
 - 4: 매각 검토·관심 표명
 - 2: 루머·이름만 거론
 
-**valuation_coverage 척도**:
-- 10: EV/EBITDA·매출·EBITDA 모두 공개
-- 7: Deal Value + 지분율 + 일부 정량
-- 4: Deal Value 추정만
-- 1: 모두 비공개
+**valuation_coverage 척도** (🔴 v2.1 최우선):
+- 10: **EV/EBITDA·매출·EBITDA 모두 공개 + Deal Value 확정**
+- 7: **Deal Value + 지분율 + 일부 정량 (매출 or EBITDA 1개 이상)** 확보
+- 4: **Deal Value 추정치만** (시장에서 "X천억 안팎 거론" 수준)
+- 1: 모두 비공개 — *이 등급은 후보 10건 중 최대 2건까지만 허용*
+
+**Deal Value 산출 가능 정보 (구체 예시)**:
+- ✅ "거래 규모 약 1조원 안팎 거론" → valuation 4점
+- ✅ "5,000억원 투입해 지분 8% 확보" → valuation 7점 (implied equity value 산출 가능)
+- ✅ "매출 7,186억 / EBITDA 356억 / 거래 3,000억 / 지분 100%" → valuation 10점
+- ❌ "매각 본격화 — 거래 규모 시장 추정 비공개" → valuation 1점 (필터 대상)
 
 **deal_size 척도**:
 - 10: 1조원 이상
@@ -248,7 +259,7 @@ URL 날짜 없는 매체(dealsite 등) 또는 보강 필요 시:
 
 ## 2. 주요 거래 동향 후보 (10건)
 
-### [1] 헤드라인 (2026.05.11) · *🅐 PE Buyout* · score 9.7 (💰 ₩1조+ · 📊 ×2)
+### [1] 헤드라인 (2026.05.11) · *🅐 PE Buyout* · score 9.7 (💰 valuation 10/10 · ₩1조+ · 📊 ×2)
 - bullet 1
 - bullet 2
 - bullet 3
@@ -370,6 +381,7 @@ URL 날짜 없는 매체(dealsite 등) 또는 보강 필요 시:
 - [ ] **URL 날짜 메커니컬 검증** — 그 주 + 이전 주말 7일 외면 즉시 폐기
 - [ ] **출처 URL과 본문 일치 검증** — 다른 사안 매핑 금지
 - [ ] **텔레그램·증권사 데스크 언급 없음** 최종 확인
+- 🔴 [ ] **Page 6 Valuation HARD FILTER** — 후보 10건 중 7건 이상이 valuation_coverage ≥ 4 (Deal Value 추정치 이상). valuation_coverage == 1 후보는 최대 2건까지만. 미달 시 thebell·dealsite 페이지 확장(4~5p) 후 정량 정보 있는 사안 추가 발굴
 - [ ] **Page 6 Valuation 의무** — 거래 규모·지분율·배수·자금조달·자문사 명시 (비공개면 표기)
 - [ ] **Phase 1 종료 → 사용자 선택 대기** — 자동 저장 금지
 - [ ] **Phase 2** — MD 저장 + index.json 갱신 + 채팅 출력 + 배포 안내
