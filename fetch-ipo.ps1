@@ -103,6 +103,10 @@ foreach ($rm in $rowMatches) {
     if ($tdMatches.Count -lt 9) { continue }
 
     $name      = Clean-Cell $tdMatches[0].Groups[1].Value
+    # Strip trailing parenthetical (e.g. "코스모로보틱스(구.엑소아틀레트아시아)" → "코스모로보틱스",
+    #                                       "케이뱅크(우)" → "케이뱅크",
+    #                                       "채비(구.대영채비)" → "채비")
+    $name = ($name -replace '\s*\([^)]*\)\s*$', '').Trim()
     $listDate  = Clean-Cell $tdMatches[1].Groups[1].Value
     $curPrice  = Parse-Num   (Clean-Cell $tdMatches[2].Groups[1].Value)
     $todayChg  = Parse-Pct   (Clean-Cell $tdMatches[3].Groups[1].Value)
