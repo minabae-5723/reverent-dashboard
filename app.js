@@ -64,6 +64,10 @@ const INDICATOR_KR = {
   'PPI (YoY)': 'Headline PPI (YoY)',
   'PPI (MoM)': 'Headline PPI (MoM)',
   'Core PPI (YoY)': 'Core PPI (YoY)',
+  'PCE Price index (YoY)': 'Headline PCE (YoY)',
+  'PCE price index (YoY)': 'Headline PCE (YoY)',
+  'PCE Price Index (YoY)': 'Headline PCE (YoY)',
+  'Core PCE Price Index (YoY)': 'Core PCE (YoY)',
   'Nonfarm Payrolls': '비농업고용지수',
   'ADP Nonfarm Employment Change': 'ADP 민간고용',
   'JOLTs Job Openings': 'JOLTs',
@@ -298,6 +302,27 @@ function renderMacroWeekly(data) {
       stamp.textContent = '데이터 없음';
     }
   }
+
+  // Rollover labels: once a freeze is ≥3 days old (i.e. it's past Mon),
+  // last week's "이번 주" becomes "지난 주 (Review)" and last week's
+  // "다음 주" becomes "이번 주 (Preview)".
+  let leftLabel = '이번 주';
+  let rightLabel = '다음 주';
+  if (data && data.updatedKr) {
+    const freezeDate = new Date(data.updatedKr.replace(' ', 'T').slice(0, 10) + 'T00:00:00');
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const daysSince = Math.floor((today - freezeDate) / 86400000);
+    if (daysSince >= 3) {
+      leftLabel  = '지난 주 (Review)';
+      rightLabel = '이번 주 (Preview)';
+    }
+  }
+  const lt = document.getElementById('macroLeftTitle');
+  const rt = document.getElementById('macroRightTitle');
+  if (lt) lt.textContent = leftLabel;
+  if (rt) rt.textContent = rightLabel;
+
   renderMacroSide('macroThisWeekBody', data?.thisWeek);
   renderMacroSide('macroNextWeekBody', data?.nextWeek);
 }

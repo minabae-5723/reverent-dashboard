@@ -196,14 +196,27 @@ do {
         try { $weekData = Get-Content $WeekFile     -Raw -Encoding UTF8 | ConvertFrom-Json } catch {}
         try { $nextData = Get-Content $NextWeekFile -Raw -Encoding UTF8 | ConvertFrom-Json } catch {}
 
-        # Top 5 by importance DESC, then datetime ASC. Importance >= 2 only.
+        # Pick up to 5 by importance, but force-include both Core and
+        # Headline PCE YoY when present (per user spec). MoM PCE variants
+        # and lower-importance ones are filtered out.
         $pickTop5 = {
             param($events)
             if (-not $events) { return @() }
-            return @($events |
-                Where-Object { ($_.importance -as [int]) -ge 2 } |
-                Sort-Object @{Expression={ [int]$_.importance }; Descending=$true}, @{Expression='datetime'; Descending=$false} |
-                Select-Object -First 5)
+            # Drop MoM PCE — we prefer YoY
+            $filtered = @($events | Where-Object { $_.indicator -notmatch '(?i)PCE.*\(MoM\)' })
+            # Pin both PCE YoY (Core + Headline)
+            $pinned = @($filtered | Where-Object { $_.indicator -match '(?i)^(Core\s+)?PCE.*Price.*Index.*\(YoY\)$' })
+            $pinnedIds = @{}
+            foreach ($p in $pinned) { $pinnedIds[$p.id] = $true }
+            # Fill remaining slots with top-importance non-pinned events
+            $remaining = @($filtered |
+                Where-Object { ($_.importance -as [int]) -ge 2 -and -not $pinnedIds.ContainsKey($_.id) } |
+                Sort-Object @{Expression={ [int]$_.importance }; Descending=$true}, @{Expression='datetime'; Descending=$false})
+            $needed = 5 - $pinned.Count
+            if ($needed -lt 0) { $needed = 0 }
+            $picked = @($pinned) + @($remaining | Select-Object -First $needed)
+            # Final sort: by datetime ascending for chronological display
+            return @($picked | Sort-Object datetime)
         }
         $thisTop5 = & $pickTop5 $weekData.events
         $nextTop5 = & $pickTop5 $nextData.events

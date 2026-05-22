@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-05-22T07:46:28Z",
-    "updatedKr":  "2026-05-22 16:46:28",
+    "updated":  "2026-05-22T08:05:26Z",
+    "updatedKr":  "2026-05-22 17:05:26",
     "frozenDow":  "Friday",
     "thisWeek":  [
                      {
@@ -49,21 +49,6 @@
                          "type":  "preview"
                      },
                      {
-                         "id":  "547430",
-                         "datetime":  "2026/05/21 21:30:00",
-                         "date":  "5/21",
-                         "time":  "21:30",
-                         "flagKey":  "United_States",
-                         "currency":  "USD",
-                         "importance":  3,
-                         "indicator":  "Philadelphia Fed Manufacturing Index",
-                         "period":  "May",
-                         "actual":  "-0.4",
-                         "forecast":  "17.6",
-                         "previous":  "26.7",
-                         "type":  "review"
-                     },
-                     {
                          "id":  "548108",
                          "datetime":  "2026/05/21 21:30:00",
                          "date":  "5/21",
@@ -76,6 +61,21 @@
                          "actual":  "209K",
                          "forecast":  "210K",
                          "previous":  "212K",
+                         "type":  "review"
+                     },
+                     {
+                         "id":  "547430",
+                         "datetime":  "2026/05/21 21:30:00",
+                         "date":  "5/21",
+                         "time":  "21:30",
+                         "flagKey":  "United_States",
+                         "currency":  "USD",
+                         "importance":  3,
+                         "indicator":  "Philadelphia Fed Manufacturing Index",
+                         "period":  "May",
+                         "actual":  "-0.4",
+                         "forecast":  "17.6",
+                         "previous":  "26.7",
                          "type":  "review"
                      }
                  ],
@@ -96,18 +96,18 @@
                          "type":  "preview"
                      },
                      {
-                         "id":  "547867",
+                         "id":  "547861",
                          "datetime":  "2026/05/28 21:30:00",
                          "date":  "5/28",
                          "time":  "21:30",
                          "flagKey":  "United_States",
                          "currency":  "USD",
                          "importance":  3,
-                         "indicator":  "Durable Goods Orders (MoM)",
-                         "period":  "Apr",
+                         "indicator":  "GDP (QoQ)",
+                         "period":  "Q1",
                          "actual":  "",
-                         "forecast":  "",
-                         "previous":  "0.8%",
+                         "forecast":  "2.0%",
+                         "previous":  "2.0%",
                          "type":  "preview"
                      },
                      {
@@ -126,33 +126,33 @@
                          "type":  "preview"
                      },
                      {
-                         "id":  "547861",
+                         "id":  "547859",
                          "datetime":  "2026/05/28 21:30:00",
                          "date":  "5/28",
                          "time":  "21:30",
                          "flagKey":  "United_States",
                          "currency":  "USD",
                          "importance":  3,
-                         "indicator":  "GDP (QoQ)",
-                         "period":  "Q1",
-                         "actual":  "",
-                         "forecast":  "2.0%",
-                         "previous":  "2.0%",
-                         "type":  "preview"
-                     },
-                     {
-                         "id":  "547858",
-                         "datetime":  "2026/05/28 21:30:00",
-                         "date":  "5/28",
-                         "time":  "21:30",
-                         "flagKey":  "United_States",
-                         "currency":  "USD",
-                         "importance":  3,
-                         "indicator":  "Core PCE Price Index (MoM)",
+                         "indicator":  "Core PCE Price Index (YoY)",
                          "period":  "Apr",
                          "actual":  "",
                          "forecast":  "",
-                         "previous":  "0.3%",
+                         "previous":  "3.2%",
+                         "type":  "preview"
+                     },
+                     {
+                         "id":  "547854",
+                         "datetime":  "2026/05/28 21:30:00",
+                         "date":  "5/28",
+                         "time":  "21:30",
+                         "flagKey":  "United_States",
+                         "currency":  "USD",
+                         "importance":  2,
+                         "indicator":  "PCE Price index (YoY)",
+                         "period":  "Apr",
+                         "actual":  "",
+                         "forecast":  "",
+                         "previous":  "3.5%",
                          "type":  "preview"
                      }
                  ]
