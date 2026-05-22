@@ -52,6 +52,33 @@ Write-Host ""
 Write-Host "[2.8/5] Refresh FedWatch (Fed rate probability)..." -ForegroundColor Yellow
 & powershell -NoProfile -ExecutionPolicy Bypass -File (Join-Path $root 'fetch-fedwatch.ps1')
 
+# 2.9. Prune Daily Market Briefing files older than 7 days
+#       Keep only the last week of `market/YYYY-MM-DD.md` snapshots —
+#       older ones get git-rm'd so the deploy stays lean.
+Write-Host ""
+Write-Host "[2.9/5] Prune Daily Market Briefing > 7 days old..." -ForegroundColor Yellow
+$cutoff = (Get-Date).AddDays(-7).ToString('yyyy-MM-dd')
+$marketDir = Join-Path $root 'market'
+if (Test-Path $marketDir) {
+    $stale = Get-ChildItem -LiteralPath $marketDir -Filter '*.md' -ErrorAction SilentlyContinue |
+        Where-Object { $_.BaseName -match '^\d{4}-\d{2}-\d{2}$' -and $_.BaseName -lt $cutoff }
+    if ($stale) {
+        foreach ($f in $stale) {
+            $relPath = "market/$($f.Name)"
+            # Try git rm first (so deletion is staged); fall back to plain rm
+            # for files not yet in git.
+            $gitOut = git rm -f $relPath 2>&1
+            if ($LASTEXITCODE -ne 0) {
+                Remove-Item -LiteralPath $f.FullName -Force -ErrorAction SilentlyContinue
+            }
+            Write-Host "    pruned: $relPath" -ForegroundColor DarkGray
+        }
+        Write-Host ("  Pruned " + $stale.Count + " file(s) older than " + $cutoff) -ForegroundColor Yellow
+    } else {
+        Write-Host "  No stale market files." -ForegroundColor DarkGray
+    }
+}
+
 # 3. Regenerate index.json for every clipping folder
 Write-Host ""
 Write-Host "[3/4] Regenerate index.json for clipping folders..." -ForegroundColor Yellow
