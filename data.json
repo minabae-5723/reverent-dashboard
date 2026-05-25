@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-05-25T04:51:51Z",
-    "updatedKr":  "2026-05-25 13:51:51",
+    "updated":  "2026-05-25T10:45:04Z",
+    "updatedKr":  "2026-05-25 19:45:04",
     "index":  [
                   {
                       "key":  "KOSPI",
@@ -181,16 +181,6 @@
                           "type":  "pct",
                           "asOf":  "2026-05-22",
                           "ok":  true
-                      },
-                      {
-                          "mom":  35.3,
-                          "current":  2978,
-                          "static":  true,
-                          "ok":  true,
-                          "key":  "BDI",
-                          "type":  "pct",
-                          "wow":  13.1,
-                          "ytd":  58.2
                       }
                   ],
     "fx":  [
@@ -252,22 +242,26 @@
            ],
     "cds":  [
                 {
-                    "current":  35.1,
-                    "mom":  -0.5,
-                    "wow":  0,
-                    "type":  "bp_abs",
-                    "ytd":  8.5,
                     "key":  "CDS_US",
-                    "ok":  true
+                    "current":  37.75,
+                    "wow":  0,
+                    "mom":  3,
+                    "ytd":  11,
+                    "type":  "bp_abs",
+                    "asOf":  "2026-05-22",
+                    "ok":  true,
+                    "source":  "investing"
                 },
                 {
-                    "current":  41.9,
-                    "mom":  -6.7,
-                    "wow":  -2.3,
-                    "type":  "bp_abs",
-                    "ytd":  -1.9,
                     "key":  "CDS_CN",
-                    "ok":  true
+                    "current":  40.58,
+                    "wow":  -1,
+                    "mom":  -7,
+                    "ytd":  -3,
+                    "type":  "bp_abs",
+                    "asOf":  "2026-05-22",
+                    "ok":  true,
+                    "source":  "investing"
                 }
             ],
     "sector":  [

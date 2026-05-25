@@ -59,11 +59,12 @@ $INSTRUMENTS = @{
     )
 }
 
-# Static data (Korean rates / BDI / CDS - update from PDF weekly)
+# Static data (Korean rates / CDS - fallback only; auto-fetched in main path)
 $STATIC_DATA = @{
     cds = @(
-        @{ key='CDS_US'; current=35.1; wow=0.0;  mom=-0.5; ytd=8.5;  type='bp_abs'; ok=$true }
-        @{ key='CDS_CN'; current=41.9; wow=-2.3; mom=-6.7; ytd=-1.9; type='bp_abs'; ok=$true }
+        # Fallback values reflect 2026-05-22 Friday NY close (Investing.com)
+        @{ key='CDS_US'; current=37.75; wow=0;  mom=3;  ytd=11; type='bp_abs'; ok=$true }
+        @{ key='CDS_CN'; current=40.58; wow=-1; mom=-7; ytd=-3; type='bp_abs'; ok=$true }
     )
     rate_kr = @(
         # KR3Y / KR10Y are now auto-fetched from Investing (Get-InvestingYield).
@@ -72,9 +73,6 @@ $STATIC_DATA = @{
         @{ key='KR10Y'; current=3.91; wow=7;  mom=23; ytd=53; type='bp'; ok=$true; static=$true }
         # CD91 stays static — Investing doesn't have a clean page for Korean CD rate.
         @{ key='CD91';  current=2.81; wow=0;  mom=-1; ytd=4;  type='bp'; ok=$true; static=$true }
-    )
-    commodity_extra = @(
-        @{ key='BDI'; current=2978; wow=13.1; mom=35.3; ytd=58.2; type='pct'; ok=$true; static=$true }
     )
 }
 
@@ -590,7 +588,7 @@ do {
         # through the week until next Friday's close.
         index     = @(Fetch-Group $INSTRUMENTS.index -FreezeFriday $true)
         rate      = $rateOrdered
-        commodity = @(_FetchCommodities) + @($STATIC_DATA.commodity_extra)
+        commodity = @(_FetchCommodities)
         fx        = @(Fetch-Group $INSTRUMENTS.fx -FreezeFriday $true)
         cds       = @(Fetch-InvestingCDS)
         sector    = @(Fetch-Group $INSTRUMENTS.sector -FreezeFriday $true)

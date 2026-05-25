@@ -14,7 +14,7 @@
 2. **Capital Market**
    - Index: KOSPI, KOSDAQ, DOW, S&P500, NASDAQ, Shanghai
    - 금리(bp): 한국 국고채 3년/10년, CD 91일, 미국채 2년/10년/30년
-   - 원자재: WTI, 금, 구리, 밀, BDI
+   - 원자재: WTI, 금, 구리, 밀
    - FX: USD/KRW, USD/EUR, USD/JPY, USD/CNY, 달러인덱스
    - CDS(bp): 미국, 중국
    - Sector: S&P 500 SPDR 11개 섹터 ETF

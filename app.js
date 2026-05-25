@@ -93,7 +93,7 @@ const LABELS = {
   US2Y: '미국채 2년', US10Y: '미국채 10년', US30Y: '미국채 30년',
 
   // Commodities
-  WTI: 'WTI', GOLD: '금', COPPER: '구리', WHEAT: '밀', BDI: 'BDI',
+  WTI: 'WTI', GOLD: '금', COPPER: '구리', WHEAT: '밀',
 
   // FX
   USDKRW: 'USD/KRW', USDEUR: 'USD/EUR', USDJPY: 'USD/JPY',
