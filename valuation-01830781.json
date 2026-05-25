@@ -1,0 +1,31 @@
+{
+    "company":  "토리든",
+    "corp_code":  "01830781",
+    "fiscal_period":  "FY2025 Annual (감사보고서, 일반기업회계기준 별도)",
+    "unit":  "100M KRW",
+    "fetched_at":  "2026-05-25 16:35:00",
+    "source":  "manual_from_audit_pdf_2026-04-07",
+    "pnl":  {
+                "revenue":  2743,
+                "operating_income":  604,
+                "depreciation":  null,
+                "ebitda":  null,
+                "net_income":  495
+            },
+    "debt":  {
+                 "st_borrowings":  0,
+                 "current_lt_borrowings":  0,
+                 "current_lease":  0,
+                 "lt_borrowings":  0,
+                 "nc_lease":  0
+             },
+    "cash":  {
+                 "cash_and_equivalents":  175,
+                 "st_financial_invest":  365
+             },
+    "derived":  {
+                    "total_debt":  0,
+                    "total_cash":  540,
+                    "net_debt":  -540
+                }
+}

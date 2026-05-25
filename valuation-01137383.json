@@ -1,0 +1,30 @@
+{
+    "company":  "카카오게임즈",
+    "corp_code":  "01137383",
+    "fiscal_period":  "FY2025 Annual (Consolidated)",
+    "unit":  "100M KRW",
+    "fetched_at":  "2026-05-25 16:32:48",
+    "pnl":  {
+                "revenue":  4650,
+                "operating_income":  -396,
+                "depreciation":  null,
+                "ebitda":  null,
+                "net_income":  -1431
+            },
+    "debt":  {
+                 "st_borrowings":  3055,
+                 "current_lt_borrowings":  null,
+                 "current_lease":  170,
+                 "lt_borrowings":  6451,
+                 "nc_lease":  717
+             },
+    "cash":  {
+                 "cash_and_equivalents":  4922,
+                 "st_financial_invest":  2971
+             },
+    "derived":  {
+                    "total_debt":  10393,
+                    "total_cash":  7893,
+                    "net_debt":  2500
+                }
+}

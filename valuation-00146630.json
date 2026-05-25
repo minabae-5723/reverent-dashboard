@@ -1,0 +1,31 @@
+{
+    "company":  "롯데에코월",
+    "corp_code":  "00146630",
+    "fiscal_period":  "FY2025 Annual (감사보고서, 별도)",
+    "unit":  "100M KRW",
+    "fetched_at":  "2026-05-25 16:35:00",
+    "source":  "manual_from_audit_pdf_2026-03-17",
+    "pnl":  {
+                "revenue":  1340,
+                "operating_income":  121,
+                "depreciation":  null,
+                "ebitda":  null,
+                "net_income":  96
+            },
+    "debt":  {
+                 "st_borrowings":  0,
+                 "current_lt_borrowings":  0,
+                 "current_lease":  1,
+                 "lt_borrowings":  0,
+                 "nc_lease":  1
+             },
+    "cash":  {
+                 "cash_and_equivalents":  219,
+                 "st_financial_invest":  200
+             },
+    "derived":  {
+                    "total_debt":  2,
+                    "total_cash":  419,
+                    "net_debt":  -417
+                }
+}
