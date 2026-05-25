@@ -1686,18 +1686,9 @@ function renderDealsContent(md) {
       : '<div class="news-card" style="color:var(--text-muted);font-style:italic;">이번 주 해당 카테고리 항목 없음</div>';
     const isMacro = _isMacroSection(s.name);
     const macroCalendar = isMacro ? renderMacroNotesCard(weekDate) : '';
-    const macroComment = isMacro ? `
-      <div class="macro-comment-block">
-        <label class="macro-comment-label" for="macroCommentArea">💬 매크로 코멘트</label>
-        <textarea id="macroCommentArea" class="macro-comment-area"
-                  data-storage-key="${escapeHtml(commentStorageKey)}"
-                  placeholder="이번 주 매크로 흐름·다음 주 관전 포인트를 자유롭게 메모하세요. 작성 후 FIX 버튼을 눌러 저장하세요.">${escapeHtml(savedComment)}</textarea>
-        <div class="macro-comment-bottom">
-          <span class="macro-comment-status" id="macroCommentStatus"></span>
-          <button type="button" class="macro-comment-fix" id="macroCommentFix" disabled>FIX</button>
-        </div>
-      </div>
-    ` : '';
+    // Note: 매크로 코멘트 textarea was removed per user request — image cards
+    // already carry per-card comments, and the dashboard Section 3 has its
+    // own macro comment box for week-level notes.
     return `
       <div class="news-sector-block">
         <div class="news-sector-header">
@@ -1705,7 +1696,6 @@ function renderDealsContent(md) {
           <span class="news-sector-count">${s.articles.length}건</span>
         </div>
         ${macroCalendar}
-        ${macroComment}
         <div class="news-articles">${articles}</div>
       </div>
     `;
