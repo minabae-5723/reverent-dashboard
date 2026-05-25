@@ -4,22 +4,6 @@
     "frozenDow":  "Friday",
     "thisWeek":  [
                      {
-                         "id":  "546571",
-                         "datetime":  "2026/05/08 23:00:00",
-                         "date":  "5/8",
-                         "time":  "23:00",
-                         "flagKey":  "United_States",
-                         "currency":  "USD",
-                         "importance":  3,
-                         "indicator":  "Michigan Sentiment (Prelim)",
-                         "period":  "May",
-                         "actual":  "48.2",
-                         "forecast":  "49.7",
-                         "previous":  "49.8",
-                         "type":  "review",
-                         "source":  "investing.com/economic-calendar/michigan-consumer-sentiment-320"
-                     },
-                     {
                          "id":  "547161",
                          "datetime":  "2026/05/19 08:50:00",
                          "date":  "5/19",
