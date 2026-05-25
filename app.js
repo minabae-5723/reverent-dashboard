@@ -1922,12 +1922,21 @@ function migrateLocalStorageToUserState() {
     'capmkt-comment-',
     'ipo-mcap-',
   ];
+
+  // Treat these server values as "empty / missing" so localStorage content
+  // can supersede them. (Previously, an empty array on the server caused
+  // localStorage cards to be silently skipped, leaving them un-deployed.)
+  const isEmpty = (v) => (
+    v === undefined || v === null ||
+    (Array.isArray(v) && v.length === 0) ||
+    (typeof v === 'string' && v === '')
+  );
+
   let pushed = 0;
   for (let i = 0; i < localStorage.length; i++) {
     const key = localStorage.key(i);
     if (!key) continue;
     if (!prefixes.some((p) => key.startsWith(p))) continue;
-    if (Object.prototype.hasOwnProperty.call(_userStateCache, key)) continue; // already on server
 
     let raw;
     try { raw = localStorage.getItem(key); } catch { continue; }
@@ -1938,6 +1947,10 @@ function migrateLocalStorageToUserState() {
       const parsed = JSON.parse(raw);
       if (parsed !== null && parsed !== undefined) value = parsed;
     } catch { /* keep as string */ }
+
+    // Only push if local has content AND server is empty/missing.
+    if (isEmpty(value)) continue;
+    if (!isEmpty(_userStateCache[key])) continue; // server already has substantive content
 
     saveUserState(key, value);
     pushed++;
