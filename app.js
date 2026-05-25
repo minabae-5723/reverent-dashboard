@@ -1421,14 +1421,21 @@ function _macroNotesKey(weekDate) { return `macro-notes-${weekDate || 'default'}
 
 function _loadMacroNotes(weekDate) {
   const key = _macroNotesKey(weekDate);
+  // Defensive coercion: legacy data may have stored a single card object
+  // (instead of an array of cards). Always return an array.
+  const toArray = (v) => {
+    if (Array.isArray(v)) return v;
+    if (v && typeof v === 'object' && v.id) return [v];
+    return [];
+  };
   // localStorage first (fresh edits)
   try {
     const raw = localStorage.getItem(key);
-    if (raw) return JSON.parse(raw);
+    if (raw) return toArray(JSON.parse(raw));
   } catch {}
   // Then user-state.json cache (deployed values, shared across browsers)
-  if (_userStateCache && Array.isArray(_userStateCache[key])) {
-    return _userStateCache[key];
+  if (_userStateCache && _userStateCache[key] != null) {
+    return toArray(_userStateCache[key]);
   }
   return [];
 }
