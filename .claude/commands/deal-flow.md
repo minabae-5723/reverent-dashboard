@@ -93,6 +93,20 @@ WebFetch  https://www.investchosun.com/                              (PEF·M&A 1
 - 🅔 **통화·환율·금리**: 한은 금통위, 연준, 외환 정책
 
 #### Page 6 — 주요 거래 동향 (개별 거래·진행 단계)
+
+🔴 **국내 거래 한정 (v2.2 사용자 지정)** — Monday Brief Page 6은 **한국 기업·한국 PE·한국 시장을 직접 대상으로 한 거래만** 포함. 다음 케이스는 Page 6에서 제외:
+- 글로벌 PE 간 거래 (예: Bain Capital이 미국 기업 인수)
+- 외국 기업의 외국 기업 인수 (예: NextEra-Dominion 합병, Sun Pharma-Organon)
+- 외국 라이선스·M&A 거래 (예: Regeneron-Parabilis AHC 거래)
+- 외국 IPO (예: SpaceX·OpenAI 미국 상장) — 한국 LP 회수 사이드는 Page 5에서 매크로 시각으로 다룸
+
+✅ **국내 거래 인정 기준 (1개 이상 충족)**:
+- 인수자·매도자·대상회사 중 **1개 이상이 한국 법인**
+- 한국 PE·VC·LP가 **deal lead 또는 anchor LP**로 참여
+- 한국 SI가 컨소시엄 일원으로 참여 (예: 우버·네이버 8:2 컨소의 배민 인수전 → 인정)
+- 한국 자회사·한국 사업부 매각 (예: 다국적 기업의 한국 법인 매각 → 인정)
+
+카테고리:
 - 🅐 **PE Buyout**: 사모펀드 경영권 인수
 - 🅑 **기업간 인수**: 전략적 SI 인수 (수직계열화·볼트온)
 - 🅒 **매각 추진**: 매각자문 선정·티저레터·예비입찰
@@ -100,6 +114,8 @@ WebFetch  https://www.investchosun.com/                              (PEF·M&A 1
 - 🅔 **SPA 체결**: 본계약 체결·딜클로징
 - 🅕 **Pre-IPO/VC 투자**: 그로스·시리즈 라운드
 - 🅖 **리파이낸싱**: PEF 인수금융 리파이낸싱·세컨더리
+- 🅗 **IPO**: 한국 시장 IPO (코스피·코스닥)
+- 🅘 **PEF 회수**: 한국 PE·VC의 매각·회수 거래
 
 ### Step 1-4) Scoring rubric (정교화)
 
