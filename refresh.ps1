@@ -129,6 +129,70 @@ function Get-InvestingYield {
 }
 
 # ----------------------------------------------------------------
+# Investing.com CDS spread fetch (5Y USD CDS).
+# CDS is already quoted in bp, so the bp-delta conversion uses
+# (current - prior) directly (no ×100 like for bond yields).
+# ----------------------------------------------------------------
+function Get-InvestingCDS {
+    param([string]$Url, [string]$Key)
+    try {
+        $r = Invoke-WebRequest -Uri $Url -UseBasicParsing -UserAgent $UserAgent -TimeoutSec 20
+        $html = $r.Content
+
+        $priceM = [regex]::Match($html, 'data-test="instrument-price-last">\s*([\d\.,]+)')
+        if (-not $priceM.Success) { return $null }
+        $current = [double]($priceM.Groups[1].Value -replace ',', '')
+
+        $pcM = [regex]::Match($html, '"priceChanges"\s*:\s*\{([^\}]+)\}', 'Singleline')
+        if (-not $pcM.Success) { return $null }
+        $pcObj = ('{' + $pcM.Groups[1].Value + '}') | ConvertFrom-Json
+
+        $bpDelta = {
+            param($pct)
+            if ($null -eq $pct) { return $null }
+            $p = [double]$pct
+            $prior = $current / (1 + $p / 100)
+            return [Math]::Round($current - $prior, 1)
+        }
+
+        return [PSCustomObject]@{
+            key     = $Key
+            current = [Math]::Round($current, 1)
+            wow     = & $bpDelta $pcObj.pct_1w
+            mom     = & $bpDelta $pcObj.pct_1m
+            ytd     = & $bpDelta $pcObj.pct_ytd
+            type    = 'bp_abs'
+            asOf    = $pcObj.updated_at
+            ok      = $true
+            source  = 'investing'
+        }
+    } catch {
+        Write-Warning ("Investing CDS fail [{0}]: {1}" -f $Key, $_.Exception.Message)
+        return $null
+    }
+}
+
+# Fetch US + CN 5Y CDS. Falls back to STATIC_DATA on failure.
+function Fetch-InvestingCDS {
+    $urls = [ordered]@{
+        CDS_US = 'https://www.investing.com/rates-bonds/united-states-cds-5-years-usd'
+        CDS_CN = 'https://www.investing.com/rates-bonds/china-cds-5-years-usd'
+    }
+    $rows = @()
+    foreach ($key in $urls.Keys) {
+        $r = Get-InvestingCDS -Url $urls[$key] -Key $key
+        if ($r) {
+            $rows += $r
+        } else {
+            $fallback = $STATIC_DATA.cds | Where-Object { $_.key -eq $key }
+            if ($fallback) { $rows += $fallback }
+        }
+        Start-Sleep -Milliseconds 200
+    }
+    return $rows
+}
+
+# ----------------------------------------------------------------
 # Investing.com commodity fetch — reflects after-hours Globex prices
 # (Yahoo's regularMarketPrice only shows the Friday floor-close, which
 # undershoots when Sunday-evening crude has already moved).
@@ -528,7 +592,7 @@ do {
         rate      = $rateOrdered
         commodity = @(_FetchCommodities) + @($STATIC_DATA.commodity_extra)
         fx        = @(Fetch-Group $INSTRUMENTS.fx -FreezeFriday $true)
-        cds       = @($STATIC_DATA.cds)
+        cds       = @(Fetch-InvestingCDS)
         sector    = @(Fetch-Group $INSTRUMENTS.sector -FreezeFriday $true)
     }
 
