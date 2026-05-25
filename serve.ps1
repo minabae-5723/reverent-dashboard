@@ -142,10 +142,38 @@ Write-Host " Reverent Partners - Live Market Dashboard" -ForegroundColor Cyan
 Write-Host "==============================================" -ForegroundColor Cyan
 Write-Host ""
 
+# ── 0. Auto-sync with origin/main so other-PC commits propagate here ──
+Write-Host "[0/3] Sync from origin/main..." -ForegroundColor Yellow
+try {
+    $gitDir = Join-Path $root '.git'
+    if (Test-Path -LiteralPath $gitDir) {
+        $pullOut = & git -C $root pull --ff-only 2>&1
+        if ($LASTEXITCODE -eq 0) {
+            Write-Host "  $pullOut" -ForegroundColor DarkGray
+        } else {
+            Write-Host "  git pull skipped (uncommitted changes / non-ff): $pullOut" -ForegroundColor DarkGray
+        }
+    } else {
+        Write-Host "  (not a git repo — skipping pull)" -ForegroundColor DarkGray
+    }
+} catch {
+    Write-Host "  pull error (continuing): $($_.Exception.Message)" -ForegroundColor DarkGray
+}
+Write-Host ""
+
 # ── 1. Initial data fetch (synchronous, so page has data on first load) ──
 Write-Host "[1/3] Initial data fetch (Yahoo + Investing)..." -ForegroundColor Yellow
-& powershell -NoProfile -ExecutionPolicy Bypass -File $refreshScript
-& powershell -NoProfile -ExecutionPolicy Bypass -File $calendarScript
+if (Test-Path -LiteralPath $refreshScript) {
+    & powershell -NoProfile -ExecutionPolicy Bypass -File $refreshScript
+} else {
+    Write-Host "  refresh.ps1 missing on this PC (likely AV-quarantined) — skipping market fetch" -ForegroundColor Yellow
+    Write-Host "  Using data.json from last commit on origin/main" -ForegroundColor DarkGray
+}
+if (Test-Path -LiteralPath $calendarScript) {
+    & powershell -NoProfile -ExecutionPolicy Bypass -File $calendarScript
+} else {
+    Write-Host "  fetch-calendar.ps1 missing — skipping calendar fetch" -ForegroundColor Yellow
+}
 Write-Host ""
 
 # ── 2. (Manual mode) Background refresh loops disabled ──
@@ -481,9 +509,15 @@ try {
             if ($relPath -eq '/refresh') {
                 Write-Host "[$stamp] >>> /refresh (market + calendar)..." -ForegroundColor Magenta
                 $sw = [System.Diagnostics.Stopwatch]::StartNew()
-                & powershell -NoProfile -ExecutionPolicy Bypass -File $refreshScript  | Out-Null
+                if (Test-Path -LiteralPath $refreshScript) {
+                    & powershell -NoProfile -ExecutionPolicy Bypass -File $refreshScript  | Out-Null
+                } else {
+                    Write-Host "[$stamp] !!! refresh.ps1 missing (AV-quarantined) — skipping market fetch" -ForegroundColor Red
+                }
                 $marketMs = $sw.ElapsedMilliseconds
-                & powershell -NoProfile -ExecutionPolicy Bypass -File $calendarScript | Out-Null
+                if (Test-Path -LiteralPath $calendarScript) {
+                    & powershell -NoProfile -ExecutionPolicy Bypass -File $calendarScript | Out-Null
+                }
                 $sw.Stop()
                 $msg = "{`"ok`":true,`"totalMs`":$($sw.ElapsedMilliseconds),`"marketMs`":$marketMs,`"calendarMs`":$($sw.ElapsedMilliseconds - $marketMs)}"
                 $bytes = [System.Text.Encoding]::UTF8.GetBytes($msg)

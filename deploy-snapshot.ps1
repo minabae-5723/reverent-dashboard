@@ -25,14 +25,39 @@ Write-Host ""
 # Each gets an `index.json` regenerated from its .md file basenames.
 $INDEXED_FOLDERS = @('news', 'market', 'deals')
 
+# 0. Sync from origin/main first so other-PC commits don't conflict on push
+Write-Host "[0/5] Sync from origin/main..." -ForegroundColor Yellow
+$pullOut = & git -C $root pull --ff-only 2>&1
+if ($LASTEXITCODE -eq 0) {
+    Write-Host "  $pullOut" -ForegroundColor DarkGray
+} else {
+    Write-Host "  git pull skipped (uncommitted / non-ff): $pullOut" -ForegroundColor Yellow
+}
+
+# Helper: run a fetch script only if present (AV may quarantine scripts on
+# some PCs); if missing, restore from HEAD before continuing.
+function Invoke-FetchScript {
+    param([string]$Name, [string]$Path)
+    if (-not (Test-Path -LiteralPath $Path)) {
+        Write-Host "  $Name missing — attempting checkout from HEAD..." -ForegroundColor Yellow
+        & git -C $root checkout HEAD -- $Name 2>&1 | Out-Null
+    }
+    if (Test-Path -LiteralPath $Path) {
+        & powershell -NoProfile -ExecutionPolicy Bypass -File $Path
+    } else {
+        Write-Host "  $Name still missing (AV blocked?) — skipping" -ForegroundColor Red
+    }
+}
+
 # 1. Refresh market data (Yahoo Finance)
-Write-Host "[1/4] Refresh market data..." -ForegroundColor Yellow
-& powershell -NoProfile -ExecutionPolicy Bypass -File (Join-Path $root 'refresh.ps1')
+Write-Host ""
+Write-Host "[1/5] Refresh market data..." -ForegroundColor Yellow
+Invoke-FetchScript -Name 'refresh.ps1' -Path (Join-Path $root 'refresh.ps1')
 
 # 2. Refresh calendar (Investing.com -- may fail if Cloudflare blocking)
 Write-Host ""
 Write-Host "[2/5] Refresh calendar data..." -ForegroundColor Yellow
-& powershell -NoProfile -ExecutionPolicy Bypass -File (Join-Path $root 'fetch-calendar.ps1')
+Invoke-FetchScript -Name 'fetch-calendar.ps1' -Path (Join-Path $root 'fetch-calendar.ps1')
 
 # 2.5. Refresh semiconductor trade data (Korea Customs OpenAPI) — last 2 years only
 Write-Host ""
@@ -109,6 +134,26 @@ $gitStatus = git status --porcelain 2>&1
 if ([string]::IsNullOrWhiteSpace($gitStatus)) {
     Write-Host "  No changes detected -- nothing to commit." -ForegroundColor DarkGray
 } else {
+    # AV-safety: restore any code files that may have been quarantined during
+    # the fetch phase. Without this, `git add -A` would stage their deletion
+    # and we'd accidentally push removals to the repo.
+    $criticalCodeFiles = @(
+        'refresh.ps1', 'fetch-calendar.ps1', 'fetch-shiller.ps1', 'fetch-fedwatch.ps1',
+        'fetch-trade.ps1', 'fetch-dart-valuation.ps1', 'fetch-ipo.ps1', 'fetch-peer.ps1',
+        'fetch-cd91-history.ps1', 'fetch-cd91.ps1',
+        'serve.ps1', 'app.js', 'macro.js', 'chat.js', 'index.html', 'styles.css'
+    )
+    foreach ($f in $criticalCodeFiles) {
+        $fp = Join-Path $root $f
+        if (-not (Test-Path -LiteralPath $fp)) {
+            $headHas = (& git -C $root cat-file -e "HEAD:$f" 2>$null; $LASTEXITCODE -eq 0)
+            if ($headHas) {
+                Write-Host "  ! $f missing on disk — restoring from HEAD (AV?)" -ForegroundColor Yellow
+                & git -C $root checkout HEAD -- $f 2>&1 | Out-Null
+            }
+        }
+    }
+
     # Force-add data snapshots (gitignored normally) + all index.json files
     $forceFiles = @('data.json', 'calendar.json', 'calendar-week.json', 'calendar-next-week.json', 'market-update-frozen.json', 'trade.json', 'shiller.json', 'fedwatch.json', 'user-state.json') +
                   ($INDEXED_FOLDERS | ForEach-Object { "$_/index.json" })
