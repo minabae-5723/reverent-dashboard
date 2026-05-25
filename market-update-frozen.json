@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-05-22T08:05:26Z",
-    "updatedKr":  "2026-05-22 17:05:26",
+    "updated":  "2026-05-22T14:30:00Z",
+    "updatedKr":  "2026-05-22 23:30:00",
     "frozenDow":  "Friday",
     "thisWeek":  [
                      {
@@ -93,6 +93,22 @@
                          "forecast":  "17.6",
                          "previous":  "26.7",
                          "type":  "review"
+                     },
+                     {
+                         "id":  "546572",
+                         "datetime":  "2026/05/22 23:00:00",
+                         "date":  "5/22",
+                         "time":  "23:00",
+                         "flagKey":  "United_States",
+                         "currency":  "USD",
+                         "importance":  3,
+                         "indicator":  "Michigan Sentiment (Final)",
+                         "period":  "May",
+                         "actual":  "44.8",
+                         "forecast":  "48.2",
+                         "previous":  "49.8",
+                         "type":  "review",
+                         "source":  "investing.com/economic-calendar/michigan-consumer-sentiment-320"
                      }
                  ],
     "nextWeek":  [
