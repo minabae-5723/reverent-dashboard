@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-05-25T23:42:13Z",
-    "updatedKr":  "2026-05-26 08:42:13",
+    "updated":  "2026-05-26T01:51:10Z",
+    "updatedKr":  "2026-05-26 10:51:10",
     "index":  [
                   {
                       "key":  "KOSPI",
@@ -72,23 +72,23 @@
     "rate":  [
                  {
                      "key":  "KR3Y",
-                     "current":  3.727,
-                     "wow":  -4,
-                     "mom":  23,
-                     "ytd":  80,
+                     "current":  3.676,
+                     "wow":  -8,
+                     "mom":  18,
+                     "ytd":  75,
                      "type":  "bp",
-                     "asOf":  "2026-05-25T08:41:53.062Z",
+                     "asOf":  "2026-05-26T01:50:14.465Z",
                      "ok":  true,
                      "source":  "investing"
                  },
                  {
                      "key":  "KR10Y",
-                     "current":  4.144,
-                     "wow":  -9,
-                     "mom":  33,
-                     "ytd":  78,
+                     "current":  4.052,
+                     "wow":  -16,
+                     "mom":  24,
+                     "ytd":  68,
                      "type":  "bp",
-                     "asOf":  "2026-05-25T08:42:25.602Z",
+                     "asOf":  "2026-05-26T01:50:55.937Z",
                      "ok":  true,
                      "source":  "investing"
                  },
@@ -105,12 +105,12 @@
                  },
                  {
                      "key":  "US2Y",
-                     "current":  4.127,
-                     "wow":  4,
-                     "mom":  35,
-                     "ytd":  65,
+                     "current":  4.061,
+                     "wow":  -6,
+                     "mom":  29,
+                     "ytd":  59,
                      "type":  "bp",
-                     "asOf":  "2026-05-25T01:35:41.252Z",
+                     "asOf":  "2026-05-26T01:50:00.807Z",
                      "ok":  true,
                      "source":  "investing"
                  },
@@ -186,47 +186,51 @@
     "fx":  [
                {
                    "key":  "USDKRW",
-                   "symbol":  "KRW=X",
-                   "current":  1504.4,
-                   "wow":  0.74,
-                   "mom":  1.65,
-                   "ytd":  4.21,
+                   "symbol":  "naver:USDKRW",
+                   "current":  1512,
+                   "wow":  0.93,
+                   "mom":  2.21,
+                   "ytd":  4.51,
                    "type":  "pct",
                    "asOf":  "2026-05-22",
-                   "ok":  true
+                   "ok":  true,
+                   "source":  "naver-seoul"
                },
                {
                    "key":  "USDEUR",
-                   "symbol":  "EURUSD=X",
-                   "current":  0.8605,
-                   "wow":  0.35,
-                   "mom":  0.54,
-                   "ytd":  1.11,
+                   "symbol":  "naver:USDEUR",
+                   "current":  0.859,
+                   "wow":  -0.18,
+                   "mom":  0.8,
+                   "ytd":  0.63,
                    "type":  "pct",
                    "asOf":  "2026-05-22",
-                   "ok":  true
+                   "ok":  true,
+                   "source":  "naver-seoul"
                },
                {
                    "key":  "USDJPY",
-                   "symbol":  "JPY=X",
-                   "current":  159.018,
-                   "wow":  0.4,
-                   "mom":  -0.46,
-                   "ytd":  1.46,
+                   "symbol":  "naver:USDJPY",
+                   "current":  158.945,
+                   "wow":  0.09,
+                   "mom":  0.07,
+                   "ytd":  1.41,
                    "type":  "pct",
                    "asOf":  "2026-05-22",
-                   "ok":  true
+                   "ok":  true,
+                   "source":  "naver-seoul"
                },
                {
                    "key":  "USDCNY",
-                   "symbol":  "CNY=X",
-                   "current":  6.8025,
-                   "wow":  0.26,
-                   "mom":  -0.34,
-                   "ytd":  -2.77,
+                   "symbol":  "naver:USDCNY",
+                   "current":  6.7839,
+                   "wow":  -0.45,
+                   "mom":  -0.66,
+                   "ytd":  -2.89,
                    "type":  "pct",
                    "asOf":  "2026-05-22",
-                   "ok":  true
+                   "ok":  true,
+                   "source":  "naver-seoul"
                },
                {
                    "key":  "DXY",

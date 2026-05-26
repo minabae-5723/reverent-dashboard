@@ -1,6 +1,6 @@
 {
     "version":  1,
-    "updated":  "2026-05-25T10:33:21Z",
+    "updated":  "2026-05-26T00:34:19Z",
     "entries":  {
                     "rp::valuation::2026-05-22::1ognc1":  {
                                                               "values":  {
@@ -32,7 +32,7 @@
                                                        "createdAt":  1779691299268
                                                    }
                                                ],
-                    "capmkt-comment-commodity":  "유가는 $100 넘어서며 금리 상승과 함께 인플레이션 우려 심화",
+                    "capmkt-comment-commodity":  "미국-이란 합의 기대감에 유가 큰 폭으로 하락.",
                     "macro-comment-2026-05-15-time":  "05-18 15:03",
                     "rp::valuation::2026-05-22::9rh61l":  {
                                                               "values":  {
@@ -71,7 +71,7 @@
                                                        "createdAt":  1778998187227
                                                    }
                                                ],
-                    "capmkt-comment-time-commodity":  "26. 05. 17. 오후 03:21",
+                    "capmkt-comment-time-commodity":  "26. 05. 26. 오전 09:29",
                     "rp::valuation::2026-05-22::ony9la":  {
                                                               "values":  {
                                                                              "매출액":  "343",
@@ -92,7 +92,7 @@
                                                               "weekDate":  "2026-05-22",
                                                               "headline":  "오퍼스-NH PE, \u0027비파괴검사 전문\u0027 삼영검사ENG 매각 추진"
                                                           },
-                    "capmkt-comment-time-index":  "26. 05. 25. 오후 02:58",
+                    "capmkt-comment-time-index":  "26. 05. 26. 오전 09:34",
                     "rp::valuation::2026-05-15::fh8pl2":  {
                                                               "values":  {
                                                                              "EBITDA":  "300",
@@ -133,8 +133,8 @@
                                                               "weekDate":  "2026-05-22",
                                                               "headline":  "\u0027삼성SDS 투자\u0027 KKR, 바이아웃·크레딧 펀드 동시 활용"
                                                           },
-                    "dashboard-macro-comment-time":  "05-25 19:33",
-                    "capmkt-comment-time-fx":  "26. 05. 15. 오후 04:52",
+                    "dashboard-macro-comment-time":  "05-26 09:27",
+                    "capmkt-comment-time-fx":  "26. 05. 26. 오전 09:33",
                     "rp::valuation::2026-05-15::1g3qds":  {
                                                               "values":  {
                                                                              "매출액":  "48792",
@@ -169,10 +169,10 @@
                                                               "headline":  "\u00271700억 베팅\u0027 릴슨PE, 롯데에코월 인수 SPA 체결"
                                                           },
                     "ipo-mcap-477850":  2748,
-                    "capmkt-comment-fx":  "원달러 환율은 미국 PPI 급등 영향으로 한달만 최고치 기록.",
-                    "dashboard-macro-comment":  "소비자 심리지수가 지난달 발표됐던 49.8보다 크게 위축된 44.8로 발표됐으며 예비치였던 48.2에서 하향 조정.  \n1년 기대 인플레이션도 지난 달 발표됐던 4.7%에서 4.8%로 상승한 가운데 5년 기대 인플레이션이 3.5%에서 3.9%로 크게 상승. ",
-                    "capmkt-comment-rate":  "미국채 10년물 4.5%, 30년물 5.0% 넘어서며 자본시장 우려",
-                    "capmkt-comment-time-rate":  "26. 05. 17. 오후 02:40",
-                    "capmkt-comment-index":  "국내 증시는 역대 최고 변동성 속 상승. 코스피 목표 주가 상승.\n리밸런싱에 의한 외국인 매도 지속, MSCI 조정 후 자금 유입 기대."
+                    "capmkt-comment-fx":  "원달러 환율은 미 국채금리 상승 영향으로 상승.",
+                    "dashboard-macro-comment":  "소비자 심리지수가 지난달 발표됐던 49.8보다 크게 위축된 44.8로 발표됐으며 예비치였던 48.2에서 하향 조정. \n1년 기대 인플레이션도 지난 달 발표됐던 4.7%에서 4.8%로 상승한 가운데 5년 기대 인플레이션이 3.5%에서 3.9%로 크게 상승. ",
+                    "capmkt-comment-rate":  "미 국채 금리는 인플레이션 및 지정학적 변동성으로 상승 후 주 반 하락.",
+                    "capmkt-comment-time-rate":  "26. 05. 26. 오전 09:28",
+                    "capmkt-comment-index":  "국내 증시는 큰 변동성 속에 주 후반 급등."
                 }
 }
