@@ -3365,11 +3365,12 @@ setupNewsFilters();
 setupSemiconFilters();
 setupShillerFilters();
 setupFedWatchFilters();
-setupCapMktComments();
-setupDashboardMacroComment();
-// Load deployed user-state (valuations + macro notes + comments), then
-// re-render deals view if it's already mounted
+// Load deployed user-state (valuations + macro notes + comments) FIRST,
+// then wire the comment textareas so their hydration can fall back to
+// the server cache when this browser has empty localStorage.
 loadUserState().then(() => {
+  setupCapMktComments();
+  setupDashboardMacroComment();
   // Push any localStorage-only saves (from before /save-state existed) to
   // the server so the next deploy carries them everywhere.
   migrateLocalStorageToUserState();
