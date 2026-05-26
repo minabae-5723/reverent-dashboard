@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-05-26T01:51:10Z",
-    "updatedKr":  "2026-05-26 10:51:10",
+    "updated":  "2026-05-26T23:51:32Z",
+    "updatedKr":  "2026-05-27 08:51:32",
     "index":  [
                   {
                       "key":  "KOSPI",
@@ -72,23 +72,23 @@
     "rate":  [
                  {
                      "key":  "KR3Y",
-                     "current":  3.676,
+                     "current":  3.67,
                      "wow":  -8,
-                     "mom":  18,
-                     "ytd":  75,
+                     "mom":  17,
+                     "ytd":  74,
                      "type":  "bp",
-                     "asOf":  "2026-05-26T01:50:14.465Z",
+                     "asOf":  "2026-05-26T08:41:56.237Z",
                      "ok":  true,
                      "source":  "investing"
                  },
                  {
                      "key":  "KR10Y",
-                     "current":  4.052,
-                     "wow":  -16,
-                     "mom":  24,
-                     "ytd":  68,
+                     "current":  4.073,
+                     "wow":  -14,
+                     "mom":  26,
+                     "ytd":  70,
                      "type":  "bp",
-                     "asOf":  "2026-05-26T01:50:55.937Z",
+                     "asOf":  "2026-05-26T08:42:49.894Z",
                      "ok":  true,
                      "source":  "investing"
                  },
@@ -99,41 +99,41 @@
                      "mom":  -1,
                      "ytd":  0,
                      "type":  "bp",
-                     "asOf":  "2026-05-21",
+                     "asOf":  "2026-05-22",
                      "ok":  true,
                      "source":  "naver-mobile"
                  },
                  {
                      "key":  "US2Y",
-                     "current":  4.061,
-                     "wow":  -6,
-                     "mom":  29,
-                     "ytd":  59,
+                     "current":  4.036,
+                     "wow":  -9,
+                     "mom":  26,
+                     "ytd":  56,
                      "type":  "bp",
-                     "asOf":  "2026-05-26T01:50:00.807Z",
+                     "asOf":  "2026-05-26T23:10:01.254Z",
                      "ok":  true,
                      "source":  "investing"
                  },
                  {
                      "key":  "US10Y",
                      "symbol":  "^TNX",
-                     "current":  4.558,
-                     "wow":  -4,
-                     "mom":  25,
-                     "ytd":  37,
+                     "current":  4.493,
+                     "wow":  -17,
+                     "mom":  16,
+                     "ytd":  31,
                      "type":  "bp",
-                     "asOf":  "2026-05-23T03:59:53",
+                     "asOf":  "2026-05-27T03:59:52",
                      "ok":  true
                  },
                  {
                      "key":  "US30Y",
                      "symbol":  "^TYX",
-                     "current":  5.064,
-                     "wow":  -6,
-                     "mom":  15,
-                     "ytd":  20,
+                     "current":  5.026,
+                     "wow":  -16,
+                     "mom":  8,
+                     "ytd":  16,
                      "type":  "bp",
-                     "asOf":  "2026-05-23T03:59:53",
+                     "asOf":  "2026-05-27T03:59:52",
                      "ok":  true
                  }
              ],
@@ -247,23 +247,23 @@
     "cds":  [
                 {
                     "key":  "CDS_US",
-                    "current":  37.8,
-                    "wow":  0,
+                    "current":  37.7,
+                    "wow":  -0.1,
                     "mom":  3.1,
                     "ytd":  11.2,
                     "type":  "bp_abs",
-                    "asOf":  "2026-05-25T09:33:19.998Z",
+                    "asOf":  "2026-05-26T09:33:15.543Z",
                     "ok":  true,
                     "source":  "investing"
                 },
                 {
                     "key":  "CDS_CN",
                     "current":  40.6,
-                    "wow":  -2.2,
+                    "wow":  -2,
                     "mom":  -7.1,
                     "ytd":  -3.1,
                     "type":  "bp_abs",
-                    "asOf":  "2026-05-25T09:33:23.847Z",
+                    "asOf":  "2026-05-26T09:33:19.642Z",
                     "ok":  true,
                     "source":  "investing"
                 }

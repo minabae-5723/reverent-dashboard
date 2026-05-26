@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-05-25T23:42:56Z",
-    "updatedKr":  "2026-05-26 08:42:56",
+    "updated":  "2026-05-26T23:52:09Z",
+    "updatedKr":  "2026-05-27 08:52:09",
     "countries":  [
                       "5",
                       "35",
@@ -18,10 +18,10 @@
                        "importance":  1,
                        "indicator":  "Leading Index",
                        "period":  "Mar",
-                       "actual":  "",
+                       "actual":  "114.0",
                        "forecast":  "114.5",
-                       "previous":  "113.3",
-                       "type":  "preview"
+                       "previous":  "113.2",
+                       "type":  "review"
                    },
                    {
                        "id":  "549890",
@@ -33,10 +33,10 @@
                        "importance":  1,
                        "indicator":  "Leading Index (MoM)",
                        "period":  "Mar",
-                       "actual":  "",
+                       "actual":  "0.8%",
                        "forecast":  "1.3%",
                        "previous":  "1.3%",
-                       "type":  "preview"
+                       "type":  "review"
                    },
                    {
                        "id":  "550105",
@@ -48,10 +48,10 @@
                        "importance":  2,
                        "indicator":  "BoJ Core CPI",
                        "period":  "YoY",
-                       "actual":  "",
+                       "actual":  "2.8%",
                        "forecast":  "1.7%",
                        "previous":  "2.5%",
-                       "type":  "preview"
+                       "type":  "review"
                    },
                    {
                        "id":  "549892",
@@ -63,10 +63,10 @@
                        "importance":  1,
                        "indicator":  "Coincident Indicator (MoM)",
                        "period":  "Mar",
-                       "actual":  "",
+                       "actual":  "0.2%",
                        "forecast":  "0.3%",
-                       "previous":  "-1.8%",
-                       "type":  "preview"
+                       "previous":  "-1.7%",
+                       "type":  "review"
                    },
                    {
                        "id":  "547638",
@@ -78,10 +78,10 @@
                        "importance":  1,
                        "indicator":  "Chicago Fed National Activity",
                        "period":  "Apr",
-                       "actual":  "",
+                       "actual":  "0.14",
                        "forecast":  "",
-                       "previous":  "-0.20",
-                       "type":  "preview"
+                       "previous":  "-0.15",
+                       "type":  "review"
                    },
                    {
                        "id":  "547645",
@@ -93,10 +93,10 @@
                        "importance":  1,
                        "indicator":  "S\u0026P/CS HPI Composite - 20 s.a. (MoM)",
                        "period":  "Mar",
-                       "actual":  "",
+                       "actual":  "-0.2%",
                        "forecast":  "",
                        "previous":  "-0.1%",
-                       "type":  "preview"
+                       "type":  "review"
                    },
                    {
                        "id":  "547642",
@@ -108,10 +108,10 @@
                        "importance":  2,
                        "indicator":  "S\u0026P/CS HPI Composite - 20 n.s.a. (YoY)",
                        "period":  "Mar",
-                       "actual":  "",
-                       "forecast":  "1.0%",
+                       "actual":  "0.8%",
+                       "forecast":  "0.9%",
                        "previous":  "0.9%",
-                       "type":  "preview"
+                       "type":  "review"
                    },
                    {
                        "id":  "547641",
@@ -123,10 +123,10 @@
                        "importance":  2,
                        "indicator":  "S\u0026P/CS HPI Composite - 20 n.s.a. (MoM)",
                        "period":  "Mar",
-                       "actual":  "",
+                       "actual":  "1.0%",
                        "forecast":  "",
                        "previous":  "0.4%",
-                       "type":  "preview"
+                       "type":  "review"
                    },
                    {
                        "id":  "547646",
@@ -138,10 +138,10 @@
                        "importance":  1,
                        "indicator":  "House Price Index (MoM)",
                        "period":  "Mar",
-                       "actual":  "",
+                       "actual":  "0.1%",
                        "forecast":  "0.1%",
-                       "previous":  "0.0%",
-                       "type":  "preview"
+                       "previous":  "-0.1%",
+                       "type":  "review"
                    },
                    {
                        "id":  "547643",
@@ -153,10 +153,10 @@
                        "importance":  1,
                        "indicator":  "House Price Index (YoY)",
                        "period":  "Mar",
-                       "actual":  "",
+                       "actual":  "1.7%",
                        "forecast":  "",
                        "previous":  "1.7%",
-                       "type":  "preview"
+                       "type":  "review"
                    },
                    {
                        "id":  "547644",
@@ -168,10 +168,10 @@
                        "importance":  1,
                        "indicator":  "House Price Index",
                        "period":  "Mar",
-                       "actual":  "",
+                       "actual":  "441.5",
                        "forecast":  "",
-                       "previous":  "441.4",
-                       "type":  "preview"
+                       "previous":  "441.2",
+                       "type":  "review"
                    },
                    {
                        "id":  "547647",
@@ -183,10 +183,10 @@
                        "importance":  3,
                        "indicator":  "CB Consumer Confidence",
                        "period":  "May",
-                       "actual":  "",
+                       "actual":  "93.1",
                        "forecast":  "91.9",
-                       "previous":  "92.8",
-                       "type":  "preview"
+                       "previous":  "93.8",
+                       "type":  "review"
                    },
                    {
                        "id":  "547650",
@@ -198,10 +198,10 @@
                        "importance":  1,
                        "indicator":  "Dallas Fed Mfg Business Index",
                        "period":  "May",
-                       "actual":  "",
+                       "actual":  "0.4",
                        "forecast":  "",
                        "previous":  "-2.3",
-                       "type":  "preview"
+                       "type":  "review"
                    },
                    {
                        "id":  "549824",
@@ -213,10 +213,10 @@
                        "importance":  1,
                        "indicator":  "6-Month Bill Auction",
                        "period":  "",
-                       "actual":  "",
+                       "actual":  "3.650%",
                        "forecast":  "",
                        "previous":  "3.615%",
-                       "type":  "preview"
+                       "type":  "review"
                    },
                    {
                        "id":  "549823",
@@ -228,10 +228,10 @@
                        "importance":  1,
                        "indicator":  "3-Month Bill Auction",
                        "period":  "",
-                       "actual":  "",
+                       "actual":  "3.595%",
                        "forecast":  "",
                        "previous":  "3.600%",
-                       "type":  "preview"
+                       "type":  "review"
                    },
                    {
                        "id":  "549898",
@@ -243,10 +243,10 @@
                        "importance":  1,
                        "indicator":  "M2 Money Supply (MoM)",
                        "period":  "Apr",
-                       "actual":  "",
+                       "actual":  "22.80T",
                        "forecast":  "",
                        "previous":  "22.69T",
-                       "type":  "preview"
+                       "type":  "review"
                    },
                    {
                        "id":  "549897",
@@ -258,10 +258,10 @@
                        "importance":  2,
                        "indicator":  "2-Year Note Auction",
                        "period":  "",
-                       "actual":  "",
+                       "actual":  "4.071%",
                        "forecast":  "",
                        "previous":  "3.812%",
-                       "type":  "preview"
+                       "type":  "review"
                    },
                    {
                        "id":  "550106",
@@ -273,10 +273,10 @@
                        "importance":  1,
                        "indicator":  "Corporate Services Price Index (CSPI)",
                        "period":  "YoY",
-                       "actual":  "",
-                       "forecast":  "3.0%",
-                       "previous":  "3.1%",
-                       "type":  "preview"
+                       "actual":  "3.0%",
+                       "forecast":  "3.3%",
+                       "previous":  "3.3%",
+                       "type":  "review"
                    },
                    {
                        "id":  "550107",
@@ -454,7 +454,7 @@
                        "indicator":  "Richmond Manufacturing Index",
                        "period":  "May",
                        "actual":  "",
-                       "forecast":  "5",
+                       "forecast":  "4",
                        "previous":  "3",
                        "type":  "preview"
                    },
