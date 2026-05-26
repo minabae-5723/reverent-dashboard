@@ -39,13 +39,13 @@ if ($LASTEXITCODE -eq 0) {
 function Invoke-FetchScript {
     param([string]$Name, [string]$Path)
     if (-not (Test-Path -LiteralPath $Path)) {
-        Write-Host "  $Name missing — attempting checkout from HEAD..." -ForegroundColor Yellow
+        Write-Host "  $Name missing -- attempting checkout from HEAD..." -ForegroundColor Yellow
         & git -C $root checkout HEAD -- $Name 2>&1 | Out-Null
     }
     if (Test-Path -LiteralPath $Path) {
         & powershell -NoProfile -ExecutionPolicy Bypass -File $Path
     } else {
-        Write-Host "  $Name still missing (AV blocked?) — skipping" -ForegroundColor Red
+        Write-Host "  $Name still missing (AV blocked?) -- skipping" -ForegroundColor Red
     }
 }
 
@@ -146,9 +146,10 @@ if ([string]::IsNullOrWhiteSpace($gitStatus)) {
     foreach ($f in $criticalCodeFiles) {
         $fp = Join-Path $root $f
         if (-not (Test-Path -LiteralPath $fp)) {
-            $headHas = (& git -C $root cat-file -e "HEAD:$f" 2>$null; $LASTEXITCODE -eq 0)
+            & git -C $root cat-file -e "HEAD:$f" 2>$null
+            $headHas = ($LASTEXITCODE -eq 0)
             if ($headHas) {
-                Write-Host "  ! $f missing on disk — restoring from HEAD (AV?)" -ForegroundColor Yellow
+                Write-Host "  ! $f missing on disk -- restoring from HEAD (AV?)" -ForegroundColor Yellow
                 & git -C $root checkout HEAD -- $f 2>&1 | Out-Null
             }
         }
