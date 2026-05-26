@@ -3365,15 +3365,47 @@ setupNewsFilters();
 setupSemiconFilters();
 setupShillerFilters();
 setupFedWatchFilters();
-// Load deployed user-state (valuations + macro notes + comments) FIRST,
-// then wire the comment textareas so their hydration can fall back to
-// the server cache when this browser has empty localStorage.
+setupCapMktComments();
+setupDashboardMacroComment();
+// Load deployed user-state (valuations + macro notes + comments), then
+// re-render deals view if it's already mounted and refill any comment
+// fields that are still empty (covers fresh-browser / cleared-cache case).
 loadUserState().then(() => {
-  setupCapMktComments();
-  setupDashboardMacroComment();
   // Push any localStorage-only saves (from before /save-state existed) to
   // the server so the next deploy carries them everywhere.
   migrateLocalStorageToUserState();
+
+  // Refill empty Capital Market comments from server cache.
+  // (Initial setupCapMktComments() ran before _userStateCache existed —
+  //  if this browser has empty localStorage, those inputs are blank now.)
+  for (const k of ['index','rate','commodity','fx']) {
+    const input  = document.querySelector(`.card-comment-input[data-key="${k}"]`);
+    const badge  = document.querySelector(`.card-comment-toggle[data-key="${k}"] .toggle-badge`);
+    const timeEl = document.querySelector(`.card-comment-saved-time[data-key="${k}"]`);
+    if (!input || input.value !== '') continue;
+    const skey = `capmkt-comment-${k}`;
+    const tkey = `capmkt-comment-time-${k}`;
+    if (_userStateCache && typeof _userStateCache[skey] === 'string' && _userStateCache[skey]) {
+      input.value = _userStateCache[skey];
+      if (badge) badge.hidden = false;
+      if (timeEl && _userStateCache[tkey]) timeEl.textContent = `Saved · ${_userStateCache[tkey]}`;
+    }
+  }
+
+  // Refill empty Dashboard macro comment from server cache.
+  const dmac = document.getElementById('dashboardMacroCommentArea');
+  if (dmac && dmac.value === '' && _userStateCache) {
+    const v = _userStateCache['dashboard-macro-comment'];
+    if (typeof v === 'string' && v) {
+      dmac.value = v;
+      const dmacFix = document.getElementById('dashboardMacroCommentFix');
+      if (dmacFix) dmacFix.disabled = true;
+      const dmacStatus = document.getElementById('dashboardMacroCommentStatus');
+      const t = _userStateCache['dashboard-macro-comment-time'];
+      if (dmacStatus && t) dmacStatus.textContent = `✓ ${t} 저장됨`;
+    }
+  }
+
   if (typeof dealsState !== 'undefined' &&
       dealsState.current && dealsState.cache &&
       dealsState.cache[dealsState.current]) {
