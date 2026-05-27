@@ -161,7 +161,7 @@ if ([string]::IsNullOrWhiteSpace($gitStatus)) {
     }
 
     # Force-add data snapshots (gitignored normally) + all index.json files
-    $forceFiles = @('data.json', 'calendar.json', 'calendar-week.json', 'calendar-next-week.json', 'market-update-frozen.json', 'trade.json', 'shiller.json', 'fedwatch.json', 'fx-naver-snapshot.json', 'user-state.json') +
+    $forceFiles = @('data.json', 'calendar.json', 'calendar-week.json', 'calendar-next-week.json', 'market-update-frozen.json', 'trade.json', 'shiller.json', 'fedwatch.json', 'fx-naver-snapshot.json', 'capmkt-freeze.json', 'user-state.json') +
                   ($INDEXED_FOLDERS | ForEach-Object { "$_/index.json" })
     git add -f $forceFiles 2>&1 | Out-Null
     # Add anything else (new .md files, code changes, etc.)

@@ -518,6 +518,11 @@ try {
                 if (Test-Path -LiteralPath $calendarScript) {
                     & powershell -NoProfile -ExecutionPolicy Bypass -File $calendarScript | Out-Null
                 }
+                # FedWatch refreshes on every ↻ click (user spec: "refresh할 때마다")
+                $fedwatchScript = Join-Path $root 'fetch-fedwatch.ps1'
+                if (Test-Path -LiteralPath $fedwatchScript) {
+                    & powershell -NoProfile -ExecutionPolicy Bypass -File $fedwatchScript | Out-Null
+                }
                 $sw.Stop()
                 $msg = "{`"ok`":true,`"totalMs`":$($sw.ElapsedMilliseconds),`"marketMs`":$marketMs,`"calendarMs`":$($sw.ElapsedMilliseconds - $marketMs)}"
                 $bytes = [System.Text.Encoding]::UTF8.GetBytes($msg)

@@ -617,17 +617,54 @@ do {
         }
     }
 
+    $cdsRows = @(Fetch-InvestingCDS)
+
+    # ── Friday-freeze for Investing-sourced Rate + CDS ──
+    # These come from live priceChanges (no historical close in the API), so we
+    # snapshot them on the weekend (Fri/Sat/Sun) and hold Mon-Thu. By Saturday
+    # both KR (Fri 15:30 KST) and US (Fri 16:00 ET) closes are reflected in the
+    # live values, so the last weekend capture == Friday closes.
+    $freezeFile = Join-Path $PSScriptRoot 'capmkt-freeze.json'
+    $dow = (Get-Date).DayOfWeek
+    $isWeekend = ($dow -eq [System.DayOfWeek]::Friday) -or ($dow -eq [System.DayOfWeek]::Saturday) -or ($dow -eq [System.DayOfWeek]::Sunday)
+    if ($isWeekend) {
+        # Weekend (Fri/Sat/Sun): capture fresh. By Saturday both KR (Fri 15:30 KST)
+        # and US (Fri 16:00 ET) closes are reflected in the live Investing values.
+        $freezeObj = [ordered]@{
+            capturedAt  = (Get-Date).ToString('yyyy-MM-dd HH:mm:ss')
+            capturedDow = $dow.ToString()
+            rate        = $rateOrdered
+            cds         = $cdsRows
+        }
+        [System.IO.File]::WriteAllText($freezeFile, ($freezeObj | ConvertTo-Json -Depth 8), (New-Object System.Text.UTF8Encoding($false)))
+        Write-Host ("  Rate/CDS frozen ($dow capture)") -ForegroundColor Yellow
+    } elseif (Test-Path $freezeFile) {
+        # Weekday (Mon-Thu): use last weekend's frozen Friday-close snapshot.
+        try {
+            $frozen = Get-Content $freezeFile -Raw -Encoding UTF8 | ConvertFrom-Json
+            if ($frozen.rate) { $rateOrdered = @($frozen.rate) }
+            if ($frozen.cds)  { $cdsRows     = @($frozen.cds) }
+            Write-Host ("  Rate/CDS using frozen snapshot from " + $frozen.capturedAt + " (" + $frozen.capturedDow + ")") -ForegroundColor DarkGray
+        } catch {
+            Write-Warning ("capmkt-freeze.json parse fail (using live): " + $_.Exception.Message)
+        }
+    } else {
+        # Bootstrap weekday with no freeze file yet — use live values until the
+        # first weekend capture locks in a proper Friday close.
+        Write-Host ("  Rate/CDS live (no freeze yet — will lock next Fri/Sat/Sun)") -ForegroundColor DarkGray
+    }
+
     $output = [ordered]@{
         updated   = $start.ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ")
         updatedKr = $start.ToString('yyyy-MM-dd HH:mm:ss')
-        # Friday-freeze: dashboard shows last Friday's regular-session close
-        # (KOSPI/KOSDAQ at 15:30 KST; US-listed at 16:00 ET). Holds steady
-        # through the week until next Friday's close.
-        index     = @(Fetch-Group $INSTRUMENTS.index -FreezeFriday $true)
+        # Index: each exchange's latest daily close (NOT Friday-frozen).
+        # Refreshed daily at 07:00 KST so Mon shows Fri close, Tue shows Mon
+        # close, etc. (Yahoo only appends a day's close after that session ends.)
+        index     = @(Fetch-Group $INSTRUMENTS.index -FreezeFriday $false)
         rate      = $rateOrdered
         commodity = @(_FetchCommodities)
         fx        = $fxRows
-        cds       = @(Fetch-InvestingCDS)
+        cds       = $cdsRows
         sector    = @(Fetch-Group $INSTRUMENTS.sector -FreezeFriday $true)
     }
 

@@ -60,14 +60,18 @@ Read  ./news/{endDate}.md      (금요일)
 
 ## Phase 1: 후보 카드 생성 — scoring rubric 적용
 
-### Step 1-1) 1차 매체 fetch (병렬, news-clipping과 동일)
+### Step 1-1) 1차 매체 fetch (병렬, news-clipping Deal 섹터와 동일)
 ```
-WebFetch  https://www.thebell.co.kr/front/NewsList.asp?Code=0103   (M&A·IPO·PE — 페이지 1~3)
-WebFetch  https://dealsite.co.kr/categories/080000                   (M&A — 페이지 1~3)
-WebFetch  https://dealsite.co.kr/categories/075000                   (PEF·VC·대체투자 — 페이지 1~3)
-WebFetch  https://www.investchosun.com/                              (PEF·M&A 1차)
+WebFetch  https://www.thebell.co.kr/front/NewsList.asp?Code=0103            (M&A·IPO·PE — 페이지 1~3)
+WebFetch  https://dealsite.co.kr/categories/080000                          (M&A — 페이지 1~3)
+WebFetch  https://dealsite.co.kr/categories/075000                          (PEF·VC·대체투자 — 페이지 1~3)
+WebFetch  https://www.investchosun.com/svc/news/list.html?catid=2&pn=3      (PEF·M&A 단독·심층 — 페이지 1~3)
+WebFetch  https://www.mk.co.kr/                                             (매일경제 — 자본시장·기업 종합)
+WebFetch  https://www.hankyung.com/                                         (한국경제 — 자본시장·기업 종합)
 ```
-페이지네이션 2~3페이지까지 (news-clipping 정책과 동기화).
+페이지네이션 2~3페이지까지 (news-clipping 정책과 동기화). 이 6개가 사용자 지정 Deal/자본시장 1순위.
+
+🔵 **Bloomberg 폴백 (news-clipping과 동기화)**: 글로벌 거래 매크로(Page 5)에 Bloomberg 기사가 핵심이면, 원문(bloomberg.com) WebFetch가 페이월로 막힐 때 **같은 내용 보도한 다른 매체(CNBC·Reuters 후속·한경·전자신문·연합) URL로 인용**. 본문은 "Bloomberg에 따르면 ~" 표기 유지하되 하이퍼링크는 접근 가능 매체로. 대체 보도 못 찾으면 폐기.
 
 ### Step 1-2) 1순위 PE/LP·자문사·기업 점검 (news-clipping 1순위 동기화)
 
@@ -81,7 +85,22 @@ WebFetch  https://www.investchosun.com/                              (PEF·M&A 1
 
 **🥇 정책기관·LP**: 국민성장펀드 · 모태펀드 · KDB산업은행 · IBK기업은행 · 신한자산운용 · 새마을금고 · 총회연금재단 · 예금보험공사 · 금감원 · 금융위 · 거래소
 
-**🥇 빅딜 추적 대상** (이미 진행 중인 잠재 빅딜): KAI 지분 매입(한화) · 카리플렉스 매각 · 율곡 인수전 · 만전식품 · KDB생명 · 예별손해보험 · 코오롱인더 스페셜티 · SK TNS · 시아스 · 이투마스
+**🥇 빅딜 추적 대상** (이미 진행 중인 잠재 빅딜): KAI 지분 매입(한화) · 카리플렉스 매각 · 율곡 인수전 · 만전식품 · KDB생명 · 예별손해보험 · 코오롱인더 스페셜티 · SK TNS · 시아스 · 이투마스 · 두산 SK실트론 · 우아한형제들(배민) 인수전 · 카카오모빌리티 TPG exit · 홈플러스 회생
+
+**🔥 빈출 키워드 (2026-05-22 v3 — news-clipping Deal 섹터와 동기화, 직전 1주 빈도순)**:
+- **국민성장펀드 간접투자 GP 선정** (대형 1조원·중형·M&A·AI반도체 4,000억 리그별, 숏리스트 18~22개사, indirect 위탁운용사)
+- **continuation fund (연속펀드)** (IMM PE Airfirst 4.3조 등 — GP 회수·자산 회전)
+- **따따블 IPO·K-AI 반도체·로봇 IPO** (마키나락스·딥엑스·다임리서치, 청약 증거금 조 단위)
+- **PE 성장자본 (CB·SI 결합)** (KKR 삼성SDS 1.22조 CB — 바이아웃+크레딧 펀드 동시 활용)
+- **공정위 독과점 제동** (Lotte Rental-Affinity 무산 — PE 인수 사전 검토 리스크)
+- **VC 고배수 회수** (우리벤처 달바 37배·K-뷰티·MOIC)
+- **방산 IT·부품 인수전** (율곡 5파전·MBK / 유암코 STX엔진 펀드 해산)
+- **반도체 소재 빅딜** (두산 SK실트론 70.6% SPC 신설)
+- **슈퍼앱·플랫폼 인수전** (우버·네이버 8:2 컨소 배민, 카카오게임즈 페트리코·라인야후)
+- **공제회·기금 LP 출자** (경찰공제회 1800억·군인공제회·노란우산 거버넌스)
+- **회생·구조조정** (홈플러스 메리츠 DIP·인수금융 회수)
+- **코스피 시총 부동산 추월·valuation 재평가** (노무라 코스피 1만 목표·신용잔고)
+- 인수금융 주선·메자닌·TRS·콜옵션·언아웃·secondary·카브아웃·블록딜·EV/EBITDA·PER 배수
 
 ### Step 1-3) 후보 카테고리 분류
 
@@ -389,7 +408,7 @@ URL 날짜 없는 매체(dealsite 등) 또는 보강 필요 시:
 
 - [ ] **Phase 0** — `./news/{Mon~Fri}.md` 5건 Read → Deal 섹터 헤드라인 추출 → 누적 신호 맵 구축
 - [ ] **이전 주차** `./deals/{prev-friday}.md` 도 참고 → 중복 회피 + 후속 진전 추적
-- [ ] **Phase 1 1차 fetch** — thebell 0103 / dealsite 080000 / dealsite 075000 / investchosun 페이지 1~3
+- [ ] **Phase 1 1차 fetch** — thebell 0103 / dealsite 080000 / dealsite 075000 / investchosun catid=2 / 매경 / 한경 페이지 1~3
 - [ ] **1순위 PE/LP/자문사/빅딜 점검** — 위 Step 1-2 리스트 매주 의무 검색
 - [ ] **각 후보 scoring** — Phase 5/6 공식 가중평균 적용, score_breakdown 같이 표시
 - [ ] **카테고리 다양성** — Page 5에서 최소 3개 카테고리 분포, Page 6에서 최소 4개 카테고리 분포
