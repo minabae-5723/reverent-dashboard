@@ -2331,8 +2331,8 @@ html, body {
   padding: 2px 8px;
   border-radius: 4px;
 }
-.market-stock-change.up { color: #16a34a; background: rgba(22,163,74,0.08); }
-.market-stock-change.down { color: #dc2626; background: rgba(220,38,38,0.08); }
+.market-stock-change.up { color: #c62828; background: rgba(198,40,40,0.08); }
+.market-stock-change.down { color: #1565c0; background: rgba(21,101,192,0.08); }
 .market-stock-change.flat { color: var(--text-muted); background: rgba(100,116,139,0.08); }
 .market-stock-body {
   font-size: 13px;
