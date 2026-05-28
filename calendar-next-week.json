@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-05-27T23:56:22Z",
-    "updatedKr":  "2026-05-28 08:56:22",
+    "updated":  "2026-05-28T23:57:24Z",
+    "updatedKr":  "2026-05-29 08:57:24",
     "countries":  [
                       "5",
                       "35",
@@ -94,8 +94,8 @@
                        "indicator":  "S\u0026P Global Manufacturing PMI",
                        "period":  "May",
                        "actual":  "",
-                       "forecast":  "",
-                       "previous":  "54.5",
+                       "forecast":  "54.5",
+                       "previous":  "55.1",
                        "type":  "preview"
                    },
                    {
@@ -114,6 +114,36 @@
                        "type":  "preview"
                    },
                    {
+                       "id":  "550532",
+                       "datetime":  "2026/06/01 09:30:00",
+                       "date":  "6/1",
+                       "time":  "09:30",
+                       "flagKey":  "United_States",
+                       "currency":  "USD",
+                       "importance":  3,
+                       "indicator":  "Fed Chair Powell Speaks",
+                       "period":  "",
+                       "actual":  "",
+                       "forecast":  "",
+                       "previous":  "",
+                       "type":  "preview"
+                   },
+                   {
+                       "id":  "550539",
+                       "datetime":  "2026/06/01 21:30:00",
+                       "date":  "6/1",
+                       "time":  "21:30",
+                       "flagKey":  "United_States",
+                       "currency":  "USD",
+                       "importance":  2,
+                       "indicator":  "Fed Waller Speaks",
+                       "period":  "",
+                       "actual":  "",
+                       "forecast":  "",
+                       "previous":  "",
+                       "type":  "preview"
+                   },
+                   {
                        "id":  "548158",
                        "datetime":  "2026/06/01 22:45:00",
                        "date":  "6/1",
@@ -124,8 +154,8 @@
                        "indicator":  "S\u0026P Global Manufacturing PMI",
                        "period":  "May",
                        "actual":  "",
-                       "forecast":  "",
-                       "previous":  "55.3",
+                       "forecast":  "55.3",
+                       "previous":  "54.5",
                        "type":  "preview"
                    },
                    {
@@ -214,8 +244,8 @@
                        "indicator":  "Atlanta Fed GDPNow",
                        "period":  "Q2",
                        "actual":  "",
-                       "forecast":  "",
-                       "previous":  "",
+                       "forecast":  "3.8%",
+                       "previous":  "3.8%",
                        "type":  "preview"
                    },
                    {
@@ -294,21 +324,6 @@
                        "type":  "preview"
                    },
                    {
-                       "id":  "550391",
-                       "datetime":  "2026/06/02 09:00:00",
-                       "date":  "6/2",
-                       "time":  "09:00",
-                       "flagKey":  "United_States",
-                       "currency":  "USD",
-                       "importance":  1,
-                       "indicator":  "Redbook",
-                       "period":  "YoY",
-                       "actual":  "",
-                       "forecast":  "",
-                       "previous":  "8.1%",
-                       "type":  "preview"
-                   },
-                   {
                        "id":  "550404",
                        "datetime":  "2026/06/02 21:55:00",
                        "date":  "6/2",
@@ -320,7 +335,7 @@
                        "period":  "YoY",
                        "actual":  "",
                        "forecast":  "",
-                       "previous":  "8.1%",
+                       "previous":  "9.0%",
                        "type":  "preview"
                    },
                    {
@@ -364,8 +379,8 @@
                        "indicator":  "S\u0026P Global Services PMI",
                        "period":  "May",
                        "actual":  "",
-                       "forecast":  "",
-                       "previous":  "50.0",
+                       "forecast":  "50.0",
+                       "previous":  "51.0",
                        "type":  "preview"
                    },
                    {
@@ -379,8 +394,8 @@
                        "indicator":  "Manufacturing \u0026 Services PMI",
                        "period":  "May",
                        "actual":  "",
-                       "forecast":  "",
-                       "previous":  "51.10",
+                       "forecast":  "51.10",
+                       "previous":  "52.20",
                        "type":  "preview"
                    },
                    {
@@ -484,8 +499,8 @@
                        "indicator":  "S\u0026P Global Services PMI",
                        "period":  "May",
                        "actual":  "",
-                       "forecast":  "",
-                       "previous":  "50.9",
+                       "forecast":  "50.9",
+                       "previous":  "51.0",
                        "type":  "preview"
                    },
                    {
@@ -499,7 +514,7 @@
                        "indicator":  "S\u0026P Global Composite PMI",
                        "period":  "May",
                        "actual":  "",
-                       "forecast":  "",
+                       "forecast":  "51.7",
                        "previous":  "51.7",
                        "type":  "preview"
                    },
@@ -590,11 +605,11 @@
                        "period":  "Apr",
                        "actual":  "",
                        "forecast":  "",
-                       "previous":  "0.9%",
+                       "previous":  "1.1%",
                        "type":  "preview"
                    },
                    {
-                       "id":  "548468",
+                       "id":  "550562",
                        "datetime":  "2026/06/03 23:00:00",
                        "date":  "6/3",
                        "time":  "23:00",
@@ -605,7 +620,7 @@
                        "period":  "Apr",
                        "actual":  "",
                        "forecast":  "",
-                       "previous":  "-0.3%",
+                       "previous":  "8.1%",
                        "type":  "preview"
                    },
                    {
@@ -699,6 +714,36 @@
                        "type":  "preview"
                    },
                    {
+                       "id":  "550518",
+                       "datetime":  "2026/06/04 08:50:00",
+                       "date":  "6/4",
+                       "time":  "08:50",
+                       "flagKey":  "Japan",
+                       "currency":  "JPY",
+                       "importance":  1,
+                       "indicator":  "Foreign Investments in Japanese Stocks",
+                       "period":  "",
+                       "actual":  "",
+                       "forecast":  "",
+                       "previous":  "1,080.4B",
+                       "type":  "preview"
+                   },
+                   {
+                       "id":  "550517",
+                       "datetime":  "2026/06/04 08:50:00",
+                       "date":  "6/4",
+                       "time":  "08:50",
+                       "flagKey":  "Japan",
+                       "currency":  "JPY",
+                       "importance":  1,
+                       "indicator":  "Foreign Bonds Buying",
+                       "period":  "",
+                       "actual":  "",
+                       "forecast":  "",
+                       "previous":  "10.3B",
+                       "type":  "preview"
+                   },
+                   {
                        "id":  "548528",
                        "datetime":  "2026/06/04 18:30:00",
                        "date":  "6/4",
@@ -739,8 +784,8 @@
                        "indicator":  "Nonfarm Productivity (QoQ)",
                        "period":  "Q1",
                        "actual":  "",
-                       "forecast":  "",
-                       "previous":  "0.8%",
+                       "forecast":  "0.8%",
+                       "previous":  "1.8%",
                        "type":  "preview"
                    },
                    {
@@ -754,8 +799,8 @@
                        "indicator":  "Unit Labor Costs (QoQ)",
                        "period":  "Q1",
                        "actual":  "",
-                       "forecast":  "",
-                       "previous":  "2.3%",
+                       "forecast":  "2.3%",
+                       "previous":  "4.4%",
                        "type":  "preview"
                    },
                    {
@@ -875,7 +920,7 @@
                        "period":  "Apr",
                        "actual":  "",
                        "forecast":  "",
-                       "previous":  "3.1%",
+                       "previous":  "2.7%",
                        "type":  "preview"
                    },
                    {
@@ -894,21 +939,6 @@
                        "type":  "preview"
                    },
                    {
-                       "id":  "548558",
-                       "datetime":  "2026/06/05 08:30:00",
-                       "date":  "6/5",
-                       "time":  "08:30",
-                       "flagKey":  "Japan",
-                       "currency":  "JPY",
-                       "importance":  2,
-                       "indicator":  "Household Spending (MoM)",
-                       "period":  "Apr",
-                       "actual":  "",
-                       "forecast":  "",
-                       "previous":  "-1.3%",
-                       "type":  "preview"
-                   },
-                   {
                        "id":  "548559",
                        "datetime":  "2026/06/05 08:30:00",
                        "date":  "6/5",
@@ -921,6 +951,21 @@
                        "actual":  "",
                        "forecast":  "",
                        "previous":  "-2.9%",
+                       "type":  "preview"
+                   },
+                   {
+                       "id":  "548558",
+                       "datetime":  "2026/06/05 08:30:00",
+                       "date":  "6/5",
+                       "time":  "08:30",
+                       "flagKey":  "Japan",
+                       "currency":  "JPY",
+                       "importance":  2,
+                       "indicator":  "Household Spending (MoM)",
+                       "period":  "Apr",
+                       "actual":  "",
+                       "forecast":  "",
+                       "previous":  "-1.3%",
                        "type":  "preview"
                    },
                    {
@@ -1044,21 +1089,6 @@
                        "type":  "preview"
                    },
                    {
-                       "id":  "548637",
-                       "datetime":  "2026/06/05 21:30:00",
-                       "date":  "6/5",
-                       "time":  "21:30",
-                       "flagKey":  "United_States",
-                       "currency":  "USD",
-                       "importance":  2,
-                       "indicator":  "Average Hourly Earnings (YoY) (YoY)",
-                       "period":  "May",
-                       "actual":  "",
-                       "forecast":  "",
-                       "previous":  "3.6%",
-                       "type":  "preview"
-                   },
-                   {
                        "id":  "548627",
                        "datetime":  "2026/06/05 21:30:00",
                        "date":  "6/5",
@@ -1071,6 +1101,21 @@
                        "actual":  "",
                        "forecast":  "",
                        "previous":  "0.2%",
+                       "type":  "preview"
+                   },
+                   {
+                       "id":  "548637",
+                       "datetime":  "2026/06/05 21:30:00",
+                       "date":  "6/5",
+                       "time":  "21:30",
+                       "flagKey":  "United_States",
+                       "currency":  "USD",
+                       "importance":  2,
+                       "indicator":  "Average Hourly Earnings (YoY) (YoY)",
+                       "period":  "May",
+                       "actual":  "",
+                       "forecast":  "",
+                       "previous":  "3.6%",
                        "type":  "preview"
                    },
                    {

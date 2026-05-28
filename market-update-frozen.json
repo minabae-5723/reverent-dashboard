@@ -1,101 +1,8 @@
 {
-    "updated":  "2026-05-22T14:30:00Z",
-    "updatedKr":  "2026-05-22 23:30:00",
+    "updated":  "2026-05-28T23:57:24Z",
+    "updatedKr":  "2026-05-29 08:57:24",
     "frozenDow":  "Friday",
     "thisWeek":  [
-                     {
-                         "id":  "547161",
-                         "datetime":  "2026/05/19 08:50:00",
-                         "date":  "5/19",
-                         "time":  "08:50",
-                         "flagKey":  "Japan",
-                         "currency":  "JPY",
-                         "importance":  3,
-                         "indicator":  "GDP (QoQ)",
-                         "period":  "Q1",
-                         "actual":  "0.5%",
-                         "forecast":  "0.4%",
-                         "previous":  "0.2%",
-                         "type":  "review"
-                     },
-                     {
-                         "id":  "548540",
-                         "datetime":  "2026/05/20 23:30:00",
-                         "date":  "5/20",
-                         "time":  "23:30",
-                         "flagKey":  "United_States",
-                         "currency":  "USD",
-                         "importance":  3,
-                         "indicator":  "Crude Oil Inventories",
-                         "period":  "",
-                         "actual":  "-7.863M",
-                         "forecast":  "-2.500M",
-                         "previous":  "-4.306M",
-                         "type":  "review"
-                     },
-                     {
-                         "id":  "548263",
-                         "datetime":  "2026/05/21 03:00:00",
-                         "date":  "5/21",
-                         "time":  "03:00",
-                         "flagKey":  "United_States",
-                         "currency":  "USD",
-                         "importance":  3,
-                         "indicator":  "FOMC Meeting Minutes",
-                         "period":  "",
-                         "actual":  "",
-                         "forecast":  "",
-                         "previous":  "",
-                         "type":  "preview"
-                     },
-                     {
-                         "id":  "548108",
-                         "datetime":  "2026/05/21 21:30:00",
-                         "date":  "5/21",
-                         "time":  "21:30",
-                         "flagKey":  "United_States",
-                         "currency":  "USD",
-                         "importance":  3,
-                         "indicator":  "Initial Jobless Claims",
-                         "period":  "",
-                         "actual":  "209K",
-                         "forecast":  "210K",
-                         "previous":  "212K",
-                         "type":  "review"
-                     },
-                     {
-                         "id":  "547430",
-                         "datetime":  "2026/05/21 21:30:00",
-                         "date":  "5/21",
-                         "time":  "21:30",
-                         "flagKey":  "United_States",
-                         "currency":  "USD",
-                         "importance":  3,
-                         "indicator":  "Philadelphia Fed Manufacturing Index",
-                         "period":  "May",
-                         "actual":  "-0.4",
-                         "forecast":  "17.6",
-                         "previous":  "26.7",
-                         "type":  "review"
-                     },
-                     {
-                         "id":  "546572",
-                         "datetime":  "2026/05/22 23:00:00",
-                         "date":  "5/22",
-                         "time":  "23:00",
-                         "flagKey":  "United_States",
-                         "currency":  "USD",
-                         "importance":  3,
-                         "indicator":  "Michigan Sentiment (Final)",
-                         "period":  "May",
-                         "actual":  "44.8",
-                         "forecast":  "48.2",
-                         "previous":  "49.8",
-                         "type":  "review",
-                         "source":  "investing.com/economic-calendar/michigan-consumer-sentiment-320"
-                     }
-                 ],
-    "nextWeek":  [
                      {
                          "id":  "547647",
                          "datetime":  "2026/05/26 23:00:00",
@@ -106,10 +13,10 @@
                          "importance":  3,
                          "indicator":  "CB Consumer Confidence",
                          "period":  "May",
-                         "actual":  "",
-                         "forecast":  "",
-                         "previous":  "92.8",
-                         "type":  "preview"
+                         "actual":  "93.1",
+                         "forecast":  "91.9",
+                         "previous":  "93.8",
+                         "type":  "review"
                      },
                      {
                          "id":  "547861",
@@ -121,10 +28,10 @@
                          "importance":  3,
                          "indicator":  "GDP (QoQ)",
                          "period":  "Q1",
-                         "actual":  "",
+                         "actual":  "1.6%",
                          "forecast":  "2.0%",
-                         "previous":  "2.0%",
-                         "type":  "preview"
+                         "previous":  "0.5%",
+                         "type":  "review"
                      },
                      {
                          "id":  "548712",
@@ -136,10 +43,10 @@
                          "importance":  3,
                          "indicator":  "Initial Jobless Claims",
                          "period":  "",
-                         "actual":  "",
-                         "forecast":  "",
-                         "previous":  "209K",
-                         "type":  "preview"
+                         "actual":  "215K",
+                         "forecast":  "211K",
+                         "previous":  "210K",
+                         "type":  "review"
                      },
                      {
                          "id":  "547859",
@@ -151,10 +58,10 @@
                          "importance":  3,
                          "indicator":  "Core PCE Price Index (YoY)",
                          "period":  "Apr",
-                         "actual":  "",
-                         "forecast":  "",
+                         "actual":  "3.3%",
+                         "forecast":  "3.3%",
                          "previous":  "3.2%",
-                         "type":  "preview"
+                         "type":  "review"
                      },
                      {
                          "id":  "547854",
@@ -166,9 +73,86 @@
                          "importance":  2,
                          "indicator":  "PCE Price index (YoY)",
                          "period":  "Apr",
+                         "actual":  "3.8%",
+                         "forecast":  "3.8%",
+                         "previous":  "3.5%",
+                         "type":  "review"
+                     }
+                 ],
+    "nextWeek":  [
+                     {
+                         "id":  "550532",
+                         "datetime":  "2026/06/01 09:30:00",
+                         "date":  "6/1",
+                         "time":  "09:30",
+                         "flagKey":  "United_States",
+                         "currency":  "USD",
+                         "importance":  3,
+                         "indicator":  "Fed Chair Powell Speaks",
+                         "period":  "",
                          "actual":  "",
                          "forecast":  "",
-                         "previous":  "3.5%",
+                         "previous":  "",
+                         "type":  "preview"
+                     },
+                     {
+                         "id":  "548158",
+                         "datetime":  "2026/06/01 22:45:00",
+                         "date":  "6/1",
+                         "time":  "22:45",
+                         "flagKey":  "United_States",
+                         "currency":  "USD",
+                         "importance":  3,
+                         "indicator":  "S\u0026P Global Manufacturing PMI",
+                         "period":  "May",
+                         "actual":  "",
+                         "forecast":  "55.3",
+                         "previous":  "54.5",
+                         "type":  "preview"
+                     },
+                     {
+                         "id":  "548163",
+                         "datetime":  "2026/06/01 23:00:00",
+                         "date":  "6/1",
+                         "time":  "23:00",
+                         "flagKey":  "United_States",
+                         "currency":  "USD",
+                         "importance":  3,
+                         "indicator":  "ISM Manufacturing Prices",
+                         "period":  "May",
+                         "actual":  "",
+                         "forecast":  "",
+                         "previous":  "84.6",
+                         "type":  "preview"
+                     },
+                     {
+                         "id":  "548162",
+                         "datetime":  "2026/06/01 23:00:00",
+                         "date":  "6/1",
+                         "time":  "23:00",
+                         "flagKey":  "United_States",
+                         "currency":  "USD",
+                         "importance":  3,
+                         "indicator":  "ISM Manufacturing PMI",
+                         "period":  "May",
+                         "actual":  "",
+                         "forecast":  "",
+                         "previous":  "52.7",
+                         "type":  "preview"
+                     },
+                     {
+                         "id":  "548222",
+                         "datetime":  "2026/06/02 23:00:00",
+                         "date":  "6/2",
+                         "time":  "23:00",
+                         "flagKey":  "United_States",
+                         "currency":  "USD",
+                         "importance":  3,
+                         "indicator":  "JOLTS Job Openings",
+                         "period":  "Apr",
+                         "actual":  "",
+                         "forecast":  "",
+                         "previous":  "6.866M",
                          "type":  "preview"
                      }
                  ]
