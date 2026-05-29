@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-05-29T07:17:49Z",
-    "updatedKr":  "2026-05-29 16:17:49",
+    "updated":  "2026-05-29T08:02:18Z",
+    "updatedKr":  "2026-05-29 17:02:18",
     "countries":  [
                       "5",
                       "35",
@@ -184,7 +184,7 @@
                        "indicator":  "ISM Manufacturing PMI",
                        "period":  "May",
                        "actual":  "",
-                       "forecast":  "",
+                       "forecast":  "53.3",
                        "previous":  "52.7",
                        "type":  "preview"
                    },
@@ -199,7 +199,7 @@
                        "indicator":  "ISM Manufacturing Prices",
                        "period":  "May",
                        "actual":  "",
-                       "forecast":  "",
+                       "forecast":  "85.3",
                        "previous":  "84.6",
                        "type":  "preview"
                    },
@@ -229,7 +229,7 @@
                        "indicator":  "Construction Spending (MoM)",
                        "period":  "Apr",
                        "actual":  "",
-                       "forecast":  "",
+                       "forecast":  "0.3%",
                        "previous":  "0.6%",
                        "type":  "preview"
                    },
@@ -304,7 +304,7 @@
                        "indicator":  "CPI (MoM)",
                        "period":  "May",
                        "actual":  "",
-                       "forecast":  "",
+                       "forecast":  "0.3%",
                        "previous":  "0.5%",
                        "type":  "preview"
                    },
@@ -319,7 +319,7 @@
                        "indicator":  "CPI (YoY)",
                        "period":  "May",
                        "actual":  "",
-                       "forecast":  "",
+                       "forecast":  "3.0%",
                        "previous":  "2.6%",
                        "type":  "preview"
                    },
@@ -334,7 +334,7 @@
                        "indicator":  "Monetary Base (YoY)",
                        "period":  "May",
                        "actual":  "",
-                       "forecast":  "",
+                       "forecast":  "-9.5%",
                        "previous":  "-11.3%",
                        "type":  "preview"
                    },
@@ -379,7 +379,7 @@
                        "indicator":  "JOLTS Job Openings",
                        "period":  "Apr",
                        "actual":  "",
-                       "forecast":  "",
+                       "forecast":  "6.800M",
                        "previous":  "6.866M",
                        "type":  "preview"
                    },
@@ -529,7 +529,7 @@
                        "indicator":  "ADP Nonfarm Employment Change",
                        "period":  "May",
                        "actual":  "",
-                       "forecast":  "",
+                       "forecast":  "110K",
                        "previous":  "109K",
                        "type":  "preview"
                    },
@@ -634,7 +634,7 @@
                        "indicator":  "ISM Non-Manufacturing PMI",
                        "period":  "May",
                        "actual":  "",
-                       "forecast":  "",
+                       "forecast":  "53.6",
                        "previous":  "53.6",
                        "type":  "preview"
                    },
@@ -739,7 +739,7 @@
                        "indicator":  "Total Vehicle Sales",
                        "period":  "May",
                        "actual":  "",
-                       "forecast":  "",
+                       "forecast":  "16.00M",
                        "previous":  "15.90M",
                        "type":  "preview"
                    },
@@ -1039,7 +1039,7 @@
                        "indicator":  "Overtime Pay (YoY)",
                        "period":  "Apr",
                        "actual":  "",
-                       "forecast":  "",
+                       "forecast":  "3.20%",
                        "previous":  "3.10%",
                        "type":  "preview"
                    },
@@ -1069,7 +1069,7 @@
                        "indicator":  "Household Spending (YoY)",
                        "period":  "Apr",
                        "actual":  "",
-                       "forecast":  "",
+                       "forecast":  "-1.4%",
                        "previous":  "-2.9%",
                        "type":  "preview"
                    },
@@ -1144,7 +1144,7 @@
                        "indicator":  "Nonfarm Payrolls",
                        "period":  "May",
                        "actual":  "",
-                       "forecast":  "",
+                       "forecast":  "95K",
                        "previous":  "115K",
                        "type":  "preview"
                    },
@@ -1159,7 +1159,7 @@
                        "indicator":  "Private Nonfarm Payrolls",
                        "period":  "May",
                        "actual":  "",
-                       "forecast":  "",
+                       "forecast":  "85K",
                        "previous":  "123K",
                        "type":  "preview"
                    },
@@ -1174,7 +1174,7 @@
                        "indicator":  "Unemployment Rate",
                        "period":  "May",
                        "actual":  "",
-                       "forecast":  "",
+                       "forecast":  "4.3%",
                        "previous":  "4.3%",
                        "type":  "preview"
                    },
@@ -1219,7 +1219,7 @@
                        "indicator":  "Average Hourly Earnings (MoM)",
                        "period":  "May",
                        "actual":  "",
-                       "forecast":  "",
+                       "forecast":  "0.3%",
                        "previous":  "0.2%",
                        "type":  "preview"
                    },
@@ -1234,7 +1234,7 @@
                        "indicator":  "Average Weekly Hours",
                        "period":  "May",
                        "actual":  "",
-                       "forecast":  "",
+                       "forecast":  "34.3",
                        "previous":  "34.3",
                        "type":  "preview"
                    },

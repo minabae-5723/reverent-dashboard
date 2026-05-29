@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-05-29T07:17:47Z",
-    "updatedKr":  "2026-05-29 16:17:47",
+    "updated":  "2026-05-29T08:02:17Z",
+    "updatedKr":  "2026-05-29 17:02:17",
     "countries":  [
                       "5",
                       "35",
@@ -1926,36 +1926,6 @@
                        "actual":  "",
                        "forecast":  "",
                        "previous":  "172.6K",
-                       "type":  "preview"
-                   },
-                   {
-                       "id":  "549959",
-                       "datetime":  "2026/05/30 08:50:00",
-                       "date":  "5/30",
-                       "time":  "08:50",
-                       "flagKey":  "Japan",
-                       "currency":  "JPY",
-                       "importance":  1,
-                       "indicator":  "Retail Sales (YoY)",
-                       "period":  "Apr",
-                       "actual":  "",
-                       "forecast":  "",
-                       "previous":  "1.7%",
-                       "type":  "preview"
-                   },
-                   {
-                       "id":  "549958",
-                       "datetime":  "2026/05/30 08:50:00",
-                       "date":  "5/30",
-                       "time":  "08:50",
-                       "flagKey":  "Japan",
-                       "currency":  "JPY",
-                       "importance":  1,
-                       "indicator":  "Large Retailers\u0027 Sales (MoM)",
-                       "period":  "Apr",
-                       "actual":  "",
-                       "forecast":  "",
-                       "previous":  "1.3%",
                        "type":  "preview"
                    }
                ]

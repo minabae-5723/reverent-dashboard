@@ -1,5 +1,5 @@
 {
-    "capturedAt":  "2026-05-29 16:17:31",
+    "capturedAt":  "2026-05-29 17:02:09",
     "capturedDow":  "Friday",
     "rate":  [
                  {
@@ -37,12 +37,12 @@
                  },
                  {
                      "key":  "US2Y",
-                     "current":  4.029,
-                     "wow":  -10,
-                     "mom":  9,
-                     "ytd":  55,
+                     "current":  4.031,
+                     "wow":  -9,
+                     "mom":  10,
+                     "ytd":  56,
                      "type":  "bp",
-                     "asOf":  "2026-05-29T07:00:14.582Z",
+                     "asOf":  "2026-05-29T07:40:01.409Z",
                      "ok":  true,
                      "source":  "investing"
                  },

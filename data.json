@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-05-29T07:16:48Z",
-    "updatedKr":  "2026-05-29 16:16:48",
+    "updated":  "2026-05-29T08:01:36Z",
+    "updatedKr":  "2026-05-29 17:01:36",
     "index":  [
                   {
                       "key":  "KOSPI",
@@ -65,7 +65,7 @@
                       "mom":  -0.95,
                       "ytd":  1.12,
                       "type":  "pct",
-                      "asOf":  "2026-05-29T16:00:30",
+                      "asOf":  "2026-05-29T16:00:29",
                       "ok":  true
                   }
               ],
@@ -105,12 +105,12 @@
                  },
                  {
                      "key":  "US2Y",
-                     "current":  4.029,
-                     "wow":  -10,
-                     "mom":  9,
-                     "ytd":  55,
+                     "current":  4.031,
+                     "wow":  -9,
+                     "mom":  10,
+                     "ytd":  56,
                      "type":  "bp",
-                     "asOf":  "2026-05-29T07:00:14.582Z",
+                     "asOf":  "2026-05-29T07:40:01.409Z",
                      "ok":  true,
                      "source":  "investing"
                  },
@@ -141,10 +141,10 @@
                       {
                           "key":  "WTI",
                           "symbol":  "CL=F",
-                          "current":  87.51,
-                          "wow":  -9.41,
-                          "mom":  -14.16,
-                          "ytd":  52.67,
+                          "current":  88.58,
+                          "wow":  -8.3,
+                          "mom":  -13.11,
+                          "ytd":  54.54,
                           "type":  "pct",
                           "asOf":  "2026-05-29",
                           "ok":  true
@@ -152,10 +152,10 @@
                       {
                           "key":  "GOLD",
                           "symbol":  "GC=F",
-                          "current":  4551.2998,
-                          "wow":  0.67,
-                          "mom":  -1.7,
-                          "ytd":  5.49,
+                          "current":  4554.2002,
+                          "wow":  0.73,
+                          "mom":  -1.64,
+                          "ytd":  5.56,
                           "type":  "pct",
                           "asOf":  "2026-05-29",
                           "ok":  true
@@ -163,10 +163,10 @@
                       {
                           "key":  "COPPER",
                           "symbol":  "HG=F",
-                          "current":  6.417,
-                          "wow":  1.18,
-                          "mom":  8.18,
-                          "ytd":  13.78,
+                          "current":  6.4225,
+                          "wow":  1.27,
+                          "mom":  8.27,
+                          "ytd":  13.87,
                           "type":  "pct",
                           "asOf":  "2026-05-29",
                           "ok":  true
@@ -174,10 +174,10 @@
                       {
                           "key":  "WHEAT",
                           "symbol":  "ZW=F",
-                          "current":  621.75,
-                          "wow":  -3.79,
-                          "mom":  -0.44,
-                          "ytd":  22.75,
+                          "current":  625,
+                          "wow":  -3.29,
+                          "mom":  0.08,
+                          "ytd":  23.4,
                           "type":  "pct",
                           "asOf":  "2026-05-29",
                           "ok":  true
@@ -235,10 +235,10 @@
                {
                    "key":  "DXY",
                    "symbol":  "DX-Y.NYB",
-                   "current":  98.994,
-                   "wow":  -0.33,
-                   "mom":  0.8,
-                   "ytd":  0.58,
+                   "current":  99.075,
+                   "wow":  -0.25,
+                   "mom":  0.88,
+                   "ytd":  0.67,
                    "type":  "pct",
                    "asOf":  "2026-05-29",
                    "ok":  true
