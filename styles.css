@@ -3046,3 +3046,22 @@ html, body {
   background: #fdeded;
   border-color: var(--negative);
 }
+
+/* ─── GitHub Tech Radar ─────────────────────────────────── */
+.gh-intro-list,
+.gh-card-list {
+  margin: 6px 0 2px;
+  padding-left: 18px;
+  list-style: disc;
+}
+.gh-intro-list li,
+.gh-card-list li {
+  margin: 3px 0;
+  line-height: 1.55;
+  font-size: 13.5px;
+  color: var(--text);
+}
+.gh-card-list li strong { color: var(--text); }
+.gh-intro-list li { color: var(--text-muted); }
+#githubBody .news-card { margin-bottom: 10px; }
+#githubBody .news-headline { font-size: 15px; line-height: 1.4; }

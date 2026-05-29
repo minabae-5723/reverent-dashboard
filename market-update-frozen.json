@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-05-28T23:57:24Z",
-    "updatedKr":  "2026-05-29 08:57:24",
+    "updated":  "2026-05-29T07:17:49Z",
+    "updatedKr":  "2026-05-29 16:17:49",
     "frozenDow":  "Friday",
     "thisWeek":  [
                      {
@@ -111,21 +111,6 @@
                          "type":  "preview"
                      },
                      {
-                         "id":  "548163",
-                         "datetime":  "2026/06/01 23:00:00",
-                         "date":  "6/1",
-                         "time":  "23:00",
-                         "flagKey":  "United_States",
-                         "currency":  "USD",
-                         "importance":  3,
-                         "indicator":  "ISM Manufacturing Prices",
-                         "period":  "May",
-                         "actual":  "",
-                         "forecast":  "",
-                         "previous":  "84.6",
-                         "type":  "preview"
-                     },
-                     {
                          "id":  "548162",
                          "datetime":  "2026/06/01 23:00:00",
                          "date":  "6/1",
@@ -138,6 +123,21 @@
                          "actual":  "",
                          "forecast":  "",
                          "previous":  "52.7",
+                         "type":  "preview"
+                     },
+                     {
+                         "id":  "548163",
+                         "datetime":  "2026/06/01 23:00:00",
+                         "date":  "6/1",
+                         "time":  "23:00",
+                         "flagKey":  "United_States",
+                         "currency":  "USD",
+                         "importance":  3,
+                         "indicator":  "ISM Manufacturing Prices",
+                         "period":  "May",
+                         "actual":  "",
+                         "forecast":  "",
+                         "previous":  "84.6",
                          "type":  "preview"
                      },
                      {

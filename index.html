@@ -44,6 +44,10 @@
         <span class="sb-ico">💼</span>
         <span class="sb-text">Macro/자본시장/거래동향</span>
       </a>
+      <a href="#github" class="sidebar-item" data-view="github">
+        <span class="sb-ico">🛰️</span>
+        <span class="sb-text">GitHub Tech Radar</span>
+      </a>
       <a href="#peer" class="sidebar-item" data-view="peer">
         <span class="sb-ico">📈</span>
         <span class="sb-text">PEER TABLE &amp; IPO</span>
@@ -482,6 +486,38 @@
 
       <footer class="site-footer">
         <p>Source: 더벨 · 딜사이트 · 인베스트조선 · 한경 마켓인사이트 등 · 주간 갱신: 매주 금요일 16:00 KST</p>
+      </footer>
+    </section>
+
+    <!-- ===== GITHUB TECH RADAR VIEW ===== -->
+    <section class="view" id="view-github" hidden>
+
+      <div class="page-header">
+        <div class="page-breadcrumb">Workspace › GitHub Tech Radar</div>
+        <h1 class="page-title">🛰️ GitHub Tech Radar</h1>
+        <p class="page-subtitle">주간 · 글로벌 테크 트렌드 선행지표 (star velocity · fork/star · 신선도 — 절대 star 아님)</p>
+      </div>
+
+      <div class="news-controls">
+        <div class="news-date-row">
+          <span class="filter-label">주차</span>
+          <div class="news-date-pills" id="githubDatePills">
+            <span class="loading" style="padding:6px 12px;">로딩 중…</span>
+          </div>
+        </div>
+      </div>
+
+      <div id="githubBody" class="deals-body">
+        <div class="news-empty">
+          <div class="news-empty-icon">🛰️</div>
+          <h3>아직 저장된 GitHub Tech Radar가 없습니다</h3>
+          <p>이 페이지는 주간 GitHub 트렌드 레이더(급상승·신규 repo)를 보여줍니다.</p>
+          <p>지금 즉시 보고 싶으면: reverent-dashboard에서 새 Claude Code 세션을 열어 <code>/gh-radar</code> 실행.</p>
+        </div>
+      </div>
+
+      <footer class="site-footer">
+        <p>Source: GitHub Trending · GitHub Search API · 측정: star velocity · fork/star · 신선도 (절대 star 아님)</p>
       </footer>
     </section>
 
