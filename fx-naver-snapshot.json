@@ -1,5 +1,5 @@
 {
-    "updated":  "2026-05-29T17:03:02+09:00",
+    "updated":  "2026-05-29T17:06:51+09:00",
     "source":  "finance.naver.com exchangeDailyQuote (Seoul 留ㅻℓ湲곗???",
     "fx":  {
                "USDKRW":  {
@@ -11,24 +11,24 @@
                               "prevDate":  "2026-05-22"
                           },
                "USDJPY":  {
-                              "current":  159.27,
-                              "wow":  0.21,
-                              "mom":  -0.2,
-                              "ytd":  1.62,
+                              "current":  159.25,
+                              "wow":  0.19,
+                              "mom":  -0.22,
+                              "ytd":  1.61,
                               "asOf":  "2026-05-29"
                           },
                "USDCNY":  {
-                              "current":  6.768,
-                              "wow":  -0.23,
-                              "mom":  -1.06,
-                              "ytd":  -3.13,
+                              "current":  6.7687,
+                              "wow":  -0.22,
+                              "mom":  -1.05,
+                              "ytd":  -3.12,
                               "asOf":  "2026-05-29"
                           },
                "USDEUR":  {
-                              "current":  0.8592,
-                              "wow":  0.03,
-                              "mom":  0.6,
-                              "ytd":  0.66,
+                              "current":  0.8593,
+                              "wow":  0.04,
+                              "mom":  0.61,
+                              "ytd":  0.67,
                               "asOf":  "2026-05-29"
                           }
            }
