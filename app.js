@@ -19,10 +19,6 @@ const IS_STATIC = !/^(localhost|127\.|0\.0\.0\.0|\[::1\])/i.test(window.location
 const NEWS_INDEX_URL = IS_STATIC ? './news/index.json' : '/news/list';
 const MARKET_INDEX_URL = IS_STATIC ? './market/index.json' : '/market/list';
 const DEALS_INDEX_URL = IS_STATIC ? './deals/index.json' : '/deals/list';
-// GitHub Tech Radar: always read the static index file directly in both modes
-// (no serve.ps1 /github/list endpoint needed — radar MD + index.json are plain
-// static files served from ./github/).
-const GITHUB_INDEX_URL = './github/index.json';
 const TRADE_URL = './trade.json';
 const MACRO_FROZEN_URL = './market-update-frozen.json';
 const SHILLER_URL = './shiller.json';
@@ -2345,205 +2341,9 @@ window.computeValuation = function (cardId) {
   setOut('Premium',    fmtPercent(premium));
 };
 
-// ─── GitHub Tech Radar View ──────────────────────────────
-//
-// Update algorithm: Claude Code 세션에서 /gh-radar 큐레이션 → github/YYYY-MM-DD.md 저장.
-// 대시보드는 정적 MD + index.json만 읽음 (별도 API 호출/과금 없음, news·deals 패턴과 동일).
-//
-let githubState = { dates: [], current: null, cache: {} };
-
-// Inline formatter: escape HTML, then restore **bold** and [text](url) links.
-function ghInline(s) {
-  let t = escapeHtml(s == null ? '' : String(s));
-  t = t.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
-  t = t.replace(/\*([^*\n]+)\*/g, '<em>$1</em>');
-  t = t.replace(/\[([^\]]+)\]\((https?:[^)\s]+)\)/g,
-    '<a href="$2" target="_blank" rel="noopener">$1</a>');
-  return t;
-}
-
-async function loadGithubIndex() {
-  try {
-    const res = await fetch(`${GITHUB_INDEX_URL}?_=${Date.now()}`, { cache: 'no-store' });
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const data = await res.json();
-    githubState.dates = data.dates || [];
-    renderGithubDatePills();
-    if (githubState.dates.length > 0) {
-      const target = githubState.current && githubState.dates.includes(githubState.current)
-        ? githubState.current
-        : githubState.dates[0];
-      await loadGithubDate(target);
-    } else {
-      renderGithubEmpty();
-    }
-  } catch (err) {
-    console.warn('GitHub radar index load failed:', err);
-    renderGithubEmpty();
-  }
-}
-
-function renderGithubDatePills() {
-  const el = document.getElementById('githubDatePills');
-  if (!el) return;
-  if (githubState.dates.length === 0) {
-    el.innerHTML = '<span style="color:var(--text-muted);font-size:13px;">저장된 Tech Radar 없음</span>';
-    return;
-  }
-  const today = todayKr();
-  el.innerHTML = githubState.dates.map(d => {
-    const rel = (d >= today) ? '<span class="pill-rel">이번주</span>' : '';
-    const active = (d === githubState.current) ? ' active' : '';
-    return `<button class="news-date-pill${active}" data-date="${d}">${d}${rel}</button>`;
-  }).join('');
-  el.querySelectorAll('.news-date-pill').forEach(btn => {
-    btn.addEventListener('click', () => loadGithubDate(btn.dataset.date));
-  });
-}
-
-async function loadGithubDate(date) {
-  githubState.current = date;
-  renderGithubDatePills();
-  let md = githubState.cache[date];
-  if (!md) {
-    try {
-      const res = await fetch(`./github/${date}.md?_=${Date.now()}`, { cache: 'no-store' });
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      md = await res.text();
-      githubState.cache[date] = md;
-    } catch (err) {
-      document.getElementById('githubBody').innerHTML =
-        `<div class="news-empty"><h3>로딩 실패</h3><p>${err.message}</p></div>`;
-      return;
-    }
-  }
-  renderGithubContent(md);
-}
-
-function renderGithubEmpty() {
-  document.getElementById('githubBody').innerHTML = `
-    <div class="news-empty">
-      <div class="news-empty-icon">🛰️</div>
-      <h3>아직 저장된 GitHub Tech Radar가 없습니다</h3>
-      <p>주간 GitHub 트렌드 레이더(급상승·신규 repo)를 큐레이션해 보여줍니다.</p>
-      <p>지금 즉시 보고 싶으면: reverent-dashboard에서 <code>/gh-radar</code> 실행.</p>
-    </div>
-  `;
-}
-
-// Parse GitHub Tech Radar markdown:
-//   # 🛰️ GitHub Tech Radar — ...
-//   > 데이터 기준: ...
-//   ## 1. Top Movers ...
-//   - 섹션 직속 bullet (### 이전)        ← intro bullets (선택)
-//   ### owner/repo — *theme*
-//   - bullet
-//   - **💡 투자 시사**: ...
-//   ## 5. Watch Table ...
-//   | repo | theme | ... |  (markdown table)
-function parseGithubRadar(md) {
-  const out = { title: '', meta: '', sections: [] };
-  const lines = md.split(/\r?\n/);
-  let section = null;
-  let card = null;
-
-  const closeCard = () => {
-    if (card && section) section.cards.push(card);
-    card = null;
-  };
-
-  for (const line of lines) {
-    if (!out.title && /^#\s+/.test(line)) {
-      out.title = line.replace(/^#\s+/, '').trim();
-      continue;
-    }
-    if (/^>\s+/.test(line)) {
-      const m = line.replace(/^>\s+/, '').trim();
-      out.meta = out.meta ? `${out.meta} · ${m}` : m;
-      continue;
-    }
-    const h2 = line.match(/^##\s+(.+?)\s*$/);
-    if (h2) {
-      closeCard();
-      section = { name: h2[1].trim(), intro: [], cards: [], tableLines: [] };
-      out.sections.push(section);
-      continue;
-    }
-    const h3 = line.match(/^###\s+(.+?)\s*$/);
-    if (h3 && section) {
-      closeCard();
-      card = { headline: h3[1].trim(), bullets: [] };
-      continue;
-    }
-    if (!section) continue;
-    // Table rows (Watch Table etc.)
-    if (/^\s*\|/.test(line)) {
-      section.tableLines.push(line);
-      continue;
-    }
-    // Bullets — into current card, or section intro if no card yet
-    const bm = line.match(/^\s*[-•]\s+(.+)$/);
-    if (bm) {
-      if (card) card.bullets.push(bm[1].trim());
-      else section.intro.push(bm[1].trim());
-    }
-  }
-  closeCard();
-  return out;
-}
-
-function renderGithubContent(md) {
-  const body = document.getElementById('githubBody');
-  if (!body) return;
-  const p = parseGithubRadar(md);
-  if (!p.title || p.sections.length === 0) {
-    body.innerHTML = `<div class="news-empty"><h3>파싱 실패</h3><p>이 파일에서 섹션을 찾을 수 없습니다.</p></div>`;
-    return;
-  }
-
-  const header = `
-    <div class="market-brief-header">
-      <h2 class="market-brief-title">${escapeHtml(p.title)}</h2>
-      ${p.meta ? `<div class="market-brief-meta">${escapeHtml(p.meta)}</div>` : ''}
-    </div>
-  `;
-
-  const sectionsHtml = p.sections.map(s => {
-    const introHtml = s.intro.length
-      ? `<ul class="gh-intro-list">${s.intro.map(b => `<li>${ghInline(b)}</li>`).join('')}</ul>`
-      : '';
-    const tableHtml = s.tableLines.length ? renderMdTable(s.tableLines) : '';
-    const cardsHtml = s.cards.map(c => `
-      <div class="news-card">
-        <div class="news-card-head">
-          <h3 class="news-headline">${ghInline(c.headline)}</h3>
-        </div>
-        ${c.bullets.length
-          ? `<ul class="gh-card-list">${c.bullets.map(b => `<li>${ghInline(b)}</li>`).join('')}</ul>`
-          : ''}
-      </div>
-    `).join('');
-    const count = s.cards.length
-      ? `<span class="news-sector-count">${s.cards.length}건</span>` : '';
-    return `
-      <div class="news-sector-block">
-        <div class="news-sector-header">
-          <span class="news-sector-title">${escapeHtml(s.name)}</span>
-          ${count}
-        </div>
-        ${introHtml}
-        ${tableHtml ? `<div class="deals-summary-wrap">${tableHtml}</div>` : ''}
-        ${cardsHtml ? `<div class="news-articles">${cardsHtml}</div>` : ''}
-      </div>
-    `;
-  }).join('');
-
-  body.innerHTML = header + sectionsHtml;
-}
-
 // ─── View Router ──────────────────────────────────────────
 function showView(name) {
-  const valid = ['home', 'weekly', 'news', 'market', 'deals', 'github', 'semicon', 'peer'];
+  const valid = ['home', 'weekly', 'news', 'market', 'deals', 'semicon', 'peer'];
   if (!valid.includes(name)) name = 'home';
 
   document.querySelectorAll('.view').forEach(v => {
@@ -2557,7 +2357,6 @@ function showView(name) {
   if (name === 'news') loadNewsIndex();
   if (name === 'market') loadMarketIndex();
   if (name === 'deals') loadDealsIndex();
-  if (name === 'github') loadGithubIndex();
   if (name === 'semicon') loadSemicon();
   if (name === 'peer') loadPeer();
   window.scrollTo({ top: 0 });
