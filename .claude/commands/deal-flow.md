@@ -2,9 +2,11 @@
 description: 주간 Monday Brief용 자본시장 동향 + 주요 거래 동향 큐레이션 (각 10개 후보 → 사용자 선택 → MD 파일 저장)
 ---
 
-# Weekly Deal Flow — Monday Brief Section Curation **v2** (news-clipping 기준 동기화)
+# Weekly Deal Flow — Monday Brief Section Curation **v3.2** (Macro 섹션 의무 포함)
 
-매주 금요일 16:00 KST 루틴. **Monday Morning Brief**의 *Page 5: 자본시장 동향* + *Page 6: 주요 거래 동향* 섹션을 채울 기사를 큐레이션해 대시보드 `/#deals` 페이지에 주차별로 적재한다.
+매주 금요일 16:00 KST 루틴. **Monday Morning Brief**의 *Macro 동향* + *자본시장 동향* + *주요 거래 동향* 3개 섹션을 채울 기사를 큐레이션해 대시보드 `/#deals` 페이지(사이드바 라벨: **Macro/자본시장/거래동향**)에 주차별로 적재한다.
+
+🔴 **3개 섹션 필수** (사용자 반복 강조 — `feedback_macro_section_in_deals.md`): Macro 동향은 절대 누락하지 말 것. 자본시장·거래동향만 출력하면 안 됨.
 
 > **실행 위치**: 리포 루트에서 Claude Code를 실행해야 한다. CWD = `reverent-dashboard/`. `./deals/`, `./news/` 상대 경로로 동작.
 
@@ -112,6 +114,23 @@ WebSearch "코스피 외국인 순매수 밸류업 공매도 [이번주 날짜]"
 - 인수금융 주선·메자닌·TRS·콜옵션·언아웃·secondary·카브아웃·블록딜·EV/EBITDA·PER 배수
 
 ### Step 1-3) 후보 카테고리 분류
+
+#### 🆕 Page M — Macro 동향 (의무 섹션, 사용자 강조)
+
+🔴 **항상 첫 섹터로 출력**. 한·미 매크로 지표·중앙은행·지정학·환율·원자재 등 거시 변수와 그 시장 영향. **5~7건** 큐레이션.
+
+카테고리:
+- 🅐 **한·미 매크로 지표**: CPI·PPI·GDP·비농업고용·ISM PMI·소매판매·미시간대 소비심리 (발표값·전망·전주 대비)
+- 🅑 **중앙은행 정책**: FOMC, 한은 금통위, ECB·BOJ, 점도표, 의장 발언, 통화정책 향방
+- 🅒 **글로벌 매크로 이벤트**: 관세·무역분쟁(트럼프 관세, 미·중·EU), 지정학(이란·우크라이나·중동), 글로벌 supply chain
+- 🅓 **원자재·환율**: WTI·금·구리·천연가스, 원/달러·달러인덱스·엔·위안, 외환보유액
+- 🅔 **한국 매크로**: KDI·한은·국책연 전망, 수출입 동향, 외환·외인 채권 자금, 부동산·가계부채
+- 🅕 **글로벌 증시 macro view**: 빅테크 실적 시즌 매크로 함의, AI capex 사이클, 매크로 시나리오(연착륙·스태그플레이션·경착륙)
+
+**Macro 출처 매체**:
+- 글로벌: Bloomberg, Reuters, WSJ, FT, CNBC, Nikkei (페이월 폴백 룰 적용 — feedback_deal_flow_source_diversity)
+- 한국: 한국경제, 매일경제, 연합뉴스, 연합인포맥스
+- 기관: 한은·KDI·기재부·통계청 보도자료, FOMC 의사록, BOJ·ECB 의사록
 
 #### Page 5 — 자본시장 동향 (정책·시장 구조·펀드 결성·IB 동향)
 
@@ -323,6 +342,16 @@ URL 날짜 없는 매체(dealsite 등) 또는 보강 필요 시:
 # 📋 Weekly Deal Flow 후보 — 2026-05-11 ~ 2026-05-15
 > Phase 0 누적 신호: 일일 클리핑 5건 중 4건 처리 (5/12 누락), Deal 섹터 23건 추출
 
+## 0. Macro 동향 후보 (5~7건) 🔴 누락 금지
+
+### [1] 헤드라인 (2026.05.13) · *🅐 한·미 매크로 지표* · score 8.0
+- bullet 1 (지표 발표값·전망·이전치 명시)
+- bullet 2 (시장 영향 — 환율·금리·증시)
+- ※ 출처: 한국경제 · [원문](url)
+
+### [2] ...
+(5~7건 반복)
+
 ## 1. 자본시장 동향 후보 (10건)
 
 ### [1] 헤드라인 (2026.05.12) · *🅑 펀드결성·GP선정* · score 9.4 (📊 ×3, 📈 단계진전)
@@ -371,12 +400,23 @@ URL 날짜 없는 매체(dealsite 등) 또는 보강 필요 시:
 ### Step 2-2) 최종 MD 생성 → `./deals/{endDate}.md`
 
 ```markdown
-# 💼 Weekly Deal Flow — 2026년 5월 15일 (W/E 2026-05-15)
+# 💼 Weekly Macro · Capital Markets · Deal Flow — 2026년 5월 15일 (W/E 2026-05-15)
 
-> 데이터 기준: 2026-05-11(월) ~ 2026-05-15(금) — 더벨, 딜사이트, 인베스트조선 등
+> 데이터 기준: 2026-05-11(월) ~ 2026-05-15(금) — 더벨, 딜사이트, 인베스트조선, 한경, 매경, 연합인포맥스, Bloomberg 폴백 등
 > Phase 0 신호: 일일 news-clipping 5건 누적 신호 반영
 
-## 1. 자본시장 동향
+## 1. Macro 동향 🔴 의무 섹션
+
+### 헤드라인 (2026.05.13)
+- bullet 1 (지표·중앙은행·환율·원자재 — 발표값·전망·전주 대비)
+- bullet 2 (시장 영향)
+- **출처**: [한국경제](url)
+
+### 다음 헤드라인 (2026.05.14)
+...
+(3~5건)
+
+## 2. 자본시장 동향
 
 ### 헤드라인 (2026.05.12)
 - bullet 1 (텔레그래픽, **숫자**·% 강조)
@@ -387,7 +427,7 @@ URL 날짜 없는 매체(dealsite 등) 또는 보강 필요 시:
 ### 다음 헤드라인 (2026.05.11)
 ...
 
-## 2. 주요 거래 동향
+## 3. 주요 거래 동향
 
 ### 헤드라인 (2026.05.11)
 - bullet
@@ -418,7 +458,7 @@ URL 날짜 없는 매체(dealsite 등) 또는 보강 필요 시:
 
 ### 다음 헤드라인 ...
 
-## 3. Deal Summary
+## 4. Deal Summary
 
 | 기업 | Deal Type | 거래 규모 추정 | EV/EBITDA | 비고 |
 |---|---|---|---|---|
@@ -451,7 +491,8 @@ URL 날짜 없는 매체(dealsite 등) 또는 보강 필요 시:
 
 - [ ] **Phase 0** — `./news/{Mon~Fri}.md` 5건 Read → Deal 섹터 헤드라인 추출 → 누적 신호 맵 구축
 - [ ] **이전 주차** `./deals/{prev-friday}.md` 도 참고 → 중복 회피 + 후속 진전 추적
-- [ ] **Phase 1 1차 fetch** — thebell 0103 / dealsite 080000 / dealsite 075000 / investchosun catid=2 / 매경 / 한경 페이지 1~3
+- 🔴 [ ] **Macro 동향 섹션 누락 금지** (사용자 반복 강조) — Phase 1에서 Macro 후보 5~7건 + Phase 2 최종 MD에 `## 1. Macro 동향` 첫 섹션 포함했는가
+- [ ] **Phase 1 1차 fetch** — thebell 0103 / dealsite 080000 / dealsite 075000 / investchosun catid=2 / 매경 / 한경 페이지 1~3 + **Macro용 Bloomberg·Reuters·CNBC·한경 매크로면·연합인포맥스**
 - [ ] **1순위 PE/LP/자문사/빅딜 점검** — 위 Step 1-2 리스트 매주 의무 검색
 - [ ] **각 후보 scoring** — Phase 5/6 공식 가중평균 적용, score_breakdown 같이 표시
 - [ ] **카테고리 다양성** — Page 5에서 최소 3개 카테고리 분포, Page 6에서 최소 4개 카테고리 분포
