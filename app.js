@@ -2256,6 +2256,8 @@ function fmtVal(n, digits = 0) {
 
 function fmtMultiple(n) {
   if (n === null || !isFinite(n)) return '—';
+  // Negative multiples (EBITDA/net income 적자 등)은 의미 없으므로 — 로 표시
+  if (n < 0) return '—';
   return n.toFixed(1) + 'x';
 }
 
