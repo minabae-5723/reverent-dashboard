@@ -303,25 +303,12 @@ function renderMacroWeekly(data) {
     }
   }
 
-  // Rollover labels: once a freeze is ≥3 days old (i.e. it's past Mon),
-  // last week's "이번 주" becomes "지난 주 (Review)" and last week's
-  // "다음 주" becomes "이번 주 (Preview)".
-  let leftLabel = '이번 주';
-  let rightLabel = '다음 주';
-  if (data && data.updatedKr) {
-    const freezeDate = new Date(data.updatedKr.replace(' ', 'T').slice(0, 10) + 'T00:00:00');
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-    const daysSince = Math.floor((today - freezeDate) / 86400000);
-    if (daysSince >= 3) {
-      leftLabel  = '지난 주 (Review)';
-      rightLabel = '이번 주 (Preview)';
-    }
-  }
+  // Fixed column titles (user convention, updated weekly):
+  //   left = REVIEW (released, week just ended), right = PREVIEW (upcoming).
   const lt = document.getElementById('macroLeftTitle');
   const rt = document.getElementById('macroRightTitle');
-  if (lt) lt.textContent = leftLabel;
-  if (rt) rt.textContent = rightLabel;
+  if (lt) lt.textContent = 'REVIEW';
+  if (rt) rt.textContent = 'PREVIEW';
 
   renderMacroSide('macroThisWeekBody', data?.thisWeek);
   renderMacroSide('macroNextWeekBody', data?.nextWeek);

@@ -34,6 +34,21 @@
                          "type":  "review"
                      },
                      {
+                         "id":  "547860",
+                         "datetime":  "2026/05/28 21:30:00",
+                         "date":  "5/28",
+                         "time":  "21:30",
+                         "flagKey":  "United_States",
+                         "currency":  "USD",
+                         "importance":  3,
+                         "indicator":  "Headline PCE Price Index (YoY)",
+                         "period":  "Apr",
+                         "actual":  "3.8%",
+                         "forecast":  "3.8%",
+                         "previous":  "3.5%",
+                         "type":  "review"
+                     },
+                     {
                          "id":  "547862",
                          "datetime":  "2026/05/28 21:30:00",
                          "date":  "5/28",
@@ -123,6 +138,21 @@
                          "actual":  "",
                          "forecast":  "116K",
                          "previous":  "109K",
+                         "type":  "preview"
+                     },
+                     {
+                         "id":  "549862",
+                         "datetime":  "2026/06/03 23:00:00",
+                         "date":  "6/3",
+                         "time":  "23:00",
+                         "flagKey":  "United_States",
+                         "currency":  "USD",
+                         "importance":  3,
+                         "indicator":  "ISM Non-Manufacturing PMI (서비스업)",
+                         "period":  "May",
+                         "actual":  "",
+                         "forecast":  "53.8",
+                         "previous":  "53.6",
                          "type":  "preview"
                      },
                      {
