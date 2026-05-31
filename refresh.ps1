@@ -406,6 +406,23 @@ function Get-PrevFridayEntry {
     return $null
 }
 
+# Global anchor Friday: the most recent Friday whose US session has FULLY
+# closed. US Fri 16:00 ET lands at ~Sat 05:00-06:00 KST, so we use Sat 07:00
+# KST as the safe cutoff. Before that, "this week's" US Friday close isn't in
+# Yahoo history yet, so we anchor to the PREVIOUS Friday — guaranteeing every
+# market (KR closes Fri 15:30 KST, US closes Sat ~05:00 KST) reports the SAME
+# Friday-close date, regardless of whether the snapshot runs Fri eve / Sat /
+# Sun / mid-week. (Fixes the bug where a Fri-evening run showed KR=Fri close
+# but US=Thu close.)
+function Get-AnchorFridayDate {
+    $now = Get-Date
+    $delta = ([int]$now.DayOfWeek - 5 + 7) % 7      # days since most recent Friday (Fri=5)
+    $thisFriday = $now.Date.AddDays(-$delta)         # most recent Friday (may be today)
+    $usCloseAvail = $thisFriday.AddDays(1).AddHours(7)   # Sat 07:00 KST
+    if ($now -lt $usCloseAvail) { return $thisFriday.AddDays(-7) }
+    return $thisFriday
+}
+
 # Find the latest history entry whose date satisfies the comparison vs Target.
 # Mode 'le' = on-or-before (date <= target). Mode 'lt' = strictly before (date < target).
 # Falls back to history[0] if target precedes all data.
@@ -443,23 +460,24 @@ function Get-Changes {
 
     $hist = $Data.history
 
-    # ── Friday-freeze mode ──
-    # current = most recent Friday close (= last week's Friday Mon-Thu,
-    # = today's Friday after market close on a Friday).
-    # WoW = previous Friday close. MoM = ~4 Fridays earlier.
-    # YTD = first trading day of the year (unchanged).
+    # ── Friday-freeze mode (anchored to a single global Friday) ──
+    # All markets freeze to $script:AnchorFriday — the most recent Friday whose
+    # US session has fully closed (see Get-AnchorFridayDate). This guarantees KR
+    # and US report the SAME Friday-close date. current = bar on/before anchor;
+    # WoW = on/before anchor-7d; MoM = on/before anchor-28d; YTD = year start.
     if ($FreezeFriday) {
-        $curFri = Get-LastFridayEntry -History $hist
-        if (-not $curFri) { return $null }
-        $current = if ($Invert) { 1 / $curFri.entry.close } else { $curFri.entry.close }
-        $asOf    = $curFri.entry.date
+        $anchor = if ($script:AnchorFriday) { $script:AnchorFriday } else { Get-AnchorFridayDate }
+        $curEntry = Get-EntryBefore -History $hist -Target $anchor -Mode 'le'
+        if (-not $curEntry) { return $null }
+        $current = if ($Invert) { 1 / $curEntry.close } else { $curEntry.close }
+        $asOf    = $curEntry.date
 
-        $wowEntry = Get-PrevFridayEntry -History $hist -FromIdx $curFri.idx -WeeksBack 1
-        $momEntry = Get-PrevFridayEntry -History $hist -FromIdx $curFri.idx -WeeksBack 4
+        $wowEntry = Get-EntryBefore -History $hist -Target $anchor.AddDays(-7)  -Mode 'le'
+        $momEntry = Get-EntryBefore -History $hist -Target $anchor.AddDays(-28) -Mode 'le'
         $wowBase = if ($wowEntry) { if ($Invert) { 1 / $wowEntry.close } else { $wowEntry.close } } else { $null }
         $momBase = if ($momEntry) { if ($Invert) { 1 / $momEntry.close } else { $momEntry.close } } else { $null }
 
-        $year = ([DateTime]::Parse($curFri.entry.date)).Year
+        $year = ([DateTime]::Parse($curEntry.date)).Year
     } else {
         $current = $Data.current
         if ($Invert) { $current = 1 / $current }
@@ -553,6 +571,11 @@ Add-Type -AssemblyName System.Web
 do {
     $start = Get-Date
     Write-Host ("[{0}] Fetching..." -f $start.ToString('HH:mm:ss')) -ForegroundColor Cyan
+
+    # Compute the global Friday anchor ONCE per run so every market (KR/US/CN)
+    # freezes to the same fully-closed Friday close.
+    $script:AnchorFriday = Get-AnchorFridayDate
+    Write-Host ("  Anchor Friday: {0:yyyy-MM-dd}" -f $script:AnchorFriday) -ForegroundColor DarkGray
 
     # Build rate group in user-requested order:
     #   KR3Y → KR10Y → CD91 → US2Y → US10Y → US30Y
@@ -657,10 +680,11 @@ do {
     $output = [ordered]@{
         updated   = $start.ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ")
         updatedKr = $start.ToString('yyyy-MM-dd HH:mm:ss')
-        # Index: each exchange's latest daily close (NOT Friday-frozen).
-        # Refreshed daily at 07:00 KST so Mon shows Fri close, Tue shows Mon
-        # close, etc. (Yahoo only appends a day's close after that session ends.)
-        index     = @(Fetch-Group $INSTRUMENTS.index -FreezeFriday $false)
+        # Index: Friday-frozen to the global anchor Friday (same as sector/fx/
+        # commodity). Guarantees KR + US + CN all report the same Friday close,
+        # regardless of when the snapshot runs. Holds last Friday Mon-Fri, then
+        # advances Saturday 07:00 KST once the new US Friday close is in.
+        index     = @(Fetch-Group $INSTRUMENTS.index -FreezeFriday $true)
         rate      = $rateOrdered
         commodity = @(_FetchCommodities)
         fx        = $fxRows
