@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-05-31T03:36:06Z",
-    "updatedKr":  "2026-05-31 12:36:06",
+    "updated":  "2026-05-31T23:37:50Z",
+    "updatedKr":  "2026-06-01 08:37:50",
     "countries":  [
                       "5",
                       "35",
@@ -126,21 +126,6 @@
                        "actual":  "",
                        "forecast":  "",
                        "previous":  "53.6",
-                       "type":  "preview"
-                   },
-                   {
-                       "id":  "550532",
-                       "datetime":  "2026/06/01 09:30:00",
-                       "date":  "6/1",
-                       "time":  "09:30",
-                       "flagKey":  "United_States",
-                       "currency":  "USD",
-                       "importance":  3,
-                       "indicator":  "Fed Chair Powell Speaks",
-                       "period":  "",
-                       "actual":  "",
-                       "forecast":  "",
-                       "previous":  "",
                        "type":  "preview"
                    },
                    {
@@ -939,21 +924,6 @@
                        "type":  "preview"
                    },
                    {
-                       "id":  "550427",
-                       "datetime":  "2026/06/04 08:50:00",
-                       "date":  "6/4",
-                       "time":  "08:50",
-                       "flagKey":  "Japan",
-                       "currency":  "JPY",
-                       "importance":  1,
-                       "indicator":  "Foreign Reserves (USD)",
-                       "period":  "May",
-                       "actual":  "",
-                       "forecast":  "",
-                       "previous":  "1,383.0B",
-                       "type":  "preview"
-                   },
-                   {
                        "id":  "550518",
                        "datetime":  "2026/06/04 08:50:00",
                        "date":  "6/4",
@@ -1236,6 +1206,21 @@
                        "actual":  "",
                        "forecast":  "",
                        "previous":  "-1.3%",
+                       "type":  "preview"
+                   },
+                   {
+                       "id":  "550427",
+                       "datetime":  "2026/06/05 08:50:00",
+                       "date":  "6/5",
+                       "time":  "08:50",
+                       "flagKey":  "Japan",
+                       "currency":  "JPY",
+                       "importance":  1,
+                       "indicator":  "Foreign Reserves (USD)",
+                       "period":  "May",
+                       "actual":  "",
+                       "forecast":  "",
+                       "previous":  "1,383.0B",
                        "type":  "preview"
                    },
                    {
