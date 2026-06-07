@@ -1,6 +1,6 @@
 {
     "version":  1,
-    "updated":  "2026-06-07T05:41:00Z",
+    "updated":  "2026-06-07T05:45:13Z",
     "entries":  {
                     "macro-comment-2026-05-15-time":  "05-18 15:03",
                     "rp::valuation::2026-05-29::ch79jh":  {
@@ -172,7 +172,7 @@
                                                               "weekDate":  "2026-05-29",
                                                               "headline":  "HD현대오일뱅크(+테넷EP), 대경오앤티 SPA 체결 — 5,000억·100%"
                                                           },
-                    "capmkt-comment-time-commodity":  "26. 05. 31. 오후 01:37",
+                    "capmkt-comment-time-commodity":  "26. 06. 07. 오후 02:45",
                     "capmkt-comment-time-rate":  "26. 06. 07. 오후 12:53",
                     "rp::valuation::2026-05-15::fh8pl2":  {
                                                               "values":  {
@@ -365,7 +365,7 @@
                                                           },
                     "dashboard-macro-comment":  "미국 5월 비농업고용자수는 시장 예상치인 9.6만 건을 상회한 17.2만 건을 기록하며 국채금리 상승에 따른 증시 하락을 유발함.\n세부내역으로는 정부 부문(+5.2만 건)과 월드컵 특수가 반영된 레저 및 접객업(+7.0만 건)이 고용증가를 견인했으며 제조업 등에서는 고용이 일제히 감소했지만 시장은 헤드라인 수치를 반영.\nCPI 및 PPI, 국채 금리의 방향에 따라 시장 변동성 확대 가능성.",
                     "ipo-mcap-477850":  2748,
-                    "capmkt-comment-commodity":  "국제 유가는 미-이란 MOU 체결 가능성에 급락",
+                    "capmkt-comment-commodity":  "금 가격은 견조한 고용지표에 달러 강세, 금리 상승이 확대되자 하락.",
                     "ipo-mcap-0117P0":  3048,
                     "rp::valuation::2026-06-05::mrbadq":  {
                                                               "values":  {
