@@ -445,6 +445,7 @@ URL 날짜 없는 매체(dealsite 등) 또는 보강 필요 시:
 | 감가상각비(D&A) | 32 |
 | EBITDA |  |
 | 당기순이익 | 274 |
+| 자본총계 |  |
 | 단기차입금 |  |
 | 유동성장기차입금 |  |
 | 유동리스부채 |  |
@@ -467,10 +468,11 @@ URL 날짜 없는 매체(dealsite 등) 또는 보강 필요 시:
 
 **Valuation 블록 규칙** (Page 6만, 선택):
 - `#### Valuation (단위: 억원, FY25 기준)` H4 + 2열 마크다운 테이블 (현 시점 작년 = 직전 결산 = FY25; 매년 1월 이후 FY+1)
-- 필수 행 17개 (Excel `Wekkly_Deal_2026xQ.xlsx` 시트 템플릿과 일치):
-  Deal Type / 매출액 / 영업이익 / 감가상각비(D&A) / EBITDA / 당기순이익 / 단기차입금 / 유동성장기차입금 / 유동리스부채 / 장기차입금 / 리스부채 / 현금및현금성자산 / 단기금융상품 / Deal Value / % Stake / 시가총액
-- 모르는 값은 빈 칸 → 대시보드가 입력 가능한 폼으로 렌더링 → 사용자 수기 입력 시 IBD·NetDebt·EV·Equity·EV/EBITDA·EV/매출·PER·Premium 라이브 계산
+- 필수 행 18개 (Excel `Wekkly_Deal_2026xQ.xlsx` 시트 템플릿과 일치):
+  Deal Type / 매출액 / 영업이익 / 감가상각비(D&A) / EBITDA / 당기순이익 / **자본총계** / 단기차입금 / 유동성장기차입금 / 유동리스부채 / 장기차입금 / 리스부채 / 현금및현금성자산 / 단기금융상품 / Deal Value / % Stake / 시가총액
+- 모르는 값은 빈 칸 → 대시보드가 입력 가능한 폼으로 렌더링 → 사용자 수기 입력 시 IBD·NetDebt·EV·Equity·EV/EBITDA·EV/매출·PER·**PBR**·Premium 라이브 계산
 - **EBITDA**는 비워두면 `영업이익 + 감가상각비(D&A)` 자동 계산 (직접 입력 시 그 값 우선)
+- **자본총계**(순자산)는 PBR 계산 분모 — 감사보고서 재무상태표 자본총계(연결이면 비지배 포함 전체). **PBR = Equity Value ÷ 자본총계**, **PER = Equity Value ÷ 당기순이익**. note 라인·Deal Summary에 EV/EBITDA·PER·PBR 3종 모두 병기
 - **상장사 minority 거래**(예: 한화→KAI): 시가총액 행을 채우면 Equity Value의 fallback
 - 데이터 출처: 상장사 DART 사업보고서, 외감대상 비상장사 DART 감사보고서, 사업부 분리는 모회사 부문별 데이터, 비공개는 보도자료 추정
 

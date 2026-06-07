@@ -1859,6 +1859,7 @@ const VAL_PNL_FIELDS = [
   { key: '감가상각비(D&A)', ph: '+영업이익 = EBITDA' },
   { key: 'EBITDA',          ph: '비워두면 자동 계산' },
   { key: '당기순이익',      ph: '예: 11' },
+  { key: '자본총계',        ph: 'PBR 계산용 (순자산)' },
 ];
 const VAL_DEBT_FIELDS = [
   { key: '단기차입금' },
@@ -2048,6 +2049,7 @@ function renderValuationCard(cardId, weekDate, headline, title, data) {
               <tr class="val-multiple"><th>EV / EBITDA</th><td data-out="EV_EBITDA">—</td></tr>
               <tr class="val-multiple"><th>EV / 매출</th><td data-out="EV_Sales">—</td></tr>
               <tr class="val-multiple"><th>PER</th><td data-out="PER">—</td></tr>
+              <tr class="val-multiple"><th>PBR</th><td data-out="PBR">—</td></tr>
               <tr class="val-multiple"><th>Premium vs 시총</th><td data-out="Premium">—</td></tr>
             </tbody>
           </table>
@@ -2316,9 +2318,12 @@ window.computeValuation = function (cardId) {
   const ev = (equity !== null && netDebt !== null) ? equity + netDebt
            : (equity !== null ? equity : null);
 
+  const bookEquity = read('자본총계');
+
   const evEbitda = (ev !== null && ebitda && ebitda !== 0) ? ev / ebitda : null;
   const evSales  = (ev !== null && revenue && revenue !== 0) ? ev / revenue : null;
   const per      = (equity !== null && netIncome && netIncome !== 0) ? equity / netIncome : null;
+  const pbr      = (equity !== null && bookEquity && bookEquity !== 0) ? equity / bookEquity : null;
   const premium  = (equity !== null && mktCap && mktCap !== 0) ? (equity / mktCap - 1) * 100 : null;
 
   setOut('IBD',        fmtVal(ibd));
@@ -2330,6 +2335,7 @@ window.computeValuation = function (cardId) {
   setOut('EV_EBITDA',  fmtMultiple(evEbitda));
   setOut('EV_Sales',   fmtMultiple(evSales));
   setOut('PER',        fmtMultiple(per));
+  setOut('PBR',        fmtMultiple(pbr));
   setOut('Premium',    fmtPercent(premium));
 };
 
