@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-06-07T03:47:33Z",
-    "updatedKr":  "2026-06-07 12:47:33",
+    "updated":  "2026-06-07T04:15:54Z",
+    "updatedKr":  "2026-06-07 13:15:54",
     "frozenDow":  "Sunday",
     "reviewRange":  "2026-06-01~2026-06-07",
     "previewRange":  "2026-06-08~2026-06-14",
@@ -51,18 +51,18 @@
                          "type":  "review"
                      },
                      {
-                         "id":  "548162",
-                         "datetime":  "2026/06/01 23:00:00",
-                         "date":  "6/1",
-                         "time":  "23:00",
-                         "flagKey":  "United_States",
-                         "currency":  "USD",
-                         "importance":  3,
-                         "indicator":  "ISM Manufacturing PMI",
+                         "id":  "548178",
+                         "datetime":  "2026/06/02 08:00:00",
+                         "date":  "6/2",
+                         "time":  "08:00",
+                         "flagKey":  "South_Korea",
+                         "currency":  "KRW",
+                         "importance":  1,
+                         "indicator":  "CPI (YoY)",
                          "period":  "May",
-                         "actual":  "54.0",
-                         "forecast":  "53.3",
-                         "previous":  "52.7",
+                         "actual":  "3.1%",
+                         "forecast":  "3.0%",
+                         "previous":  "2.6%",
                          "type":  "review"
                      },
                      {
@@ -113,21 +113,6 @@
                          "type":  "preview"
                      },
                      {
-                         "id":  "549987",
-                         "datetime":  "2026/06/10 21:30:00",
-                         "date":  "6/10",
-                         "time":  "21:30",
-                         "flagKey":  "United_States",
-                         "currency":  "USD",
-                         "importance":  3,
-                         "indicator":  "Core CPI (MoM)",
-                         "period":  "May",
-                         "actual":  "",
-                         "forecast":  "0.5%",
-                         "previous":  "0.4%",
-                         "type":  "preview"
-                     },
-                     {
                          "id":  "549988",
                          "datetime":  "2026/06/10 21:30:00",
                          "date":  "6/10",
@@ -143,18 +128,33 @@
                          "type":  "preview"
                      },
                      {
-                         "id":  "549986",
+                         "id":  "549984",
                          "datetime":  "2026/06/10 21:30:00",
                          "date":  "6/10",
                          "time":  "21:30",
                          "flagKey":  "United_States",
                          "currency":  "USD",
-                         "importance":  3,
-                         "indicator":  "CPI (MoM)",
+                         "importance":  2,
+                         "indicator":  "Core CPI (YoY)",
                          "period":  "May",
                          "actual":  "",
-                         "forecast":  "0.3%",
-                         "previous":  "0.6%",
+                         "forecast":  "2.9%",
+                         "previous":  "2.8%",
+                         "type":  "preview"
+                     },
+                     {
+                         "id":  "550080",
+                         "datetime":  "2026/06/11 21:30:00",
+                         "date":  "6/11",
+                         "time":  "21:30",
+                         "flagKey":  "United_States",
+                         "currency":  "USD",
+                         "importance":  1,
+                         "indicator":  "PPI (YoY)",
+                         "period":  "May",
+                         "actual":  "",
+                         "forecast":  "",
+                         "previous":  "6.0%",
                          "type":  "preview"
                      }
                  ]

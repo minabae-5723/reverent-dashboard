@@ -231,14 +231,32 @@ do {
         $pickTop5 = {
             param($events)
             if (-not $events) { return @() }
-            # Drop MoM PCE — we prefer YoY
-            $filtered = @($events | Where-Object { $_.indicator -notmatch '(?i)PCE.*\(MoM\)' })
-            # Pin tier-1 indicators:
-            #   - Nonfarm Payrolls (NFP, monthly jobs report)
-            #   - Core PCE Price Index (YoY)
-            #   - PCE Price Index (YoY) = Headline PCE YoY
-            $pinPattern = '(?i)^(Nonfarm Payrolls|(Core\s+)?PCE.*Price.*Index.*\(YoY\))$'
-            $pinned = @($filtered | Where-Object { $_.indicator -match $pinPattern })
+            # Drop MoM/sub-index variants so CPI/PPI/PCE show only as YoY headlines.
+            $filtered = @($events | Where-Object {
+                -not (
+                    ($_.indicator -match '(?i)PCE.*\(MoM\)') -or
+                    ($_.indicator -match '(?i)^(Core\s+)?CPI \(MoM\)$') -or
+                    ($_.indicator -match '(?i)^CPI[,]?\s*(n\.s\.a|s\.a|Index)') -or
+                    ($_.indicator -match '(?i)^Cleveland CPI')
+                )
+            })
+            # Pin tier-1 indicators (always included if present):
+            #   - Nonfarm Payrolls
+            #   - Core / Headline PCE YoY
+            #   - Headline CPI (YoY) + Core CPI (YoY)
+            #   - Headline PPI (YoY) — US only (Japan PPI separate, lower importance)
+            $pinned = @($filtered | Where-Object {
+                ($_.indicator -match '(?i)^Nonfarm Payrolls$') -or
+                ($_.indicator -match '(?i)^(Core\s+)?PCE.*Price.*Index.*\(YoY\)$') -or
+                ($_.indicator -match '(?i)^(Core\s+)?CPI \(YoY\)$') -or
+                (($_.indicator -match '(?i)^PPI \(YoY\)$') -and ($_.flagKey -eq 'United_States'))
+            })
+            # If more than 5 pinned, keep top 5 by importance DESC then datetime ASC
+            if ($pinned.Count -gt 5) {
+                $pinned = @($pinned |
+                    Sort-Object @{Expression={ [int]$_.importance }; Descending=$true}, @{Expression='datetime'; Descending=$false} |
+                    Select-Object -First 5)
+            }
             $pinnedIds = @{}
             foreach ($p in $pinned) { $pinnedIds[$p.id] = $true }
             # Fill remaining slots with top-importance non-pinned events
