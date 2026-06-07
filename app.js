@@ -304,11 +304,14 @@ function renderMacroWeekly(data) {
   }
 
   // Fixed column titles (user convention, updated weekly):
-  //   left = REVIEW (released, week just ended), right = PREVIEW (upcoming).
+  //   left = REVIEW (이번 주 ~ 오늘, released events), right = PREVIEW (다음 주, upcoming).
+  // fetch-calendar.ps1 fetches the exact date ranges and labels them here.
+  const reviewRange  = data?.reviewRange  || '';
+  const previewRange = data?.previewRange || '';
   const lt = document.getElementById('macroLeftTitle');
   const rt = document.getElementById('macroRightTitle');
-  if (lt) lt.textContent = 'REVIEW';
-  if (rt) rt.textContent = 'PREVIEW';
+  if (lt) lt.textContent = reviewRange  ? `REVIEW (${reviewRange})`  : 'REVIEW';
+  if (rt) rt.textContent = previewRange ? `PREVIEW (${previewRange})` : 'PREVIEW';
 
   renderMacroSide('macroThisWeekBody', data?.thisWeek);
   renderMacroSide('macroNextWeekBody', data?.nextWeek);

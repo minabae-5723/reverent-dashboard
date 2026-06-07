@@ -19,11 +19,15 @@ $FrozenFile   = Join-Path $PSScriptRoot 'market-update-frozen.json'
 $COUNTRY_IDS = @('5','35','11')
 
 function Get-InvestingCalendar {
-    param([string]$Tab = 'today')
+    param([string]$Tab = 'today', [string]$DateFrom = '', [string]$DateTo = '')
 
     $url = 'https://www.investing.com/economic-calendar/Service/getCalendarFilteredData'
     $cParts = $COUNTRY_IDS | Sort-Object -Unique | ForEach-Object { "country%5B%5D=$_" }
-    $body = ($cParts -join '&') + "&timeZone=88&timeFilter=timeOnly&currentTab=$Tab&submitFilters=1&limit_from=0"
+    if ($Tab -eq 'custom' -and $DateFrom -and $DateTo) {
+        $body = ($cParts -join '&') + "&timeZone=88&timeFilter=timeOnly&currentTab=custom&dateFrom=$DateFrom&dateTo=$DateTo&submitFilters=1&limit_from=0"
+    } else {
+        $body = ($cParts -join '&') + "&timeZone=88&timeFilter=timeOnly&currentTab=$Tab&submitFilters=1&limit_from=0"
+    }
 
     $headers = @{
         'User-Agent'       = $UA
@@ -152,16 +156,17 @@ function Parse-Events {
 }
 
 function Save-Calendar {
-    param([string]$Tab, [string]$OutPath)
+    param([string]$Tab, [string]$OutPath, [string]$DateFrom = '', [string]$DateTo = '')
 
-    $html = Get-InvestingCalendar -Tab $Tab
+    $html = Get-InvestingCalendar -Tab $Tab -DateFrom $DateFrom -DateTo $DateTo
     $events = Parse-Events -Html $html
 
+    $tabLabel = if ($Tab -eq 'custom') { "custom $DateFrom~$DateTo" } else { $Tab }
     $output = [ordered]@{
         updated   = (Get-Date).ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ")
         updatedKr = (Get-Date).ToString('yyyy-MM-dd HH:mm:ss')
         countries = $COUNTRY_IDS
-        tab       = $Tab
+        tab       = $tabLabel
         events    = @($events)
     }
 
@@ -172,18 +177,42 @@ function Save-Calendar {
     return [PSCustomObject]@{ count = $events.Count; highImp = $highImp; path = $OutPath }
 }
 
+# Compute Monday of this week (DayOfWeek: Sun=0, Mon=1, ... Sat=6)
+function Get-WeekBounds {
+    $today = (Get-Date).Date
+    $dow = [int]$today.DayOfWeek          # Sun=0, Mon=1, ..., Sat=6
+    $offsetToMon = if ($dow -eq 0) { -6 } else { -($dow - 1) }
+    $thisMon = $today.AddDays($offsetToMon)
+    $nextMon = $thisMon.AddDays(7)
+    $nextSun = $thisMon.AddDays(13)
+    return [PSCustomObject]@{
+        thisMon = $thisMon
+        today   = $today
+        nextMon = $nextMon
+        nextSun = $nextSun
+    }
+}
+
 do {
     $start = Get-Date
     Write-Host ("[{0}] Calendar fetch (US/JP/KR)..." -f $start.ToString('HH:mm:ss')) -ForegroundColor Cyan
 
-    $today    = Save-Calendar -Tab 'today'     -OutPath $TodayFile
-    $week     = Save-Calendar -Tab 'thisWeek'  -OutPath $WeekFile
-    $nextWeek = Save-Calendar -Tab 'nextWeek'  -OutPath $NextWeekFile
+    # Review = this calendar week Mon..today (events with actuals, mostly past)
+    # Preview = next calendar week Mon..Sun (upcoming events)
+    $wb = Get-WeekBounds
+    $reviewFrom  = $wb.thisMon.ToString('yyyy-MM-dd')
+    $reviewTo    = $wb.today.ToString('yyyy-MM-dd')
+    $previewFrom = $wb.nextMon.ToString('yyyy-MM-dd')
+    $previewTo   = $wb.nextSun.ToString('yyyy-MM-dd')
+
+    $today    = Save-Calendar -Tab 'today' -OutPath $TodayFile
+    $week     = Save-Calendar -Tab 'custom' -DateFrom $reviewFrom  -DateTo $reviewTo  -OutPath $WeekFile
+    $nextWeek = Save-Calendar -Tab 'custom' -DateFrom $previewFrom -DateTo $previewTo -OutPath $NextWeekFile
 
     $elapsed = [int](New-TimeSpan -Start $start -End (Get-Date)).TotalSeconds
     Write-Host ("  today:    {0} events ({1} medium+) -> calendar.json"           -f $today.count,    $today.highImp)    -ForegroundColor Green
-    Write-Host ("  week:     {0} events ({1} medium+) -> calendar-week.json"      -f $week.count,     $week.highImp)     -ForegroundColor Green
-    Write-Host ("  nextWeek: {0} events ({1} medium+) -> calendar-next-week.json" -f $nextWeek.count, $nextWeek.highImp) -ForegroundColor Green
+    Write-Host ("  Review ({0}~{1}): {2} events ({3} medium+) -> calendar-week.json" -f $reviewFrom, $reviewTo, $week.count, $week.highImp) -ForegroundColor Green
+    Write-Host ("  Preview ({0}~{1}): {2} events ({3} medium+) -> calendar-next-week.json" -f $previewFrom, $previewTo, $nextWeek.count, $nextWeek.highImp) -ForegroundColor Green
 
     # ─── Frozen weekly snapshot for Market Update dashboard section ───
     # Refreshes only on Fri/Sat/Sun (or if missing), so the displayed top-5
@@ -225,8 +254,10 @@ do {
             updated      = (Get-Date).ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ")
             updatedKr    = (Get-Date).ToString('yyyy-MM-dd HH:mm:ss')
             frozenDow    = $dow.ToString()
-            thisWeek     = @($thisTop5)
-            nextWeek     = @($nextTop5)
+            reviewRange  = "$reviewFrom~$reviewTo"
+            previewRange = "$previewFrom~$previewTo"
+            thisWeek     = @($thisTop5)   # legacy name kept for app.js compat — actually "Review" content
+            nextWeek     = @($nextTop5)   # legacy name kept — actually "Preview" content
         }
         $json = $frozen | ConvertTo-Json -Depth 8
         [System.IO.File]::WriteAllText($FrozenFile, $json, (New-Object System.Text.UTF8Encoding($false)))
