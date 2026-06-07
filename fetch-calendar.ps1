@@ -225,16 +225,20 @@ do {
         try { $weekData = Get-Content $WeekFile     -Raw -Encoding UTF8 | ConvertFrom-Json } catch {}
         try { $nextData = Get-Content $NextWeekFile -Raw -Encoding UTF8 | ConvertFrom-Json } catch {}
 
-        # Pick up to 5 by importance, but force-include both Core and
-        # Headline PCE YoY when present (per user spec). MoM PCE variants
+        # Pick up to 5 by importance, but force-include tier-1 indicators
+        # (Nonfarm Payrolls, PCE YoY pair) when present. MoM PCE variants
         # and lower-importance ones are filtered out.
         $pickTop5 = {
             param($events)
             if (-not $events) { return @() }
             # Drop MoM PCE — we prefer YoY
             $filtered = @($events | Where-Object { $_.indicator -notmatch '(?i)PCE.*\(MoM\)' })
-            # Pin both PCE YoY (Core + Headline)
-            $pinned = @($filtered | Where-Object { $_.indicator -match '(?i)^(Core\s+)?PCE.*Price.*Index.*\(YoY\)$' })
+            # Pin tier-1 indicators:
+            #   - Nonfarm Payrolls (NFP, monthly jobs report)
+            #   - Core PCE Price Index (YoY)
+            #   - PCE Price Index (YoY) = Headline PCE YoY
+            $pinPattern = '(?i)^(Nonfarm Payrolls|(Core\s+)?PCE.*Price.*Index.*\(YoY\))$'
+            $pinned = @($filtered | Where-Object { $_.indicator -match $pinPattern })
             $pinnedIds = @{}
             foreach ($p in $pinned) { $pinnedIds[$p.id] = $true }
             # Fill remaining slots with top-importance non-pinned events

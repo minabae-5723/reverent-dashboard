@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-06-07T03:32:20Z",
-    "updatedKr":  "2026-06-07 12:32:20",
+    "updated":  "2026-06-07T03:47:33Z",
+    "updatedKr":  "2026-06-07 12:47:33",
     "frozenDow":  "Sunday",
     "reviewRange":  "2026-06-01~2026-06-07",
     "previewRange":  "2026-06-08~2026-06-14",
@@ -36,21 +36,6 @@
                          "type":  "review"
                      },
                      {
-                         "id":  "548162",
-                         "datetime":  "2026/06/01 23:00:00",
-                         "date":  "6/1",
-                         "time":  "23:00",
-                         "flagKey":  "United_States",
-                         "currency":  "USD",
-                         "importance":  3,
-                         "indicator":  "ISM Manufacturing PMI",
-                         "period":  "May",
-                         "actual":  "54.0",
-                         "forecast":  "53.3",
-                         "previous":  "52.7",
-                         "type":  "review"
-                     },
-                     {
                          "id":  "548163",
                          "datetime":  "2026/06/01 23:00:00",
                          "date":  "6/1",
@@ -66,18 +51,33 @@
                          "type":  "review"
                      },
                      {
-                         "id":  "548222",
-                         "datetime":  "2026/06/02 23:00:00",
-                         "date":  "6/2",
+                         "id":  "548162",
+                         "datetime":  "2026/06/01 23:00:00",
+                         "date":  "6/1",
                          "time":  "23:00",
                          "flagKey":  "United_States",
                          "currency":  "USD",
                          "importance":  3,
-                         "indicator":  "JOLTS Job Openings",
-                         "period":  "Apr",
-                         "actual":  "7.618M",
-                         "forecast":  "6.860M",
-                         "previous":  "6.887M",
+                         "indicator":  "ISM Manufacturing PMI",
+                         "period":  "May",
+                         "actual":  "54.0",
+                         "forecast":  "53.3",
+                         "previous":  "52.7",
+                         "type":  "review"
+                     },
+                     {
+                         "id":  "548630",
+                         "datetime":  "2026/06/05 21:30:00",
+                         "date":  "6/5",
+                         "time":  "21:30",
+                         "flagKey":  "United_States",
+                         "currency":  "USD",
+                         "importance":  3,
+                         "indicator":  "Nonfarm Payrolls",
+                         "period":  "May",
+                         "actual":  "172K",
+                         "forecast":  "85K",
+                         "previous":  "179K",
                          "type":  "review"
                      }
                  ],
