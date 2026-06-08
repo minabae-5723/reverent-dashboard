@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-06-07T23:36:06Z",
-    "updatedKr":  "2026-06-08 08:36:06",
+    "updated":  "2026-06-08T00:05:01Z",
+    "updatedKr":  "2026-06-08 09:05:01",
     "countries":  [
                       "5",
                       "35",
@@ -18,10 +18,10 @@
                        "importance":  1,
                        "indicator":  "GDP External Demand (QoQ)",
                        "period":  "Q1",
-                       "actual":  "",
+                       "actual":  "0.3%",
                        "forecast":  "0.3%",
                        "previous":  "0.3%",
-                       "type":  "preview"
+                       "type":  "review"
                    },
                    {
                        "id":  "548689",
@@ -33,10 +33,10 @@
                        "importance":  1,
                        "indicator":  "GDP Capital Expenditure (QoQ)",
                        "period":  "Q1",
-                       "actual":  "",
+                       "actual":  "-0.7%",
                        "forecast":  "0.3%",
                        "previous":  "0.3%",
-                       "type":  "preview"
+                       "type":  "review"
                    },
                    {
                        "id":  "548690",
@@ -48,10 +48,10 @@
                        "importance":  1,
                        "indicator":  "GDP Private Consumption (QoQ)",
                        "period":  "Q1",
-                       "actual":  "",
+                       "actual":  "0.3%",
                        "forecast":  "0.3%",
                        "previous":  "0.3%",
-                       "type":  "preview"
+                       "type":  "review"
                    },
                    {
                        "id":  "548686",
@@ -63,10 +63,10 @@
                        "importance":  2,
                        "indicator":  "GDP Price Index (YoY)",
                        "period":  "Q1",
-                       "actual":  "",
+                       "actual":  "3.2%",
                        "forecast":  "3.4%",
                        "previous":  "3.4%",
-                       "type":  "preview"
+                       "type":  "review"
                    },
                    {
                        "id":  "548691",
@@ -78,10 +78,10 @@
                        "importance":  2,
                        "indicator":  "GDP Annualized (QoQ)",
                        "period":  "Q1",
-                       "actual":  "",
+                       "actual":  "1.8%",
                        "forecast":  "2.1%",
                        "previous":  "2.1%",
-                       "type":  "preview"
+                       "type":  "review"
                    },
                    {
                        "id":  "548694",
@@ -93,10 +93,10 @@
                        "importance":  1,
                        "indicator":  "Bank Lending (YoY)",
                        "period":  "May",
-                       "actual":  "",
+                       "actual":  "5.7%",
                        "forecast":  "5.6%",
                        "previous":  "5.4%",
-                       "type":  "preview"
+                       "type":  "review"
                    },
                    {
                        "id":  "548688",
@@ -108,10 +108,10 @@
                        "importance":  2,
                        "indicator":  "Adjusted Current Account",
                        "period":  "Apr",
-                       "actual":  "",
+                       "actual":  "4.21T",
                        "forecast":  "3.26T",
-                       "previous":  "390.06T",
-                       "type":  "preview"
+                       "previous":  "3.90T",
+                       "type":  "review"
                    },
                    {
                        "id":  "548687",
@@ -123,10 +123,10 @@
                        "importance":  3,
                        "indicator":  "GDP (QoQ)",
                        "period":  "Q1",
-                       "actual":  "",
+                       "actual":  "0.5%",
                        "forecast":  "0.5%",
                        "previous":  "0.5%",
-                       "type":  "preview"
+                       "type":  "review"
                    },
                    {
                        "id":  "548693",
@@ -138,10 +138,10 @@
                        "importance":  2,
                        "indicator":  "Current Account n.s.a.",
                        "period":  "Apr",
-                       "actual":  "",
+                       "actual":  "3.908T",
                        "forecast":  "",
                        "previous":  "4.682T",
-                       "type":  "preview"
+                       "type":  "review"
                    },
                    {
                        "id":  "548698",

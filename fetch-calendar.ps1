@@ -183,10 +183,12 @@ function Get-WeekBounds {
     $dow = [int]$today.DayOfWeek          # Sun=0, Mon=1, ..., Sat=6
     $offsetToMon = if ($dow -eq 0) { -6 } else { -($dow - 1) }
     $thisMon = $today.AddDays($offsetToMon)
+    $thisSun = $thisMon.AddDays(6)
     $nextMon = $thisMon.AddDays(7)
     $nextSun = $thisMon.AddDays(13)
     return [PSCustomObject]@{
         thisMon = $thisMon
+        thisSun = $thisSun
         today   = $today
         nextMon = $nextMon
         nextSun = $nextSun
@@ -197,21 +199,25 @@ do {
     $start = Get-Date
     Write-Host ("[{0}] Calendar fetch (US/JP/KR)..." -f $start.ToString('HH:mm:ss')) -ForegroundColor Cyan
 
-    # Review = this calendar week Mon..today (events with actuals, mostly past)
+    # Review = this calendar week Mon..today (라벨 전용 — 발표완료/과거 이벤트 구간)
     # Preview = next calendar week Mon..Sun (upcoming events)
+    # calendar-week.json(#weekly 뷰)은 이번주 전체(월~일)를 담는다 — 주 초반에도 일주일치 다 보이도록
     $wb = Get-WeekBounds
-    $reviewFrom  = $wb.thisMon.ToString('yyyy-MM-dd')
-    $reviewTo    = $wb.today.ToString('yyyy-MM-dd')
-    $previewFrom = $wb.nextMon.ToString('yyyy-MM-dd')
-    $previewTo   = $wb.nextSun.ToString('yyyy-MM-dd')
+    # 라벨용 Review 구간(월~오늘) + #weekly 뷰용 이번주 전체(월~일)
+    $reviewFrom  = '{0:yyyy-MM-dd}' -f $wb.thisMon
+    $reviewTo    = '{0:yyyy-MM-dd}' -f $wb.today
+    $weekFrom    = '{0:yyyy-MM-dd}' -f $wb.thisMon
+    $weekTo      = '{0:yyyy-MM-dd}' -f $wb.thisSun
+    $previewFrom = '{0:yyyy-MM-dd}' -f $wb.nextMon
+    $previewTo   = '{0:yyyy-MM-dd}' -f $wb.nextSun
 
     $today    = Save-Calendar -Tab 'today' -OutPath $TodayFile
-    $week     = Save-Calendar -Tab 'custom' -DateFrom $reviewFrom  -DateTo $reviewTo  -OutPath $WeekFile
+    $week     = Save-Calendar -Tab 'custom' -DateFrom $weekFrom    -DateTo $weekTo    -OutPath $WeekFile
     $nextWeek = Save-Calendar -Tab 'custom' -DateFrom $previewFrom -DateTo $previewTo -OutPath $NextWeekFile
 
     $elapsed = [int](New-TimeSpan -Start $start -End (Get-Date)).TotalSeconds
     Write-Host ("  today:    {0} events ({1} medium+) -> calendar.json"           -f $today.count,    $today.highImp)    -ForegroundColor Green
-    Write-Host ("  Review ({0}~{1}): {2} events ({3} medium+) -> calendar-week.json" -f $reviewFrom, $reviewTo, $week.count, $week.highImp) -ForegroundColor Green
+    Write-Host ("  Week ({0}~{1}): {2} events ({3} medium+) -> calendar-week.json" -f $weekFrom, $weekTo, $week.count, $week.highImp) -ForegroundColor Green
     Write-Host ("  Preview ({0}~{1}): {2} events ({3} medium+) -> calendar-next-week.json" -f $previewFrom, $previewTo, $nextWeek.count, $nextWeek.highImp) -ForegroundColor Green
 
     # ─── Frozen weekly snapshot for Market Update dashboard section ───
