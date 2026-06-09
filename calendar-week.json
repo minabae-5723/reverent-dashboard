@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-06-08T00:05:01Z",
-    "updatedKr":  "2026-06-08 09:05:01",
+    "updated":  "2026-06-09T00:02:02Z",
+    "updatedKr":  "2026-06-09 09:02:02",
     "countries":  [
                       "5",
                       "35",
@@ -20,7 +20,7 @@
                        "period":  "Q1",
                        "actual":  "0.3%",
                        "forecast":  "0.3%",
-                       "previous":  "0.3%",
+                       "previous":  "0.0%",
                        "type":  "review"
                    },
                    {
@@ -35,7 +35,7 @@
                        "period":  "Q1",
                        "actual":  "-0.7%",
                        "forecast":  "0.3%",
-                       "previous":  "0.3%",
+                       "previous":  "1.2%",
                        "type":  "review"
                    },
                    {
@@ -50,7 +50,7 @@
                        "period":  "Q1",
                        "actual":  "0.3%",
                        "forecast":  "0.3%",
-                       "previous":  "0.3%",
+                       "previous":  "0.1%",
                        "type":  "review"
                    },
                    {
@@ -80,7 +80,7 @@
                        "period":  "Q1",
                        "actual":  "1.8%",
                        "forecast":  "2.1%",
-                       "previous":  "2.1%",
+                       "previous":  "0.7%",
                        "type":  "review"
                    },
                    {
@@ -125,7 +125,7 @@
                        "period":  "Q1",
                        "actual":  "0.5%",
                        "forecast":  "0.5%",
-                       "previous":  "0.5%",
+                       "previous":  "0.3%",
                        "type":  "review"
                    },
                    {
@@ -138,8 +138,8 @@
                        "importance":  2,
                        "indicator":  "Current Account n.s.a.",
                        "period":  "Apr",
-                       "actual":  "3.908T",
-                       "forecast":  "",
+                       "actual":  "3.907T",
+                       "forecast":  "3.137T",
                        "previous":  "4.682T",
                        "type":  "review"
                    },
@@ -153,10 +153,10 @@
                        "importance":  1,
                        "indicator":  "Economy Watchers Current Index",
                        "period":  "May",
-                       "actual":  "",
+                       "actual":  "43.6",
                        "forecast":  "41.9",
                        "previous":  "40.8",
-                       "type":  "preview"
+                       "type":  "review"
                    },
                    {
                        "id":  "549502",
@@ -168,10 +168,10 @@
                        "importance":  1,
                        "indicator":  "CB Employment Trends Index",
                        "period":  "May",
-                       "actual":  "",
+                       "actual":  "107.01",
                        "forecast":  "",
-                       "previous":  "105.77",
-                       "type":  "preview"
+                       "previous":  "107.88",
+                       "type":  "review"
                    },
                    {
                        "id":  "550761",
@@ -183,10 +183,10 @@
                        "importance":  2,
                        "indicator":  "NY Fed 1-Year Consumer Inflation Expectations",
                        "period":  "May",
-                       "actual":  "",
+                       "actual":  "3.5%",
                        "forecast":  "",
                        "previous":  "3.6%",
-                       "type":  "preview"
+                       "type":  "review"
                    },
                    {
                        "id":  "550913",
@@ -198,10 +198,10 @@
                        "importance":  1,
                        "indicator":  "6-Month Bill Auction",
                        "period":  "",
-                       "actual":  "",
+                       "actual":  "3.690%",
                        "forecast":  "",
                        "previous":  "3.665%",
-                       "type":  "preview"
+                       "type":  "review"
                    },
                    {
                        "id":  "550754",
@@ -213,10 +213,10 @@
                        "importance":  1,
                        "indicator":  "3-Month Bill Auction",
                        "period":  "",
-                       "actual":  "",
+                       "actual":  "3.640%",
                        "forecast":  "",
                        "previous":  "3.630%",
-                       "type":  "preview"
+                       "type":  "review"
                    },
                    {
                        "id":  "546765",
@@ -227,11 +227,11 @@
                        "currency":  "KRW",
                        "importance":  1,
                        "indicator":  "GDP (YoY)",
-                       "period":  "Q2",
-                       "actual":  "",
+                       "period":  "Q1",
+                       "actual":  "3.6%",
                        "forecast":  "3.6%",
                        "previous":  "1.6%",
-                       "type":  "preview"
+                       "type":  "review"
                    },
                    {
                        "id":  "546764",
@@ -242,11 +242,11 @@
                        "currency":  "KRW",
                        "importance":  1,
                        "indicator":  "GDP (QoQ)",
-                       "period":  "Q2",
-                       "actual":  "",
+                       "period":  "Q1",
+                       "actual":  "1.7%",
                        "forecast":  "1.7%",
                        "previous":  "-0.2%",
-                       "type":  "preview"
+                       "type":  "review"
                    },
                    {
                        "id":  "549795",
@@ -258,10 +258,10 @@
                        "importance":  1,
                        "indicator":  "M3 Money Supply",
                        "period":  "May",
-                       "actual":  "",
+                       "actual":  "2,328.6B",
                        "forecast":  "",
-                       "previous":  "2,282.6B",
-                       "type":  "preview"
+                       "previous":  "2,305.0B",
+                       "type":  "review"
                    },
                    {
                        "id":  "551008",
@@ -273,10 +273,10 @@
                        "importance":  1,
                        "indicator":  "M2 Money Stock",
                        "period":  "YoY",
-                       "actual":  "",
+                       "actual":  "2.5%",
                        "forecast":  "2.4%",
                        "previous":  "2.3%",
-                       "type":  "preview"
+                       "type":  "review"
                    },
                    {
                        "id":  "551009",
