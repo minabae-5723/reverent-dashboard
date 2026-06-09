@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-06-09T00:02:02Z",
-    "updatedKr":  "2026-06-09 09:02:02",
+    "updated":  "2026-06-09T23:55:31Z",
+    "updatedKr":  "2026-06-10 08:55:31",
     "countries":  [
                       "5",
                       "35",
@@ -245,7 +245,7 @@
                        "period":  "Q1",
                        "actual":  "1.7%",
                        "forecast":  "1.7%",
-                       "previous":  "-0.2%",
+                       "previous":  "-0.1%",
                        "type":  "review"
                    },
                    {
@@ -288,10 +288,10 @@
                        "importance":  1,
                        "indicator":  "Machine Tool Orders",
                        "period":  "YoY",
-                       "actual":  "",
+                       "actual":  "37.4%",
                        "forecast":  "",
                        "previous":  "45.1%",
-                       "type":  "preview"
+                       "type":  "review"
                    },
                    {
                        "id":  "549857",
@@ -303,10 +303,10 @@
                        "importance":  1,
                        "indicator":  "NFIB Small Business Optimism",
                        "period":  "May",
-                       "actual":  "",
+                       "actual":  "95.3",
                        "forecast":  "96.0",
                        "previous":  "95.9",
-                       "type":  "preview"
+                       "type":  "review"
                    },
                    {
                        "id":  "550770",
@@ -318,10 +318,10 @@
                        "importance":  2,
                        "indicator":  "ADP Employment Change Weekly",
                        "period":  "",
-                       "actual":  "",
+                       "actual":  "29.00K",
                        "forecast":  "",
                        "previous":  "35.75K",
-                       "type":  "preview"
+                       "type":  "review"
                    },
                    {
                        "id":  "549869",
@@ -333,10 +333,10 @@
                        "importance":  2,
                        "indicator":  "Trade Balance",
                        "period":  "Apr",
-                       "actual":  "",
-                       "forecast":  "-55.20B",
-                       "previous":  "-60.30B",
-                       "type":  "preview"
+                       "actual":  "-55.90B",
+                       "forecast":  "-56.20B",
+                       "previous":  "-56.60B",
+                       "type":  "review"
                    },
                    {
                        "id":  "550772",
@@ -348,10 +348,10 @@
                        "importance":  2,
                        "indicator":  "Imports",
                        "period":  "Apr",
-                       "actual":  "",
+                       "actual":  "383.00B",
                        "forecast":  "",
                        "previous":  "381.20B",
-                       "type":  "preview"
+                       "type":  "review"
                    },
                    {
                        "id":  "550771",
@@ -363,10 +363,10 @@
                        "importance":  2,
                        "indicator":  "Exports",
                        "period":  "Apr",
-                       "actual":  "",
+                       "actual":  "327.10B",
                        "forecast":  "",
                        "previous":  "320.90B",
-                       "type":  "preview"
+                       "type":  "review"
                    },
                    {
                        "id":  "550886",
@@ -378,10 +378,10 @@
                        "importance":  1,
                        "indicator":  "Redbook",
                        "period":  "YoY",
-                       "actual":  "",
+                       "actual":  "9.1%",
                        "forecast":  "",
                        "previous":  "9.0%",
-                       "type":  "preview"
+                       "type":  "review"
                    },
                    {
                        "id":  "549874",
@@ -393,10 +393,10 @@
                        "importance":  1,
                        "indicator":  "Wholesale Inventories (MoM)",
                        "period":  "Apr",
-                       "actual":  "",
+                       "actual":  "0.6%",
                        "forecast":  "0.5%",
-                       "previous":  "0.5%",
-                       "type":  "preview"
+                       "previous":  "1.3%",
+                       "type":  "review"
                    },
                    {
                        "id":  "549873",
@@ -408,10 +408,10 @@
                        "importance":  1,
                        "indicator":  "Wholesale Trade Sales (MoM)",
                        "period":  "Apr",
-                       "actual":  "",
+                       "actual":  "2.0%",
                        "forecast":  "",
-                       "previous":  "2.8%",
-                       "type":  "preview"
+                       "previous":  "3.0%",
+                       "type":  "review"
                    },
                    {
                        "id":  "549872",
@@ -423,10 +423,10 @@
                        "importance":  3,
                        "indicator":  "Existing Home Sales",
                        "period":  "May",
-                       "actual":  "",
-                       "forecast":  "4.08M",
-                       "previous":  "4.02M",
-                       "type":  "preview"
+                       "actual":  "4.17M",
+                       "forecast":  "4.07M",
+                       "previous":  "4.04M",
+                       "type":  "review"
                    },
                    {
                        "id":  "549875",
@@ -438,10 +438,10 @@
                        "importance":  2,
                        "indicator":  "Existing Home Sales (MoM)",
                        "period":  "May",
-                       "actual":  "",
+                       "actual":  "3.2%",
                        "forecast":  "",
-                       "previous":  "0.2%",
-                       "type":  "preview"
+                       "previous":  "0.7%",
+                       "type":  "review"
                    },
                    {
                        "id":  "545084",
@@ -453,10 +453,70 @@
                        "importance":  2,
                        "indicator":  "Atlanta Fed GDPNow",
                        "period":  "Q2",
-                       "actual":  "",
+                       "actual":  "3.3%",
                        "forecast":  "3.0%",
                        "previous":  "3.0%",
-                       "type":  "preview"
+                       "type":  "review"
+                   },
+                   {
+                       "id":  "550773",
+                       "datetime":  "2026/06/10 02:00:00",
+                       "date":  "6/10",
+                       "time":  "02:00",
+                       "flagKey":  "United_States",
+                       "currency":  "USD",
+                       "importance":  2,
+                       "indicator":  "3-Year Note Auction",
+                       "period":  "",
+                       "actual":  "4.192%",
+                       "forecast":  "",
+                       "previous":  "3.965%",
+                       "type":  "review"
+                   },
+                   {
+                       "id":  "550864",
+                       "datetime":  "2026/06/10 05:30:00",
+                       "date":  "6/10",
+                       "time":  "05:30",
+                       "flagKey":  "United_States",
+                       "currency":  "USD",
+                       "importance":  2,
+                       "indicator":  "API Weekly Crude Oil Stock",
+                       "period":  "",
+                       "actual":  "-9.119M",
+                       "forecast":  "-3.400M",
+                       "previous":  "-6.750M",
+                       "type":  "review"
+                   },
+                   {
+                       "id":  "549878",
+                       "datetime":  "2026/06/10 08:50:00",
+                       "date":  "6/10",
+                       "time":  "08:50",
+                       "flagKey":  "Japan",
+                       "currency":  "JPY",
+                       "importance":  1,
+                       "indicator":  "PPI (MoM)",
+                       "period":  "May",
+                       "actual":  "0.9%",
+                       "forecast":  "0.5%",
+                       "previous":  "2.8%",
+                       "type":  "review"
+                   },
+                   {
+                       "id":  "549879",
+                       "datetime":  "2026/06/10 08:50:00",
+                       "date":  "6/10",
+                       "time":  "08:50",
+                       "flagKey":  "Japan",
+                       "currency":  "JPY",
+                       "importance":  1,
+                       "indicator":  "PPI (YoY)",
+                       "period":  "May",
+                       "actual":  "6.3%",
+                       "forecast":  "5.6%",
+                       "previous":  "5.3%",
+                       "type":  "review"
                    },
                    {
                        "id":  "550934",
@@ -471,66 +531,6 @@
                        "actual":  "",
                        "forecast":  "",
                        "previous":  "",
-                       "type":  "preview"
-                   },
-                   {
-                       "id":  "550773",
-                       "datetime":  "2026/06/10 02:00:00",
-                       "date":  "6/10",
-                       "time":  "02:00",
-                       "flagKey":  "United_States",
-                       "currency":  "USD",
-                       "importance":  2,
-                       "indicator":  "3-Year Note Auction",
-                       "period":  "",
-                       "actual":  "",
-                       "forecast":  "",
-                       "previous":  "3.965%",
-                       "type":  "preview"
-                   },
-                   {
-                       "id":  "550864",
-                       "datetime":  "2026/06/10 05:30:00",
-                       "date":  "6/10",
-                       "time":  "05:30",
-                       "flagKey":  "United_States",
-                       "currency":  "USD",
-                       "importance":  2,
-                       "indicator":  "API Weekly Crude Oil Stock",
-                       "period":  "",
-                       "actual":  "",
-                       "forecast":  "",
-                       "previous":  "-6.750M",
-                       "type":  "preview"
-                   },
-                   {
-                       "id":  "549878",
-                       "datetime":  "2026/06/10 08:50:00",
-                       "date":  "6/10",
-                       "time":  "08:50",
-                       "flagKey":  "Japan",
-                       "currency":  "JPY",
-                       "importance":  1,
-                       "indicator":  "PPI (MoM)",
-                       "period":  "May",
-                       "actual":  "",
-                       "forecast":  "0.5%",
-                       "previous":  "2.3%",
-                       "type":  "preview"
-                   },
-                   {
-                       "id":  "549879",
-                       "datetime":  "2026/06/10 08:50:00",
-                       "date":  "6/10",
-                       "time":  "08:50",
-                       "flagKey":  "Japan",
-                       "currency":  "JPY",
-                       "importance":  1,
-                       "indicator":  "PPI (YoY)",
-                       "period":  "May",
-                       "actual":  "",
-                       "forecast":  "5.7%",
-                       "previous":  "4.9%",
                        "type":  "preview"
                    },
                    {
@@ -739,7 +739,7 @@
                        "indicator":  "Core CPI (MoM)",
                        "period":  "May",
                        "actual":  "",
-                       "forecast":  "0.5%",
+                       "forecast":  "0.3%",
                        "previous":  "0.4%",
                        "type":  "preview"
                    },
@@ -754,7 +754,7 @@
                        "indicator":  "CPI (MoM)",
                        "period":  "May",
                        "actual":  "",
-                       "forecast":  "0.3%",
+                       "forecast":  "0.5%",
                        "previous":  "0.6%",
                        "type":  "preview"
                    },
@@ -874,7 +874,7 @@
                        "indicator":  "Crude Oil Inventories",
                        "period":  "",
                        "actual":  "",
-                       "forecast":  "",
+                       "forecast":  "-5.100M",
                        "previous":  "-7.974M",
                        "type":  "preview"
                    },
@@ -979,7 +979,7 @@
                        "indicator":  "Federal Budget Balance",
                        "period":  "May",
                        "actual":  "",
-                       "forecast":  "",
+                       "forecast":  "-280.9B",
                        "previous":  "215.0B",
                        "type":  "preview"
                    },
@@ -1039,7 +1039,7 @@
                        "indicator":  "BSI Large Manufacturing Conditions",
                        "period":  "Q2",
                        "actual":  "",
-                       "forecast":  "",
+                       "forecast":  "4.2",
                        "previous":  "3.8",
                        "type":  "preview"
                    },
