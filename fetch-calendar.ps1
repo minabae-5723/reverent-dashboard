@@ -248,7 +248,9 @@ do {
                     ($_.indicator -match '(?i)^Cleveland CPI') -or
                     ($_.indicator -match '(?i)Speaks$') -or
                     ($_.indicator -match '(?i)Press Conference') -or
-                    ($_.indicator -match '(?i)^ECB (Monetary Policy Statement|Marginal Lending|Economic Bulletin)')
+                    ($_.indicator -match '(?i)^ECB (Monetary Policy Statement|Marginal Lending|Economic Bulletin)') -or
+                    (($_.indicator -match '(?i)CPI') -and ($_.flagKey -eq 'Europe')) -or
+                    ($_.indicator -match '(?i)^FOMC (Economic Projections|Statement)$')
                 )
             })
             # Pin tier-1 indicators (always included if present):
@@ -262,7 +264,8 @@ do {
                 ($_.indicator -match '(?i)^(Core\s+)?PCE.*Price.*Index.*\(YoY\)$') -or
                 ($_.indicator -match '(?i)^(Core\s+)?CPI \(YoY\)$') -or
                 (($_.indicator -match '(?i)^(Core\s+)?PPI \(YoY\)$') -and ($_.flagKey -eq 'United_States')) -or
-                (($_.indicator -match '(?i)^ECB Interest Rate Decision$') -and ($_.flagKey -eq 'Europe'))
+                (($_.indicator -match '(?i)^ECB Interest Rate Decision$') -and ($_.flagKey -eq 'Europe')) -or
+                (($_.indicator -match '(?i)^Fed Interest Rate Decision$') -and ($_.flagKey -eq 'United_States'))
             })
             # If more than $maxN pinned, keep top by importance DESC then datetime ASC
             if ($pinned.Count -gt $maxN) {
@@ -284,6 +287,27 @@ do {
         }
         $thisTop5 = & $pickTop5 $weekData.events
         $nextTop5 = & $pickTop5 $nextData.events
+
+        # Fed Interest Rate Decision: investing.com reports the target-range upper bound
+        # (e.g. 3.75%); display the full 25bp band as "3.50%~3.75%". Auto-derived from the
+        # reported value (lower = upper - 0.25), so it stays correct when the Fed moves.
+        $applyFedRange = {
+            param($evs)
+            foreach ($e in $evs) {
+                if ($e.indicator -match '(?i)^Fed Interest Rate Decision$') {
+                    foreach ($fld in 'forecast','previous','actual') {
+                        $v = "$($e.$fld)"
+                        if ($v -match '^\s*([0-9]+(?:\.[0-9]+)?)\s*%\s*$') {
+                            $hi = [double]$Matches[1]
+                            $lo = $hi - 0.25
+                            $e.$fld = ('{0:0.00}%~{1:0.00}%' -f $lo, $hi)
+                        }
+                    }
+                }
+            }
+        }
+        & $applyFedRange $thisTop5
+        & $applyFedRange $nextTop5
 
         $frozen = [ordered]@{
             updated      = (Get-Date).ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ")
