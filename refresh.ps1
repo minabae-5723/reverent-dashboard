@@ -680,11 +680,12 @@ do {
     $output = [ordered]@{
         updated   = $start.ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ")
         updatedKr = $start.ToString('yyyy-MM-dd HH:mm:ss')
-        # Index: Friday-frozen to the global anchor Friday (same as sector/fx/
-        # commodity). Guarantees KR + US + CN all report the same Friday close,
-        # regardless of when the snapshot runs. Holds last Friday Mon-Fri, then
-        # advances Saturday 07:00 KST once the new US Friday close is in.
-        index     = @(Fetch-Group $INSTRUMENTS.index -FreezeFriday $true)
+        # Index: per-exchange DAILY latest close (NOT Friday-frozen). KOSPI/KOSDAQ
+        # show the latest Korean close (advances at Korean 15:30 KST close), US
+        # indices show the latest US close, Shanghai its own — each on its own
+        # exchange clock. (User rule: "index는 각 거래소 종가 기준 매일 갱신".
+        # Rate/FX/CDS/sector/commodity stay Friday-frozen; index does not.)
+        index     = @(Fetch-Group $INSTRUMENTS.index -FreezeFriday $false)
         rate      = $rateOrdered
         commodity = @(_FetchCommodities)
         fx        = $fxRows
