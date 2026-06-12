@@ -1,6 +1,6 @@
 {
-    "capturedAt":  "2026-06-12 16:54:45",
-    "capturedDow":  "Friday",
+    "capturedAt":  "2026-06-13 07:00:41",
+    "capturedDow":  "Saturday",
     "rate":  [
                  {
                      "key":  "KR3Y",
@@ -9,7 +9,7 @@
                      "mom":  15,
                      "ytd":  91,
                      "type":  "bp",
-                     "asOf":  "2026-06-12T06:30:16.116Z",
+                     "asOf":  "2026-06-12T08:42:03.455Z",
                      "ok":  true,
                      "source":  "investing"
                  },
@@ -20,7 +20,7 @@
                      "mom":  15,
                      "ytd":  84,
                      "type":  "bp",
-                     "asOf":  "2026-06-12T06:29:59.565Z",
+                     "asOf":  "2026-06-12T08:42:08.54Z",
                      "ok":  true,
                      "source":  "investing"
                  },
@@ -37,35 +37,35 @@
                  },
                  {
                      "key":  "US2Y",
-                     "current":  4.07,
-                     "wow":  -9,
-                     "mom":  7,
-                     "ytd":  60,
+                     "current":  4.087,
+                     "wow":  -7,
+                     "mom":  9,
+                     "ytd":  61,
                      "type":  "bp",
-                     "asOf":  "2026-06-12T07:50:01.701Z",
+                     "asOf":  "2026-06-12T20:50:00.9Z",
                      "ok":  true,
                      "source":  "investing"
                  },
                  {
                      "key":  "US10Y",
                      "symbol":  "^TNX",
-                     "current":  4.463,
-                     "wow":  -1,
-                     "mom":  0,
-                     "ytd":  28,
+                     "current":  4.487,
+                     "wow":  -5,
+                     "mom":  1,
+                     "ytd":  30,
                      "type":  "bp",
-                     "asOf":  "2026-06-12T03:59:55",
+                     "asOf":  "2026-06-13T03:59:54",
                      "ok":  true
                  },
                  {
                      "key":  "US30Y",
                      "symbol":  "^TYX",
-                     "current":  4.951,
-                     "wow":  -3,
-                     "mom":  -8,
-                     "ytd":  9,
+                     "current":  4.975,
+                     "wow":  -2,
+                     "mom":  -7,
+                     "ytd":  11,
                      "type":  "bp",
-                     "asOf":  "2026-06-12T03:59:55",
+                     "asOf":  "2026-06-13T03:59:54",
                      "ok":  true
                  }
              ],
@@ -83,12 +83,12 @@
                 },
                 {
                     "key":  "CDS_CN",
-                    "current":  40.6,
-                    "wow":  0,
-                    "mom":  -1.3,
-                    "ytd":  -3.2,
+                    "current":  40.3,
+                    "wow":  -0.5,
+                    "mom":  -1,
+                    "ytd":  -3.4,
                     "type":  "bp_abs",
-                    "asOf":  "2026-06-11T09:33:12.334Z",
+                    "asOf":  "2026-06-12T09:33:13.641Z",
                     "ok":  true,
                     "source":  "investing"
                 }

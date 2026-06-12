@@ -1,34 +1,34 @@
 {
-    "updated":  "2026-06-12T16:53:56+09:00",
+    "updated":  "2026-06-13T07:01:44+09:00",
     "source":  "finance.naver.com exchangeDailyQuote (Seoul 留ㅻℓ湲곗???",
     "fx":  {
                "USDKRW":  {
-                              "current":  1523.4,
-                              "wow":  -2.31,
-                              "mom":  1.7,
-                              "ytd":  5.3,
+                              "current":  1519,
+                              "wow":  -2.6,
+                              "mom":  1.4,
+                              "ytd":  5,
                               "asOf":  "2026-06-12",
                               "prevDate":  "2026-06-05"
                           },
                "USDJPY":  {
-                              "current":  160.36,
-                              "wow":  0.07,
-                              "mom":  0.99,
-                              "ytd":  2.34,
+                              "current":  160.235,
+                              "wow":  -0.01,
+                              "mom":  0.9,
+                              "ytd":  2.26,
                               "asOf":  "2026-06-12"
                           },
                "USDCNY":  {
-                              "current":  6.7644,
-                              "wow":  -0.39,
-                              "mom":  -0.74,
+                              "current":  6.7634,
+                              "wow":  -0.41,
+                              "mom":  -0.76,
                               "ytd":  -3.22,
                               "asOf":  "2026-06-12"
                           },
                "USDEUR":  {
-                              "current":  0.8652,
-                              "wow":  -0.37,
-                              "mom":  0.56,
-                              "ytd":  1.39,
+                              "current":  0.8645,
+                              "wow":  -0.46,
+                              "mom":  0.48,
+                              "ytd":  1.31,
                               "asOf":  "2026-06-12"
                           }
            }
