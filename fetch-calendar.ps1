@@ -14,9 +14,10 @@ $WeekFile     = Join-Path $PSScriptRoot 'calendar-week.json'
 $NextWeekFile = Join-Path $PSScriptRoot 'calendar-next-week.json'
 $FrozenFile   = Join-Path $PSScriptRoot 'market-update-frozen.json'
 
-# Investing.com country IDs to fetch (US, Japan, South Korea)
-# Verified against investing.com page source: {id:5=US, id:35=Japan, id:11=South Korea}
-$COUNTRY_IDS = @('5','35','11')
+# Investing.com country IDs to fetch (US, Japan, South Korea, Eurozone)
+# Verified against investing.com page source: {id:5=US, id:35=Japan, id:11=South Korea, id:72=Eurozone}
+# Eurozone(72) 추가: ECB 기준금리 결정 등 유럽 매크로를 캘린더·Macro Economy에 포함 (flagKey="Europe")
+$COUNTRY_IDS = @('5','35','11','72')
 
 function Get-InvestingCalendar {
     param([string]$Tab = 'today', [string]$DateFrom = '', [string]$DateTo = '')
@@ -231,37 +232,43 @@ do {
         try { $weekData = Get-Content $WeekFile     -Raw -Encoding UTF8 | ConvertFrom-Json } catch {}
         try { $nextData = Get-Content $NextWeekFile -Raw -Encoding UTF8 | ConvertFrom-Json } catch {}
 
-        # Pick up to 5 by importance, but force-include tier-1 indicators
-        # (Nonfarm Payrolls, PCE YoY pair) when present. MoM PCE variants
-        # and lower-importance ones are filtered out.
+        # Pick up to 7 by importance, but force-include tier-1 indicators
+        # (Nonfarm Payrolls, PCE YoY pair, ECB rate decision) when present.
+        # MoM/sub-index variants and ECB speaker/press-conf noise are filtered out.
+        $maxN = 7
         $pickTop5 = {
             param($events)
             if (-not $events) { return @() }
-            # Drop MoM/sub-index variants so CPI/PPI/PCE show only as YoY headlines.
+            # Drop MoM/sub-index variants (CPI/PPI/PCE show only YoY) + ECB 발언/회견/성명 noise.
             $filtered = @($events | Where-Object {
                 -not (
                     ($_.indicator -match '(?i)PCE.*\(MoM\)') -or
                     ($_.indicator -match '(?i)^(Core\s+)?CPI \(MoM\)$') -or
                     ($_.indicator -match '(?i)^CPI[,]?\s*(n\.s\.a|s\.a|Index)') -or
-                    ($_.indicator -match '(?i)^Cleveland CPI')
+                    ($_.indicator -match '(?i)^Cleveland CPI') -or
+                    ($_.indicator -match '(?i)Speaks$') -or
+                    ($_.indicator -match '(?i)Press Conference') -or
+                    ($_.indicator -match '(?i)^ECB (Monetary Policy Statement|Marginal Lending|Economic Bulletin)')
                 )
             })
             # Pin tier-1 indicators (always included if present):
             #   - Nonfarm Payrolls
             #   - Core / Headline PCE YoY
             #   - Headline CPI (YoY) + Core CPI (YoY)
-            #   - Headline PPI (YoY) — US only (Japan PPI separate, lower importance)
+            #   - Headline PPI (YoY) + Core PPI (YoY) — US only
+            #   - ECB Interest Rate Decision / Deposit Facility Rate (Eurozone, flagKey=Europe)
             $pinned = @($filtered | Where-Object {
                 ($_.indicator -match '(?i)^Nonfarm Payrolls$') -or
                 ($_.indicator -match '(?i)^(Core\s+)?PCE.*Price.*Index.*\(YoY\)$') -or
                 ($_.indicator -match '(?i)^(Core\s+)?CPI \(YoY\)$') -or
-                (($_.indicator -match '(?i)^PPI \(YoY\)$') -and ($_.flagKey -eq 'United_States'))
+                (($_.indicator -match '(?i)^(Core\s+)?PPI \(YoY\)$') -and ($_.flagKey -eq 'United_States')) -or
+                (($_.indicator -match '(?i)^ECB Interest Rate Decision$') -and ($_.flagKey -eq 'Europe'))
             })
-            # If more than 5 pinned, keep top 5 by importance DESC then datetime ASC
-            if ($pinned.Count -gt 5) {
+            # If more than $maxN pinned, keep top by importance DESC then datetime ASC
+            if ($pinned.Count -gt $maxN) {
                 $pinned = @($pinned |
                     Sort-Object @{Expression={ [int]$_.importance }; Descending=$true}, @{Expression='datetime'; Descending=$false} |
-                    Select-Object -First 5)
+                    Select-Object -First $maxN)
             }
             $pinnedIds = @{}
             foreach ($p in $pinned) { $pinnedIds[$p.id] = $true }
@@ -269,7 +276,7 @@ do {
             $remaining = @($filtered |
                 Where-Object { ($_.importance -as [int]) -ge 2 -and -not $pinnedIds.ContainsKey($_.id) } |
                 Sort-Object @{Expression={ [int]$_.importance }; Descending=$true}, @{Expression='datetime'; Descending=$false})
-            $needed = 5 - $pinned.Count
+            $needed = $maxN - $pinned.Count
             if ($needed -lt 0) { $needed = 0 }
             $picked = @($pinned) + @($remaining | Select-Object -First $needed)
             # Final sort: by datetime ascending for chronological display

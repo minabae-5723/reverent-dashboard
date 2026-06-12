@@ -32,6 +32,7 @@ const FLAG_EMOJI = {
   Japan: '🇯🇵',
   China: '🇨🇳',
   Euro_Zone: '🇪🇺',
+  Europe: '🇪🇺',
   United_Kingdom: '🇬🇧',
   Germany: '🇩🇪',
   Australia: '🇦🇺',
@@ -47,6 +48,7 @@ const COUNTRY_KR = {
   China: '중국',
   Japan: '일본',
   Euro_Zone: '유로존',
+  Europe: '유로존',
   United_Kingdom: '영국',
   Germany: '독일',
   Australia: '호주',
@@ -80,6 +82,9 @@ const INDICATOR_KR = {
   'GDP (YoY)': 'GDP (YoY)',
   'Existing Home Sales': '기존주택매매',
   'Existing Home Sales (MoM)': '기존주택매매 (MoM)',
+  'ECB Interest Rate Decision': 'ECB 기준금리 결정',
+  'Deposit Facility Rate': 'ECB 예금금리',
+  'ECB Marginal Lending Facility': 'ECB 한계대출금리',
 };
 
 // English key → Korean display label
