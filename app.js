@@ -2334,8 +2334,8 @@ window.computeValuation = function (cardId) {
   const evEbitda = (ev !== null && ebitda && ebitda !== 0) ? ev / ebitda : null;
   const evSales  = (ev !== null && revenue && revenue !== 0) ? ev / revenue : null;
   const per      = (equity !== null && netIncome && netIncome !== 0) ? equity / netIncome : null;
-  // PBR = EV ÷ 순자산(자본총계). EV = equity(Deal Value/stake) + net debt.
-  const pbr      = (ev !== null && bookEquity && bookEquity !== 0) ? ev / bookEquity : null;
+  // PBR = Equity Value ÷ 순자산(자본총계). 표준 P/B (= 시총/순자산).
+  const pbr      = (equity !== null && bookEquity && bookEquity !== 0) ? equity / bookEquity : null;
   const premium  = (equity !== null && mktCap && mktCap !== 0) ? (equity / mktCap - 1) * 100 : null;
 
   setOut('IBD',        fmtVal(ibd));
