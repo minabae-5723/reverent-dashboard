@@ -1869,6 +1869,8 @@ const VAL_PNL_FIELDS = [
 const VAL_DEBT_FIELDS = [
   { key: '단기차입금' },
   { key: '유동성장기차입금' },
+  { key: '유동성장기부채' },
+  { key: '사채' },
   { key: '유동리스부채' },
   { key: '장기차입금' },
   { key: '리스부채' },
@@ -2297,7 +2299,9 @@ window.computeValuation = function (cardId) {
     ? ebitdaRaw
     : (opIncome !== null && da !== null ? opIncome + da : null);
 
-  const debt = ['단기차입금', '유동성장기차입금', '유동리스부채', '장기차입금', '리스부채']
+  // 이자부부채 전부 합산. 유동/비유동 구분이 아니라 이자부 여부 기준.
+  // '유동성장기부채'(=차입금+사채 유동성대체 합산표시)·'사채'(비유동)도 포함.
+  const debt = ['단기차입금', '유동성장기차입금', '유동성장기부채', '사채', '유동리스부채', '장기차입금', '리스부채']
     .map(read).filter(v => v !== null);
   const ibd = debt.length ? debt.reduce((a, b) => a + b, 0) : null;
 
@@ -2313,9 +2317,11 @@ window.computeValuation = function (cardId) {
   const stake     = read('% Stake');
   const mktCap    = read('시가총액');
 
-  // Equity Value:
-  //   1순위: Deal Value / Stake (control 거래 implied)
-  //   2순위: 시가총액 (소수지분·listed 케이스 fallback)
+  // Deal Value(거래 규모) = Equity Value 기준.
+  //   Equity Value = Deal Value / Stake (지분율로 100% equity 환산)
+  //   EV = Equity + Net Debt
+  //   2순위(딜밸류 없음): 시가총액 = equity (소수지분·listed fallback)
+  //   PBR = Equity ÷ 순자산(자본총계).
   const equity = (dealValue !== null && stake !== null && stake > 0)
     ? dealValue / (stake / 100)
     : (mktCap !== null ? mktCap : null);
@@ -2328,7 +2334,8 @@ window.computeValuation = function (cardId) {
   const evEbitda = (ev !== null && ebitda && ebitda !== 0) ? ev / ebitda : null;
   const evSales  = (ev !== null && revenue && revenue !== 0) ? ev / revenue : null;
   const per      = (equity !== null && netIncome && netIncome !== 0) ? equity / netIncome : null;
-  const pbr      = (equity !== null && bookEquity && bookEquity !== 0) ? equity / bookEquity : null;
+  // PBR = EV ÷ 순자산(자본총계). EV = equity(Deal Value/stake) + net debt.
+  const pbr      = (ev !== null && bookEquity && bookEquity !== 0) ? ev / bookEquity : null;
   const premium  = (equity !== null && mktCap && mktCap !== 0) ? (equity / mktCap - 1) * 100 : null;
 
   setOut('IBD',        fmtVal(ibd));
