@@ -170,6 +170,32 @@ if ([string]::IsNullOrWhiteSpace($gitStatus)) {
     Write-Host "  Staged:" -ForegroundColor DarkGray
     git status --short | ForEach-Object { Write-Host "    $_" -ForegroundColor DarkGray }
 
+    # 4.5. GUARD: never commit unresolved git conflict markers.
+    #      A stash-pop conflict left <<<<<<< / >>>>>>> markers in
+    #      deals/2026-06-12.md and `git add -A` swept them into a deploy
+    #      commit that reached the live site (2026-06-13). Scan staged text
+    #      files and abort BEFORE committing if markers are present. Only the
+    #      start/end markers are checked (======= alone would false-positive
+    #      on markdown setext headings).
+    $textExt = '\.(md|js|html|css|json|ps1|txt)$'
+    $stagedFiles = @(git diff --cached --name-only --diff-filter=ACM 2>$null | Where-Object { $_ -match $textExt })
+    $conflicted = @()
+    foreach ($rel in $stagedFiles) {
+        $blob = git show ":$rel" 2>$null
+        if ($LASTEXITCODE -ne 0) { continue }
+        if ($blob | Where-Object { $_ -match '^(<<<<<<<|>>>>>>>)' }) {
+            $conflicted += $rel
+        }
+    }
+    if ($conflicted.Count -gt 0) {
+        Write-Host ""
+        Write-Host "  !! ABORT: unresolved conflict markers in staged file(s):" -ForegroundColor Red
+        $conflicted | ForEach-Object { Write-Host "       $_" -ForegroundColor Red }
+        Write-Host "  Remove the <<<<<<< / ======= / >>>>>>> markers, then re-run deploy." -ForegroundColor Red
+        git reset -q 2>&1 | Out-Null
+        exit 1
+    }
+
     $timestamp = (Get-Date).ToString('yyyy-MM-dd HH:mm')
     git commit -m "Deploy snapshot $timestamp" 2>&1 | Tee-Object -Variable commitOut | Out-Null
     Write-Host "  Commit: $($commitOut | Select-Object -Last 1)" -ForegroundColor DarkGray
