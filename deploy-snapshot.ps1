@@ -25,13 +25,17 @@ Write-Host ""
 # Each gets an `index.json` regenerated from its .md file basenames.
 $INDEXED_FOLDERS = @('news', 'market', 'deals')
 
-# 0. Sync from origin/main first so other-PC commits don't conflict on push
+# 0. Sync from origin/main first so other-PC commits don't conflict on push.
+#    Was --ff-only (silently skipped on any divergence, then the final push
+#    was rejected and this PC's data never reached origin/Cloudflare). Now a
+#    real rebase that self-aborts instead of leaving the repo half-merged.
 Write-Host "[0/5] Sync from origin/main..." -ForegroundColor Yellow
-$pullOut = & git -C $root pull --ff-only 2>&1
+$pullOut = & git -C $root pull --rebase --autostash origin main 2>&1
 if ($LASTEXITCODE -eq 0) {
     Write-Host "  $pullOut" -ForegroundColor DarkGray
 } else {
-    Write-Host "  git pull skipped (uncommitted / non-ff): $pullOut" -ForegroundColor Yellow
+    & git -C $root rebase --abort 2>&1 | Out-Null
+    Write-Host "  initial pull conflicted -- aborted, reconciled at push: $pullOut" -ForegroundColor Yellow
 }
 
 # Helper: run a fetch script only if present (AV may quarantine scripts on
@@ -196,13 +200,29 @@ if ([string]::IsNullOrWhiteSpace($gitStatus)) {
         exit 1
     }
 
-    $timestamp = (Get-Date).ToString('yyyy-MM-dd HH:mm')
+    $timestamp = '{0:yyyy-MM-dd HH:mm}' -f (Get-Date)
     git commit -m "Deploy snapshot $timestamp" 2>&1 | Tee-Object -Variable commitOut | Out-Null
     Write-Host "  Commit: $($commitOut | Select-Object -Last 1)" -ForegroundColor DarkGray
 
-    Write-Host "  Pushing to origin/main..." -ForegroundColor DarkGray
-    git push 2>&1 | Tee-Object -Variable pushOut | Out-Null
-    $pushOut | ForEach-Object { Write-Host "    $_" -ForegroundColor Green }
+    # Robust publish: reconcile with origin (our fresh snapshot wins file
+    # conflicts via --strategy-option=theirs) then push, retrying so a
+    # concurrent push from the other PC can't strand this deploy locally.
+    # (Was a single `git push`, silently rejected on divergence.)
+    Write-Host "  Publishing to origin/main..." -ForegroundColor DarkGray
+    $published = $false
+    for ($attempt = 1; $attempt -le 3 -and -not $published; $attempt++) {
+        & git -C $root pull --rebase --autostash --strategy-option=theirs origin main 2>&1 | Out-Null
+        if ($LASTEXITCODE -ne 0) { & git -C $root rebase --abort 2>&1 | Out-Null }
+        & git -C $root push origin main 2>&1 | Out-Null
+        if ($LASTEXITCODE -eq 0) { $published = $true; break }
+        Write-Host ("    push attempt $attempt rejected, retrying...") -ForegroundColor Yellow
+        Start-Sleep -Seconds 3
+    }
+    if ($published) {
+        Write-Host "    pushed -> Cloudflare auto-deploys in ~1-2 min" -ForegroundColor Green
+    } else {
+        Write-Host "    PUSH FAILED after 3 attempts -- run .\sync-repo.ps1 then retry" -ForegroundColor Red
+    }
 }
 
 Write-Host ""

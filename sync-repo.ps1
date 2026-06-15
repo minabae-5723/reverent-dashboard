@@ -1,62 +1,83 @@
 # =============================================================
-#  Bi-directional repo sync (every 5 min via Windows scheduled task)
+#  Bi-directional repo sync  (Windows task: ReverentDashboard-RepoSync)
 #
-#  PURPOSE
-#  Keep the dashboard repo in sync across multiple PCs so that code OR
-#  data edits on PC-A reach PC-B within ~5 minutes (and vice versa).
+#  Keeps the dashboard repo in sync across the two work PCs via
+#  origin/main. Hardened 2026-06-15 after cross-PC changes stopped
+#  propagating:
+#    * old version exit-1'd in the middle of a failed rebase and then
+#      stayed stuck forever (every later run hit "rebase in progress").
+#    * old version only PUSHED user-state.json, so any other committed
+#      work waited for a manual push that often never happened.
 #
-#  INBOUND (pull from origin):
-#    - Always fetch + fast-forward / rebase any commits from other PCs
-#    - Picks up: code changes (app.js, .ps1), data refreshes from
-#      daily-deploy on the OTHER PC, news/market .md files, etc.
-#
-#  OUTBOUND (push to origin):
-#    - Auto-commit + push user-state.json if modified (user comments /
-#      valuations / FIX clicks). Other data files (data.json etc.) are
-#      handled by deploy-snapshot.ps1; code changes stay manual.
-#
-#  Replaces the earlier sync-user-state.ps1.
+#  Now:
+#    0. self-heal — abort any half-finished rebase/merge from a crash
+#    1. fetch
+#    2. INBOUND  — replay onto origin; on file conflict keep origin's
+#                  copy of generated snapshots (local re-deploys anyway)
+#    3. user-state.json — auto-commit live dashboard edits
+#    4. OUTBOUND — push ALL committed local work origin lacks (not just
+#                  user-state). Real code edits still need a manual
+#                  `git commit`, but once committed they now ship here.
 # =============================================================
 $ErrorActionPreference = 'Continue'
 $root = $PSScriptRoot
 Set-Location $root
 
+# ── 0. Self-heal: clear a half-finished rebase/merge left by a crashed run ──
+foreach ($d in '.git\rebase-merge', '.git\rebase-apply') {
+    if (Test-Path (Join-Path $root $d)) { & git -C $root rebase --abort 2>&1 | Out-Null }
+}
+if (Test-Path (Join-Path $root '.git\MERGE_HEAD')) { & git -C $root merge --abort 2>&1 | Out-Null }
+
 # ── 1. Fetch latest from origin/main ──
 & git -C $root fetch origin main 2>&1 | Out-Null
-if ($LASTEXITCODE -ne 0) {
-    Write-Host "fetch failed" -ForegroundColor Yellow
-    exit 1
-}
+if ($LASTEXITCODE -ne 0) { Write-Host "fetch failed" -ForegroundColor Yellow; exit 1 }
 
-# ── 2. INBOUND: pull if origin has new commits ──
-$ahead = & git -C $root rev-list --count HEAD..origin/main 2>&1
-$aheadInt = 0
-if ($ahead -match '^\d+$') { $aheadInt = [int]$ahead }
-
-if ($aheadInt -gt 0) {
-    # rebase --autostash handles uncommitted local changes gracefully
-    $pullOut = & git -C $root pull --rebase --autostash origin main 2>&1
-    if ($LASTEXITCODE -eq 0) {
-        Write-Host ("Pulled " + $aheadInt + " commit(s) from origin/main") -ForegroundColor Green
+# ── 2. INBOUND: integrate other-PC commits ──
+#     Done BEFORE the user-state commit so there's nothing local to
+#     collide. On conflict, prefer origin's copy (--strategy-option=ours
+#     during a rebase favours the upstream side) — never get stuck.
+$behind = & git -C $root rev-list --count HEAD..origin/main 2>&1
+if (($behind -match '^\d+$') -and ([int]$behind -gt 0)) {
+    & git -C $root pull --rebase --autostash origin main 2>&1 | Out-Null
+    if ($LASTEXITCODE -ne 0) {
+        & git -C $root rebase --abort 2>&1 | Out-Null
+        & git -C $root pull --rebase --autostash --strategy-option=ours origin main 2>&1 | Out-Null
+        if ($LASTEXITCODE -ne 0) {
+            & git -C $root rebase --abort 2>&1 | Out-Null
+            Write-Host "inbound conflict unresolved -- will retry next run" -ForegroundColor Yellow
+        } else {
+            Write-Host "Pulled (conflicts auto-resolved to origin)" -ForegroundColor Green
+        }
     } else {
-        Write-Host ("pull failed: " + ($pullOut -join ' ')) -ForegroundColor Red
-        exit 1
+        Write-Host ("Pulled " + $behind + " commit(s) from origin/main") -ForegroundColor Green
     }
 }
 
-# ── 3. OUTBOUND: auto-commit + push user-state.json if modified ──
-$userStateStatus = & git -C $root status --porcelain user-state.json 2>&1
-if (-not [string]::IsNullOrWhiteSpace($userStateStatus)) {
-    $ts = (Get-Date).ToString('yyyy-MM-dd HH:mm')
-    & git -C $root commit --only user-state.json -m "Auto-sync user-state $ts" 2>&1 | Out-Null
+# ── 3. Auto-commit a modified user-state.json (live comments / valuations) ──
+#     Skip if a prior stash-pop left conflict markers — never commit those.
+$us = & git -C $root status --porcelain user-state.json 2>&1
+if (-not [string]::IsNullOrWhiteSpace($us)) {
+    $hasMarkers = $false
+    if (Test-Path (Join-Path $root 'user-state.json')) {
+        $hasMarkers = [bool](Select-String -Path (Join-Path $root 'user-state.json') -Pattern '^(<<<<<<<|>>>>>>>)' -Quiet)
+    }
+    if (-not $hasMarkers) {
+        $ts = '{0:yyyy-MM-dd HH:mm}' -f (Get-Date)
+        & git -C $root add user-state.json 2>&1 | Out-Null
+        & git -C $root commit -m "Auto-sync user-state $ts" 2>&1 | Out-Null
+    } else {
+        Write-Host "user-state.json has conflict markers -- skipping commit" -ForegroundColor Yellow
+    }
+}
+
+# ── 4. OUTBOUND: push every committed local commit origin doesn't have yet ──
+$ahead = & git -C $root rev-list --count origin/main..HEAD 2>&1
+if (($ahead -match '^\d+$') -and ([int]$ahead -gt 0)) {
+    & git -C $root push origin main 2>&1 | Out-Null
     if ($LASTEXITCODE -eq 0) {
-        # pull-rebase once more in case origin moved while we were committing
-        & git -C $root pull --rebase --autostash 2>&1 | Out-Null
-        & git -C $root push 2>&1 | Out-Null
-        if ($LASTEXITCODE -eq 0) {
-            Write-Host ("Pushed user-state.json @ " + $ts) -ForegroundColor Green
-        } else {
-            Write-Host "push failed" -ForegroundColor Red
-        }
+        Write-Host ("Pushed " + $ahead + " commit(s) to origin/main") -ForegroundColor Green
+    } else {
+        Write-Host "push rejected (origin moved) -- next run rebases & retries" -ForegroundColor Yellow
     }
 }
