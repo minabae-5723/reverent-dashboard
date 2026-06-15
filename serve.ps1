@@ -142,19 +142,45 @@ Write-Host " Reverent Partners - Live Market Dashboard" -ForegroundColor Cyan
 Write-Host "==============================================" -ForegroundColor Cyan
 Write-Host ""
 
-# ── 0. Auto-sync with origin/main so other-PC commits propagate here ──
+# ── 0. Robust sync with origin/main (resilient to cross-day / cross-PC drift) ──
+#     The old `pull --ff-only` silently FAILED whenever this PC's branch had
+#     drifted (yesterday's local commit, or a stale uncommitted data.json that
+#     "would be overwritten by merge") — so launching on a different PC the
+#     next day quietly served day-old LOCAL state. Now: self-heal any stuck
+#     rebase, discard local edits to DISPOSABLE generated snapshots (they are
+#     regenerated in step 1 below, so losing them is safe and unblocks the
+#     pull), then a rebase-pull that can't get stuck. user-state.json, code,
+#     and .md content are NEVER discarded.
 Write-Host "[0/3] Sync from origin/main..." -ForegroundColor Yellow
 try {
     $gitDir = Join-Path $root '.git'
     if (Test-Path -LiteralPath $gitDir) {
-        $pullOut = & git -C $root pull --ff-only 2>&1
-        if ($LASTEXITCODE -eq 0) {
-            Write-Host "  $pullOut" -ForegroundColor DarkGray
+        foreach ($d in '.git\rebase-merge', '.git\rebase-apply') {
+            if (Test-Path (Join-Path $root $d)) { & git -C $root rebase --abort 2>&1 | Out-Null }
+        }
+        if (Test-Path (Join-Path $root '.git\MERGE_HEAD')) { & git -C $root merge --abort 2>&1 | Out-Null }
+        & git -C $root fetch origin main 2>&1 | Out-Null
+        $disposable = @('data.json','calendar.json','calendar-week.json','calendar-next-week.json',
+                        'market-update-frozen.json','trade.json','shiller.json','fedwatch.json',
+                        'fx-naver-snapshot.json','capmkt-freeze.json')
+        foreach ($f in $disposable) {
+            if (Test-Path (Join-Path $root $f)) { & git -C $root checkout -- $f 2>&1 | Out-Null }
+        }
+        & git -C $root pull --rebase --autostash origin main 2>&1 | Out-Null
+        if ($LASTEXITCODE -ne 0) {
+            & git -C $root rebase --abort 2>&1 | Out-Null
+            & git -C $root pull --rebase --autostash --strategy-option=ours origin main 2>&1 | Out-Null
+            if ($LASTEXITCODE -ne 0) {
+                & git -C $root rebase --abort 2>&1 | Out-Null
+                Write-Host "  sync conflict -- serving local; run .\sync-repo.ps1 to reconcile" -ForegroundColor Yellow
+            } else {
+                Write-Host "  synced with origin/main (conflicts auto-resolved to origin)" -ForegroundColor DarkGray
+            }
         } else {
-            Write-Host "  git pull skipped (uncommitted changes / non-ff): $pullOut" -ForegroundColor DarkGray
+            Write-Host "  synced with origin/main" -ForegroundColor DarkGray
         }
     } else {
-        Write-Host "  (not a git repo — skipping pull)" -ForegroundColor DarkGray
+        Write-Host "  (not a git repo -- skipping pull)" -ForegroundColor DarkGray
     }
 } catch {
     Write-Host "  pull error (continuing): $($_.Exception.Message)" -ForegroundColor DarkGray

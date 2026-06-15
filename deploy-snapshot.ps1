@@ -30,6 +30,15 @@ $INDEXED_FOLDERS = @('news', 'market', 'deals')
 #    was rejected and this PC's data never reached origin/Cloudflare). Now a
 #    real rebase that self-aborts instead of leaving the repo half-merged.
 Write-Host "[0/5] Sync from origin/main..." -ForegroundColor Yellow
+foreach ($d in '.git\rebase-merge', '.git\rebase-apply') {
+    if (Test-Path (Join-Path $root $d)) { & git -C $root rebase --abort 2>&1 | Out-Null }
+}
+# Discard local edits to disposable snapshots (all regenerated below) so a
+# day-old dirty data.json can't block the pull on a cross-day / cross-PC run.
+$dispose0 = @('data.json','calendar.json','calendar-week.json','calendar-next-week.json',
+              'market-update-frozen.json','trade.json','shiller.json','fedwatch.json',
+              'fx-naver-snapshot.json','capmkt-freeze.json')
+foreach ($f in $dispose0) { if (Test-Path (Join-Path $root $f)) { & git -C $root checkout -- $f 2>&1 | Out-Null } }
 $pullOut = & git -C $root pull --rebase --autostash origin main 2>&1
 if ($LASTEXITCODE -eq 0) {
     Write-Host "  $pullOut" -ForegroundColor DarkGray
