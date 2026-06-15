@@ -2478,6 +2478,107 @@ html, body {
   letter-spacing: 0.02em;
 }
 
+/* ── 요약 배너 (PDF 스타일 highlight) ── */
+.val-summary {
+  margin-bottom: 14px;
+}
+
+.val-hero-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.val-hero {
+  position: relative;
+  border-radius: 8px;
+  padding: 12px 14px;
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+  color: #fff;
+  box-shadow: 0 1px 3px rgba(15, 31, 58, 0.18);
+  overflow: hidden;
+}
+
+.val-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--gold);
+}
+
+.val-hero-label {
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.72);
+  margin-bottom: 4px;
+}
+
+.val-hero-value {
+  font-size: 26px;
+  font-weight: 800;
+  line-height: 1.05;
+  font-variant-numeric: tabular-nums;
+  color: #fff;
+}
+
+.val-hero-empty {
+  background: #eef1f5;
+  box-shadow: none;
+}
+.val-hero-empty::before { background: var(--border); }
+.val-hero-empty .val-hero-label { color: var(--text-muted); }
+.val-hero-empty .val-hero-value { color: var(--text-light); }
+
+.val-summary-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.val-summary-table thead th {
+  background: var(--navy-dark);
+  color: #fff;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  padding: 6px 10px;
+  text-align: center;
+  border-right: 1px solid rgba(255, 255, 255, 0.12);
+}
+.val-summary-table thead th:last-child { border-right: none; }
+
+.val-summary-table tbody td {
+  padding: 9px 10px;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--navy-dark);
+  border-right: 1px solid var(--border);
+  border-top: 1px solid var(--border);
+  background: #fff;
+}
+.val-summary-table tbody td:last-child { border-right: none; }
+
+.val-summary-table .val-cell-hl {
+  background: var(--highlight);
+  font-weight: 700;
+}
+
+.val-summary-table .val-cell-mult {
+  color: var(--gold);
+  font-weight: 800;
+  font-size: 14px;
+}
+
 .valuation-grid {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -2652,6 +2753,8 @@ html, body {
 }
 @media (max-width: 700px) {
   .valuation-grid { grid-template-columns: 1fr; }
+  .val-hero-value { font-size: 22px; }
+  .val-summary-table tbody td { font-size: 12px; padding: 7px 6px; }
 }
 
 /* =============================================================

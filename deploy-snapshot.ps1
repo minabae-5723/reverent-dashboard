@@ -15,6 +15,10 @@ $ErrorActionPreference = 'Continue'
 $root = $PSScriptRoot
 Set-Location $root
 
+# Register the user-state.json entry-union merge driver (per-PC, idempotent).
+& git -C $root config merge.userstate.name 'user-state.json entry-union' 2>&1 | Out-Null
+& git -C $root config merge.userstate.driver ('powershell -NoProfile -ExecutionPolicy Bypass -File "' + (Join-Path $root 'merge-userstate.ps1') + '" %O %A %B') 2>&1 | Out-Null
+
 Write-Host ""
 Write-Host "==============================================" -ForegroundColor Cyan
 Write-Host " Deploy Snapshot - Reverent Dashboard" -ForegroundColor Cyan

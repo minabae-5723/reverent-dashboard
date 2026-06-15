@@ -155,6 +155,9 @@ Write-Host "[0/3] Sync from origin/main..." -ForegroundColor Yellow
 try {
     $gitDir = Join-Path $root '.git'
     if (Test-Path -LiteralPath $gitDir) {
+        # Register the user-state.json entry-union merge driver (per-PC, idempotent).
+        & git -C $root config merge.userstate.name 'user-state.json entry-union' 2>&1 | Out-Null
+        & git -C $root config merge.userstate.driver ('powershell -NoProfile -ExecutionPolicy Bypass -File "' + (Join-Path $root 'merge-userstate.ps1') + '" %O %A %B') 2>&1 | Out-Null
         foreach ($d in '.git\rebase-merge', '.git\rebase-apply') {
             if (Test-Path (Join-Path $root $d)) { & git -C $root rebase --abort 2>&1 | Out-Null }
         }
@@ -427,10 +430,22 @@ try {
                     # Accept either {key, value} (new) or {key, payload} (legacy)
                     $newValue = if ($body.PSObject.Properties.Name -contains 'value') { $body.value } else { $body.payload }
 
-                    # Load existing valuations.json (or create skeleton)
+                    # Load existing user-state.json. If the working copy is
+                    # corrupt (e.g. a stray conflict marker), DON'T lose the
+                    # write — recover entries from the last committed version,
+                    # else start fresh. (Was: ConvertFrom-Json threw -> 400 ->
+                    # every manual save silently failed until hand-fixed.)
+                    $existing = $null
                     if (Test-Path -LiteralPath $valPath) {
-                        $existing = ([System.IO.File]::ReadAllText($valPath, [System.Text.Encoding]::UTF8)) | ConvertFrom-Json
-                    } else {
+                        try { $existing = ([System.IO.File]::ReadAllText($valPath, [System.Text.Encoding]::UTF8)) | ConvertFrom-Json } catch { $existing = $null }
+                    }
+                    if (-not $existing) {
+                        try {
+                            $headJson = (& git -C $root show HEAD:user-state.json 2>$null) -join "`n"
+                            if ($headJson) { $existing = $headJson | ConvertFrom-Json }
+                        } catch { $existing = $null }
+                    }
+                    if (-not $existing) {
                         $existing = [PSCustomObject]@{ version = 1; updated = ''; entries = [PSCustomObject]@{} }
                     }
                     if (-not $existing.entries) { $existing | Add-Member -NotePropertyName entries -NotePropertyValue ([PSCustomObject]@{}) -Force }

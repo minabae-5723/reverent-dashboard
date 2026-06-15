@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-06-15T00:20:29Z",
-    "updatedKr":  "2026-06-15 09:20:29",
+    "updated":  "2026-06-15T04:29:36Z",
+    "updatedKr":  "2026-06-15 13:29:36",
     "countries":  [
                       "5",
                       "35",
@@ -21,7 +21,7 @@
                        "period":  "May",
                        "actual":  "27.04B",
                        "forecast":  "26.95B",
-                       "previous":  "26.95B",
+                       "previous":  "23.76B",
                        "type":  "review"
                    },
                    {
@@ -36,7 +36,7 @@
                        "period":  "May",
                        "actual":  "20.7%",
                        "forecast":  "20.8%",
-                       "previous":  "20.8%",
+                       "previous":  "16.7%",
                        "type":  "review"
                    },
                    {
@@ -50,8 +50,8 @@
                        "indicator":  "Exports (YoY)",
                        "period":  "May",
                        "actual":  "53.4%",
-                       "forecast":  "48.0%",
-                       "previous":  "53.2%",
+                       "forecast":  "53.2%",
+                       "previous":  "48.0%",
                        "type":  "review"
                    },
                    {

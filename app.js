@@ -1919,6 +1919,11 @@ async function loadUserState() {
   } catch (e) {
     _userStateCache = {};
   }
+  // On the deployed (read-only) site, tell the user up-front that edits here
+  // won't persist — so manual inputs are never lost to a silent 404.
+  if (!_isLocalHost()) {
+    _saveBanner('warn', '📌 배포본(읽기전용) 화면입니다 — 수기 입력·저장은 localhost:8000에서 하세요.');
+  }
   return _userStateCache;
 }
 
@@ -1971,20 +1976,64 @@ function migrateLocalStorageToUserState() {
   if (pushed > 0) console.log(`[user-state] migrated ${pushed} localStorage entries → server`);
 }
 
-// Best-effort POST. Updates cache optimistically (so re-renders see it
-// before the server roundtrip completes).
+// True only when served by the local serve.ps1 (where /save-state persists).
+function _isLocalHost() {
+  const h = location.hostname;
+  return h === 'localhost' || h === '127.0.0.1' || h === '[::1]' || h === '';
+}
+
+// Lazily-created fixed banner so save problems are NEVER silent. No HTML change.
+function _saveBanner(state, msg) {
+  let el = document.getElementById('saveHealthBanner');
+  if (state === 'hide') { if (el) el.style.display = 'none'; return; }
+  if (!el) {
+    el = document.createElement('div');
+    el.id = 'saveHealthBanner';
+    el.style.cssText = 'position:fixed;left:50%;transform:translateX(-50%);bottom:16px;z-index:99999;'
+      + 'padding:10px 16px;border-radius:8px;font-size:13px;font-weight:600;text-align:center;'
+      + 'max-width:92vw;box-shadow:0 4px 16px rgba(0,0,0,.35);color:#fff;';
+    (document.body || document.documentElement).appendChild(el);
+  }
+  el.style.display = 'block';
+  el.style.background = (state === 'error') ? '#b91c1c' : '#b45309';
+  el.textContent = msg;
+}
+
+// Best-effort POST with retry. Updates cache optimistically (so re-renders see
+// it before the server roundtrip). Failures are surfaced, not swallowed.
 function saveUserState(key, value) {
   if (_userStateCache) {
     if (value === null || value === undefined) delete _userStateCache[key];
     else _userStateCache[key] = value;
   }
+  // The deployed (static) site has no /save-state endpoint — warn loudly
+  // instead of silently dropping the write (the old behaviour).
+  if (!_isLocalHost()) {
+    _saveBanner('warn', '⚠️ 배포본(읽기전용) 화면이라 입력이 서버에 저장되지 않습니다 — localhost:8000에서 입력하세요.');
+    return;
+  }
+  _postSaveState(key, value, 0);
+}
+
+function _postSaveState(key, value, attempt) {
   try {
     fetch('/save-state', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ key, value }),
-    }).catch(() => {}); // silent — Cloudflare or offline
-  } catch {}
+    }).then((r) => {
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      _saveBanner('hide');
+    }).catch(() => {
+      if (attempt < 3) {
+        setTimeout(() => _postSaveState(key, value, attempt + 1), 800 * (attempt + 1));
+      } else {
+        _saveBanner('error', '⚠️ 저장이 서버에 반영되지 않았습니다 — serve.ps1 실행 여부를 확인하세요. (입력은 화면에만 임시 보관)');
+      }
+    });
+  } catch {
+    if (attempt >= 3) _saveBanner('error', '⚠️ 저장 실패 — serve.ps1 확인 필요.');
+  }
 }
 
 function loadSavedValuation(weekDate, headline) {
@@ -2023,6 +2072,49 @@ function renderValuationCard(cardId, weekDate, headline, title, data) {
         ${dealType ? `<span class="valuation-dealtype">${escapeHtml(dealType)}</span>` : ''}
         ${savedBadge}
       </div>
+
+      <!-- ── 요약 배너 (PDF 스타일) — 입력값 변경 시 자동 갱신 ── -->
+      <div class="val-summary">
+        <div class="val-hero-row">
+          <div class="val-hero val-hero-evebitda">
+            <div class="val-hero-label">EV / EBITDA</div>
+            <div class="val-hero-value" data-out="EV_EBITDA_hero">—</div>
+          </div>
+          <div class="val-hero val-hero-per">
+            <div class="val-hero-label">PER</div>
+            <div class="val-hero-value" data-out="PER_hero">—</div>
+          </div>
+          <div class="val-hero val-hero-pbr">
+            <div class="val-hero-label">PBR</div>
+            <div class="val-hero-value" data-out="PBR_hero">—</div>
+          </div>
+        </div>
+        <table class="val-summary-table">
+          <thead>
+            <tr><th>매출액</th><th>EV</th><th>EBITDA</th><th>EV/EBITDA</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td data-out="Revenue_sum">—</td>
+              <td class="val-cell-hl" data-out="EV_sum">—</td>
+              <td data-out="EBITDA_sum">—</td>
+              <td class="val-cell-mult" data-out="EV_EBITDA_sum">—</td>
+            </tr>
+          </tbody>
+          <thead>
+            <tr><th>Equity Value</th><th>당기순이익</th><th>PER</th><th>PBR</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="val-cell-hl" data-out="Equity_sum">—</td>
+              <td data-out="Earnings_sum">—</td>
+              <td class="val-cell-mult" data-out="PER_sum">—</td>
+              <td class="val-cell-mult" data-out="PBR_sum">—</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
       <div class="valuation-grid">
 
         <div class="val-col">
@@ -2349,6 +2441,30 @@ window.computeValuation = function (cardId) {
   setOut('PER',        fmtMultiple(per));
   setOut('PBR',        fmtMultiple(pbr));
   setOut('Premium',    fmtPercent(premium));
+
+  // ── 요약 배너 (PDF 스타일) ──
+  const fmtUnit = (n) => (n === null || !isFinite(n)) ? '—' : fmtVal(n) + ' 억원';
+  // hero 칩: 표시값이 '—'(null·비유한·음수 적자)면 dim 처리해 시각 일관성 유지
+  const setHero = (k, mult) => {
+    const el = card.querySelector(`[data-out="${k}"]`);
+    if (!el) return;
+    const txt = fmtMultiple(mult);
+    el.textContent = txt;
+    const hero = el.closest('.val-hero');
+    if (hero) hero.classList.toggle('val-hero-empty', txt === '—');
+  };
+  setHero('EV_EBITDA_hero', evEbitda);
+  setHero('PER_hero',       per);
+  setHero('PBR_hero',       pbr);
+
+  setOut('Revenue_sum',    fmtUnit(revenue));
+  setOut('EV_sum',         fmtUnit(ev));
+  setOut('EBITDA_sum',     fmtUnit(ebitda));
+  setOut('EV_EBITDA_sum',  fmtMultiple(evEbitda));
+  setOut('Equity_sum',     fmtUnit(equity));
+  setOut('Earnings_sum',   fmtUnit(netIncome));
+  setOut('PER_sum',        fmtMultiple(per));
+  setOut('PBR_sum',        fmtMultiple(pbr));
 };
 
 // ─── View Router ──────────────────────────────────────────

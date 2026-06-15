@@ -1,0 +1,8 @@
+# user-state.json holds manually-entered valuations / comments as an entries{}
+# map. Merge it entry-by-entry (union) instead of whole-file last-writer-wins,
+# so a manual input on one PC is never clobbered by the other PC's sync and a
+# conflict can never leave <<<<<<< markers that break /save-state.
+# Driver "userstate" is registered per-PC by sync-repo.ps1 / serve.ps1 /
+# deploy-snapshot.ps1 (see merge-userstate.ps1). If the driver isn't registered
+# yet, git falls back to the normal merge — no breakage, just no auto-union.
+user-state.json merge=userstate
