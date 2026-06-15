@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-06-14T22:00:52Z",
-    "updatedKr":  "2026-06-15 07:00:52",
+    "updated":  "2026-06-15T00:20:29Z",
+    "updatedKr":  "2026-06-15 09:20:29",
     "countries":  [
                       "5",
                       "35",
@@ -19,10 +19,10 @@
                        "importance":  1,
                        "indicator":  "Trade Balance",
                        "period":  "May",
-                       "actual":  "",
+                       "actual":  "27.04B",
                        "forecast":  "26.95B",
                        "previous":  "26.95B",
-                       "type":  "preview"
+                       "type":  "review"
                    },
                    {
                        "id":  "550224",
@@ -34,10 +34,10 @@
                        "importance":  1,
                        "indicator":  "Imports (YoY)",
                        "period":  "May",
-                       "actual":  "",
+                       "actual":  "20.7%",
                        "forecast":  "20.8%",
                        "previous":  "20.8%",
-                       "type":  "preview"
+                       "type":  "review"
                    },
                    {
                        "id":  "550225",
@@ -49,10 +49,10 @@
                        "importance":  1,
                        "indicator":  "Exports (YoY)",
                        "period":  "May",
-                       "actual":  "",
+                       "actual":  "53.4%",
                        "forecast":  "48.0%",
                        "previous":  "53.2%",
-                       "type":  "preview"
+                       "type":  "review"
                    },
                    {
                        "id":  "550229",
