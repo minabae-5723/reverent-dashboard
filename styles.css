@@ -2540,8 +2540,17 @@ html, body {
   border-collapse: collapse;
   font-variant-numeric: tabular-nums;
   border: 1px solid var(--border);
-  border-radius: 6px;
   overflow: hidden;
+  table-layout: fixed;
+}
+
+/* 상/하 테이블을 하나의 카드처럼 연결 (칸 수가 달라 분리 렌더) */
+.val-summary-top {
+  border-radius: 6px 6px 0 0;
+}
+.val-summary-bottom {
+  border-radius: 0 0 6px 6px;
+  border-top: none;
 }
 
 .val-summary-table thead th {

@@ -1,6 +1,6 @@
 {
     "version":  1,
-    "updated":  "2026-06-14T00:48:11Z",
+    "updated":  "2026-06-15T04:34:20Z",
     "entries":  {
                     "macro-comment-2026-05-15-time":  "05-18 15:03",
                     "rp::valuation::2026-05-29::ch79jh":  {
@@ -236,7 +236,6 @@
                                                                          },
                                                               "savedAt":  "2026. 5. 17. 15시 59분 55초"
                                                           },
-                    "ipo-mcap-0117P0":  3048,
                     "macro-notes-2026-05-15":  [
                                                    {
                                                        "id":  "mp9dmosshgvbgs",
@@ -275,6 +274,7 @@
                                                               "weekDate":  "2026-06-05",
                                                               "headline":  "MBK, 골프존카운티 LOI 접수 마감 — EV 약 1.5조·EBITDA 1,500억"
                                                           },
+                    "capmkt-comment-time-rate":  "26. 05. 31. 오후 01:37",
                     "capmkt-comment-rate":  "미-이란 MOU 체결 가능성에 글로벌 장기금리 상승 압력 완화",
                     "rp::valuation::2026-05-22::2atmus":  {
                                                               "values":  {
@@ -405,7 +405,7 @@
                     "dashboard-macro-comment":  "6월 FOMC는 워시 의장의 첫 정책 회의로 발언에 주목하며 기준금리 동결 전망. \nECB가 기준금리를 2.40%. 25bp 인상함에 이어 BOJ의 금리 경로에 주목.\n예상치에 부합하는 높은 수준의 PPI, CPI 발표",
                     "ipo-mcap-477850":  2748,
                     "capmkt-comment-commodity":  "국제 유가는 미-이란 MOU 체결 가능성에 급락",
-                    "capmkt-comment-time-rate":  "26. 05. 31. 오후 01:37",
+                    "ipo-mcap-0117P0":  3048,
                     "rp::valuation::2026-06-05::mrbadq":  {
                                                               "values":  {
                                                                              "매출액":  "5,103",

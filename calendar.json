@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-06-15T04:29:36Z",
-    "updatedKr":  "2026-06-15 13:29:36",
+    "updated":  "2026-06-15T04:34:49Z",
+    "updatedKr":  "2026-06-15 13:34:49",
     "countries":  [
                       "5",
                       "35",
@@ -64,10 +64,10 @@
                        "importance":  1,
                        "indicator":  "Tertiary Industry Activity Index",
                        "period":  "Apr",
-                       "actual":  "",
+                       "actual":  "-10.60",
                        "forecast":  "",
-                       "previous":  "16.50",
-                       "type":  "preview"
+                       "previous":  "16.00",
+                       "type":  "review"
                    },
                    {
                        "id":  "551520",
