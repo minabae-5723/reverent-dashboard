@@ -25,8 +25,11 @@ Set-Location $root
 
 # Register the user-state.json entry-union merge driver (per-PC, idempotent)
 # so cross-PC merges never clobber manual inputs or leave conflict markers.
+# Use a repo-ROOT-RELATIVE script path: git runs the driver from the worktree
+# top, so this dodges the non-ASCII / spaced absolute-path quoting that
+# otherwise stops git from launching it.
 & git -C $root config merge.userstate.name 'user-state.json entry-union' 2>&1 | Out-Null
-& git -C $root config merge.userstate.driver ('powershell -NoProfile -ExecutionPolicy Bypass -File "' + (Join-Path $root 'merge-userstate.ps1') + '" %O %A %B') 2>&1 | Out-Null
+& git -C $root config merge.userstate.driver 'powershell -NoProfile -ExecutionPolicy Bypass -File merge-userstate.ps1 %O %A %B' 2>&1 | Out-Null
 
 # ── 0. Self-heal: clear a half-finished rebase/merge left by a crashed run ──
 foreach ($d in '.git\rebase-merge', '.git\rebase-apply') {

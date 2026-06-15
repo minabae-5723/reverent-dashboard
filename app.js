@@ -2089,7 +2089,7 @@ function renderValuationCard(cardId, weekDate, headline, title, data) {
             <div class="val-hero-value" data-out="PBR_hero">—</div>
           </div>
         </div>
-        <table class="val-summary-table">
+        <table class="val-summary-table val-summary-top">
           <thead>
             <tr><th>매출액</th><th>EV</th><th>EBITDA</th><th>EV/EBITDA</th></tr>
           </thead>
@@ -2101,13 +2101,16 @@ function renderValuationCard(cardId, weekDate, headline, title, data) {
               <td class="val-cell-mult" data-out="EV_EBITDA_sum">—</td>
             </tr>
           </tbody>
+        </table>
+        <table class="val-summary-table val-summary-bottom">
           <thead>
-            <tr><th>Equity Value</th><th>당기순이익</th><th>PER</th><th>PBR</th></tr>
+            <tr><th>Equity Value</th><th>당기순이익</th><th>순자산</th><th>PER</th><th>PBR</th></tr>
           </thead>
           <tbody>
             <tr>
               <td class="val-cell-hl" data-out="Equity_sum">—</td>
               <td data-out="Earnings_sum">—</td>
+              <td data-out="BookEquity_sum">—</td>
               <td class="val-cell-mult" data-out="PER_sum">—</td>
               <td class="val-cell-mult" data-out="PBR_sum">—</td>
             </tr>
@@ -2463,6 +2466,7 @@ window.computeValuation = function (cardId) {
   setOut('EV_EBITDA_sum',  fmtMultiple(evEbitda));
   setOut('Equity_sum',     fmtUnit(equity));
   setOut('Earnings_sum',   fmtUnit(netIncome));
+  setOut('BookEquity_sum', fmtUnit(bookEquity));
   setOut('PER_sum',        fmtMultiple(per));
   setOut('PBR_sum',        fmtMultiple(pbr));
 };

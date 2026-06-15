@@ -16,8 +16,9 @@ $root = $PSScriptRoot
 Set-Location $root
 
 # Register the user-state.json entry-union merge driver (per-PC, idempotent).
+# Repo-root-relative path — git runs the driver from the worktree top.
 & git -C $root config merge.userstate.name 'user-state.json entry-union' 2>&1 | Out-Null
-& git -C $root config merge.userstate.driver ('powershell -NoProfile -ExecutionPolicy Bypass -File "' + (Join-Path $root 'merge-userstate.ps1') + '" %O %A %B') 2>&1 | Out-Null
+& git -C $root config merge.userstate.driver 'powershell -NoProfile -ExecutionPolicy Bypass -File merge-userstate.ps1 %O %A %B' 2>&1 | Out-Null
 
 Write-Host ""
 Write-Host "==============================================" -ForegroundColor Cyan
