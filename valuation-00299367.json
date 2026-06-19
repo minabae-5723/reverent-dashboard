@@ -3,9 +3,9 @@
     "corp_code":  "00299367",
     "fiscal_period":  "FY2025 Annual (Consolidated)",
     "unit":  "100M KRW",
-    "fetched_at":  "2026-06-19 17:15:16",
+    "fetched_at":  "2026-06-19 17:47:46",
     "pnl":  {
-                "revenue":  968,
+                "revenue":  6721,
                 "operating_income":  187,
                 "depreciation":  null,
                 "ebitda":  null,

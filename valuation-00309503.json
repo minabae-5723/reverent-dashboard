@@ -3,9 +3,9 @@
     "corp_code":  "00309503",
     "fiscal_period":  "LTM Q1 2026 (FY2025 + Q12026 - Q12025)",
     "unit":  "100M KRW",
-    "fetched_at":  "2026-06-19 17:15:20",
+    "fetched_at":  "2026-06-19 17:47:43",
     "pnl":  {
-                "revenue":  6245,
+                "revenue":  40898,
                 "operating_income":  2895,
                 "depreciation":  null,
                 "ebitda":  null,

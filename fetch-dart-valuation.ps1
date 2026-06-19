@@ -184,7 +184,9 @@ function Get-BS {
 }
 
 # ── P&L ──
-$revenue   = Get-PnL -AccountIds @('ifrs-full_GrossProfit','ifrs-full_Revenue') -NameKr1 $kn.revenue -NameKr2 $kn.revenue2
+# Revenue: try true top-line (Revenue) FIRST, then 매출액/영업수익 names, GrossProfit only as last resort
+$revenue   = Get-PnL -AccountIds @('ifrs-full_Revenue') -NameKr1 $kn.revenue2 -NameKr2 $kn.revenue
+if ($null -eq $revenue) { $revenue = Get-PnL -AccountIds @('ifrs-full_GrossProfit') }
 $opInc     = Get-PnL -AccountIds @('dart_OperatingIncomeLoss','ifrs-full_ProfitLossFromOperatingActivities') -NameKr1 $kn.opIncome
 # Net income: prefer profit attributable to owners of parent (controlling interest)
 $netIncome = Get-PnL -AccountIds @('ifrs-full_ProfitLossAttributableToOwnersOfParent','ifrs-full_ProfitLoss')
