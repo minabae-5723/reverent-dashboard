@@ -1,0 +1,31 @@
+{
+    "company":  "KAI",
+    "corp_code":  "00309503",
+    "fiscal_period":  "LTM Q1 2026 (FY2025 + Q12026 - Q12025)",
+    "unit":  "100M KRW",
+    "fetched_at":  "2026-06-19 17:15:20",
+    "pnl":  {
+                "revenue":  6245,
+                "operating_income":  2895,
+                "depreciation":  null,
+                "ebitda":  null,
+                "net_income":  1978
+            },
+    "equity_total":  19449,
+    "debt":  {
+                 "st_borrowings":  2228,
+                 "current_lt_borrowings":  221,
+                 "current_lease":  null,
+                 "lt_borrowings":  619,
+                 "nc_lease":  null
+             },
+    "cash":  {
+                 "cash_and_equivalents":  1626,
+                 "st_financial_invest":  0
+             },
+    "derived":  {
+                    "total_debt":  3068,
+                    "total_cash":  1626,
+                    "net_debt":  1442
+                }
+}

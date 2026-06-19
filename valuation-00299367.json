@@ -1,0 +1,31 @@
+{
+    "company":  "SLLJoongang",
+    "corp_code":  "00299367",
+    "fiscal_period":  "FY2025 Annual (Consolidated)",
+    "unit":  "100M KRW",
+    "fetched_at":  "2026-06-19 17:15:16",
+    "pnl":  {
+                "revenue":  968,
+                "operating_income":  187,
+                "depreciation":  null,
+                "ebitda":  null,
+                "net_income":  -73
+            },
+    "equity_total":  4339,
+    "debt":  {
+                 "st_borrowings":  null,
+                 "current_lt_borrowings":  null,
+                 "current_lease":  53,
+                 "lt_borrowings":  null,
+                 "nc_lease":  50
+             },
+    "cash":  {
+                 "cash_and_equivalents":  926,
+                 "st_financial_invest":  16
+             },
+    "derived":  {
+                    "total_debt":  103,
+                    "total_cash":  942,
+                    "net_debt":  -839
+                }
+}

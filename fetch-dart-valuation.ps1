@@ -143,6 +143,8 @@ $kn = @{
     curLtBorrow  = [string]([char]0xC720 + [char]0xB3D9 + [char]0xC131 + [char]0xC7A5 + [char]0xAE30 + [char]0xCC28 + [char]0xC785 + [char]0xAE08)  # 유동성장기차입금
     ltBorrowing  = [string]([char]0xC7A5 + [char]0xAE30 + [char]0xCC28 + [char]0xC785 + [char]0xAE08)   # 장기차입금
     stFinanceInst= [string]([char]0xB2E8 + [char]0xAE30 + [char]0xAE08 + [char]0xC735 + [char]0xC0C1 + [char]0xD488)   # 단기금융상품
+    equity       = [string]([char]0xC790 + [char]0xBCF8 + [char]0xCD1D + [char]0xACC4)   # 자본총계
+    depreciation = [string]([char]0xAC10 + [char]0xAC00 + [char]0xC0C1 + [char]0xAC01 + [char]0xBE44)   # 감가상각비
 }
 
 # ── P&L extraction helper that supports LTM combining ──
@@ -184,7 +186,10 @@ function Get-BS {
 # ── P&L ──
 $revenue   = Get-PnL -AccountIds @('ifrs-full_GrossProfit','ifrs-full_Revenue') -NameKr1 $kn.revenue -NameKr2 $kn.revenue2
 $opInc     = Get-PnL -AccountIds @('dart_OperatingIncomeLoss','ifrs-full_ProfitLossFromOperatingActivities') -NameKr1 $kn.opIncome
-$netIncome = Get-PnL -AccountIds @('ifrs-full_ProfitLoss')
+# Net income: prefer profit attributable to owners of parent (controlling interest)
+$netIncome = Get-PnL -AccountIds @('ifrs-full_ProfitLossAttributableToOwnersOfParent','ifrs-full_ProfitLoss')
+# Depreciation & amortization (flow; often only in CF statement rows)
+$depr      = Get-PnL -AccountIds @('dart_DepreciationExpense','ifrs-full_DepreciationAndAmortisationExpense','ifrs-full_DepreciationExpense') -NameKr1 $kn.depreciation
 
 # ── Debt-like ──
 $curBorrow   = Get-BS -AccountIds @('ifrs-full_ShorttermBorrowings') -NameKr $kn.stBorrowing
@@ -217,8 +222,14 @@ if ($null -eq $stFI) {
     if ($any) { $stFI = $sum }
 }
 
+# Equity (자본총계) — PBR denominator. BS item from most-recent quarter.
+$equity = Get-BS -AccountIds @('ifrs-full_Equity') -NameKr $kn.equity
+
 # Convert raw won -> 100M won (eok). Round to whole number.
 $toEok = { param($v) if ($null -eq $v) { $null } else { [Math]::Round($v / 100000000.0, 0) } }
+
+# EBITDA = operating income + D&A (only when both present)
+$ebitda = if (($null -ne $opInc) -and ($null -ne $depr)) { $opInc + $depr } else { $null }
 
 $out = [ordered]@{
     company         = $CorpName
@@ -229,10 +240,11 @@ $out = [ordered]@{
     pnl             = [ordered]@{
         revenue           = & $toEok $revenue
         operating_income  = & $toEok $opInc
-        depreciation      = $null
-        ebitda            = $null
+        depreciation      = & $toEok $depr
+        ebitda            = & $toEok $ebitda
         net_income        = & $toEok $netIncome
     }
+    equity_total    = & $toEok $equity
     debt            = [ordered]@{
         st_borrowings        = & $toEok $curBorrow
         current_lt_borrowings = & $toEok $curLTBorrow
