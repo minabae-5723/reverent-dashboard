@@ -15,6 +15,12 @@ $ErrorActionPreference = 'Continue'
 $root = $PSScriptRoot
 Set-Location $root
 
+# Never block on an interactive git/GCM credential prompt — when this runs as a
+# scheduled task and GCM needs a token refresh it would hang until killed
+# (0xC000013A). Cached creds still work; otherwise git fails fast (logged).
+$env:GIT_TERMINAL_PROMPT = '0'
+$env:GCM_INTERACTIVE = 'Never'
+
 # Register the user-state.json entry-union merge driver (per-PC, idempotent).
 # Repo-root-relative path — git runs the driver from the worktree top.
 & git -C $root config merge.userstate.name 'user-state.json entry-union' 2>&1 | Out-Null

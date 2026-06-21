@@ -13,6 +13,11 @@ $ErrorActionPreference = 'Continue'
 $root = $PSScriptRoot
 Set-Location $root
 
+# Never block on an interactive git/GCM credential prompt (scheduled-task hang
+# guard — see sync-repo.ps1). Cached creds work; else git fails fast.
+$env:GIT_TERMINAL_PROMPT = '0'
+$env:GCM_INTERACTIVE = 'Never'
+
 Write-Host ""
 Write-Host "==============================================" -ForegroundColor Cyan
 Write-Host " Friday Deploy - Peer & IPO snapshot" -ForegroundColor Cyan
