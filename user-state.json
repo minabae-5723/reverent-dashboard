@@ -1,6 +1,6 @@
 {
     "version":  1,
-    "updated":  "2026-06-21T04:02:05Z",
+    "updated":  "2026-06-21T04:30:32Z",
     "entries":  {
                     "macro-comment-2026-05-15-time":  "05-18 15:03",
                     "rp::valuation::2026-05-29::ch79jh":  {
@@ -517,7 +517,7 @@
                                                               "weekDate":  "2026-05-29",
                                                               "headline":  "LB PE, IT솔루션 \u0027아이클라우드\u0027 인수 — 300억·경영권"
                                                           },
-                    "dashboard-macro-comment":  "6월 FOMC는 워시 의장의 첫 정책 회의로 발언에 주목하며 기준금리 동결 전망. \nECB가 기준금리를 2.40%. 25bp 인상함에 이어 BOJ의 금리 경로에 주목.\n예상치에 부합하는 높은 수준의 PPI, CPI 발표",
+                    "dashboard-macro-comment":  "원유재고는 감소세 지속, 제조업지수는 우호적.\n글로벌 증시는 마이크론 실적(24일)과 미국 PCE 물가(25일), 그리고 MSCI 연례 시장분류 리뷰(23일)를 중심으로 움직일 전망. \n시장은 PCE를 통해 인플레이션 압력의 재확인 여부를 점검할 것으로 예상. ",
                     "rp::valuation::2026-05-22::9rh61l":  {
                                                               "values":  {
                                                                              "매출액":  "2,743",
@@ -582,7 +582,7 @@
                                                ],
                     "capmkt-comment-index":  "글로벌 증시는 상승 마감 후 주 후반 미-이란 협상 지연으로 변동성 증가.",
                     "capmkt-comment-rate":  "미-이란 협상 불안에 따른 국제유가 상승의 영향이 유입되며 유럽 국채 금리들이 상승하는 모습을 보였지만 전반적인 상승세는 제한.",
-                    "dashboard-macro-comment-time":  "06-14 09:47",
+                    "dashboard-macro-comment-time":  "06-21 13:30",
                     "capmkt-comment-commodity":  "유가는 미-이란 불확실성 속에도 하락세 지속.",
                     "capmkt-comment-time-rate":  "26. 06. 21. 오후 01:02"
                 }
