@@ -1749,14 +1749,29 @@ function wireFixSaveTextarea({ textarea, fixBtn, statusEl }) {
     return;
   }
 
-  // Hydrate from localStorage first, then user-state cache (deployed file).
+  // Hydrate with whichever copy is NEWER — localStorage (this browser's edits)
+  // vs user-state.json (deployed, carries edits made on the OTHER PC). The old
+  // code always preferred localStorage, so an edit made elsewhere was masked by
+  // this browser's stale localStorage and looked "not reflected". Compare the
+  // "MM-DD HH:MM" -time stamps; if the deployed copy is newer, use it AND
+  // refresh localStorage so it stops masking.
   if (textarea.value === '') {
     try {
-      const saved = localStorage.getItem(storageKey);
-      if (saved) {
-        textarea.value = saved;
-      } else if (_userStateCache && typeof _userStateCache[storageKey] === 'string') {
-        textarea.value = _userStateCache[storageKey];
+      const lsVal  = localStorage.getItem(storageKey);
+      const lsTime = localStorage.getItem(`${storageKey}-time`);
+      const usVal  = (_userStateCache && typeof _userStateCache[storageKey] === 'string') ? _userStateCache[storageKey] : null;
+      const usTime = (_userStateCache && typeof _userStateCache[`${storageKey}-time`] === 'string') ? _userStateCache[`${storageKey}-time`] : null;
+      const deployedIsNewer = (usVal !== null) && (lsVal === null || (usTime && lsTime && usTime > lsTime));
+      if (deployedIsNewer) {
+        textarea.value = usVal;
+        try {
+          localStorage.setItem(storageKey, usVal);
+          if (usTime) localStorage.setItem(`${storageKey}-time`, usTime);
+        } catch (e) { /* ignore */ }
+      } else if (lsVal) {
+        textarea.value = lsVal;
+      } else if (usVal !== null) {
+        textarea.value = usVal;
       }
     } catch (e) { /* ignore */ }
   }
