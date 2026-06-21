@@ -10,10 +10,10 @@
                           "code":  "475040",
                           "detailNo":  2289,
                           "ipoPrice":  12000,
-                          "curPrice":  15750,
+                          "curPrice":  null,
                           "openPrice":  null,
-                          "todayChg":  -0.015600000000000001,
-                          "curVsIpo":  0.3125,
+                          "todayChg":  null,
+                          "curVsIpo":  null,
                           "openVsIpo":  null,
                           "mcap":  null
                       },
