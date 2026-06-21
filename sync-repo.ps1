@@ -23,6 +23,15 @@ $ErrorActionPreference = 'Continue'
 $root = $PSScriptRoot
 Set-Location $root
 
+# Never block on an interactive credential / GCM prompt. When this runs as the
+# RepoSync scheduled task (non-interactive session), Git Credential Manager
+# would try to pop a UI it can't render and HANG until Task Scheduler killed it
+# at the 5-min limit (exit 0xC000013A) — so user-state never got pushed and
+# edits "didn't reflect". Cached creds still work; if they ever expire, git now
+# fails fast (logged) instead of hanging.
+$env:GIT_TERMINAL_PROMPT = '0'
+$env:GCM_INTERACTIVE = 'Never'
+
 # Register the user-state.json entry-union merge driver (per-PC, idempotent)
 # so cross-PC merges never clobber manual inputs or leave conflict markers.
 # Use a repo-ROOT-RELATIVE script path: git runs the driver from the worktree
