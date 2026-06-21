@@ -219,6 +219,24 @@ foreach ($c in $companies) {
 }
 Write-Host (" Augmented " + $augCount + " / " + $companies.Count + " (pre-IPO without Naver page: " + $preIpoCount + ")") -ForegroundColor Green
 
+# ---------- 2.5. Guard: not-yet-listed IPOs must not show a current price ----------
+# 38/Naver sometimes return a pre-listing/grey value for stocks that haven't
+# listed yet (listing date in the future), which then renders as a bogus 현재가.
+# Clear every current-price-derived field for those; keep 공모가(ipoPrice) + mcap.
+$today = (Get-Date).ToString('yyyy-MM-dd')
+$nulledFuture = 0
+foreach ($c in $companies) {
+    if ($c.listIso -and ($c.listIso -gt $today)) {
+        $c.curPrice  = $null
+        $c.openPrice = $null
+        $c.todayChg  = $null
+        $c.curVsIpo  = $null
+        $c.openVsIpo = $null
+        $nulledFuture++
+    }
+}
+Write-Host (" Future-listing rows cleared of current price: " + $nulledFuture + " (today=" + $today + ")") -ForegroundColor Yellow
+
 # ---------- 3. Sort + save ----------
 
 # Sort by listing date descending (most recent first).
