@@ -1,8 +1,8 @@
 {
-    "updated":  "2026-06-19T07:39:33Z",
-    "updatedKr":  "2026-06-19 16:39:33",
-    "frozenDow":  "Friday",
-    "reviewRange":  "2026-06-15~2026-06-19",
+    "updated":  "2026-06-21T03:46:57Z",
+    "updatedKr":  "2026-06-21 12:46:57",
+    "frozenDow":  "Sunday",
+    "reviewRange":  "2026-06-15~2026-06-21",
     "previewRange":  "2026-06-22~2026-06-28",
     "thisWeek":  [
                      {
@@ -123,7 +123,7 @@
                          "indicator":  "S\u0026P Global Manufacturing PMI",
                          "period":  "Jun",
                          "actual":  "",
-                         "forecast":  "",
+                         "forecast":  "54.6",
                          "previous":  "55.1",
                          "type":  "preview"
                      },
@@ -138,7 +138,7 @@
                          "indicator":  "S\u0026P Global Services PMI",
                          "period":  "Jun",
                          "actual":  "",
-                         "forecast":  "",
+                         "forecast":  "51.0",
                          "previous":  "50.7",
                          "type":  "preview"
                      },
@@ -153,7 +153,7 @@
                          "indicator":  "New Home Sales",
                          "period":  "May",
                          "actual":  "",
-                         "forecast":  "640K",
+                         "forecast":  "637K",
                          "previous":  "622K",
                          "type":  "preview"
                      },
@@ -183,7 +183,7 @@
                          "indicator":  "Durable Goods Orders (MoM)",
                          "period":  "May",
                          "actual":  "",
-                         "forecast":  "",
+                         "forecast":  "-4.7%",
                          "previous":  "8.0%",
                          "type":  "preview"
                      },
