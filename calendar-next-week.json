@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-06-21T23:33:34Z",
-    "updatedKr":  "2026-06-22 08:33:34",
+    "updated":  "2026-06-22T23:47:13Z",
+    "updatedKr":  "2026-06-23 08:47:13",
     "countries":  [
                       "5",
                       "35",
@@ -216,7 +216,7 @@
                        "period":  "Jun",
                        "actual":  "",
                        "forecast":  "",
-                       "previous":  "-19.0",
+                       "previous":  "-17.7",
                        "type":  "preview"
                    },
                    {
@@ -1105,18 +1105,18 @@
                        "type":  "preview"
                    },
                    {
-                       "id":  "551476",
+                       "id":  "551472",
                        "datetime":  "2026/07/02 21:30:00",
                        "date":  "7/2",
                        "time":  "21:30",
                        "flagKey":  "United_States",
                        "currency":  "USD",
-                       "importance":  2,
-                       "indicator":  "Private Nonfarm Payrolls",
+                       "importance":  1,
+                       "indicator":  "Manufacturing Payrolls",
                        "period":  "Jun",
                        "actual":  "",
                        "forecast":  "",
-                       "previous":  "120K",
+                       "previous":  "7K",
                        "type":  "preview"
                    },
                    {
@@ -1150,6 +1150,51 @@
                        "type":  "preview"
                    },
                    {
+                       "id":  "551476",
+                       "datetime":  "2026/07/02 21:30:00",
+                       "date":  "7/2",
+                       "time":  "21:30",
+                       "flagKey":  "United_States",
+                       "currency":  "USD",
+                       "importance":  2,
+                       "indicator":  "Private Nonfarm Payrolls",
+                       "period":  "Jun",
+                       "actual":  "",
+                       "forecast":  "",
+                       "previous":  "120K",
+                       "type":  "preview"
+                   },
+                   {
+                       "id":  "552025",
+                       "datetime":  "2026/07/02 21:30:00",
+                       "date":  "7/2",
+                       "time":  "21:30",
+                       "flagKey":  "United_States",
+                       "currency":  "USD",
+                       "importance":  1,
+                       "indicator":  "Jobless Claims 4-Week Avg.",
+                       "period":  "",
+                       "actual":  "",
+                       "forecast":  "",
+                       "previous":  "",
+                       "type":  "preview"
+                   },
+                   {
+                       "id":  "551473",
+                       "datetime":  "2026/07/02 21:30:00",
+                       "date":  "7/2",
+                       "time":  "21:30",
+                       "flagKey":  "United_States",
+                       "currency":  "USD",
+                       "importance":  1,
+                       "indicator":  "Average Weekly Hours",
+                       "period":  "Jun",
+                       "actual":  "",
+                       "forecast":  "",
+                       "previous":  "34.3",
+                       "type":  "preview"
+                   },
+                   {
                        "id":  "551477",
                        "datetime":  "2026/07/02 21:30:00",
                        "date":  "7/2",
@@ -1180,33 +1225,18 @@
                        "type":  "preview"
                    },
                    {
-                       "id":  "551473",
+                       "id":  "552023",
                        "datetime":  "2026/07/02 21:30:00",
                        "date":  "7/2",
                        "time":  "21:30",
                        "flagKey":  "United_States",
                        "currency":  "USD",
-                       "importance":  1,
-                       "indicator":  "Average Weekly Hours",
-                       "period":  "Jun",
+                       "importance":  3,
+                       "indicator":  "Initial Jobless Claims",
+                       "period":  "",
                        "actual":  "",
                        "forecast":  "",
-                       "previous":  "34.3",
-                       "type":  "preview"
-                   },
-                   {
-                       "id":  "551472",
-                       "datetime":  "2026/07/02 21:30:00",
-                       "date":  "7/2",
-                       "time":  "21:30",
-                       "flagKey":  "United_States",
-                       "currency":  "USD",
-                       "importance":  1,
-                       "indicator":  "Manufacturing Payrolls",
-                       "period":  "Jun",
-                       "actual":  "",
-                       "forecast":  "",
-                       "previous":  "7K",
+                       "previous":  "",
                        "type":  "preview"
                    },
                    {
@@ -1222,6 +1252,21 @@
                        "actual":  "",
                        "forecast":  "",
                        "previous":  "52.0K",
+                       "type":  "preview"
+                   },
+                   {
+                       "id":  "552024",
+                       "datetime":  "2026/07/02 21:30:00",
+                       "date":  "7/2",
+                       "time":  "21:30",
+                       "flagKey":  "United_States",
+                       "currency":  "USD",
+                       "importance":  2,
+                       "indicator":  "Continuing Jobless Claims",
+                       "period":  "",
+                       "actual":  "",
+                       "forecast":  "",
+                       "previous":  "",
                        "type":  "preview"
                    },
                    {
@@ -1285,6 +1330,51 @@
                        "type":  "preview"
                    },
                    {
+                       "id":  "552027",
+                       "datetime":  "2026/07/02 23:30:00",
+                       "date":  "7/2",
+                       "time":  "23:30",
+                       "flagKey":  "United_States",
+                       "currency":  "USD",
+                       "importance":  1,
+                       "indicator":  "Natural Gas Storage",
+                       "period":  "",
+                       "actual":  "",
+                       "forecast":  "",
+                       "previous":  "",
+                       "type":  "preview"
+                   },
+                   {
+                       "id":  "552029",
+                       "datetime":  "2026/07/03 00:30:00",
+                       "date":  "7/3",
+                       "time":  "00:30",
+                       "flagKey":  "United_States",
+                       "currency":  "USD",
+                       "importance":  1,
+                       "indicator":  "8-Week Bill Auction",
+                       "period":  "",
+                       "actual":  "",
+                       "forecast":  "",
+                       "previous":  "",
+                       "type":  "preview"
+                   },
+                   {
+                       "id":  "552028",
+                       "datetime":  "2026/07/03 00:30:00",
+                       "date":  "7/3",
+                       "time":  "00:30",
+                       "flagKey":  "United_States",
+                       "currency":  "USD",
+                       "importance":  1,
+                       "indicator":  "4-Week Bill Auction",
+                       "period":  "",
+                       "actual":  "",
+                       "forecast":  "",
+                       "previous":  "",
+                       "type":  "preview"
+                   },
+                   {
                        "id":  "551509",
                        "datetime":  "2026/07/03 09:30:00",
                        "date":  "7/3",
@@ -1342,6 +1432,36 @@
                        "actual":  "",
                        "forecast":  "",
                        "previous":  "48.5",
+                       "type":  "preview"
+                   },
+                   {
+                       "id":  "552031",
+                       "datetime":  "2026/07/04 02:00:00",
+                       "date":  "7/4",
+                       "time":  "02:00",
+                       "flagKey":  "United_States",
+                       "currency":  "USD",
+                       "importance":  2,
+                       "indicator":  "U.S. Baker Hughes Total Rig Count",
+                       "period":  "",
+                       "actual":  "",
+                       "forecast":  "",
+                       "previous":  "",
+                       "type":  "preview"
+                   },
+                   {
+                       "id":  "552030",
+                       "datetime":  "2026/07/04 02:00:00",
+                       "date":  "7/4",
+                       "time":  "02:00",
+                       "flagKey":  "United_States",
+                       "currency":  "USD",
+                       "importance":  2,
+                       "indicator":  "U.S. Baker Hughes Oil Rig Count",
+                       "period":  "",
+                       "actual":  "",
+                       "forecast":  "",
+                       "previous":  "",
                        "type":  "preview"
                    },
                    {

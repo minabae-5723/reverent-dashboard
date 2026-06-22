@@ -1,34 +1,34 @@
 {
-    "updated":  "2026-06-19T16:42:26+09:00",
+    "updated":  "2026-06-23T08:47:56+09:00",
     "source":  "finance.naver.com exchangeDailyQuote (Seoul 留ㅻℓ湲곗???",
     "fx":  {
                "USDKRW":  {
-                              "current":  1529.3,
-                              "wow":  0.96,
-                              "mom":  1.14,
-                              "ytd":  5.71,
+                              "current":  1533,
+                              "wow":  1.21,
+                              "mom":  1.39,
+                              "ytd":  5.97,
                               "asOf":  "2026-06-19",
                               "prevDate":  "2026-06-12"
                           },
                "USDJPY":  {
-                              "current":  161.32,
-                              "wow":  0.89,
-                              "mom":  1.48,
-                              "ytd":  2.97,
+                              "current":  161.329,
+                              "wow":  0.9,
+                              "mom":  1.5,
+                              "ytd":  2.99,
                               "asOf":  "2026-06-19"
                           },
                "USDCNY":  {
-                              "current":  6.7972,
-                              "wow":  0.59,
-                              "mom":  0.19,
-                              "ytd":  -2.7,
+                              "current":  6.7838,
+                              "wow":  0.4,
+                              "mom":  0,
+                              "ytd":  -2.92,
                               "asOf":  "2026-06-19"
                           },
                "USDEUR":  {
-                              "current":  0.8738,
-                              "wow":  1.44,
-                              "mom":  1.71,
-                              "ytd":  2.42,
+                              "current":  0.8721,
+                              "wow":  1.26,
+                              "mom":  1.53,
+                              "ytd":  2.24,
                               "asOf":  "2026-06-19"
                           }
            }
