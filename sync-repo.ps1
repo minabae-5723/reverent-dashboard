@@ -88,33 +88,6 @@ if (-not [string]::IsNullOrWhiteSpace($us)) {
     }
 }
 
-# ── 3.5. Market data: refresh + publish so Cloudflare tracks intraday (5-min) ──
-#     refresh.ps1 regenerates data.json (index/rate/fx/commodity/sector/CDS,
-#     honouring the Friday-freeze rules). data.json is normally pushed only by
-#     the once-a-day DailyDeploy, so Cloudflare lagged up to a day — now every
-#     RepoSync publishes it. Commit ONLY when the market NUMBERS changed: ignore
-#     the updated/updatedKr timestamp so a flat/closed market doesn't spam a
-#     commit every 5 minutes. If nothing meaningful changed, revert data.json to
-#     HEAD so the tree stays clean (no autostash conflicts next run).
-$refreshScript = Join-Path $root 'refresh.ps1'
-if (Test-Path $refreshScript) {
-    & powershell -NoProfile -ExecutionPolicy Bypass -File $refreshScript 2>&1 | Out-Null
-    if (Test-Path (Join-Path $root 'data.json')) {
-        & git -C $root add -f data.json 2>&1 | Out-Null
-        $diff = & git -C $root diff --cached -U0 -- data.json 2>&1
-        $meaningful = @($diff | Where-Object {
-            ($_ -match '^[+-]') -and ($_ -notmatch '^(\+\+\+|---)') -and ($_ -notmatch '"updated(Kr)?"\s*:')
-        })
-        if ($meaningful.Count -gt 0) {
-            $mts = '{0:yyyy-MM-dd HH:mm}' -f (Get-Date)
-            & git -C $root commit -m "Market data $mts (auto 5min)" 2>&1 | Out-Null
-            Write-Host "Committed market data update" -ForegroundColor Green
-        } else {
-            & git -C $root checkout HEAD -- data.json 2>&1 | Out-Null
-        }
-    }
-}
-
 # ── 4. OUTBOUND: push every committed local commit origin doesn't have yet ──
 $ahead = & git -C $root rev-list --count origin/main..HEAD 2>&1
 if (($ahead -match '^\d+$') -and ([int]$ahead -gt 0)) {
