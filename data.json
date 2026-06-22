@@ -1,27 +1,27 @@
 {
-    "updated":  "2026-06-21T23:32:42Z",
-    "updatedKr":  "2026-06-22 08:32:42",
+    "updated":  "2026-06-22T00:23:45Z",
+    "updatedKr":  "2026-06-22 09:23:45",
     "index":  [
                   {
                       "key":  "KOSPI",
                       "symbol":  "^KS11",
-                      "current":  9052.42,
-                      "wow":  11.43,
-                      "mom":  15.35,
-                      "ytd":  110.05,
+                      "current":  9002.98,
+                      "wow":  5.35,
+                      "mom":  14.72,
+                      "ytd":  108.9,
                       "type":  "pct",
-                      "asOf":  "2026-06-19T18:05:40",
+                      "asOf":  "2026-06-22T09:04:10",
                       "ok":  true
                   },
                   {
                       "key":  "KOSDAQ",
                       "symbol":  "^KQ11",
-                      "current":  966.59,
-                      "wow":  -6.07,
-                      "mom":  -16.75,
-                      "ytd":  2.22,
+                      "current":  972.9,
+                      "wow":  -5.91,
+                      "mom":  -16.21,
+                      "ytd":  2.89,
                       "type":  "pct",
-                      "asOf":  "2026-06-19T18:05:40",
+                      "asOf":  "2026-06-22T09:04:20",
                       "ok":  true
                   },
                   {
@@ -174,10 +174,10 @@
                       {
                           "key":  "WHEAT",
                           "symbol":  "ZW=F",
-                          "current":  613.25,
-                          "wow":  4.92,
-                          "mom":  -5.11,
-                          "ytd":  21.08,
+                          "current":  605.75,
+                          "wow":  3.64,
+                          "mom":  -6.27,
+                          "ytd":  19.6,
                           "type":  "pct",
                           "asOf":  "2026-06-18",
                           "ok":  true
