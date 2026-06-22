@@ -8,6 +8,10 @@ param([int]$Port = 8000)
 
 $ErrorActionPreference = 'Continue'
 $root = $PSScriptRoot
+# Never block on a git/GCM credential prompt during the startup sync or
+# push-on-save (would hang the server before it binds the port).
+$env:GIT_TERMINAL_PROMPT = '0'
+$env:GCM_INTERACTIVE = 'Never'
 $refreshScript  = Join-Path $root 'refresh.ps1'
 $calendarScript = Join-Path $root 'fetch-calendar.ps1'
 $configPath     = Join-Path $root 'config.json'
@@ -191,18 +195,17 @@ try {
 }
 Write-Host ""
 
-# ── 1. Initial data fetch (synchronous, so page has data on first load) ──
-Write-Host "[1/3] Initial data fetch (Yahoo + Investing)..." -ForegroundColor Yellow
+# ── 1. Initial data fetch — BACKGROUND so a slow/blocked endpoint (e.g.
+#      Investing.com throttling fetch-calendar) can NEVER stop the server from
+#      binding. The existing data.json/calendar.json on disk are served right
+#      away; these detached jobs refresh them a few seconds later. (Was
+#      synchronous — a hung fetch left serve.ps1 alive but never listening.)
+Write-Host "[1/3] Initial data fetch (background, non-blocking)..." -ForegroundColor Yellow
 if (Test-Path -LiteralPath $refreshScript) {
-    & powershell -NoProfile -ExecutionPolicy Bypass -File $refreshScript
-} else {
-    Write-Host "  refresh.ps1 missing on this PC (likely AV-quarantined) — skipping market fetch" -ForegroundColor Yellow
-    Write-Host "  Using data.json from last commit on origin/main" -ForegroundColor DarkGray
+    Start-Process powershell -ArgumentList '-NoProfile','-ExecutionPolicy','Bypass','-File',$refreshScript -WorkingDirectory $root -WindowStyle Hidden
 }
 if (Test-Path -LiteralPath $calendarScript) {
-    & powershell -NoProfile -ExecutionPolicy Bypass -File $calendarScript
-} else {
-    Write-Host "  fetch-calendar.ps1 missing — skipping calendar fetch" -ForegroundColor Yellow
+    Start-Process powershell -ArgumentList '-NoProfile','-ExecutionPolicy','Bypass','-File',$calendarScript -WorkingDirectory $root -WindowStyle Hidden
 }
 Write-Host ""
 
@@ -237,10 +240,7 @@ try {
     $listener.Start()
 } catch {
     Write-Host "ERROR: Failed to bind port $Port - $($_.Exception.Message)" -ForegroundColor Red
-    if ($refreshProc -and -not $refreshProc.HasExited) {
-        Stop-Process -Id $refreshProc.Id -Force -ErrorAction SilentlyContinue
-    }
-    Read-Host "Press Enter to exit"
+    Write-Host "  (port likely already owned by another serve.ps1 instance — exiting, NOT waiting)" -ForegroundColor DarkGray
     exit 1
 }
 
