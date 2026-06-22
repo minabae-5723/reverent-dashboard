@@ -477,6 +477,25 @@ try {
                     $res.ContentLength64 = $bytes.Length
                     $res.OutputStream.Write($bytes, 0, $bytes.Length)
                     Write-Host "[$stamp] >>> /save-state key=$($body.key) (total entries=$($entriesHash.Count))" -ForegroundColor Magenta
+
+                    # ── Push-on-save: commit + push user-state.json right now so the
+                    #    edit reaches Cloudflare + the other PC immediately, WITHOUT
+                    #    depending on the RepoSync scheduled task (which sometimes
+                    #    exits 0xC000013A on push in its windowless context). serve.ps1
+                    #    runs in the interactive session where git push is reliable.
+                    #    Response is already sent above, so this only delays connection
+                    #    close, not the user's save.
+                    try {
+                        $env:GIT_TERMINAL_PROMPT = '0'; $env:GCM_INTERACTIVE = 'Never'
+                        & git -C $root add user-state.json 2>&1 | Out-Null
+                        & git -C $root commit -m ("user-state save " + (Get-Date).ToString('yyyy-MM-dd HH:mm')) 2>&1 | Out-Null
+                        if ($LASTEXITCODE -eq 0) {
+                            & git -C $root pull --rebase --autostash origin main 2>&1 | Out-Null
+                            if ($LASTEXITCODE -ne 0) { & git -C $root rebase --abort 2>&1 | Out-Null }
+                            & git -C $root push origin main 2>&1 | Out-Null
+                            Write-Host "[$stamp]     user-state pushed -> origin/main" -ForegroundColor DarkGreen
+                        }
+                    } catch { Write-Host "[$stamp]     push-on-save error: $($_.Exception.Message)" -ForegroundColor DarkYellow }
                 } catch {
                     $res.StatusCode = 400
                     $errMsg = Get-JsonError "save failed: $($_.Exception.Message)"
