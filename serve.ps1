@@ -567,6 +567,26 @@ try {
             }
 
             # On-demand refresh endpoint: market data + calendar
+            # /refresh-market — lightweight market-only refresh + push to Cloudflare,
+            # launched DETACHED so it never blocks the listener (~40s Yahoo fetch).
+            # The dashboard's 5-min auto-refresh timer hits this. Runs as a child of
+            # this interactive serve.ps1, so git push is reliable.
+            if ($relPath -eq '/refresh-market') {
+                $rpm = Join-Path $root 'refresh-push-market.ps1'
+                if (Test-Path -LiteralPath $rpm) {
+                    Start-Process powershell -ArgumentList '-NoProfile','-ExecutionPolicy','Bypass','-File',$rpm -WorkingDirectory $root -WindowStyle Hidden
+                }
+                $msg = '{"ok":true,"started":true}'
+                $bytes = [System.Text.Encoding]::UTF8.GetBytes($msg)
+                $res.ContentType = 'application/json; charset=utf-8'
+                $res.Headers.Add('Cache-Control', 'no-store')
+                $res.ContentLength64 = $bytes.Length
+                $res.OutputStream.Write($bytes, 0, $bytes.Length)
+                Write-Host "[$stamp] >>> /refresh-market (background refresh+push launched)" -ForegroundColor Magenta
+                $res.Close()
+                continue
+            }
+
             if ($relPath -eq '/refresh') {
                 Write-Host "[$stamp] >>> /refresh (market + calendar)..." -ForegroundColor Magenta
                 $sw = [System.Diagnostics.Stopwatch]::StartNew()
