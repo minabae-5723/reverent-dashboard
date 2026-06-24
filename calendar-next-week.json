@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-06-23T23:46:00Z",
-    "updatedKr":  "2026-06-24 08:46:00",
+    "updated":  "2026-06-24T23:50:12Z",
+    "updatedKr":  "2026-06-25 08:50:12",
     "countries":  [
                       "5",
                       "35",
@@ -70,6 +70,36 @@
                        "type":  "preview"
                    },
                    {
+                       "id":  "552150",
+                       "datetime":  "2026/06/29 14:00:00",
+                       "date":  "6/29",
+                       "time":  "14:00",
+                       "flagKey":  "Japan",
+                       "currency":  "JPY",
+                       "importance":  1,
+                       "indicator":  "Housing Starts (YoY)",
+                       "period":  "May",
+                       "actual":  "",
+                       "forecast":  "",
+                       "previous":  "11.4%",
+                       "type":  "preview"
+                   },
+                   {
+                       "id":  "552151",
+                       "datetime":  "2026/06/29 14:00:00",
+                       "date":  "6/29",
+                       "time":  "14:00",
+                       "flagKey":  "Japan",
+                       "currency":  "JPY",
+                       "importance":  1,
+                       "indicator":  "Construction Orders (YoY)",
+                       "period":  "May",
+                       "actual":  "",
+                       "forecast":  "",
+                       "previous":  "-32.3%",
+                       "type":  "preview"
+                   },
+                   {
                        "id":  "551108",
                        "datetime":  "2026/06/29 17:00:00",
                        "date":  "6/29",
@@ -85,18 +115,18 @@
                        "type":  "preview"
                    },
                    {
-                       "id":  "551110",
+                       "id":  "552160",
                        "datetime":  "2026/06/29 17:00:00",
                        "date":  "6/29",
                        "time":  "17:00",
                        "flagKey":  "Europe",
                        "currency":  "EUR",
                        "importance":  1,
-                       "indicator":  "M3 Money Supply",
+                       "indicator":  "Private Sector Loans (YoY)",
                        "period":  "May",
                        "actual":  "",
                        "forecast":  "",
-                       "previous":  "17,433.9B",
+                       "previous":  "3.0%",
                        "type":  "preview"
                    },
                    {
@@ -112,6 +142,21 @@
                        "actual":  "",
                        "forecast":  "",
                        "previous":  "2.7%",
+                       "type":  "preview"
+                   },
+                   {
+                       "id":  "551110",
+                       "datetime":  "2026/06/29 17:00:00",
+                       "date":  "6/29",
+                       "time":  "17:00",
+                       "flagKey":  "Europe",
+                       "currency":  "EUR",
+                       "importance":  1,
+                       "indicator":  "M3 Money Supply",
+                       "period":  "May",
+                       "actual":  "",
+                       "forecast":  "",
+                       "previous":  "17,433.9B",
                        "type":  "preview"
                    },
                    {
@@ -215,8 +260,8 @@
                        "indicator":  "Consumer Confidence",
                        "period":  "Jun",
                        "actual":  "",
-                       "forecast":  "",
-                       "previous":  "-17.7",
+                       "forecast":  "-17.7",
+                       "previous":  "-19.0",
                        "type":  "preview"
                    },
                    {
@@ -232,6 +277,51 @@
                        "actual":  "",
                        "forecast":  "",
                        "previous":  "0.4",
+                       "type":  "preview"
+                   },
+                   {
+                       "id":  "552158",
+                       "datetime":  "2026/06/30 00:30:00",
+                       "date":  "6/30",
+                       "time":  "00:30",
+                       "flagKey":  "United_States",
+                       "currency":  "USD",
+                       "importance":  1,
+                       "indicator":  "6-Month Bill Auction",
+                       "period":  "",
+                       "actual":  "",
+                       "forecast":  "",
+                       "previous":  "3.840%",
+                       "type":  "preview"
+                   },
+                   {
+                       "id":  "552157",
+                       "datetime":  "2026/06/30 00:30:00",
+                       "date":  "6/30",
+                       "time":  "00:30",
+                       "flagKey":  "United_States",
+                       "currency":  "USD",
+                       "importance":  1,
+                       "indicator":  "3-Month Bill Auction",
+                       "period":  "",
+                       "actual":  "",
+                       "forecast":  "",
+                       "previous":  "3.695%",
+                       "type":  "preview"
+                   },
+                   {
+                       "id":  "552163",
+                       "datetime":  "2026/06/30 01:30:00",
+                       "date":  "6/30",
+                       "time":  "01:30",
+                       "flagKey":  "Europe",
+                       "currency":  "EUR",
+                       "importance":  2,
+                       "indicator":  "ECB President Lagarde Speaks",
+                       "period":  "",
+                       "actual":  "",
+                       "forecast":  "",
+                       "previous":  "",
                        "type":  "preview"
                    },
                    {
@@ -370,33 +460,48 @@
                        "type":  "preview"
                    },
                    {
-                       "id":  "550589",
-                       "datetime":  "2026/06/30 14:00:00",
+                       "id":  "552166",
+                       "datetime":  "2026/06/30 12:35:00",
                        "date":  "6/30",
-                       "time":  "14:00",
+                       "time":  "12:35",
                        "flagKey":  "Japan",
                        "currency":  "JPY",
                        "importance":  1,
-                       "indicator":  "Housing Starts (YoY)",
-                       "period":  "May",
+                       "indicator":  "2-Year JGB Auction",
+                       "period":  "",
                        "actual":  "",
                        "forecast":  "",
-                       "previous":  "11.4%",
+                       "previous":  "1.369%",
                        "type":  "preview"
                    },
                    {
-                       "id":  "551165",
-                       "datetime":  "2026/06/30 14:00:00",
+                       "id":  "552189",
+                       "datetime":  "2026/06/30 20:30:00",
                        "date":  "6/30",
-                       "time":  "14:00",
-                       "flagKey":  "Japan",
-                       "currency":  "JPY",
-                       "importance":  1,
-                       "indicator":  "Construction Orders (YoY)",
-                       "period":  "May",
+                       "time":  "20:30",
+                       "flagKey":  "Europe",
+                       "currency":  "EUR",
+                       "importance":  2,
+                       "indicator":  "ECB\u0027s Lane Speaks",
+                       "period":  "",
                        "actual":  "",
                        "forecast":  "",
-                       "previous":  "-32.3%",
+                       "previous":  "",
+                       "type":  "preview"
+                   },
+                   {
+                       "id":  "552192",
+                       "datetime":  "2026/06/30 21:55:00",
+                       "date":  "6/30",
+                       "time":  "21:55",
+                       "flagKey":  "United_States",
+                       "currency":  "USD",
+                       "importance":  1,
+                       "indicator":  "Redbook",
+                       "period":  "YoY",
+                       "actual":  "",
+                       "forecast":  "",
+                       "previous":  "10.0%",
                        "type":  "preview"
                    },
                    {
@@ -415,21 +520,6 @@
                        "type":  "preview"
                    },
                    {
-                       "id":  "551266",
-                       "datetime":  "2026/06/30 22:00:00",
-                       "date":  "6/30",
-                       "time":  "22:00",
-                       "flagKey":  "United_States",
-                       "currency":  "USD",
-                       "importance":  2,
-                       "indicator":  "S\u0026P/CS HPI Composite - 20 n.s.a. (MoM)",
-                       "period":  "Apr",
-                       "actual":  "",
-                       "forecast":  "",
-                       "previous":  "1.0%",
-                       "type":  "preview"
-                   },
-                   {
                        "id":  "551265",
                        "datetime":  "2026/06/30 22:00:00",
                        "date":  "6/30",
@@ -442,6 +532,21 @@
                        "actual":  "",
                        "forecast":  "",
                        "previous":  "0.8%",
+                       "type":  "preview"
+                   },
+                   {
+                       "id":  "551266",
+                       "datetime":  "2026/06/30 22:00:00",
+                       "date":  "6/30",
+                       "time":  "22:00",
+                       "flagKey":  "United_States",
+                       "currency":  "USD",
+                       "importance":  2,
+                       "indicator":  "S\u0026P/CS HPI Composite - 20 n.s.a. (MoM)",
+                       "period":  "Apr",
+                       "actual":  "",
+                       "forecast":  "",
+                       "previous":  "1.0%",
                        "type":  "preview"
                    },
                    {
@@ -565,6 +670,21 @@
                        "type":  "preview"
                    },
                    {
+                       "id":  "552165",
+                       "datetime":  "2026/07/01 05:30:00",
+                       "date":  "7/1",
+                       "time":  "05:30",
+                       "flagKey":  "United_States",
+                       "currency":  "USD",
+                       "importance":  2,
+                       "indicator":  "API Weekly Crude Oil Stock",
+                       "period":  "",
+                       "actual":  "",
+                       "forecast":  "",
+                       "previous":  "-0.765M",
+                       "type":  "preview"
+                   },
+                   {
                        "id":  "551297",
                        "datetime":  "2026/07/01 08:50:00",
                        "date":  "7/1",
@@ -640,18 +760,18 @@
                        "type":  "preview"
                    },
                    {
-                       "id":  "551296",
+                       "id":  "551290",
                        "datetime":  "2026/07/01 08:50:00",
                        "date":  "7/1",
                        "time":  "08:50",
                        "flagKey":  "Japan",
                        "currency":  "JPY",
                        "importance":  1,
-                       "indicator":  "Tankan Large Non-Manufacturers Diffusion Index",
+                       "indicator":  "Tankan All Small Industry CAPEX",
                        "period":  "Q2",
                        "actual":  "",
                        "forecast":  "",
-                       "previous":  "29",
+                       "previous":  "-8.1%",
                        "type":  "preview"
                    },
                    {
@@ -670,33 +790,33 @@
                        "type":  "preview"
                    },
                    {
-                       "id":  "551299",
+                       "id":  "551295",
                        "datetime":  "2026/07/01 08:50:00",
                        "date":  "7/1",
                        "time":  "08:50",
                        "flagKey":  "Japan",
                        "currency":  "JPY",
                        "importance":  2,
-                       "indicator":  "Industrial Production (MoM)",
-                       "period":  "May",
+                       "indicator":  "Tankan Big Manufacturing Outlook Index",
+                       "period":  "Q2",
                        "actual":  "",
                        "forecast":  "",
-                       "previous":  "0.5%",
+                       "previous":  "14",
                        "type":  "preview"
                    },
                    {
-                       "id":  "551290",
+                       "id":  "551296",
                        "datetime":  "2026/07/01 08:50:00",
                        "date":  "7/1",
                        "time":  "08:50",
                        "flagKey":  "Japan",
                        "currency":  "JPY",
                        "importance":  1,
-                       "indicator":  "Tankan All Small Industry CAPEX",
+                       "indicator":  "Tankan Large Non-Manufacturers Diffusion Index",
                        "period":  "Q2",
                        "actual":  "",
                        "forecast":  "",
-                       "previous":  "-8.1%",
+                       "previous":  "29",
                        "type":  "preview"
                    },
                    {
@@ -712,21 +832,6 @@
                        "actual":  "",
                        "forecast":  "",
                        "previous":  "17",
-                       "type":  "preview"
-                   },
-                   {
-                       "id":  "551295",
-                       "datetime":  "2026/07/01 08:50:00",
-                       "date":  "7/1",
-                       "time":  "08:50",
-                       "flagKey":  "Japan",
-                       "currency":  "JPY",
-                       "importance":  2,
-                       "indicator":  "Tankan Big Manufacturing Outlook Index",
-                       "period":  "Q2",
-                       "actual":  "",
-                       "forecast":  "",
-                       "previous":  "14",
                        "type":  "preview"
                    },
                    {
@@ -835,6 +940,21 @@
                        "type":  "preview"
                    },
                    {
+                       "id":  "551395",
+                       "datetime":  "2026/07/01 18:00:00",
+                       "date":  "7/1",
+                       "time":  "18:00",
+                       "flagKey":  "Europe",
+                       "currency":  "EUR",
+                       "importance":  1,
+                       "indicator":  "CPI, n.s.a",
+                       "period":  "Jun",
+                       "actual":  "",
+                       "forecast":  "",
+                       "previous":  "103.13",
+                       "type":  "preview"
+                   },
+                   {
                        "id":  "551396",
                        "datetime":  "2026/07/01 18:00:00",
                        "date":  "7/1",
@@ -850,18 +970,63 @@
                        "type":  "preview"
                    },
                    {
-                       "id":  "551395",
+                       "id":  "552210",
                        "datetime":  "2026/07/01 18:00:00",
                        "date":  "7/1",
                        "time":  "18:00",
                        "flagKey":  "Europe",
                        "currency":  "EUR",
                        "importance":  1,
-                       "indicator":  "CPI, n.s.a",
+                       "indicator":  "HICP ex Energy and Food (MoM)",
                        "period":  "Jun",
                        "actual":  "",
                        "forecast":  "",
-                       "previous":  "103.13",
+                       "previous":  "0.3%",
+                       "type":  "preview"
+                   },
+                   {
+                       "id":  "552209",
+                       "datetime":  "2026/07/01 18:00:00",
+                       "date":  "7/1",
+                       "time":  "18:00",
+                       "flagKey":  "Europe",
+                       "currency":  "EUR",
+                       "importance":  2,
+                       "indicator":  "CPI (MoM)",
+                       "period":  "Jun",
+                       "actual":  "",
+                       "forecast":  "",
+                       "previous":  "0.1%",
+                       "type":  "preview"
+                   },
+                   {
+                       "id":  "552207",
+                       "datetime":  "2026/07/01 18:00:00",
+                       "date":  "7/1",
+                       "time":  "18:00",
+                       "flagKey":  "Europe",
+                       "currency":  "EUR",
+                       "importance":  2,
+                       "indicator":  "Core CPI (YoY)",
+                       "period":  "Jun",
+                       "actual":  "",
+                       "forecast":  "",
+                       "previous":  "2.6%",
+                       "type":  "preview"
+                   },
+                   {
+                       "id":  "552208",
+                       "datetime":  "2026/07/01 18:00:00",
+                       "date":  "7/1",
+                       "time":  "18:00",
+                       "flagKey":  "Europe",
+                       "currency":  "EUR",
+                       "importance":  1,
+                       "indicator":  "Core CPI (MoM)",
+                       "period":  "Jun",
+                       "actual":  "",
+                       "forecast":  "",
+                       "previous":  "0.3%",
                        "type":  "preview"
                    },
                    {
@@ -892,6 +1057,81 @@
                        "actual":  "",
                        "forecast":  "",
                        "previous":  "97.006K",
+                       "type":  "preview"
+                   },
+                   {
+                       "id":  "552278",
+                       "datetime":  "2026/07/01 20:00:00",
+                       "date":  "7/1",
+                       "time":  "20:00",
+                       "flagKey":  "United_States",
+                       "currency":  "USD",
+                       "importance":  1,
+                       "indicator":  "Mortgage Market Index",
+                       "period":  "",
+                       "actual":  "",
+                       "forecast":  "",
+                       "previous":  "272.1",
+                       "type":  "preview"
+                   },
+                   {
+                       "id":  "552279",
+                       "datetime":  "2026/07/01 20:00:00",
+                       "date":  "7/1",
+                       "time":  "20:00",
+                       "flagKey":  "United_States",
+                       "currency":  "USD",
+                       "importance":  1,
+                       "indicator":  "Mortgage Refinance Index",
+                       "period":  "",
+                       "actual":  "",
+                       "forecast":  "",
+                       "previous":  "834.2",
+                       "type":  "preview"
+                   },
+                   {
+                       "id":  "552277",
+                       "datetime":  "2026/07/01 20:00:00",
+                       "date":  "7/1",
+                       "time":  "20:00",
+                       "flagKey":  "United_States",
+                       "currency":  "USD",
+                       "importance":  1,
+                       "indicator":  "MBA Purchase Index",
+                       "period":  "",
+                       "actual":  "",
+                       "forecast":  "",
+                       "previous":  "169.7",
+                       "type":  "preview"
+                   },
+                   {
+                       "id":  "552275",
+                       "datetime":  "2026/07/01 20:00:00",
+                       "date":  "7/1",
+                       "time":  "20:00",
+                       "flagKey":  "United_States",
+                       "currency":  "USD",
+                       "importance":  1,
+                       "indicator":  "MBA 30-Year Mortgage Rate",
+                       "period":  "",
+                       "actual":  "",
+                       "forecast":  "",
+                       "previous":  "6.59%",
+                       "type":  "preview"
+                   },
+                   {
+                       "id":  "552276",
+                       "datetime":  "2026/07/01 20:00:00",
+                       "date":  "7/1",
+                       "time":  "20:00",
+                       "flagKey":  "United_States",
+                       "currency":  "USD",
+                       "importance":  1,
+                       "indicator":  "MBA Mortgage Applications",
+                       "period":  "WoW",
+                       "actual":  "",
+                       "forecast":  "",
+                       "previous":  "1.0%",
                        "type":  "preview"
                    },
                    {
@@ -1057,6 +1297,21 @@
                        "actual":  "",
                        "forecast":  "",
                        "previous":  "-12.3%",
+                       "type":  "preview"
+                   },
+                   {
+                       "id":  "552229",
+                       "datetime":  "2026/07/02 12:35:00",
+                       "date":  "7/2",
+                       "time":  "12:35",
+                       "flagKey":  "Japan",
+                       "currency":  "JPY",
+                       "importance":  2,
+                       "indicator":  "10-Year JGB Auction",
+                       "period":  "",
+                       "actual":  "",
+                       "forecast":  "",
+                       "previous":  "2.649%",
                        "type":  "preview"
                    },
                    {
@@ -1375,6 +1630,36 @@
                        "type":  "preview"
                    },
                    {
+                       "id":  "552239",
+                       "datetime":  "2026/07/03 03:00:00",
+                       "date":  "7/3",
+                       "time":  "03:00",
+                       "flagKey":  "United_States",
+                       "currency":  "USD",
+                       "importance":  1,
+                       "indicator":  "Total Vehicle Sales",
+                       "period":  "Jun",
+                       "actual":  "",
+                       "forecast":  "",
+                       "previous":  "16.10M",
+                       "type":  "preview"
+                   },
+                   {
+                       "id":  "552234",
+                       "datetime":  "2026/07/03 06:00:00",
+                       "date":  "7/3",
+                       "time":  "06:00",
+                       "flagKey":  "South_Korea",
+                       "currency":  "KRW",
+                       "importance":  1,
+                       "indicator":  "FX Reserves - USD",
+                       "period":  "Jun",
+                       "actual":  "",
+                       "forecast":  "",
+                       "previous":  "426.99B",
+                       "type":  "preview"
+                   },
+                   {
                        "id":  "551509",
                        "datetime":  "2026/07/03 09:30:00",
                        "date":  "7/3",
@@ -1385,8 +1670,8 @@
                        "indicator":  "S\u0026P Global Services PMI",
                        "period":  "Jun",
                        "actual":  "",
-                       "forecast":  "",
-                       "previous":  "51.8",
+                       "forecast":  "51.8",
+                       "previous":  "50.0",
                        "type":  "preview"
                    },
                    {
@@ -1400,8 +1685,8 @@
                        "indicator":  "Manufacturing \u0026 Services PMI",
                        "period":  "Jun",
                        "actual":  "",
-                       "forecast":  "",
-                       "previous":  "52.50",
+                       "forecast":  "52.50",
+                       "previous":  "51.10",
                        "type":  "preview"
                    },
                    {
@@ -1415,8 +1700,8 @@
                        "indicator":  "HCOB Eurozone Services PMI",
                        "period":  "Jun",
                        "actual":  "",
-                       "forecast":  "",
-                       "previous":  "48.9",
+                       "forecast":  "48.9",
+                       "previous":  "47.7",
                        "type":  "preview"
                    },
                    {
@@ -1430,8 +1715,8 @@
                        "indicator":  "HCOB Eurozone Composite PMI",
                        "period":  "Jun",
                        "actual":  "",
-                       "forecast":  "",
-                       "previous":  "49.5",
+                       "forecast":  "49.5",
+                       "previous":  "48.5",
                        "type":  "preview"
                    },
                    {
@@ -1462,21 +1747,6 @@
                        "actual":  "",
                        "forecast":  "",
                        "previous":  "",
-                       "type":  "preview"
-                   },
-                   {
-                       "id":  "551586",
-                       "datetime":  "2026/07/04 06:00:00",
-                       "date":  "7/4",
-                       "time":  "06:00",
-                       "flagKey":  "South_Korea",
-                       "currency":  "KRW",
-                       "importance":  1,
-                       "indicator":  "FX Reserves - USD",
-                       "period":  "Jun",
-                       "actual":  "",
-                       "forecast":  "",
-                       "previous":  "426.99B",
                        "type":  "preview"
                    }
                ]
