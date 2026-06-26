@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-06-25T23:52:15Z",
-    "updatedKr":  "2026-06-26 08:52:15",
+    "updated":  "2026-06-26T07:22:08Z",
+    "updatedKr":  "2026-06-26 16:22:08",
     "frozenDow":  "Friday",
     "reviewRange":  "2026-06-22~2026-06-26",
     "previewRange":  "2026-06-29~2026-07-05",
@@ -184,7 +184,7 @@
                          "period":  "Jun",
                          "actual":  "",
                          "forecast":  "55.7",
-                         "previous":  "55.1",
+                         "previous":  "55.7",
                          "type":  "preview"
                      },
                      {

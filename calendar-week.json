@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-06-25T23:52:15Z",
-    "updatedKr":  "2026-06-26 08:52:15",
+    "updated":  "2026-06-26T07:22:07Z",
+    "updatedKr":  "2026-06-26 16:22:07",
     "countries":  [
                       "5",
                       "35",
@@ -1851,7 +1851,7 @@
                        "period":  "Jun",
                        "actual":  "",
                        "forecast":  "48.4",
-                       "previous":  "48.4",
+                       "previous":  "45.8",
                        "type":  "preview"
                    },
                    {
@@ -1896,7 +1896,7 @@
                        "period":  "Jun",
                        "actual":  "",
                        "forecast":  "3.4%",
-                       "previous":  "3.4%",
+                       "previous":  "3.9%",
                        "type":  "preview"
                    },
                    {
