@@ -1,5 +1,5 @@
 {
-    "capturedAt":  "2026-06-26 17:07:34",
+    "capturedAt":  "2026-06-26 17:59:11",
     "capturedDow":  "Friday",
     "rate":  [
                  {
@@ -9,7 +9,7 @@
                      "mom":  7,
                      "ytd":  81,
                      "type":  "bp",
-                     "asOf":  "2026-06-26T06:29:36.725Z",
+                     "asOf":  "2026-06-26T08:42:13.197Z",
                      "ok":  true,
                      "source":  "investing"
                  },
@@ -20,7 +20,7 @@
                      "mom":  7,
                      "ytd":  77,
                      "type":  "bp",
-                     "asOf":  "2026-06-26T06:30:39.462Z",
+                     "asOf":  "2026-06-26T08:41:47.554Z",
                      "ok":  true,
                      "source":  "investing"
                  },
@@ -37,12 +37,12 @@
                  },
                  {
                      "key":  "US2Y",
-                     "current":  4.094,
-                     "wow":  -8,
+                     "current":  4.092,
+                     "wow":  -9,
                      "mom":  5,
                      "ytd":  62,
                      "type":  "bp",
-                     "asOf":  "2026-06-26T08:00:02.006Z",
+                     "asOf":  "2026-06-26T08:50:01.409Z",
                      "ok":  true,
                      "source":  "investing"
                  },
