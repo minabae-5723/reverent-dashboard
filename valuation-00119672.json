@@ -1,0 +1,31 @@
+{
+    "company":  "corp_00119672",
+    "corp_code":  "00119672",
+    "fiscal_period":  "LTM Q1 2026 (FY2025 + Q12026 - Q12025)",
+    "unit":  "100M KRW",
+    "fetched_at":  "2026-06-26 17:01:09",
+    "pnl":  {
+                "revenue":  7954,
+                "operating_income":  375,
+                "depreciation":  null,
+                "ebitda":  null,
+                "net_income":  202
+            },
+    "equity_total":  2851,
+    "debt":  {
+                 "st_borrowings":  503,
+                 "current_lt_borrowings":  null,
+                 "current_lease":  73,
+                 "lt_borrowings":  29,
+                 "nc_lease":  287
+             },
+    "cash":  {
+                 "cash_and_equivalents":  805,
+                 "st_financial_invest":  null
+             },
+    "derived":  {
+                    "total_debt":  892,
+                    "total_cash":  805,
+                    "net_debt":  87
+                }
+}
