@@ -3462,38 +3462,57 @@ function initCardComment(key) {
     if (willOpen) input.focus();
   });
 
-  // Auto-save with 400ms debounce — same UX as macro comment
-  let saveTimer = null;
-  input.addEventListener('input', () => {
-    if (timeEl) timeEl.textContent = '저장 중…';
-    clearTimeout(saveTimer);
-    saveTimer = setTimeout(() => {
+  // FIX-button save (auto-save 제거). FIX 클릭 시 localStorage + user-state.json 저장
+  // → 서버 /save-state 가 commit+push 까지 수행 → GitHub·Cloudflare 자동 반영.
+  // (서버가 켜져 있어야 함 — logon 자동시작으로 보장.)
+  let savedValue = input.value;
+  const setStatus = (t, cls) => {
+    if (!timeEl) return;
+    timeEl.textContent = t;
+    timeEl.classList.remove('dirty', 'saved');
+    if (cls) timeEl.classList.add(cls);
+  };
+  const refreshFix = () => {
+    const dirty = input.value !== savedValue;
+    if (fixBtn) fixBtn.disabled = !dirty;
+    if (dirty) setStatus('● 저장되지 않은 변경', 'dirty');
+  };
+  if (fixBtn) fixBtn.disabled = true;
+
+  input.addEventListener('input', refreshFix);
+  // Ctrl/Cmd+Enter 단축키로도 저장
+  input.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) {
+      e.preventDefault();
+      if (fixBtn && !fixBtn.disabled) fixBtn.click();
+    }
+  });
+
+  if (fixBtn) {
+    fixBtn.addEventListener('click', () => {
       const val = input.value.trim();
+      const now = new Date().toLocaleString('ko-KR', {
+        year: '2-digit', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit',
+      });
       if (val) {
         localStorage.setItem(storageKey, val);
-        const now = new Date().toLocaleString('ko-KR', {
-          year: '2-digit', month: '2-digit', day: '2-digit',
-          hour: '2-digit', minute: '2-digit',
-        });
         localStorage.setItem(timeKey, now);
-        // Mirror to user-state.json so deploy carries the comment everywhere
-        saveUserState(storageKey, val);
+        saveUserState(storageKey, val);   // → POST /save-state → 서버가 commit+push
         saveUserState(timeKey, now);
-        if (timeEl) timeEl.textContent = `✓ Saved · ${now}`;
-        if (badge)  badge.hidden = false;
+        setStatus(`✓ Saved · ${now}`, 'saved');
+        if (badge) badge.hidden = false;
       } else {
         localStorage.removeItem(storageKey);
         localStorage.removeItem(timeKey);
         saveUserState(storageKey, null);
         saveUserState(timeKey, null);
-        if (timeEl) timeEl.textContent = '';
-        if (badge)  badge.hidden = true;
+        setStatus('');
+        if (badge) badge.hidden = true;
       }
-    }, 400);
-  });
-
-  // Hide legacy FIX button — auto-save makes it redundant
-  if (fixBtn) fixBtn.style.display = 'none';
+      savedValue = input.value;
+      fixBtn.disabled = true;
+    });
+  }
 }
 
 function setupSemiconFilters() {
