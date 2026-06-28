@@ -1462,7 +1462,8 @@ html, body {
   color: var(--text);
 }
 
-.event-indicator .period-tag {
+.event-indicator .period-tag,
+.macro-week-grid .period-tag {
   font-size: 10.5px;
   color: var(--text-muted);
   font-weight: 500;

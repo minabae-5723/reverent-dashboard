@@ -200,6 +200,18 @@ function indicatorLabel(name) {
   return INDICATOR_KR[name] || name;
 }
 
+// 지표 기준 월/분기를 한글로 변환 (예: "Jun" → "(6월)", "Q1" → "(1분기)")
+const _MONTH_KO = { Jan:'1월', Feb:'2월', Mar:'3월', Apr:'4월', May:'5월', Jun:'6월',
+  Jul:'7월', Aug:'8월', Sep:'9월', Oct:'10월', Nov:'11월', Dec:'12월' };
+function periodLabelKo(period) {
+  if (!period) return '';
+  const p = String(period).trim();
+  if (_MONTH_KO[p]) return ` <span class="period-tag">(${_MONTH_KO[p]})</span>`;
+  const q = p.match(/^Q([1-4])$/i);
+  if (q) return ` <span class="period-tag">(${q[1]}분기)</span>`;
+  return ` <span class="period-tag">(${p})</span>`;
+}
+
 function importanceStars(n) {
   const filled = Math.min(Math.max(n || 0, 0), 3);
   return '<span class="imp">' + '★'.repeat(filled) + '<span class="imp-dim">' + '☆'.repeat(3 - filled) + '</span></span>';
@@ -337,7 +349,7 @@ function renderMacroSide(tbodyId, events) {
     return `<tr class="${e.type || ''}">
       <td>${countryLabel(e.flagKey, e.currency)}</td>
       <td title="${e.datetime || ''}">${dateTime}</td>
-      <td>${indicatorLabel(e.indicator)} ${importanceStars(e.importance)}</td>
+      <td>${indicatorLabel(e.indicator)}${periodLabelKo(e.period)} ${importanceStars(e.importance)}</td>
       ${actual}
       ${forecast}
       ${previous}

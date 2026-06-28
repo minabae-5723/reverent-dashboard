@@ -188,6 +188,21 @@
                          "type":  "preview"
                      },
                      {
+                         "id":  "551422",
+                         "datetime":  "2026/07/01 23:00:00",
+                         "date":  "7/1",
+                         "time":  "23:00",
+                         "flagKey":  "United_States",
+                         "currency":  "USD",
+                         "importance":  3,
+                         "indicator":  "ISM Manufacturing PMI",
+                         "period":  "Jun",
+                         "actual":  "",
+                         "forecast":  "53.7",
+                         "previous":  "54.0",
+                         "type":  "preview"
+                     },
+                     {
                          "id":  "551475",
                          "datetime":  "2026/07/02 21:30:00",
                          "date":  "7/2",
