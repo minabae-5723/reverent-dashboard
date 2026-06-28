@@ -226,7 +226,23 @@ do {
     # macro events Mon-Thu stay locked to last weekend's snapshot.
     $dow = (Get-Date).DayOfWeek
     $isWeekend = ($dow -eq [System.DayOfWeek]::Friday) -or ($dow -eq [System.DayOfWeek]::Saturday) -or ($dow -eq [System.DayOfWeek]::Sunday)
-    $shouldFreeze = $isWeekend -or (-not (Test-Path $FrozenFile))
+
+    # Preserve manual curation: if a freeze for THIS week already exists, keep it.
+    # Week identity = this-week Monday ($reviewFrom) + next-week Monday ($previewFrom),
+    # both stable across Fri→Sun. The auto-pick below would clobber indicators the
+    # user manually added/removed in the dashboard, so only (re)freeze when the file
+    # is missing OR it's a genuinely NEW week. (The first freeze of the week is the
+    # auto-digest; the user curates it, and weekend restarts no longer overwrite it.)
+    $sameWeek = $false
+    if (Test-Path $FrozenFile) {
+        try {
+            $existingFrozen = Get-Content $FrozenFile -Raw -Encoding UTF8 | ConvertFrom-Json
+            $exRevFrom  = ($existingFrozen.reviewRange  -split '~')[0]
+            $exPrevFrom = ($existingFrozen.previewRange -split '~')[0]
+            if ($exRevFrom -eq $reviewFrom -and $exPrevFrom -eq $previewFrom) { $sameWeek = $true }
+        } catch {}
+    }
+    $shouldFreeze = (-not (Test-Path $FrozenFile)) -or ($isWeekend -and -not $sameWeek)
     if ($shouldFreeze) {
         $weekData = $null; $nextData = $null
         try { $weekData = Get-Content $WeekFile     -Raw -Encoding UTF8 | ConvertFrom-Json } catch {}
@@ -322,7 +338,8 @@ do {
         [System.IO.File]::WriteAllText($FrozenFile, $json, (New-Object System.Text.UTF8Encoding($false)))
         Write-Host ("  frozen:   thisWeek={0} nextWeek={1} -> market-update-frozen.json" -f $thisTop5.Count, $nextTop5.Count) -ForegroundColor Yellow
     } else {
-        Write-Host ("  frozen:   skipped (weekday $dow — last freeze stays)") -ForegroundColor DarkGray
+        $why = if ($sameWeek) { "this week already frozen — manual curation kept" } else { "weekday $dow — last freeze stays" }
+        Write-Host ("  frozen:   skipped ($why)") -ForegroundColor DarkGray
     }
 
     Write-Host ("  done in {0}s" -f $elapsed) -ForegroundColor DarkGray
