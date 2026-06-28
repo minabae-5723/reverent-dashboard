@@ -1993,7 +1993,27 @@ function migrateLocalStorageToUserState() {
       if (parsed !== null && parsed !== undefined) value = parsed;
     } catch { /* keep as string */ }
 
-    // Only push if local has content AND server is empty/missing.
+    // macro-notes-* : union-merge by card id so cards added while the server
+    // was DOWN (localStorage only) still get flushed to user-state.json → git
+    // → Cloudflare on the next load, WITHOUT clobbering cards another PC saved.
+    // (Trade-off: a card deleted offline can be resurrected by the server copy
+    //  — re-delete it once the server is up. Additions never get lost.)
+    if (key.startsWith('macro-notes-')) {
+      const localArr  = Array.isArray(value) ? value : [];
+      const serverArr = Array.isArray(_userStateCache[key]) ? _userStateCache[key] : [];
+      const byId = new Map();
+      serverArr.forEach((c) => { if (c && c.id) byId.set(c.id, c); });
+      localArr.forEach((c)  => { if (c && c.id) byId.set(c.id, c); }); // local = freshest edit here
+      const merged = Array.from(byId.values());
+      if (JSON.stringify(merged) !== JSON.stringify(serverArr)) {
+        try { localStorage.setItem(key, JSON.stringify(merged)); } catch {}
+        saveUserState(key, merged);
+        pushed++;
+      }
+      continue;
+    }
+
+    // Other keys: only push if local has content AND server is empty/missing.
     if (isEmpty(value)) continue;
     if (!isEmpty(_userStateCache[key])) continue; // server already has substantive content
 
