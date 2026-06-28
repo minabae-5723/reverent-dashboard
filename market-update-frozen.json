@@ -1,25 +1,10 @@
 {
-    "updated":  "2026-06-26T07:56:55Z",
-    "updatedKr":  "2026-06-26 16:56:55",
-    "frozenDow":  "Friday",
-    "reviewRange":  "2026-06-22~2026-06-26",
+    "updated":  "2026-06-28T05:04:35Z",
+    "updatedKr":  "2026-06-28 14:04:35",
+    "frozenDow":  "Sunday",
+    "reviewRange":  "2026-06-22~2026-06-28",
     "previewRange":  "2026-06-29~2026-07-05",
     "thisWeek":  [
-                     {
-                         "id":  "550849",
-                         "datetime":  "2026/06/23 22:45:00",
-                         "date":  "6/23",
-                         "time":  "22:45",
-                         "flagKey":  "United_States",
-                         "currency":  "USD",
-                         "importance":  3,
-                         "indicator":  "S\u0026P Global Services PMI",
-                         "period":  "Jun",
-                         "actual":  "51.3",
-                         "forecast":  "51.1",
-                         "previous":  "50.7",
-                         "type":  "review"
-                     },
                      {
                          "id":  "550851",
                          "datetime":  "2026/06/23 22:45:00",
@@ -33,6 +18,21 @@
                          "actual":  "55.7",
                          "forecast":  "54.6",
                          "previous":  "55.1",
+                         "type":  "review"
+                     },
+                     {
+                         "id":  "550849",
+                         "datetime":  "2026/06/23 22:45:00",
+                         "date":  "6/23",
+                         "time":  "22:45",
+                         "flagKey":  "United_States",
+                         "currency":  "USD",
+                         "importance":  3,
+                         "indicator":  "S\u0026P Global Services PMI",
+                         "period":  "Jun",
+                         "actual":  "51.3",
+                         "forecast":  "51.1",
+                         "previous":  "50.7",
                          "type":  "review"
                      },
                      {
@@ -66,18 +66,18 @@
                          "type":  "review"
                      },
                      {
-                         "id":  "550973",
+                         "id":  "550967",
                          "datetime":  "2026/06/25 21:30:00",
                          "date":  "6/25",
                          "time":  "21:30",
                          "flagKey":  "United_States",
                          "currency":  "USD",
                          "importance":  3,
-                         "indicator":  "Durable Goods Orders (MoM)",
-                         "period":  "May",
-                         "actual":  "-4.5%",
-                         "forecast":  "-5.0%",
-                         "previous":  "8.5%",
+                         "indicator":  "GDP (QoQ)",
+                         "period":  "Q1",
+                         "actual":  "2.1%",
+                         "forecast":  "1.6%",
+                         "previous":  "0.5%",
                          "type":  "review"
                      },
                      {
@@ -109,24 +109,24 @@
                          "forecast":  "4.1%",
                          "previous":  "3.8%",
                          "type":  "review"
-                     }
-                 ],
-    "nextWeek":  [
+                     },
                      {
-                         "id":  "551272",
-                         "datetime":  "2026/06/30 22:45:00",
-                         "date":  "6/30",
-                         "time":  "22:45",
+                         "id":  "551050",
+                         "datetime":  "2026/06/26 23:00:00",
+                         "date":  "6/26",
+                         "time":  "23:00",
                          "flagKey":  "United_States",
                          "currency":  "USD",
                          "importance":  3,
-                         "indicator":  "Chicago PMI",
+                         "indicator":  "Michigan Consumer Sentiment",
                          "period":  "Jun",
-                         "actual":  "",
-                         "forecast":  "",
-                         "previous":  "62.7",
-                         "type":  "preview"
-                     },
+                         "actual":  "49.5",
+                         "forecast":  "48.9",
+                         "previous":  "44.8",
+                         "type":  "review"
+                     }
+                 ],
+    "nextWeek":  [
                      {
                          "id":  "551274",
                          "datetime":  "2026/06/30 23:00:00",
@@ -138,7 +138,7 @@
                          "indicator":  "CB Consumer Confidence",
                          "period":  "Jun",
                          "actual":  "",
-                         "forecast":  "",
+                         "forecast":  "94.2",
                          "previous":  "93.1",
                          "type":  "preview"
                      },
@@ -153,7 +153,7 @@
                          "indicator":  "JOLTS Job Openings",
                          "period":  "May",
                          "actual":  "",
-                         "forecast":  "",
+                         "forecast":  "7.280M",
                          "previous":  "7.618M",
                          "type":  "preview"
                      },
@@ -168,7 +168,7 @@
                          "indicator":  "ADP Nonfarm Employment Change",
                          "period":  "Jun",
                          "actual":  "",
-                         "forecast":  "",
+                         "forecast":  "118K",
                          "previous":  "122K",
                          "type":  "preview"
                      },
@@ -188,21 +188,6 @@
                          "type":  "preview"
                      },
                      {
-                         "id":  "551441",
-                         "datetime":  "2026/07/02 08:00:00",
-                         "date":  "7/2",
-                         "time":  "08:00",
-                         "flagKey":  "South_Korea",
-                         "currency":  "KRW",
-                         "importance":  1,
-                         "indicator":  "CPI (YoY)",
-                         "period":  "Jun",
-                         "actual":  "",
-                         "forecast":  "",
-                         "previous":  "3.1%",
-                         "type":  "preview"
-                     },
-                     {
                          "id":  "551475",
                          "datetime":  "2026/07/02 21:30:00",
                          "date":  "7/2",
@@ -213,7 +198,7 @@
                          "indicator":  "Nonfarm Payrolls",
                          "period":  "Jun",
                          "actual":  "",
-                         "forecast":  "",
+                         "forecast":  "114K",
                          "previous":  "172K",
                          "type":  "preview"
                      }
