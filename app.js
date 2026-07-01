@@ -948,7 +948,7 @@ function renderMarketEmpty() {
 //   ## ◆ 시황 코멘트
 //   (paragraphs)
 //   ## ◆ 특징주
-//   ### 종목명 (±X.XX%)
+//   ### 종목명 (TICKER, ±X.XX%)   ← ticker optional; also accepts (TICKER)(±X%) or (±X%)
 //   (body)
 function parseMarketBrief(md) {
   const out = { title: '', meta: '', indices: [], rates: [], fx: [], commentary: '', stocks: [] };
@@ -987,14 +987,27 @@ function parseMarketBrief(md) {
       section = SECTION_MAP[h2[1].trim()] || null;
       continue;
     }
-    // Stock header (### 종목명 (±X.XX%))
+    // Stock header — ticker optional. Supports both:
+    //   ### 종목명 (TICKER, ±X.XX%)   (single paren, comma)
+    //   ### 종목명 (TICKER) (±X.XX%)  (two parens)
+    //   ### 종목명 (±X.XX%)           (change only, legacy)
     const h3 = line.match(/^###\s+(.+?)\s*$/);
     if (h3 && section === 'stocks') {
       if (stockBuf) out.stocks.push(stockBuf);
-      const m = h3[1].match(/^(.+?)\s*\(([+-]?[\d.,]+%?)\)\s*$/);
-      stockBuf = m
-        ? { name: m[1].trim(), change: m[2].trim(), body: [] }
-        : { name: h3[1].trim(), change: '', body: [] };
+      let raw = h3[1].trim();
+      let change = '', ticker = '';
+      // 1) change = signed percentage token, anywhere (supports +, -, unicode minus −)
+      const chAll = raw.match(/[+\-−]\s?[\d.,]+\s?%/g);
+      if (chAll) {
+        change = chAll[chAll.length - 1].replace(/\s+/g, '');
+        raw = raw.replace(chAll[chAll.length - 1], '');
+      }
+      // 2) tidy leftovers: "(SNDK, )" -> "(SNDK)", "()" -> ""
+      raw = raw.replace(/,\s*\)/g, ')').replace(/\(\s*\)/g, '').trim();
+      // 3) ticker = remaining trailing parenthetical (e.g. NVDA, 005930)
+      const tm = raw.match(/^(.*?)\s*\(([^()]+)\)\s*$/);
+      if (tm) { ticker = tm[2].trim().replace(/[,\s]+$/, ''); raw = tm[1].trim(); }
+      stockBuf = { name: raw, ticker, change, body: [] };
       continue;
     }
 
@@ -1047,12 +1060,13 @@ function renderMarketContent(md) {
   const stocksHtml = p.stocks.length === 0 ? '' : `
     <div class="market-brief-stocks">
       ${p.stocks.map(s => {
-        const chgClass = s.change.startsWith('-') ? 'down' : (s.change.startsWith('+') ? 'up' : 'flat');
+        const chgClass = /^[-−]/.test(s.change) ? 'down' : (s.change.startsWith('+') ? 'up' : 'flat');
         const bodyText = s.body.join('\n').trim();
         return `
           <div class="market-stock-card">
             <div class="market-stock-head">
               <span class="market-stock-name">${escapeHtml(s.name)}</span>
+              ${s.ticker ? `<span class="market-stock-ticker">${escapeHtml(s.ticker)}</span>` : ''}
               ${s.change ? `<span class="market-stock-change ${chgClass}">${escapeHtml(s.change)}</span>` : ''}
             </div>
             <div class="market-stock-body">${linkifyInline(bodyText)}</div>
