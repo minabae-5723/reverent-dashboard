@@ -30,7 +30,8 @@ Write-Host ""
 
 foreach ($t in $targets) {
     $tt = $t.Trim()
-    $pattern = "<list>\s*<corp_code>(\d{8})</corp_code>\s*<corp_name>([^<]*" + [regex]::Escape($tt) + "[^<]*)</corp_name>\s*<stock_code>([^<]*)</stock_code>"
+    # (?s) so .*? can cross the intervening <corp_eng_name> field (DART schema)
+    $pattern = "(?s)<list>\s*<corp_code>(\d{8})</corp_code>\s*<corp_name>([^<]*" + [regex]::Escape($tt) + "[^<]*)</corp_name>.*?<stock_code>([^<]*)</stock_code>"
     $mx = [regex]::Matches($raw, $pattern)
     if ($mx.Count -eq 0) {
         Write-Host ("[{0}] -> NO MATCH" -f $tt)
