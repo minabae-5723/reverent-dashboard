@@ -1,0 +1,31 @@
+{
+    "company":  "애큐온캐피탈",
+    "corp_code":  "00595012",
+    "fiscal_period":  "FY2025 Annual (Consolidated)",
+    "unit":  "100M KRW",
+    "fetched_at":  "2026-07-03 18:20:05",
+    "pnl":  {
+                "revenue":  null,
+                "operating_income":  861,
+                "depreciation":  null,
+                "ebitda":  null,
+                "net_income":  656
+            },
+    "equity_total":  12091,
+    "debt":  {
+                 "st_borrowings":  null,
+                 "current_lt_borrowings":  null,
+                 "current_lease":  null,
+                 "lt_borrowings":  null,
+                 "nc_lease":  null
+             },
+    "cash":  {
+                 "cash_and_equivalents":  11,
+                 "st_financial_invest":  null
+             },
+    "derived":  {
+                    "total_debt":  0,
+                    "total_cash":  11,
+                    "net_debt":  -11
+                }
+}

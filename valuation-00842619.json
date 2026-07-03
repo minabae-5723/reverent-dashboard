@@ -1,0 +1,31 @@
+{
+    "company":  "리가켐바이오",
+    "corp_code":  "00842619",
+    "fiscal_period":  "LTM Q1 2026 (FY2025 + Q12026 - Q12025)",
+    "unit":  "100M KRW",
+    "fetched_at":  "2026-07-03 18:19:35",
+    "pnl":  {
+                "revenue":  1259,
+                "operating_income":  -1553,
+                "depreciation":  null,
+                "ebitda":  null,
+                "net_income":  -1513
+            },
+    "equity_total":  5005,
+    "debt":  {
+                 "st_borrowings":  null,
+                 "current_lt_borrowings":  null,
+                 "current_lease":  10,
+                 "lt_borrowings":  null,
+                 "nc_lease":  16
+             },
+    "cash":  {
+                 "cash_and_equivalents":  635,
+                 "st_financial_invest":  null
+             },
+    "derived":  {
+                    "total_debt":  26,
+                    "total_cash":  635,
+                    "net_debt":  -609
+                }
+}

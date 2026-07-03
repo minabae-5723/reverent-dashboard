@@ -1,0 +1,31 @@
+{
+    "company":  "롯데렌탈",
+    "corp_code":  "00545716",
+    "fiscal_period":  "LTM Q1 2026 (FY2025 + Q12026 - Q12025)",
+    "unit":  "100M KRW",
+    "fetched_at":  "2026-07-03 18:19:35",
+    "pnl":  {
+                "revenue":  29640,
+                "operating_income":  3291,
+                "depreciation":  null,
+                "ebitda":  null,
+                "net_income":  1290
+            },
+    "equity_total":  15470,
+    "debt":  {
+                 "st_borrowings":  null,
+                 "current_lt_borrowings":  null,
+                 "current_lease":  183,
+                 "lt_borrowings":  19755,
+                 "nc_lease":  153
+             },
+    "cash":  {
+                 "cash_and_equivalents":  2282,
+                 "st_financial_invest":  null
+             },
+    "derived":  {
+                    "total_debt":  20091,
+                    "total_cash":  2282,
+                    "net_debt":  17809
+                }
+}

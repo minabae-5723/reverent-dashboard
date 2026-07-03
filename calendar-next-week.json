@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-07-02T22:00:47Z",
-    "updatedKr":  "2026-07-03 07:00:47",
+    "updated":  "2026-07-03T22:00:50Z",
+    "updatedKr":  "2026-07-04 07:00:50",
     "countries":  [
                       "5",
                       "35",
@@ -217,6 +217,21 @@
                        "actual":  "",
                        "forecast":  "",
                        "previous":  "47.9",
+                       "type":  "preview"
+                   },
+                   {
+                       "id":  "552809",
+                       "datetime":  "2026/07/07 00:00:00",
+                       "date":  "7/7",
+                       "time":  "00:00",
+                       "flagKey":  "United_States",
+                       "currency":  "USD",
+                       "importance":  2,
+                       "indicator":  "Fed Waller Speaks",
+                       "period":  "",
+                       "actual":  "",
+                       "forecast":  "",
+                       "previous":  "",
                        "type":  "preview"
                    },
                    {
@@ -456,7 +471,7 @@
                        "period":  "May",
                        "actual":  "",
                        "forecast":  "",
-                       "previous":  "3.6%",
+                       "previous":  "3.5%",
                        "type":  "preview"
                    },
                    {
@@ -605,7 +620,7 @@
                        "indicator":  "Trade Balance",
                        "period":  "May",
                        "actual":  "",
-                       "forecast":  "",
+                       "forecast":  "-78.80B",
                        "previous":  "-55.90B",
                        "type":  "preview"
                    },
@@ -1165,6 +1180,21 @@
                        "type":  "preview"
                    },
                    {
+                       "id":  "552812",
+                       "datetime":  "2026/07/09 08:50:00",
+                       "date":  "7/9",
+                       "time":  "08:50",
+                       "flagKey":  "Japan",
+                       "currency":  "JPY",
+                       "importance":  1,
+                       "indicator":  "M2 Money Stock",
+                       "period":  "YoY",
+                       "actual":  "",
+                       "forecast":  "",
+                       "previous":  "2.5%",
+                       "type":  "preview"
+                   },
+                   {
                        "id":  "551813",
                        "datetime":  "2026/07/09 08:50:00",
                        "date":  "7/9",
@@ -1180,21 +1210,6 @@
                        "type":  "preview"
                    },
                    {
-                       "id":  "552738",
-                       "datetime":  "2026/07/09 08:50:00",
-                       "date":  "7/9",
-                       "time":  "08:50",
-                       "flagKey":  "Japan",
-                       "currency":  "JPY",
-                       "importance":  1,
-                       "indicator":  "Foreign Investments in Japanese Stocks",
-                       "period":  "",
-                       "actual":  "",
-                       "forecast":  "",
-                       "previous":  "-1,816.5B",
-                       "type":  "preview"
-                   },
-                   {
                        "id":  "552737",
                        "datetime":  "2026/07/09 08:50:00",
                        "date":  "7/9",
@@ -1207,6 +1222,21 @@
                        "actual":  "",
                        "forecast":  "",
                        "previous":  "-280.1B",
+                       "type":  "preview"
+                   },
+                   {
+                       "id":  "552738",
+                       "datetime":  "2026/07/09 08:50:00",
+                       "date":  "7/9",
+                       "time":  "08:50",
+                       "flagKey":  "Japan",
+                       "currency":  "JPY",
+                       "importance":  1,
+                       "indicator":  "Foreign Investments in Japanese Stocks",
+                       "period":  "",
+                       "actual":  "",
+                       "forecast":  "",
+                       "previous":  "-1,816.5B",
                        "type":  "preview"
                    },
                    {
@@ -1281,7 +1311,7 @@
                        "period":  "",
                        "actual":  "",
                        "forecast":  "",
-                       "previous":  "",
+                       "previous":  "222.00K",
                        "type":  "preview"
                    },
                    {
@@ -1296,7 +1326,7 @@
                        "period":  "",
                        "actual":  "",
                        "forecast":  "",
-                       "previous":  "",
+                       "previous":  "215K",
                        "type":  "preview"
                    },
                    {
@@ -1311,7 +1341,7 @@
                        "period":  "",
                        "actual":  "",
                        "forecast":  "",
-                       "previous":  "",
+                       "previous":  "1,814K",
                        "type":  "preview"
                    },
                    {
@@ -1355,7 +1385,7 @@
                        "indicator":  "Existing Home Sales",
                        "period":  "Jun",
                        "actual":  "",
-                       "forecast":  "",
+                       "forecast":  "4.20M",
                        "previous":  "4.17M",
                        "type":  "preview"
                    },
@@ -1371,7 +1401,7 @@
                        "period":  "",
                        "actual":  "",
                        "forecast":  "",
-                       "previous":  "",
+                       "previous":  "87B",
                        "type":  "preview"
                    },
                    {
@@ -1386,7 +1416,7 @@
                        "period":  "",
                        "actual":  "",
                        "forecast":  "",
-                       "previous":  "",
+                       "previous":  "3.650%",
                        "type":  "preview"
                    },
                    {
@@ -1401,7 +1431,22 @@
                        "period":  "",
                        "actual":  "",
                        "forecast":  "",
-                       "previous":  "",
+                       "previous":  "3.605%",
+                       "type":  "preview"
+                   },
+                   {
+                       "id":  "552813",
+                       "datetime":  "2026/07/10 02:01:00",
+                       "date":  "7/10",
+                       "time":  "02:01",
+                       "flagKey":  "United_States",
+                       "currency":  "USD",
+                       "importance":  3,
+                       "indicator":  "30-Year Bond Auction",
+                       "period":  "",
+                       "actual":  "",
+                       "forecast":  "",
+                       "previous":  "5.050%",
                        "type":  "preview"
                    },
                    {
@@ -1521,7 +1566,7 @@
                        "period":  "",
                        "actual":  "",
                        "forecast":  "",
-                       "previous":  "",
+                       "previous":  "580",
                        "type":  "preview"
                    },
                    {
@@ -1536,7 +1581,7 @@
                        "period":  "",
                        "actual":  "",
                        "forecast":  "",
-                       "previous":  "",
+                       "previous":  "445",
                        "type":  "preview"
                    }
                ]
