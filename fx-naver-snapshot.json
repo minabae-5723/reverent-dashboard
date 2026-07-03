@@ -1,34 +1,34 @@
 {
-    "updated":  "2026-07-03T16:30:36+09:00",
+    "updated":  "2026-07-03T18:11:26+09:00",
     "source":  "finance.naver.com exchangeDailyQuote (Seoul 留ㅻℓ湲곗???",
     "fx":  {
                "USDKRW":  {
-                              "current":  1528.7,
-                              "wow":  -0.57,
-                              "mom":  -1.97,
-                              "ytd":  5.39,
+                              "current":  1529.5,
+                              "wow":  -0.52,
+                              "mom":  -1.92,
+                              "ytd":  5.45,
                               "asOf":  "2026-07-03",
                               "prevDate":  "2026-06-26"
                           },
                "USDJPY":  {
-                              "current":  160.735,
-                              "wow":  -0.65,
-                              "mom":  0.3,
-                              "ytd":  2.65,
+                              "current":  161.015,
+                              "wow":  -0.48,
+                              "mom":  0.47,
+                              "ytd":  2.84,
                               "asOf":  "2026-07-03"
                           },
                "USDCNY":  {
-                              "current":  6.784,
+                              "current":  6.7839,
                               "wow":  -0.26,
                               "mom":  -0.11,
                               "ytd":  -3.24,
                               "asOf":  "2026-07-03"
                           },
                "USDEUR":  {
-                              "current":  0.8729,
-                              "wow":  -0.62,
-                              "mom":  0.49,
-                              "ytd":  2,
+                              "current":  0.8734,
+                              "wow":  -0.57,
+                              "mom":  0.54,
+                              "ytd":  2.06,
                               "asOf":  "2026-07-03"
                           }
            }

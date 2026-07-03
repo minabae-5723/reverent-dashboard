@@ -1,5 +1,5 @@
 {
-    "capturedAt":  "2026-07-03 16:31:07",
+    "capturedAt":  "2026-07-03 18:14:22",
     "capturedDow":  "Friday",
     "rate":  [
                  {
@@ -9,7 +9,7 @@
                      "mom":  -2,
                      "ytd":  83,
                      "type":  "bp",
-                     "asOf":  "2026-07-03T06:30:37.172Z",
+                     "asOf":  "2026-07-03T08:42:09.7Z",
                      "ok":  true,
                      "source":  "investing"
                  },
@@ -20,7 +20,7 @@
                      "mom":  7,
                      "ytd":  83,
                      "type":  "bp",
-                     "asOf":  "2026-07-03T06:29:37.974Z",
+                     "asOf":  "2026-07-03T08:42:16.387Z",
                      "ok":  true,
                      "source":  "investing"
                  },

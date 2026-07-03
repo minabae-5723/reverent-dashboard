@@ -6,7 +6,7 @@
 #    powershell -ExecutionPolicy Bypass -File .\refresh.ps1
 #    powershell -ExecutionPolicy Bypass -File .\refresh.ps1 -Loop
 # =============================================================
-param([switch]$Loop)
+param([switch]$Loop, [string]$AnchorDate)
 
 $ErrorActionPreference = 'Continue'
 $UserAgent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
@@ -574,8 +574,16 @@ do {
 
     # Compute the global Friday anchor ONCE per run so every market (KR/US/CN)
     # freezes to the same fully-closed Friday close.
-    $script:AnchorFriday = Get-AnchorFridayDate
-    Write-Host ("  Anchor Friday: {0:yyyy-MM-dd}" -f $script:AnchorFriday) -ForegroundColor DarkGray
+    # -AnchorDate overrides for holiday weeks where the US Friday session never
+    # opens (e.g. July 4): anchoring to that Friday makes each market's freeze
+    # pick its last available bar (US -> Thursday, KR -> Friday).
+    if ($AnchorDate) {
+        $script:AnchorFriday = [DateTime]::Parse($AnchorDate)
+        Write-Host ("  Anchor Friday (override): {0:yyyy-MM-dd}" -f $script:AnchorFriday) -ForegroundColor Yellow
+    } else {
+        $script:AnchorFriday = Get-AnchorFridayDate
+        Write-Host ("  Anchor Friday: {0:yyyy-MM-dd}" -f $script:AnchorFriday) -ForegroundColor DarkGray
+    }
 
     # Build rate group in user-requested order:
     #   KR3Y → KR10Y → CD91 → US2Y → US10Y → US30Y
