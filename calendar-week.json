@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-07-03T22:00:50Z",
-    "updatedKr":  "2026-07-04 07:00:50",
+    "updated":  "2026-07-04T22:00:46Z",
+    "updatedKr":  "2026-07-05 07:00:46",
     "countries":  [
                       "5",
                       "35",
@@ -2343,6 +2343,21 @@
                        "currency":  "EUR",
                        "importance":  2,
                        "indicator":  "ECB President Lagarde Speaks",
+                       "period":  "",
+                       "actual":  "",
+                       "forecast":  "",
+                       "previous":  "",
+                       "type":  "preview"
+                   },
+                   {
+                       "id":  "552868",
+                       "datetime":  "2026/07/05 19:00:00",
+                       "date":  "7/5",
+                       "time":  "19:00",
+                       "flagKey":  "United_States",
+                       "currency":  "USD",
+                       "importance":  2,
+                       "indicator":  "OPEC Meeting",
                        "period":  "",
                        "actual":  "",
                        "forecast":  "",

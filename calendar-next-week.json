@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-07-03T22:00:50Z",
-    "updatedKr":  "2026-07-04 07:00:50",
+    "updated":  "2026-07-04T22:00:46Z",
+    "updatedKr":  "2026-07-05 07:00:46",
     "countries":  [
                       "5",
                       "35",
@@ -35,7 +35,7 @@
                        "indicator":  "Sentix Investor Confidence",
                        "period":  "Jul",
                        "actual":  "",
-                       "forecast":  "",
+                       "forecast":  "-8.9",
                        "previous":  "-13.4",
                        "type":  "preview"
                    },
@@ -50,7 +50,7 @@
                        "indicator":  "Retail Sales (MoM)",
                        "period":  "May",
                        "actual":  "",
-                       "forecast":  "",
+                       "forecast":  "0.2%",
                        "previous":  "-0.4%",
                        "type":  "preview"
                    },
@@ -65,7 +65,7 @@
                        "indicator":  "Retail Sales (YoY)",
                        "period":  "May",
                        "actual":  "",
-                       "forecast":  "",
+                       "forecast":  "1.5%",
                        "previous":  "1.0%",
                        "type":  "preview"
                    },
@@ -80,7 +80,7 @@
                        "indicator":  "PPI (MoM)",
                        "period":  "May",
                        "actual":  "",
-                       "forecast":  "",
+                       "forecast":  "0.2%",
                        "previous":  "0.6%",
                        "type":  "preview"
                    },
@@ -95,7 +95,7 @@
                        "indicator":  "PPI (YoY)",
                        "period":  "May",
                        "actual":  "",
-                       "forecast":  "",
+                       "forecast":  "5.7%",
                        "previous":  "4.9%",
                        "type":  "preview"
                    },
@@ -111,7 +111,7 @@
                        "period":  "Jun",
                        "actual":  "",
                        "forecast":  "51.3",
-                       "previous":  "50.7",
+                       "previous":  "51.3",
                        "type":  "preview"
                    },
                    {
@@ -126,7 +126,7 @@
                        "period":  "Jun",
                        "actual":  "",
                        "forecast":  "52.2",
-                       "previous":  "51.5",
+                       "previous":  "52.2",
                        "type":  "preview"
                    },
                    {
@@ -155,7 +155,7 @@
                        "indicator":  "ISM Non-Manufacturing PMI",
                        "period":  "Jun",
                        "actual":  "",
-                       "forecast":  "",
+                       "forecast":  "54.2",
                        "previous":  "54.5",
                        "type":  "preview"
                    },
@@ -220,6 +220,21 @@
                        "type":  "preview"
                    },
                    {
+                       "id":  "552864",
+                       "datetime":  "2026/07/07 00:00:00",
+                       "date":  "7/7",
+                       "time":  "00:00",
+                       "flagKey":  "Europe",
+                       "currency":  "EUR",
+                       "importance":  2,
+                       "indicator":  "ECB\u0027s Schnabel Speaks",
+                       "period":  "",
+                       "actual":  "",
+                       "forecast":  "",
+                       "previous":  "",
+                       "type":  "preview"
+                   },
+                   {
                        "id":  "552809",
                        "datetime":  "2026/07/07 00:00:00",
                        "date":  "7/7",
@@ -262,6 +277,36 @@
                        "actual":  "",
                        "forecast":  "",
                        "previous":  "3.740%",
+                       "type":  "preview"
+                   },
+                   {
+                       "id":  "552866",
+                       "datetime":  "2026/07/07 01:00:00",
+                       "date":  "7/7",
+                       "time":  "01:00",
+                       "flagKey":  "Europe",
+                       "currency":  "EUR",
+                       "importance":  2,
+                       "indicator":  "ECB President Lagarde Speaks",
+                       "period":  "",
+                       "actual":  "",
+                       "forecast":  "",
+                       "previous":  "",
+                       "type":  "preview"
+                   },
+                   {
+                       "id":  "552865",
+                       "datetime":  "2026/07/07 03:30:00",
+                       "date":  "7/7",
+                       "time":  "03:30",
+                       "flagKey":  "Europe",
+                       "currency":  "EUR",
+                       "importance":  2,
+                       "indicator":  "ECB\u0027s Lane Speaks",
+                       "period":  "",
+                       "actual":  "",
+                       "forecast":  "",
+                       "previous":  "",
                        "type":  "preview"
                    },
                    {
@@ -470,8 +515,8 @@
                        "indicator":  "Overall wage income of employees",
                        "period":  "May",
                        "actual":  "",
-                       "forecast":  "",
-                       "previous":  "3.5%",
+                       "forecast":  "3.4%",
+                       "previous":  "3.6%",
                        "type":  "preview"
                    },
                    {
@@ -486,7 +531,7 @@
                        "period":  "May",
                        "actual":  "",
                        "forecast":  "",
-                       "previous":  "4.20%",
+                       "previous":  "4.80%",
                        "type":  "preview"
                    },
                    {
@@ -500,7 +545,7 @@
                        "indicator":  "Household Spending (YoY)",
                        "period":  "May",
                        "actual":  "",
-                       "forecast":  "",
+                       "forecast":  "-2.2%",
                        "previous":  "-0.5%",
                        "type":  "preview"
                    },
@@ -515,7 +560,7 @@
                        "indicator":  "Household Spending (MoM)",
                        "period":  "May",
                        "actual":  "",
-                       "forecast":  "",
+                       "forecast":  "1.4%",
                        "previous":  "1.6%",
                        "type":  "preview"
                    },
@@ -575,7 +620,7 @@
                        "indicator":  "Leading Index",
                        "period":  "May",
                        "actual":  "",
-                       "forecast":  "",
+                       "forecast":  "116.9",
                        "previous":  "116.1",
                        "type":  "preview"
                    },
@@ -620,7 +665,7 @@
                        "indicator":  "Trade Balance",
                        "period":  "May",
                        "actual":  "",
-                       "forecast":  "-78.80B",
+                       "forecast":  "-78.50B",
                        "previous":  "-55.90B",
                        "type":  "preview"
                    },
@@ -680,7 +725,7 @@
                        "indicator":  "IBD/TIPP Economic Optimism",
                        "period":  "Jul",
                        "actual":  "",
-                       "forecast":  "",
+                       "forecast":  "45.0",
                        "previous":  "42.5",
                        "type":  "preview"
                    },
@@ -800,7 +845,7 @@
                        "indicator":  "Current Account n.s.a.",
                        "period":  "May",
                        "actual":  "",
-                       "forecast":  "",
+                       "forecast":  "4.121T",
                        "previous":  "3.908T",
                        "type":  "preview"
                    },
@@ -815,7 +860,7 @@
                        "indicator":  "Bank Lending (YoY)",
                        "period":  "Jun",
                        "actual":  "",
-                       "forecast":  "",
+                       "forecast":  "5.8%",
                        "previous":  "5.7%",
                        "type":  "preview"
                    },
@@ -830,8 +875,8 @@
                        "indicator":  "Adjusted Current Account",
                        "period":  "May",
                        "actual":  "",
-                       "forecast":  "",
-                       "previous":  "4.21T",
+                       "forecast":  "3.19T",
+                       "previous":  "421.11T",
                        "type":  "preview"
                    },
                    {
@@ -845,7 +890,7 @@
                        "indicator":  "Economy Watchers Current Index",
                        "period":  "Jun",
                        "actual":  "",
-                       "forecast":  "",
+                       "forecast":  "44.6",
                        "previous":  "43.6",
                        "type":  "preview"
                    },
@@ -951,7 +996,7 @@
                        "period":  "May",
                        "actual":  "",
                        "forecast":  "0.3%",
-                       "previous":  "0.6%",
+                       "previous":  "0.3%",
                        "type":  "preview"
                    },
                    {
@@ -1175,7 +1220,7 @@
                        "indicator":  "Consumer Credit",
                        "period":  "May",
                        "actual":  "",
-                       "forecast":  "",
+                       "forecast":  "17.60B",
                        "previous":  "20.73B",
                        "type":  "preview"
                    },
@@ -1190,7 +1235,7 @@
                        "indicator":  "M2 Money Stock",
                        "period":  "YoY",
                        "actual":  "",
-                       "forecast":  "",
+                       "forecast":  "2.4%",
                        "previous":  "2.5%",
                        "type":  "preview"
                    },
@@ -1325,7 +1370,7 @@
                        "indicator":  "Initial Jobless Claims",
                        "period":  "",
                        "actual":  "",
-                       "forecast":  "",
+                       "forecast":  "218K",
                        "previous":  "215K",
                        "type":  "preview"
                    },
@@ -1450,6 +1495,21 @@
                        "type":  "preview"
                    },
                    {
+                       "id":  "552867",
+                       "datetime":  "2026/07/10 02:30:00",
+                       "date":  "7/10",
+                       "time":  "02:30",
+                       "flagKey":  "United_States",
+                       "currency":  "USD",
+                       "importance":  1,
+                       "indicator":  "Fed Logan Speaks",
+                       "period":  "",
+                       "actual":  "",
+                       "forecast":  "",
+                       "previous":  "",
+                       "type":  "preview"
+                   },
+                   {
                        "id":  "551905",
                        "datetime":  "2026/07/10 08:50:00",
                        "date":  "7/10",
@@ -1460,7 +1520,7 @@
                        "indicator":  "PPI (MoM)",
                        "period":  "Jun",
                        "actual":  "",
-                       "forecast":  "",
+                       "forecast":  "0.3%",
                        "previous":  "0.9%",
                        "type":  "preview"
                    },
@@ -1475,7 +1535,7 @@
                        "indicator":  "PPI (YoY)",
                        "period":  "Jun",
                        "actual":  "",
-                       "forecast":  "",
+                       "forecast":  "6.8%",
                        "previous":  "6.3%",
                        "type":  "preview"
                    },
