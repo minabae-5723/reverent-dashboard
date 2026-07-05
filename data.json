@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-07-05T06:57:31Z",
-    "updatedKr":  "2026-07-05 15:57:31",
+    "updated":  "2026-07-05T22:00:06Z",
+    "updatedKr":  "2026-07-06 07:00:06",
     "index":  [
                   {
                       "key":  "KOSPI",
@@ -60,7 +60,7 @@
                   {
                       "key":  "SHANGHAI",
                       "symbol":  "000001.SS",
-                      "current":  4043.6433,
+                      "current":  4043.643,
                       "wow":  0.41,
                       "mom":  0.39,
                       "ytd":  0.5,
@@ -107,34 +107,24 @@
                      "key":  "US2Y",
                      "current":  4.131,
                      "wow":  4,
-                     "mom":  -3,
+                     "mom":  8,
                      "ytd":  66,
                      "type":  "bp",
-                     "asOf":  "2026-07-05T01:35:29.691Z",
+                     "asOf":  "2026-07-04T01:35:23.875Z",
                      "ok":  true,
                      "source":  "investing"
                  },
                  {
                      "key":  "US10Y",
                      "symbol":  "^TNX",
-                     "current":  4.485,
-                     "wow":  9,
-                     "mom":  -5,
-                     "ytd":  30,
-                     "type":  "bp",
-                     "asOf":  "2026-07-03T03:59:56",
-                     "ok":  true
+                     "ok":  false,
+                     "error":  "fetch failed"
                  },
                  {
                      "key":  "US30Y",
                      "symbol":  "^TYX",
-                     "current":  4.985,
-                     "wow":  13,
-                     "mom":  -1,
-                     "ytd":  12,
-                     "type":  "bp",
-                     "asOf":  "2026-07-03T03:59:56",
-                     "ok":  true
+                     "ok":  false,
+                     "error":  "fetch failed"
                  }
              ],
     "commodity":  [
