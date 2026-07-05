@@ -338,10 +338,30 @@ function Get-YahooChart {
     param([string]$Symbol)
 
     $encoded = [System.Web.HttpUtility]::UrlEncode($Symbol)
-    $url = "https://query1.finance.yahoo.com/v8/finance/chart/${encoded}?interval=1d&range=1y"
+
+    # Yahoo rate-limits request bursts with HTTP 404. Retry with exponential
+    # backoff (alternating query1/query2 hosts) so a transient throttle doesn't
+    # drop the symbol — previously a single 404 wrote ok=false and wiped the
+    # last-good value (whole S&P sector group vanished on 2026-07-05).
+    $yfHosts = @('query1.finance.yahoo.com', 'query2.finance.yahoo.com')
+    $maxAttempts = 4
+    $r = $null
+    for ($attempt = 1; $attempt -le $maxAttempts; $attempt++) {
+        $h = $yfHosts[($attempt - 1) % $yfHosts.Count]
+        $url = "https://$h/v8/finance/chart/${encoded}?interval=1d&range=1y"
+        try {
+            $r = Invoke-RestMethod -Uri $url -UserAgent $UserAgent -TimeoutSec 15
+            break
+        } catch {
+            if ($attempt -eq $maxAttempts) {
+                Write-Warning ("YF fail [{0}] after {1} tries: {2}" -f $Symbol, $maxAttempts, $_.Exception.Message)
+                return $null
+            }
+            Start-Sleep -Milliseconds ([int](500 * [math]::Pow(2, $attempt - 1)))  # 500 / 1000 / 2000ms
+        }
+    }
 
     try {
-        $r = Invoke-RestMethod -Uri $url -UserAgent $UserAgent -TimeoutSec 15
         if (-not $r.chart -or -not $r.chart.result) { return $null }
 
         $result = $r.chart.result[0]
@@ -523,7 +543,7 @@ function Get-Changes {
 }
 
 function Fetch-Group {
-    param([array]$Items, [bool]$FreezeFriday = $false)
+    param([array]$Items, [bool]$FreezeFriday = $false, [array]$Previous = @())
 
     $rows = @()
     foreach ($item in $Items) {
@@ -545,11 +565,31 @@ function Fetch-Group {
                 ok      = $true
             }
         } else {
-            $rows += [PSCustomObject]@{
-                key    = $item.key
-                symbol = $item.symbol
-                ok     = $false
-                error  = 'fetch failed'
+            # Fetch failed (e.g. Yahoo rate-limit). Carry forward the last-good
+            # value from the previous data.json instead of blanking it with
+            # ok=false — a transient throttle must never wipe a real close.
+            $prev = $Previous | Where-Object { $_.key -eq $item.key -and $_.ok } | Select-Object -First 1
+            if ($prev) {
+                $rows += [PSCustomObject]@{
+                    key     = $item.key
+                    symbol  = $item.symbol
+                    current = $prev.current
+                    wow     = $prev.wow
+                    mom     = $prev.mom
+                    ytd     = $prev.ytd
+                    type    = $prev.type
+                    asOf    = $prev.asOf
+                    ok      = $true
+                    stale   = $true   # value carried from prior run (fetch failed this run)
+                }
+                Write-Warning ("  carry-forward [{0}] (fetch failed, kept {1})" -f $item.key, $prev.current)
+            } else {
+                $rows += [PSCustomObject]@{
+                    key    = $item.key
+                    symbol = $item.symbol
+                    ok     = $false
+                    error  = 'fetch failed'
+                }
             }
         }
         Start-Sleep -Milliseconds 80
@@ -685,6 +725,14 @@ do {
         Write-Host ("  Rate/CDS live (no freeze yet — will lock next Fri/Sat/Sun)") -ForegroundColor DarkGray
     }
 
+    # Previous data.json — source for carry-forward when a fetch fails this run.
+    $prevData = $null
+    if (Test-Path $DataFile) {
+        try { $prevData = Get-Content $DataFile -Raw -Encoding UTF8 | ConvertFrom-Json } catch {}
+    }
+    $prevIndex  = if ($prevData -and $prevData.index)  { @($prevData.index)  } else { @() }
+    $prevSector = if ($prevData -and $prevData.sector) { @($prevData.sector) } else { @() }
+
     $output = [ordered]@{
         updated   = $start.ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ")
         updatedKr = $start.ToString('yyyy-MM-dd HH:mm:ss')
@@ -693,12 +741,12 @@ do {
         # indices show the latest US close, Shanghai its own — each on its own
         # exchange clock. (User rule: "index는 각 거래소 종가 기준 매일 갱신".
         # Rate/FX/CDS/sector/commodity stay Friday-frozen; index does not.)
-        index     = @(Fetch-Group $INSTRUMENTS.index -FreezeFriday $false)
+        index     = @(Fetch-Group $INSTRUMENTS.index -FreezeFriday $false -Previous $prevIndex)
         rate      = $rateOrdered
         commodity = @(_FetchCommodities)
         fx        = $fxRows
         cds       = $cdsRows
-        sector    = @(Fetch-Group $INSTRUMENTS.sector -FreezeFriday $true)
+        sector    = @(Fetch-Group $INSTRUMENTS.sector -FreezeFriday $true -Previous $prevSector)
     }
 
     $json = $output | ConvertTo-Json -Depth 8

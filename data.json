@@ -117,14 +117,24 @@
                  {
                      "key":  "US10Y",
                      "symbol":  "^TNX",
-                     "ok":  false,
-                     "error":  "fetch failed"
+                     "current":  4.485,
+                     "wow":  3,
+                     "mom":  -1,
+                     "ytd":  30,
+                     "type":  "bp",
+                     "asOf":  "2026-07-03T03:59:56",
+                     "ok":  true
                  },
                  {
                      "key":  "US30Y",
                      "symbol":  "^TYX",
-                     "ok":  false,
-                     "error":  "fetch failed"
+                     "current":  4.985,
+                     "wow":  8,
+                     "mom":  0,
+                     "ytd":  12,
+                     "type":  "bp",
+                     "asOf":  "2026-07-03T03:59:56",
+                     "ok":  true
                  }
              ],
     "commodity":  [
@@ -262,56 +272,101 @@
                    {
                        "key":  "IT",
                        "symbol":  "^SP500-45",
-                       "ok":  false,
-                       "error":  "fetch failed"
+                       "current":  6509.3901,
+                       "wow":  0,
+                       "mom":  -1.99,
+                       "ytd":  14.47,
+                       "type":  "pct",
+                       "asOf":  "2026-06-26",
+                       "ok":  true
                    },
                    {
                        "key":  "HEALTHCARE",
                        "symbol":  "^SP500-35",
-                       "ok":  false,
-                       "error":  "fetch failed"
+                       "current":  1873.49,
+                       "wow":  0,
+                       "mom":  5.26,
+                       "ytd":  3.29,
+                       "type":  "pct",
+                       "asOf":  "2026-06-26",
+                       "ok":  true
                    },
                    {
                        "key":  "DISCRET",
                        "symbol":  "^SP500-25",
-                       "ok":  false,
-                       "error":  "fetch failed"
+                       "current":  1855.95,
+                       "wow":  0,
+                       "mom":  -1.22,
+                       "ytd":  -2.65,
+                       "type":  "pct",
+                       "asOf":  "2026-06-26",
+                       "ok":  true
                    },
                    {
                        "key":  "INDUSTRIALS",
                        "symbol":  "^SP500-20",
-                       "ok":  false,
-                       "error":  "fetch failed"
+                       "current":  1535.36,
+                       "wow":  0,
+                       "mom":  4.31,
+                       "ytd":  14.76,
+                       "type":  "pct",
+                       "asOf":  "2026-06-26",
+                       "ok":  true
                    },
                    {
                        "key":  "STAPLES",
                        "symbol":  "^SP500-30",
-                       "ok":  false,
-                       "error":  "fetch failed"
+                       "current":  941.09,
+                       "wow":  0,
+                       "mom":  1.17,
+                       "ytd":  8.98,
+                       "type":  "pct",
+                       "asOf":  "2026-06-26",
+                       "ok":  true
                    },
                    {
                        "key":  "ENERGY",
                        "symbol":  "^GSPE",
-                       "ok":  false,
-                       "error":  "fetch failed"
+                       "current":  821.19,
+                       "wow":  0,
+                       "mom":  -6.25,
+                       "ytd":  17.03,
+                       "type":  "pct",
+                       "asOf":  "2026-06-26",
+                       "ok":  true
                    },
                    {
                        "key":  "FINANCIALS",
                        "symbol":  "^SP500-40",
-                       "ok":  false,
-                       "error":  "fetch failed"
+                       "current":  893.1,
+                       "wow":  0,
+                       "mom":  2.9,
+                       "ytd":  -2.24,
+                       "type":  "pct",
+                       "asOf":  "2026-06-26",
+                       "ok":  true
                    },
                    {
                        "key":  "MATERIALS",
                        "symbol":  "^SP500-15",
-                       "ok":  false,
-                       "error":  "fetch failed"
+                       "current":  646.63,
+                       "wow":  0,
+                       "mom":  2.47,
+                       "ytd":  10.9,
+                       "type":  "pct",
+                       "asOf":  "2026-06-26",
+                       "ok":  true
                    },
                    {
                        "key":  "UTILITIES",
                        "symbol":  "^SP500-55",
-                       "ok":  false,
-                       "error":  "fetch failed"
+                       "current":  469.87,
+                       "wow":  0,
+                       "mom":  4.81,
+                       "ytd":  7.04,
+                       "type":  "pct",
+                       "asOf":  "2026-06-26",
+                       "ok":  true
                    },
                    {
                        "key":  "REALESTATE",
@@ -327,8 +382,13 @@
                    {
                        "key":  "COMM",
                        "symbol":  "^SP500-50",
-                       "ok":  false,
-                       "error":  "fetch failed"
+                       "current":  440.67,
+                       "wow":  0,
+                       "mom":  -7.01,
+                       "ytd":  -2.22,
+                       "type":  "pct",
+                       "asOf":  "2026-06-26",
+                       "ok":  true
                    }
                ]
 }
