@@ -1,8 +1,8 @@
 {
-    "updated":  "2026-07-05T22:00:55Z",
-    "updatedKr":  "2026-07-06 07:00:55",
+    "updated":  "2026-07-05T23:30:11Z",
+    "updatedKr":  "2026-07-06 08:30:11",
     "source":  "data.go.kr #15101609 (愿?몄껌 ?덈ぉ蹂??섏텧?낆떎??GW)",
-    "range":  "2025-2026",
+    "range":  "2026-2026",
     "ssd":  [
                 {
                     "month":  "2007-01",
@@ -2100,6 +2100,15 @@
                     "expDlrRaw":  3970886988,
                     "impDlrRaw":  235344322,
                     "impWgtRaw":  231408
+                },
+                {
+                    "month":  "2026-06",
+                    "value":  5158,
+                    "weight":  244096,
+                    "unitPrice":  21131,
+                    "expDlrRaw":  5158000000,
+                    "impDlrRaw":  0,
+                    "impWgtRaw":  0
                 }
             ],
     "nand":  [
@@ -4199,6 +4208,15 @@
                      "expDlrRaw":  1721738700,
                      "impDlrRaw":  272467758,
                      "impWgtRaw":  12289
+                 },
+                 {
+                     "month":  "2026-06",
+                     "value":  2486,
+                     "weight":  40023,
+                     "unitPrice":  62115,
+                     "expDlrRaw":  2486000000,
+                     "impDlrRaw":  0,
+                     "impWgtRaw":  0
                  }
              ],
     "dram":  [
@@ -6298,6 +6316,15 @@
                      "expDlrRaw":  11428031617,
                      "impDlrRaw":  1065577200,
                      "impWgtRaw":  33963
+                 },
+                 {
+                     "month":  "2026-06",
+                     "value":  11176,
+                     "weight":  149638,
+                     "unitPrice":  74687,
+                     "expDlrRaw":  11176000000,
+                     "impDlrRaw":  0,
+                     "impWgtRaw":  0
                  }
              ]
 }
