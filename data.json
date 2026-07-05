@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-07-05T01:54:46Z",
-    "updatedKr":  "2026-07-05 10:54:46",
+    "updated":  "2026-07-05T03:11:56Z",
+    "updatedKr":  "2026-07-05 12:11:56",
     "index":  [
                   {
                       "key":  "KOSPI",
@@ -71,48 +71,39 @@
               ],
     "rate":  [
                  {
+                     "mom":  21,
+                     "current":  3.56,
+                     "static":  true,
+                     "ok":  true,
                      "key":  "KR3Y",
-                     "current":  3.752,
-                     "wow":  3,
-                     "mom":  -10,
-                     "ytd":  83,
                      "type":  "bp",
-                     "asOf":  "2026-07-04T08:42:05.65Z",
-                     "ok":  true,
-                     "source":  "investing"
+                     "wow":  -3,
+                     "ytd":  63
                  },
                  {
+                     "mom":  23,
+                     "current":  3.91,
+                     "static":  true,
+                     "ok":  true,
                      "key":  "KR10Y",
-                     "current":  4.196,
-                     "wow":  8,
-                     "mom":  -3,
-                     "ytd":  83,
                      "type":  "bp",
-                     "asOf":  "2026-07-04T08:42:12.015Z",
-                     "ok":  true,
-                     "source":  "investing"
+                     "wow":  7,
+                     "ytd":  53
                  },
                  {
+                     "mom":  -1,
+                     "current":  2.81,
+                     "static":  true,
+                     "ok":  true,
                      "key":  "CD91",
-                     "current":  2.92,
-                     "wow":  0,
-                     "mom":  6,
-                     "ytd":  11,
                      "type":  "bp",
-                     "asOf":  "2026-07-02",
-                     "ok":  true,
-                     "source":  "naver-mobile"
+                     "wow":  0,
+                     "ytd":  4
                  },
                  {
+                     "ok":  false,
                      "key":  "US2Y",
-                     "current":  4.131,
-                     "wow":  4,
-                     "mom":  -3,
-                     "ytd":  66,
-                     "type":  "bp",
-                     "asOf":  "2026-07-05T01:35:29.691Z",
-                     "ok":  true,
-                     "source":  "investing"
+                     "error":  "Investing fetch failed"
                  },
                  {
                      "key":  "US10Y",
@@ -176,10 +167,10 @@
                       {
                           "key":  "WHEAT",
                           "symbol":  "ZW=F",
-                          "current":  590.5,
-                          "wow":  2.12,
-                          "mom":  1.81,
-                          "ytd":  16.58,
+                          "current":  600.25,
+                          "wow":  3.8,
+                          "mom":  3.49,
+                          "ytd":  18.51,
                           "type":  "pct",
                           "asOf":  "2026-07-02",
                           "ok":  true
