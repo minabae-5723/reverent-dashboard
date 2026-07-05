@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-07-05T05:11:57Z",
-    "updatedKr":  "2026-07-05 14:11:57",
+    "updated":  "2026-07-05T06:07:04Z",
+    "updatedKr":  "2026-07-05 15:07:04",
     "index":  [
                   {
                       "key":  "KOSPI",
@@ -82,14 +82,15 @@
                      "source":  "investing"
                  },
                  {
-                     "mom":  23,
-                     "current":  3.91,
-                     "static":  true,
-                     "ok":  true,
                      "key":  "KR10Y",
+                     "current":  4.196,
+                     "wow":  8,
+                     "mom":  -3,
+                     "ytd":  83,
                      "type":  "bp",
-                     "wow":  7,
-                     "ytd":  53
+                     "asOf":  "2026-07-04T08:42:12.015Z",
+                     "ok":  true,
+                     "source":  "investing"
                  },
                  {
                      "key":  "CD91",
