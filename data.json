@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-07-05T01:52:25Z",
-    "updatedKr":  "2026-07-05 10:52:25",
+    "updated":  "2026-07-05T01:54:46Z",
+    "updatedKr":  "2026-07-05 10:54:46",
     "index":  [
                   {
                       "key":  "KOSPI",
@@ -60,7 +60,7 @@
                   {
                       "key":  "SHANGHAI",
                       "symbol":  "000001.SS",
-                      "current":  4043.643,
+                      "current":  4043.6433,
                       "wow":  0.41,
                       "mom":  0.39,
                       "ytd":  0.5,
@@ -117,14 +117,26 @@
                  {
                      "key":  "US10Y",
                      "symbol":  "^TNX",
-                     "ok":  false,
-                     "error":  "fetch failed"
+                     "current":  4.485,
+                     "wow":  3,
+                     "mom":  -1,
+                     "ytd":  30,
+                     "type":  "bp",
+                     "asOf":  "2026-07-03T03:59:56",
+                     "ok":  true,
+                     "stale":  true
                  },
                  {
                      "key":  "US30Y",
                      "symbol":  "^TYX",
-                     "ok":  false,
-                     "error":  "fetch failed"
+                     "current":  4.985,
+                     "wow":  8,
+                     "mom":  0,
+                     "ytd":  12,
+                     "type":  "bp",
+                     "asOf":  "2026-07-03T03:59:56",
+                     "ok":  true,
+                     "stale":  true
                  }
              ],
     "commodity":  [
