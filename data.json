@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-07-05T06:07:04Z",
-    "updatedKr":  "2026-07-05 15:07:04",
+    "updated":  "2026-07-05T06:11:04Z",
+    "updatedKr":  "2026-07-05 15:11:04",
     "index":  [
                   {
                       "key":  "KOSPI",
@@ -82,15 +82,14 @@
                      "source":  "investing"
                  },
                  {
-                     "key":  "KR10Y",
-                     "current":  4.196,
-                     "wow":  8,
-                     "mom":  -3,
-                     "ytd":  83,
-                     "type":  "bp",
-                     "asOf":  "2026-07-04T08:42:12.015Z",
+                     "mom":  23,
+                     "current":  3.91,
+                     "static":  true,
                      "ok":  true,
-                     "source":  "investing"
+                     "key":  "KR10Y",
+                     "type":  "bp",
+                     "wow":  7,
+                     "ytd":  53
                  },
                  {
                      "key":  "CD91",
@@ -118,25 +117,23 @@
                      "key":  "US10Y",
                      "symbol":  "^TNX",
                      "current":  4.485,
-                     "wow":  3,
-                     "mom":  -1,
+                     "wow":  9,
+                     "mom":  -5,
                      "ytd":  30,
                      "type":  "bp",
                      "asOf":  "2026-07-03T03:59:56",
-                     "ok":  true,
-                     "stale":  true
+                     "ok":  true
                  },
                  {
                      "key":  "US30Y",
                      "symbol":  "^TYX",
                      "current":  4.985,
-                     "wow":  8,
-                     "mom":  0,
+                     "wow":  13,
+                     "mom":  -1,
                      "ytd":  12,
                      "type":  "bp",
                      "asOf":  "2026-07-03T03:59:56",
-                     "ok":  true,
-                     "stale":  true
+                     "ok":  true
                  }
              ],
     "commodity":  [
