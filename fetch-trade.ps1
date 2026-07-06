@@ -36,7 +36,7 @@ $HS_CODES = @(
     @{ key = 'ssd';  hs = '8523511000'; name = 'SSD'  }   # 기록이 안 된 매체 (solid-state non-volatile storage)
     @{ key = 'nand'; hs = '8542321030'; name = 'NAND' }   # 메모리(낸드플래시)
     @{ key = 'dram'; hs = '8542321010'; name = 'DRAM' }   # 메모리(디램, 칩만)
-    @{ key = 'mcp';  hs = '8542313000'; name = 'MCP'  }   # MCP (multi-chip package, HBM 포함)
+    @{ key = 'mcp';  hs = '8542323000'; name = 'MCP'  }   # MCP (multi-chip package / HBM, 8542.32-3000)
 )
 
 $baseUrl = 'http://apis.data.go.kr/1220000/Itemtrade/getItemtradeList'

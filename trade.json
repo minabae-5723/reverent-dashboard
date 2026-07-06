@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-07-06T01:40:33Z",
-    "updatedKr":  "2026-07-06 10:40:33",
+    "updated":  "2026-07-06T02:11:16Z",
+    "updatedKr":  "2026-07-06 11:11:16",
     "source":  "data.go.kr #15101609 (愿?몄껌 ?덈ぉ蹂??섏텧?낆떎??GW)",
     "range":  "2007-2026",
     "ssd":  [
@@ -6330,2100 +6330,2100 @@
     "mcp":  [
                 {
                     "month":  "2007-01",
-                    "value":  18,
-                    "weight":  4143,
-                    "unitPrice":  4230,
-                    "expDlrRaw":  17524906,
-                    "impDlrRaw":  97913812,
-                    "impWgtRaw":  17518
+                    "value":  265,
+                    "weight":  67256,
+                    "unitPrice":  3943.12,
+                    "expDlrRaw":  265198761,
+                    "impDlrRaw":  75787298,
+                    "impWgtRaw":  13088
                 },
                 {
                     "month":  "2007-02",
-                    "value":  45,
-                    "weight":  13340,
-                    "unitPrice":  3354.51,
-                    "expDlrRaw":  44749200,
-                    "impDlrRaw":  75853124,
-                    "impWgtRaw":  19630
+                    "value":  307,
+                    "weight":  78995,
+                    "unitPrice":  3882.18,
+                    "expDlrRaw":  306672519,
+                    "impDlrRaw":  67339689,
+                    "impWgtRaw":  10829
                 },
                 {
                     "month":  "2007-03",
-                    "value":  57,
-                    "weight":  15870,
-                    "unitPrice":  3610.36,
-                    "expDlrRaw":  57296348,
-                    "impDlrRaw":  86645931,
-                    "impWgtRaw":  19823
+                    "value":  354,
+                    "weight":  82520,
+                    "unitPrice":  4288.25,
+                    "expDlrRaw":  353866513,
+                    "impDlrRaw":  72586433,
+                    "impWgtRaw":  9736
                 },
                 {
                     "month":  "2007-04",
-                    "value":  49,
-                    "weight":  12616,
-                    "unitPrice":  3905.06,
-                    "expDlrRaw":  49266290,
-                    "impDlrRaw":  89476129,
-                    "impWgtRaw":  20590
+                    "value":  339,
+                    "weight":  66371,
+                    "unitPrice":  5105.51,
+                    "expDlrRaw":  338857968,
+                    "impDlrRaw":  82690435,
+                    "impWgtRaw":  11612
                 },
                 {
                     "month":  "2007-05",
-                    "value":  69,
-                    "weight":  16731,
-                    "unitPrice":  4150.99,
-                    "expDlrRaw":  69450198,
-                    "impDlrRaw":  66914726,
-                    "impWgtRaw":  22688
+                    "value":  406,
+                    "weight":  64340,
+                    "unitPrice":  6309.6,
+                    "expDlrRaw":  405959425,
+                    "impDlrRaw":  63180485,
+                    "impWgtRaw":  9329
                 },
                 {
                     "month":  "2007-06",
-                    "value":  91,
-                    "weight":  22306,
-                    "unitPrice":  4085.46,
-                    "expDlrRaw":  91130192,
-                    "impDlrRaw":  81123294,
-                    "impWgtRaw":  18354
+                    "value":  486,
+                    "weight":  77327,
+                    "unitPrice":  6291.32,
+                    "expDlrRaw":  486488693,
+                    "impDlrRaw":  65117492,
+                    "impWgtRaw":  9726
                 },
                 {
                     "month":  "2007-07",
-                    "value":  118,
-                    "weight":  41743,
-                    "unitPrice":  2832.25,
-                    "expDlrRaw":  118226445,
-                    "impDlrRaw":  94135032,
-                    "impWgtRaw":  19892
+                    "value":  491,
+                    "weight":  77764,
+                    "unitPrice":  6316.09,
+                    "expDlrRaw":  491164306,
+                    "impDlrRaw":  65488894,
+                    "impWgtRaw":  12920
                 },
                 {
                     "month":  "2007-08",
-                    "value":  94,
-                    "weight":  38714,
-                    "unitPrice":  2420.16,
-                    "expDlrRaw":  93694242,
-                    "impDlrRaw":  77713656,
-                    "impWgtRaw":  19276
+                    "value":  507,
+                    "weight":  74632,
+                    "unitPrice":  6794.66,
+                    "expDlrRaw":  507098744,
+                    "impDlrRaw":  83562692,
+                    "impWgtRaw":  14795
                 },
                 {
                     "month":  "2007-09",
-                    "value":  111,
-                    "weight":  36679,
-                    "unitPrice":  3020.27,
-                    "expDlrRaw":  110780392,
-                    "impDlrRaw":  73876939,
-                    "impWgtRaw":  18407
+                    "value":  553,
+                    "weight":  78739,
+                    "unitPrice":  7022.17,
+                    "expDlrRaw":  552918812,
+                    "impDlrRaw":  88482021,
+                    "impWgtRaw":  14592
                 },
                 {
                     "month":  "2007-10",
-                    "value":  162,
-                    "weight":  50427,
-                    "unitPrice":  3215,
-                    "expDlrRaw":  162122731,
-                    "impDlrRaw":  97717646,
-                    "impWgtRaw":  20801
+                    "value":  674,
+                    "weight":  97910,
+                    "unitPrice":  6884.18,
+                    "expDlrRaw":  674030125,
+                    "impDlrRaw":  97470206,
+                    "impWgtRaw":  18427
                 },
                 {
                     "month":  "2007-11",
-                    "value":  165,
-                    "weight":  45551,
-                    "unitPrice":  3621.74,
-                    "expDlrRaw":  164973951,
-                    "impDlrRaw":  84304543,
-                    "impWgtRaw":  16296
+                    "value":  629,
+                    "weight":  108055,
+                    "unitPrice":  5822.41,
+                    "expDlrRaw":  629140915,
+                    "impDlrRaw":  92726576,
+                    "impWgtRaw":  15299
                 },
                 {
                     "month":  "2007-12",
-                    "value":  143,
-                    "weight":  41706,
-                    "unitPrice":  3426.12,
-                    "expDlrRaw":  142889870,
-                    "impDlrRaw":  61264629,
-                    "impWgtRaw":  12728
+                    "value":  458,
+                    "weight":  109813,
+                    "unitPrice":  4170.18,
+                    "expDlrRaw":  457940275,
+                    "impDlrRaw":  62861925,
+                    "impWgtRaw":  9544
                 },
                 {
                     "month":  "2008-01",
-                    "value":  92,
-                    "weight":  35153,
-                    "unitPrice":  2602.94,
-                    "expDlrRaw":  91501058,
-                    "impDlrRaw":  83236014,
-                    "impWgtRaw":  21247
+                    "value":  371,
+                    "weight":  89233,
+                    "unitPrice":  4155.26,
+                    "expDlrRaw":  370785904,
+                    "impDlrRaw":  88829219,
+                    "impWgtRaw":  18283
                 },
                 {
                     "month":  "2008-02",
-                    "value":  83,
-                    "weight":  35893,
-                    "unitPrice":  2317.55,
-                    "expDlrRaw":  83183786,
-                    "impDlrRaw":  71296144,
-                    "impWgtRaw":  17076
+                    "value":  341,
+                    "weight":  77527,
+                    "unitPrice":  4398.4,
+                    "expDlrRaw":  340994659,
+                    "impDlrRaw":  125599934,
+                    "impWgtRaw":  20911
                 },
                 {
                     "month":  "2008-03",
-                    "value":  105,
-                    "weight":  47224,
-                    "unitPrice":  2213.42,
-                    "expDlrRaw":  104526646,
-                    "impDlrRaw":  79234801,
-                    "impWgtRaw":  18544
+                    "value":  452,
+                    "weight":  114876,
+                    "unitPrice":  3936.28,
+                    "expDlrRaw":  452183665,
+                    "impDlrRaw":  87184127,
+                    "impWgtRaw":  15013
                 },
                 {
                     "month":  "2008-04",
-                    "value":  94,
-                    "weight":  37028,
-                    "unitPrice":  2542.41,
-                    "expDlrRaw":  94140496,
-                    "impDlrRaw":  99049136,
-                    "impWgtRaw":  22905
+                    "value":  437,
+                    "weight":  91331,
+                    "unitPrice":  4783.42,
+                    "expDlrRaw":  436874956,
+                    "impDlrRaw":  77248107,
+                    "impWgtRaw":  11895
                 },
                 {
                     "month":  "2008-05",
-                    "value":  102,
-                    "weight":  42353,
-                    "unitPrice":  2419.75,
-                    "expDlrRaw":  102483536,
-                    "impDlrRaw":  83240956,
-                    "impWgtRaw":  18237
+                    "value":  453,
+                    "weight":  94172,
+                    "unitPrice":  4806.6,
+                    "expDlrRaw":  452647299,
+                    "impDlrRaw":  89476185,
+                    "impWgtRaw":  13061
                 },
                 {
                     "month":  "2008-06",
-                    "value":  121,
-                    "weight":  45229,
-                    "unitPrice":  2680.68,
-                    "expDlrRaw":  121244582,
-                    "impDlrRaw":  73676673,
-                    "impWgtRaw":  14354
+                    "value":  443,
+                    "weight":  97987,
+                    "unitPrice":  4520.5,
+                    "expDlrRaw":  442950037,
+                    "impDlrRaw":  90364018,
+                    "impWgtRaw":  16361
                 },
                 {
                     "month":  "2008-07",
-                    "value":  141,
-                    "weight":  43575,
-                    "unitPrice":  3244.86,
-                    "expDlrRaw":  141394796,
-                    "impDlrRaw":  88100183,
-                    "impWgtRaw":  15680
+                    "value":  386,
+                    "weight":  103894,
+                    "unitPrice":  3719.17,
+                    "expDlrRaw":  386399082,
+                    "impDlrRaw":  50915955,
+                    "impWgtRaw":  19457
                 },
                 {
                     "month":  "2008-08",
-                    "value":  168,
-                    "weight":  46227,
-                    "unitPrice":  3637.13,
-                    "expDlrRaw":  168133667,
-                    "impDlrRaw":  68983623,
-                    "impWgtRaw":  13686
+                    "value":  356,
+                    "weight":  98994,
+                    "unitPrice":  3591.73,
+                    "expDlrRaw":  355559830,
+                    "impDlrRaw":  80806804,
+                    "impWgtRaw":  17876
                 },
                 {
                     "month":  "2008-09",
-                    "value":  201,
-                    "weight":  51873,
-                    "unitPrice":  3869.48,
-                    "expDlrRaw":  200721406,
-                    "impDlrRaw":  90039615,
-                    "impWgtRaw":  15349
+                    "value":  398,
+                    "weight":  112923,
+                    "unitPrice":  3524.43,
+                    "expDlrRaw":  397989771,
+                    "impDlrRaw":  113045255,
+                    "impWgtRaw":  21152
                 },
                 {
                     "month":  "2008-10",
-                    "value":  154,
-                    "weight":  46954,
-                    "unitPrice":  3275.29,
-                    "expDlrRaw":  153788167,
-                    "impDlrRaw":  87710944,
-                    "impWgtRaw":  12738
+                    "value":  362,
+                    "weight":  88320,
+                    "unitPrice":  4100,
+                    "expDlrRaw":  362112440,
+                    "impDlrRaw":  64087192,
+                    "impWgtRaw":  11375
                 },
                 {
                     "month":  "2008-11",
-                    "value":  115,
-                    "weight":  33494,
-                    "unitPrice":  3429.95,
-                    "expDlrRaw":  114882581,
-                    "impDlrRaw":  50606860,
-                    "impWgtRaw":  9341
+                    "value":  251,
+                    "weight":  69491,
+                    "unitPrice":  3607.92,
+                    "expDlrRaw":  250718245,
+                    "impDlrRaw":  59767924,
+                    "impWgtRaw":  11580
                 },
                 {
                     "month":  "2008-12",
-                    "value":  99,
-                    "weight":  27179,
-                    "unitPrice":  3639.9,
-                    "expDlrRaw":  98928848,
-                    "impDlrRaw":  34567418,
-                    "impWgtRaw":  6582
+                    "value":  137,
+                    "weight":  45096,
+                    "unitPrice":  3040.86,
+                    "expDlrRaw":  137130479,
+                    "impDlrRaw":  26403715,
+                    "impWgtRaw":  8485
                 },
                 {
                     "month":  "2009-01",
-                    "value":  132,
-                    "weight":  25393,
-                    "unitPrice":  5180.79,
-                    "expDlrRaw":  131555750,
-                    "impDlrRaw":  67345777,
-                    "impWgtRaw":  14778
+                    "value":  148,
+                    "weight":  47165,
+                    "unitPrice":  3131.89,
+                    "expDlrRaw":  147715443,
+                    "impDlrRaw":  31749220,
+                    "impWgtRaw":  9897
                 },
                 {
                     "month":  "2009-02",
-                    "value":  107,
-                    "weight":  29544,
-                    "unitPrice":  3625.45,
-                    "expDlrRaw":  107110152,
-                    "impDlrRaw":  71861956,
-                    "impWgtRaw":  17235
+                    "value":  214,
+                    "weight":  54262,
+                    "unitPrice":  3935.09,
+                    "expDlrRaw":  213526122,
+                    "impDlrRaw":  43281063,
+                    "impWgtRaw":  10727
                 },
                 {
                     "month":  "2009-03",
-                    "value":  127,
-                    "weight":  30723,
-                    "unitPrice":  4142.02,
-                    "expDlrRaw":  127255240,
-                    "impDlrRaw":  72595418,
-                    "impWgtRaw":  15963
+                    "value":  215,
+                    "weight":  60204,
+                    "unitPrice":  3566.78,
+                    "expDlrRaw":  214734513,
+                    "impDlrRaw":  57270644,
+                    "impWgtRaw":  12991
                 },
                 {
                     "month":  "2009-04",
-                    "value":  258,
-                    "weight":  39311,
-                    "unitPrice":  6552.62,
-                    "expDlrRaw":  257590203,
-                    "impDlrRaw":  70582332,
-                    "impWgtRaw":  19478
+                    "value":  273,
+                    "weight":  76295,
+                    "unitPrice":  3582.99,
+                    "expDlrRaw":  273364603,
+                    "impDlrRaw":  55603517,
+                    "impWgtRaw":  11837
                 },
                 {
                     "month":  "2009-05",
-                    "value":  201,
-                    "weight":  47162,
-                    "unitPrice":  4264.11,
-                    "expDlrRaw":  201103991,
-                    "impDlrRaw":  83156480,
-                    "impWgtRaw":  17397
-                },
-                {
-                    "month":  "2009-06",
-                    "value":  216,
-                    "weight":  58627,
-                    "unitPrice":  3685.74,
-                    "expDlrRaw":  216083729,
-                    "impDlrRaw":  72818192,
-                    "impWgtRaw":  13740
-                },
-                {
-                    "month":  "2009-07",
-                    "value":  210,
-                    "weight":  57458,
-                    "unitPrice":  3654.46,
-                    "expDlrRaw":  209977708,
-                    "impDlrRaw":  79338877,
-                    "impWgtRaw":  13715
-                },
-                {
-                    "month":  "2009-08",
-                    "value":  225,
-                    "weight":  60589,
-                    "unitPrice":  3719.09,
-                    "expDlrRaw":  225336019,
-                    "impDlrRaw":  57902987,
-                    "impWgtRaw":  8068
-                },
-                {
-                    "month":  "2009-09",
-                    "value":  293,
-                    "weight":  65891,
-                    "unitPrice":  4453.44,
-                    "expDlrRaw":  293441375,
-                    "impDlrRaw":  63206741,
-                    "impWgtRaw":  11971
-                },
-                {
-                    "month":  "2009-10",
-                    "value":  335,
-                    "weight":  71621,
-                    "unitPrice":  4681.7,
-                    "expDlrRaw":  335307923,
-                    "impDlrRaw":  44001984,
-                    "impWgtRaw":  8811
-                },
-                {
-                    "month":  "2009-11",
-                    "value":  332,
-                    "weight":  66909,
-                    "unitPrice":  4959.11,
-                    "expDlrRaw":  331808776,
-                    "impDlrRaw":  45715687,
-                    "impWgtRaw":  7566
-                },
-                {
-                    "month":  "2009-12",
-                    "value":  254,
-                    "weight":  58315,
-                    "unitPrice":  4353.55,
-                    "expDlrRaw":  253877414,
-                    "impDlrRaw":  37688777,
-                    "impWgtRaw":  8430
-                },
-                {
-                    "month":  "2010-01",
-                    "value":  182,
-                    "weight":  47552,
-                    "unitPrice":  3829.64,
-                    "expDlrRaw":  182106927,
-                    "impDlrRaw":  50099517,
-                    "impWgtRaw":  10702
-                },
-                {
-                    "month":  "2010-02",
-                    "value":  197,
-                    "weight":  43593,
-                    "unitPrice":  4528.72,
-                    "expDlrRaw":  197420312,
-                    "impDlrRaw":  36800943,
-                    "impWgtRaw":  7407
-                },
-                {
-                    "month":  "2010-03",
-                    "value":  264,
-                    "weight":  57509,
-                    "unitPrice":  4585.91,
-                    "expDlrRaw":  263731235,
-                    "impDlrRaw":  37532225,
-                    "impWgtRaw":  6894
-                },
-                {
-                    "month":  "2010-04",
-                    "value":  260,
-                    "weight":  72909,
-                    "unitPrice":  3566.89,
-                    "expDlrRaw":  260058517,
-                    "impDlrRaw":  30264047,
-                    "impWgtRaw":  6734
-                },
-                {
-                    "month":  "2010-05",
-                    "value":  286,
-                    "weight":  54349,
-                    "unitPrice":  5260.98,
-                    "expDlrRaw":  285928818,
-                    "impDlrRaw":  38700265,
-                    "impWgtRaw":  6742
-                },
-                {
-                    "month":  "2010-06",
-                    "value":  268,
-                    "weight":  49865,
-                    "unitPrice":  5366.29,
-                    "expDlrRaw":  267590158,
-                    "impDlrRaw":  46575570,
-                    "impWgtRaw":  7810
-                },
-                {
-                    "month":  "2010-07",
-                    "value":  290,
-                    "weight":  52121,
-                    "unitPrice":  5568.75,
-                    "expDlrRaw":  290248736,
-                    "impDlrRaw":  35364241,
-                    "impWgtRaw":  6906
-                },
-                {
-                    "month":  "2010-08",
-                    "value":  335,
-                    "weight":  59334,
-                    "unitPrice":  5644.26,
-                    "expDlrRaw":  334896676,
-                    "impDlrRaw":  25189117,
-                    "impWgtRaw":  5896
-                },
-                {
-                    "month":  "2010-09",
-                    "value":  389,
-                    "weight":  63388,
-                    "unitPrice":  6129.91,
-                    "expDlrRaw":  388562947,
-                    "impDlrRaw":  26923388,
-                    "impWgtRaw":  5280
-                },
-                {
-                    "month":  "2010-10",
-                    "value":  422,
-                    "weight":  65587,
-                    "unitPrice":  6426.85,
-                    "expDlrRaw":  421517739,
-                    "impDlrRaw":  22616211,
-                    "impWgtRaw":  4920
-                },
-                {
-                    "month":  "2010-11",
-                    "value":  477,
-                    "weight":  69970,
-                    "unitPrice":  6812.61,
-                    "expDlrRaw":  476678104,
-                    "impDlrRaw":  28204911,
-                    "impWgtRaw":  6382
-                },
-                {
-                    "month":  "2010-12",
-                    "value":  500,
-                    "weight":  69449,
-                    "unitPrice":  7201.21,
-                    "expDlrRaw":  500116843,
-                    "impDlrRaw":  25351504,
-                    "impWgtRaw":  6454
-                },
-                {
-                    "month":  "2011-01",
-                    "value":  402,
-                    "weight":  48243,
-                    "unitPrice":  8343.16,
-                    "expDlrRaw":  402499057,
-                    "impDlrRaw":  17901712,
-                    "impWgtRaw":  7203
-                },
-                {
-                    "month":  "2011-02",
-                    "value":  394,
-                    "weight":  46837,
-                    "unitPrice":  8408.57,
-                    "expDlrRaw":  393832405,
-                    "impDlrRaw":  34123973,
-                    "impWgtRaw":  6856
-                },
-                {
-                    "month":  "2011-03",
-                    "value":  468,
-                    "weight":  52166,
-                    "unitPrice":  8980.4,
-                    "expDlrRaw":  468471455,
-                    "impDlrRaw":  43438793,
-                    "impWgtRaw":  9158
-                },
-                {
-                    "month":  "2011-04",
-                    "value":  419,
-                    "weight":  41304,
-                    "unitPrice":  10140.99,
-                    "expDlrRaw":  418863626,
-                    "impDlrRaw":  46351829,
-                    "impWgtRaw":  7642
-                },
-                {
-                    "month":  "2011-05",
-                    "value":  457,
-                    "weight":  43524,
-                    "unitPrice":  10505.4,
-                    "expDlrRaw":  457237097,
-                    "impDlrRaw":  54306329,
-                    "impWgtRaw":  9157
-                },
-                {
-                    "month":  "2011-06",
-                    "value":  450,
-                    "weight":  37708,
-                    "unitPrice":  11943.86,
-                    "expDlrRaw":  450379183,
-                    "impDlrRaw":  50830328,
-                    "impWgtRaw":  8447
-                },
-                {
-                    "month":  "2011-07",
-                    "value":  538,
-                    "weight":  48205,
-                    "unitPrice":  11152.82,
-                    "expDlrRaw":  537621735,
-                    "impDlrRaw":  45881195,
-                    "impWgtRaw":  7477
-                },
-                {
-                    "month":  "2011-08",
-                    "value":  617,
-                    "weight":  53960,
-                    "unitPrice":  11428.12,
-                    "expDlrRaw":  616661220,
-                    "impDlrRaw":  59140965,
-                    "impWgtRaw":  8694
-                },
-                {
-                    "month":  "2011-09",
-                    "value":  894,
-                    "weight":  69319,
-                    "unitPrice":  12892.59,
-                    "expDlrRaw":  893701507,
-                    "impDlrRaw":  80069659,
-                    "impWgtRaw":  9045
-                },
-                {
-                    "month":  "2011-10",
-                    "value":  877,
-                    "weight":  74423,
-                    "unitPrice":  11783.14,
-                    "expDlrRaw":  876936531,
-                    "impDlrRaw":  92244115,
-                    "impWgtRaw":  10476
-                },
-                {
-                    "month":  "2011-11",
-                    "value":  704,
-                    "weight":  66530,
-                    "unitPrice":  10578.05,
-                    "expDlrRaw":  703757713,
-                    "impDlrRaw":  72262821,
-                    "impWgtRaw":  9311
-                },
-                {
-                    "month":  "2011-12",
-                    "value":  964,
-                    "weight":  71254,
-                    "unitPrice":  13533.93,
-                    "expDlrRaw":  964346644,
-                    "impDlrRaw":  94044029,
-                    "impWgtRaw":  8827
-                },
-                {
-                    "month":  "2012-01",
-                    "value":  757,
-                    "weight":  52282,
-                    "unitPrice":  14483.17,
-                    "expDlrRaw":  757209239,
-                    "impDlrRaw":  94255825,
-                    "impWgtRaw":  20794
-                },
-                {
-                    "month":  "2012-02",
-                    "value":  668,
-                    "weight":  49702,
-                    "unitPrice":  13436.92,
-                    "expDlrRaw":  667841654,
-                    "impDlrRaw":  93333907,
-                    "impWgtRaw":  9565
-                },
-                {
-                    "month":  "2012-03",
-                    "value":  717,
-                    "weight":  55933,
-                    "unitPrice":  12811.61,
-                    "expDlrRaw":  716591520,
-                    "impDlrRaw":  85752788,
-                    "impWgtRaw":  9453
-                },
-                {
-                    "month":  "2012-04",
-                    "value":  593,
-                    "weight":  49740,
-                    "unitPrice":  11926.03,
-                    "expDlrRaw":  593200958,
-                    "impDlrRaw":  67190605,
-                    "impWgtRaw":  8529
-                },
-                {
-                    "month":  "2012-05",
-                    "value":  707,
-                    "weight":  56102,
-                    "unitPrice":  12603.69,
-                    "expDlrRaw":  707092156,
-                    "impDlrRaw":  85615776,
-                    "impWgtRaw":  9709
-                },
-                {
-                    "month":  "2012-06",
-                    "value":  562,
-                    "weight":  51103,
-                    "unitPrice":  10990.67,
-                    "expDlrRaw":  561656284,
-                    "impDlrRaw":  86959538,
-                    "impWgtRaw":  9651
-                },
-                {
-                    "month":  "2012-07",
-                    "value":  667,
-                    "weight":  53886,
-                    "unitPrice":  12385.63,
-                    "expDlrRaw":  667412294,
-                    "impDlrRaw":  77844758,
-                    "impWgtRaw":  9968
-                },
-                {
-                    "month":  "2012-08",
-                    "value":  726,
-                    "weight":  52118,
-                    "unitPrice":  13933.8,
-                    "expDlrRaw":  726201599,
-                    "impDlrRaw":  72776916,
-                    "impWgtRaw":  9007
-                },
-                {
-                    "month":  "2012-09",
-                    "value":  881,
-                    "weight":  56966,
-                    "unitPrice":  15459.82,
-                    "expDlrRaw":  880684299,
-                    "impDlrRaw":  78354966,
-                    "impWgtRaw":  9678
-                },
-                {
-                    "month":  "2012-10",
-                    "value":  1116,
-                    "weight":  58656,
-                    "unitPrice":  19031.62,
-                    "expDlrRaw":  1116318705,
-                    "impDlrRaw":  87663488,
-                    "impWgtRaw":  19938
-                },
-                {
-                    "month":  "2012-11",
-                    "value":  1068,
-                    "weight":  63871,
-                    "unitPrice":  16719.46,
-                    "expDlrRaw":  1067888800,
-                    "impDlrRaw":  69818031,
-                    "impWgtRaw":  8200
-                },
-                {
-                    "month":  "2012-12",
-                    "value":  903,
-                    "weight":  51325,
-                    "unitPrice":  17588.48,
-                    "expDlrRaw":  902728489,
-                    "impDlrRaw":  81022137,
-                    "impWgtRaw":  6663
-                },
-                {
-                    "month":  "2013-01",
-                    "value":  862,
-                    "weight":  58619,
-                    "unitPrice":  14702.76,
-                    "expDlrRaw":  861861011,
-                    "impDlrRaw":  106945422,
-                    "impWgtRaw":  9095
-                },
-                {
-                    "month":  "2013-02",
-                    "value":  778,
-                    "weight":  49606,
-                    "unitPrice":  15681.39,
-                    "expDlrRaw":  777890849,
-                    "impDlrRaw":  98163729,
-                    "impWgtRaw":  8997
-                },
-                {
-                    "month":  "2013-03",
-                    "value":  654,
-                    "weight":  50259,
-                    "unitPrice":  13012.46,
-                    "expDlrRaw":  653993213,
-                    "impDlrRaw":  130632377,
+                    "value":  315,
+                    "weight":  94077,
+                    "unitPrice":  3347.22,
+                    "expDlrRaw":  314896701,
+                    "impDlrRaw":  45038521,
                     "impWgtRaw":  11230
                 },
                 {
+                    "month":  "2009-06",
+                    "value":  361,
+                    "weight":  100155,
+                    "unitPrice":  3601.23,
+                    "expDlrRaw":  360681481,
+                    "impDlrRaw":  46371535,
+                    "impWgtRaw":  12846
+                },
+                {
+                    "month":  "2009-07",
+                    "value":  320,
+                    "weight":  85375,
+                    "unitPrice":  3748.42,
+                    "expDlrRaw":  320021189,
+                    "impDlrRaw":  42210107,
+                    "impWgtRaw":  11427
+                },
+                {
+                    "month":  "2009-08",
+                    "value":  360,
+                    "weight":  93421,
+                    "unitPrice":  3856.06,
+                    "expDlrRaw":  360237004,
+                    "impDlrRaw":  54828231,
+                    "impWgtRaw":  13146
+                },
+                {
+                    "month":  "2009-09",
+                    "value":  407,
+                    "weight":  103410,
+                    "unitPrice":  3933.64,
+                    "expDlrRaw":  406778178,
+                    "impDlrRaw":  57458053,
+                    "impWgtRaw":  12445
+                },
+                {
+                    "month":  "2009-10",
+                    "value":  430,
+                    "weight":  118337,
+                    "unitPrice":  3633.43,
+                    "expDlrRaw":  429969292,
+                    "impDlrRaw":  35014330,
+                    "impWgtRaw":  8388
+                },
+                {
+                    "month":  "2009-11",
+                    "value":  447,
+                    "weight":  121403,
+                    "unitPrice":  3678.38,
+                    "expDlrRaw":  446566787,
+                    "impDlrRaw":  44760607,
+                    "impWgtRaw":  10564
+                },
+                {
+                    "month":  "2009-12",
+                    "value":  378,
+                    "weight":  43050,
+                    "unitPrice":  8787.11,
+                    "expDlrRaw":  378285092,
+                    "impDlrRaw":  61652689,
+                    "impWgtRaw":  15850
+                },
+                {
+                    "month":  "2010-01",
+                    "value":  322,
+                    "weight":  29172,
+                    "unitPrice":  11039.06,
+                    "expDlrRaw":  322031578,
+                    "impDlrRaw":  46890817,
+                    "impWgtRaw":  9748
+                },
+                {
+                    "month":  "2010-02",
+                    "value":  388,
+                    "weight":  36475,
+                    "unitPrice":  10638.1,
+                    "expDlrRaw":  388024602,
+                    "impDlrRaw":  54001394,
+                    "impWgtRaw":  9038
+                },
+                {
+                    "month":  "2010-03",
+                    "value":  488,
+                    "weight":  47698,
+                    "unitPrice":  10227.02,
+                    "expDlrRaw":  487808342,
+                    "impDlrRaw":  60145204,
+                    "impWgtRaw":  11089
+                },
+                {
+                    "month":  "2010-04",
+                    "value":  543,
+                    "weight":  52871,
+                    "unitPrice":  10277.75,
+                    "expDlrRaw":  543394929,
+                    "impDlrRaw":  74019608,
+                    "impWgtRaw":  8265
+                },
+                {
+                    "month":  "2010-05",
+                    "value":  556,
+                    "weight":  58738,
+                    "unitPrice":  9458.05,
+                    "expDlrRaw":  555547187,
+                    "impDlrRaw":  42287936,
+                    "impWgtRaw":  6323
+                },
+                {
+                    "month":  "2010-06",
+                    "value":  564,
+                    "weight":  63368,
+                    "unitPrice":  8898.37,
+                    "expDlrRaw":  563871826,
+                    "impDlrRaw":  47818960,
+                    "impWgtRaw":  7835
+                },
+                {
+                    "month":  "2010-07",
+                    "value":  562,
+                    "weight":  61847,
+                    "unitPrice":  9090.57,
+                    "expDlrRaw":  562224417,
+                    "impDlrRaw":  42061849,
+                    "impWgtRaw":  6321
+                },
+                {
+                    "month":  "2010-08",
+                    "value":  610,
+                    "weight":  58745,
+                    "unitPrice":  10384.02,
+                    "expDlrRaw":  610009158,
+                    "impDlrRaw":  58939060,
+                    "impWgtRaw":  9535
+                },
+                {
+                    "month":  "2010-09",
+                    "value":  629,
+                    "weight":  68334,
+                    "unitPrice":  9207.01,
+                    "expDlrRaw":  629151568,
+                    "impDlrRaw":  82506954,
+                    "impWgtRaw":  13625
+                },
+                {
+                    "month":  "2010-10",
+                    "value":  549,
+                    "weight":  64390,
+                    "unitPrice":  8519.19,
+                    "expDlrRaw":  548550743,
+                    "impDlrRaw":  105232311,
+                    "impWgtRaw":  11185
+                },
+                {
+                    "month":  "2010-11",
+                    "value":  473,
+                    "weight":  62576,
+                    "unitPrice":  7563.01,
+                    "expDlrRaw":  473262624,
+                    "impDlrRaw":  54123717,
+                    "impWgtRaw":  8374
+                },
+                {
+                    "month":  "2010-12",
+                    "value":  572,
+                    "weight":  108787,
+                    "unitPrice":  5258.52,
+                    "expDlrRaw":  572059049,
+                    "impDlrRaw":  117909708,
+                    "impWgtRaw":  10852
+                },
+                {
+                    "month":  "2011-01",
+                    "value":  652,
+                    "weight":  133698,
+                    "unitPrice":  4874.71,
+                    "expDlrRaw":  651738813,
+                    "impDlrRaw":  95985871,
+                    "impWgtRaw":  15703
+                },
+                {
+                    "month":  "2011-02",
+                    "value":  491,
+                    "weight":  82851,
+                    "unitPrice":  5923.02,
+                    "expDlrRaw":  490727868,
+                    "impDlrRaw":  74849361,
+                    "impWgtRaw":  10413
+                },
+                {
+                    "month":  "2011-03",
+                    "value":  732,
+                    "weight":  103359,
+                    "unitPrice":  7084.88,
+                    "expDlrRaw":  732286424,
+                    "impDlrRaw":  103004907,
+                    "impWgtRaw":  12424
+                },
+                {
+                    "month":  "2011-04",
+                    "value":  637,
+                    "weight":  95378,
+                    "unitPrice":  6678.41,
+                    "expDlrRaw":  636973484,
+                    "impDlrRaw":  88279405,
+                    "impWgtRaw":  10424
+                },
+                {
+                    "month":  "2011-05",
+                    "value":  587,
+                    "weight":  85018,
+                    "unitPrice":  6902.28,
+                    "expDlrRaw":  586817957,
+                    "impDlrRaw":  103431358,
+                    "impWgtRaw":  16429
+                },
+                {
+                    "month":  "2011-06",
+                    "value":  634,
+                    "weight":  64603,
+                    "unitPrice":  9806.44,
+                    "expDlrRaw":  633525530,
+                    "impDlrRaw":  60512285,
+                    "impWgtRaw":  9835
+                },
+                {
+                    "month":  "2011-07",
+                    "value":  512,
+                    "weight":  51775,
+                    "unitPrice":  9892.18,
+                    "expDlrRaw":  512167473,
+                    "impDlrRaw":  72114475,
+                    "impWgtRaw":  9058
+                },
+                {
+                    "month":  "2011-08",
+                    "value":  474,
+                    "weight":  53065,
+                    "unitPrice":  8930.97,
+                    "expDlrRaw":  473921677,
+                    "impDlrRaw":  71563882,
+                    "impWgtRaw":  10383
+                },
+                {
+                    "month":  "2011-09",
+                    "value":  608,
+                    "weight":  76905,
+                    "unitPrice":  7906.33,
+                    "expDlrRaw":  608036367,
+                    "impDlrRaw":  50744051,
+                    "impWgtRaw":  7653
+                },
+                {
+                    "month":  "2011-10",
+                    "value":  610,
+                    "weight":  73992,
+                    "unitPrice":  8237.48,
+                    "expDlrRaw":  609507798,
+                    "impDlrRaw":  52887311,
+                    "impWgtRaw":  7428
+                },
+                {
+                    "month":  "2011-11",
+                    "value":  593,
+                    "weight":  80107,
+                    "unitPrice":  7408.29,
+                    "expDlrRaw":  593455786,
+                    "impDlrRaw":  39442420,
+                    "impWgtRaw":  6140
+                },
+                {
+                    "month":  "2011-12",
+                    "value":  469,
+                    "weight":  61677,
+                    "unitPrice":  7600,
+                    "expDlrRaw":  468744923,
+                    "impDlrRaw":  38999757,
+                    "impWgtRaw":  4890
+                },
+                {
+                    "month":  "2012-01",
+                    "value":  470,
+                    "weight":  56020,
+                    "unitPrice":  8391.84,
+                    "expDlrRaw":  470110782,
+                    "impDlrRaw":  33737552,
+                    "impWgtRaw":  8199
+                },
+                {
+                    "month":  "2012-02",
+                    "value":  537,
+                    "weight":  61353,
+                    "unitPrice":  8745.07,
+                    "expDlrRaw":  536536289,
+                    "impDlrRaw":  41581963,
+                    "impWgtRaw":  7284
+                },
+                {
+                    "month":  "2012-03",
+                    "value":  611,
+                    "weight":  71218,
+                    "unitPrice":  8578.79,
+                    "expDlrRaw":  610964525,
+                    "impDlrRaw":  25038719,
+                    "impWgtRaw":  5288
+                },
+                {
+                    "month":  "2012-04",
+                    "value":  501,
+                    "weight":  69927,
+                    "unitPrice":  7170.52,
+                    "expDlrRaw":  501412643,
+                    "impDlrRaw":  22917089,
+                    "impWgtRaw":  5195
+                },
+                {
+                    "month":  "2012-05",
+                    "value":  655,
+                    "weight":  80633,
+                    "unitPrice":  8120.42,
+                    "expDlrRaw":  654773689,
+                    "impDlrRaw":  26689795,
+                    "impWgtRaw":  5234
+                },
+                {
+                    "month":  "2012-06",
+                    "value":  750,
+                    "weight":  77315,
+                    "unitPrice":  9703.13,
+                    "expDlrRaw":  750197742,
+                    "impDlrRaw":  21517627,
+                    "impWgtRaw":  3853
+                },
+                {
+                    "month":  "2012-07",
+                    "value":  433,
+                    "weight":  65158,
+                    "unitPrice":  6646.6,
+                    "expDlrRaw":  433079058,
+                    "impDlrRaw":  34628096,
+                    "impWgtRaw":  4538
+                },
+                {
+                    "month":  "2012-08",
+                    "value":  579,
+                    "weight":  74699,
+                    "unitPrice":  7748.25,
+                    "expDlrRaw":  578786331,
+                    "impDlrRaw":  37209963,
+                    "impWgtRaw":  4281
+                },
+                {
+                    "month":  "2012-09",
+                    "value":  587,
+                    "weight":  86511,
+                    "unitPrice":  6788.84,
+                    "expDlrRaw":  587309684,
+                    "impDlrRaw":  28114642,
+                    "impWgtRaw":  3592
+                },
+                {
+                    "month":  "2012-10",
+                    "value":  592,
+                    "weight":  88293,
+                    "unitPrice":  6709,
+                    "expDlrRaw":  592357785,
+                    "impDlrRaw":  34176044,
+                    "impWgtRaw":  4580
+                },
+                {
+                    "month":  "2012-11",
+                    "value":  591,
+                    "weight":  95700,
+                    "unitPrice":  6176.91,
+                    "expDlrRaw":  591130057,
+                    "impDlrRaw":  34619939,
+                    "impWgtRaw":  4627
+                },
+                {
+                    "month":  "2012-12",
+                    "value":  550,
+                    "weight":  69456,
+                    "unitPrice":  7911.79,
+                    "expDlrRaw":  549521513,
+                    "impDlrRaw":  33964081,
+                    "impWgtRaw":  5344
+                },
+                {
+                    "month":  "2013-01",
+                    "value":  419,
+                    "weight":  58369,
+                    "unitPrice":  7171.83,
+                    "expDlrRaw":  418612770,
+                    "impDlrRaw":  51366468,
+                    "impWgtRaw":  5887
+                },
+                {
+                    "month":  "2013-02",
+                    "value":  439,
+                    "weight":  47339,
+                    "unitPrice":  9277.04,
+                    "expDlrRaw":  439165602,
+                    "impDlrRaw":  87424867,
+                    "impWgtRaw":  6615
+                },
+                {
+                    "month":  "2013-03",
+                    "value":  644,
+                    "weight":  70469,
+                    "unitPrice":  9141.03,
+                    "expDlrRaw":  644159446,
+                    "impDlrRaw":  110181515,
+                    "impWgtRaw":  8732
+                },
+                {
                     "month":  "2013-04",
-                    "value":  479,
-                    "weight":  49684,
-                    "unitPrice":  9633.86,
-                    "expDlrRaw":  478648833,
-                    "impDlrRaw":  134329752,
-                    "impWgtRaw":  11518
+                    "value":  734,
+                    "weight":  83107,
+                    "unitPrice":  8827.09,
+                    "expDlrRaw":  733592573,
+                    "impDlrRaw":  140264933,
+                    "impWgtRaw":  9585
                 },
                 {
                     "month":  "2013-05",
-                    "value":  732,
-                    "weight":  57438,
-                    "unitPrice":  12751.65,
-                    "expDlrRaw":  732429469,
-                    "impDlrRaw":  172314309,
-                    "impWgtRaw":  11982
+                    "value":  762,
+                    "weight":  83860,
+                    "unitPrice":  9087.18,
+                    "expDlrRaw":  762051093,
+                    "impDlrRaw":  147765584,
+                    "impWgtRaw":  12773
                 },
                 {
                     "month":  "2013-06",
-                    "value":  471,
-                    "weight":  45290,
-                    "unitPrice":  10399.62,
-                    "expDlrRaw":  470998944,
-                    "impDlrRaw":  84002641,
-                    "impWgtRaw":  10550
+                    "value":  828,
+                    "weight":  90411,
+                    "unitPrice":  9157.5,
+                    "expDlrRaw":  827939160,
+                    "impDlrRaw":  173225890,
+                    "impWgtRaw":  14148
                 },
                 {
                     "month":  "2013-07",
-                    "value":  685,
-                    "weight":  57369,
-                    "unitPrice":  11935.17,
-                    "expDlrRaw":  684708909,
-                    "impDlrRaw":  104476171,
-                    "impWgtRaw":  10135
+                    "value":  740,
+                    "weight":  94230,
+                    "unitPrice":  7850.53,
+                    "expDlrRaw":  739755274,
+                    "impDlrRaw":  151320209,
+                    "impWgtRaw":  9782
                 },
                 {
                     "month":  "2013-08",
-                    "value":  838,
-                    "weight":  66380,
-                    "unitPrice":  12617.54,
-                    "expDlrRaw":  837552196,
-                    "impDlrRaw":  120820141,
-                    "impWgtRaw":  10877
+                    "value":  743,
+                    "weight":  100071,
+                    "unitPrice":  7424.64,
+                    "expDlrRaw":  742991428,
+                    "impDlrRaw":  156023497,
+                    "impWgtRaw":  8902
                 },
                 {
                     "month":  "2013-09",
-                    "value":  1053,
-                    "weight":  78187,
-                    "unitPrice":  13463.39,
-                    "expDlrRaw":  1052662234,
-                    "impDlrRaw":  133592469,
-                    "impWgtRaw":  12990
+                    "value":  794,
+                    "weight":  84807,
+                    "unitPrice":  9368.2,
+                    "expDlrRaw":  794488718,
+                    "impDlrRaw":  157504569,
+                    "impWgtRaw":  11046
                 },
                 {
                     "month":  "2013-10",
-                    "value":  1056,
-                    "weight":  81519,
-                    "unitPrice":  12955.44,
-                    "expDlrRaw":  1056114856,
-                    "impDlrRaw":  140413827,
-                    "impWgtRaw":  13649
+                    "value":  785,
+                    "weight":  79637,
+                    "unitPrice":  9859.51,
+                    "expDlrRaw":  785181996,
+                    "impDlrRaw":  142328512,
+                    "impWgtRaw":  16539
                 },
                 {
                     "month":  "2013-11",
-                    "value":  1047,
-                    "weight":  88837,
-                    "unitPrice":  11788.42,
-                    "expDlrRaw":  1047248165,
-                    "impDlrRaw":  129106161,
-                    "impWgtRaw":  13042
+                    "value":  603,
+                    "weight":  73675,
+                    "unitPrice":  8180.63,
+                    "expDlrRaw":  602708220,
+                    "impDlrRaw":  120264545,
+                    "impWgtRaw":  8945
                 },
                 {
                     "month":  "2013-12",
-                    "value":  1042,
-                    "weight":  83044,
-                    "unitPrice":  12544.08,
-                    "expDlrRaw":  1041710278,
-                    "impDlrRaw":  124247679,
-                    "impWgtRaw":  11079
+                    "value":  579,
+                    "weight":  59848,
+                    "unitPrice":  9673.97,
+                    "expDlrRaw":  578967798,
+                    "impDlrRaw":  99505383,
+                    "impWgtRaw":  7359
                 },
                 {
                     "month":  "2014-01",
-                    "value":  698,
-                    "weight":  66725,
-                    "unitPrice":  10454.16,
-                    "expDlrRaw":  697554124,
-                    "impDlrRaw":  130174952,
-                    "impWgtRaw":  12344
+                    "value":  684,
+                    "weight":  67460,
+                    "unitPrice":  10145.74,
+                    "expDlrRaw":  684431783,
+                    "impDlrRaw":  122263183,
+                    "impWgtRaw":  11434
                 },
                 {
                     "month":  "2014-02",
-                    "value":  646,
-                    "weight":  56416,
-                    "unitPrice":  11444.01,
-                    "expDlrRaw":  645625504,
-                    "impDlrRaw":  123686621,
-                    "impWgtRaw":  12454
+                    "value":  697,
+                    "weight":  74368,
+                    "unitPrice":  9367.93,
+                    "expDlrRaw":  696674532,
+                    "impDlrRaw":  147855629,
+                    "impWgtRaw":  11497
                 },
                 {
                     "month":  "2014-03",
-                    "value":  535,
-                    "weight":  56274,
-                    "unitPrice":  9514.09,
-                    "expDlrRaw":  535395711,
-                    "impDlrRaw":  150219367,
-                    "impWgtRaw":  14568
-                },
-                {
-                    "month":  "2014-04",
-                    "value":  444,
-                    "weight":  59289,
-                    "unitPrice":  7488.06,
-                    "expDlrRaw":  443959611,
-                    "impDlrRaw":  127473402,
-                    "impWgtRaw":  13539
-                },
-                {
-                    "month":  "2014-05",
-                    "value":  396,
-                    "weight":  50472,
-                    "unitPrice":  7839.95,
-                    "expDlrRaw":  395697814,
-                    "impDlrRaw":  113033571,
-                    "impWgtRaw":  12465
-                },
-                {
-                    "month":  "2014-06",
-                    "value":  513,
-                    "weight":  51716,
-                    "unitPrice":  9912.34,
-                    "expDlrRaw":  512626730,
-                    "impDlrRaw":  131305545,
-                    "impWgtRaw":  13540
-                },
-                {
-                    "month":  "2014-07",
-                    "value":  324,
-                    "weight":  43832,
-                    "unitPrice":  7398.61,
-                    "expDlrRaw":  324296016,
-                    "impDlrRaw":  174984906,
-                    "impWgtRaw":  13661
-                },
-                {
-                    "month":  "2014-08",
-                    "value":  350,
-                    "weight":  44073,
-                    "unitPrice":  7948.81,
-                    "expDlrRaw":  350327902,
-                    "impDlrRaw":  126090496,
-                    "impWgtRaw":  11276
-                },
-                {
-                    "month":  "2014-09",
-                    "value":  454,
-                    "weight":  44530,
-                    "unitPrice":  10192.4,
-                    "expDlrRaw":  453867788,
-                    "impDlrRaw":  146587901,
-                    "impWgtRaw":  14377
-                },
-                {
-                    "month":  "2014-10",
-                    "value":  473,
-                    "weight":  55102,
-                    "unitPrice":  8592.45,
-                    "expDlrRaw":  473461266,
-                    "impDlrRaw":  158657263,
-                    "impWgtRaw":  14649
-                },
-                {
-                    "month":  "2014-11",
-                    "value":  408,
-                    "weight":  38829,
-                    "unitPrice":  10511.66,
-                    "expDlrRaw":  408157113,
-                    "impDlrRaw":  156915575,
-                    "impWgtRaw":  14535
-                },
-                {
-                    "month":  "2014-12",
-                    "value":  443,
-                    "weight":  39162,
-                    "unitPrice":  11300.34,
-                    "expDlrRaw":  442544093,
-                    "impDlrRaw":  144508176,
+                    "value":  827,
+                    "weight":  80381,
+                    "unitPrice":  10292.45,
+                    "expDlrRaw":  827317689,
+                    "impDlrRaw":  188723728,
                     "impWgtRaw":  14500
                 },
                 {
+                    "month":  "2014-04",
+                    "value":  796,
+                    "weight":  80181,
+                    "unitPrice":  9922.73,
+                    "expDlrRaw":  795614374,
+                    "impDlrRaw":  133440123,
+                    "impWgtRaw":  9642
+                },
+                {
+                    "month":  "2014-05",
+                    "value":  818,
+                    "weight":  76355,
+                    "unitPrice":  10709.54,
+                    "expDlrRaw":  817727073,
+                    "impDlrRaw":  120314677,
+                    "impWgtRaw":  8276
+                },
+                {
+                    "month":  "2014-06",
+                    "value":  888,
+                    "weight":  91156,
+                    "unitPrice":  9741.66,
+                    "expDlrRaw":  888010976,
+                    "impDlrRaw":  157027734,
+                    "impWgtRaw":  14292
+                },
+                {
+                    "month":  "2014-07",
+                    "value":  832,
+                    "weight":  80576,
+                    "unitPrice":  10321.24,
+                    "expDlrRaw":  831644076,
+                    "impDlrRaw":  128836040,
+                    "impWgtRaw":  10029
+                },
+                {
+                    "month":  "2014-08",
+                    "value":  946,
+                    "weight":  63891,
+                    "unitPrice":  14809.73,
+                    "expDlrRaw":  946208527,
+                    "impDlrRaw":  116548983,
+                    "impWgtRaw":  10870
+                },
+                {
+                    "month":  "2014-09",
+                    "value":  907,
+                    "weight":  38705,
+                    "unitPrice":  23423.67,
+                    "expDlrRaw":  906613260,
+                    "impDlrRaw":  136994143,
+                    "impWgtRaw":  12988
+                },
+                {
+                    "month":  "2014-10",
+                    "value":  912,
+                    "weight":  40570,
+                    "unitPrice":  22482.91,
+                    "expDlrRaw":  912131742,
+                    "impDlrRaw":  143823081,
+                    "impWgtRaw":  13857
+                },
+                {
+                    "month":  "2014-11",
+                    "value":  841,
+                    "weight":  40990,
+                    "unitPrice":  20515.56,
+                    "expDlrRaw":  840932888,
+                    "impDlrRaw":  142831870,
+                    "impWgtRaw":  13400
+                },
+                {
+                    "month":  "2014-12",
+                    "value":  727,
+                    "weight":  44073,
+                    "unitPrice":  16488.88,
+                    "expDlrRaw":  726714193,
+                    "impDlrRaw":  121237049,
+                    "impWgtRaw":  12375
+                },
+                {
                     "month":  "2015-01",
-                    "value":  378,
-                    "weight":  42328,
-                    "unitPrice":  8930.5,
-                    "expDlrRaw":  378010056,
-                    "impDlrRaw":  172029640,
-                    "impWgtRaw":  17041
+                    "value":  673,
+                    "weight":  43740,
+                    "unitPrice":  15383.88,
+                    "expDlrRaw":  672891025,
+                    "impDlrRaw":  123974164,
+                    "impWgtRaw":  12308
                 },
                 {
                     "month":  "2015-02",
-                    "value":  317,
-                    "weight":  38783,
-                    "unitPrice":  8175.52,
-                    "expDlrRaw":  317071119,
-                    "impDlrRaw":  141941571,
-                    "impWgtRaw":  13709
+                    "value":  639,
+                    "weight":  39517,
+                    "unitPrice":  16181.92,
+                    "expDlrRaw":  639461018,
+                    "impDlrRaw":  123077302,
+                    "impWgtRaw":  10209
                 },
                 {
                     "month":  "2015-03",
-                    "value":  382,
-                    "weight":  43673,
-                    "unitPrice":  8742.92,
-                    "expDlrRaw":  381829343,
-                    "impDlrRaw":  143884238,
-                    "impWgtRaw":  18643
+                    "value":  821,
+                    "weight":  48025,
+                    "unitPrice":  17086.4,
+                    "expDlrRaw":  820574180,
+                    "impDlrRaw":  151284675,
+                    "impWgtRaw":  12441
                 },
                 {
                     "month":  "2015-04",
-                    "value":  461,
-                    "weight":  47843,
-                    "unitPrice":  9627.77,
-                    "expDlrRaw":  460621423,
-                    "impDlrRaw":  178821631,
-                    "impWgtRaw":  17397
+                    "value":  848,
+                    "weight":  37241,
+                    "unitPrice":  22778.45,
+                    "expDlrRaw":  848292336,
+                    "impDlrRaw":  159060327,
+                    "impWgtRaw":  9219
                 },
                 {
                     "month":  "2015-05",
-                    "value":  422,
-                    "weight":  47028,
-                    "unitPrice":  8968.09,
-                    "expDlrRaw":  421751504,
-                    "impDlrRaw":  230100222,
-                    "impWgtRaw":  19447
+                    "value":  795,
+                    "weight":  32085,
+                    "unitPrice":  24783.93,
+                    "expDlrRaw":  795192255,
+                    "impDlrRaw":  184079229,
+                    "impWgtRaw":  11282
                 },
                 {
                     "month":  "2015-06",
-                    "value":  419,
-                    "weight":  53159,
-                    "unitPrice":  7887.72,
-                    "expDlrRaw":  419303401,
-                    "impDlrRaw":  209434966,
-                    "impWgtRaw":  20828
+                    "value":  833,
+                    "weight":  31759,
+                    "unitPrice":  26229.61,
+                    "expDlrRaw":  833026208,
+                    "impDlrRaw":  259063142,
+                    "impWgtRaw":  15227
                 },
                 {
                     "month":  "2015-07",
-                    "value":  390,
-                    "weight":  43297,
-                    "unitPrice":  9011.45,
-                    "expDlrRaw":  390168871,
-                    "impDlrRaw":  181795845,
-                    "impWgtRaw":  31597
+                    "value":  931,
+                    "weight":  36652,
+                    "unitPrice":  25392.07,
+                    "expDlrRaw":  930670091,
+                    "impDlrRaw":  283734135,
+                    "impWgtRaw":  24090
                 },
                 {
                     "month":  "2015-08",
-                    "value":  415,
-                    "weight":  46495,
-                    "unitPrice":  8920.37,
-                    "expDlrRaw":  414752376,
-                    "impDlrRaw":  149581457,
-                    "impWgtRaw":  27488
+                    "value":  1244,
+                    "weight":  44304,
+                    "unitPrice":  28089.95,
+                    "expDlrRaw":  1244497353,
+                    "impDlrRaw":  333655313,
+                    "impWgtRaw":  22907
                 },
                 {
                     "month":  "2015-09",
-                    "value":  425,
-                    "weight":  51005,
-                    "unitPrice":  8334.8,
-                    "expDlrRaw":  425116248,
-                    "impDlrRaw":  189312389,
-                    "impWgtRaw":  23564
+                    "value":  1459,
+                    "weight":  47729,
+                    "unitPrice":  30567.93,
+                    "expDlrRaw":  1458976757,
+                    "impDlrRaw":  364861216,
+                    "impWgtRaw":  28921
                 },
                 {
                     "month":  "2015-10",
-                    "value":  379,
-                    "weight":  48117,
-                    "unitPrice":  7874.62,
-                    "expDlrRaw":  378902987,
-                    "impDlrRaw":  187814888,
-                    "impWgtRaw":  18390
+                    "value":  1260,
+                    "weight":  43325,
+                    "unitPrice":  29081.63,
+                    "expDlrRaw":  1259961814,
+                    "impDlrRaw":  356228886,
+                    "impWgtRaw":  27244
                 },
                 {
                     "month":  "2015-11",
-                    "value":  302,
-                    "weight":  40367,
-                    "unitPrice":  7485.92,
-                    "expDlrRaw":  302184272,
-                    "impDlrRaw":  161742614,
-                    "impWgtRaw":  13984
+                    "value":  1140,
+                    "weight":  40850,
+                    "unitPrice":  27898.97,
+                    "expDlrRaw":  1139672986,
+                    "impDlrRaw":  373559925,
+                    "impWgtRaw":  18624
                 },
                 {
                     "month":  "2015-12",
-                    "value":  340,
-                    "weight":  40096,
-                    "unitPrice":  8482.61,
-                    "expDlrRaw":  340118756,
-                    "impDlrRaw":  157696279,
-                    "impWgtRaw":  13133
+                    "value":  1077,
+                    "weight":  36557,
+                    "unitPrice":  29450.69,
+                    "expDlrRaw":  1076628815,
+                    "impDlrRaw":  365407547,
+                    "impWgtRaw":  15911
                 },
                 {
                     "month":  "2016-01",
-                    "value":  124,
-                    "weight":  29616,
-                    "unitPrice":  4178.1,
-                    "expDlrRaw":  123738752,
-                    "impDlrRaw":  135932376,
-                    "impWgtRaw":  12165
+                    "value":  936,
+                    "weight":  35901,
+                    "unitPrice":  26077.83,
+                    "expDlrRaw":  936220145,
+                    "impDlrRaw":  336382814,
+                    "impWgtRaw":  16122
                 },
                 {
                     "month":  "2016-02",
-                    "value":  104,
-                    "weight":  28754,
-                    "unitPrice":  3622.89,
-                    "expDlrRaw":  104172471,
-                    "impDlrRaw":  106482507,
-                    "impWgtRaw":  13463
+                    "value":  862,
+                    "weight":  33787,
+                    "unitPrice":  25510.46,
+                    "expDlrRaw":  861921811,
+                    "impDlrRaw":  409604914,
+                    "impWgtRaw":  19543
                 },
                 {
                     "month":  "2016-03",
-                    "value":  130,
-                    "weight":  31741,
-                    "unitPrice":  4100.26,
-                    "expDlrRaw":  130146463,
-                    "impDlrRaw":  136273311,
-                    "impWgtRaw":  11691
+                    "value":  1071,
+                    "weight":  45980,
+                    "unitPrice":  23289.84,
+                    "expDlrRaw":  1070866637,
+                    "impDlrRaw":  432100827,
+                    "impWgtRaw":  27559
                 },
                 {
                     "month":  "2016-04",
-                    "value":  233,
-                    "weight":  27318,
-                    "unitPrice":  8524.42,
-                    "expDlrRaw":  232870107,
-                    "impDlrRaw":  129296759,
-                    "impWgtRaw":  20804
+                    "value":  979,
+                    "weight":  40054,
+                    "unitPrice":  24449.55,
+                    "expDlrRaw":  979302396,
+                    "impDlrRaw":  305212454,
+                    "impWgtRaw":  13222
                 },
                 {
                     "month":  "2016-05",
-                    "value":  119,
-                    "weight":  23957,
-                    "unitPrice":  4962.49,
-                    "expDlrRaw":  118886483,
-                    "impDlrRaw":  100118119,
-                    "impWgtRaw":  11542
+                    "value":  1144,
+                    "weight":  41273,
+                    "unitPrice":  27721.25,
+                    "expDlrRaw":  1144139010,
+                    "impDlrRaw":  367678811,
+                    "impWgtRaw":  11672
                 },
                 {
                     "month":  "2016-06",
-                    "value":  133,
-                    "weight":  25807,
-                    "unitPrice":  5139.78,
-                    "expDlrRaw":  132642273,
-                    "impDlrRaw":  109384338,
-                    "impWgtRaw":  13916
+                    "value":  1281,
+                    "weight":  62562,
+                    "unitPrice":  20469.54,
+                    "expDlrRaw":  1280615440,
+                    "impDlrRaw":  338985076,
+                    "impWgtRaw":  10303
                 },
                 {
                     "month":  "2016-07",
-                    "value":  118,
-                    "weight":  23946,
-                    "unitPrice":  4931.84,
-                    "expDlrRaw":  118097761,
-                    "impDlrRaw":  107252857,
-                    "impWgtRaw":  13215
+                    "value":  1272,
+                    "weight":  53359,
+                    "unitPrice":  23832.3,
+                    "expDlrRaw":  1271667844,
+                    "impDlrRaw":  321438779,
+                    "impWgtRaw":  10989
                 },
                 {
                     "month":  "2016-08",
-                    "value":  148,
-                    "weight":  26593,
-                    "unitPrice":  5549.18,
-                    "expDlrRaw":  147569311,
-                    "impDlrRaw":  112550595,
-                    "impWgtRaw":  12811
+                    "value":  1511,
+                    "weight":  53890,
+                    "unitPrice":  28031.54,
+                    "expDlrRaw":  1510619655,
+                    "impDlrRaw":  345649589,
+                    "impWgtRaw":  11253
                 },
                 {
                     "month":  "2016-09",
-                    "value":  145,
-                    "weight":  29445,
-                    "unitPrice":  4917,
-                    "expDlrRaw":  144781071,
-                    "impDlrRaw":  133935867,
-                    "impWgtRaw":  16456
+                    "value":  1560,
+                    "weight":  55516,
+                    "unitPrice":  28099.66,
+                    "expDlrRaw":  1559980723,
+                    "impDlrRaw":  288061779,
+                    "impWgtRaw":  12431
                 },
                 {
                     "month":  "2016-10",
-                    "value":  145,
-                    "weight":  29494,
-                    "unitPrice":  4913.36,
-                    "expDlrRaw":  144914514,
-                    "impDlrRaw":  123230224,
-                    "impWgtRaw":  11613
+                    "value":  1442,
+                    "weight":  44749,
+                    "unitPrice":  32215.5,
+                    "expDlrRaw":  1441611263,
+                    "impDlrRaw":  286841224,
+                    "impWgtRaw":  11677
                 },
                 {
                     "month":  "2016-11",
-                    "value":  153,
-                    "weight":  29050,
-                    "unitPrice":  5259.07,
-                    "expDlrRaw":  152775937,
-                    "impDlrRaw":  149151037,
-                    "impWgtRaw":  13384
+                    "value":  1724,
+                    "weight":  54864,
+                    "unitPrice":  31414.43,
+                    "expDlrRaw":  1723521277,
+                    "impDlrRaw":  324144961,
+                    "impWgtRaw":  15906
                 },
                 {
                     "month":  "2016-12",
-                    "value":  149,
-                    "weight":  27337,
-                    "unitPrice":  5465.26,
-                    "expDlrRaw":  149403794,
-                    "impDlrRaw":  115399240,
-                    "impWgtRaw":  11926
+                    "value":  1818,
+                    "weight":  43826,
+                    "unitPrice":  41479.29,
+                    "expDlrRaw":  1817871533,
+                    "impDlrRaw":  389321782,
+                    "impWgtRaw":  20190
                 },
                 {
                     "month":  "2017-01",
-                    "value":  154,
-                    "weight":  22361,
-                    "unitPrice":  6876.15,
-                    "expDlrRaw":  153757621,
-                    "impDlrRaw":  112179988,
-                    "impWgtRaw":  10810
+                    "value":  1170,
+                    "weight":  33167,
+                    "unitPrice":  35262.45,
+                    "expDlrRaw":  1169549686,
+                    "impDlrRaw":  257198146,
+                    "impWgtRaw":  17523
                 },
                 {
                     "month":  "2017-02",
-                    "value":  162,
-                    "weight":  23049,
-                    "unitPrice":  7027.9,
-                    "expDlrRaw":  161986127,
-                    "impDlrRaw":  78356111,
-                    "impWgtRaw":  10905
+                    "value":  1251,
+                    "weight":  35200,
+                    "unitPrice":  35546.87,
+                    "expDlrRaw":  1251249752,
+                    "impDlrRaw":  335555351,
+                    "impWgtRaw":  20297
                 },
                 {
                     "month":  "2017-03",
-                    "value":  207,
-                    "weight":  23553,
-                    "unitPrice":  8794.41,
-                    "expDlrRaw":  207134783,
-                    "impDlrRaw":  83402349,
-                    "impWgtRaw":  11841
+                    "value":  1618,
+                    "weight":  47695,
+                    "unitPrice":  33929.35,
+                    "expDlrRaw":  1618260349,
+                    "impDlrRaw":  518462869,
+                    "impWgtRaw":  18057
                 },
                 {
                     "month":  "2017-04",
-                    "value":  163,
-                    "weight":  18745,
-                    "unitPrice":  8712.92,
-                    "expDlrRaw":  163323665,
-                    "impDlrRaw":  76523004,
-                    "impWgtRaw":  10911
+                    "value":  1340,
+                    "weight":  39462,
+                    "unitPrice":  33951.9,
+                    "expDlrRaw":  1339809786,
+                    "impDlrRaw":  309340869,
+                    "impWgtRaw":  12326
                 },
                 {
                     "month":  "2017-05",
-                    "value":  191,
-                    "weight":  18019,
-                    "unitPrice":  10606.55,
-                    "expDlrRaw":  191119389,
-                    "impDlrRaw":  64276185,
-                    "impWgtRaw":  11601
+                    "value":  1438,
+                    "weight":  34263,
+                    "unitPrice":  41972.53,
+                    "expDlrRaw":  1438104697,
+                    "impDlrRaw":  402609865,
+                    "impWgtRaw":  13360
                 },
                 {
                     "month":  "2017-06",
-                    "value":  116,
-                    "weight":  15731,
-                    "unitPrice":  7387.13,
-                    "expDlrRaw":  116207018,
-                    "impDlrRaw":  59538963,
-                    "impWgtRaw":  11304
+                    "value":  1963,
+                    "weight":  48558,
+                    "unitPrice":  40434.85,
+                    "expDlrRaw":  1963435530,
+                    "impDlrRaw":  361658912,
+                    "impWgtRaw":  16424
                 },
                 {
                     "month":  "2017-07",
-                    "value":  151,
-                    "weight":  25654,
-                    "unitPrice":  5870.22,
-                    "expDlrRaw":  150594531,
-                    "impDlrRaw":  54948352,
-                    "impWgtRaw":  9685
+                    "value":  1675,
+                    "weight":  40159,
+                    "unitPrice":  41719.12,
+                    "expDlrRaw":  1675398179,
+                    "impDlrRaw":  370888499,
+                    "impWgtRaw":  14973
                 },
                 {
                     "month":  "2017-08",
-                    "value":  238,
-                    "weight":  26980,
-                    "unitPrice":  8812.3,
-                    "expDlrRaw":  237755780,
-                    "impDlrRaw":  64674501,
-                    "impWgtRaw":  11678
+                    "value":  1953,
+                    "weight":  47576,
+                    "unitPrice":  41044.83,
+                    "expDlrRaw":  1952748731,
+                    "impDlrRaw":  490405804,
+                    "impWgtRaw":  16709
                 },
                 {
                     "month":  "2017-09",
-                    "value":  207,
-                    "weight":  36138,
-                    "unitPrice":  5728.55,
-                    "expDlrRaw":  207018242,
-                    "impDlrRaw":  86561496,
-                    "impWgtRaw":  11141
+                    "value":  2478,
+                    "weight":  38147,
+                    "unitPrice":  64965.29,
+                    "expDlrRaw":  2478231083,
+                    "impDlrRaw":  510824425,
+                    "impWgtRaw":  18490
                 },
                 {
                     "month":  "2017-10",
-                    "value":  153,
-                    "weight":  39558,
-                    "unitPrice":  3873.35,
-                    "expDlrRaw":  153221988,
-                    "impDlrRaw":  95000489,
-                    "impWgtRaw":  11421
+                    "value":  2694,
+                    "weight":  43427,
+                    "unitPrice":  62034.84,
+                    "expDlrRaw":  2693986906,
+                    "impDlrRaw":  533216789,
+                    "impWgtRaw":  18670
                 },
                 {
                     "month":  "2017-11",
-                    "value":  99,
-                    "weight":  31545,
-                    "unitPrice":  3134.17,
-                    "expDlrRaw":  98867464,
-                    "impDlrRaw":  89601490,
-                    "impWgtRaw":  11750
+                    "value":  2710,
+                    "weight":  46106,
+                    "unitPrice":  58784.55,
+                    "expDlrRaw":  2710320247,
+                    "impDlrRaw":  515602841,
+                    "impWgtRaw":  18098
                 },
                 {
                     "month":  "2017-12",
-                    "value":  187,
-                    "weight":  36986,
-                    "unitPrice":  5066.45,
-                    "expDlrRaw":  187387672,
-                    "impDlrRaw":  68172000,
-                    "impWgtRaw":  10305
+                    "value":  2714,
+                    "weight":  37573,
+                    "unitPrice":  72223.28,
+                    "expDlrRaw":  2713645297,
+                    "impDlrRaw":  346963617,
+                    "impWgtRaw":  11992
                 },
                 {
                     "month":  "2018-01",
-                    "value":  208,
-                    "weight":  34810,
-                    "unitPrice":  5967.96,
-                    "expDlrRaw":  207744809,
-                    "impDlrRaw":  72031466,
-                    "impWgtRaw":  11385
+                    "value":  2483,
+                    "weight":  35800,
+                    "unitPrice":  69355.4,
+                    "expDlrRaw":  2482923408,
+                    "impDlrRaw":  385296674,
+                    "impWgtRaw":  13308
                 },
                 {
                     "month":  "2018-02",
-                    "value":  320,
-                    "weight":  34038,
-                    "unitPrice":  9404.83,
-                    "expDlrRaw":  320121508,
-                    "impDlrRaw":  56756258,
-                    "impWgtRaw":  10565
+                    "value":  2180,
+                    "weight":  34981,
+                    "unitPrice":  62308.29,
+                    "expDlrRaw":  2179606309,
+                    "impDlrRaw":  490454132,
+                    "impWgtRaw":  17127
                 },
                 {
                     "month":  "2018-03",
-                    "value":  387,
-                    "weight":  34644,
-                    "unitPrice":  11164.86,
-                    "expDlrRaw":  386795576,
-                    "impDlrRaw":  57796039,
-                    "impWgtRaw":  19752
+                    "value":  2809,
+                    "weight":  40695,
+                    "unitPrice":  69024.42,
+                    "expDlrRaw":  2808948638,
+                    "impDlrRaw":  594992565,
+                    "impWgtRaw":  17710
                 },
                 {
                     "month":  "2018-04",
-                    "value":  225,
-                    "weight":  25076,
-                    "unitPrice":  8982.65,
-                    "expDlrRaw":  225248835,
-                    "impDlrRaw":  62177204,
-                    "impWgtRaw":  14716
+                    "value":  1957,
+                    "weight":  34636,
+                    "unitPrice":  56494.07,
+                    "expDlrRaw":  1956728731,
+                    "impDlrRaw":  504489597,
+                    "impWgtRaw":  13405
                 },
                 {
                     "month":  "2018-05",
-                    "value":  67,
-                    "weight":  25827,
-                    "unitPrice":  2596.46,
-                    "expDlrRaw":  67058654,
-                    "impDlrRaw":  113997254,
-                    "impWgtRaw":  22226
+                    "value":  1729,
+                    "weight":  39523,
+                    "unitPrice":  43748.58,
+                    "expDlrRaw":  1729075290,
+                    "impDlrRaw":  317718112,
+                    "impWgtRaw":  10846
                 },
                 {
                     "month":  "2018-06",
-                    "value":  59,
-                    "weight":  24698,
-                    "unitPrice":  2404.78,
-                    "expDlrRaw":  59393145,
-                    "impDlrRaw":  68667023,
-                    "impWgtRaw":  12074
+                    "value":  1758,
+                    "weight":  37165,
+                    "unitPrice":  47297.35,
+                    "expDlrRaw":  1757805851,
+                    "impDlrRaw":  300862646,
+                    "impWgtRaw":  9171
                 },
                 {
                     "month":  "2018-07",
-                    "value":  99,
-                    "weight":  27843,
-                    "unitPrice":  3557.48,
-                    "expDlrRaw":  99050937,
-                    "impDlrRaw":  51709925,
-                    "impWgtRaw":  13996
+                    "value":  1342,
+                    "weight":  36584,
+                    "unitPrice":  36673.8,
+                    "expDlrRaw":  1341674378,
+                    "impDlrRaw":  367052829,
+                    "impWgtRaw":  11568
                 },
                 {
                     "month":  "2018-08",
-                    "value":  104,
-                    "weight":  25256,
-                    "unitPrice":  4118.6,
-                    "expDlrRaw":  104019463,
-                    "impDlrRaw":  62547176,
-                    "impWgtRaw":  12966
+                    "value":  1824,
+                    "weight":  37706,
+                    "unitPrice":  48362.58,
+                    "expDlrRaw":  1823559499,
+                    "impDlrRaw":  349983261,
+                    "impWgtRaw":  10709
                 },
                 {
                     "month":  "2018-09",
-                    "value":  110,
-                    "weight":  29979,
-                    "unitPrice":  3684.67,
-                    "expDlrRaw":  110462674,
-                    "impDlrRaw":  61746835,
-                    "impWgtRaw":  14164
+                    "value":  2011,
+                    "weight":  34959,
+                    "unitPrice":  57529.34,
+                    "expDlrRaw":  2011168305,
+                    "impDlrRaw":  291372066,
+                    "impWgtRaw":  8831
                 },
                 {
                     "month":  "2018-10",
-                    "value":  112,
-                    "weight":  31099,
-                    "unitPrice":  3586.94,
-                    "expDlrRaw":  111550197,
-                    "impDlrRaw":  88814884,
-                    "impWgtRaw":  11452
+                    "value":  1863,
+                    "weight":  28466,
+                    "unitPrice":  65438.87,
+                    "expDlrRaw":  1862782893,
+                    "impDlrRaw":  381357349,
+                    "impWgtRaw":  9945
                 },
                 {
                     "month":  "2018-11",
-                    "value":  128,
-                    "weight":  27679,
-                    "unitPrice":  4640.64,
-                    "expDlrRaw":  128448325,
-                    "impDlrRaw":  61020308,
-                    "impWgtRaw":  12196
+                    "value":  1837,
+                    "weight":  29550,
+                    "unitPrice":  62170.28,
+                    "expDlrRaw":  1837131648,
+                    "impDlrRaw":  330401669,
+                    "impWgtRaw":  12801
                 },
                 {
                     "month":  "2018-12",
-                    "value":  109,
-                    "weight":  26239,
-                    "unitPrice":  4167.02,
-                    "expDlrRaw":  109338475,
-                    "impDlrRaw":  59456076,
-                    "impWgtRaw":  12109
+                    "value":  1447,
+                    "weight":  24868,
+                    "unitPrice":  58199.44,
+                    "expDlrRaw":  1447303633,
+                    "impDlrRaw":  344238782,
+                    "impWgtRaw":  10502
                 },
                 {
                     "month":  "2019-01",
-                    "value":  78,
-                    "weight":  24512,
-                    "unitPrice":  3187.33,
-                    "expDlrRaw":  78127889,
-                    "impDlrRaw":  51094821,
-                    "impWgtRaw":  13202
+                    "value":  1246,
+                    "weight":  24199,
+                    "unitPrice":  51478.53,
+                    "expDlrRaw":  1245728975,
+                    "impDlrRaw":  338942756,
+                    "impWgtRaw":  9782
                 },
                 {
                     "month":  "2019-02",
-                    "value":  71,
-                    "weight":  19020,
-                    "unitPrice":  3730.98,
-                    "expDlrRaw":  70963154,
-                    "impDlrRaw":  37490983,
-                    "impWgtRaw":  7021
+                    "value":  1187,
+                    "weight":  22842,
+                    "unitPrice":  51962.98,
+                    "expDlrRaw":  1186938435,
+                    "impDlrRaw":  268957909,
+                    "impWgtRaw":  8011
                 },
                 {
                     "month":  "2019-03",
-                    "value":  68,
-                    "weight":  20944,
-                    "unitPrice":  3229.81,
-                    "expDlrRaw":  67645177,
-                    "impDlrRaw":  62607508,
-                    "impWgtRaw":  8893
+                    "value":  1900,
+                    "weight":  33323,
+                    "unitPrice":  57017.81,
+                    "expDlrRaw":  1900004592,
+                    "impDlrRaw":  407708075,
+                    "impWgtRaw":  8690
                 },
                 {
                     "month":  "2019-04",
-                    "value":  62,
-                    "weight":  13311,
-                    "unitPrice":  4662.08,
-                    "expDlrRaw":  62056996,
-                    "impDlrRaw":  53942995,
-                    "impWgtRaw":  10188
+                    "value":  1592,
+                    "weight":  26448,
+                    "unitPrice":  60177.47,
+                    "expDlrRaw":  1591573857,
+                    "impDlrRaw":  536595647,
+                    "impWgtRaw":  10956
                 },
                 {
                     "month":  "2019-05",
-                    "value":  66,
-                    "weight":  14740,
-                    "unitPrice":  4485,
-                    "expDlrRaw":  66108906,
-                    "impDlrRaw":  62561272,
-                    "impWgtRaw":  10177
+                    "value":  1462,
+                    "weight":  25629,
+                    "unitPrice":  57044.21,
+                    "expDlrRaw":  1461986178,
+                    "impDlrRaw":  453518740,
+                    "impWgtRaw":  11721
                 },
                 {
                     "month":  "2019-06",
-                    "value":  72,
-                    "weight":  18341,
-                    "unitPrice":  3910.79,
-                    "expDlrRaw":  71727754,
-                    "impDlrRaw":  60427811,
-                    "impWgtRaw":  10095
+                    "value":  1992,
+                    "weight":  34627,
+                    "unitPrice":  57540.5,
+                    "expDlrRaw":  1992454785,
+                    "impDlrRaw":  479424151,
+                    "impWgtRaw":  10943
                 },
                 {
                     "month":  "2019-07",
-                    "value":  102,
-                    "weight":  31013,
-                    "unitPrice":  3302.31,
-                    "expDlrRaw":  102414609,
-                    "impDlrRaw":  52025341,
-                    "impWgtRaw":  9913
+                    "value":  1435,
+                    "weight":  31350,
+                    "unitPrice":  45776.47,
+                    "expDlrRaw":  1435092192,
+                    "impDlrRaw":  522095013,
+                    "impWgtRaw":  13174
                 },
                 {
                     "month":  "2019-08",
-                    "value":  120,
-                    "weight":  28734,
-                    "unitPrice":  4180.84,
-                    "expDlrRaw":  120132159,
-                    "impDlrRaw":  37284595,
-                    "impWgtRaw":  8986
+                    "value":  1766,
+                    "weight":  37630,
+                    "unitPrice":  46941.92,
+                    "expDlrRaw":  1766424595,
+                    "impDlrRaw":  481026500,
+                    "impWgtRaw":  10988
                 },
                 {
                     "month":  "2019-09",
-                    "value":  108,
-                    "weight":  28182,
-                    "unitPrice":  3847.36,
-                    "expDlrRaw":  108426294,
-                    "impDlrRaw":  65446161,
-                    "impWgtRaw":  7699
+                    "value":  1967,
+                    "weight":  49156,
+                    "unitPrice":  40024.73,
+                    "expDlrRaw":  1967455691,
+                    "impDlrRaw":  480407657,
+                    "impWgtRaw":  11404
                 },
                 {
                     "month":  "2019-10",
-                    "value":  113,
-                    "weight":  27858,
-                    "unitPrice":  4065.76,
-                    "expDlrRaw":  113263836,
-                    "impDlrRaw":  52202770,
-                    "impWgtRaw":  6865
+                    "value":  1610,
+                    "weight":  49283,
+                    "unitPrice":  32658.43,
+                    "expDlrRaw":  1609505323,
+                    "impDlrRaw":  536163085,
+                    "impWgtRaw":  12788
                 },
                 {
                     "month":  "2019-11",
-                    "value":  79,
-                    "weight":  20886,
-                    "unitPrice":  3784.78,
-                    "expDlrRaw":  79048867,
-                    "impDlrRaw":  40037767,
-                    "impWgtRaw":  8033
+                    "value":  1502,
+                    "weight":  46787,
+                    "unitPrice":  32100.99,
+                    "expDlrRaw":  1501909044,
+                    "impDlrRaw":  500556482,
+                    "impWgtRaw":  14526
                 },
                 {
                     "month":  "2019-12",
-                    "value":  90,
-                    "weight":  25977,
-                    "unitPrice":  3473.26,
-                    "expDlrRaw":  90224915,
-                    "impDlrRaw":  48058702,
-                    "impWgtRaw":  9049
+                    "value":  1773,
+                    "weight":  50208,
+                    "unitPrice":  35315.48,
+                    "expDlrRaw":  1773119529,
+                    "impDlrRaw":  374166510,
+                    "impWgtRaw":  11413
                 },
                 {
                     "month":  "2020-01",
-                    "value":  132,
-                    "weight":  28996,
-                    "unitPrice":  4545.78,
-                    "expDlrRaw":  131809559,
-                    "impDlrRaw":  37720557,
-                    "impWgtRaw":  8020
+                    "value":  1300,
+                    "weight":  39856,
+                    "unitPrice":  32605.3,
+                    "expDlrRaw":  1299516735,
+                    "impDlrRaw":  382967420,
+                    "impWgtRaw":  11680
                 },
                 {
                     "month":  "2020-02",
-                    "value":  103,
-                    "weight":  21245,
-                    "unitPrice":  4857.57,
-                    "expDlrRaw":  103199033,
-                    "impDlrRaw":  47250983,
-                    "impWgtRaw":  8720
+                    "value":  1513,
+                    "weight":  45673,
+                    "unitPrice":  33120.57,
+                    "expDlrRaw":  1512715753,
+                    "impDlrRaw":  595574135,
+                    "impWgtRaw":  16825
                 },
                 {
                     "month":  "2020-03",
-                    "value":  145,
-                    "weight":  32116,
-                    "unitPrice":  4526.36,
-                    "expDlrRaw":  145368656,
-                    "impDlrRaw":  45372069,
-                    "impWgtRaw":  8179
+                    "value":  2019,
+                    "weight":  43742,
+                    "unitPrice":  46157.94,
+                    "expDlrRaw":  2019040661,
+                    "impDlrRaw":  475526094,
+                    "impWgtRaw":  11434
                 },
                 {
                     "month":  "2020-04",
-                    "value":  92,
-                    "weight":  24314,
-                    "unitPrice":  3780.84,
-                    "expDlrRaw":  91927421,
-                    "impDlrRaw":  44258357,
-                    "impWgtRaw":  7504
+                    "value":  1443,
+                    "weight":  37759,
+                    "unitPrice":  38212.6,
+                    "expDlrRaw":  1442869499,
+                    "impDlrRaw":  557781871,
+                    "impWgtRaw":  16464
                 },
                 {
                     "month":  "2020-05",
-                    "value":  52,
-                    "weight":  11925,
-                    "unitPrice":  4320.39,
-                    "expDlrRaw":  51520621,
-                    "impDlrRaw":  52570368,
-                    "impWgtRaw":  8546
+                    "value":  2119,
+                    "weight":  49620,
+                    "unitPrice":  42701.88,
+                    "expDlrRaw":  2118867440,
+                    "impDlrRaw":  720741504,
+                    "impWgtRaw":  14833
                 },
                 {
                     "month":  "2020-06",
-                    "value":  94,
-                    "weight":  20361,
-                    "unitPrice":  4593.77,
-                    "expDlrRaw":  93533745,
-                    "impDlrRaw":  50161978,
-                    "impWgtRaw":  13105
+                    "value":  1904,
+                    "weight":  52865,
+                    "unitPrice":  36021.48,
+                    "expDlrRaw":  1904275458,
+                    "impDlrRaw":  609109940,
+                    "impWgtRaw":  15673
                 },
                 {
                     "month":  "2020-07",
-                    "value":  164,
-                    "weight":  36334,
-                    "unitPrice":  4502.14,
-                    "expDlrRaw":  163580577,
-                    "impDlrRaw":  57335934,
-                    "impWgtRaw":  11534
+                    "value":  1574,
+                    "weight":  50013,
+                    "unitPrice":  31467.84,
+                    "expDlrRaw":  1573800930,
+                    "impDlrRaw":  651475597,
+                    "impWgtRaw":  16827
                 },
                 {
                     "month":  "2020-08",
-                    "value":  182,
-                    "weight":  47749,
-                    "unitPrice":  3811.69,
-                    "expDlrRaw":  182004567,
-                    "impDlrRaw":  49690475,
-                    "impWgtRaw":  10088
+                    "value":  1776,
+                    "weight":  55295,
+                    "unitPrice":  32123.41,
+                    "expDlrRaw":  1776264041,
+                    "impDlrRaw":  714009303,
+                    "impWgtRaw":  17969
                 },
                 {
                     "month":  "2020-09",
-                    "value":  144,
-                    "weight":  46485,
-                    "unitPrice":  3099.95,
-                    "expDlrRaw":  144101061,
-                    "impDlrRaw":  57774610,
-                    "impWgtRaw":  12555
+                    "value":  2258,
+                    "weight":  65142,
+                    "unitPrice":  34657.36,
+                    "expDlrRaw":  2257649470,
+                    "impDlrRaw":  680792289,
+                    "impWgtRaw":  17918
                 },
                 {
                     "month":  "2020-10",
-                    "value":  149,
-                    "weight":  53325,
-                    "unitPrice":  2800.2,
-                    "expDlrRaw":  149320433,
-                    "impDlrRaw":  51336504,
-                    "impWgtRaw":  12683
+                    "value":  1962,
+                    "weight":  57034,
+                    "unitPrice":  34399.28,
+                    "expDlrRaw":  1961928520,
+                    "impDlrRaw":  710226996,
+                    "impWgtRaw":  17431
                 },
                 {
                     "month":  "2020-11",
-                    "value":  127,
-                    "weight":  48192,
-                    "unitPrice":  2635.76,
-                    "expDlrRaw":  127022316,
-                    "impDlrRaw":  36887824,
-                    "impWgtRaw":  13435
+                    "value":  1918,
+                    "weight":  57980,
+                    "unitPrice":  33083.31,
+                    "expDlrRaw":  1918170533,
+                    "impDlrRaw":  630795751,
+                    "impWgtRaw":  19138
                 },
                 {
                     "month":  "2020-12",
-                    "value":  118,
-                    "weight":  57915,
-                    "unitPrice":  2045.41,
-                    "expDlrRaw":  118459909,
-                    "impDlrRaw":  55102530,
-                    "impWgtRaw":  15042
+                    "value":  2388,
+                    "weight":  71279,
+                    "unitPrice":  33497.51,
+                    "expDlrRaw":  2387669212,
+                    "impDlrRaw":  731167896,
+                    "impWgtRaw":  21147
                 },
                 {
                     "month":  "2021-01",
-                    "value":  124,
-                    "weight":  54804,
-                    "unitPrice":  2271.63,
-                    "expDlrRaw":  124494340,
-                    "impDlrRaw":  47629810,
-                    "impWgtRaw":  11066
+                    "value":  2073,
+                    "weight":  59762,
+                    "unitPrice":  34691.55,
+                    "expDlrRaw":  2073236577,
+                    "impDlrRaw":  678026070,
+                    "impWgtRaw":  20031
                 },
                 {
                     "month":  "2021-02",
-                    "value":  121,
-                    "weight":  47813,
-                    "unitPrice":  2536.77,
-                    "expDlrRaw":  121290666,
-                    "impDlrRaw":  34041035,
-                    "impWgtRaw":  9820
+                    "value":  2143,
+                    "weight":  63474,
+                    "unitPrice":  33758.41,
+                    "expDlrRaw":  2142781466,
+                    "impDlrRaw":  634178768,
+                    "impWgtRaw":  16365
                 },
                 {
                     "month":  "2021-03",
-                    "value":  127,
-                    "weight":  36958,
-                    "unitPrice":  3429.67,
-                    "expDlrRaw":  126753582,
-                    "impDlrRaw":  65085028,
-                    "impWgtRaw":  11369
+                    "value":  2543,
+                    "weight":  74798,
+                    "unitPrice":  34004,
+                    "expDlrRaw":  2543431438,
+                    "impDlrRaw":  657651123,
+                    "impWgtRaw":  20401
                 },
                 {
                     "month":  "2021-04",
-                    "value":  89,
-                    "weight":  29009,
-                    "unitPrice":  3075.53,
-                    "expDlrRaw":  89218010,
-                    "impDlrRaw":  37929309,
-                    "impWgtRaw":  12619
+                    "value":  2196,
+                    "weight":  66130,
+                    "unitPrice":  33200.95,
+                    "expDlrRaw":  2195578967,
+                    "impDlrRaw":  649774595,
+                    "impWgtRaw":  17885
                 },
                 {
                     "month":  "2021-05",
-                    "value":  87,
-                    "weight":  30012,
-                    "unitPrice":  2884.3,
-                    "expDlrRaw":  86563498,
-                    "impDlrRaw":  32843768,
-                    "impWgtRaw":  11673
+                    "value":  2731,
+                    "weight":  82997,
+                    "unitPrice":  32900.03,
+                    "expDlrRaw":  2730603865,
+                    "impDlrRaw":  738820055,
+                    "impWgtRaw":  18691
                 },
                 {
                     "month":  "2021-06",
-                    "value":  117,
-                    "weight":  47212,
-                    "unitPrice":  2483.41,
-                    "expDlrRaw":  117246592,
-                    "impDlrRaw":  34004513,
-                    "impWgtRaw":  12241
+                    "value":  3209,
+                    "weight":  93726,
+                    "unitPrice":  34242.79,
+                    "expDlrRaw":  3209439778,
+                    "impDlrRaw":  872259288,
+                    "impWgtRaw":  23926
                 },
                 {
                     "month":  "2021-07",
-                    "value":  173,
-                    "weight":  58637,
-                    "unitPrice":  2955.18,
-                    "expDlrRaw":  173283083,
-                    "impDlrRaw":  40179109,
-                    "impWgtRaw":  14465
+                    "value":  2711,
+                    "weight":  82514,
+                    "unitPrice":  32851.83,
+                    "expDlrRaw":  2710736092,
+                    "impDlrRaw":  860046835,
+                    "impWgtRaw":  22266
                 },
                 {
                     "month":  "2021-08",
-                    "value":  258,
-                    "weight":  70997,
-                    "unitPrice":  3633.97,
-                    "expDlrRaw":  258000752,
-                    "impDlrRaw":  45475589,
-                    "impWgtRaw":  12284
+                    "value":  2823,
+                    "weight":  86430,
+                    "unitPrice":  32657.84,
+                    "expDlrRaw":  2822617027,
+                    "impDlrRaw":  990080495,
+                    "impWgtRaw":  38541
                 },
                 {
                     "month":  "2021-09",
-                    "value":  238,
-                    "weight":  50628,
-                    "unitPrice":  4697.3,
-                    "expDlrRaw":  237814975,
-                    "impDlrRaw":  30201934,
-                    "impWgtRaw":  16096
+                    "value":  3032,
+                    "weight":  86636,
+                    "unitPrice":  35002.5,
+                    "expDlrRaw":  3032476456,
+                    "impDlrRaw":  948126570,
+                    "impWgtRaw":  32740
                 },
                 {
                     "month":  "2021-10",
-                    "value":  236,
-                    "weight":  54871,
-                    "unitPrice":  4307.2,
-                    "expDlrRaw":  236340564,
-                    "impDlrRaw":  29554758,
-                    "impWgtRaw":  12740
+                    "value":  2351,
+                    "weight":  79219,
+                    "unitPrice":  29679.9,
+                    "expDlrRaw":  2351212002,
+                    "impDlrRaw":  1057533361,
+                    "impWgtRaw":  44251
                 },
                 {
                     "month":  "2021-11",
-                    "value":  236,
-                    "weight":  56247,
-                    "unitPrice":  4188.97,
-                    "expDlrRaw":  235616734,
-                    "impDlrRaw":  38761802,
-                    "impWgtRaw":  12739
+                    "value":  3024,
+                    "weight":  98702,
+                    "unitPrice":  30632.96,
+                    "expDlrRaw":  3023534268,
+                    "impDlrRaw":  1117682093,
+                    "impWgtRaw":  27774
                 },
                 {
                     "month":  "2021-12",
-                    "value":  234,
-                    "weight":  52391,
-                    "unitPrice":  4463.46,
-                    "expDlrRaw":  233844982,
-                    "impDlrRaw":  33453706,
-                    "impWgtRaw":  13013
+                    "value":  3135,
+                    "weight":  108051,
+                    "unitPrice":  29010.01,
+                    "expDlrRaw":  3134560295,
+                    "impDlrRaw":  1107883335,
+                    "impWgtRaw":  32429
                 },
                 {
                     "month":  "2022-01",
-                    "value":  166,
-                    "weight":  38878,
-                    "unitPrice":  4264.66,
-                    "expDlrRaw":  165801552,
-                    "impDlrRaw":  29491274,
-                    "impWgtRaw":  11311
+                    "value":  2413,
+                    "weight":  76729,
+                    "unitPrice":  31446.37,
+                    "expDlrRaw":  2412848672,
+                    "impDlrRaw":  835178516,
+                    "impWgtRaw":  20714
                 },
                 {
                     "month":  "2022-02",
-                    "value":  164,
-                    "weight":  46529,
-                    "unitPrice":  3526,
-                    "expDlrRaw":  164061305,
-                    "impDlrRaw":  34313728,
-                    "impWgtRaw":  8920
+                    "value":  2110,
+                    "weight":  74175,
+                    "unitPrice":  28452.96,
+                    "expDlrRaw":  2110498381,
+                    "impDlrRaw":  904699508,
+                    "impWgtRaw":  17906
                 },
                 {
                     "month":  "2022-03",
-                    "value":  180,
-                    "weight":  47849,
-                    "unitPrice":  3765.31,
-                    "expDlrRaw":  180166317,
-                    "impDlrRaw":  37704432,
-                    "impWgtRaw":  12993
+                    "value":  3049,
+                    "weight":  106096,
+                    "unitPrice":  28733.52,
+                    "expDlrRaw":  3048511405,
+                    "impDlrRaw":  884851388,
+                    "impWgtRaw":  17537
                 },
                 {
                     "month":  "2022-04",
-                    "value":  138,
-                    "weight":  44021,
-                    "unitPrice":  3124.33,
-                    "expDlrRaw":  137536169,
-                    "impDlrRaw":  33548727,
-                    "impWgtRaw":  13188
+                    "value":  1978,
+                    "weight":  70420,
+                    "unitPrice":  28093.03,
+                    "expDlrRaw":  1978311024,
+                    "impDlrRaw":  1035951843,
+                    "impWgtRaw":  22440
                 },
                 {
                     "month":  "2022-05",
-                    "value":  131,
-                    "weight":  47526,
-                    "unitPrice":  2753.14,
-                    "expDlrRaw":  130845936,
-                    "impDlrRaw":  40765708,
-                    "impWgtRaw":  14057
+                    "value":  2406,
+                    "weight":  87417,
+                    "unitPrice":  27518.67,
+                    "expDlrRaw":  2405599871,
+                    "impDlrRaw":  1003640444,
+                    "impWgtRaw":  21587
                 },
                 {
                     "month":  "2022-06",
-                    "value":  171,
-                    "weight":  49291,
-                    "unitPrice":  3468.17,
-                    "expDlrRaw":  170949727,
-                    "impDlrRaw":  45083928,
-                    "impWgtRaw":  14558
+                    "value":  2505,
+                    "weight":  109485,
+                    "unitPrice":  22879.95,
+                    "expDlrRaw":  2505011542,
+                    "impDlrRaw":  972975512,
+                    "impWgtRaw":  21293
                 },
                 {
                     "month":  "2022-07",
-                    "value":  329,
-                    "weight":  70341,
-                    "unitPrice":  4676.54,
-                    "expDlrRaw":  328952317,
-                    "impDlrRaw":  40263888,
-                    "impWgtRaw":  14712
+                    "value":  1826,
+                    "weight":  76025,
+                    "unitPrice":  24016.21,
+                    "expDlrRaw":  1825832115,
+                    "impDlrRaw":  830823797,
+                    "impWgtRaw":  17055
                 },
                 {
                     "month":  "2022-08",
-                    "value":  451,
-                    "weight":  83326,
-                    "unitPrice":  5417.5,
-                    "expDlrRaw":  451418652,
-                    "impDlrRaw":  44522889,
-                    "impWgtRaw":  13563
+                    "value":  2076,
+                    "weight":  79368,
+                    "unitPrice":  26153.48,
+                    "expDlrRaw":  2075749720,
+                    "impDlrRaw":  1017064105,
+                    "impWgtRaw":  26093
                 },
                 {
                     "month":  "2022-09",
-                    "value":  504,
-                    "weight":  90649,
-                    "unitPrice":  5560.55,
-                    "expDlrRaw":  504058746,
-                    "impDlrRaw":  59797874,
-                    "impWgtRaw":  12314
+                    "value":  2466,
+                    "weight":  110728,
+                    "unitPrice":  22268.23,
+                    "expDlrRaw":  2465716831,
+                    "impDlrRaw":  716104557,
+                    "impWgtRaw":  16399
                 },
                 {
                     "month":  "2022-10",
-                    "value":  408,
-                    "weight":  71711,
-                    "unitPrice":  5684.57,
-                    "expDlrRaw":  407646457,
-                    "impDlrRaw":  31561124,
-                    "impWgtRaw":  10724
+                    "value":  1645,
+                    "weight":  70879,
+                    "unitPrice":  23214.29,
+                    "expDlrRaw":  1645405495,
+                    "impDlrRaw":  813284071,
+                    "impWgtRaw":  18081
                 },
                 {
                     "month":  "2022-11",
-                    "value":  366,
-                    "weight":  72257,
-                    "unitPrice":  5060.97,
-                    "expDlrRaw":  365690429,
-                    "impDlrRaw":  37259155,
-                    "impWgtRaw":  9767
+                    "value":  1347,
+                    "weight":  71101,
+                    "unitPrice":  18944.92,
+                    "expDlrRaw":  1347003024,
+                    "impDlrRaw":  563413801,
+                    "impWgtRaw":  24121
                 },
                 {
                     "month":  "2022-12",
-                    "value":  307,
-                    "weight":  51879,
-                    "unitPrice":  5919.86,
-                    "expDlrRaw":  307116402,
-                    "impDlrRaw":  40524493,
-                    "impWgtRaw":  13937
+                    "value":  1486,
+                    "weight":  83749,
+                    "unitPrice":  17738.09,
+                    "expDlrRaw":  1485547274,
+                    "impDlrRaw":  599383535,
+                    "impWgtRaw":  22984
                 },
                 {
                     "month":  "2023-01",
-                    "value":  158,
-                    "weight":  39562,
-                    "unitPrice":  3988.65,
-                    "expDlrRaw":  157799113,
-                    "impDlrRaw":  38091714,
-                    "impWgtRaw":  10961
+                    "value":  1111,
+                    "weight":  58141,
+                    "unitPrice":  19115.71,
+                    "expDlrRaw":  1111406272,
+                    "impDlrRaw":  442691405,
+                    "impWgtRaw":  21473
                 },
                 {
                     "month":  "2023-02",
-                    "value":  152,
-                    "weight":  29829,
-                    "unitPrice":  5079.16,
-                    "expDlrRaw":  151506155,
-                    "impDlrRaw":  43532279,
-                    "impWgtRaw":  8342
+                    "value":  1063,
+                    "weight":  70070,
+                    "unitPrice":  15176.98,
+                    "expDlrRaw":  1063450871,
+                    "impDlrRaw":  500232268,
+                    "impWgtRaw":  18735
                 },
                 {
                     "month":  "2023-03",
-                    "value":  207,
-                    "weight":  37840,
-                    "unitPrice":  5478.13,
-                    "expDlrRaw":  207292393,
-                    "impDlrRaw":  47572913,
-                    "impWgtRaw":  14389
+                    "value":  1615,
+                    "weight":  111874,
+                    "unitPrice":  14440.16,
+                    "expDlrRaw":  1615478463,
+                    "impDlrRaw":  653063864,
+                    "impWgtRaw":  34108
                 },
                 {
                     "month":  "2023-04",
-                    "value":  178,
-                    "weight":  36212,
-                    "unitPrice":  4902.96,
-                    "expDlrRaw":  177545832,
-                    "impDlrRaw":  49405914,
-                    "impWgtRaw":  12214
+                    "value":  983,
+                    "weight":  76644,
+                    "unitPrice":  12824.27,
+                    "expDlrRaw":  982903236,
+                    "impDlrRaw":  514240952,
+                    "impWgtRaw":  21240
                 },
                 {
                     "month":  "2023-05",
-                    "value":  172,
-                    "weight":  40760,
-                    "unitPrice":  4217.2,
-                    "expDlrRaw":  171893039,
-                    "impDlrRaw":  52214413,
-                    "impWgtRaw":  12956
+                    "value":  1272,
+                    "weight":  87520,
+                    "unitPrice":  14539,
+                    "expDlrRaw":  1272453143,
+                    "impDlrRaw":  592400840,
+                    "impWgtRaw":  41900
                 },
                 {
                     "month":  "2023-06",
-                    "value":  311,
-                    "weight":  48109,
-                    "unitPrice":  6465.51,
-                    "expDlrRaw":  311049115,
-                    "impDlrRaw":  45573303,
-                    "impWgtRaw":  16401
+                    "value":  2143,
+                    "weight":  142956,
+                    "unitPrice":  14988.12,
+                    "expDlrRaw":  2142641175,
+                    "impDlrRaw":  488533803,
+                    "impWgtRaw":  36750
                 },
                 {
                     "month":  "2023-07",
-                    "value":  315,
-                    "weight":  56395,
-                    "unitPrice":  5577.15,
-                    "expDlrRaw":  314523174,
-                    "impDlrRaw":  41676326,
-                    "impWgtRaw":  13913
+                    "value":  1427,
+                    "weight":  104834,
+                    "unitPrice":  13608.45,
+                    "expDlrRaw":  1426628646,
+                    "impDlrRaw":  403878368,
+                    "impWgtRaw":  32301
                 },
                 {
                     "month":  "2023-08",
-                    "value":  377,
-                    "weight":  68340,
-                    "unitPrice":  5521.93,
-                    "expDlrRaw":  377368979,
-                    "impDlrRaw":  42736288,
-                    "impWgtRaw":  16085
+                    "value":  1670,
+                    "weight":  108598,
+                    "unitPrice":  15377.16,
+                    "expDlrRaw":  1669928603,
+                    "impDlrRaw":  477829446,
+                    "impWgtRaw":  15190
                 },
                 {
                     "month":  "2023-09",
-                    "value":  385,
-                    "weight":  65447,
-                    "unitPrice":  5880.52,
-                    "expDlrRaw":  384862120,
-                    "impDlrRaw":  41788811,
-                    "impWgtRaw":  19341
+                    "value":  2074,
+                    "weight":  130449,
+                    "unitPrice":  15900.13,
+                    "expDlrRaw":  2074156047,
+                    "impDlrRaw":  476728174,
+                    "impWgtRaw":  13664
                 },
                 {
                     "month":  "2023-10",
-                    "value":  417,
-                    "weight":  61882,
-                    "unitPrice":  6745,
-                    "expDlrRaw":  417393973,
-                    "impDlrRaw":  57645209,
-                    "impWgtRaw":  19723
+                    "value":  1845,
+                    "weight":  97475,
+                    "unitPrice":  18932.32,
+                    "expDlrRaw":  1845428103,
+                    "impDlrRaw":  533689366,
+                    "impWgtRaw":  19012
                 },
                 {
                     "month":  "2023-11",
-                    "value":  314,
-                    "weight":  53585,
-                    "unitPrice":  5861.86,
-                    "expDlrRaw":  314107682,
-                    "impDlrRaw":  51564180,
-                    "impWgtRaw":  13809
+                    "value":  2015,
+                    "weight":  106522,
+                    "unitPrice":  18917.49,
+                    "expDlrRaw":  2015128839,
+                    "impDlrRaw":  474990320,
+                    "impWgtRaw":  11879
                 },
                 {
                     "month":  "2023-12",
-                    "value":  200,
-                    "weight":  47061,
-                    "unitPrice":  4244.6,
-                    "expDlrRaw":  199754929,
-                    "impDlrRaw":  94006154,
-                    "impWgtRaw":  19216
+                    "value":  2524,
+                    "weight":  118896,
+                    "unitPrice":  21224.69,
+                    "expDlrRaw":  2523530235,
+                    "impDlrRaw":  511404274,
+                    "impWgtRaw":  18245
                 },
                 {
                     "month":  "2024-01",
-                    "value":  228,
-                    "weight":  52545,
-                    "unitPrice":  4342.23,
-                    "expDlrRaw":  228162489,
-                    "impDlrRaw":  67501150,
-                    "impWgtRaw":  19249
+                    "value":  1960,
+                    "weight":  69303,
+                    "unitPrice":  28286.64,
+                    "expDlrRaw":  1960348887,
+                    "impDlrRaw":  562403314,
+                    "impWgtRaw":  17383
                 },
                 {
                     "month":  "2024-02",
-                    "value":  189,
-                    "weight":  43151,
-                    "unitPrice":  4377.04,
-                    "expDlrRaw":  188873847,
-                    "impDlrRaw":  58861410,
-                    "impWgtRaw":  12400
+                    "value":  2308,
+                    "weight":  81351,
+                    "unitPrice":  28373.84,
+                    "expDlrRaw":  2308240418,
+                    "impDlrRaw":  717544561,
+                    "impWgtRaw":  12576
                 },
                 {
                     "month":  "2024-03",
-                    "value":  241,
-                    "weight":  49702,
-                    "unitPrice":  4850.03,
-                    "expDlrRaw":  241056060,
-                    "impDlrRaw":  66673685,
-                    "impWgtRaw":  19818
+                    "value":  2730,
+                    "weight":  86413,
+                    "unitPrice":  31590.24,
+                    "expDlrRaw":  2729807054,
+                    "impDlrRaw":  848326871,
+                    "impWgtRaw":  18124
                 },
                 {
                     "month":  "2024-04",
-                    "value":  245,
-                    "weight":  42283,
-                    "unitPrice":  5791.1,
-                    "expDlrRaw":  244865289,
-                    "impDlrRaw":  64447485,
-                    "impWgtRaw":  25341
+                    "value":  2159,
+                    "weight":  83460,
+                    "unitPrice":  25866.43,
+                    "expDlrRaw":  2158812516,
+                    "impDlrRaw":  900379037,
+                    "impWgtRaw":  25535
                 },
                 {
                     "month":  "2024-05",
-                    "value":  240,
-                    "weight":  40573,
-                    "unitPrice":  5905.66,
-                    "expDlrRaw":  239610256,
-                    "impDlrRaw":  65367580,
-                    "impWgtRaw":  17332
+                    "value":  2699,
+                    "weight":  81324,
+                    "unitPrice":  33184.26,
+                    "expDlrRaw":  2698676682,
+                    "impDlrRaw":  853813195,
+                    "impWgtRaw":  24884
                 },
                 {
                     "month":  "2024-06",
-                    "value":  278,
-                    "weight":  41018,
-                    "unitPrice":  6767.57,
-                    "expDlrRaw":  277592233,
-                    "impDlrRaw":  59257427,
-                    "impWgtRaw":  15546
+                    "value":  3742,
+                    "weight":  134510,
+                    "unitPrice":  27821.82,
+                    "expDlrRaw":  3742313361,
+                    "impDlrRaw":  752142364,
+                    "impWgtRaw":  104899
                 },
                 {
                     "month":  "2024-07",
-                    "value":  297,
-                    "weight":  45091,
-                    "unitPrice":  6586.65,
-                    "expDlrRaw":  296998511,
-                    "impDlrRaw":  83201730,
-                    "impWgtRaw":  25760
+                    "value":  2980,
+                    "weight":  89745,
+                    "unitPrice":  33203.69,
+                    "expDlrRaw":  2979864837,
+                    "impDlrRaw":  888342443,
+                    "impWgtRaw":  25852
                 },
                 {
                     "month":  "2024-08",
-                    "value":  331,
-                    "weight":  61339,
-                    "unitPrice":  5398.35,
-                    "expDlrRaw":  331129298,
-                    "impDlrRaw":  89849983,
-                    "impWgtRaw":  13160
+                    "value":  3347,
+                    "weight":  103468,
+                    "unitPrice":  32350.72,
+                    "expDlrRaw":  3347263827,
+                    "impDlrRaw":  803869340,
+                    "impWgtRaw":  22589
                 },
                 {
                     "month":  "2024-09",
-                    "value":  406,
-                    "weight":  74114,
-                    "unitPrice":  5483.91,
-                    "expDlrRaw":  406434569,
-                    "impDlrRaw":  83256108,
-                    "impWgtRaw":  21287
+                    "value":  3803,
+                    "weight":  108231,
+                    "unitPrice":  35133.89,
+                    "expDlrRaw":  3802575693,
+                    "impDlrRaw":  760453162,
+                    "impWgtRaw":  17730
                 },
                 {
                     "month":  "2024-10",
-                    "value":  394,
-                    "weight":  61045,
-                    "unitPrice":  6452.94,
-                    "expDlrRaw":  393919498,
-                    "impDlrRaw":  74743031,
-                    "impWgtRaw":  14870
+                    "value":  3483,
+                    "weight":  66118,
+                    "unitPrice":  52675.95,
+                    "expDlrRaw":  3482828191,
+                    "impDlrRaw":  825420543,
+                    "impWgtRaw":  18724
                 },
                 {
                     "month":  "2024-11",
-                    "value":  268,
-                    "weight":  50287,
-                    "unitPrice":  5330.06,
-                    "expDlrRaw":  268032918,
-                    "impDlrRaw":  60157138,
-                    "impWgtRaw":  22808
+                    "value":  3588,
+                    "weight":  83333,
+                    "unitPrice":  43052.35,
+                    "expDlrRaw":  3587681336,
+                    "impDlrRaw":  917085304,
+                    "impWgtRaw":  15422
                 },
                 {
                     "month":  "2024-12",
-                    "value":  279,
-                    "weight":  62589,
-                    "unitPrice":  4465.36,
-                    "expDlrRaw":  279482549,
-                    "impDlrRaw":  57741483,
-                    "impWgtRaw":  22171
+                    "value":  4331,
+                    "weight":  88487,
+                    "unitPrice":  48946.42,
+                    "expDlrRaw":  4331121742,
+                    "impDlrRaw":  687461324,
+                    "impWgtRaw":  13255
                 },
                 {
                     "month":  "2025-01",
-                    "value":  245,
-                    "weight":  54328,
-                    "unitPrice":  4502.26,
-                    "expDlrRaw":  244598644,
-                    "impDlrRaw":  43955420,
-                    "impWgtRaw":  6937
+                    "value":  2236,
+                    "weight":  57610,
+                    "unitPrice":  38819.44,
+                    "expDlrRaw":  2236388115,
+                    "impDlrRaw":  501757166,
+                    "impWgtRaw":  12597
                 },
                 {
                     "month":  "2025-02",
-                    "value":  190,
-                    "weight":  57738,
-                    "unitPrice":  3296.44,
-                    "expDlrRaw":  190329633,
-                    "impDlrRaw":  52694581,
-                    "impWgtRaw":  8469
+                    "value":  2287,
+                    "weight":  61125,
+                    "unitPrice":  37411.45,
+                    "expDlrRaw":  2286774946,
+                    "impDlrRaw":  510878009,
+                    "impWgtRaw":  16325
                 },
                 {
                     "month":  "2025-03",
-                    "value":  233,
-                    "weight":  76575,
-                    "unitPrice":  3039.48,
-                    "expDlrRaw":  232748563,
-                    "impDlrRaw":  53073893,
-                    "impWgtRaw":  7982
+                    "value":  3665,
+                    "weight":  95718,
+                    "unitPrice":  38285.17,
+                    "expDlrRaw":  3664579949,
+                    "impDlrRaw":  779958058,
+                    "impWgtRaw":  13128
                 },
                 {
                     "month":  "2025-04",
-                    "value":  238,
-                    "weight":  60106,
-                    "unitPrice":  3955.75,
-                    "expDlrRaw":  237764422,
-                    "impDlrRaw":  45520544,
-                    "impWgtRaw":  7760
+                    "value":  2846,
+                    "weight":  93216,
+                    "unitPrice":  30528.6,
+                    "expDlrRaw":  2845754081,
+                    "impDlrRaw":  602629319,
+                    "impWgtRaw":  12195
                 },
                 {
                     "month":  "2025-05",
-                    "value":  224,
-                    "weight":  50558,
-                    "unitPrice":  4435.69,
-                    "expDlrRaw":  224259744,
-                    "impDlrRaw":  52866032,
-                    "impWgtRaw":  9451
+                    "value":  4007,
+                    "weight":  112226,
+                    "unitPrice":  35702.28,
+                    "expDlrRaw":  4006723549,
+                    "impDlrRaw":  470140177,
+                    "impWgtRaw":  10684
                 },
                 {
                     "month":  "2025-06",
-                    "value":  277,
-                    "weight":  61842,
-                    "unitPrice":  4486.95,
-                    "expDlrRaw":  277481697,
-                    "impDlrRaw":  46497934,
-                    "impWgtRaw":  8112
+                    "value":  4688,
+                    "weight":  106922,
+                    "unitPrice":  43841.49,
+                    "expDlrRaw":  4687620058,
+                    "impDlrRaw":  500660132,
+                    "impWgtRaw":  10894
                 },
                 {
                     "month":  "2025-07",
-                    "value":  290,
-                    "weight":  67013,
-                    "unitPrice":  4321.99,
-                    "expDlrRaw":  289629533,
-                    "impDlrRaw":  59620857,
-                    "impWgtRaw":  8832
+                    "value":  4195,
+                    "weight":  99662,
+                    "unitPrice":  42087.84,
+                    "expDlrRaw":  4194558010,
+                    "impDlrRaw":  650785384,
+                    "impWgtRaw":  18104
                 },
                 {
                     "month":  "2025-08",
-                    "value":  314,
-                    "weight":  88031,
-                    "unitPrice":  3563.44,
-                    "expDlrRaw":  313693286,
-                    "impDlrRaw":  45233354,
-                    "impWgtRaw":  8146
+                    "value":  4604,
+                    "weight":  104348,
+                    "unitPrice":  44118.55,
+                    "expDlrRaw":  4603682383,
+                    "impDlrRaw":  678330897,
+                    "impWgtRaw":  10965
                 },
                 {
                     "month":  "2025-09",
-                    "value":  272,
-                    "weight":  75727,
-                    "unitPrice":  3598.31,
-                    "expDlrRaw":  272488889,
-                    "impDlrRaw":  48576509,
-                    "impWgtRaw":  9460
+                    "value":  5234,
+                    "weight":  126526,
+                    "unitPrice":  41366.77,
+                    "expDlrRaw":  5233972132,
+                    "impDlrRaw":  398097539,
+                    "impWgtRaw":  11616
                 },
                 {
                     "month":  "2025-10",
-                    "value":  240,
-                    "weight":  73428,
-                    "unitPrice":  3262.11,
-                    "expDlrRaw":  239529947,
-                    "impDlrRaw":  45451968,
-                    "impWgtRaw":  9113
+                    "value":  4718,
+                    "weight":  106390,
+                    "unitPrice":  44348.61,
+                    "expDlrRaw":  4718248739,
+                    "impDlrRaw":  568544118,
+                    "impWgtRaw":  10792
                 },
                 {
                     "month":  "2025-11",
-                    "value":  205,
-                    "weight":  66053,
-                    "unitPrice":  3108.96,
-                    "expDlrRaw":  205355861,
-                    "impDlrRaw":  44079783,
-                    "impWgtRaw":  8976
+                    "value":  4675,
+                    "weight":  92773,
+                    "unitPrice":  50393.82,
+                    "expDlrRaw":  4675185540,
+                    "impDlrRaw":  649764610,
+                    "impWgtRaw":  10206
                 },
                 {
                     "month":  "2025-12",
-                    "value":  205,
-                    "weight":  74288,
-                    "unitPrice":  2754.55,
-                    "expDlrRaw":  204629904,
-                    "impDlrRaw":  41629997,
-                    "impWgtRaw":  12014
+                    "value":  6161,
+                    "weight":  104666,
+                    "unitPrice":  58868.11,
+                    "expDlrRaw":  6161489897,
+                    "impDlrRaw":  981906903,
+                    "impWgtRaw":  14131
                 },
                 {
                     "month":  "2026-01",
-                    "value":  234,
-                    "weight":  65057,
-                    "unitPrice":  3603.61,
-                    "expDlrRaw":  234440263,
-                    "impDlrRaw":  45702234,
-                    "impWgtRaw":  9080
+                    "value":  4883,
+                    "weight":  87596,
+                    "unitPrice":  55749.28,
+                    "expDlrRaw":  4883414037,
+                    "impDlrRaw":  798866862,
+                    "impWgtRaw":  11216
                 },
                 {
                     "month":  "2026-02",
-                    "value":  197,
-                    "weight":  64660,
-                    "unitPrice":  3051.66,
-                    "expDlrRaw":  197320419,
-                    "impDlrRaw":  48809848,
-                    "impWgtRaw":  8299
+                    "value":  6749,
+                    "weight":  92874,
+                    "unitPrice":  72666.48,
+                    "expDlrRaw":  6748826215,
+                    "impDlrRaw":  842372864,
+                    "impWgtRaw":  10125
                 },
                 {
                     "month":  "2026-03",
-                    "value":  218,
-                    "weight":  75755,
-                    "unitPrice":  2878.81,
-                    "expDlrRaw":  218084184,
-                    "impDlrRaw":  51782330,
-                    "impWgtRaw":  9876
+                    "value":  8577,
+                    "weight":  134548,
+                    "unitPrice":  63748.56,
+                    "expDlrRaw":  8577241499,
+                    "impDlrRaw":  894272407,
+                    "impWgtRaw":  11339
                 },
                 {
                     "month":  "2026-04",
-                    "value":  206,
-                    "weight":  73498,
-                    "unitPrice":  2798.76,
-                    "expDlrRaw":  205703162,
-                    "impDlrRaw":  44656673,
-                    "impWgtRaw":  8990
+                    "value":  8157,
+                    "weight":  112173,
+                    "unitPrice":  72719.95,
+                    "expDlrRaw":  8157215096,
+                    "impDlrRaw":  1283512313,
+                    "impWgtRaw":  10637
                 },
                 {
                     "month":  "2026-05",
-                    "value":  181,
-                    "weight":  71168,
-                    "unitPrice":  2543.44,
-                    "expDlrRaw":  181011866,
-                    "impDlrRaw":  31880135,
-                    "impWgtRaw":  6980
+                    "value":  9620,
+                    "weight":  114827,
+                    "unitPrice":  83781.6,
+                    "expDlrRaw":  9620389444,
+                    "impDlrRaw":  1513136835,
+                    "impWgtRaw":  12240
                 },
                 {
                     "month":  "2026-06",
