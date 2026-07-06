@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-07-05T23:46:59Z",
-    "updatedKr":  "2026-07-06 08:46:59",
+    "updated":  "2026-07-06T00:11:59Z",
+    "updatedKr":  "2026-07-06 09:11:59",
     "index":  [
                   {
                       "key":  "KOSPI",
@@ -164,10 +164,10 @@
                       {
                           "key":  "WHEAT",
                           "symbol":  "ZW=F",
-                          "current":  600.25,
-                          "wow":  3.8,
-                          "mom":  3.49,
-                          "ytd":  18.51,
+                          "current":  590.5,
+                          "wow":  2.12,
+                          "mom":  1.81,
+                          "ytd":  16.58,
                           "type":  "pct",
                           "asOf":  "2026-07-02",
                           "ok":  true
