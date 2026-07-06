@@ -2580,7 +2580,7 @@ if (IS_STATIC) {
 
 // ─── Semiconductor 수출입 View ────────────────────────────
 let tradeCache = null;
-let semiconCharts = { ssd: null, nand: null, dram: null };
+let semiconCharts = { ssd: null, nand: null, dram: null, mcp: null };
 let semiconRange = '5y';
 let semiconMetric = 'value';  // 'value' | 'weight' | 'unitPrice'
 
@@ -2754,8 +2754,9 @@ function renderSemicon() {
     ssd:  '#1e3a5f',
     nand: '#b89968',
     dram: '#2c5282',
+    mcp:  '#7b4a8c',
   };
-  ['ssd', 'nand', 'dram'].forEach(key => {
+  ['ssd', 'nand', 'dram', 'mcp'].forEach(key => {
     const full = tradeCache[key] || [];
     const filtered = filterByRange(full, semiconRange);
     const stats = computeStats(full); // stats always from full series (latest is latest)
