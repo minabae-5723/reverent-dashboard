@@ -1,12 +1,12 @@
 {
-    "updated":  "2026-07-06T08:47:20+09:00",
+    "updated":  "2026-07-09T08:50:30+09:00",
     "source":  "finance.naver.com exchangeDailyQuote (Seoul 留ㅻℓ湲곗???",
     "fx":  {
                "USDKRW":  {
                               "current":  1529,
                               "wow":  -0.55,
                               "mom":  -1.96,
-                              "ytd":  5.23,
+                              "ytd":  3.42,
                               "asOf":  "2026-07-03",
                               "prevDate":  "2026-06-26"
                           },
@@ -14,21 +14,21 @@
                               "current":  161.319,
                               "wow":  -0.29,
                               "mom":  0.64,
-                              "ytd":  2.91,
+                              "ytd":  1.39,
                               "asOf":  "2026-07-03"
                           },
                "USDCNY":  {
                               "current":  6.7847,
                               "wow":  -0.25,
                               "mom":  -0.11,
-                              "ytd":  -3.06,
+                              "ytd":  -2.88,
                               "asOf":  "2026-07-03"
                           },
                "USDEUR":  {
                               "current":  0.8742,
                               "wow":  -0.46,
                               "mom":  0.63,
-                              "ytd":  2,
+                              "ytd":  1.84,
                               "asOf":  "2026-07-03"
                           }
            }
