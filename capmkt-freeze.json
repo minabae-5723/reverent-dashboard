@@ -1,62 +1,72 @@
 {
-    "capturedAt":  "2026-07-05 07:00:38",
-    "capturedDow":  "Sunday",
+    "capturedAt":  "2026-07-10 08:45:56",
+    "capturedDow":  "Friday",
     "rate":  [
                  {
                      "key":  "KR3Y",
-                     "current":  3.752,
+                     "current":  3.776,
                      "wow":  3,
-                     "mom":  -10,
-                     "ytd":  83,
+                     "mom":  -13,
+                     "ytd":  85,
                      "type":  "bp",
-                     "asOf":  "2026-07-04T08:42:05.65Z",
+                     "asOf":  "2026-07-09T08:42:09.326Z",
                      "ok":  true,
                      "source":  "investing"
                  },
                  {
                      "key":  "KR10Y",
-                     "current":  4.196,
-                     "wow":  8,
+                     "current":  4.242,
+                     "wow":  6,
                      "mom":  -3,
-                     "ytd":  83,
+                     "ytd":  87,
                      "type":  "bp",
-                     "asOf":  "2026-07-04T08:42:12.015Z",
+                     "asOf":  "2026-07-09T08:42:35.833Z",
                      "ok":  true,
                      "source":  "investing"
                  },
                  {
                      "key":  "CD91",
-                     "current":  2.92,
-                     "wow":  0,
-                     "mom":  6,
-                     "ytd":  11,
+                     "current":  2.91,
+                     "wow":  -1,
+                     "mom":  -1,
+                     "ytd":  10,
                      "type":  "bp",
-                     "asOf":  "2026-07-02",
+                     "asOf":  "2026-07-08",
                      "ok":  true,
                      "source":  "naver-mobile"
                  },
                  {
                      "key":  "US2Y",
-                     "current":  4.131,
-                     "wow":  4,
-                     "mom":  8,
-                     "ytd":  66,
+                     "current":  4.177,
+                     "wow":  5,
+                     "mom":  5,
+                     "ytd":  70,
                      "type":  "bp",
-                     "asOf":  "2026-07-04T01:35:23.875Z",
+                     "asOf":  "2026-07-09T23:40:00.781Z",
                      "ok":  true,
                      "source":  "investing"
                  },
                  {
                      "key":  "US10Y",
                      "symbol":  "^TNX",
-                     "ok":  false,
-                     "error":  "fetch failed"
+                     "current":  4.539,
+                     "wow":  5,
+                     "mom":  0,
+                     "ytd":  35,
+                     "type":  "bp",
+                     "asOf":  "2026-07-10T03:59:55",
+                     "ok":  true
                  },
                  {
                      "key":  "US30Y",
                      "symbol":  "^TYX",
-                     "ok":  false,
-                     "error":  "fetch failed"
+                     "current":  5.053,
+                     "wow":  7,
+                     "mom":  3,
+                     "ytd":  19,
+                     "type":  "bp",
+                     "asOf":  "2026-07-10T03:59:55",
+                     "ok":  true
                  }
              ],
     "cds":  [
@@ -67,18 +77,18 @@
                     "mom":  0,
                     "ytd":  11.7,
                     "type":  "bp_abs",
-                    "asOf":  "2026-07-04T09:33:27.761Z",
+                    "asOf":  "2026-07-09T01:33:16.921Z",
                     "ok":  true,
                     "source":  "investing"
                 },
                 {
                     "key":  "CDS_CN",
-                    "current":  37.3,
-                    "wow":  -0.3,
-                    "mom":  -3,
-                    "ytd":  -6.4,
+                    "current":  36.6,
+                    "wow":  -0.8,
+                    "mom":  -4.1,
+                    "ytd":  -7.2,
                     "type":  "bp_abs",
-                    "asOf":  "2026-07-03T09:33:11.092Z",
+                    "asOf":  "2026-07-09T09:33:10.47Z",
                     "ok":  true,
                     "source":  "investing"
                 }
