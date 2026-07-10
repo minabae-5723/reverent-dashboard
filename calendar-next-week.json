@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-07-09T23:46:04Z",
-    "updatedKr":  "2026-07-10 08:46:04",
+    "updated":  "2026-07-10T06:43:10Z",
+    "updatedKr":  "2026-07-10 15:43:10",
     "countries":  [
                       "5",
                       "35",
@@ -9,6 +9,21 @@
                   ],
     "tab":  "custom 2026-07-13~2026-07-19",
     "events":  [
+                   {
+                       "id":  "553221",
+                       "datetime":  "2026/07/13 18:25:00",
+                       "date":  "7/13",
+                       "time":  "18:25",
+                       "flagKey":  "United_States",
+                       "currency":  "USD",
+                       "importance":  2,
+                       "indicator":  "FOMC Member Bowman Speaks",
+                       "period":  "",
+                       "actual":  "",
+                       "forecast":  "",
+                       "previous":  "",
+                       "type":  "preview"
+                   },
                    {
                        "id":  "552980",
                        "datetime":  "2026/07/13 19:00:00",
@@ -52,6 +67,21 @@
                        "actual":  "",
                        "forecast":  "",
                        "previous":  "3.735%",
+                       "type":  "preview"
+                   },
+                   {
+                       "id":  "553219",
+                       "datetime":  "2026/07/14 01:30:00",
+                       "date":  "7/14",
+                       "time":  "01:30",
+                       "flagKey":  "United_States",
+                       "currency":  "USD",
+                       "importance":  2,
+                       "indicator":  "Fed Waller Speaks",
+                       "period":  "",
+                       "actual":  "",
+                       "forecast":  "",
+                       "previous":  "",
                        "type":  "preview"
                    },
                    {
@@ -215,7 +245,7 @@
                        "indicator":  "Core CPI (YoY)",
                        "period":  "Jun",
                        "actual":  "",
-                       "forecast":  "",
+                       "forecast":  "2.9%",
                        "previous":  "2.9%",
                        "type":  "preview"
                    },
@@ -230,7 +260,7 @@
                        "indicator":  "Core CPI (MoM)",
                        "period":  "Jun",
                        "actual":  "",
-                       "forecast":  "",
+                       "forecast":  "0.3%",
                        "previous":  "0.2%",
                        "type":  "preview"
                    },
@@ -245,7 +275,7 @@
                        "indicator":  "CPI (MoM)",
                        "period":  "Jun",
                        "actual":  "",
-                       "forecast":  "",
+                       "forecast":  "-0.1%",
                        "previous":  "0.5%",
                        "type":  "preview"
                    },
@@ -295,6 +325,21 @@
                        "type":  "preview"
                    },
                    {
+                       "id":  "553229",
+                       "datetime":  "2026/07/15 01:40:00",
+                       "date":  "7/15",
+                       "time":  "01:40",
+                       "flagKey":  "United_States",
+                       "currency":  "USD",
+                       "importance":  2,
+                       "indicator":  "Fed Vice Chair for Supervision Barr Speaks",
+                       "period":  "",
+                       "actual":  "",
+                       "forecast":  "",
+                       "previous":  "",
+                       "type":  "preview"
+                   },
+                   {
                        "id":  "552985",
                        "datetime":  "2026/07/15 02:00:00",
                        "date":  "7/15",
@@ -303,6 +348,36 @@
                        "currency":  "USD",
                        "importance":  1,
                        "indicator":  "Fed Goolsbee Speaks",
+                       "period":  "",
+                       "actual":  "",
+                       "forecast":  "",
+                       "previous":  "",
+                       "type":  "preview"
+                   },
+                   {
+                       "id":  "553230",
+                       "datetime":  "2026/07/15 02:30:00",
+                       "date":  "7/15",
+                       "time":  "02:30",
+                       "flagKey":  "United_States",
+                       "currency":  "USD",
+                       "importance":  1,
+                       "indicator":  "Fed Governor Cook Speaks",
+                       "period":  "",
+                       "actual":  "",
+                       "forecast":  "",
+                       "previous":  "",
+                       "type":  "preview"
+                   },
+                   {
+                       "id":  "553231",
+                       "datetime":  "2026/07/15 03:55:00",
+                       "date":  "7/15",
+                       "time":  "03:55",
+                       "flagKey":  "United_States",
+                       "currency":  "USD",
+                       "importance":  2,
+                       "indicator":  "FOMC Member Bowman Speaks",
                        "period":  "",
                        "actual":  "",
                        "forecast":  "",
@@ -740,7 +815,7 @@
                        "indicator":  "PPI (MoM)",
                        "period":  "Jun",
                        "actual":  "",
-                       "forecast":  "",
+                       "forecast":  "0.2%",
                        "previous":  "1.1%",
                        "type":  "preview"
                    },
@@ -755,7 +830,7 @@
                        "indicator":  "Core PPI (MoM)",
                        "period":  "Jun",
                        "actual":  "",
-                       "forecast":  "",
+                       "forecast":  "0.4%",
                        "previous":  "0.4%",
                        "type":  "preview"
                    },
@@ -787,6 +862,21 @@
                        "actual":  "",
                        "forecast":  "",
                        "previous":  "5.70",
+                       "type":  "preview"
+                   },
+                   {
+                       "id":  "553224",
+                       "datetime":  "2026/07/15 21:45:00",
+                       "date":  "7/15",
+                       "time":  "21:45",
+                       "flagKey":  "United_States",
+                       "currency":  "USD",
+                       "importance":  2,
+                       "indicator":  "FOMC Member Williams Speaks",
+                       "period":  "",
+                       "actual":  "",
+                       "forecast":  "",
+                       "previous":  "",
                        "type":  "preview"
                    },
                    {
@@ -937,6 +1027,21 @@
                        "actual":  "",
                        "forecast":  "",
                        "previous":  "-0.052M",
+                       "type":  "preview"
+                   },
+                   {
+                       "id":  "553232",
+                       "datetime":  "2026/07/16 02:00:00",
+                       "date":  "7/16",
+                       "time":  "02:00",
+                       "flagKey":  "United_States",
+                       "currency":  "USD",
+                       "importance":  1,
+                       "indicator":  "Fed Governor Cook Speaks",
+                       "period":  "",
+                       "actual":  "",
+                       "forecast":  "",
+                       "previous":  "",
                        "type":  "preview"
                    },
                    {
@@ -1130,7 +1235,7 @@
                        "indicator":  "Retail Sales (MoM)",
                        "period":  "Jun",
                        "actual":  "",
-                       "forecast":  "",
+                       "forecast":  "0.3%",
                        "previous":  "0.9%",
                        "type":  "preview"
                    },
@@ -1146,7 +1251,7 @@
                        "period":  "",
                        "actual":  "",
                        "forecast":  "",
-                       "previous":  "",
+                       "previous":  "215K",
                        "type":  "preview"
                    },
                    {
@@ -1160,7 +1265,7 @@
                        "indicator":  "Core Retail Sales (MoM)",
                        "period":  "Jun",
                        "actual":  "",
-                       "forecast":  "",
+                       "forecast":  "-0.1%",
                        "previous":  "0.8%",
                        "type":  "preview"
                    },
@@ -1176,7 +1281,7 @@
                        "period":  "",
                        "actual":  "",
                        "forecast":  "",
-                       "previous":  "",
+                       "previous":  "1,814K",
                        "type":  "preview"
                    },
                    {
@@ -1191,7 +1296,7 @@
                        "period":  "",
                        "actual":  "",
                        "forecast":  "",
-                       "previous":  "",
+                       "previous":  "218.75K",
                        "type":  "preview"
                    },
                    {
@@ -1326,7 +1431,7 @@
                        "period":  "",
                        "actual":  "",
                        "forecast":  "",
-                       "previous":  "",
+                       "previous":  "61B",
                        "type":  "preview"
                    },
                    {
@@ -1356,7 +1461,7 @@
                        "period":  "",
                        "actual":  "",
                        "forecast":  "",
-                       "previous":  "",
+                       "previous":  "3.635%",
                        "type":  "preview"
                    },
                    {
@@ -1368,6 +1473,36 @@
                        "currency":  "USD",
                        "importance":  1,
                        "indicator":  "4-Week Bill Auction",
+                       "period":  "",
+                       "actual":  "",
+                       "forecast":  "",
+                       "previous":  "3.630%",
+                       "type":  "preview"
+                   },
+                   {
+                       "id":  "553227",
+                       "datetime":  "2026/07/17 01:30:00",
+                       "date":  "7/17",
+                       "time":  "01:30",
+                       "flagKey":  "United_States",
+                       "currency":  "USD",
+                       "importance":  1,
+                       "indicator":  "Fed Logan Speaks",
+                       "period":  "",
+                       "actual":  "",
+                       "forecast":  "",
+                       "previous":  "",
+                       "type":  "preview"
+                   },
+                   {
+                       "id":  "553228",
+                       "datetime":  "2026/07/17 08:00:00",
+                       "date":  "7/17",
+                       "time":  "08:00",
+                       "flagKey":  "United_States",
+                       "currency":  "USD",
+                       "importance":  1,
+                       "indicator":  "Fed Governor Jefferson Speaks",
                        "period":  "",
                        "actual":  "",
                        "forecast":  "",
@@ -1565,7 +1700,7 @@
                        "indicator":  "Housing Starts",
                        "period":  "Jun",
                        "actual":  "",
-                       "forecast":  "",
+                       "forecast":  "1.330M",
                        "previous":  "1.177M",
                        "type":  "preview"
                    },
@@ -1625,7 +1760,7 @@
                        "indicator":  "Building Permits",
                        "period":  "Jun",
                        "actual":  "",
-                       "forecast":  "",
+                       "forecast":  "1.420M",
                        "previous":  "1.410M",
                        "type":  "preview"
                    },
@@ -1700,7 +1835,7 @@
                        "indicator":  "Capacity Utilization Rate",
                        "period":  "Jun",
                        "actual":  "",
-                       "forecast":  "",
+                       "forecast":  "76.2%",
                        "previous":  "76.2%",
                        "type":  "preview"
                    },
@@ -1715,7 +1850,7 @@
                        "indicator":  "Industrial Production (MoM)",
                        "period":  "Jun",
                        "actual":  "",
-                       "forecast":  "",
+                       "forecast":  "0.2%",
                        "previous":  "0.1%",
                        "type":  "preview"
                    },

@@ -2283,8 +2283,8 @@ html, body {
 .market-brief-table tr + tr td {
   border-top: 1px dashed var(--border);
 }
-.chg.up { color: #16a34a; font-weight: 600; }
-.chg.down { color: #dc2626; font-weight: 600; }
+.chg.up { color: #c62828; font-weight: 600; }
+.chg.down { color: #1565c0; font-weight: 600; }
 .chg.flat { color: var(--text-muted); }
 
 .market-brief-commentary {
