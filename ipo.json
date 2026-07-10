@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-07-10T06:41:55Z",
-    "updatedKr":  "2026-07-10 15:41:55",
+    "updated":  "2026-07-10T07:31:54Z",
+    "updatedKr":  "2026-07-10 16:31:54",
     "source":  "38.co.kr new-listings (o=nw) + Naver Finance (market cap)",
     "companies":  [
                       {
@@ -40,7 +40,7 @@
                           "ipoPrice":  10000,
                           "curPrice":  9800,
                           "openPrice":  16560,
-                          "todayChg":  0,
+                          "todayChg":  -0.0051,
                           "curVsIpo":  -0.02,
                           "openVsIpo":  0.65599999999999992,
                           "mcap":  1308
@@ -54,7 +54,7 @@
                           "ipoPrice":  8000,
                           "curPrice":  8020,
                           "openPrice":  22250,
-                          "todayChg":  0.082899999999999988,
+                          "todayChg":  -0.0255,
                           "curVsIpo":  0.0025,
                           "openVsIpo":  1.7812999999999999,
                           "mcap":  1503
@@ -68,7 +68,7 @@
                           "ipoPrice":  12000,
                           "curPrice":  4485,
                           "openPrice":  11020,
-                          "todayChg":  0.0078000000000000005,
+                          "todayChg":  -0.0022,
                           "curVsIpo":  -0.6262,
                           "openVsIpo":  -0.0817,
                           "mcap":  2388
@@ -82,7 +82,7 @@
                           "ipoPrice":  12500,
                           "curPrice":  12190,
                           "openPrice":  35350,
-                          "todayChg":  -0.0436,
+                          "todayChg":  -0.0256,
                           "curVsIpo":  -0.0248,
                           "openVsIpo":  1.828,
                           "mcap":  1469
@@ -96,7 +96,7 @@
                           "ipoPrice":  21500,
                           "curPrice":  4850,
                           "openPrice":  32000,
-                          "todayChg":  0.0087,
+                          "todayChg":  0.0475,
                           "curVsIpo":  -0.7744,
                           "openVsIpo":  0.48840000000000006,
                           "mcap":  687
@@ -110,7 +110,7 @@
                           "ipoPrice":  15000,
                           "curPrice":  29600,
                           "openPrice":  60000,
-                          "todayChg":  0.0941,
+                          "todayChg":  -0.0017000000000000001,
                           "curVsIpo":  0.9733,
                           "openVsIpo":  3,
                           "mcap":  5255
@@ -124,7 +124,7 @@
                           "ipoPrice":  5000,
                           "curPrice":  3490,
                           "openPrice":  20000,
-                          "todayChg":  -0.084499999999999992,
+                          "todayChg":  0.055999999999999994,
                           "curVsIpo":  -0.302,
                           "openVsIpo":  3,
                           "mcap":  879
@@ -138,7 +138,7 @@
                           "ipoPrice":  6000,
                           "curPrice":  12830,
                           "openPrice":  23500,
-                          "todayChg":  0.0049,
+                          "todayChg":  0.0508,
                           "curVsIpo":  1.1383,
                           "openVsIpo":  2.9167,
                           "mcap":  4163
@@ -152,7 +152,7 @@
                           "ipoPrice":  12300,
                           "curPrice":  5900,
                           "openPrice":  15250,
-                          "todayChg":  -0.0054,
+                          "todayChg":  0.065,
                           "curVsIpo":  -0.5203,
                           "openVsIpo":  0.2398,
                           "mcap":  2770
@@ -166,7 +166,7 @@
                           "ipoPrice":  16600,
                           "curPrice":  8340,
                           "openPrice":  39150,
-                          "todayChg":  -0.0012,
+                          "todayChg":  0.0258,
                           "curVsIpo":  -0.4976,
                           "openVsIpo":  1.3584,
                           "mcap":  656
@@ -180,7 +180,7 @@
                           "ipoPrice":  11000,
                           "curPrice":  14220,
                           "openPrice":  37600,
-                          "todayChg":  -0.0341,
+                          "todayChg":  0.045599999999999995,
                           "curVsIpo":  0.2927,
                           "openVsIpo":  2.4182,
                           "mcap":  1555

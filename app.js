@@ -1980,6 +1980,7 @@ function migrateLocalStorageToUserState() {
     'dashboard-macro-comment',
     'capmkt-comment-',
     'ipo-mcap-',
+    'ipo-screenshots',
   ];
 
   // Treat these server values as "empty / missing" so localStorage content
@@ -2785,6 +2786,7 @@ async function loadPeer() {
   }
   renderPeer();
   renderIpo();
+  renderIpoShots();
 }
 
 function renderPeer() {
@@ -2960,6 +2962,229 @@ function renderIpo() {
       clearIpoMcapOverride(btn.dataset.code);
       renderIpo();
     });
+  });
+}
+
+// ─── IPO Screenshots (paste / drop / file select) ───────
+// Pasted captures persist to localStorage + user-state.json under
+// 'ipo-screenshots' so they survive reloads and deploys (localhost saves
+// → git → Cloudflare). Same persistence path as the mcap overrides.
+const IPO_SHOTS_KEY = 'ipo-screenshots';
+let _ipoShots = null;
+let _ipoShotsWired = false;
+
+function loadIpoShots() {
+  if (_ipoShots) return _ipoShots;
+  let arr = null;
+  try {
+    const raw = localStorage.getItem(IPO_SHOTS_KEY);
+    if (raw) arr = JSON.parse(raw);
+  } catch {}
+  if (!Array.isArray(arr) && _userStateCache && Array.isArray(_userStateCache[IPO_SHOTS_KEY])) {
+    arr = _userStateCache[IPO_SHOTS_KEY];
+  }
+  _ipoShots = Array.isArray(arr) ? arr : [];
+  return _ipoShots;
+}
+
+function persistIpoShots() {
+  const arr = _ipoShots || [];
+  try {
+    localStorage.setItem(IPO_SHOTS_KEY, JSON.stringify(arr));
+  } catch (e) {
+    // localStorage quota (~5MB) can overflow with many big captures — the
+    // server copy still gets the write below, so the data isn't lost.
+    _saveBanner('warn', '⚠️ 브라우저 저장공간 초과 — 오래된 스크린샷을 삭제해 주세요. (서버엔 저장 시도됨)');
+  }
+  saveUserState(IPO_SHOTS_KEY, arr);
+}
+
+// Downscale oversized captures so localStorage / user-state.json stay sane.
+// Keeps PNG (crisp text) unless the result is still huge, then JPEG.
+function _normalizeShot(dataUrl) {
+  return new Promise((resolve) => {
+    const img = new Image();
+    img.onload = () => {
+      const MAXW = 1600;
+      const width = img.naturalWidth || img.width;
+      const height = img.naturalHeight || img.height;
+      const needResize = width > MAXW;
+      if (!needResize && dataUrl.length < 900 * 1024) { resolve(dataUrl); return; }
+      const scale = needResize ? MAXW / width : 1;
+      const w = Math.max(1, Math.round(width * scale));
+      const h = Math.max(1, Math.round(height * scale));
+      const canvas = document.createElement('canvas');
+      canvas.width = w; canvas.height = h;
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0, w, h);
+      let out;
+      try { out = canvas.toDataURL('image/png'); } catch { resolve(dataUrl); return; }
+      if (out.length > 1.2 * 1024 * 1024) out = canvas.toDataURL('image/jpeg', 0.85);
+      resolve(out);
+    };
+    img.onerror = () => resolve(dataUrl);
+    img.src = dataUrl;
+  });
+}
+
+async function addIpoShot(dataUrl) {
+  if (!dataUrl || !/^data:image\//.test(dataUrl)) return;
+  const norm = await _normalizeShot(dataUrl);
+  const shots = loadIpoShots();
+  shots.unshift({
+    id: 'shot-' + Date.now() + '-' + Math.random().toString(36).slice(2, 7),
+    img: norm,
+    title: '',
+    note: '',
+    ts: new Date().toISOString(),
+  });
+  persistIpoShots();
+  renderIpoShots();
+}
+
+function deleteIpoShot(id) {
+  const shots = loadIpoShots();
+  const i = shots.findIndex((s) => s.id === id);
+  if (i < 0) return;
+  if (!window.confirm('이 스크린샷을 삭제할까요?')) return;
+  shots.splice(i, 1);
+  persistIpoShots();
+  renderIpoShots();
+}
+
+function updateIpoShotField(id, field, value) {
+  const shots = loadIpoShots();
+  const s = shots.find((x) => x.id === id);
+  if (s && s[field] !== value) { s[field] = value; persistIpoShots(); }
+}
+
+function _formatIpoShotDate(ts) {
+  if (!ts) return '';
+  const d = (ts || '').slice(0, 10);
+  return d ? d.replace(/-/g, '.') : '';
+}
+
+function renderIpoShots() {
+  const grid = document.getElementById('ipoShotsGrid');
+  if (!grid) return;
+  const shots = loadIpoShots();
+  if (!shots.length) {
+    grid.innerHTML = '<div class="ipo-shots-empty">'
+      + '<div class="ipo-shots-empty-ico">🖼️</div>'
+      + '<p class="ipo-shots-empty-title">아직 저장된 스크린샷이 없습니다</p>'
+      + '<p class="ipo-shots-empty-hint">위 영역에 <kbd>Ctrl</kbd>+<kbd>V</kbd>로 붙여넣어 카드로 정리해 보세요.</p>'
+      + '</div>';
+    return;
+  }
+  grid.innerHTML = shots.map((s) => {
+    const when = _formatIpoShotDate(s.ts);
+    const title = escapeHtml(s.title || s.cap || '');   // back-compat: old `cap` → title
+    const note = escapeHtml(s.note || '');
+    return `
+      <div class="ipo-shot-card" data-id="${s.id}">
+        <div class="ipo-shot-imgwrap"><img class="ipo-shot-img" src="${s.img}" alt="IPO 스크린샷" data-id="${s.id}" loading="lazy"></div>
+        <input type="text" class="ipo-shot-title" data-id="${s.id}" placeholder="제목 (예: 레메디 수요예측 결과)" value="${title}" maxlength="120">
+        <textarea class="ipo-shot-note" data-id="${s.id}" placeholder="메모를 작성하세요…" rows="2">${note}</textarea>
+        <div class="ipo-shot-actions">
+          <span class="ipo-shot-date">${when}</span>
+          <button class="ipo-shot-del" data-id="${s.id}" type="button">🗑 삭제</button>
+        </div>
+      </div>`;
+  }).join('');
+  grid.querySelectorAll('.ipo-shot-del').forEach((b) =>
+    b.addEventListener('click', () => deleteIpoShot(b.dataset.id)));
+  grid.querySelectorAll('.ipo-shot-title').forEach((inp) => {
+    const save = () => updateIpoShotField(inp.dataset.id, 'title', inp.value);
+    inp.addEventListener('change', save);
+    inp.addEventListener('blur', save);
+  });
+  grid.querySelectorAll('.ipo-shot-note').forEach((ta) => {
+    const save = () => updateIpoShotField(ta.dataset.id, 'note', ta.value);
+    ta.addEventListener('change', save);
+    ta.addEventListener('blur', save);
+  });
+  grid.querySelectorAll('.ipo-shot-img').forEach((img) =>
+    img.addEventListener('click', () => openIpoLightbox(img.src)));
+}
+
+function openIpoLightbox(src) {
+  let lb = document.getElementById('ipoLightbox');
+  if (!lb) {
+    lb = document.createElement('div');
+    lb.id = 'ipoLightbox';
+    lb.className = 'ipo-lightbox';
+    lb.innerHTML = '<img class="ipo-lightbox-img" alt="IPO 스크린샷 확대">';
+    lb.addEventListener('click', () => { lb.style.display = 'none'; });
+    document.body.appendChild(lb);
+  }
+  lb.querySelector('.ipo-lightbox-img').src = src;
+  lb.style.display = 'flex';
+}
+
+function _ipoIngestFiles(files) {
+  for (const f of files) {
+    if (!f || !f.type || !f.type.startsWith('image/')) continue;
+    const reader = new FileReader();
+    reader.onload = () => addIpoShot(reader.result);
+    reader.readAsDataURL(f);
+  }
+}
+
+function _isPeerViewActive() {
+  const v = document.getElementById('view-peer');
+  return !!(v && !v.hidden);
+}
+
+function initIpoShots() {
+  renderIpoShots();
+  if (_ipoShotsWired) return;
+  _ipoShotsWired = true;
+
+  const drop = document.getElementById('ipoDrop');
+  const fileInput = document.getElementById('ipoFileInput');
+
+  if (fileInput) {
+    fileInput.addEventListener('change', () => {
+      _ipoIngestFiles(fileInput.files);
+      fileInput.value = '';
+    });
+  }
+
+  if (drop) {
+    ['dragenter', 'dragover'].forEach((ev) =>
+      drop.addEventListener(ev, (e) => {
+        e.preventDefault(); e.stopPropagation();
+        drop.classList.add('drag');
+      }));
+    ['dragleave', 'drop'].forEach((ev) =>
+      drop.addEventListener(ev, (e) => {
+        e.preventDefault(); e.stopPropagation();
+        drop.classList.remove('drag');
+      }));
+    drop.addEventListener('drop', (e) => {
+      const dt = e.dataTransfer;
+      if (dt && dt.files && dt.files.length) _ipoIngestFiles(dt.files);
+    });
+  }
+
+  // Global paste — only ingest while the PEER/IPO view is visible so Ctrl+V
+  // in other views (e.g. valuation inputs) isn't hijacked.
+  document.addEventListener('paste', (e) => {
+    if (!_isPeerViewActive()) return;
+    const items = (e.clipboardData && e.clipboardData.items) || [];
+    let hit = false;
+    for (const it of items) {
+      if (it.kind === 'file' && it.type && it.type.startsWith('image/')) {
+        const f = it.getAsFile();
+        if (f) {
+          const r = new FileReader();
+          r.onload = () => addIpoShot(r.result);
+          r.readAsDataURL(f);
+          hit = true;
+        }
+      }
+    }
+    if (hit) e.preventDefault();
   });
 }
 
@@ -3596,6 +3821,7 @@ setupShillerFilters();
 setupFedWatchFilters();
 setupCapMktComments();
 setupDashboardMacroComment();
+initIpoShots();
 // Load deployed user-state (valuations + macro notes + comments), then
 // re-render deals view if it's already mounted and refill any comment
 // fields that are still empty (covers fresh-browser / cleared-cache case).
@@ -3603,6 +3829,11 @@ loadUserState().then(() => {
   // Push any localStorage-only saves (from before /save-state existed) to
   // the server so the next deploy carries them everywhere.
   migrateLocalStorageToUserState();
+
+  // Server-side IPO screenshots may have loaded after the first render
+  // (fresh browser / cleared cache) — invalidate the cache and re-render.
+  _ipoShots = null;
+  renderIpoShots();
 
   // Auto-refresh market data every 5 min (localhost only) so Cloudflare tracks
   // the intraday Capital Market data. /refresh-market launches a detached

@@ -1,0 +1,31 @@
+{
+    "company":  "대명에너지",
+    "corp_code":  "01150515",
+    "fiscal_period":  "LTM Q1 2026 (FY2025 + Q12026 - Q12025)",
+    "unit":  "100M KRW",
+    "fetched_at":  "2026-07-10 16:23:44",
+    "pnl":  {
+                "revenue":  1426,
+                "operating_income":  290,
+                "depreciation":  null,
+                "ebitda":  null,
+                "net_income":  105
+            },
+    "equity_total":  1695,
+    "debt":  {
+                 "st_borrowings":  110,
+                 "current_lt_borrowings":  136,
+                 "current_lease":  7,
+                 "lt_borrowings":  1108,
+                 "nc_lease":  7
+             },
+    "cash":  {
+                 "cash_and_equivalents":  315,
+                 "st_financial_invest":  150
+             },
+    "derived":  {
+                    "total_debt":  1368,
+                    "total_cash":  465,
+                    "net_debt":  903
+                }
+}
