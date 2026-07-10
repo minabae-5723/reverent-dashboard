@@ -1,27 +1,27 @@
 {
-    "updated":  "2026-07-10T06:48:47Z",
-    "updatedKr":  "2026-07-10 15:48:47",
+    "updated":  "2026-07-10T06:53:46Z",
+    "updatedKr":  "2026-07-10 15:53:46",
     "index":  [
                   {
                       "key":  "KOSPI",
                       "symbol":  "^KS11",
-                      "current":  7504.2,
-                      "wow":  -7.22,
-                      "mom":  -2.93,
-                      "ytd":  74.13,
+                      "current":  7475.94,
+                      "wow":  -7.57,
+                      "mom":  -3.3,
+                      "ytd":  73.47,
                       "type":  "pct",
-                      "asOf":  "2026-07-10T15:29:30",
+                      "asOf":  "2026-07-10T15:32:30",
                       "ok":  true
                   },
                   {
                       "key":  "KOSDAQ",
                       "symbol":  "^KQ11",
-                      "current":  840.18,
-                      "wow":  -3.25,
-                      "mom":  -11.71,
-                      "ytd":  -11.15,
+                      "current":  837.43,
+                      "wow":  -3.57,
+                      "mom":  -12,
+                      "ytd":  -11.44,
                       "type":  "pct",
-                      "asOf":  "2026-07-10T15:29:30",
+                      "asOf":  "2026-07-10T15:32:50",
                       "ok":  true
                   },
                   {
@@ -60,12 +60,12 @@
                   {
                       "key":  "SHANGHAI",
                       "symbol":  "000001.SS",
-                      "current":  4017.074,
-                      "wow":  -0.66,
-                      "mom":  0.6,
-                      "ytd":  -0.16,
+                      "current":  4014.323,
+                      "wow":  -0.73,
+                      "mom":  0.53,
+                      "ytd":  -0.23,
                       "type":  "pct",
-                      "asOf":  "2026-07-10T15:34:40",
+                      "asOf":  "2026-07-10T15:39:30",
                       "ok":  true
                   }
               ],
@@ -105,12 +105,12 @@
                  },
                  {
                      "key":  "US2Y",
-                     "current":  4.158,
+                     "current":  4.16,
                      "wow":  3,
                      "mom":  3,
                      "ytd":  68,
                      "type":  "bp",
-                     "asOf":  "2026-07-10T06:40:01.224Z",
+                     "asOf":  "2026-07-10T06:50:01.737Z",
                      "ok":  true,
                      "source":  "investing"
                  },
