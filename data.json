@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-07-10T06:42:25Z",
-    "updatedKr":  "2026-07-10 15:42:25",
+    "updated":  "2026-07-10T06:43:46Z",
+    "updatedKr":  "2026-07-10 15:43:46",
     "index":  [
                   {
                       "key":  "KOSPI",
@@ -10,7 +10,7 @@
                       "mom":  -2.93,
                       "ytd":  74.13,
                       "type":  "pct",
-                      "asOf":  "2026-07-10T15:23:00",
+                      "asOf":  "2026-07-10T15:24:20",
                       "ok":  true
                   },
                   {
@@ -21,7 +21,7 @@
                       "mom":  -11.71,
                       "ytd":  -11.15,
                       "type":  "pct",
-                      "asOf":  "2026-07-10T15:23:00",
+                      "asOf":  "2026-07-10T15:24:30",
                       "ok":  true
                   },
                   {
@@ -60,12 +60,12 @@
                   {
                       "key":  "SHANGHAI",
                       "symbol":  "000001.SS",
-                      "current":  4026.729,
-                      "wow":  -0.42,
-                      "mom":  0.84,
-                      "ytd":  0.08,
+                      "current":  4025.408,
+                      "wow":  -0.45,
+                      "mom":  0.81,
+                      "ytd":  0.05,
                       "type":  "pct",
-                      "asOf":  "2026-07-10T15:28:00",
+                      "asOf":  "2026-07-10T15:29:30",
                       "ok":  true
                   }
               ],
@@ -187,10 +187,10 @@
                {
                    "key":  "USDKRW",
                    "symbol":  "naver:USDKRW",
-                   "current":  1507.5,
-                   "wow":  -1.41,
-                   "mom":  -0.48,
-                   "ytd":  2.8,
+                   "current":  1503.2,
+                   "wow":  -1.69,
+                   "mom":  -0.76,
+                   "ytd":  2.5,
                    "type":  "pct",
                    "asOf":  "2026-07-10",
                    "ok":  true,
@@ -199,10 +199,10 @@
                {
                    "key":  "USDEUR",
                    "symbol":  "naver:USDEUR",
-                   "current":  0.8747,
-                   "wow":  0.05,
-                   "mom":  1.53,
-                   "ytd":  1.89,
+                   "current":  0.8739,
+                   "wow":  -0.04,
+                   "mom":  1.43,
+                   "ytd":  1.78,
                    "type":  "pct",
                    "asOf":  "2026-07-10",
                    "ok":  true,
@@ -211,10 +211,10 @@
                {
                    "key":  "USDJPY",
                    "symbol":  "naver:USDJPY",
-                   "current":  162.385,
-                   "wow":  0.64,
-                   "mom":  1.52,
-                   "ytd":  2.61,
+                   "current":  161.554,
+                   "wow":  0.14,
+                   "mom":  1.02,
+                   "ytd":  2.08,
                    "type":  "pct",
                    "asOf":  "2026-07-10",
                    "ok":  true,
@@ -223,10 +223,10 @@
                {
                    "key":  "USDCNY",
                    "symbol":  "naver:USDCNY",
-                   "current":  6.7961,
-                   "wow":  0.16,
-                   "mom":  0.57,
-                   "ytd":  -2.63,
+                   "current":  6.7825,
+                   "wow":  -0.03,
+                   "mom":  0.37,
+                   "ytd":  -2.84,
                    "type":  "pct",
                    "asOf":  "2026-07-10",
                    "ok":  true,
