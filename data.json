@@ -60,12 +60,12 @@
                   {
                       "key":  "SHANGHAI",
                       "symbol":  "000001.SS",
-                      "current":  4017.08,
+                      "current":  4017.074,
                       "wow":  -0.66,
                       "mom":  0.6,
                       "ytd":  -0.16,
                       "type":  "pct",
-                      "asOf":  "2026-07-10T15:34:30",
+                      "asOf":  "2026-07-10T15:34:40",
                       "ok":  true
                   }
               ],
