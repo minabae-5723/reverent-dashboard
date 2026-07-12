@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-07-12T07:35:05Z",
-    "updatedKr":  "2026-07-12 16:35:05",
+    "updated":  "2026-07-12T09:39:53Z",
+    "updatedKr":  "2026-07-12 18:39:53",
     "index":  [
                   {
                       "key":  "KOSPI",
@@ -74,10 +74,10 @@
                      "key":  "KR3Y",
                      "current":  3.763,
                      "wow":  1,
-                     "mom":  -14,
+                     "mom":  -6,
                      "ytd":  84,
                      "type":  "bp",
-                     "asOf":  "2026-07-11T08:41:48.325Z",
+                     "asOf":  "2026-07-12T08:42:05.841Z",
                      "ok":  true,
                      "source":  "investing"
                  },
@@ -85,10 +85,10 @@
                      "key":  "KR10Y",
                      "current":  4.224,
                      "wow":  3,
-                     "mom":  -7,
+                     "mom":  2,
                      "ytd":  86,
                      "type":  "bp",
-                     "asOf":  "2026-07-11T08:42:01.679Z",
+                     "asOf":  "2026-07-12T08:42:26.11Z",
                      "ok":  true,
                      "source":  "investing"
                  },
@@ -152,10 +152,10 @@
                       {
                           "key":  "GOLD",
                           "symbol":  "GC=F",
-                          "current":  4113.7002,
-                          "wow":  0.02,
-                          "mom":  -2.4,
-                          "ytd":  -4.65,
+                          "current":  4104.1001,
+                          "wow":  -0.21,
+                          "mom":  -2.63,
+                          "ytd":  -4.87,
                           "type":  "pct",
                           "asOf":  "2026-07-10",
                           "ok":  true
@@ -174,10 +174,10 @@
                       {
                           "key":  "WHEAT",
                           "symbol":  "ZW=F",
-                          "current":  640.25,
-                          "wow":  8.43,
-                          "mom":  9.54,
-                          "ytd":  26.41,
+                          "current":  632,
+                          "wow":  7.03,
+                          "mom":  8.13,
+                          "ytd":  24.78,
                           "type":  "pct",
                           "asOf":  "2026-07-10",
                           "ok":  true
