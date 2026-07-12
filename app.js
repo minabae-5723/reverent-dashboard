@@ -1814,7 +1814,7 @@ function wireFixSaveTextarea({ textarea, fixBtn, statusEl }) {
   requestAnimationFrame(resizeToFit);
   textarea.addEventListener('input', resizeToFit);
 
-  let savedValue = textarea.value;
+  textarea._commentBaseline = textarea.value;
   const setStatus = (text, cls) => {
     if (!statusEl) return;
     statusEl.textContent = text;
@@ -1822,11 +1822,11 @@ function wireFixSaveTextarea({ textarea, fixBtn, statusEl }) {
     if (cls) statusEl.classList.add(cls);
   };
   const refresh = () => {
-    const dirty = textarea.value !== savedValue;
+    const dirty = textarea.value !== textarea._commentBaseline;
     if (fixBtn) fixBtn.disabled = !dirty;
     if (dirty) setStatus('● 저장되지 않은 변경', 'dirty');
   };
-  if (savedValue) {
+  if (textarea._commentBaseline) {
     let savedAt = localStorage.getItem(`${storageKey}-time`);
     if (!savedAt && _userStateCache) savedAt = _userStateCache[`${storageKey}-time`];
     if (savedAt) setStatus(`✓ ${savedAt} 저장됨`, 'saved');
@@ -1844,7 +1844,7 @@ function wireFixSaveTextarea({ textarea, fixBtn, statusEl }) {
     fixBtn.addEventListener('click', () => {
       try {
         localStorage.setItem(storageKey, textarea.value);
-        savedValue = textarea.value;
+        textarea._commentBaseline = textarea.value;
         const t = new Date();
         const stamp = `${String(t.getMonth() + 1).padStart(2, '0')}-${String(t.getDate()).padStart(2, '0')} ${String(t.getHours()).padStart(2, '0')}:${String(t.getMinutes()).padStart(2, '0')}`;
         localStorage.setItem(`${storageKey}-time`, stamp);
@@ -3737,7 +3737,9 @@ function initCardComment(key) {
   // FIX-button save (auto-save 제거). FIX 클릭 시 localStorage + user-state.json 저장
   // → 서버 /save-state 가 commit+push 까지 수행 → GitHub·Cloudflare 자동 반영.
   // (서버가 켜져 있어야 함 — logon 자동시작으로 보장.)
-  let savedValue = input.value;
+  // Baseline for dirty-detection is stored ON the element (not a closure var) so
+  // the post-load server-wins re-hydration can reset it and avoid a false "dirty".
+  input._commentBaseline = input.value;
   const setStatus = (t, cls) => {
     if (!timeEl) return;
     timeEl.textContent = t;
@@ -3745,7 +3747,7 @@ function initCardComment(key) {
     if (cls) timeEl.classList.add(cls);
   };
   const refreshFix = () => {
-    const dirty = input.value !== savedValue;
+    const dirty = input.value !== input._commentBaseline;
     if (fixBtn) fixBtn.disabled = !dirty;
     if (dirty) setStatus('● 저장되지 않은 변경', 'dirty');
   };
@@ -3781,7 +3783,7 @@ function initCardComment(key) {
         setStatus('');
         if (badge) badge.hidden = true;
       }
-      savedValue = input.value;
+      input._commentBaseline = input.value;
       fixBtn.disabled = true;
     });
   }
@@ -3849,31 +3851,50 @@ loadUserState().then(() => {
   // Refill empty Capital Market comments from server cache.
   // (Initial setupCapMktComments() ran before _userStateCache existed —
   //  if this browser has empty localStorage, those inputs are blank now.)
+  // Deployed (server) comment is the source of truth: it wins over this browser's
+  // possibly-stale localStorage so an update pushed centrally (/save-state) or from
+  // another PC actually shows here. Skip only if the user is mid-edit in that field.
+  // Sync localStorage + dirty-baseline so it neither re-pushes nor shows false "unsaved".
   for (const k of ['index','rate','commodity','fx']) {
     const input  = document.querySelector(`.card-comment-input[data-key="${k}"]`);
     const badge  = document.querySelector(`.card-comment-toggle[data-key="${k}"] .toggle-badge`);
     const timeEl = document.querySelector(`.card-comment-saved-time[data-key="${k}"]`);
-    if (!input || input.value !== '') continue;
+    const fixBtn = document.querySelector(`.card-comment-fix[data-key="${k}"]`);
+    if (!input || document.activeElement === input) continue;
     const skey = `capmkt-comment-${k}`;
     const tkey = `capmkt-comment-time-${k}`;
-    if (_userStateCache && typeof _userStateCache[skey] === 'string' && _userStateCache[skey]) {
-      input.value = _userStateCache[skey];
-      if (badge) badge.hidden = false;
-      if (timeEl && _userStateCache[tkey]) timeEl.textContent = `Saved · ${_userStateCache[tkey]}`;
-    }
+    if (!_userStateCache || typeof _userStateCache[skey] !== 'string') continue;
+    const sval = _userStateCache[skey];
+    if (sval === input.value) continue;
+    input.value = sval;
+    input._commentBaseline = sval;
+    const tval = (typeof _userStateCache[tkey] === 'string') ? _userStateCache[tkey] : null;
+    try {
+      if (sval) localStorage.setItem(skey, sval); else localStorage.removeItem(skey);
+      if (tval) localStorage.setItem(tkey, tval);
+    } catch (e) { /* ignore */ }
+    if (badge) badge.hidden = !sval;
+    if (timeEl) timeEl.textContent = tval ? `Saved · ${tval}` : '';
+    if (fixBtn) fixBtn.disabled = true;
   }
 
   // Refill empty Dashboard macro comment from server cache.
   const dmac = document.getElementById('dashboardMacroCommentArea');
-  if (dmac && dmac.value === '' && _userStateCache) {
+  if (dmac && _userStateCache && document.activeElement !== dmac) {
     const v = _userStateCache['dashboard-macro-comment'];
-    if (typeof v === 'string' && v) {
+    if (typeof v === 'string' && v !== dmac.value) {
       dmac.value = v;
+      dmac._commentBaseline = v;
+      const t = _userStateCache['dashboard-macro-comment-time'];
+      try {
+        if (v) localStorage.setItem('dashboard-macro-comment', v); else localStorage.removeItem('dashboard-macro-comment');
+        if (t) localStorage.setItem('dashboard-macro-comment-time', t);
+      } catch (e) { /* ignore */ }
       const dmacFix = document.getElementById('dashboardMacroCommentFix');
       if (dmacFix) dmacFix.disabled = true;
       const dmacStatus = document.getElementById('dashboardMacroCommentStatus');
-      const t = _userStateCache['dashboard-macro-comment-time'];
-      if (dmacStatus && t) dmacStatus.textContent = `✓ ${t} 저장됨`;
+      if (dmacStatus) dmacStatus.textContent = t ? `✓ ${t} 저장됨` : '';
+      if (typeof dmac.dispatchEvent === 'function') dmac.dispatchEvent(new Event('input'));
     }
   }
 
