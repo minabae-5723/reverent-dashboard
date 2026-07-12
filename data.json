@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-07-12T01:39:24Z",
-    "updatedKr":  "2026-07-12 10:39:24",
+    "updated":  "2026-07-12T01:54:30Z",
+    "updatedKr":  "2026-07-12 10:54:30",
     "index":  [
                   {
                       "key":  "KOSPI",
@@ -152,10 +152,10 @@
                       {
                           "key":  "GOLD",
                           "symbol":  "GC=F",
-                          "current":  4104.1001,
-                          "wow":  -0.21,
-                          "mom":  -2.63,
-                          "ytd":  -4.87,
+                          "current":  4113.7002,
+                          "wow":  0.02,
+                          "mom":  -2.4,
+                          "ytd":  -4.65,
                           "type":  "pct",
                           "asOf":  "2026-07-10",
                           "ok":  true
@@ -163,10 +163,10 @@
                       {
                           "key":  "COPPER",
                           "symbol":  "HG=F",
-                          "current":  6.2335,
-                          "wow":  1.95,
-                          "mom":  -3.06,
-                          "ytd":  10.52,
+                          "current":  6.282,
+                          "wow":  2.74,
+                          "mom":  -2.31,
+                          "ytd":  11.38,
                           "type":  "pct",
                           "asOf":  "2026-07-10",
                           "ok":  true
@@ -174,10 +174,10 @@
                       {
                           "key":  "WHEAT",
                           "symbol":  "ZW=F",
-                          "current":  632,
-                          "wow":  7.03,
-                          "mom":  8.13,
-                          "ytd":  24.78,
+                          "current":  640.25,
+                          "wow":  8.43,
+                          "mom":  9.54,
+                          "ytd":  26.41,
                           "type":  "pct",
                           "asOf":  "2026-07-10",
                           "ok":  true
