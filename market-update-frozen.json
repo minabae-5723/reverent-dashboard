@@ -81,21 +81,6 @@
                          "type":  "review"
                      },
                      {
-                         "id":  "552633",
-                         "datetime":  "2026/07/09 03:00:00",
-                         "date":  "7/9",
-                         "time":  "03:00",
-                         "flagKey":  "United_States",
-                         "currency":  "USD",
-                         "importance":  3,
-                         "indicator":  "FOMC Meeting Minutes",
-                         "period":  "",
-                         "actual":  "",
-                         "forecast":  "",
-                         "previous":  "",
-                         "type":  "preview"
-                     },
-                     {
                          "id":  "552540",
                          "datetime":  "2026/07/09 21:30:00",
                          "date":  "7/9",
@@ -105,10 +90,10 @@
                          "importance":  3,
                          "indicator":  "Initial Jobless Claims",
                          "period":  "",
-                         "actual":  "",
+                         "actual":  "215K",
                          "forecast":  "218K",
                          "previous":  "215K",
-                         "type":  "preview"
+                         "type":  "review"
                      }
                  ],
     "nextWeek":  [
