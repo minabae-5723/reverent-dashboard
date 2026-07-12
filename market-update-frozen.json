@@ -108,7 +108,7 @@
                          "indicator":  "Core CPI (YoY)",
                          "period":  "Jun",
                          "actual":  "",
-                         "forecast":  "",
+                         "forecast":  "2.9%",
                          "previous":  "2.9%",
                          "type":  "preview"
                      },
@@ -123,7 +123,7 @@
                          "indicator":  "CPI (YoY)",
                          "period":  "Jun",
                          "actual":  "",
-                         "forecast":  "",
+                         "forecast":  "3.9%",
                          "previous":  "4.2%",
                          "type":  "preview"
                      },
@@ -198,7 +198,7 @@
                          "indicator":  "Retail Sales (MoM)",
                          "period":  "Jun",
                          "actual":  "",
-                         "forecast":  "",
+                         "forecast":  "0.3%",
                          "previous":  "0.9%",
                          "type":  "preview"
                      }
