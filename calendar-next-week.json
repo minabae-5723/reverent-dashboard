@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-07-10T08:07:58Z",
-    "updatedKr":  "2026-07-10 17:07:58",
+    "updated":  "2026-07-12T01:16:43Z",
+    "updatedKr":  "2026-07-12 10:16:43",
     "countries":  [
                       "5",
                       "35",
@@ -85,6 +85,21 @@
                        "type":  "preview"
                    },
                    {
+                       "id":  "553350",
+                       "datetime":  "2026/07/14 01:45:00",
+                       "date":  "7/14",
+                       "time":  "01:45",
+                       "flagKey":  "Europe",
+                       "currency":  "EUR",
+                       "importance":  2,
+                       "indicator":  "ECB\u0027s Schnabel Speaks",
+                       "period":  "",
+                       "actual":  "",
+                       "forecast":  "",
+                       "previous":  "",
+                       "type":  "preview"
+                   },
+                   {
                        "id":  "552043",
                        "datetime":  "2026/07/14 03:00:00",
                        "date":  "7/14",
@@ -95,8 +110,23 @@
                        "indicator":  "Federal Budget Balance",
                        "period":  "Jun",
                        "actual":  "",
-                       "forecast":  "",
+                       "forecast":  "-132.8B",
                        "previous":  "-293.0B",
+                       "type":  "preview"
+                   },
+                   {
+                       "id":  "553351",
+                       "datetime":  "2026/07/14 06:00:00",
+                       "date":  "7/14",
+                       "time":  "06:00",
+                       "flagKey":  "Europe",
+                       "currency":  "EUR",
+                       "importance":  2,
+                       "indicator":  "ECB President Lagarde Speaks",
+                       "period":  "",
+                       "actual":  "",
+                       "forecast":  "",
+                       "previous":  "",
                        "type":  "preview"
                    },
                    {
@@ -140,7 +170,7 @@
                        "indicator":  "NFIB Small Business Optimism",
                        "period":  "Jun",
                        "actual":  "",
-                       "forecast":  "",
+                       "forecast":  "95.6",
                        "previous":  "95.3",
                        "type":  "preview"
                    },
@@ -310,6 +340,21 @@
                        "type":  "preview"
                    },
                    {
+                       "id":  "553352",
+                       "datetime":  "2026/07/14 22:00:00",
+                       "date":  "7/14",
+                       "time":  "22:00",
+                       "flagKey":  "Europe",
+                       "currency":  "EUR",
+                       "importance":  2,
+                       "indicator":  "ECB President Lagarde Speaks",
+                       "period":  "",
+                       "actual":  "",
+                       "forecast":  "",
+                       "previous":  "",
+                       "type":  "preview"
+                   },
+                   {
                        "id":  "552114",
                        "datetime":  "2026/07/15 00:00:00",
                        "date":  "7/15",
@@ -395,7 +440,7 @@
                        "indicator":  "TIC Net Long-Term Transactions",
                        "period":  "May",
                        "actual":  "",
-                       "forecast":  "",
+                       "forecast":  "128.5B",
                        "previous":  "103.1B",
                        "type":  "preview"
                    },
@@ -530,7 +575,7 @@
                        "indicator":  "Core Machinery Orders (YoY)",
                        "period":  "May",
                        "actual":  "",
-                       "forecast":  "",
+                       "forecast":  "12.9%",
                        "previous":  "15.6%",
                        "type":  "preview"
                    },
@@ -545,7 +590,7 @@
                        "indicator":  "Core Machinery Orders (MoM)",
                        "period":  "May",
                        "actual":  "",
-                       "forecast":  "",
+                       "forecast":  "-4.2%",
                        "previous":  "8.7%",
                        "type":  "preview"
                    },
@@ -561,7 +606,7 @@
                        "period":  "Jun",
                        "actual":  "",
                        "forecast":  "36.15B",
-                       "previous":  "27.04B",
+                       "previous":  "36.15B",
                        "type":  "preview"
                    },
                    {
@@ -576,7 +621,7 @@
                        "period":  "Jun",
                        "actual":  "",
                        "forecast":  "30.1%",
-                       "previous":  "20.7%",
+                       "previous":  "30.1%",
                        "type":  "preview"
                    },
                    {
@@ -591,7 +636,7 @@
                        "period":  "Jun",
                        "actual":  "",
                        "forecast":  "70.9%",
-                       "previous":  "53.4%",
+                       "previous":  "70.9%",
                        "type":  "preview"
                    },
                    {
@@ -665,7 +710,7 @@
                        "indicator":  "Industrial Production (MoM)",
                        "period":  "May",
                        "actual":  "",
-                       "forecast":  "",
+                       "forecast":  "0.3%",
                        "previous":  "0.1%",
                        "type":  "preview"
                    },
@@ -815,7 +860,7 @@
                        "indicator":  "PPI (MoM)",
                        "period":  "Jun",
                        "actual":  "",
-                       "forecast":  "0.2%",
+                       "forecast":  "0.0%",
                        "previous":  "1.1%",
                        "type":  "preview"
                    },
@@ -830,7 +875,7 @@
                        "indicator":  "Core PPI (MoM)",
                        "period":  "Jun",
                        "actual":  "",
-                       "forecast":  "0.4%",
+                       "forecast":  "0.3%",
                        "previous":  "0.4%",
                        "type":  "preview"
                    },
@@ -860,7 +905,7 @@
                        "indicator":  "NY Empire State Manufacturing Index",
                        "period":  "Jul",
                        "actual":  "",
-                       "forecast":  "",
+                       "forecast":  "8.70",
                        "previous":  "5.70",
                        "type":  "preview"
                    },
@@ -1250,7 +1295,7 @@
                        "indicator":  "Initial Jobless Claims",
                        "period":  "",
                        "actual":  "",
-                       "forecast":  "",
+                       "forecast":  "215K",
                        "previous":  "215K",
                        "type":  "preview"
                    },
@@ -1340,7 +1385,7 @@
                        "indicator":  "Philadelphia Fed Manufacturing Index",
                        "period":  "Jul",
                        "actual":  "",
-                       "forecast":  "",
+                       "forecast":  "12.1",
                        "previous":  "10.3",
                        "type":  "preview"
                    },
@@ -1371,7 +1416,7 @@
                        "period":  "May",
                        "actual":  "",
                        "forecast":  "0.4%",
-                       "previous":  "0.6%",
+                       "previous":  "0.4%",
                        "type":  "preview"
                    },
                    {
@@ -1385,7 +1430,7 @@
                        "indicator":  "Pending Home Sales (MoM)",
                        "period":  "Jun",
                        "actual":  "",
-                       "forecast":  "",
+                       "forecast":  "-0.3%",
                        "previous":  "3.8%",
                        "type":  "preview"
                    },
@@ -1400,7 +1445,7 @@
                        "indicator":  "Business Inventories (MoM)",
                        "period":  "May",
                        "actual":  "",
-                       "forecast":  "",
+                       "forecast":  "0.3%",
                        "previous":  "0.5%",
                        "type":  "preview"
                    },
@@ -1415,7 +1460,7 @@
                        "indicator":  "NAHB Housing Market Index",
                        "period":  "Jul",
                        "actual":  "",
-                       "forecast":  "",
+                       "forecast":  "35",
                        "previous":  "35",
                        "type":  "preview"
                    },
@@ -1495,6 +1540,21 @@
                        "type":  "preview"
                    },
                    {
+                       "id":  "553349",
+                       "datetime":  "2026/07/17 02:25:00",
+                       "date":  "7/17",
+                       "time":  "02:25",
+                       "flagKey":  "United_States",
+                       "currency":  "USD",
+                       "importance":  1,
+                       "indicator":  "Fed Schmid Speaks",
+                       "period":  "",
+                       "actual":  "",
+                       "forecast":  "",
+                       "previous":  "",
+                       "type":  "preview"
+                   },
+                   {
                        "id":  "553228",
                        "datetime":  "2026/07/17 08:00:00",
                        "date":  "7/17",
@@ -1535,7 +1595,7 @@
                        "indicator":  "Current Account",
                        "period":  "May",
                        "actual":  "",
-                       "forecast":  "",
+                       "forecast":  "17.1B",
                        "previous":  "15.7B",
                        "type":  "preview"
                    },
@@ -1596,7 +1656,7 @@
                        "period":  "Jun",
                        "actual":  "",
                        "forecast":  "2.2%",
-                       "previous":  "2.3%",
+                       "previous":  "2.2%",
                        "type":  "preview"
                    },
                    {
@@ -1626,7 +1686,7 @@
                        "period":  "Jun",
                        "actual":  "",
                        "forecast":  "0.2%",
-                       "previous":  "0.3%",
+                       "previous":  "0.2%",
                        "type":  "preview"
                    },
                    {
@@ -1641,7 +1701,7 @@
                        "period":  "Jun",
                        "actual":  "",
                        "forecast":  "2.4%",
-                       "previous":  "2.6%",
+                       "previous":  "2.4%",
                        "type":  "preview"
                    },
                    {
@@ -1671,7 +1731,7 @@
                        "period":  "Jun",
                        "actual":  "",
                        "forecast":  "2.8%",
-                       "previous":  "3.2%",
+                       "previous":  "2.8%",
                        "type":  "preview"
                    },
                    {
@@ -1700,7 +1760,7 @@
                        "indicator":  "Housing Starts",
                        "period":  "Jun",
                        "actual":  "",
-                       "forecast":  "1.330M",
+                       "forecast":  "1.320M",
                        "previous":  "1.177M",
                        "type":  "preview"
                    },
@@ -1730,7 +1790,7 @@
                        "indicator":  "Import Price Index (MoM)",
                        "period":  "Jun",
                        "actual":  "",
-                       "forecast":  "",
+                       "forecast":  "-0.4%",
                        "previous":  "1.9%",
                        "type":  "preview"
                    },
@@ -1760,7 +1820,7 @@
                        "indicator":  "Building Permits",
                        "period":  "Jun",
                        "actual":  "",
-                       "forecast":  "1.420M",
+                       "forecast":  "1.400M",
                        "previous":  "1.410M",
                        "type":  "preview"
                    },
@@ -1865,7 +1925,7 @@
                        "indicator":  "Michigan Consumer Sentiment",
                        "period":  "Jul",
                        "actual":  "",
-                       "forecast":  "",
+                       "forecast":  "51.4",
                        "previous":  "49.5",
                        "type":  "preview"
                    },
@@ -1972,6 +2032,201 @@
                        "actual":  "",
                        "forecast":  "",
                        "previous":  "",
+                       "type":  "preview"
+                   },
+                   {
+                       "id":  "553340",
+                       "datetime":  "2026/07/18 04:30:00",
+                       "date":  "7/18",
+                       "time":  "04:30",
+                       "flagKey":  "United_States",
+                       "currency":  "USD",
+                       "importance":  1,
+                       "indicator":  "CFTC Soybeans speculative net positions",
+                       "period":  "",
+                       "actual":  "",
+                       "forecast":  "",
+                       "previous":  "112.8K",
+                       "type":  "preview"
+                   },
+                   {
+                       "id":  "553335",
+                       "datetime":  "2026/07/18 04:30:00",
+                       "date":  "7/18",
+                       "time":  "04:30",
+                       "flagKey":  "United_States",
+                       "currency":  "USD",
+                       "importance":  1,
+                       "indicator":  "CFTC Silver speculative net positions",
+                       "period":  "",
+                       "actual":  "",
+                       "forecast":  "",
+                       "previous":  "28.0K",
+                       "type":  "preview"
+                   },
+                   {
+                       "id":  "553324",
+                       "datetime":  "2026/07/18 04:30:00",
+                       "date":  "7/18",
+                       "time":  "04:30",
+                       "flagKey":  "United_States",
+                       "currency":  "USD",
+                       "importance":  2,
+                       "indicator":  "CFTC S\u0026P 500 speculative net positions",
+                       "period":  "",
+                       "actual":  "",
+                       "forecast":  "",
+                       "previous":  "-42.9K",
+                       "type":  "preview"
+                   },
+                   {
+                       "id":  "553331",
+                       "datetime":  "2026/07/18 04:30:00",
+                       "date":  "7/18",
+                       "time":  "04:30",
+                       "flagKey":  "Europe",
+                       "currency":  "EUR",
+                       "importance":  2,
+                       "indicator":  "CFTC EUR speculative net positions",
+                       "period":  "",
+                       "actual":  "",
+                       "forecast":  "",
+                       "previous":  "-16.2K",
+                       "type":  "preview"
+                   },
+                   {
+                       "id":  "553320",
+                       "datetime":  "2026/07/18 04:30:00",
+                       "date":  "7/18",
+                       "time":  "04:30",
+                       "flagKey":  "Japan",
+                       "currency":  "JPY",
+                       "importance":  2,
+                       "indicator":  "CFTC JPY speculative net positions",
+                       "period":  "",
+                       "actual":  "",
+                       "forecast":  "",
+                       "previous":  "-123.8K",
+                       "type":  "preview"
+                   },
+                   {
+                       "id":  "553338",
+                       "datetime":  "2026/07/18 04:30:00",
+                       "date":  "7/18",
+                       "time":  "04:30",
+                       "flagKey":  "United_States",
+                       "currency":  "USD",
+                       "importance":  1,
+                       "indicator":  "CFTC Wheat speculative net positions",
+                       "period":  "",
+                       "actual":  "",
+                       "forecast":  "",
+                       "previous":  "-49.7K",
+                       "type":  "preview"
+                   },
+                   {
+                       "id":  "553337",
+                       "datetime":  "2026/07/18 04:30:00",
+                       "date":  "7/18",
+                       "time":  "04:30",
+                       "flagKey":  "United_States",
+                       "currency":  "USD",
+                       "importance":  1,
+                       "indicator":  "CFTC Natural Gas speculative net positions",
+                       "period":  "",
+                       "actual":  "",
+                       "forecast":  "",
+                       "previous":  "-165.3K",
+                       "type":  "preview"
+                   },
+                   {
+                       "id":  "553339",
+                       "datetime":  "2026/07/18 04:30:00",
+                       "date":  "7/18",
+                       "time":  "04:30",
+                       "flagKey":  "United_States",
+                       "currency":  "USD",
+                       "importance":  1,
+                       "indicator":  "CFTC Corn speculative net positions",
+                       "period":  "",
+                       "actual":  "",
+                       "forecast":  "",
+                       "previous":  "101.0K",
+                       "type":  "preview"
+                   },
+                   {
+                       "id":  "553333",
+                       "datetime":  "2026/07/18 04:30:00",
+                       "date":  "7/18",
+                       "time":  "04:30",
+                       "flagKey":  "United_States",
+                       "currency":  "USD",
+                       "importance":  1,
+                       "indicator":  "CFTC Copper speculative net positions",
+                       "period":  "",
+                       "actual":  "",
+                       "forecast":  "",
+                       "previous":  "64.3K",
+                       "type":  "preview"
+                   },
+                   {
+                       "id":  "553332",
+                       "datetime":  "2026/07/18 04:30:00",
+                       "date":  "7/18",
+                       "time":  "04:30",
+                       "flagKey":  "United_States",
+                       "currency":  "USD",
+                       "importance":  1,
+                       "indicator":  "CFTC Aluminium speculative net positions",
+                       "period":  "",
+                       "actual":  "",
+                       "forecast":  "",
+                       "previous":  "1.3K",
+                       "type":  "preview"
+                   },
+                   {
+                       "id":  "553326",
+                       "datetime":  "2026/07/18 04:30:00",
+                       "date":  "7/18",
+                       "time":  "04:30",
+                       "flagKey":  "United_States",
+                       "currency":  "USD",
+                       "importance":  2,
+                       "indicator":  "CFTC Nasdaq 100 speculative net positions",
+                       "period":  "",
+                       "actual":  "",
+                       "forecast":  "",
+                       "previous":  "2.1K",
+                       "type":  "preview"
+                   },
+                   {
+                       "id":  "553334",
+                       "datetime":  "2026/07/18 04:30:00",
+                       "date":  "7/18",
+                       "time":  "04:30",
+                       "flagKey":  "United_States",
+                       "currency":  "USD",
+                       "importance":  2,
+                       "indicator":  "CFTC Gold speculative net positions",
+                       "period":  "",
+                       "actual":  "",
+                       "forecast":  "",
+                       "previous":  "194.2K",
+                       "type":  "preview"
+                   },
+                   {
+                       "id":  "553336",
+                       "datetime":  "2026/07/18 04:30:00",
+                       "date":  "7/18",
+                       "time":  "04:30",
+                       "flagKey":  "United_States",
+                       "currency":  "USD",
+                       "importance":  2,
+                       "indicator":  "CFTC Crude Oil speculative net positions",
+                       "period":  "",
+                       "actual":  "",
+                       "forecast":  "",
+                       "previous":  "75.7K",
                        "type":  "preview"
                    }
                ]
