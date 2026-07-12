@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-07-12T01:16:43Z",
-    "updatedKr":  "2026-07-12 10:16:43",
+    "updated":  "2026-07-12T23:35:34Z",
+    "updatedKr":  "2026-07-13 08:35:34",
     "countries":  [
                       "5",
                       "35",
@@ -9,6 +9,35 @@
                   ],
     "tab":  "today",
     "events":  [
-
+                   {
+                       "id":  "553221",
+                       "datetime":  "2026/07/13 18:25:00",
+                       "date":  "7/13",
+                       "time":  "18:25",
+                       "flagKey":  "United_States",
+                       "currency":  "USD",
+                       "importance":  2,
+                       "indicator":  "FOMC Member Bowman Speaks",
+                       "period":  "",
+                       "actual":  "",
+                       "forecast":  "",
+                       "previous":  "",
+                       "type":  "preview"
+                   },
+                   {
+                       "id":  "552980",
+                       "datetime":  "2026/07/13 19:00:00",
+                       "date":  "7/13",
+                       "time":  "19:00",
+                       "flagKey":  "United_States",
+                       "currency":  "USD",
+                       "importance":  2,
+                       "indicator":  "OPEC Meeting",
+                       "period":  "",
+                       "actual":  "",
+                       "forecast":  "",
+                       "previous":  "",
+                       "type":  "preview"
+                   }
                ]
 }
