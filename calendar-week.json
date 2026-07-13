@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-07-13T00:10:05Z",
-    "updatedKr":  "2026-07-13 09:10:05",
+    "updated":  "2026-07-13T23:55:33Z",
+    "updatedKr":  "2026-07-14 08:55:33",
     "countries":  [
                       "5",
                       "35",
@@ -9,6 +9,51 @@
                   ],
     "tab":  "custom 2026-07-13~2026-07-19",
     "events":  [
+                   {
+                       "id":  "552974",
+                       "datetime":  "2026/07/14 00:30:00",
+                       "date":  "7/14",
+                       "time":  "00:30",
+                       "flagKey":  "United_States",
+                       "currency":  "USD",
+                       "importance":  1,
+                       "indicator":  "6-Month Bill Auction",
+                       "period":  "",
+                       "actual":  "3.860%",
+                       "forecast":  "",
+                       "previous":  "3.830%",
+                       "type":  "review"
+                   },
+                   {
+                       "id":  "552973",
+                       "datetime":  "2026/07/14 00:30:00",
+                       "date":  "7/14",
+                       "time":  "00:30",
+                       "flagKey":  "United_States",
+                       "currency":  "USD",
+                       "importance":  1,
+                       "indicator":  "3-Month Bill Auction",
+                       "period":  "",
+                       "actual":  "3.760%",
+                       "forecast":  "",
+                       "previous":  "3.735%",
+                       "type":  "review"
+                   },
+                   {
+                       "id":  "552043",
+                       "datetime":  "2026/07/14 03:00:00",
+                       "date":  "7/14",
+                       "time":  "03:00",
+                       "flagKey":  "United_States",
+                       "currency":  "USD",
+                       "importance":  2,
+                       "indicator":  "Federal Budget Balance",
+                       "period":  "Jun",
+                       "actual":  "-120.0B",
+                       "forecast":  "-135.8B",
+                       "previous":  "-293.0B",
+                       "type":  "review"
+                   },
                    {
                        "id":  "553221",
                        "datetime":  "2026/07/13 18:25:00",
@@ -40,36 +85,6 @@
                        "type":  "preview"
                    },
                    {
-                       "id":  "552974",
-                       "datetime":  "2026/07/14 00:30:00",
-                       "date":  "7/14",
-                       "time":  "00:30",
-                       "flagKey":  "United_States",
-                       "currency":  "USD",
-                       "importance":  1,
-                       "indicator":  "6-Month Bill Auction",
-                       "period":  "",
-                       "actual":  "",
-                       "forecast":  "",
-                       "previous":  "3.830%",
-                       "type":  "preview"
-                   },
-                   {
-                       "id":  "552973",
-                       "datetime":  "2026/07/14 00:30:00",
-                       "date":  "7/14",
-                       "time":  "00:30",
-                       "flagKey":  "United_States",
-                       "currency":  "USD",
-                       "importance":  1,
-                       "indicator":  "3-Month Bill Auction",
-                       "period":  "",
-                       "actual":  "",
-                       "forecast":  "",
-                       "previous":  "3.735%",
-                       "type":  "preview"
-                   },
-                   {
                        "id":  "553219",
                        "datetime":  "2026/07/14 01:30:00",
                        "date":  "7/14",
@@ -97,21 +112,6 @@
                        "actual":  "",
                        "forecast":  "",
                        "previous":  "",
-                       "type":  "preview"
-                   },
-                   {
-                       "id":  "552043",
-                       "datetime":  "2026/07/14 03:00:00",
-                       "date":  "7/14",
-                       "time":  "03:00",
-                       "flagKey":  "United_States",
-                       "currency":  "USD",
-                       "importance":  2,
-                       "indicator":  "Federal Budget Balance",
-                       "period":  "Jun",
-                       "actual":  "",
-                       "forecast":  "-132.8B",
-                       "previous":  "-293.0B",
                        "type":  "preview"
                    },
                    {
@@ -215,7 +215,7 @@
                        "indicator":  "CPI Index, n.s.a.",
                        "period":  "Jun",
                        "actual":  "",
-                       "forecast":  "",
+                       "forecast":  "334.71",
                        "previous":  "335.12",
                        "type":  "preview"
                    },
@@ -260,7 +260,7 @@
                        "indicator":  "CPI (YoY)",
                        "period":  "Jun",
                        "actual":  "",
-                       "forecast":  "",
+                       "forecast":  "3.8%",
                        "previous":  "4.2%",
                        "type":  "preview"
                    },
@@ -290,7 +290,7 @@
                        "indicator":  "Core CPI (MoM)",
                        "period":  "Jun",
                        "actual":  "",
-                       "forecast":  "0.3%",
+                       "forecast":  "0.2%",
                        "previous":  "0.2%",
                        "type":  "preview"
                    },

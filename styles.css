@@ -3253,9 +3253,9 @@ html, body {
   background: var(--navy-light);
 }
 .ipo-shots-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
   margin-top: 14px;
 }
 .ipo-shots-empty {
@@ -3286,11 +3286,12 @@ html, body {
 .ipo-shot-card {
   background: var(--card-bg);
   border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 10px;
+  border-radius: 6px;
+  padding: 6px 10px;
   display: flex;
-  flex-direction: column;
-  gap: 8px;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
   box-shadow: 0 1px 2px rgba(15, 31, 58, 0.04);
   transition: box-shadow 0.15s ease, border-color 0.15s ease;
 }
@@ -3300,48 +3301,52 @@ html, body {
 }
 .ipo-shot-imgwrap {
   background: #f7f8fa;
-  border-radius: 6px;
+  border-radius: 4px;
   overflow: hidden;
-  max-height: 360px;
+  width: 56px;
+  height: 42px;
+  flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 .ipo-shot-img {
-  width: 100%;
-  height: auto;
-  max-height: 360px;
-  object-fit: contain;
+  width: 56px;
+  height: 42px;
+  object-fit: cover;
   display: block;
   cursor: zoom-in;
 }
 .ipo-shot-title {
   border: none;
   border-bottom: 1px dashed transparent;
-  padding: 4px 2px;
+  padding: 2px 4px;
   background: transparent;
-  font-size: 13.5px;
+  font-size: 13px;
   font-weight: 600;
   color: var(--text);
   font-family: inherit;
   outline: none;
+  flex: 1;
+  min-width: 0;
 }
 .ipo-shot-title::placeholder { color: var(--text-light); font-weight: 500; }
 .ipo-shot-title:focus { border-bottom-color: var(--navy-light); }
 .ipo-shot-note {
-  width: 100%;
-  min-height: 46px;
-  resize: vertical;
+  width: 180px;
+  min-height: 28px;
+  resize: none;
   border: 1px solid var(--border);
-  border-radius: 5px;
-  padding: 7px 9px;
+  border-radius: 4px;
+  padding: 4px 7px;
   background: #fff;
   color: var(--text);
   font-family: inherit;
-  font-size: 12.5px;
-  line-height: 1.55;
+  font-size: 11.5px;
+  line-height: 1.4;
   box-sizing: border-box;
   outline: none;
+  flex-shrink: 0;
 }
 .ipo-shot-note:focus {
   border-color: var(--navy-light);
@@ -3350,13 +3355,14 @@ html, body {
 .ipo-shot-note::placeholder { color: var(--text-light); }
 .ipo-shot-actions {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding-top: 2px;
+  gap: 8px;
+  flex-shrink: 0;
 }
 .ipo-shot-date {
-  font-size: 10.5px;
+  font-size: 10px;
   color: var(--text-muted);
+  white-space: nowrap;
 }
 .ipo-shot-del {
   background: transparent;
