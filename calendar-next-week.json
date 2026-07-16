@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-07-16T06:50:52Z",
-    "updatedKr":  "2026-07-16 15:50:52",
+    "updated":  "2026-07-16T07:04:37Z",
+    "updatedKr":  "2026-07-16 16:04:37",
     "countries":  [
                       "5",
                       "35",
@@ -67,6 +67,21 @@
                        "actual":  "",
                        "forecast":  "",
                        "previous":  "3.760%",
+                       "type":  "preview"
+                   },
+                   {
+                       "id":  "553599",
+                       "datetime":  "2026/07/21 17:00:00",
+                       "date":  "7/21",
+                       "time":  "17:00",
+                       "flagKey":  "Europe",
+                       "currency":  "EUR",
+                       "importance":  1,
+                       "indicator":  "ECB Bank Lending Survey",
+                       "period":  "",
+                       "actual":  "",
+                       "forecast":  "",
+                       "previous":  "",
                        "type":  "preview"
                    },
                    {
@@ -325,6 +340,21 @@
                        "type":  "preview"
                    },
                    {
+                       "id":  "553600",
+                       "datetime":  "2026/07/23 21:15:00",
+                       "date":  "7/23",
+                       "time":  "21:15",
+                       "flagKey":  "Europe",
+                       "currency":  "EUR",
+                       "importance":  2,
+                       "indicator":  "ECB Monetary Policy Statement",
+                       "period":  "",
+                       "actual":  "",
+                       "forecast":  "",
+                       "previous":  "",
+                       "type":  "preview"
+                   },
+                   {
                        "id":  "552766",
                        "datetime":  "2026/07/23 21:15:00",
                        "date":  "7/23",
@@ -340,21 +370,6 @@
                        "type":  "preview"
                    },
                    {
-                       "id":  "553511",
-                       "datetime":  "2026/07/23 21:15:00",
-                       "date":  "7/23",
-                       "time":  "21:15",
-                       "flagKey":  "Europe",
-                       "currency":  "EUR",
-                       "importance":  2,
-                       "indicator":  "ECB Marginal Lending Facility",
-                       "period":  "",
-                       "actual":  "",
-                       "forecast":  "",
-                       "previous":  "2.65%",
-                       "type":  "preview"
-                   },
-                   {
                        "id":  "552767",
                        "datetime":  "2026/07/23 21:15:00",
                        "date":  "7/23",
@@ -367,6 +382,21 @@
                        "actual":  "",
                        "forecast":  "",
                        "previous":  "2.25%",
+                       "type":  "preview"
+                   },
+                   {
+                       "id":  "553511",
+                       "datetime":  "2026/07/23 21:15:00",
+                       "date":  "7/23",
+                       "time":  "21:15",
+                       "flagKey":  "Europe",
+                       "currency":  "EUR",
+                       "importance":  2,
+                       "indicator":  "ECB Marginal Lending Facility",
+                       "period":  "",
+                       "actual":  "",
+                       "forecast":  "",
+                       "previous":  "2.65%",
                        "type":  "preview"
                    },
                    {
@@ -423,6 +453,21 @@
                        "currency":  "USD",
                        "importance":  2,
                        "indicator":  "Continuing Jobless Claims",
+                       "period":  "",
+                       "actual":  "",
+                       "forecast":  "",
+                       "previous":  "",
+                       "type":  "preview"
+                   },
+                   {
+                       "id":  "553601",
+                       "datetime":  "2026/07/23 21:45:00",
+                       "date":  "7/23",
+                       "time":  "21:45",
+                       "flagKey":  "Europe",
+                       "currency":  "EUR",
+                       "importance":  3,
+                       "indicator":  "ECB Press Conference",
                        "period":  "",
                        "actual":  "",
                        "forecast":  "",

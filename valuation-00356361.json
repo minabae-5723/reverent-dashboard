@@ -1,0 +1,31 @@
+{
+    "company":  "LG?뷀븰",
+    "corp_code":  "00356361",
+    "fiscal_period":  "LTM Q1 2026 (FY2025 + Q12026 - Q12025)",
+    "unit":  "100M KRW",
+    "fetched_at":  "2026-07-16 15:54:47",
+    "pnl":  {
+                "revenue":  460079,
+                "operating_income":  6842,
+                "depreciation":  null,
+                "ebitda":  null,
+                "net_income":  -20601
+            },
+    "equity_total":  480909,
+    "debt":  {
+                 "st_borrowings":  null,
+                 "current_lt_borrowings":  null,
+                 "current_lease":  null,
+                 "lt_borrowings":  225382,
+                 "nc_lease":  null
+             },
+    "cash":  {
+                 "cash_and_equivalents":  85324,
+                 "st_financial_invest":  null
+             },
+    "derived":  {
+                    "total_debt":  225382,
+                    "total_cash":  85324,
+                    "net_debt":  140058
+                }
+}

@@ -1,0 +1,31 @@
+{
+    "company":  "?쒖쭊移?",
+    "corp_code":  "00983040",
+    "fiscal_period":  "LTM Q1 2026 (FY2025 + Q12026 - Q12025)",
+    "unit":  "100M KRW",
+    "fetched_at":  "2026-07-16 15:54:33",
+    "pnl":  {
+                "revenue":  3053,
+                "operating_income":  -13,
+                "depreciation":  null,
+                "ebitda":  null,
+                "net_income":  1674
+            },
+    "equity_total":  35035,
+    "debt":  {
+                 "st_borrowings":  300,
+                 "current_lt_borrowings":  null,
+                 "current_lease":  13,
+                 "lt_borrowings":  700,
+                 "nc_lease":  118
+             },
+    "cash":  {
+                 "cash_and_equivalents":  1161,
+                 "st_financial_invest":  1986
+             },
+    "derived":  {
+                    "total_debt":  1131,
+                    "total_cash":  3147,
+                    "net_debt":  -2016
+                }
+}
