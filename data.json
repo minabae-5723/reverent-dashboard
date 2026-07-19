@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-07-19T08:15:41Z",
-    "updatedKr":  "2026-07-19 17:15:41",
+    "updated":  "2026-07-19T12:41:18Z",
+    "updatedKr":  "2026-07-19 21:41:18",
     "index":  [
                   {
                       "key":  "KOSPI",
@@ -140,10 +140,10 @@
                       {
                           "key":  "WTI",
                           "symbol":  "CL=F",
-                          "current":  81.78,
-                          "wow":  14.52,
-                          "mom":  6.76,
-                          "ytd":  42.67,
+                          "current":  82.49,
+                          "wow":  15.52,
+                          "mom":  7.69,
+                          "ytd":  43.91,
                           "type":  "pct",
                           "asOf":  "2026-07-17",
                           "ok":  true
@@ -151,10 +151,10 @@
                       {
                           "key":  "GOLD",
                           "symbol":  "GC=F",
-                          "current":  4018.8,
-                          "wow":  -2.08,
-                          "mom":  -4.86,
-                          "ytd":  -6.85,
+                          "current":  4012.7,
+                          "wow":  -2.23,
+                          "mom":  -5,
+                          "ytd":  -6.99,
                           "type":  "pct",
                           "asOf":  "2026-07-17",
                           "ok":  true
@@ -162,10 +162,10 @@
                       {
                           "key":  "COPPER",
                           "symbol":  "HG=F",
-                          "current":  6.265,
-                          "wow":  0.51,
-                          "mom":  -1.72,
-                          "ytd":  11.08,
+                          "current":  6.22,
+                          "wow":  -0.22,
+                          "mom":  -2.42,
+                          "ytd":  10.28,
                           "type":  "pct",
                           "asOf":  "2026-07-17",
                           "ok":  true
