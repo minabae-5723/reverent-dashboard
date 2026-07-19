@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-07-19T07:51:16Z",
-    "updatedKr":  "2026-07-19 16:51:16",
+    "updated":  "2026-07-19T08:15:41Z",
+    "updatedKr":  "2026-07-19 17:15:41",
     "index":  [
                   {
                       "key":  "KOSPI",
@@ -102,15 +102,16 @@
                      "source":  "naver-mobile"
                  },
                  {
-                     "key":  "US2Y",
-                     "current":  4.18,
+                     "source":  "treasury.gov",
+                     "ytd":  71,
                      "wow":  -3,
                      "mom":  -2,
-                     "ytd":  71,
+                     "key":  "US2Y",
                      "type":  "bp",
                      "asOf":  "2026-07-17",
                      "ok":  true,
-                     "source":  "treasury.gov"
+                     "static":  true,
+                     "current":  4.18
                  },
                  {
                      "key":  "US10Y",
