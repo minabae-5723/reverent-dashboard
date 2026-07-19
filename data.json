@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-07-19T07:46:15Z",
-    "updatedKr":  "2026-07-19 16:46:15",
+    "updated":  "2026-07-19T07:51:16Z",
+    "updatedKr":  "2026-07-19 16:51:16",
     "index":  [
                   {
                       "key":  "KOSPI",
@@ -133,10 +133,10 @@
                       {
                           "key":  "WTI",
                           "symbol":  "CL=F",
-                          "current":  82.49,
-                          "wow":  15.52,
-                          "mom":  7.69,
-                          "ytd":  43.91,
+                          "current":  81.78,
+                          "wow":  14.52,
+                          "mom":  6.76,
+                          "ytd":  42.67,
                           "type":  "pct",
                           "asOf":  "2026-07-17",
                           "ok":  true
