@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-07-19T13:06:29Z",
-    "updatedKr":  "2026-07-19 22:06:29",
+    "updated":  "2026-07-19T23:31:34Z",
+    "updatedKr":  "2026-07-20 08:31:34",
     "index":  [
                   {
                       "key":  "KOSPI",
@@ -60,7 +60,7 @@
                   {
                       "key":  "SHANGHAI",
                       "symbol":  "000001.SS",
-                      "current":  3764.1548,
+                      "current":  3764.155,
                       "wow":  -5.81,
                       "mom":  -7.98,
                       "ytd":  -6.44,
@@ -140,10 +140,10 @@
                       {
                           "key":  "WTI",
                           "symbol":  "CL=F",
-                          "current":  81.78,
-                          "wow":  14.52,
-                          "mom":  6.76,
-                          "ytd":  42.67,
+                          "current":  82.49,
+                          "wow":  15.52,
+                          "mom":  7.69,
+                          "ytd":  43.91,
                           "type":  "pct",
                           "asOf":  "2026-07-17",
                           "ok":  true
@@ -151,10 +151,10 @@
                       {
                           "key":  "GOLD",
                           "symbol":  "GC=F",
-                          "current":  4018.8,
-                          "wow":  -2.08,
-                          "mom":  -4.86,
-                          "ytd":  -6.85,
+                          "current":  4012.7,
+                          "wow":  -2.23,
+                          "mom":  -5,
+                          "ytd":  -6.99,
                           "type":  "pct",
                           "asOf":  "2026-07-17",
                           "ok":  true
@@ -162,10 +162,10 @@
                       {
                           "key":  "COPPER",
                           "symbol":  "HG=F",
-                          "current":  6.265,
-                          "wow":  0.51,
-                          "mom":  -1.72,
-                          "ytd":  11.08,
+                          "current":  6.22,
+                          "wow":  -0.22,
+                          "mom":  -2.42,
+                          "ytd":  10.28,
                           "type":  "pct",
                           "asOf":  "2026-07-17",
                           "ok":  true
@@ -189,7 +189,7 @@
                    "current":  1502,
                    "wow":  -1.77,
                    "mom":  -0.84,
-                   "ytd":  1.5,
+                   "ytd":  2.34,
                    "type":  "pct",
                    "asOf":  "2026-07-10",
                    "ok":  true,
@@ -201,7 +201,7 @@
                    "current":  0.8768,
                    "wow":  0.28,
                    "mom":  1.75,
-                   "ytd":  2.72,
+                   "ytd":  2.47,
                    "type":  "pct",
                    "asOf":  "2026-07-10",
                    "ok":  true,
@@ -213,7 +213,7 @@
                    "current":  161.765,
                    "wow":  0.27,
                    "mom":  1.15,
-                   "ytd":  2.23,
+                   "ytd":  2.19,
                    "type":  "pct",
                    "asOf":  "2026-07-10",
                    "ok":  true,
@@ -225,7 +225,7 @@
                    "current":  6.7835,
                    "wow":  -0.02,
                    "mom":  0.39,
-                   "ytd":  -2.59,
+                   "ytd":  -2.65,
                    "type":  "pct",
                    "asOf":  "2026-07-10",
                    "ok":  true,
