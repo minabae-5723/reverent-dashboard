@@ -323,8 +323,9 @@ function Fetch-InvestingYields {
             # fallback to static row with same key (preserves dashboard layout)
             $fallback = $STATIC_DATA.rate_kr | Where-Object { $_.key -eq $key }
             if (-not $fallback -and $key -eq 'US2Y') {
-                # No static fallback for US2Y — emit placeholder
-                $fallback = @{ key=$key; ok=$false; error='Investing fetch failed' }
+                # US2Y static from treasury.gov (2026-07-17) — Yahoo has no 2Y index symbol,
+                # Investing scrape unreliable. Update manually from treasury daily yield curve.
+                $fallback = @{ key='US2Y'; current=4.18; wow=-3; mom=-2; ytd=71; type='bp'; ok=$true; static=$true; asOf='2026-07-17'; source='treasury.gov' }
             }
             if ($fallback) { $rows += $fallback }
         }

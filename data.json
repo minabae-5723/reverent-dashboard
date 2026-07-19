@@ -102,9 +102,15 @@
                      "source":  "naver-mobile"
                  },
                  {
-                     "ok":  false,
                      "key":  "US2Y",
-                     "error":  "Investing fetch failed"
+                     "current":  4.18,
+                     "wow":  -3,
+                     "mom":  -2,
+                     "ytd":  71,
+                     "type":  "bp",
+                     "asOf":  "2026-07-17",
+                     "ok":  true,
+                     "source":  "treasury.gov"
                  },
                  {
                      "key":  "US10Y",
