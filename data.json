@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-07-19T23:31:34Z",
-    "updatedKr":  "2026-07-20 08:31:34",
+    "updated":  "2026-07-19T23:50:33Z",
+    "updatedKr":  "2026-07-20 08:50:33",
     "index":  [
                   {
                       "key":  "KOSPI",
@@ -71,68 +71,69 @@
               ],
     "rate":  [
                  {
-                     "mom":  21,
-                     "current":  3.56,
-                     "static":  true,
-                     "ok":  true,
                      "key":  "KR3Y",
+                     "current":  3.76,
+                     "wow":  1,
+                     "mom":  -13,
+                     "ytd":  83,
                      "type":  "bp",
-                     "wow":  -3,
-                     "ytd":  63
+                     "asOf":  "2026-07-10T06:29:06.68Z",
+                     "ok":  true,
+                     "source":  "investing"
                  },
                  {
-                     "mom":  23,
-                     "current":  3.91,
-                     "static":  true,
-                     "ok":  true,
                      "key":  "KR10Y",
+                     "current":  4.214,
+                     "wow":  2,
+                     "mom":  -6,
+                     "ytd":  84,
                      "type":  "bp",
-                     "wow":  7,
-                     "ytd":  53
+                     "asOf":  "2026-07-10T06:27:30.793Z",
+                     "ok":  true,
+                     "source":  "investing"
                  },
                  {
                      "key":  "CD91",
-                     "current":  2.9,
+                     "current":  2.91,
                      "wow":  -1,
-                     "mom":  -5,
-                     "ytd":  9,
+                     "mom":  -1,
+                     "ytd":  10,
                      "type":  "bp",
-                     "asOf":  "2026-07-15",
+                     "asOf":  "2026-07-09",
                      "ok":  true,
                      "source":  "naver-mobile"
                  },
                  {
-                     "source":  "treasury.gov",
-                     "ytd":  71,
-                     "wow":  -3,
-                     "mom":  -2,
                      "key":  "US2Y",
+                     "current":  4.158,
+                     "wow":  3,
+                     "mom":  3,
+                     "ytd":  68,
                      "type":  "bp",
-                     "asOf":  "2026-07-17",
+                     "asOf":  "2026-07-10T08:00:02.294Z",
                      "ok":  true,
-                     "static":  true,
-                     "current":  4.18
+                     "source":  "investing"
                  },
                  {
                      "key":  "US10Y",
                      "symbol":  "^TNX",
-                     "current":  4.541,
-                     "wow":  -3,
-                     "mom":  9,
+                     "current":  4.539,
+                     "wow":  5,
+                     "mom":  0,
                      "ytd":  35,
                      "type":  "bp",
-                     "asOf":  "2026-07-18T03:59:55",
+                     "asOf":  "2026-07-10T03:59:55",
                      "ok":  true
                  },
                  {
                      "key":  "US30Y",
                      "symbol":  "^TYX",
-                     "current":  5.064,
-                     "wow":  -1,
-                     "mom":  16,
-                     "ytd":  20,
+                     "current":  5.053,
+                     "wow":  7,
+                     "mom":  3,
+                     "ytd":  19,
                      "type":  "bp",
-                     "asOf":  "2026-07-18T03:59:55",
+                     "asOf":  "2026-07-10T03:59:55",
                      "ok":  true
                  }
              ],
@@ -245,22 +246,26 @@
            ],
     "cds":  [
                 {
-                    "current":  37.75,
-                    "mom":  3,
-                    "wow":  0,
-                    "type":  "bp_abs",
-                    "ytd":  11,
                     "key":  "CDS_US",
-                    "ok":  true
+                    "current":  38.2,
+                    "wow":  0,
+                    "mom":  0,
+                    "ytd":  11.7,
+                    "type":  "bp_abs",
+                    "asOf":  "2026-07-10T01:33:20.403Z",
+                    "ok":  true,
+                    "source":  "investing"
                 },
                 {
-                    "current":  40.58,
-                    "mom":  -7,
-                    "wow":  -1,
-                    "type":  "bp_abs",
-                    "ytd":  -3,
                     "key":  "CDS_CN",
-                    "ok":  true
+                    "current":  36.6,
+                    "wow":  -0.8,
+                    "mom":  -4.1,
+                    "ytd":  -7.2,
+                    "type":  "bp_abs",
+                    "asOf":  "2026-07-09T09:33:10.47Z",
+                    "ok":  true,
+                    "source":  "investing"
                 }
             ],
     "sector":  [
