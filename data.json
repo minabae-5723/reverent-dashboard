@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-07-19T06:53:40Z",
-    "updatedKr":  "2026-07-19 15:53:40",
+    "updated":  "2026-07-19T06:58:40Z",
+    "updatedKr":  "2026-07-19 15:58:40",
     "index":  [
                   {
                       "key":  "KOSPI",
@@ -348,12 +348,12 @@
                    {
                        "key":  "UTILITIES",
                        "symbol":  "^SP500-55",
-                       "current":  461.13,
-                       "wow":  0,
-                       "mom":  1.97,
-                       "ytd":  5.05,
+                       "current":  458.71,
+                       "wow":  -0.52,
+                       "mom":  1.44,
+                       "ytd":  4.5,
                        "type":  "pct",
-                       "asOf":  "2026-07-10",
+                       "asOf":  "2026-07-17",
                        "ok":  true
                    },
                    {
@@ -370,12 +370,12 @@
                    {
                        "key":  "COMM",
                        "symbol":  "^SP500-50",
-                       "current":  472.98,
-                       "wow":  0,
-                       "mom":  0.65,
-                       "ytd":  4.95,
+                       "current":  461.73,
+                       "wow":  -2.38,
+                       "mom":  -1.74,
+                       "ytd":  2.45,
                        "type":  "pct",
-                       "asOf":  "2026-07-10",
+                       "asOf":  "2026-07-17",
                        "ok":  true
                    }
                ]
