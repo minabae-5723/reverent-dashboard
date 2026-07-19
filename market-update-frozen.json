@@ -66,21 +66,6 @@
                          "type":  "review"
                      },
                      {
-                         "id":  "552284",
-                         "datetime":  "2026/07/15 21:30:00",
-                         "date":  "7/15",
-                         "time":  "21:30",
-                         "flagKey":  "United_States",
-                         "currency":  "USD",
-                         "importance":  3,
-                         "indicator":  "PPI (MoM)",
-                         "period":  "Jun",
-                         "actual":  "-0.3%",
-                         "forecast":  "0.0%",
-                         "previous":  "0.6%",
-                         "type":  "review"
-                     },
-                     {
                          "id":  "552342",
                          "datetime":  "2026/07/16 21:30:00",
                          "date":  "7/16",
@@ -90,8 +75,8 @@
                          "importance":  3,
                          "indicator":  "Retail Sales (MoM)",
                          "period":  "Jun",
-                         "actual":  "",
-                         "forecast":  "0.3%",
+                         "actual":  "0.2%",
+                         "forecast":  "0.2%",
                          "previous":  "0.9%",
                          "type":  "review"
                      }
@@ -108,8 +93,8 @@
                          "indicator":  "Initial Jobless Claims",
                          "period":  "",
                          "actual":  "",
-                         "forecast":  "",
-                         "previous":  "",
+                         "forecast":  "216K",
+                         "previous":  "215K",
                          "type":  "preview"
                      },
                      {
