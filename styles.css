@@ -373,7 +373,7 @@ html, body {
   color: var(--text);
   background: white;
   resize: vertical;
-  min-height: 56px;
+  min-height: 108px;
   box-sizing: border-box;
 }
 
