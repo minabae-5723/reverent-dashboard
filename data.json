@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-07-19T23:58:33Z",
-    "updatedKr":  "2026-07-20 08:58:33",
+    "updated":  "2026-07-20T00:16:36Z",
+    "updatedKr":  "2026-07-20 09:16:36",
     "index":  [
                   {
                       "key":  "KOSPI",
@@ -105,36 +105,38 @@
                  },
                  {
                      "key":  "US2Y",
-                     "current":  4.183,
-                     "wow":  -2,
-                     "mom":  0,
-                     "ytd":  71,
+                     "current":  4.172,
+                     "wow":  -4,
+                     "mom":  -3,
+                     "ytd":  70,
                      "type":  "bp",
-                     "asOf":  "2026-07-19T23:40:00.703Z",
+                     "asOf":  "2026-07-17T20:00:00Z",
                      "ok":  true,
                      "source":  "investing"
                  },
                  {
                      "key":  "US10Y",
                      "symbol":  "^TNX",
-                     "current":  4.539,
-                     "wow":  5,
-                     "mom":  0,
-                     "ytd":  35,
+                     "current":  4.545,
+                     "wow":  -2,
+                     "mom":  6,
+                     "ytd":  36,
                      "type":  "bp",
-                     "asOf":  "2026-07-10T03:59:55",
-                     "ok":  true
+                     "asOf":  "2026-07-17T20:00:00Z",
+                     "ok":  true,
+                     "source":  "investing"
                  },
                  {
                      "key":  "US30Y",
                      "symbol":  "^TYX",
-                     "current":  5.053,
-                     "wow":  7,
-                     "mom":  3,
-                     "ytd":  19,
+                     "current":  5.064,
+                     "wow":  -1,
+                     "mom":  13,
+                     "ytd":  20,
                      "type":  "bp",
-                     "asOf":  "2026-07-10T03:59:55",
-                     "ok":  true
+                     "asOf":  "2026-07-17T20:00:00Z",
+                     "ok":  true,
+                     "source":  "investing"
                  }
              ],
     "commodity":  [
