@@ -1,11 +1,11 @@
 {
-    "updated":  "2026-07-20T23:35:34Z",
-    "updatedKr":  "2026-07-21 08:35:34",
+    "updated":  "2026-07-21T22:01:14Z",
+    "updatedKr":  "2026-07-22 07:01:14",
     "source":  "multpl.com/shiller-pe/table/by-month",
     "latest":  {
-                   "date":  "2026-07-20",
-                   "raw":  "Jul 20, 2026",
-                   "value":  41.45
+                   "date":  "2026-07-21",
+                   "raw":  "Jul 21, 2026",
+                   "value":  40.98
                },
     "monthly":  [
                     {
@@ -7438,39 +7438,39 @@
                     },
                     {
                         "month":  "2025-11",
-                        "value":  39.28
+                        "value":  39.16
                     },
                     {
                         "month":  "2025-12",
-                        "value":  39.84
+                        "value":  39.59
                     },
                     {
                         "month":  "2026-01",
-                        "value":  40.03
+                        "value":  39.65
                     },
                     {
                         "month":  "2026-02",
-                        "value":  39.53
+                        "value":  39.02
                     },
                     {
                         "month":  "2026-03",
-                        "value":  37.66
+                        "value":  37.04
                     },
                     {
                         "month":  "2026-04",
-                        "value":  38.93
+                        "value":  38.15
                     },
                     {
                         "month":  "2026-05",
-                        "value":  41.1
+                        "value":  40.28
                     },
                     {
                         "month":  "2026-06",
-                        "value":  41.32
+                        "value":  40.5
                     },
                     {
                         "month":  "2026-07",
-                        "value":  41.45
+                        "value":  40.98
                     }
                 ]
 }
