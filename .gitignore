@@ -60,10 +60,3 @@ node_modules/
 #  all .md files (users want to share clippings)
 # ============================================================
 # news/ → committed
-
-# ============================================================
-#  Deal Angle Radar — raw scan + extracted filing text are
-#  local working files; only YYYY-MM-DD.md + index.json deploy
-# ============================================================
-deal-angle/raw-*.json
-deal-angle/docs/

@@ -2533,154 +2533,9 @@ window.computeValuation = function (cardId) {
   setOut('PBR_sum',        fmtMultiple(pbr));
 };
 
-// ─── Deal Angle Radar View ────────────────────────────────
-// Update algorithm: /deal-angle 세션이 DART B/D 공시를 스크리닝 → deal-angle/YYYY-MM-DD.md 저장.
-// index.json { dates: ["YYYY-MM-DD", ...] } — 최신이 앞. md는 범용 렌더러로 표시 (파서 고정 스키마 없음).
-const ANGLE_INDEX_URL = './deal-angle/index.json';
-const ANGLE_MAX_DAYS = 10;
-let angleState = { dates: [], current: null, cache: {} };
-
-async function loadAngleIndex() {
-  try {
-    const res = await fetch(`${ANGLE_INDEX_URL}?_=${Date.now()}`, { cache: 'no-store' });
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const data = await res.json();
-    angleState.dates = (data.dates || []).slice().sort().reverse().slice(0, ANGLE_MAX_DAYS);
-    renderAnglePills();
-    if (angleState.dates.length > 0) {
-      const target = angleState.current && angleState.dates.includes(angleState.current)
-        ? angleState.current
-        : angleState.dates[0];
-      await loadAngleDate(target);
-    } else {
-      renderAngleEmpty();
-    }
-  } catch (err) {
-    console.warn('Angle index load failed:', err);
-    renderAngleEmpty();
-  }
-}
-
-function renderAnglePills() {
-  const el = document.getElementById('angleDatePills');
-  if (!el) return;
-  if (angleState.dates.length === 0) {
-    el.innerHTML = '<span style="color:var(--text-muted);font-size:13px;">저장된 스크리닝 없음</span>';
-    return;
-  }
-  const today = todayKr();
-  el.innerHTML = angleState.dates.map(d => {
-    const rel = (d === today) ? '<span class="pill-rel">오늘</span>' : '';
-    const active = (d === angleState.current) ? ' active' : '';
-    return `<button class="news-date-pill${active}" data-date="${d}">${d}${rel}</button>`;
-  }).join('');
-  el.querySelectorAll('.news-date-pill').forEach(btn => {
-    btn.addEventListener('click', () => loadAngleDate(btn.dataset.date));
-  });
-}
-
-async function loadAngleDate(date) {
-  angleState.current = date;
-  renderAnglePills();
-  let md = angleState.cache[date];
-  if (!md) {
-    try {
-      const res = await fetch(`./deal-angle/${date}.md?_=${Date.now()}`, { cache: 'no-store' });
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      md = await res.text();
-      angleState.cache[date] = md;
-    } catch (err) {
-      document.getElementById('angleBody').innerHTML =
-        `<div class="news-empty"><h3>로딩 실패</h3><p>${err.message}</p></div>`;
-      return;
-    }
-  }
-  document.getElementById('angleBody').innerHTML = renderAngleMd(md);
-}
-
-function renderAngleEmpty() {
-  document.getElementById('angleBody').innerHTML = `
-    <div class="news-empty">
-      <div class="news-empty-icon">🎯</div>
-      <h3>아직 저장된 Deal Angle 스크리닝이 없습니다</h3>
-      <p>DART 주요사항보고·지분공시를 24시간 단위로 스크리닝해 PE 딜 앵글 시그널을 보여줍니다.</p>
-    </div>
-  `;
-}
-
-// Generic markdown renderer (angle view 전용) — h1/h2/h3, blockquote, ul, table, bold, links.
-// H2 단위로 카드를 끊는다. 고정 스키마 파서가 아니므로 md 포맷이 진화해도 깨지지 않음.
-function angleInline(text) {
-  return escapeHtml(text)
-    .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
-    .replace(/\[([^\]]+)\]\((https?:[^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>')
-    .replace(/`([^`]+)`/g, '<code>$1</code>');
-}
-
-function renderAngleMd(md) {
-  const lines = md.split(/\r?\n/);
-  let html = '';
-  let cardOpen = false;
-  let listOpen = false;
-  let tableBuf = null;
-
-  const closeList = () => { if (listOpen) { html += '</ul>'; listOpen = false; } };
-  const flushTable = () => {
-    if (!tableBuf || tableBuf.length === 0) { tableBuf = null; return; }
-    const rows = tableBuf.filter(r => !/^\s*\|[\s:|-]+\|\s*$/.test(r));
-    const cells = r => r.replace(/^\s*\|/, '').replace(/\|\s*$/, '').split('|').map(c => angleInline(c.trim()));
-    let t = '<div class="angle-table-wrap"><table class="angle-table">';
-    rows.forEach((r, i) => {
-      const tag = i === 0 ? 'th' : 'td';
-      t += '<tr>' + cells(r).map(c => `<${tag}>${c}</${tag}>`).join('') + '</tr>';
-    });
-    t += '</table></div>';
-    html += t;
-    tableBuf = null;
-  };
-  const closeCard = () => { closeList(); flushTable(); if (cardOpen) { html += '</section>'; cardOpen = false; } };
-
-  for (const raw of lines) {
-    const line = raw.trimEnd();
-    if (/^\s*\|/.test(line)) {
-      closeList();
-      if (!tableBuf) tableBuf = [];
-      tableBuf.push(line);
-      continue;
-    }
-    flushTable();
-    if (line.startsWith('# ')) {
-      closeCard();
-      html += `<h1 class="angle-title">${angleInline(line.slice(2))}</h1>`;
-    } else if (line.startsWith('## ')) {
-      closeCard();
-      html += `<section class="angle-card"><h2 class="angle-card-title">${angleInline(line.slice(3))}</h2>`;
-      cardOpen = true;
-    } else if (line.startsWith('### ')) {
-      closeList();
-      html += `<h3 class="angle-h3">${angleInline(line.slice(4))}</h3>`;
-    } else if (line.startsWith('> ')) {
-      closeList();
-      html += `<div class="angle-meta">${angleInline(line.slice(2))}</div>`;
-    } else if (/^\s*[-*] /.test(line)) {
-      if (!listOpen) { html += '<ul class="angle-list">'; listOpen = true; }
-      html += `<li>${angleInline(line.replace(/^\s*[-*] /, ''))}</li>`;
-    } else if (line === '---') {
-      closeList();
-    } else if (line.trim() === '') {
-      closeList();
-    } else {
-      closeList();
-      html += `<p class="angle-p">${angleInline(line)}</p>`;
-    }
-  }
-  closeCard();
-  return `<div class="angle-body-inner">${html}</div>`;
-}
-
 // ─── View Router ──────────────────────────────────────────
 function showView(name) {
-  const valid = ['home', 'weekly', 'news', 'market', 'deals', 'angle', 'semicon', 'peer'];
+  const valid = ['home', 'weekly', 'news', 'market', 'deals', 'semicon', 'peer'];
   if (!valid.includes(name)) name = 'home';
 
   document.querySelectorAll('.view').forEach(v => {
@@ -2694,7 +2549,6 @@ function showView(name) {
   if (name === 'news') loadNewsIndex();
   if (name === 'market') loadMarketIndex();
   if (name === 'deals') loadDealsIndex();
-  if (name === 'angle') loadAngleIndex();
   if (name === 'semicon') loadSemicon();
   if (name === 'peer') loadPeer();
   window.scrollTo({ top: 0 });
