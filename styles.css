@@ -3395,3 +3395,79 @@ html, body {
   border-radius: 6px;
   box-shadow: 0 8px 40px rgba(0, 0, 0, .5);
 }
+
+/* ============================================================
+   Deal Angle Radar View
+   ============================================================ */
+.angle-body-inner { max-width: 980px; }
+
+.angle-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--navy-dark);
+  margin: 4px 0 8px;
+}
+
+.angle-meta {
+  font-size: 12.5px;
+  color: var(--text-muted);
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--gold);
+  border-radius: 6px;
+  padding: 8px 12px;
+  margin: 8px 0 14px;
+}
+
+.angle-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px 18px 14px;
+  margin: 0 0 14px;
+  box-shadow: 0 1px 2px rgba(15, 31, 58, .04);
+}
+
+.angle-card-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--navy);
+  margin: 0 0 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+}
+
+.angle-h3 {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--navy-light);
+  margin: 12px 0 6px;
+}
+
+.angle-p { margin: 6px 0; font-size: 13px; }
+
+.angle-list { margin: 6px 0 8px; padding-left: 18px; }
+.angle-list li { margin: 4px 0; font-size: 13px; }
+
+.angle-table-wrap { overflow-x: auto; margin: 8px 0 10px; }
+.angle-table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 12.5px;
+}
+.angle-table th {
+  background: var(--navy);
+  color: #fff;
+  font-weight: 600;
+  padding: 6px 10px;
+  text-align: left;
+  white-space: nowrap;
+}
+.angle-table td {
+  border-bottom: 1px solid var(--border);
+  padding: 6px 10px;
+  vertical-align: top;
+}
+.angle-table tr:nth-child(even) td { background: var(--bg); }
+
+.angle-card a, .angle-meta a { color: var(--navy-light); }
