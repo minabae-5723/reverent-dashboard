@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-07-24T06:42:27Z",
-    "updatedKr":  "2026-07-24 15:42:27",
+    "updated":  "2026-07-24T06:46:38Z",
+    "updatedKr":  "2026-07-24 15:46:38",
     "index":  [
                   {
                       "key":  "KOSPI",
@@ -10,7 +10,7 @@
                       "mom":  -20.99,
                       "ytd":  55.29,
                       "type":  "pct",
-                      "asOf":  "2026-07-24T15:22:30",
+                      "asOf":  "2026-07-24T15:26:40",
                       "ok":  true
                   },
                   {
@@ -21,7 +21,7 @@
                       "mom":  -17.63,
                       "ytd":  -20.79,
                       "type":  "pct",
-                      "asOf":  "2026-07-24T15:22:30",
+                      "asOf":  "2026-07-24T15:26:40",
                       "ok":  true
                   },
                   {
@@ -60,35 +60,35 @@
                   {
                       "key":  "SHANGHAI",
                       "symbol":  "000001.SS",
-                      "current":  3827.075,
-                      "wow":  1.67,
-                      "mom":  -6.9,
-                      "ytd":  -4.88,
+                      "current":  3826.542,
+                      "wow":  1.66,
+                      "mom":  -6.92,
+                      "ytd":  -4.89,
                       "type":  "pct",
-                      "asOf":  "2026-07-24T15:27:30",
+                      "asOf":  "2026-07-24T15:31:45",
                       "ok":  true
                   }
               ],
     "rate":  [
                  {
-                     "mom":  21,
-                     "current":  3.56,
+                     "mom":  16,
+                     "current":  3.92,
                      "static":  true,
                      "ok":  true,
                      "key":  "KR3Y",
                      "type":  "bp",
-                     "wow":  -3,
-                     "ytd":  63
+                     "wow":  7,
+                     "ytd":  98
                  },
                  {
-                     "mom":  23,
-                     "current":  3.91,
+                     "mom":  25,
+                     "current":  4.39,
                      "static":  true,
                      "ok":  true,
                      "key":  "KR10Y",
                      "type":  "bp",
-                     "wow":  7,
-                     "ytd":  53
+                     "wow":  10,
+                     "ytd":  101
                  },
                  {
                      "key":  "CD91",
