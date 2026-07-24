@@ -157,10 +157,25 @@ function Parse-Events {
 }
 
 function Save-Calendar {
-    param([string]$Tab, [string]$OutPath, [string]$DateFrom = '', [string]$DateTo = '')
+    param([string]$Tab, [string]$OutPath, [string]$DateFrom = '', [string]$DateTo = '', [string]$FrozenKey = '')
 
     $html = Get-InvestingCalendar -Tab $Tab -DateFrom $DateFrom -DateTo $DateTo
-    $events = Parse-Events -Html $html
+    $events = @(Parse-Events -Html $html)
+
+    # Fallback: investing.com economic calendar is Cloudflare-blocked (HTTP 403),
+    # leaving events empty and the #weekly view blank. market-update-frozen.json
+    # holds this-week / next-week top events in the SAME schema (Monday snapshot),
+    # so fill from it when the live scrape returns nothing -> calendar never empty.
+    $srcNote = 'investing'
+    if ($events.Count -eq 0 -and $FrozenKey) {
+        $frozenPath = Join-Path $PSScriptRoot 'market-update-frozen.json'
+        if (Test-Path $frozenPath) {
+            try {
+                $fz = Get-Content $frozenPath -Raw -Encoding UTF8 | ConvertFrom-Json
+                if ($fz.$FrozenKey) { $events = @($fz.$FrozenKey); $srcNote = 'frozen-fallback' }
+            } catch { Write-Warning ("frozen fallback fail: " + $_.Exception.Message) }
+        }
+    }
 
     $tabLabel = if ($Tab -eq 'custom') { "custom $DateFrom~$DateTo" } else { $Tab }
     $output = [ordered]@{
@@ -168,6 +183,7 @@ function Save-Calendar {
         updatedKr = (Get-Date).ToString('yyyy-MM-dd HH:mm:ss')
         countries = $COUNTRY_IDS
         tab       = $tabLabel
+        source    = $srcNote
         events    = @($events)
     }
 
@@ -212,9 +228,9 @@ do {
     $previewFrom = '{0:yyyy-MM-dd}' -f $wb.nextMon
     $previewTo   = '{0:yyyy-MM-dd}' -f $wb.nextSun
 
-    $today    = Save-Calendar -Tab 'today' -OutPath $TodayFile
-    $week     = Save-Calendar -Tab 'custom' -DateFrom $weekFrom    -DateTo $weekTo    -OutPath $WeekFile
-    $nextWeek = Save-Calendar -Tab 'custom' -DateFrom $previewFrom -DateTo $previewTo -OutPath $NextWeekFile
+    $today    = Save-Calendar -Tab 'today' -OutPath $TodayFile -FrozenKey 'thisWeek'
+    $week     = Save-Calendar -Tab 'custom' -DateFrom $weekFrom    -DateTo $weekTo    -OutPath $WeekFile     -FrozenKey 'thisWeek'
+    $nextWeek = Save-Calendar -Tab 'custom' -DateFrom $previewFrom -DateTo $previewTo -OutPath $NextWeekFile -FrozenKey 'nextWeek'
 
     $elapsed = [int](New-TimeSpan -Start $start -End (Get-Date)).TotalSeconds
     Write-Host ("  today:    {0} events ({1} medium+) -> calendar.json"           -f $today.count,    $today.highImp)    -ForegroundColor Green

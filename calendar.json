@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-07-23T22:00:33Z",
-    "updatedKr":  "2026-07-24 07:00:33",
+    "updated":  "2026-07-24T07:41:45Z",
+    "updatedKr":  "2026-07-24 16:41:45",
     "countries":  [
                       "5",
                       "35",
@@ -8,7 +8,67 @@
                       "72"
                   ],
     "tab":  "today",
+    "source":  "frozen-fallback",
     "events":  [
-
+                   {
+                       "id":  "553012",
+                       "datetime":  "2026/07/23 21:30:00",
+                       "date":  "7/23",
+                       "time":  "21:30",
+                       "flagKey":  "United_States",
+                       "currency":  "USD",
+                       "importance":  3,
+                       "indicator":  "Initial Jobless Claims",
+                       "period":  "",
+                       "actual":  "",
+                       "forecast":  "216K",
+                       "previous":  "215K",
+                       "type":  "review"
+                   },
+                   {
+                       "id":  "553040",
+                       "datetime":  "2026/07/24 22:45:00",
+                       "date":  "7/24",
+                       "time":  "22:45",
+                       "flagKey":  "United_States",
+                       "currency":  "USD",
+                       "importance":  3,
+                       "indicator":  "S\u0026P Global Manufacturing PMI",
+                       "period":  "Jul",
+                       "actual":  "",
+                       "forecast":  "",
+                       "previous":  "53.9",
+                       "type":  "review"
+                   },
+                   {
+                       "id":  "553041",
+                       "datetime":  "2026/07/24 22:45:00",
+                       "date":  "7/24",
+                       "time":  "22:45",
+                       "flagKey":  "United_States",
+                       "currency":  "USD",
+                       "importance":  3,
+                       "indicator":  "S\u0026P Global Services PMI",
+                       "period":  "Jul",
+                       "actual":  "",
+                       "forecast":  "",
+                       "previous":  "51.2",
+                       "type":  "review"
+                   },
+                   {
+                       "id":  "553050",
+                       "datetime":  "2026/07/24 23:00:00",
+                       "date":  "7/24",
+                       "time":  "23:00",
+                       "flagKey":  "United_States",
+                       "currency":  "USD",
+                       "importance":  3,
+                       "indicator":  "New Home Sales",
+                       "period":  "Jun",
+                       "actual":  "",
+                       "forecast":  "",
+                       "previous":  "580K",
+                       "type":  "review"
+                   }
                ]
 }
