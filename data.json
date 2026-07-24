@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-07-24T07:44:11Z",
-    "updatedKr":  "2026-07-24 16:44:11",
+    "updated":  "2026-07-24T07:52:34Z",
+    "updatedKr":  "2026-07-24 16:52:34",
     "index":  [
                   {
                       "key":  "KOSPI",
@@ -246,22 +246,26 @@
            ],
     "cds":  [
                 {
-                    "current":  37.75,
-                    "mom":  3,
+                    "source":  "wgb-manual",
+                    "ytd":  0,
                     "wow":  0,
-                    "type":  "bp_abs",
-                    "ytd":  11,
+                    "mom":  0,
                     "key":  "CDS_US",
-                    "ok":  true
+                    "type":  "bp_abs",
+                    "asOf":  "2026-07-24",
+                    "ok":  true,
+                    "current":  37.78
                 },
                 {
-                    "current":  40.58,
-                    "mom":  -7,
-                    "wow":  -1,
-                    "type":  "bp_abs",
-                    "ytd":  -3,
+                    "source":  "wgb-manual",
+                    "ytd":  0,
+                    "wow":  0,
+                    "mom":  0,
                     "key":  "CDS_CN",
-                    "ok":  true
+                    "type":  "bp_abs",
+                    "asOf":  "2026-07-24",
+                    "ok":  true,
+                    "current":  38.03
                 }
             ],
     "sector":  [

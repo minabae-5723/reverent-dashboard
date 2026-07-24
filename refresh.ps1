@@ -62,9 +62,17 @@ $INSTRUMENTS = @{
 # Static data (Korean rates / CDS - fallback only; auto-fetched in main path)
 $STATIC_DATA = @{
     cds = @(
-        # Fallback values reflect 2026-05-22 Friday NY close (Investing.com)
-        @{ key='CDS_US'; current=37.75; wow=0;  mom=3;  ytd=11; type='bp_abs'; ok=$true }
-        @{ key='CDS_CN'; current=40.58; wow=-1; mom=-7; ytd=-3; type='bp_abs'; ok=$true }
+        # 🔴 Sovereign 5Y CDS has NO keyless auto-fetch source:
+        #   - investing.com CDS pages return HTTP 403 (Cloudflare) — Fetch-InvestingCDS always fails
+        #   - worldgovernmentbonds.com renders the value client-side behind a proof-of-work
+        #     anti-bot, so PowerShell can't scrape it either
+        # → these values are refreshed MANUALLY from the rendered WGB page
+        #   worldgovernmentbonds.com/cds-historical-data/{united-states|china}/5-years/
+        #   during the weekly routine. On weekends refresh.ps1 captures them into
+        #   capmkt-freeze.json (Fetch-InvestingCDS 403 -> this fallback).
+        # Last manual update: 2026-07-24 (US 37.78 near 1y-high, CN 38.03; both ~flat MoM).
+        @{ key='CDS_US'; current=37.78; wow=0; mom=0; ytd=0; type='bp_abs'; ok=$true; source='wgb-manual'; asOf='2026-07-24' }
+        @{ key='CDS_CN'; current=38.03; wow=0; mom=0; ytd=0; type='bp_abs'; ok=$true; source='wgb-manual'; asOf='2026-07-24' }
     )
     rate_kr = @(
         # KR3Y / KR10Y are now auto-fetched from Bank of Korea ECOS (Get-EcosYield).

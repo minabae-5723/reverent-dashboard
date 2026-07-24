@@ -1,26 +1,26 @@
 {
-    "capturedAt":  "2026-07-24 16:05:55",
+    "capturedAt":  "2026-07-24 16:52:42",
     "capturedDow":  "Friday",
     "rate":  [
                  {
                      "key":  "KR3Y",
-                     "current":  3.917,
-                     "wow":  7,
-                     "mom":  16,
-                     "ytd":  98,
+                     "current":  3.959,
+                     "wow":  11,
+                     "mom":  24,
+                     "ytd":  102,
                      "type":  "bp",
-                     "asOf":  "2026-07-23",
+                     "asOf":  "2026-07-24",
                      "ok":  true,
                      "source":  "ecos-bok"
                  },
                  {
                      "key":  "KR10Y",
-                     "current":  4.392,
-                     "wow":  10,
-                     "mom":  25,
-                     "ytd":  101,
+                     "current":  4.447,
+                     "wow":  15,
+                     "mom":  33,
+                     "ytd":  106,
                      "type":  "bp",
-                     "asOf":  "2026-07-23",
+                     "asOf":  "2026-07-24",
                      "ok":  true,
                      "source":  "ecos-bok"
                  },
@@ -71,22 +71,26 @@
              ],
     "cds":  [
                 {
-                    "current":  37.75,
-                    "mom":  3,
+                    "source":  "wgb-manual",
+                    "ytd":  0,
                     "wow":  0,
-                    "type":  "bp_abs",
-                    "ytd":  11,
+                    "mom":  0,
                     "key":  "CDS_US",
-                    "ok":  true
+                    "type":  "bp_abs",
+                    "asOf":  "2026-07-24",
+                    "ok":  true,
+                    "current":  37.78
                 },
                 {
-                    "current":  40.58,
-                    "mom":  -7,
-                    "wow":  -1,
-                    "type":  "bp_abs",
-                    "ytd":  -3,
+                    "source":  "wgb-manual",
+                    "ytd":  0,
+                    "wow":  0,
+                    "mom":  0,
                     "key":  "CDS_CN",
-                    "ok":  true
+                    "type":  "bp_abs",
+                    "asOf":  "2026-07-24",
+                    "ok":  true,
+                    "current":  38.03
                 }
             ]
 }
