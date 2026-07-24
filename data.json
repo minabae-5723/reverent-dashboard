@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-07-24T06:46:38Z",
-    "updatedKr":  "2026-07-24 15:46:38",
+    "updated":  "2026-07-24T06:47:27Z",
+    "updatedKr":  "2026-07-24 15:47:27",
     "index":  [
                   {
                       "key":  "KOSPI",
@@ -10,7 +10,7 @@
                       "mom":  -20.99,
                       "ytd":  55.29,
                       "type":  "pct",
-                      "asOf":  "2026-07-24T15:26:40",
+                      "asOf":  "2026-07-24T15:27:30",
                       "ok":  true
                   },
                   {
@@ -21,7 +21,7 @@
                       "mom":  -17.63,
                       "ytd":  -20.79,
                       "type":  "pct",
-                      "asOf":  "2026-07-24T15:26:40",
+                      "asOf":  "2026-07-24T15:27:30",
                       "ok":  true
                   },
                   {
@@ -60,35 +60,37 @@
                   {
                       "key":  "SHANGHAI",
                       "symbol":  "000001.SS",
-                      "current":  3826.542,
-                      "wow":  1.66,
-                      "mom":  -6.92,
-                      "ytd":  -4.89,
+                      "current":  3823.555,
+                      "wow":  1.58,
+                      "mom":  -6.99,
+                      "ytd":  -4.97,
                       "type":  "pct",
-                      "asOf":  "2026-07-24T15:31:45",
+                      "asOf":  "2026-07-24T15:32:30",
                       "ok":  true
                   }
               ],
     "rate":  [
                  {
-                     "mom":  16,
-                     "current":  3.92,
-                     "static":  true,
-                     "ok":  true,
                      "key":  "KR3Y",
-                     "type":  "bp",
+                     "current":  3.917,
                      "wow":  7,
-                     "ytd":  98
+                     "mom":  16,
+                     "ytd":  98,
+                     "type":  "bp",
+                     "asOf":  "2026-07-23",
+                     "ok":  true,
+                     "source":  "ecos-bok"
                  },
                  {
-                     "mom":  25,
-                     "current":  4.39,
-                     "static":  true,
-                     "ok":  true,
                      "key":  "KR10Y",
-                     "type":  "bp",
+                     "current":  4.392,
                      "wow":  10,
-                     "ytd":  101
+                     "mom":  25,
+                     "ytd":  101,
+                     "type":  "bp",
+                     "asOf":  "2026-07-23",
+                     "ok":  true,
+                     "source":  "ecos-bok"
                  },
                  {
                      "key":  "CD91",
@@ -102,16 +104,15 @@
                      "source":  "naver-mobile"
                  },
                  {
-                     "source":  "treasury.gov",
-                     "ytd":  71,
-                     "wow":  -3,
-                     "mom":  -2,
                      "key":  "US2Y",
+                     "current":  4.37,
+                     "wow":  21,
+                     "mom":  28,
+                     "ytd":  90,
                      "type":  "bp",
-                     "asOf":  "2026-07-17",
+                     "asOf":  "2026-07-23",
                      "ok":  true,
-                     "static":  true,
-                     "current":  4.18
+                     "source":  "treasury.gov"
                  },
                  {
                      "key":  "US10Y",
