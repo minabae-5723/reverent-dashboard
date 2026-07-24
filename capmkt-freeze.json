@@ -1,49 +1,50 @@
 {
-    "capturedAt":  "2026-07-24 07:00:20",
+    "capturedAt":  "2026-07-24 16:05:55",
     "capturedDow":  "Friday",
     "rate":  [
                  {
-                     "mom":  21,
-                     "current":  3.56,
-                     "static":  true,
-                     "ok":  true,
                      "key":  "KR3Y",
+                     "current":  3.917,
+                     "wow":  7,
+                     "mom":  16,
+                     "ytd":  98,
                      "type":  "bp",
-                     "wow":  -3,
-                     "ytd":  63
+                     "asOf":  "2026-07-23",
+                     "ok":  true,
+                     "source":  "ecos-bok"
                  },
                  {
-                     "mom":  23,
-                     "current":  3.91,
-                     "static":  true,
-                     "ok":  true,
                      "key":  "KR10Y",
+                     "current":  4.392,
+                     "wow":  10,
+                     "mom":  25,
+                     "ytd":  101,
                      "type":  "bp",
-                     "wow":  7,
-                     "ytd":  53
+                     "asOf":  "2026-07-23",
+                     "ok":  true,
+                     "source":  "ecos-bok"
                  },
                  {
                      "key":  "CD91",
                      "current":  2.91,
-                     "wow":  1,
+                     "wow":  0,
                      "mom":  -1,
                      "ytd":  10,
                      "type":  "bp",
-                     "asOf":  "2026-07-22",
+                     "asOf":  "2026-07-23",
                      "ok":  true,
                      "source":  "naver-mobile"
                  },
                  {
-                     "source":  "treasury.gov",
-                     "ytd":  71,
-                     "wow":  -3,
-                     "mom":  -2,
                      "key":  "US2Y",
+                     "current":  4.37,
+                     "wow":  21,
+                     "mom":  28,
+                     "ytd":  90,
                      "type":  "bp",
-                     "asOf":  "2026-07-17",
+                     "asOf":  "2026-07-23",
                      "ok":  true,
-                     "static":  true,
-                     "current":  4.18
+                     "source":  "treasury.gov"
                  },
                  {
                      "key":  "US10Y",

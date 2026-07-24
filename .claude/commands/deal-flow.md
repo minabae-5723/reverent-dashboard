@@ -394,6 +394,19 @@ URL 날짜 없는 매체(dealsite 등) 또는 보강 필요 시:
 
 사용자 선택을 받은 후:
 
+### Step 2-0) 대시보드 데이터 자동 갱신 (🔴 매 실행 의무 — 사용자 지정 2026-07-24)
+
+최종본 저장 전에 리포 루트에서 아래 스크립트를 실행해 대시보드 데이터를 함께 갱신한다 (deal-flow는 금요일 루틴이므로 주간 마감치를 함께 리프레시).
+
+```
+powershell -ExecutionPolicy Bypass -File .\refresh.ps1      # Capital Market(#market 상단): 지수/금리(국고채·미국채 ECOS+재무부)/FX/CDS/commodity
+powershell -ExecutionPolicy Bypass -File .\fetch-peer.ps1   # PEER TABLE(#peer): 반도체 피어 22종목 → peer.json
+powershell -ExecutionPolicy Bypass -File .\fetch-ipo.ps1    # IPO(#peer): 신규상장 → ipo.json
+```
+
+- **peer.json / ipo.json / data.json** 세 파일 모두 stage·커밋해 배포에 포함시킨다 (안 하면 #peer·#market 카드가 지난주 값에 머무름).
+- 금리(KR3Y/KR10Y=한국은행 ECOS, US2Y=美 재무부)는 refresh.ps1이 자동 갱신 — Investing.com 스크래이프는 403 차단이라 폐기됨. ECOS 실키가 있으면 `ecos-key.local.txt`에 넣으면 10행 제한이 풀림(없으면 sample 키로 동작).
+
 ### Step 2-1) 선택 파싱
 "자본시장 1,3,5,7,9 / 거래 2,4,6,8,10" 형식 파싱. 범위(`1~5` / `1-5`)와 콤마 리스트 모두 지원.
 
@@ -478,13 +491,13 @@ URL 날짜 없는 매체(dealsite 등) 또는 보강 필요 시:
 - **상장사 minority 거래**(예: 한화→KAI): 시가총액 행을 채우면 Equity Value의 fallback
 - 데이터 출처: 상장사 DART 사업보고서, 외감대상 비상장사 DART 감사보고서, 사업부 분리는 모회사 부문별 데이터, 비공개는 보도자료 추정
 
-**🔴 밸류에이션 표 생략 기준 (비표준 거래 — 2026-06-21 사용자 지시, 全 PC 적용)**:
-다음 케이스는 implied 멀티플이 무의미·오해 소지 → `#### Valuation` 테이블을 만들지 말고, 회사 재무(매출·영업이익·순익·자본총계·순현금 등)는 **본문 '재무' 불릿 / `> 📌` 노트로만** 표기. Deal Summary 행에는 남기되 멀티플은 `n/a`.
-- **PE 회수/엑시트로 거래가 ≠ 회사가치**: 구주 회수 목표액·세컨더리 회수액은 회사 EV/Equity가 아님 + 지분율 비공개 多 (예: SLL중앙 — 프랙시스 회수 1,700억은 회사가치 아님)
-- **CB·RCPS·BW 등 메자닌/하이브리드 증권**: 부채성이라 EV/EBITDA·PBR 부적합 (예: 삼성SDS KKR CB, SK E&S RCPS)
-- **자산유동화·carve-out으로 전사 재무로 평가 불가** (예: SK인천석유화학 유동화, 코오롱인더 사업부 매각)
-- **Deal Value·지분율 모두 비공개**라 equity 환산 자체가 불가
-- 판단 기준 = "확정된 매도/매수 가격 × 지분율로 100% equity를 환산할 수 있는가". 불가하면 표 생략.
+**🔴 거래동향 Valuation 표 = 모든 딜에 필수 (2026-07-24 사용자 지시 — 종전 '표 생략' 폐기)**:
+주요 거래 동향(Page 6)의 **모든 항목**에 `#### Valuation` 18행 테이블을 만든다. 값을 모르거나 비공개여도 표 자체는 생성 — **아는 셀(Deal Value·% Stake·시가총액·확보 가능한 재무)은 채우고, 나머지는 빈칸으로 두면 대시보드가 입력 폼으로 렌더**한다. `> 📌` 노트로 무엇이 확정/대기인지 설명.
+- 상장사·표준 바이아웃: DART/네이버/wisereport로 매출·영업이익·EBITDA·자본총계 등 채움 (PER·PBR·EV/EBITDA 산출).
+- 적자 회사(예: SK시그넷): 매출·영업이익(손실)·순익은 채우되 배수는 `n/a` 표기.
+- PE 회수·secondary·비공개 진행딜(예: 요기요·화성코스메틱·D&T): Deal Type·% Stake 등 아는 것만 채우고 재무는 빈칸(감사보고서 확보 시 입력) + 노트에 "거래가 ≠ 회사가치"/"진행단계" 명시. 배수는 `n/a`.
+- CB·RCPS·BW 메자닌, 자산유동화·carve-out: 표는 만들되 EV/EBITDA·PBR은 부적합하므로 `n/a`로 두고 노트로 이유 설명.
+- Deal Summary 행의 멀티플은 산출 불가 시 `n/a`.
 
 **🔴 Net Debt(순차입금) 계정 기준 (이자부 여부로 판단, 유동/비유동 분류 무관)**:
 - 포함(이자부부채): 단기차입금 + 유동성장기부채(차입금·**사채 유동성대체 모두**) + 장기차입금 + **사채(비유동)** + (해당 시) 리스부채·CB/BW 부채요소. 표에 `사채`·`유동성장기부채` 행이 필요하면 추가(app.js가 인식해 합산).

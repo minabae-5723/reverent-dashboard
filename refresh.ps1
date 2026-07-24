@@ -67,10 +67,11 @@ $STATIC_DATA = @{
         @{ key='CDS_CN'; current=40.58; wow=-1; mom=-7; ytd=-3; type='bp_abs'; ok=$true }
     )
     rate_kr = @(
-        # KR3Y / KR10Y are now auto-fetched from Investing (Get-InvestingYield).
-        # These static fallbacks are only used when the scrape fails.
-        @{ key='KR3Y';  current=3.56; wow=-3; mom=21; ytd=63; type='bp'; ok=$true; static=$true }
-        @{ key='KR10Y'; current=3.91; wow=7;  mom=23; ytd=53; type='bp'; ok=$true; static=$true }
+        # KR3Y / KR10Y are now auto-fetched from Bank of Korea ECOS (Get-EcosYield).
+        # These static fallbacks are only used when the ECOS call fails; keep them
+        # roughly current so a fallback week isn't wildly off.
+        @{ key='KR3Y';  current=3.92; wow=7;  mom=16; ytd=98;  type='bp'; ok=$true; static=$true }
+        @{ key='KR10Y'; current=4.39; wow=10; mom=25; ytd=101; type='bp'; ok=$true; static=$true }
         # CD91 stays static — Investing doesn't have a clean page for Korean CD rate.
         @{ key='CD91';  current=2.81; wow=0;  mom=-1; ytd=4;  type='bp'; ok=$true; static=$true }
     )
@@ -307,29 +308,118 @@ function Get-NaverCD91 {
     }
 }
 
-# Fetch KR3Y, KR10Y, US2Y from Investing. Falls back to STATIC_DATA on failure.
-function Fetch-InvestingYields {
-    $urls = [ordered]@{
-        KR3Y  = 'https://www.investing.com/rates-bonds/south-korea-3-year-bond-yield'
-        KR10Y = 'https://www.investing.com/rates-bonds/south-korea-10-year-bond-yield'
-        US2Y  = 'https://www.investing.com/rates-bonds/u.s.-2-year-bond-yield'
+# ----------------------------------------------------------------
+# Bank of Korea ECOS API — authoritative daily market-rate series
+# (817Y002 시장금리(일별)). Replaces the Investing.com scrape, which now
+# returns HTTP 403 (Cloudflare) on every run and silently fell back to
+# stale static values (KR3Y/KR10Y never updated week to week).
+#   item 010200000 = 국고채(3년), 010210000 = 국고채(10년)
+# Key resolution: real key from ecos-key.local.txt (gitignored) if present,
+# else the public 'sample' key. The sample key caps each call at 10 rows and
+# returns the OLDEST 10 in the date range, so every query below uses a small
+# bounded window (<=10 trading days) to guarantee the rows we need come back.
+# ----------------------------------------------------------------
+function Get-EcosKey {
+    $f = Join-Path $PSScriptRoot 'ecos-key.local.txt'
+    if (Test-Path $f) {
+        $k = (Get-Content $f -Raw -ErrorAction SilentlyContinue).Trim()
+        if ($k) { return $k }
     }
-    $rows = @()
-    foreach ($key in $urls.Keys) {
-        $y = Get-InvestingYield -BondUrl $urls[$key] -Key $key
-        if ($y) {
-            $rows += $y
-        } else {
-            # fallback to static row with same key (preserves dashboard layout)
-            $fallback = $STATIC_DATA.rate_kr | Where-Object { $_.key -eq $key }
-            if (-not $fallback -and $key -eq 'US2Y') {
-                # US2Y static from treasury.gov (2026-07-17) — Yahoo has no 2Y index symbol,
-                # Investing scrape unreliable. Update manually from treasury daily yield curve.
-                $fallback = @{ key='US2Y'; current=4.18; wow=-3; mom=-2; ytd=71; type='bp'; ok=$true; static=$true; asOf='2026-07-17'; source='treasury.gov' }
+    return 'sample'
+}
+
+function Get-EcosYield {
+    param([string]$Item, [string]$OutKey)
+    $ecosKey = Get-EcosKey
+    $fmt = 'yyyyMMdd'
+    $now = Get-Date
+    $fetch = {
+        param($s, $e)
+        $u = "https://ecos.bok.or.kr/api/StatisticSearch/$ecosKey/json/kr/1/10/817Y002/D/$s/$e/$Item"
+        try {
+            $wc = New-Object System.Net.WebClient
+            $wc.Headers.Add('User-Agent', $UserAgent)
+            $raw = $wc.DownloadData($u); $wc.Dispose()
+            $j = [System.Text.Encoding]::UTF8.GetString($raw) | ConvertFrom-Json
+            if ($j.StatisticSearch -and $j.StatisticSearch.row) {
+                return @($j.StatisticSearch.row | Sort-Object TIME)
             }
-            if ($fallback) { $rows += $fallback }
+        } catch {
+            Write-Warning ("ECOS fetch fail [{0} {1}~{2}]: {3}" -f $OutKey, $s, $e, $_.Exception.Message)
         }
-        Start-Sleep -Milliseconds 200
+        return @()
+    }
+    $w1 = & $fetch $now.AddDays(-14).ToString($fmt) $now.ToString($fmt)
+    if ($w1.Count -eq 0) { return $null }
+    $cur = [double]$w1[-1].DATA_VALUE
+    $ld  = [DateTime]::ParseExact($w1[-1].TIME, $fmt, $null)
+    $wowRow = ($w1 | Where-Object { $_.TIME -le $ld.AddDays(-7).ToString($fmt) } | Select-Object -Last 1)
+    $w2 = & $fetch $now.AddDays(-40).ToString($fmt) $now.AddDays(-23).ToString($fmt)
+    $momRow = ($w2 | Where-Object { $_.TIME -le $ld.AddDays(-28).ToString($fmt) } | Select-Object -Last 1)
+    if (-not $momRow -and $w2.Count) { $momRow = $w2 | Select-Object -Last 1 }
+    $w3 = & $fetch ("{0}0101" -f $ld.Year) ("{0}0115" -f $ld.Year)
+    $ytdRow = $w3 | Select-Object -First 1
+    $bp = { param($b) if ($b) { [Math]::Round(($cur - [double]$b.DATA_VALUE) * 100, 0) } else { $null } }
+    return [PSCustomObject]@{
+        key     = $OutKey
+        current = [Math]::Round($cur, 3)
+        wow     = & $bp $wowRow
+        mom     = & $bp $momRow
+        ytd     = & $bp $ytdRow
+        type    = 'bp'
+        asOf    = $ld.ToString('yyyy-MM-dd')
+        ok      = $true
+        source  = 'ecos-bok'
+    }
+}
+
+# US 2Y from the US Treasury daily par yield curve CSV (Yahoo has no 2Y index
+# symbol; Investing scrape is 403-blocked). Column 8 = "2 Yr". Full-year history
+# in one call, so WoW/MoM/YTD are computed locally.
+function Get-TreasuryUS2Y {
+    $yr = (Get-Date).Year
+    $url = "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/daily-treasury-rates.csv/$yr/all?type=daily_treasury_yield_curve&field_tdr_date_value=$yr&page&_format=csv"
+    try {
+        $r = Invoke-WebRequest -Uri $url -UseBasicParsing -UserAgent $UserAgent -TimeoutSec 30
+        $rows = $r.Content -split "`n" | Where-Object { $_ -match '^\d{2}/\d{2}/\d{4},' } | ForEach-Object {
+            $p = $_ -split ','
+            [PSCustomObject]@{ d = [DateTime]::ParseExact($p[0], 'MM/dd/yyyy', $null); v = [double]$p[8] }
+        } | Sort-Object d
+        if ($rows.Count -lt 2) { return $null }
+        $cur = $rows[-1]
+        $wow = ($rows | Where-Object { $_.d -le $cur.d.AddDays(-7) }  | Select-Object -Last 1)
+        $mom = ($rows | Where-Object { $_.d -le $cur.d.AddDays(-28) } | Select-Object -Last 1)
+        $ytd = $rows | Select-Object -First 1
+        $bp = { param($b) if ($b) { [Math]::Round(($cur.v - $b.v) * 100, 0) } else { $null } }
+        return [PSCustomObject]@{
+            key     = 'US2Y'
+            current = [Math]::Round($cur.v, 3)
+            wow     = & $bp $wow
+            mom     = & $bp $mom
+            ytd     = & $bp $ytd
+            type    = 'bp'
+            asOf    = $cur.d.ToString('yyyy-MM-dd')
+            ok      = $true
+            source  = 'treasury.gov'
+        }
+    } catch {
+        Write-Warning ("Treasury US2Y fail: " + $_.Exception.Message)
+        return $null
+    }
+}
+
+# KR3Y / KR10Y (ECOS) + US2Y (Treasury). Falls back to STATIC_DATA on failure.
+# Name kept as Fetch-InvestingYields so the main loop is unchanged.
+function Fetch-InvestingYields {
+    $rows = @()
+    $kr3y  = Get-EcosYield -Item '010200000' -OutKey 'KR3Y'
+    $kr10y = Get-EcosYield -Item '010210000' -OutKey 'KR10Y'
+    $us2y  = Get-TreasuryUS2Y
+
+    if ($kr3y)  { $rows += $kr3y }  else { $rows += ($STATIC_DATA.rate_kr | Where-Object { $_.key -eq 'KR3Y' }) }
+    if ($kr10y) { $rows += $kr10y } else { $rows += ($STATIC_DATA.rate_kr | Where-Object { $_.key -eq 'KR10Y' }) }
+    if ($us2y)  { $rows += $us2y }  else {
+        $rows += @{ key='US2Y'; current=4.37; wow=21; mom=28; ytd=90; type='bp'; ok=$true; static=$true; asOf='2026-07-23'; source='treasury.gov(static)' }
     }
     return $rows
 }
@@ -628,10 +718,7 @@ do {
 
     # Build rate group in user-requested order:
     #   KR3Y → KR10Y → CD91 → US2Y → US10Y → US30Y
-    $kr3y  = (Fetch-InvestingYields | Where-Object { $_.key -eq 'KR3Y' })
-    $kr10y = (Fetch-InvestingYields | Where-Object { $_.key -eq 'KR10Y' })
-    $us2y  = (Fetch-InvestingYields | Where-Object { $_.key -eq 'US2Y' })
-    # Re-fetch is wasteful — store in variable
+    # KR3Y/KR10Y (ECOS) + US2Y (Treasury) — single fetch, reused below.
     $invYields = Fetch-InvestingYields
     $cd91 = Get-NaverCD91
     if (-not $cd91) {
