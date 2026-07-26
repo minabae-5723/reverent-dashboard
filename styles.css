@@ -3030,8 +3030,8 @@ html, body {
 
 .macro-notes-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
-  gap: 14px;
+  grid-template-columns: 1fr;
+  gap: 18px;
 }
 
 .macro-notes-empty {
@@ -3088,7 +3088,6 @@ html, body {
   background: #f7f8fa;
   border-radius: 6px;
   overflow: hidden;
-  max-height: 360px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -3096,7 +3095,6 @@ html, body {
 .macro-note-img {
   width: 100%;
   height: auto;
-  max-height: 360px;
   object-fit: contain;
   display: block;
 }
