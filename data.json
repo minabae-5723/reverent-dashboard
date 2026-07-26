@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-07-26T06:51:15Z",
-    "updatedKr":  "2026-07-26 15:51:15",
+    "updated":  "2026-07-26T07:36:59Z",
+    "updatedKr":  "2026-07-26 16:36:59",
     "index":  [
                   {
                       "key":  "KOSPI",
@@ -91,26 +91,26 @@
                      "ytd":  101
                  },
                  {
-                     "key":  "CD91",
-                     "current":  2.91,
-                     "wow":  0,
                      "mom":  -1,
-                     "ytd":  10,
+                     "current":  2.81,
+                     "static":  true,
+                     "ok":  true,
+                     "key":  "CD91",
+                     "type":  "bp",
+                     "wow":  0,
+                     "ytd":  4
+                 },
+                 {
+                     "source":  "treasury.gov(static)",
+                     "ytd":  90,
+                     "wow":  21,
+                     "mom":  28,
+                     "key":  "US2Y",
                      "type":  "bp",
                      "asOf":  "2026-07-23",
                      "ok":  true,
-                     "source":  "naver-mobile"
-                 },
-                 {
-                     "key":  "US2Y",
-                     "current":  4.33,
-                     "wow":  15,
-                     "mom":  26,
-                     "ytd":  86,
-                     "type":  "bp",
-                     "asOf":  "2026-07-24",
-                     "ok":  true,
-                     "source":  "treasury.gov"
+                     "static":  true,
+                     "current":  4.37
                  },
                  {
                      "key":  "US10Y",
@@ -121,7 +121,8 @@
                      "ytd":  49,
                      "type":  "bp",
                      "asOf":  "2026-07-25T03:59:53",
-                     "ok":  true
+                     "ok":  true,
+                     "stale":  true
                  },
                  {
                      "key":  "US30Y",
@@ -132,7 +133,8 @@
                      "ytd":  30,
                      "type":  "bp",
                      "asOf":  "2026-07-25T03:59:53",
-                     "ok":  true
+                     "ok":  true,
+                     "stale":  true
                  }
              ],
     "commodity":  [
