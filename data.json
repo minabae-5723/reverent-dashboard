@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-07-26T07:36:59Z",
-    "updatedKr":  "2026-07-26 16:36:59",
+    "updated":  "2026-07-26T08:54:05Z",
+    "updatedKr":  "2026-07-26 17:54:05",
     "index":  [
                   {
                       "key":  "KOSPI",
@@ -71,46 +71,48 @@
               ],
     "rate":  [
                  {
-                     "mom":  16,
-                     "current":  3.92,
-                     "static":  true,
-                     "ok":  true,
                      "key":  "KR3Y",
+                     "current":  3.959,
+                     "wow":  11,
+                     "mom":  24,
+                     "ytd":  102,
                      "type":  "bp",
-                     "wow":  7,
-                     "ytd":  98
+                     "asOf":  "2026-07-24",
+                     "ok":  true,
+                     "source":  "ecos-bok"
                  },
                  {
-                     "mom":  25,
-                     "current":  4.39,
-                     "static":  true,
-                     "ok":  true,
                      "key":  "KR10Y",
+                     "current":  4.447,
+                     "wow":  15,
+                     "mom":  33,
+                     "ytd":  106,
                      "type":  "bp",
-                     "wow":  10,
-                     "ytd":  101
-                 },
-                 {
-                     "mom":  -1,
-                     "current":  2.81,
-                     "static":  true,
+                     "asOf":  "2026-07-24",
                      "ok":  true,
-                     "key":  "CD91",
-                     "type":  "bp",
-                     "wow":  0,
-                     "ytd":  4
+                     "source":  "ecos-bok"
                  },
                  {
-                     "source":  "treasury.gov(static)",
-                     "ytd":  90,
-                     "wow":  21,
-                     "mom":  28,
-                     "key":  "US2Y",
+                     "key":  "CD91",
+                     "current":  2.91,
+                     "wow":  0,
+                     "mom":  -1,
+                     "ytd":  10,
                      "type":  "bp",
                      "asOf":  "2026-07-23",
                      "ok":  true,
-                     "static":  true,
-                     "current":  4.37
+                     "source":  "naver-mobile"
+                 },
+                 {
+                     "key":  "US2Y",
+                     "current":  4.33,
+                     "wow":  15,
+                     "mom":  26,
+                     "ytd":  86,
+                     "type":  "bp",
+                     "asOf":  "2026-07-24",
+                     "ok":  true,
+                     "source":  "treasury.gov"
                  },
                  {
                      "key":  "US10Y",
@@ -121,8 +123,7 @@
                      "ytd":  49,
                      "type":  "bp",
                      "asOf":  "2026-07-25T03:59:53",
-                     "ok":  true,
-                     "stale":  true
+                     "ok":  true
                  },
                  {
                      "key":  "US30Y",
@@ -133,8 +134,7 @@
                      "ytd":  30,
                      "type":  "bp",
                      "asOf":  "2026-07-25T03:59:53",
-                     "ok":  true,
-                     "stale":  true
+                     "ok":  true
                  }
              ],
     "commodity":  [
