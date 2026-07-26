@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-07-26T04:44:11Z",
-    "updatedKr":  "2026-07-26 13:44:11",
+    "updated":  "2026-07-26T05:08:34Z",
+    "updatedKr":  "2026-07-26 14:08:34",
     "countries":  [
                       "5",
                       "35",
@@ -20,9 +20,9 @@
                        "importance":  3,
                        "indicator":  "Initial Jobless Claims",
                        "period":  "",
-                       "actual":  "",
-                       "forecast":  "216K",
-                       "previous":  "215K",
+                       "actual":  "187K",
+                       "forecast":  "211K",
+                       "previous":  "209K",
                        "type":  "review"
                    },
                    {
@@ -35,8 +35,8 @@
                        "importance":  3,
                        "indicator":  "S\u0026P Global Manufacturing PMI",
                        "period":  "Jul",
-                       "actual":  "",
-                       "forecast":  "",
+                       "actual":  "53.8",
+                       "forecast":  "54.4",
                        "previous":  "53.9",
                        "type":  "review"
                    },
@@ -50,8 +50,8 @@
                        "importance":  3,
                        "indicator":  "S\u0026P Global Services PMI",
                        "period":  "Jul",
-                       "actual":  "",
-                       "forecast":  "",
+                       "actual":  "53.6",
+                       "forecast":  "51.3",
                        "previous":  "51.2",
                        "type":  "review"
                    },
@@ -65,9 +65,9 @@
                        "importance":  3,
                        "indicator":  "New Home Sales",
                        "period":  "Jun",
-                       "actual":  "",
-                       "forecast":  "",
-                       "previous":  "580K",
+                       "actual":  "628K",
+                       "forecast":  "609K",
+                       "previous":  "618K",
                        "type":  "review"
                    }
                ]

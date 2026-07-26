@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-07-26T04:44:11Z",
-    "updatedKr":  "2026-07-26 13:44:11",
+    "updated":  "2026-07-26T05:08:34Z",
+    "updatedKr":  "2026-07-26 14:08:34",
     "countries":  [
                       "5",
                       "35",
@@ -12,17 +12,17 @@
     "events":  [
                    {
                        "id":  "554001",
-                       "datetime":  "2026/07/29 21:30:00",
-                       "date":  "7/29",
-                       "time":  "21:30",
+                       "datetime":  "2026/07/28 23:00:00",
+                       "date":  "7/28",
+                       "time":  "23:00",
                        "flagKey":  "United_States",
                        "currency":  "USD",
                        "importance":  3,
-                       "indicator":  "Consumer Confidence",
+                       "indicator":  "CB Consumer Confidence",
                        "period":  "Jul",
                        "actual":  "",
-                       "forecast":  "",
-                       "previous":  "",
+                       "forecast":  "92.1",
+                       "previous":  "91.2",
                        "type":  "preview"
                    },
                    {
@@ -37,7 +37,7 @@
                        "period":  "",
                        "actual":  "",
                        "forecast":  "3.50%~3.75%",
-                       "previous":  "4.00%~4.25%",
+                       "previous":  "3.50%~3.75%",
                        "type":  "preview"
                    },
                    {
@@ -51,8 +51,8 @@
                        "indicator":  "GDP (QoQ)",
                        "period":  "Q2",
                        "actual":  "",
-                       "forecast":  "",
-                       "previous":  "-0.2%",
+                       "forecast":  "2.3%",
+                       "previous":  "2.1%",
                        "type":  "preview"
                    },
                    {
@@ -66,14 +66,14 @@
                        "indicator":  "Initial Jobless Claims",
                        "period":  "",
                        "actual":  "",
-                       "forecast":  "",
-                       "previous":  "",
+                       "forecast":  "206K",
+                       "previous":  "187K",
                        "type":  "preview"
                    },
                    {
                        "id":  "554040",
-                       "datetime":  "2026/07/31 21:30:00",
-                       "date":  "7/31",
+                       "datetime":  "2026/07/30 21:30:00",
+                       "date":  "7/30",
                        "time":  "21:30",
                        "flagKey":  "United_States",
                        "currency":  "USD",
@@ -81,8 +81,8 @@
                        "indicator":  "Core PCE Price Index (YoY)",
                        "period":  "Jun",
                        "actual":  "",
-                       "forecast":  "",
-                       "previous":  "",
+                       "forecast":  "3.4%",
+                       "previous":  "3.4%",
                        "type":  "preview"
                    },
                    {
@@ -96,23 +96,23 @@
                        "indicator":  "Employment Cost Index (QoQ)",
                        "period":  "Q2",
                        "actual":  "",
-                       "forecast":  "",
-                       "previous":  "",
+                       "forecast":  "0.8%",
+                       "previous":  "0.9%",
                        "type":  "preview"
                    },
                    {
                        "id":  "554060",
-                       "datetime":  "2026/08/01 22:00:00",
-                       "date":  "8/1",
-                       "time":  "22:00",
+                       "datetime":  "2026/08/03 23:00:00",
+                       "date":  "8/3",
+                       "time":  "23:00",
                        "flagKey":  "United_States",
                        "currency":  "USD",
                        "importance":  3,
                        "indicator":  "ISM Manufacturing PMI",
                        "period":  "Jul",
                        "actual":  "",
-                       "forecast":  "",
-                       "previous":  "",
+                       "forecast":  "53.3",
+                       "previous":  "53.3",
                        "type":  "preview"
                    }
                ]
