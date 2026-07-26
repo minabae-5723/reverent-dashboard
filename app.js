@@ -1097,8 +1097,8 @@ function renderMarketContent(md) {
 // Color-code numeric change values inline: +x.xx% (green) / -x.xx% (red)
 function formatChangeValue(text) {
   return escapeHtml(text)
-    .replace(/(\(\s*)([+\-][\d,.]+(?:bp|p|%)?)([^)]*?)(\s*\))/g, (m, lp, n1, rest, rp) => {
-      const cls = n1.startsWith('-') ? 'down' : 'up';
+    .replace(/(\(\s*)([+\-−][\d,.]+(?:bp|p|%)?)([^)]*?)(\s*\))/g, (m, lp, n1, rest, rp) => {
+      const cls = /^[-−]/.test(n1) ? 'down' : 'up';
       return `${lp}<span class="chg ${cls}">${n1}</span>${rest}${rp}`;
     });
 }
