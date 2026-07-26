@@ -1,72 +1,10 @@
 {
-    "updated":  "2026-07-26T05:05:00Z",
-    "updatedKr":  "2026-07-26 14:05:00",
+    "updated":  "2026-07-27T00:30:00Z",
+    "updatedKr":  "2026-07-27 09:30:00",
     "frozenDow":  "Monday",
-    "reviewRange":  "2026-07-20~2026-07-24",
-    "previewRange":  "2026-07-27~2026-08-03",
+    "reviewRange":  "2026-07-27~2026-07-31",
+    "previewRange":  "2026-08-03~2026-08-07",
     "thisWeek":  [
-                     {
-                         "id":  "553012",
-                         "datetime":  "2026/07/23 21:30:00",
-                         "date":  "7/23",
-                         "time":  "21:30",
-                         "flagKey":  "United_States",
-                         "currency":  "USD",
-                         "importance":  3,
-                         "indicator":  "Initial Jobless Claims",
-                         "period":  "",
-                         "actual":  "187K",
-                         "forecast":  "211K",
-                         "previous":  "209K",
-                         "type":  "review"
-                     },
-                     {
-                         "id":  "553040",
-                         "datetime":  "2026/07/24 22:45:00",
-                         "date":  "7/24",
-                         "time":  "22:45",
-                         "flagKey":  "United_States",
-                         "currency":  "USD",
-                         "importance":  3,
-                         "indicator":  "S&P Global Manufacturing PMI",
-                         "period":  "Jul",
-                         "actual":  "53.8",
-                         "forecast":  "54.4",
-                         "previous":  "53.9",
-                         "type":  "review"
-                     },
-                     {
-                         "id":  "553041",
-                         "datetime":  "2026/07/24 22:45:00",
-                         "date":  "7/24",
-                         "time":  "22:45",
-                         "flagKey":  "United_States",
-                         "currency":  "USD",
-                         "importance":  3,
-                         "indicator":  "S&P Global Services PMI",
-                         "period":  "Jul",
-                         "actual":  "53.6",
-                         "forecast":  "51.3",
-                         "previous":  "51.2",
-                         "type":  "review"
-                     },
-                     {
-                         "id":  "553050",
-                         "datetime":  "2026/07/24 23:00:00",
-                         "date":  "7/24",
-                         "time":  "23:00",
-                         "flagKey":  "United_States",
-                         "currency":  "USD",
-                         "importance":  3,
-                         "indicator":  "New Home Sales",
-                         "period":  "Jun",
-                         "actual":  "628K",
-                         "forecast":  "609K",
-                         "previous":  "618K",
-                         "type":  "review"
-                     }
-                 ],
-    "nextWeek":  [
                      {
                          "id":  "554001",
                          "datetime":  "2026/07/28 23:00:00",
@@ -80,7 +18,7 @@
                          "actual":  "",
                          "forecast":  "92.1",
                          "previous":  "91.2",
-                         "type":  "preview"
+                         "type":  "review"
                      },
                      {
                          "id":  "554010",
@@ -95,7 +33,7 @@
                          "actual":  "",
                          "forecast":  "3.50%~3.75%",
                          "previous":  "3.50%~3.75%",
-                         "type":  "preview"
+                         "type":  "review"
                      },
                      {
                          "id":  "554020",
@@ -110,7 +48,7 @@
                          "actual":  "",
                          "forecast":  "2.3%",
                          "previous":  "2.1%",
-                         "type":  "preview"
+                         "type":  "review"
                      },
                      {
                          "id":  "554030",
@@ -125,7 +63,7 @@
                          "actual":  "",
                          "forecast":  "206K",
                          "previous":  "187K",
-                         "type":  "preview"
+                         "type":  "review"
                      },
                      {
                          "id":  "554040",
@@ -140,7 +78,7 @@
                          "actual":  "",
                          "forecast":  "3.4%",
                          "previous":  "3.4%",
-                         "type":  "preview"
+                         "type":  "review"
                      },
                      {
                          "id":  "554050",
@@ -155,10 +93,12 @@
                          "actual":  "",
                          "forecast":  "0.8%",
                          "previous":  "0.9%",
-                         "type":  "preview"
-                     },
+                         "type":  "review"
+                     }
+                 ],
+    "nextWeek":  [
                      {
-                         "id":  "554060",
+                         "id":  "555010",
                          "datetime":  "2026/08/03 23:00:00",
                          "date":  "8/3",
                          "time":  "23:00",
@@ -168,8 +108,98 @@
                          "indicator":  "ISM Manufacturing PMI",
                          "period":  "Jul",
                          "actual":  "",
-                         "forecast":  "53.3",
+                         "forecast":  "52.8",
                          "previous":  "53.3",
+                         "type":  "preview"
+                     },
+                     {
+                         "id":  "555020",
+                         "datetime":  "2026/08/04 23:00:00",
+                         "date":  "8/4",
+                         "time":  "23:00",
+                         "flagKey":  "United_States",
+                         "currency":  "USD",
+                         "importance":  3,
+                         "indicator":  "JOLTS Job Openings",
+                         "period":  "Jun",
+                         "actual":  "",
+                         "forecast":  "6.9M",
+                         "previous":  "7.59M",
+                         "type":  "preview"
+                     },
+                     {
+                         "id":  "555030",
+                         "datetime":  "2026/08/05 21:15:00",
+                         "date":  "8/5",
+                         "time":  "21:15",
+                         "flagKey":  "United_States",
+                         "currency":  "USD",
+                         "importance":  3,
+                         "indicator":  "ADP Employment Change",
+                         "period":  "Jul",
+                         "actual":  "",
+                         "forecast":  "",
+                         "previous":  "98K",
+                         "type":  "preview"
+                     },
+                     {
+                         "id":  "555040",
+                         "datetime":  "2026/08/05 23:00:00",
+                         "date":  "8/5",
+                         "time":  "23:00",
+                         "flagKey":  "United_States",
+                         "currency":  "USD",
+                         "importance":  3,
+                         "indicator":  "ISM Services PMI",
+                         "period":  "Jul",
+                         "actual":  "",
+                         "forecast":  "53.5",
+                         "previous":  "54.0",
+                         "type":  "preview"
+                     },
+                     {
+                         "id":  "555050",
+                         "datetime":  "2026/08/06 21:30:00",
+                         "date":  "8/6",
+                         "time":  "21:30",
+                         "flagKey":  "United_States",
+                         "currency":  "USD",
+                         "importance":  3,
+                         "indicator":  "Initial Jobless Claims",
+                         "period":  "",
+                         "actual":  "",
+                         "forecast":  "",
+                         "previous":  "",
+                         "type":  "preview"
+                     },
+                     {
+                         "id":  "555060",
+                         "datetime":  "2026/08/07 21:30:00",
+                         "date":  "8/7",
+                         "time":  "21:30",
+                         "flagKey":  "United_States",
+                         "currency":  "USD",
+                         "importance":  3,
+                         "indicator":  "Nonfarm Payrolls",
+                         "period":  "Jul",
+                         "actual":  "",
+                         "forecast":  "",
+                         "previous":  "57K",
+                         "type":  "preview"
+                     },
+                     {
+                         "id":  "555070",
+                         "datetime":  "2026/08/07 21:30:00",
+                         "date":  "8/7",
+                         "time":  "21:30",
+                         "flagKey":  "United_States",
+                         "currency":  "USD",
+                         "importance":  3,
+                         "indicator":  "Unemployment Rate",
+                         "period":  "Jul",
+                         "actual":  "",
+                         "forecast":  "",
+                         "previous":  "4.2%",
                          "type":  "preview"
                      }
                  ]

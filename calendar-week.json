@@ -1,1 +1,104 @@
-{"updated":"2026-07-26T05:35:00Z","updatedKr":"2026-07-26 14:35:00","countries":["5","35","11","72"],"tab":"custom 2026-07-20~2026-07-26","source":"investing","events":[{"id":"552518","datetime":"2026/07/20 23:00:00","date":"7/20","time":"23:00","flagKey":"United_States","currency":"USD","importance":2,"indicator":"US Leading Index (MoM)","period":"Jun","actual":"-0.2%","forecast":"-0.1%","previous":"0.1%","type":"review"},{"id":"552580","datetime":"2026/07/21 18:00:00","date":"7/21","time":"18:00","flagKey":"Europe","currency":"EUR","importance":2,"indicator":"ZEW Economic Sentiment","period":"Jul","actual":"23.4","forecast":"11.2","previous":"9.5","type":"review"},{"id":"553495","datetime":"2026/07/21 21:15:00","date":"7/21","time":"21:15","flagKey":"United_States","currency":"USD","importance":2,"indicator":"ADP Employment Change Weekly","period":"","actual":"16.50K","forecast":"","previous":"19.25K","type":"review"},{"id":"553497","datetime":"2026/07/22 05:30:00","date":"7/22","time":"05:30","flagKey":"United_States","currency":"USD","importance":2,"indicator":"API Weekly Crude Oil Stock","period":"","actual":"2.603M","forecast":"-1.500M","previous":"-0.056M","type":"review"},{"id":"553673","datetime":"2026/07/22 08:50:00","date":"7/22","time":"08:50","flagKey":"Japan","currency":"JPY","importance":2,"indicator":"Adjusted Trade Balance","period":"","actual":"-0.88T","forecast":"-0.56T","previous":"-0.22T","type":"review"},{"id":"552599","datetime":"2026/07/22 08:50:00","date":"7/22","time":"08:50","flagKey":"Japan","currency":"JPY","importance":2,"indicator":"Exports (YoY)","period":"Jun","actual":"19.3%","forecast":"18.6%","previous":"16.8%","type":"review"},{"id":"552597","datetime":"2026/07/22 08:50:00","date":"7/22","time":"08:50","flagKey":"Japan","currency":"JPY","importance":2,"indicator":"Trade Balance","period":"Jun","actual":"-406.9B","forecast":"-120.0B","previous":"-391.8B","type":"review"},{"id":"553645","datetime":"2026/07/22 23:30:00","date":"7/22","time":"23:30","flagKey":"United_States","currency":"USD","importance":3,"indicator":"Crude Oil Inventories","period":"","actual":"2.010M","forecast":"-2.000M","previous":"-1.692M","type":"review"},{"id":"553641","datetime":"2026/07/22 23:30:00","date":"7/22","time":"23:30","flagKey":"United_States","currency":"USD","importance":2,"indicator":"Cushing Crude Oil Inventories","period":"","actual":"-0.674M","forecast":"","previous":"0.430M","type":"review"},{"id":"553510","datetime":"2026/07/23 02:00:00","date":"7/23","time":"02:00","flagKey":"United_States","currency":"USD","importance":2,"indicator":"20-Year Bond Auction","period":"","actual":"5.163%","forecast":"","previous":"4.927%","type":"review"},{"id":"552767","datetime":"2026/07/23 21:15:00","date":"7/23","time":"21:15","flagKey":"Europe","currency":"EUR","importance":3,"indicator":"Deposit Facility Rate","period":"Jul","actual":"2.25%","forecast":"2.25%","previous":"2.25%","type":"review"},{"id":"553511","datetime":"2026/07/23 21:15:00","date":"7/23","time":"21:15","flagKey":"Europe","currency":"EUR","importance":2,"indicator":"ECB Marginal Lending Facility","period":"","actual":"2.65%","forecast":"","previous":"2.65%","type":"review"},{"id":"552766","datetime":"2026/07/23 21:15:00","date":"7/23","time":"21:15","flagKey":"Europe","currency":"EUR","importance":3,"indicator":"ECB Interest Rate Decision","period":"Jul","actual":"2.40%","forecast":"2.40%","previous":"2.40%","type":"review"},{"id":"553409","datetime":"2026/07/23 21:30:00","date":"7/23","time":"21:30","flagKey":"United_States","currency":"USD","importance":2,"indicator":"Continuing Jobless Claims","period":"","actual":"1,796K","forecast":"","previous":"1,798K","type":"review"},{"id":"553408","datetime":"2026/07/23 21:30:00","date":"7/23","time":"21:30","flagKey":"United_States","currency":"USD","importance":3,"indicator":"Initial Jobless Claims","period":"","actual":"187K","forecast":"211K","previous":"209K","type":"review"},{"id":"553513","datetime":"2026/07/24 02:00:00","date":"7/24","time":"02:00","flagKey":"United_States","currency":"USD","importance":2,"indicator":"10-Year TIPS Auction","period":"","actual":"2.438%","forecast":"","previous":"2.169%","type":"review"},{"id":"554002","datetime":"2026/07/24 05:30:00","date":"7/24","time":"05:30","flagKey":"United_States","currency":"USD","importance":2,"indicator":"Fed's Balance Sheet","period":"","actual":"6,747B","forecast":"","previous":"6,743B","type":"review"},{"id":"552797","datetime":"2026/07/24 08:30:00","date":"7/24","time":"08:30","flagKey":"Japan","currency":"JPY","importance":2,"indicator":"National Core CPI (YoY)","period":"Jun","actual":"1.6%","forecast":"1.6%","previous":"1.4%","type":"review"},{"id":"553514","datetime":"2026/07/24 08:30:00","date":"7/24","time":"08:30","flagKey":"Japan","currency":"JPY","importance":2,"indicator":"National CPI (MoM)","period":"Jun","actual":"0.3%","forecast":"","previous":"0.4%","type":"review"},{"id":"552801","datetime":"2026/07/24 09:30:00","date":"7/24","time":"09:30","flagKey":"Japan","currency":"JPY","importance":2,"indicator":"S&P Global Services PMI","period":"Jul","actual":"51.9","forecast":"","previous":"52.2","type":"review"},{"id":"552829","datetime":"2026/07/24 17:00:00","date":"7/24","time":"17:00","flagKey":"Europe","currency":"EUR","importance":2,"indicator":"HCOB Eurozone Manufacturing PMI","period":"Jul","actual":"52.0","forecast":"51.5","previous":"51.4","type":"review"},{"id":"552831","datetime":"2026/07/24 17:00:00","date":"7/24","time":"17:00","flagKey":"Europe","currency":"EUR","importance":2,"indicator":"HCOB Eurozone Composite PMI","period":"Jul","actual":"51.9","forecast":"50.3","previous":"50.0","type":"review"},{"id":"552830","datetime":"2026/07/24 17:00:00","date":"7/24","time":"17:00","flagKey":"Europe","currency":"EUR","importance":2,"indicator":"HCOB Eurozone Services PMI","period":"Jul","actual":"51.6","forecast":"49.8","previous":"49.4","type":"review"},{"id":"553521","datetime":"2026/07/24 21:00:00","date":"7/24","time":"21:00","flagKey":"United_States","currency":"USD","importance":2,"indicator":"Building Permits","period":"Jun","actual":"1.374M","forecast":"1.367M","previous":"1.410M","type":"review"},{"id":"552846","datetime":"2026/07/24 22:45:00","date":"7/24","time":"22:45","flagKey":"United_States","currency":"USD","importance":3,"indicator":"S&P Global Manufacturing PMI","period":"Jul","actual":"53.8","forecast":"54.4","previous":"53.9","type":"review"},{"id":"552845","datetime":"2026/07/24 22:45:00","date":"7/24","time":"22:45","flagKey":"United_States","currency":"USD","importance":2,"indicator":"S&P Global Composite PMI","period":"Jul","actual":"53.6","forecast":"","previous":"51.9","type":"review"},{"id":"552847","datetime":"2026/07/24 22:45:00","date":"7/24","time":"22:45","flagKey":"United_States","currency":"USD","importance":3,"indicator":"S&P Global Services PMI","period":"Jul","actual":"53.6","forecast":"51.3","previous":"51.2","type":"review"},{"id":"552849","datetime":"2026/07/24 23:00:00","date":"7/24","time":"23:00","flagKey":"United_States","currency":"USD","importance":3,"indicator":"New Home Sales","period":"Jun","actual":"628K","forecast":"609K","previous":"618K","type":"review"},{"id":"552848","datetime":"2026/07/24 23:00:00","date":"7/24","time":"23:00","flagKey":"United_States","currency":"USD","importance":2,"indicator":"New Home Sales (MoM)","period":"Jun","actual":"1.6%","forecast":"","previous":"-4.3%","type":"review"},{"id":"553415","datetime":"2026/07/25 02:00:00","date":"7/25","time":"02:00","flagKey":"United_States","currency":"USD","importance":2,"indicator":"U.S. Baker Hughes Oil Rig Count","period":"","actual":"450","forecast":"","previous":"452","type":"review"},{"id":"553416","datetime":"2026/07/25 02:00:00","date":"7/25","time":"02:00","flagKey":"United_States","currency":"USD","importance":2,"indicator":"U.S. Baker Hughes Total Rig Count","period":"","actual":"587","forecast":"","previous":"588","type":"review"},{"id":"553764","datetime":"2026/07/25 04:30:00","date":"7/25","time":"04:30","flagKey":"United_States","currency":"USD","importance":2,"indicator":"CFTC Crude Oil speculative net positions","period":"","actual":"81.7K","forecast":"","previous":"62.7K","type":"review"},{"id":"553762","datetime":"2026/07/25 04:30:00","date":"7/25","time":"04:30","flagKey":"United_States","currency":"USD","importance":2,"indicator":"CFTC Gold speculative net positions","period":"","actual":"183.9K","forecast":"","previous":"186.7K","type":"review"},{"id":"553754","datetime":"2026/07/25 04:30:00","date":"7/25","time":"04:30","flagKey":"United_States","currency":"USD","importance":2,"indicator":"CFTC Nasdaq 100 speculative net positions","period":"","actual":"4.5K","forecast":"","previous":"2.7K","type":"review"},{"id":"553752","datetime":"2026/07/25 04:30:00","date":"7/25","time":"04:30","flagKey":"United_States","currency":"USD","importance":2,"indicator":"CFTC S&P 500 speculative net positions","period":"","actual":"-16.8K","forecast":"","previous":"-38.9K","type":"review"},{"id":"553748","datetime":"2026/07/25 04:30:00","date":"7/25","time":"04:30","flagKey":"Japan","currency":"JPY","importance":2,"indicator":"CFTC JPY speculative net positions","period":"","actual":"-152.1K","forecast":"","previous":"-122.7K","type":"review"},{"id":"553759","datetime":"2026/07/25 04:30:00","date":"7/25","time":"04:30","flagKey":"Europe","currency":"EUR","importance":2,"indicator":"CFTC EUR speculative net positions","period":"","actual":"-41.3K","forecast":"","previous":"-12.6K","type":"review"},{"id":"553863","datetime":"2026/07/23 04:00:00","date":"7/23","time":"04:00","flagKey":"United_States","currency":"USD","importance":3,"indicator":"U.S. President Trump Speaks","period":"","actual":"","forecast":"","previous":"","type":"preview"},{"id":"553600","datetime":"2026/07/23 21:15:00","date":"7/23","time":"21:15","flagKey":"Europe","currency":"EUR","importance":2,"indicator":"ECB Monetary Policy Statement","period":"","actual":"","forecast":"","previous":"","type":"preview"},{"id":"553601","datetime":"2026/07/23 21:45:00","date":"7/23","time":"21:45","flagKey":"Europe","currency":"EUR","importance":3,"indicator":"ECB Press Conference","period":"","actual":"","forecast":"","previous":"","type":"review"},{"id":"553776","datetime":"2026/07/25 00:30:00","date":"7/25","time":"00:30","flagKey":"Europe","currency":"EUR","importance":2,"indicator":"ECB's Lane Speaks","period":"","actual":"","forecast":"","previous":"","type":"preview"},{"id":"554238","datetime":"2026/07/25 09:55:00","date":"7/25","time":"09:55","flagKey":"United_States","currency":"USD","importance":3,"indicator":"U.S. President Trump Speaks","period":"","actual":"","forecast":"","previous":"","type":"preview"}]}
+{
+    "updated":  "2026-07-26T23:49:46Z",
+    "updatedKr":  "2026-07-27 08:49:46",
+    "countries":  [
+                      "5",
+                      "35",
+                      "11",
+                      "72"
+                  ],
+    "tab":  "custom 2026-07-27~2026-08-02",
+    "source":  "frozen-fallback",
+    "events":  [
+                   {
+                       "id":  "554001",
+                       "datetime":  "2026/07/28 23:00:00",
+                       "date":  "7/28",
+                       "time":  "23:00",
+                       "flagKey":  "United_States",
+                       "currency":  "USD",
+                       "importance":  3,
+                       "indicator":  "CB Consumer Confidence",
+                       "period":  "Jul",
+                       "actual":  "",
+                       "forecast":  "92.1",
+                       "previous":  "91.2",
+                       "type":  "review"
+                   },
+                   {
+                       "id":  "554010",
+                       "datetime":  "2026/07/30 03:00:00",
+                       "date":  "7/30",
+                       "time":  "03:00",
+                       "flagKey":  "United_States",
+                       "currency":  "USD",
+                       "importance":  3,
+                       "indicator":  "Fed Interest Rate Decision",
+                       "period":  "",
+                       "actual":  "",
+                       "forecast":  "3.50%~3.75%",
+                       "previous":  "3.50%~3.75%",
+                       "type":  "review"
+                   },
+                   {
+                       "id":  "554020",
+                       "datetime":  "2026/07/30 21:30:00",
+                       "date":  "7/30",
+                       "time":  "21:30",
+                       "flagKey":  "United_States",
+                       "currency":  "USD",
+                       "importance":  3,
+                       "indicator":  "GDP (QoQ)",
+                       "period":  "Q2",
+                       "actual":  "",
+                       "forecast":  "2.3%",
+                       "previous":  "2.1%",
+                       "type":  "review"
+                   },
+                   {
+                       "id":  "554030",
+                       "datetime":  "2026/07/30 21:30:00",
+                       "date":  "7/30",
+                       "time":  "21:30",
+                       "flagKey":  "United_States",
+                       "currency":  "USD",
+                       "importance":  3,
+                       "indicator":  "Initial Jobless Claims",
+                       "period":  "",
+                       "actual":  "",
+                       "forecast":  "206K",
+                       "previous":  "187K",
+                       "type":  "review"
+                   },
+                   {
+                       "id":  "554040",
+                       "datetime":  "2026/07/30 21:30:00",
+                       "date":  "7/30",
+                       "time":  "21:30",
+                       "flagKey":  "United_States",
+                       "currency":  "USD",
+                       "importance":  3,
+                       "indicator":  "Core PCE Price Index (YoY)",
+                       "period":  "Jun",
+                       "actual":  "",
+                       "forecast":  "3.4%",
+                       "previous":  "3.4%",
+                       "type":  "review"
+                   },
+                   {
+                       "id":  "554050",
+                       "datetime":  "2026/07/31 21:30:00",
+                       "date":  "7/31",
+                       "time":  "21:30",
+                       "flagKey":  "United_States",
+                       "currency":  "USD",
+                       "importance":  3,
+                       "indicator":  "Employment Cost Index (QoQ)",
+                       "period":  "Q2",
+                       "actual":  "",
+                       "forecast":  "0.8%",
+                       "previous":  "0.9%",
+                       "type":  "review"
+                   }
+               ]
+}
