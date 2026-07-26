@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-07-26T03:01:47Z",
-    "updatedKr":  "2026-07-26 12:01:47",
+    "updated":  "2026-07-26T04:34:18Z",
+    "updatedKr":  "2026-07-26 13:34:18",
     "index":  [
                   {
                       "key":  "KOSPI",
@@ -152,10 +152,10 @@
                       {
                           "key":  "GOLD",
                           "symbol":  "GC=F",
-                          "current":  4067.6001,
-                          "wow":  1.37,
-                          "mom":  -0.27,
-                          "ytd":  -5.72,
+                          "current":  4070.8,
+                          "wow":  1.45,
+                          "mom":  -0.19,
+                          "ytd":  -5.65,
                           "type":  "pct",
                           "asOf":  "2026-07-24",
                           "ok":  true
@@ -163,10 +163,10 @@
                       {
                           "key":  "COPPER",
                           "symbol":  "HG=F",
-                          "current":  6.32,
-                          "wow":  1.61,
-                          "mom":  2.91,
-                          "ytd":  12.06,
+                          "current":  6.3575,
+                          "wow":  2.21,
+                          "mom":  3.52,
+                          "ytd":  12.72,
                           "type":  "pct",
                           "asOf":  "2026-07-24",
                           "ok":  true
