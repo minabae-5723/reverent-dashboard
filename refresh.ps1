@@ -434,7 +434,13 @@ function Fetch-InvestingYields {
 
 # Yahoo Finance v8 fetch
 function Get-YahooChart {
-    param([string]$Symbol)
+    # TrimInProgress: when the exchange is CURRENTLY in session, Yahoo appends
+    # today's partial (intraday) bar to the daily history and reports it as
+    # regularMarketPrice. For the index table (per-exchange DAILY latest CLOSE,
+    # not intraday) we must ignore that in-progress bar and report the last
+    # COMPLETED session close instead. Detected via currentTradingPeriod.regular
+    # (both epochs, UTC): session in progress iff regStart <= now < regEnd.
+    param([string]$Symbol, [bool]$TrimInProgress = $false)
 
     $encoded = [System.Web.HttpUtility]::UrlEncode($Symbol)
 
@@ -483,10 +489,28 @@ function Get-YahooChart {
 
         if ($history.Count -lt 2) { return $null }
 
+        $current = [double]$meta.regularMarketPrice
+        $asOf    = (Get-Date '1970-01-01Z').AddSeconds($meta.regularMarketTime).ToString('s')
+
+        # Drop today's in-progress bar so the index shows the last COMPLETED close.
+        if ($TrimInProgress) {
+            try {
+                $regStart = [double]$meta.currentTradingPeriod.regular.start
+                $regEnd   = [double]$meta.currentTradingPeriod.regular.end
+                $nowEpoch = [double][DateTimeOffset]::UtcNow.ToUnixTimeSeconds()
+                $inSession = ($nowEpoch -ge $regStart) -and ($nowEpoch -lt $regEnd)
+                if ($inSession -and $history.Count -ge 2) {
+                    $history = @($history[0..($history.Count - 2)])
+                    $current = [double]$history[-1].close
+                    $asOf    = $history[-1].date
+                }
+            } catch { }
+        }
+
         return [PSCustomObject]@{
             symbol  = $Symbol
-            current = [double]$meta.regularMarketPrice
-            asOf    = (Get-Date '1970-01-01Z').AddSeconds($meta.regularMarketTime).ToString('s')
+            current = $current
+            asOf    = $asOf
             history = $history
         }
     } catch {
@@ -642,11 +666,11 @@ function Get-Changes {
 }
 
 function Fetch-Group {
-    param([array]$Items, [bool]$FreezeFriday = $false, [array]$Previous = @())
+    param([array]$Items, [bool]$FreezeFriday = $false, [array]$Previous = @(), [bool]$TrimInProgress = $false)
 
     $rows = @()
     foreach ($item in $Items) {
-        $data = Get-YahooChart -Symbol $item.symbol
+        $data = Get-YahooChart -Symbol $item.symbol -TrimInProgress $TrimInProgress
         $invert = [bool]$item.invert
         $type = if ($item.type) { $item.type } else { 'pct' }
         $changes = Get-Changes -Data $data -Type $type -Invert $invert -FreezeFriday $FreezeFriday
@@ -840,7 +864,7 @@ do {
         # indices show the latest US close, Shanghai its own — each on its own
         # exchange clock. (User rule: "index는 각 거래소 종가 기준 매일 갱신".
         # Rate/FX/CDS/sector/commodity stay Friday-frozen; index does not.)
-        index     = @(Fetch-Group $INSTRUMENTS.index -FreezeFriday $false -Previous $prevIndex)
+        index     = @(Fetch-Group $INSTRUMENTS.index -FreezeFriday $false -Previous $prevIndex -TrimInProgress $true)
         rate      = $rateOrdered
         commodity = @(_FetchCommodities)
         fx        = $fxRows
