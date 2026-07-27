@@ -84,17 +84,33 @@ WebSearch "코스피 외국인 순매수 밸류업 공매도 [이번주 날짜]"
 
 🔵 **Bloomberg 폴백 (news-clipping과 동기화)**: 글로벌 거래 매크로(Page 5)에 Bloomberg 기사가 핵심이면, 원문(bloomberg.com) WebFetch가 페이월로 막힐 때 **같은 내용 보도한 다른 매체(CNBC·Reuters 후속·한경·전자신문·연합) URL로 인용**. 본문은 "Bloomberg에 따르면 ~" 표기 유지하되 하이퍼링크는 접근 가능 매체로. 대체 보도 못 찾으면 폐기.
 
-### Step 1-2) 1순위 PE/LP·자문사·기업 점검 (news-clipping 1순위 동기화)
+### Step 1-2) 🔴 주요 PE 하우스 딜 능동 스윕 (누락 방지 — HARD RULE, 2026-07-22 강화)
 
-다음 매주 의무 검색 대상 — 24h 내 또는 그 주 보도 있는지 직접 확인:
+⛔ **리스트 페이지(Step 1-1)에만 의존하지 말 것**. 주요 하우스 빅딜이 특정 매체 단독 기사로만 나오면(예: 한경 단독) 리스트 fetch에 안 잡혀 누락됨.
+→ **계기: 블랙스톤-퓨트로닉 약 1조원 인수(2026-07-20 한경 단독, 삼정KPMG 자문·미래에셋 인수금융) 누락.** 블랙스톤이 리스트에 있었는데도 리스트 페이지에만 의존해서 놓침.
 
-**🥇 글로벌 메가 PE**: Bain Capital · KKR · Blackstone · Carlyle · Apollo · Brookfield · TPG · Macquarie PE · Affinity Equity Partners
+**따라서 아래를 매주 의무 실행** — 각 하우스명으로 직접 WebSearch(배치로 묶어서). 그 주 보도 유무를 능동 확인:
 
-**🥇 국내 PEF**: MBK Partners · IMM PE · Hahn & Co · 어피니티 · 캑터스PE · UCK파트너스 · 원익투자파트너스 · 오로라파트너스 · 스카이레이크 · 에이티넘 · 센트로이드PE · 메리츠PE · 다올PE · 베인크레딧 · 카무르PE · JKL파트너스
+```
+# 글로벌 메가 PE — 하우스명(한글+영문) × 인수/매각/투자 × 이번주
+WebSearch "블랙스톤 OR KKR OR 베인캐피탈 OR 칼라일 OR 아폴로 인수 매각 투자 [YYYY년 M월]"
+WebSearch "블랙스톤 OR TPG OR 브룩필드 OR 어피니티 OR 맥쿼리 한국 기업 인수 [YYYY년 M월]"
+WebSearch "Blackstone OR KKR OR Carlyle OR Bain Korea acquisition buyout [Month YYYY]"
+# 국내 PEF — 대형 하우스
+WebSearch "MBK OR IMM OR 한앤컴퍼니 OR 스틱 OR VIG 인수 매각 [YYYY년 M월]"
+WebSearch "UCK OR 캑터스 OR 스카이레이크 OR 에이티넘 OR 센트로이드 OR JKL 인수 [YYYY년 M월]"
+# 자문사 관점 — 딜 주관사가 흘리는 단서
+WebSearch "삼정KPMG OR 삼일PwC OR 딜로이트 매각주관 인수자문 [YYYY년 M월]"
+```
++ 한경·매경·thebell·dealsite·investchosun의 **M&A 섹션 헤드라인을 하우스명으로 재확인** (리스트에 하우스 딜이 실렸는지 교차).
 
-**🥇 국내 VC**: 스틱벤처스 · 서울투자파트너스 · 한국성장금융 · 한국벤처투자 · 우리벤처 · 하나에스앤비인베
+**의무 점검 하우스 (검색 대상 풀)**:
+- **🥇 글로벌 메가 PE**: Bain Capital · KKR · Blackstone(블랙스톤) · Carlyle · Apollo · Brookfield · TPG · Macquarie PE · Affinity Equity Partners · CVC · EQT · Advent
+- **🥇 국내 PEF**: MBK Partners · IMM PE · Hahn & Co(한앤컴퍼니) · 어피니티 · 캑터스PE · UCK파트너스 · 원익투자파트너스 · 오로라파트너스 · 스카이레이크 · 에이티넘 · 센트로이드PE · 메리츠PE · 다올PE · 베인크레딧 · 카무르PE · JKL파트너스 · VIG파트너스 · 프랙시스 · 글랜우드
+- **🥇 국내 VC**: 스틱벤처스 · 서울투자파트너스 · 한국성장금융 · 한국벤처투자 · 우리벤처 · 하나에스앤비인베
+- **🥇 정책기관·LP**: 국민성장펀드 · 모태펀드 · KDB산업은행 · IBK기업은행 · 신한자산운용 · 새마을금고 · 총회연금재단 · 예금보험공사 · 금감원 · 금융위 · 거래소
 
-**🥇 정책기관·LP**: 국민성장펀드 · 모태펀드 · KDB산업은행 · IBK기업은행 · 신한자산운용 · 새마을금고 · 총회연금재단 · 예금보험공사 · 금감원 · 금융위 · 거래소
+🔴 **누락 방지 자체 점검**: Phase 1 종료 전, "이번 주 글로벌 메가 PE + 국내 대형 PEF가 관여한 **조 단위·수천억 딜**이 후보에 최소 1건 이상 있는가?"를 확인. 없으면 하우스별 WebSearch를 한 번 더 돌려 발굴(진짜 그 주에 빅딜이 없었으면 그때만 없음 처리).
 
 **🥇 빅딜 추적 대상** (이미 진행 중인 잠재 빅딜): KAI 지분 매입(한화) · 카리플렉스 매각 · 율곡 인수전 · 만전식품 · KDB생명 · 예별손해보험 · 코오롱인더 스페셜티 · SK TNS · 시아스 · 이투마스 · 두산 SK실트론 · 우아한형제들(배민) 인수전 · 카카오모빌리티 TPG exit · 홈플러스 회생
 
@@ -528,7 +544,7 @@ powershell -ExecutionPolicy Bypass -File .\fetch-ipo.ps1    # IPO(#peer): 신규
 - [ ] **이전 주차** `./deals/{prev-friday}.md` 도 참고 → 중복 회피 + 후속 진전 추적
 - 🔴 [ ] **Macro 동향 섹션 누락 금지** (사용자 반복 강조) — Phase 1에서 Macro 후보 5~7건 + Phase 2 최종 MD에 `## 1. Macro 동향` 첫 섹션 포함했는가
 - [ ] **Phase 1 1차 fetch** — thebell 0103 / dealsite 080000 / dealsite 075000 / investchosun catid=2 / 매경 / 한경 페이지 1~3 + **Macro용 Bloomberg·Reuters·CNBC·한경 매크로면·연합인포맥스**
-- [ ] **1순위 PE/LP/자문사/빅딜 점검** — 위 Step 1-2 리스트 매주 의무 검색
+- 🔴 [ ] **주요 PE 하우스 딜 능동 스윕 (누락 방지)** — 위 Step 1-2대로 하우스명(한글+영문)으로 직접 WebSearch 배치 실행. 리스트 페이지에만 의존 금지. **글로벌 메가 PE + 국내 대형 PEF가 관여한 조 단위·수천억 딜이 후보에 최소 1건 있는가** 확인 (블랙스톤-퓨트로닉 1조 딜 누락 재발 방지)
 - [ ] **각 후보 scoring** — Phase 5/6 공식 가중평균 적용, score_breakdown 같이 표시
 - [ ] **카테고리 다양성** — Page 5에서 최소 3개 카테고리 분포, Page 6에서 최소 4개 카테고리 분포
 - [ ] **매체 다양성** — thebell 적극 활용 OK, 인베스트조선·딜사이트·한경·매경 중 최소 2~3개 매체에서 후보 1건 이상 가져왔는가. thebell 단독 보도는 다른 매체 후속·교차보도 한 번 더 검색
