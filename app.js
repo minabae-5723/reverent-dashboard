@@ -1960,11 +1960,6 @@ async function loadUserState() {
   } catch (e) {
     _userStateCache = {};
   }
-  // On the deployed (read-only) site, tell the user up-front that edits here
-  // won't persist — so manual inputs are never lost to a silent 404.
-  if (!_isLocalHost()) {
-    _saveBanner('warn', '📌 배포본(읽기전용) 화면입니다 — 수기 입력·저장은 localhost:8000에서 하세요.');
-  }
   return _userStateCache;
 }
 
@@ -2068,10 +2063,9 @@ function saveUserState(key, value) {
     if (value === null || value === undefined) delete _userStateCache[key];
     else _userStateCache[key] = value;
   }
-  // The deployed (static) site has no /save-state endpoint — warn loudly
-  // instead of silently dropping the write (the old behaviour).
+  // The deployed (static) site has no /save-state endpoint — no-op silently
+  // (edits are made on localhost:8000; no banner nag on the read-only view).
   if (!_isLocalHost()) {
-    _saveBanner('warn', '⚠️ 배포본(읽기전용) 화면이라 입력이 서버에 저장되지 않습니다 — localhost:8000에서 입력하세요.');
     return;
   }
   _postSaveState(key, value, 0);
