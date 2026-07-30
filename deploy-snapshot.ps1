@@ -34,7 +34,7 @@ Write-Host ""
 
 # Folders that have YYYY-MM-DD.md files served as JSON-indexed lists.
 # Each gets an `index.json` regenerated from its .md file basenames.
-$INDEXED_FOLDERS = @('news', 'market', 'deals')
+$INDEXED_FOLDERS = @('news', 'market', 'deals', 'daily-report')
 
 # 0. Sync from origin/main first so other-PC commits don't conflict on push.
 #    Was --ff-only (silently skipped on any divergence, then the final push

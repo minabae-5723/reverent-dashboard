@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daily Report | Reverent Partners</title>
+<style>
+:root {
+  --bg: #f7f8fa;
+  --bg-white: #ffffff;
+  --border: #e5e7eb;
+  --border-light: #f0f1f3;
+  --text: #1f2937;
+  --text-secondary: #6b7280;
+  --text-light: #9ca3af;
+  --accent: #2563eb;
+  --accent-light: #eff6ff;
+  --accent-border: #bfdbfe;
+  --red: #dc2626;
+  --green: #16a34a;
+  --tag-semi: #1e40af;
+  --tag-semi-bg: #eff6ff;
+  --tag-cosmetics: #9333ea;
+  --tag-cosmetics-bg: #faf5ff;
+  --tag-telecom: #0d9488;
+  --tag-telecom-bg: #f0fdfa;
+  --tag-macro: #b45309;
+  --tag-macro-bg: #fffbeb;
+  --tag-company: #be185d;
+  --tag-company-bg: #fdf2f8;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
+  --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --radius: 8px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans KR', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 3px; }
+
+.header {
+  background: var(--bg-white);
+  border-bottom: 1px solid var(--border);
+  padding: 20px 32px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.header h1 { font-size: 17px; font-weight: 700; color: var(--text); letter-spacing: -0.3px; }
+.header .subtitle { font-size: 12px; color: var(--text-light); margin-top: 2px; }
+.back-link {
+  font-size: 13px;
+  color: var(--text-light);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.back-link:hover { color: var(--accent); }
+
+.date-nav {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: auto;
+}
+.date-nav button {
+  background: var(--bg-white);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  width: 30px; height: 30px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s;
+}
+.date-nav button:hover { background: var(--bg); border-color: #d1d5db; }
+.date-nav button:disabled { opacity: 0.3; cursor: default; }
+.date-nav .current-date { font-size: 14px; font-weight: 600; color: var(--text); min-width: 110px; text-align: center; }
+.date-nav .day-label { font-size: 12px; color: var(--text-light); }
+
+.report-meta {
+  padding: 10px 32px;
+  background: var(--bg-white);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.count-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+}
+.count-badge.total { background: var(--text); color: #fff; }
+.count-badge.semi { background: var(--tag-semi-bg); color: var(--tag-semi); }
+.count-badge.cosmetics { background: var(--tag-cosmetics-bg); color: var(--tag-cosmetics); }
+.count-badge.telecom { background: var(--tag-telecom-bg); color: var(--tag-telecom); }
+.count-badge.macro { background: var(--tag-macro-bg); color: var(--tag-macro); }
+.count-badge.company { background: var(--tag-company-bg); color: var(--tag-company); }
+
+.tabs {
+  display: flex; gap: 0;
+  padding: 0 32px;
+  background: var(--bg-white);
+  border-bottom: 1px solid var(--border);
+}
+.tab {
+  padding: 11px 18px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-light);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all 0.15s;
+  user-select: none;
+}
+.tab:hover { color: var(--text-secondary); }
+.tab.active { color: var(--text); border-bottom-color: var(--text); font-weight: 600; }
+
+.content { padding: 20px 32px 40px; max-width: 960px; }
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+.theme-bar {
+  background: var(--bg-white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  margin-bottom: 16px;
+  box-shadow: var(--shadow-sm);
+}
+.theme-bar .themes { font-size: 14px; font-weight: 700; color: var(--accent); margin-bottom: 6px; }
+.theme-bar .overview { font-size: 13px; color: var(--text-secondary); line-height: 1.7; }
+
+.section-card {
+  background: var(--bg-white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-bottom: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+.section-card .card-header {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border-light);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.1s;
+}
+.card-header:hover { background: var(--bg); }
+
+.sector-tag {
+  padding: 2px 8px; border-radius: 4px;
+  font-size: 11px; font-weight: 600;
+}
+.sector-tag.semi { background: var(--tag-semi-bg); color: var(--tag-semi); }
+.sector-tag.cosmetics { background: var(--tag-cosmetics-bg); color: var(--tag-cosmetics); }
+.sector-tag.telecom { background: var(--tag-telecom-bg); color: var(--tag-telecom); }
+.sector-tag.macro { background: var(--tag-macro-bg); color: var(--tag-macro); }
+.sector-tag.company { background: var(--tag-company-bg); color: var(--tag-company); }
+.sector-tag.featured { background: var(--accent-light); color: var(--accent); }
+
+.card-title { font-size: 13px; font-weight: 600; color: var(--text); flex: 1; }
+.toggle-icon { color: var(--text-light); font-size: 10px; transition: transform 0.2s; }
+.section-card.collapsed .toggle-icon { transform: rotate(-90deg); }
+.section-card.collapsed .card-body { display: none; }
+.card-body { padding: 16px; }
+
+.report-item { margin-bottom: 16px; padding-bottom: 16px; border-bottom: 1px solid var(--border-light); }
+.report-item:last-child { margin-bottom: 0; border-bottom: none; padding-bottom: 0; }
+.report-title { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+.report-source { font-size: 12px; color: var(--accent); margin-bottom: 8px; }
+.bullet {
+  font-size: 13px; color: var(--text-secondary);
+  padding-left: 12px; position: relative;
+  margin-bottom: 3px; line-height: 1.65;
+}
+.bullet::before {
+  content: ''; position: absolute; left: 2px; top: 9px;
+  width: 4px; height: 4px; border-radius: 50%; background: #d1d5db;
+}
+.bullet.so-what { color: var(--accent); font-weight: 500; }
+.bullet.so-what::before { background: var(--accent); }
+
+.featured-stock {
+  background: var(--bg); border: 1px solid var(--border-light);
+  border-radius: 6px; padding: 14px 16px; margin-bottom: 10px;
+}
+.featured-stock:last-child { margin-bottom: 0; }
+.stock-header { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; flex-wrap: wrap; }
+.stock-name { font-size: 14px; font-weight: 700; color: var(--text); }
+.stock-source { font-size: 12px; color: var(--text-light); }
+.stock-opinion {
+  font-size: 11px; font-weight: 600; color: var(--accent);
+  background: var(--accent-light); border: 1px solid var(--accent-border);
+  padding: 1px 8px; border-radius: 4px;
+}
+.stock-body { font-size: 13px; color: var(--text-secondary); line-height: 1.75; }
+
+.other-stocks { width: 100%; font-size: 13px; border-collapse: collapse; }
+.other-stocks td { padding: 8px 10px; border-bottom: 1px solid var(--border-light); vertical-align: top; }
+.other-stocks tr:last-child td { border-bottom: none; }
+.stock-col { font-weight: 600; color: var(--text); white-space: nowrap; width: 100px; }
+.opinion-col { color: var(--accent); white-space: nowrap; width: 120px; font-size: 12px; }
+.desc-col { color: var(--text-secondary); }
+
+.key-messages, .interpretation, .watchlist {
+  background: var(--bg-white); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 18px 20px;
+  margin-bottom: 12px; box-shadow: var(--shadow-sm);
+}
+.key-messages h3, .interpretation h3, .watchlist h3 {
+  font-size: 13px; font-weight: 700; color: var(--text);
+  margin-bottom: 14px; padding-bottom: 8px;
+  border-bottom: 1px solid var(--border-light);
+  text-transform: uppercase; letter-spacing: 0.3px;
+}
+.key-msg-item { margin-bottom: 14px; padding-left: 12px; border-left: 2px solid var(--border); }
+.key-msg-item:last-child { margin-bottom: 0; }
+.msg-title { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 3px; }
+.msg-body { font-size: 12px; color: var(--text-secondary); line-height: 1.65; }
+
+.interp-item { margin-bottom: 12px; font-size: 13px; line-height: 1.7; color: var(--text-secondary); }
+.interp-item:last-child { margin-bottom: 0; }
+.interp-topic { font-weight: 600; color: var(--text); }
+
+.checkpoints {
+  margin-top: 14px; padding: 12px 14px;
+  background: var(--accent-light); border-radius: 6px;
+  border: 1px solid var(--accent-border);
+}
+.checkpoints h4 { font-size: 12px; font-weight: 600; color: var(--accent); margin-bottom: 8px; }
+.checkpoint-item {
+  font-size: 12px; color: var(--text-secondary);
+  margin-bottom: 4px; padding-left: 10px;
+  position: relative; line-height: 1.6;
+}
+.checkpoint-item::before {
+  content: ''; position: absolute; left: 0; top: 8px;
+  width: 4px; height: 4px; border-radius: 1px; background: var(--accent);
+}
+
+.watch-item {
+  font-size: 13px; color: var(--text-secondary);
+  margin-bottom: 6px; padding-left: 12px;
+  position: relative; line-height: 1.6;
+}
+.watch-item::before {
+  content: ''; position: absolute; left: 0; top: 9px;
+  width: 5px; height: 5px; border-radius: 50%; background: var(--text-light);
+}
+
+.macro-content { font-size: 13px; line-height: 1.75; color: var(--text-secondary); }
+.macro-bullet { margin-bottom: 10px; padding-left: 12px; position: relative; }
+.macro-bullet::before {
+  content: ''; position: absolute; left: 1px; top: 9px;
+  width: 5px; height: 5px; border-radius: 50%; background: #d97706;
+}
+
+.loading, .empty-state { text-align: center; padding: 60px 20px; color: var(--text-light); font-size: 13px; }
+.spinner {
+  width: 20px; height: 20px;
+  border: 2px solid var(--border); border-top-color: var(--text-secondary);
+  border-radius: 50%; animation: spin 0.7s linear infinite;
+  margin: 0 auto 10px;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.bold { font-weight: 600; color: var(--text); }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <a href="index.html" class="back-link">&#9664; Dashboard</a>
+  <div>
+    <h1>Daily Report</h1>
+    <div class="subtitle">와이즈리포트 일간 종합 요약</div>
+  </div>
+  <div class="date-nav">
+    <button id="btn-prev" title="이전 날짜">&#9664;</button>
+    <span class="current-date" id="current-date">-</span>
+    <span class="day-label" id="day-label"></span>
+    <button id="btn-next" title="다음 날짜">&#9654;</button>
+  </div>
+</div>
+
+<div class="report-meta" id="report-meta"></div>
+
+<div class="tabs" id="tabs">
+  <div class="tab active" data-tab="industry">산업</div>
+  <div class="tab" data-tab="company">기업</div>
+  <div class="tab" data-tab="macro">매크로(전략)</div>
+  <div class="tab" data-tab="summary">종합</div>
+</div>
+
+<div class="content">
+  <div id="loading" class="loading">
+    <div class="spinner"></div>
+    데이터를 불러오는 중...
+  </div>
+  <div id="empty" class="empty-state" style="display:none">리포트 데이터가 없습니다.</div>
+  <div id="theme-bar" class="theme-bar" style="display:none"></div>
+  <div id="panel-industry" class="tab-panel active"></div>
+  <div id="panel-company" class="tab-panel"></div>
+  <div id="panel-macro" class="tab-panel"></div>
+  <div id="panel-summary" class="tab-panel"></div>
+</div>
+
+<script>
+const DAY_NAMES = ['일', '월', '화', '수', '목', '금', '토'];
+let dates = [];
+let currentIdx = 0;
+let currentReport = null;
+
+async function init() {
+  try {
+    const res = await fetch('./daily-report/index.json');
+    const data = await res.json();
+    dates = data.dates || [];
+    if (dates.length === 0) {
+      document.getElementById('loading').style.display = 'none';
+      document.getElementById('empty').style.display = 'block';
+      return;
+    }
+    currentIdx = 0;
+    await loadReport(dates[currentIdx]);
+  } catch (e) {
+    document.getElementById('loading').innerHTML = '데이터 로드 실패: ' + e.message;
+  }
+}
+
+async function loadReport(date) {
+  document.getElementById('loading').style.display = 'block';
+  document.getElementById('empty').style.display = 'none';
+  document.getElementById('theme-bar').style.display = 'none';
+  clearPanels();
+  try {
+    const res = await fetch('./daily-report/' + date + '.md');
+    if (!res.ok) throw new Error('Report not found: ' + date);
+    const content = await res.text();
+    currentReport = parseReport(content);
+    renderReport(currentReport, date);
+  } catch (e) {
+    document.getElementById('loading').innerHTML = 'Report load failed: ' + e.message;
+  }
+}
+
+function clearPanels() {
+  ['industry', 'company', 'macro', 'summary'].forEach(id => {
+    document.getElementById('panel-' + id).innerHTML = '';
+  });
+}
+
+function parseReport(md) {
+  const report = {
+    meta: '', themes: '', overview: '',
+    industry: [], macro: [], featured: [], otherStocks: [],
+    keyMessages: [], interpretation: [], checkpoints: [], watchlist: [],
+    raw: md
+  };
+
+  const metaMatch = md.match(/^>\s*(.+)$/m);
+  if (metaMatch) report.meta = metaMatch[1].trim();
+
+  const mainSections = md.split(/━{5,}/);
+  let sectionA = '', sectionB = '', sectionC = '', sectionD = '';
+  for (const sec of mainSections) {
+    if (/A\)\s*오늘\s*리포트/.test(sec)) sectionA = sec;
+    else if (/B\)\s*Key\s*Messages/.test(sec)) sectionB = sec;
+    else if (/C\)\s*BMN\s*Interpretation/.test(sec)) sectionC = sec;
+    else if (/D\)\s*Tomorrow\s*Watchlist/.test(sec)) sectionD = sec;
+  }
+
+  const themeMatch = sectionA.match(/\*\*\[(.+?)\]\*\*/);
+  if (themeMatch) report.themes = themeMatch[1];
+
+  const themeEnd = sectionA.indexOf(']**');
+  if (themeEnd > -1) {
+    const afterTheme = sectionA.substring(themeEnd + 3);
+    const firstSub = afterTheme.indexOf('▸');
+    if (firstSub > -1) {
+      const ov = afterTheme.substring(0, firstSub).trim();
+      const lines = ov.split('\n').filter(l => l.trim() && !l.startsWith('#') && !l.startsWith('>') && !l.startsWith('[REPORT]'));
+      report.overview = lines.join(' ').trim();
+    }
+  }
+
+  const subsections = sectionA.split(/(?=▸\s)/);
+  for (const sub of subsections) {
+    if (!sub.startsWith('▸')) continue;
+    const fl = sub.split('\n')[0];
+    if (/산업/.test(fl) && /반도체|화장품|통신/.test(fl)) {
+      let sector = '반도체';
+      if (/화장품/.test(fl)) sector = '화장품';
+      if (/통신/.test(fl)) sector = '통신';
+      report.industry.push(...parseIndustrySection(sub, sector));
+    } else if (/매크로|전략/.test(fl)) {
+      report.macro = parseMacroSection(sub);
+    } else if (/기업.*특징주|기업.*선별/.test(fl)) {
+      report.featured = parseFeaturedStocks(sub);
+    } else if (/기타\s*기업/.test(fl)) {
+      report.otherStocks = parseOtherStocks(sub);
+    } else if (/기업/.test(fl)) {
+      if (sub.includes('특징주')) report.featured = parseFeaturedStocks(sub);
+      else report.otherStocks.push(...parseOtherStocks(sub));
+    }
+  }
+
+  if (report.industry.length === 0 && report.macro.length === 0 && sectionA) {
+    const p = parseOlderFormat(sectionA);
+    report.industry = p.industry; report.macro = p.macro;
+    report.featured = p.featured; report.otherStocks = p.otherStocks;
+  }
+
+  if (sectionB) report.keyMessages = parseKeyMessages(sectionB);
+  if (sectionC) {
+    const d = parseInterpretation(sectionC);
+    report.interpretation = d.items; report.checkpoints = d.checkpoints;
+  }
+  if (sectionD) report.watchlist = parseWatchlist(sectionD);
+  return report;
+}
+
+function parseIndustrySection(text, sector) {
+  const items = [];
+  const parts = text.split(/\n\*\*(?!·)/);
+  for (let i = 1; i < parts.length; i++) {
+    const block = '**' + parts[i];
+    const m = block.match(/\*\*(.+?)\*\*\s*(?:\((.+?)\))?/);
+    if (!m) continue;
+    const bullets = [];
+    for (const line of block.split('\n').slice(1)) {
+      const t = line.trim();
+      if (t.startsWith('·') || t.startsWith('•') || t.startsWith('-'))
+        bullets.push(t.replace(/^[·•\-]\s*/, ''));
+    }
+    items.push({ sector, title: m[1].trim(), source: m[2] ? m[2].trim() : '', bullets });
+  }
+  return items;
+}
+
+function parseMacroSection(text) {
+  const bullets = []; let cur = '';
+  for (const line of text.split('\n')) {
+    const t = line.trim();
+    if (t.startsWith('·') || t.startsWith('•')) {
+      if (cur) bullets.push(cur);
+      cur = t.replace(/^[·•]\s*/, '');
+    } else if (cur && t) cur += ' ' + t;
+  }
+  if (cur) bullets.push(cur);
+  return bullets;
+}
+
+function parseFeaturedStocks(text) {
+  const stocks = [];
+  const parts = text.split(/\n\*\*(?=[^\s·•])/);
+  for (let i = 1; i < parts.length; i++) {
+    const block = '**' + parts[i];
+    const m = block.match(/\*\*(.+?)\*\*\s*(?:\((.+?)\))?\s*(?:[—\-]\s*(.+?))?$/m);
+    if (!m) continue;
+    const name = m[1].trim();
+    if (name.startsWith('핵심') || name.startsWith('[')) continue;
+    const body = block.split('\n').slice(1).filter(l => l.trim()).map(l => l.trim()).join(' ');
+    stocks.push({ name, source: m[2]?m[2].trim():'', opinion: m[3]?m[3].trim():'', body });
+  }
+  return stocks;
+}
+
+function parseOtherStocks(text) {
+  const stocks = [];
+  for (const line of text.split('\n').slice(1)) {
+    const t = line.trim();
+    if (!t || t.startsWith('▸')) continue;
+    const p = t.split('|').map(s => s.trim());
+    if (p.length >= 2) stocks.push({ name: p[0], opinion: p.length>=3?p[1]:'', desc: p[p.length-1], source:'' });
+  }
+  return stocks;
+}
+
+function parseOlderFormat(text) {
+  const r = { industry: [], macro: [], featured: [], otherStocks: [] };
+  const numbered = text.split(/\n\d+\.\s*\[/);
+  for (let i = 1; i < numbered.length; i++) {
+    const block = '[' + numbered[i];
+    const tm = block.match(/^\[(.+?)\]/);
+    if (!tm) continue;
+    const tag = tm[1], content = block.substring(block.indexOf(']')+1).trim();
+    const fl = content.split('\n')[0];
+    const body = content.split('\n').slice(1).filter(l=>l.trim()).map(l=>l.trim()).join(' ');
+    if (/반도체|소부장/.test(tag) && !/기업/.test(tag))
+      r.industry.push({ sector:'반도체', title:fl.replace(/[↔]/g,' / '), source:'', bullets:body.split(/(?<=\.\s)/).filter(p=>p.trim()).slice(0,5) });
+    else if (/매크로|전략/.test(tag)) r.macro.push(fl+' — '+body.substring(0,200));
+    else if (/기업/.test(tag)) r.featured.push({ name:fl.split(':')[0].replace(/[*]/g,'').trim(), source:'', opinion:'', body:body.substring(0,400) });
+  }
+  return r;
+}
+
+function parseKeyMessages(text) {
+  const items = [];
+  const parts = text.split(/\n\d+\.\s*\*\*/);
+  for (let i = 1; i < parts.length; i++) {
+    const block = '**' + parts[i];
+    const m = block.match(/\*\*(.+?)\*\*/);
+    if (!m) continue;
+    const body = block.substring(block.indexOf('**',2)+2).trim().split('\n').filter(l=>l.trim()).map(l=>l.trim()).join(' ');
+    items.push({ title: m[1], body });
+  }
+  return items;
+}
+
+function parseInterpretation(text) {
+  const items = [], checkpoints = [];
+  const ci = text.indexOf('체크포인트');
+  const main = ci>-1?text.substring(0,ci):text;
+  const chk = ci>-1?text.substring(ci):'';
+  const parts = main.split(/\n[•·]\s*\*\*/);
+  for (let i=1;i<parts.length;i++) {
+    const block = '**'+parts[i];
+    const m = block.match(/\*\*(.+?)\*\*:?\s*/);
+    if (!m) continue;
+    const rest = block.substring(block.indexOf('**',2)+2).replace(/^:?\s*/,'').trim().split('\n').filter(l=>l.trim()).map(l=>l.trim()).join(' ');
+    items.push({ topic: m[1], text: rest });
+  }
+  if (chk) {
+    for (const line of chk.split('\n')) {
+      const m = line.match(/^\d+\.\s*\*\*(.+?)\*\*:?\s*(.*)$/);
+      if (m) checkpoints.push(m[1]+': '+m[2]);
+    }
+  }
+  return { items, checkpoints };
+}
+
+function parseWatchlist(text) {
+  const items = [];
+  for (const line of text.split('\n')) {
+    const m = line.match(/^\d+\.\s*\*\*(.+?)\*\*:?\s*(.*)$/);
+    if (m) items.push(m[1]+': '+m[2]);
+  }
+  return items;
+}
+
+function renderReport(r, date) {
+  document.getElementById('loading').style.display = 'none';
+  const d = new Date(date + 'T00:00:00');
+  document.getElementById('current-date').textContent = date;
+  document.getElementById('day-label').textContent = '(' + DAY_NAMES[d.getDay()] + ')';
+  document.getElementById('btn-prev').disabled = currentIdx >= dates.length - 1;
+  document.getElementById('btn-next').disabled = currentIdx <= 0;
+  renderMeta(r.meta);
+  if (r.themes || r.overview) {
+    const bar = document.getElementById('theme-bar');
+    bar.style.display = 'block';
+    bar.innerHTML = (r.themes ? '<div class="themes">[' + esc(r.themes) + ']</div>' : '') +
+      (r.overview ? '<div class="overview">' + boldify(esc(r.overview)) + '</div>' : '');
+  }
+  renderIndustry(r); renderCompany(r); renderMacro(r); renderSummary(r);
+}
+
+function renderMeta(meta) {
+  const el = document.getElementById('report-meta');
+  if (!meta) { el.innerHTML = ''; return; }
+  const tm = meta.match(/리포트\s*(\d+)건/);
+  const badges = [];
+  if (tm) badges.push('<span class="count-badge total">리포트 '+tm[1]+'건</span>');
+  const sectors = [
+    {re:/반도체\s*(\d+)/,cls:'semi',name:'반도체'},{re:/화장품\s*(\d+)/,cls:'cosmetics',name:'화장품'},
+    {re:/통신\s*(\d+)/,cls:'telecom',name:'통신'},{re:/매크로[+\s]?(?:전략)?\s*(\d+)/,cls:'macro',name:'매크로'},
+    {re:/기업[^0-9]*(\d+)/,cls:'company',name:'기업'},
+  ];
+  for (const s of sectors) { const m=meta.match(s.re); if(m) badges.push('<span class="count-badge '+s.cls+'">'+s.name+' '+m[1]+'</span>'); }
+  el.innerHTML = badges.join('');
+}
+
+function renderIndustry(r) {
+  const panel = document.getElementById('panel-industry');
+  if (r.industry.length === 0) { panel.innerHTML = '<div class="empty-state">산업 리포트 없음</div>'; return; }
+  const bySector = {};
+  for (const item of r.industry) { if (!bySector[item.sector]) bySector[item.sector]=[]; bySector[item.sector].push(item); }
+  let html = '';
+  for (const [sector, items] of Object.entries(bySector)) {
+    const tc = sector==='반도체'?'semi':sector==='화장품'?'cosmetics':'telecom';
+    html += '<div class="section-card"><div class="card-header" onclick="toggleCard(this)">';
+    html += '<span class="sector-tag '+tc+'">'+esc(sector)+'</span>';
+    html += '<span class="card-title">'+items.length+'건</span><span class="toggle-icon">&#9660;</span></div>';
+    html += '<div class="card-body">';
+    for (const item of items) {
+      html += '<div class="report-item"><div class="report-title">'+boldify(esc(item.title))+'</div>';
+      if (item.source) html += '<div class="report-source">'+esc(item.source)+'</div>';
+      for (const b of item.bullets) {
+        html += '<div class="bullet'+(/^So what/i.test(b)?' so-what':'')+'">'+boldify(esc(b))+'</div>';
+      }
+      html += '</div>';
+    }
+    html += '</div></div>';
+  }
+  panel.innerHTML = html;
+}
+
+function renderCompany(r) {
+  const panel = document.getElementById('panel-company');
+  let html = '';
+  if (r.featured.length > 0) {
+    html += '<div class="section-card"><div class="card-header" onclick="toggleCard(this)">';
+    html += '<span class="sector-tag featured">특징주</span>';
+    html += '<span class="card-title">'+r.featured.length+'개 선별</span><span class="toggle-icon">&#9660;</span></div>';
+    html += '<div class="card-body">';
+    for (const s of r.featured) {
+      html += '<div class="featured-stock"><div class="stock-header">';
+      html += '<span class="stock-name">'+esc(s.name)+'</span>';
+      if (s.source) html += '<span class="stock-source">('+esc(s.source)+')</span>';
+      if (s.opinion) html += '<span class="stock-opinion">'+esc(s.opinion)+'</span>';
+      html += '</div><div class="stock-body">'+boldify(esc(s.body))+'</div></div>';
+    }
+    html += '</div></div>';
+  }
+  if (r.otherStocks.length > 0) {
+    html += '<div class="section-card"><div class="card-header" onclick="toggleCard(this)">';
+    html += '<span class="sector-tag company">기타</span>';
+    html += '<span class="card-title">'+r.otherStocks.length+'건</span><span class="toggle-icon">&#9660;</span></div>';
+    html += '<div class="card-body"><table class="other-stocks">';
+    for (const s of r.otherStocks) {
+      html += '<tr><td class="stock-col">'+esc(s.name)+'</td><td class="opinion-col">'+esc(s.opinion)+'</td><td class="desc-col">'+boldify(esc(s.desc))+'</td></tr>';
+    }
+    html += '</table></div></div>';
+  }
+  if (!html) html = '<div class="empty-state">기업 리포트 없음</div>';
+  panel.innerHTML = html;
+}
+
+function renderMacro(r) {
+  const panel = document.getElementById('panel-macro');
+  if (r.macro.length === 0) { panel.innerHTML = '<div class="empty-state">매크로 리포트 없음</div>'; return; }
+  let html = '<div class="section-card"><div class="card-header" onclick="toggleCard(this)">';
+  html += '<span class="sector-tag macro">매크로+전략</span>';
+  html += '<span class="card-title">'+r.macro.length+'건 통합</span><span class="toggle-icon">&#9660;</span></div>';
+  html += '<div class="card-body"><div class="macro-content">';
+  for (const item of r.macro) html += '<div class="macro-bullet">'+boldify(esc(item))+'</div>';
+  html += '</div></div></div>';
+  panel.innerHTML = html;
+}
+
+function renderSummary(r) {
+  const panel = document.getElementById('panel-summary');
+  let html = '';
+  if (r.keyMessages.length > 0) {
+    html += '<div class="key-messages"><h3>Key Messages</h3>';
+    for (const msg of r.keyMessages) {
+      html += '<div class="key-msg-item"><div class="msg-title">'+boldify(esc(msg.title))+'</div>';
+      html += '<div class="msg-body">'+boldify(esc(msg.body))+'</div></div>';
+    }
+    html += '</div>';
+  }
+  if (r.interpretation.length > 0) {
+    html += '<div class="interpretation"><h3>BMN Interpretation</h3>';
+    for (const item of r.interpretation) {
+      html += '<div class="interp-item"><span class="interp-topic">'+esc(item.topic)+':</span> '+boldify(esc(item.text))+'</div>';
+    }
+    if (r.checkpoints.length > 0) {
+      html += '<div class="checkpoints"><h4>체크포인트</h4>';
+      for (const cp of r.checkpoints) html += '<div class="checkpoint-item">'+boldify(esc(cp))+'</div>';
+      html += '</div>';
+    }
+    html += '</div>';
+  }
+  if (r.watchlist.length > 0) {
+    html += '<div class="watchlist"><h3>Tomorrow Watchlist</h3>';
+    for (const item of r.watchlist) html += '<div class="watch-item">'+boldify(esc(item))+'</div>';
+    html += '</div>';
+  }
+  if (!html) html = '<div class="empty-state">종합 데이터 없음</div>';
+  panel.innerHTML = html;
+}
+
+function esc(s) { return s ? s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') : ''; }
+function boldify(s) { return s.replace(/\*\*(.+?)\*\*/g, '<span class="bold">$1</span>'); }
+function toggleCard(h) { h.parentElement.classList.toggle('collapsed'); }
+
+document.getElementById('tabs').addEventListener('click', (e) => {
+  const tab = e.target.closest('.tab');
+  if (!tab) return;
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  tab.classList.add('active');
+  document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
+});
+
+document.getElementById('btn-prev').addEventListener('click', () => {
+  if (currentIdx < dates.length - 1) { currentIdx++; loadReport(dates[currentIdx]); }
+});
+document.getElementById('btn-next').addEventListener('click', () => {
+  if (currentIdx > 0) { currentIdx--; loadReport(dates[currentIdx]); }
+});
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'ArrowLeft') document.getElementById('btn-prev').click();
+  if (e.key === 'ArrowRight') document.getElementById('btn-next').click();
+});
+
+init();
+</script>
+</body>
+</html>
