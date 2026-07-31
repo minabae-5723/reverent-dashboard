@@ -290,14 +290,6 @@ body {
 }
 @keyframes spin { to { transform: rotate(360deg); } }
 
-.stock-para {
-  font-size: 13px;
-  color: var(--text-secondary);
-  line-height: 1.75;
-  margin-bottom: 10px;
-}
-.stock-para:last-of-type { margin-bottom: 0; }
-
 .broker-table {
   width: 100%;
   font-size: 12px;
@@ -510,10 +502,11 @@ function parseMacroSection(text) {
 
 function parseFeaturedStocks(text) {
   const stocks = [];
-  const parts = text.split(/\n(?:#{1,4}\s*)?\*\*(?=[^\s·•])/);
+  const parts = text.split(/\n(?=(?:#{1,4}\s+)?\*\*[^*]+\*\*\s*\([^)]+\)\s*[—\-])/);
   for (let i = 1; i < parts.length; i++) {
-    const block = '**' + parts[i];
-    const m = block.match(/\*\*(.+?)\*\*\s*(?:\((.+?)\))?\s*(?:[—\-]\s*(.+?))?$/m);
+    const block = parts[i];
+    const firstLine = block.split('\n')[0];
+    const m = firstLine.match(/\*\*(.+?)\*\*\s*\((.+?)\)\s*(?:[—\-]\s*(.+))?$/);
     if (!m) continue;
     const name = m[1].trim();
     if (name.startsWith('핵심') || name.startsWith('[')) continue;
@@ -539,7 +532,7 @@ function parseFeaturedStocks(text) {
     if (dataRows.length >= 2) {
       table = dataRows.map(r => r.split('|').filter(c => c.trim()).map(c => c.trim()));
     }
-    stocks.push({ name, source: m[2]?m[2].trim():'', opinion: m[3]?m[3].trim():'', bullets, paragraphs, table });
+    stocks.push({ name, source: m[2].trim(), opinion: m[3]?m[3].trim():'', bullets, paragraphs, table });
   }
   return stocks;
 }
@@ -692,7 +685,7 @@ function renderCompany(r) {
         for (const b of s.bullets) html += '<div class="bullet'+(/^So what/i.test(b)?' so-what':'')+'">'+boldify(esc(b))+'</div>';
       }
       if (s.paragraphs && s.paragraphs.length > 0) {
-        for (const p of s.paragraphs) html += '<div class="stock-para">'+boldify(esc(p))+'</div>';
+        for (const p of s.paragraphs) html += '<div class="bullet">'+boldify(esc(p))+'</div>';
       }
       if (s.table && s.table.length >= 2) {
         html += '<table class="broker-table"><thead><tr>';
