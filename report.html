@@ -290,6 +290,37 @@ body {
 }
 @keyframes spin { to { transform: rotate(360deg); } }
 
+.stock-para {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.75;
+  margin-bottom: 10px;
+}
+.stock-para:last-of-type { margin-bottom: 0; }
+
+.broker-table {
+  width: 100%;
+  font-size: 12px;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+.broker-table th {
+  text-align: left;
+  padding: 6px 8px;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  font-weight: 600;
+  color: var(--text);
+  font-size: 11px;
+}
+.broker-table td {
+  padding: 5px 8px;
+  border-bottom: 1px solid var(--border-light);
+  color: var(--text-secondary);
+  font-size: 12px;
+}
+.broker-table tr:last-child td { border-bottom: none; }
+
 .bold { font-weight: 600; color: var(--text); }
 </style>
 </head>
@@ -479,22 +510,36 @@ function parseMacroSection(text) {
 
 function parseFeaturedStocks(text) {
   const stocks = [];
-  const parts = text.split(/\n\*\*(?=[^\s·•])/);
+  const parts = text.split(/\n(?:#{1,4}\s*)?\*\*(?=[^\s·•])/);
   for (let i = 1; i < parts.length; i++) {
     const block = '**' + parts[i];
     const m = block.match(/\*\*(.+?)\*\*\s*(?:\((.+?)\))?\s*(?:[—\-]\s*(.+?))?$/m);
     if (!m) continue;
     const name = m[1].trim();
     if (name.startsWith('핵심') || name.startsWith('[')) continue;
-    const bullets = [], bodyLines = [];
+    const bullets = [], tableRows = [];
+    let curPara = [], paragraphs = [];
     for (const line of block.split('\n').slice(1)) {
       const t = line.trim();
-      if (!t) continue;
-      if (t.startsWith('·') || t.startsWith('•') || t.startsWith('- '))
+      if (t.startsWith('·') || t.startsWith('•') || t.startsWith('- ')) {
+        if (curPara.length) { paragraphs.push(curPara.join(' ')); curPara = []; }
         bullets.push(t.replace(/^[·•]\s*/, '').replace(/^-\s+/, ''));
-      else bodyLines.push(t);
+      } else if (t.startsWith('|') && t.split('|').length >= 3) {
+        if (curPara.length) { paragraphs.push(curPara.join(' ')); curPara = []; }
+        tableRows.push(t);
+      } else if (t === '') {
+        if (curPara.length) { paragraphs.push(curPara.join(' ')); curPara = []; }
+      } else if (!t.startsWith('(현재가')) {
+        curPara.push(t);
+      }
     }
-    stocks.push({ name, source: m[2]?m[2].trim():'', opinion: m[3]?m[3].trim():'', bullets, body: bodyLines.join(' ') });
+    if (curPara.length) paragraphs.push(curPara.join(' '));
+    let table = null;
+    const dataRows = tableRows.filter(r => !/^\|[\s\-:|]+\|$/.test(r));
+    if (dataRows.length >= 2) {
+      table = dataRows.map(r => r.split('|').filter(c => c.trim()).map(c => c.trim()));
+    }
+    stocks.push({ name, source: m[2]?m[2].trim():'', opinion: m[3]?m[3].trim():'', bullets, paragraphs, table });
   }
   return stocks;
 }
@@ -646,7 +691,20 @@ function renderCompany(r) {
       if (s.bullets && s.bullets.length > 0) {
         for (const b of s.bullets) html += '<div class="bullet'+(/^So what/i.test(b)?' so-what':'')+'">'+boldify(esc(b))+'</div>';
       }
-      if (s.body) html += '<div class="stock-body">'+boldify(esc(s.body))+'</div>';
+      if (s.paragraphs && s.paragraphs.length > 0) {
+        for (const p of s.paragraphs) html += '<div class="stock-para">'+boldify(esc(p))+'</div>';
+      }
+      if (s.table && s.table.length >= 2) {
+        html += '<table class="broker-table"><thead><tr>';
+        for (const h of s.table[0]) html += '<th>'+esc(h)+'</th>';
+        html += '</tr></thead><tbody>';
+        for (let ti=1;ti<s.table.length;ti++) {
+          html += '<tr>';
+          for (const c of s.table[ti]) html += '<td>'+boldify(esc(c))+'</td>';
+          html += '</tr>';
+        }
+        html += '</tbody></table>';
+      }
       html += '</div>';
     }
     html += '</div></div>';
