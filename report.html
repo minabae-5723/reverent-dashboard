@@ -486,8 +486,15 @@ function parseFeaturedStocks(text) {
     if (!m) continue;
     const name = m[1].trim();
     if (name.startsWith('핵심') || name.startsWith('[')) continue;
-    const body = block.split('\n').slice(1).filter(l => l.trim()).map(l => l.trim()).join(' ');
-    stocks.push({ name, source: m[2]?m[2].trim():'', opinion: m[3]?m[3].trim():'', body });
+    const bullets = [], bodyLines = [];
+    for (const line of block.split('\n').slice(1)) {
+      const t = line.trim();
+      if (!t) continue;
+      if (t.startsWith('·') || t.startsWith('•') || t.startsWith('- '))
+        bullets.push(t.replace(/^[·•]\s*/, '').replace(/^-\s+/, ''));
+      else bodyLines.push(t);
+    }
+    stocks.push({ name, source: m[2]?m[2].trim():'', opinion: m[3]?m[3].trim():'', bullets, body: bodyLines.join(' ') });
   }
   return stocks;
 }
@@ -635,7 +642,12 @@ function renderCompany(r) {
       html += '<span class="stock-name">'+esc(s.name)+'</span>';
       if (s.source) html += '<span class="stock-source">('+esc(s.source)+')</span>';
       if (s.opinion) html += '<span class="stock-opinion">'+esc(s.opinion)+'</span>';
-      html += '</div><div class="stock-body">'+boldify(esc(s.body))+'</div></div>';
+      html += '</div>';
+      if (s.bullets && s.bullets.length > 0) {
+        for (const b of s.bullets) html += '<div class="bullet'+(/^So what/i.test(b)?' so-what':'')+'">'+boldify(esc(b))+'</div>';
+      }
+      if (s.body) html += '<div class="stock-body">'+boldify(esc(s.body))+'</div>';
+      html += '</div>';
     }
     html += '</div></div>';
   }
