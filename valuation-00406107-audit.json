@@ -1,0 +1,39 @@
+﻿{
+    "company":  "Futronic",
+    "corp_code":  "00406107",
+    "source":  "DART raw document",
+    "report_nm":  "감사보고서 (2025.12)",
+    "rcept_no":  "20260402003857",
+    "rcept_dt":  "20260402",
+    "fiscal_period":  "FY2025",
+    "unit":  "100M KRW",
+    "pnl":  {
+                "revenue":  1756,
+                "operating_income":  419,
+                "depreciation":  0,
+                "amortisation":  0,
+                "da_total":  0,
+                "ebitda":  419,
+                "net_income":  258
+            },
+    "equity_total":  1852,
+    "liabilities":  667,
+    "assets":  2519,
+    "debt":  {
+                 "st_borrowings":  335,
+                 "current_lt_borrowings":  0,
+                 "lt_borrowings":  null,
+                 "bonds":  null,
+                 "current_lease":  null,
+                 "lease":  1
+             },
+    "cash":  {
+                 "cash_and_equivalents":  505,
+                 "st_financial_invest":  null
+             },
+    "derived":  {
+                    "total_debt":  336,
+                    "total_cash":  505,
+                    "net_debt":  -169
+                }
+}

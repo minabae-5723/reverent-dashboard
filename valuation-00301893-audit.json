@@ -1,0 +1,39 @@
+﻿{
+    "company":  "HaitaiHTB",
+    "corp_code":  "00301893",
+    "source":  "DART raw document",
+    "report_nm":  "감사보고서 (2025.12)",
+    "rcept_no":  "20260327000668",
+    "rcept_dt":  "20260327",
+    "fiscal_period":  "FY2025",
+    "unit":  "100M KRW",
+    "pnl":  {
+                "revenue":  3742,
+                "operating_income":  -102,
+                "depreciation":  null,
+                "amortisation":  null,
+                "da_total":  null,
+                "ebitda":  null,
+                "net_income":  -240
+            },
+    "equity_total":  2649,
+    "liabilities":  1357,
+    "assets":  4006,
+    "debt":  {
+                 "st_borrowings":  0,
+                 "current_lt_borrowings":  null,
+                 "lt_borrowings":  null,
+                 "bonds":  null,
+                 "current_lease":  null,
+                 "lease":  0
+             },
+    "cash":  {
+                 "cash_and_equivalents":  328,
+                 "st_financial_invest":  null
+             },
+    "derived":  {
+                    "total_debt":  0,
+                    "total_cash":  328,
+                    "net_debt":  -328
+                }
+}
