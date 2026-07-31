@@ -1,0 +1,31 @@
+{
+    "company":  "CJCheilJedang",
+    "corp_code":  "00635134",
+    "fiscal_period":  "LTM Q1 2026 (FY2025 + Q12026 - Q12025)",
+    "unit":  "100M KRW",
+    "fetched_at":  "2026-07-31 16:27:31",
+    "pnl":  {
+                "revenue":  272452,
+                "operating_income":  11386,
+                "depreciation":  null,
+                "ebitda":  null,
+                "net_income":  -5073
+            },
+    "equity_total":  120272,
+    "debt":  {
+                 "st_borrowings":  30979,
+                 "current_lt_borrowings":  null,
+                 "current_lease":  4999,
+                 "lt_borrowings":  14169,
+                 "nc_lease":  19739
+             },
+    "cash":  {
+                 "cash_and_equivalents":  11744,
+                 "st_financial_invest":  3942
+             },
+    "derived":  {
+                    "total_debt":  69886,
+                    "total_cash":  15686,
+                    "net_debt":  54200
+                }
+}

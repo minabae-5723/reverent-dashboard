@@ -1,0 +1,31 @@
+{
+    "company":  "SKDND",
+    "corp_code":  "00508344",
+    "fiscal_period":  "LTM Q1 2026 (FY2025 + Q12026 - Q12025)",
+    "unit":  "100M KRW",
+    "fetched_at":  "2026-07-31 16:27:37",
+    "pnl":  {
+                "revenue":  4255,
+                "operating_income":  213,
+                "depreciation":  null,
+                "ebitda":  null,
+                "net_income":  -206
+            },
+    "equity_total":  5570,
+    "debt":  {
+                 "st_borrowings":  570,
+                 "current_lt_borrowings":  2877,
+                 "current_lease":  null,
+                 "lt_borrowings":  2574,
+                 "nc_lease":  null
+             },
+    "cash":  {
+                 "cash_and_equivalents":  1280,
+                 "st_financial_invest":  659
+             },
+    "derived":  {
+                    "total_debt":  6021,
+                    "total_cash":  1939,
+                    "net_debt":  4082
+                }
+}

@@ -1,0 +1,31 @@
+{
+    "company":  "GolfzonHoldings",
+    "corp_code":  "00674498",
+    "fiscal_period":  "LTM Q1 2026 (FY2025 + Q12026 - Q12025)",
+    "unit":  "100M KRW",
+    "fetched_at":  "2026-07-31 16:27:28",
+    "pnl":  {
+                "revenue":  3538,
+                "operating_income":  281,
+                "depreciation":  null,
+                "ebitda":  null,
+                "net_income":  172
+            },
+    "equity_total":  7421,
+    "debt":  {
+                 "st_borrowings":  null,
+                 "current_lt_borrowings":  null,
+                 "current_lease":  86,
+                 "lt_borrowings":  911,
+                 "nc_lease":  100
+             },
+    "cash":  {
+                 "cash_and_equivalents":  316,
+                 "st_financial_invest":  null
+             },
+    "derived":  {
+                    "total_debt":  1097,
+                    "total_cash":  316,
+                    "net_debt":  781
+                }
+}
