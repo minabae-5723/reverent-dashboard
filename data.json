@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-07-31T07:33:59Z",
-    "updatedKr":  "2026-07-31 16:33:59",
+    "updated":  "2026-07-31T08:38:07Z",
+    "updatedKr":  "2026-07-31 17:38:07",
     "index":  [
                   {
                       "key":  "KOSPI",
@@ -81,14 +81,15 @@
                      "ytd":  98
                  },
                  {
-                     "mom":  25,
-                     "current":  4.39,
-                     "static":  true,
-                     "ok":  true,
                      "key":  "KR10Y",
+                     "current":  4.261,
+                     "wow":  -19,
+                     "mom":  6,
+                     "ytd":  88,
                      "type":  "bp",
-                     "wow":  10,
-                     "ytd":  101
+                     "asOf":  "2026-07-31",
+                     "ok":  true,
+                     "source":  "ecos-bok"
                  },
                  {
                      "key":  "CD91",
