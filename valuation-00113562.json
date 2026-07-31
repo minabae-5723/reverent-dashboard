@@ -1,0 +1,31 @@
+{
+    "company":  "LotteInsurance",
+    "corp_code":  "00113562",
+    "fiscal_period":  "LTM Q1 2026 (FY2025 + Q12026 - Q12025)",
+    "unit":  "100M KRW",
+    "fetched_at":  "2026-07-31 16:46:32",
+    "pnl":  {
+                "revenue":  null,
+                "operating_income":  233,
+                "depreciation":  null,
+                "ebitda":  null,
+                "net_income":  203
+            },
+    "equity_total":  7047,
+    "debt":  {
+                 "st_borrowings":  null,
+                 "current_lt_borrowings":  null,
+                 "current_lease":  null,
+                 "lt_borrowings":  null,
+                 "nc_lease":  null
+             },
+    "cash":  {
+                 "cash_and_equivalents":  6748,
+                 "st_financial_invest":  null
+             },
+    "derived":  {
+                    "total_debt":  0,
+                    "total_cash":  6748,
+                    "net_debt":  -6748
+                }
+}
