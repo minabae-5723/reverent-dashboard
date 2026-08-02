@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-08-02T04:02:15Z",
-    "updatedKr":  "2026-08-02 13:02:15",
+    "updated":  "2026-08-02T04:07:10Z",
+    "updatedKr":  "2026-08-02 13:07:10",
     "index":  [
                   {
                       "key":  "KOSPI",
@@ -11,8 +11,7 @@
                       "ytd":  53.04,
                       "type":  "pct",
                       "asOf":  "2026-07-31T18:05:30",
-                      "ok":  true,
-                      "stale":  true
+                      "ok":  true
                   },
                   {
                       "key":  "KOSDAQ",
@@ -23,8 +22,7 @@
                       "ytd":  -23.88,
                       "type":  "pct",
                       "asOf":  "2026-07-31T18:05:30",
-                      "ok":  true,
-                      "stale":  true
+                      "ok":  true
                   },
                   {
                       "key":  "DOW",
@@ -35,8 +33,7 @@
                       "ytd":  8.48,
                       "type":  "pct",
                       "asOf":  "2026-08-01T06:22:18",
-                      "ok":  true,
-                      "stale":  true
+                      "ok":  true
                   },
                   {
                       "key":  "SPX",
@@ -47,8 +44,7 @@
                       "ytd":  9.2,
                       "type":  "pct",
                       "asOf":  "2026-08-01T06:22:12",
-                      "ok":  true,
-                      "stale":  true
+                      "ok":  true
                   },
                   {
                       "key":  "NASDAQ",
@@ -59,8 +55,7 @@
                       "ytd":  9.2,
                       "type":  "pct",
                       "asOf":  "2026-08-01T06:15:59",
-                      "ok":  true,
-                      "stale":  true
+                      "ok":  true
                   },
                   {
                       "key":  "SHANGHAI",
@@ -71,8 +66,7 @@
                       "ytd":  -4.75,
                       "type":  "pct",
                       "asOf":  "2026-07-31T16:00:24",
-                      "ok":  true,
-                      "stale":  true
+                      "ok":  true
                   }
               ],
     "rate":  [
@@ -97,26 +91,26 @@
                      "ytd":  101
                  },
                  {
-                     "mom":  -1,
-                     "current":  2.81,
-                     "static":  true,
-                     "ok":  true,
                      "key":  "CD91",
+                     "current":  2.93,
+                     "wow":  2,
+                     "mom":  1,
+                     "ytd":  12,
                      "type":  "bp",
-                     "wow":  0,
-                     "ytd":  4
+                     "asOf":  "2026-07-30",
+                     "ok":  true,
+                     "source":  "naver-mobile"
                  },
                  {
-                     "source":  "treasury.gov(static)",
-                     "ytd":  90,
-                     "wow":  21,
-                     "mom":  28,
                      "key":  "US2Y",
+                     "current":  4.28,
+                     "wow":  -5,
+                     "mom":  14,
+                     "ytd":  81,
                      "type":  "bp",
-                     "asOf":  "2026-07-23",
+                     "asOf":  "2026-07-31",
                      "ok":  true,
-                     "static":  true,
-                     "current":  4.37
+                     "source":  "treasury.gov"
                  },
                  {
                      "key":  "US10Y",
@@ -127,8 +121,7 @@
                      "ytd":  56,
                      "type":  "bp",
                      "asOf":  "2026-08-01T03:59:55",
-                     "ok":  true,
-                     "stale":  true
+                     "ok":  true
                  },
                  {
                      "key":  "US30Y",
@@ -139,22 +132,31 @@
                      "ytd":  41,
                      "type":  "bp",
                      "asOf":  "2026-08-01T03:59:55",
-                     "ok":  true,
-                     "stale":  true
+                     "ok":  true
                  }
              ],
     "commodity":  [
                       {
                           "key":  "WTI",
                           "symbol":  "CL=F",
-                          "ok":  false,
-                          "error":  "fetch failed"
+                          "current":  84.67,
+                          "wow":  -5.2,
+                          "mom":  23.26,
+                          "ytd":  47.71,
+                          "type":  "pct",
+                          "asOf":  "2026-07-31",
+                          "ok":  true
                       },
                       {
                           "key":  "GOLD",
                           "symbol":  "GC=F",
-                          "ok":  false,
-                          "error":  "fetch failed"
+                          "current":  4107,
+                          "wow":  0.97,
+                          "mom":  -0.14,
+                          "ytd":  -4.81,
+                          "type":  "pct",
+                          "asOf":  "2026-07-31",
+                          "ok":  true
                       },
                       {
                           "key":  "COPPER",
@@ -231,8 +233,13 @@
                {
                    "key":  "DXY",
                    "symbol":  "DX-Y.NYB",
-                   "ok":  false,
-                   "error":  "fetch failed"
+                   "current":  99.8,
+                   "wow":  -1.65,
+                   "mom":  -1.05,
+                   "ytd":  1.4,
+                   "type":  "pct",
+                   "asOf":  "2026-07-31",
+                   "ok":  true
                }
            ],
     "cds":  [
