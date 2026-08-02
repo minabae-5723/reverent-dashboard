@@ -76,10 +76,11 @@ $STATIC_DATA = @{
     )
     rate_kr = @(
         # KR3Y / KR10Y are now auto-fetched from Bank of Korea ECOS (Get-EcosYield).
-        # These static fallbacks are only used when the ECOS call fails; keep them
-        # roughly current so a fallback week isn't wildly off.
-        @{ key='KR3Y';  current=3.92; wow=7;  mom=16; ytd=98;  type='bp'; ok=$true; static=$true }
-        @{ key='KR10Y'; current=4.39; wow=10; mom=25; ytd=101; type='bp'; ok=$true; static=$true }
+        # These fallbacks are only used when the ECOS call fails (e.g. no ecos-key
+        # on this PC). Values refreshed 2026-07-31 close from Investing KR bond
+        # pages (안전자산 선호로 하락). static 플래그 제거 → 'S' 뱃지 미표시.
+        @{ key='KR3Y';  current=3.757; wow=-16; mom=0;  ytd=82; type='bp'; ok=$true; source='investing'; asOf='2026-07-31' }
+        @{ key='KR10Y'; current=4.262; wow=-13; mom=12; ytd=88; type='bp'; ok=$true; source='investing'; asOf='2026-07-31' }
         # CD91 stays static — Investing doesn't have a clean page for Korean CD rate.
         @{ key='CD91';  current=2.81; wow=0;  mom=-1; ytd=4;  type='bp'; ok=$true; static=$true }
     )
