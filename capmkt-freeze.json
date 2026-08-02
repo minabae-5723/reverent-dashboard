@@ -1,6 +1,6 @@
 {
-    "capturedAt":  "2026-07-31 16:34:03",
-    "capturedDow":  "Friday",
+    "capturedAt":  "2026-08-02 11:31:59",
+    "capturedDow":  "Sunday",
     "rate":  [
                  {
                      "mom":  16,
@@ -35,35 +35,35 @@
                  },
                  {
                      "key":  "US2Y",
-                     "current":  4.23,
-                     "wow":  -14,
-                     "mom":  9,
-                     "ytd":  76,
+                     "current":  4.28,
+                     "wow":  -5,
+                     "mom":  14,
+                     "ytd":  81,
                      "type":  "bp",
-                     "asOf":  "2026-07-30",
+                     "asOf":  "2026-07-31",
                      "ok":  true,
                      "source":  "treasury.gov"
                  },
                  {
                      "key":  "US10Y",
                      "symbol":  "^TNX",
-                     "current":  4.663,
-                     "wow":  -4,
-                     "mom":  24,
-                     "ytd":  48,
+                     "current":  4.745,
+                     "wow":  7,
+                     "mom":  26,
+                     "ytd":  56,
                      "type":  "bp",
-                     "asOf":  "2026-07-31T03:59:55",
+                     "asOf":  "2026-08-01T03:59:55",
                      "ok":  true
                  },
                  {
                      "key":  "US30Y",
                      "symbol":  "^TYX",
-                     "current":  5.208,
-                     "wow":  4,
-                     "mom":  31,
-                     "ytd":  34,
+                     "current":  5.275,
+                     "wow":  11,
+                     "mom":  29,
+                     "ytd":  41,
                      "type":  "bp",
-                     "asOf":  "2026-07-31T03:59:55",
+                     "asOf":  "2026-08-01T03:59:55",
                      "ok":  true
                  }
              ],
