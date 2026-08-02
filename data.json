@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-08-02T04:22:11Z",
-    "updatedKr":  "2026-08-02 13:22:11",
+    "updated":  "2026-08-02T04:37:15Z",
+    "updatedKr":  "2026-08-02 13:37:15",
     "index":  [
                   {
                       "key":  "KOSPI",
@@ -248,13 +248,13 @@
                 {
                     "source":  "wgb-manual",
                     "ytd":  0,
-                    "wow":  0,
+                    "wow":  -2,
                     "mom":  0,
                     "key":  "CDS_US",
                     "type":  "bp_abs",
-                    "asOf":  "2026-07-24",
+                    "asOf":  "2026-08-01",
                     "ok":  true,
-                    "current":  37.78
+                    "current":  35.96
                 },
                 {
                     "source":  "wgb-manual",
@@ -263,9 +263,9 @@
                     "mom":  0,
                     "key":  "CDS_CN",
                     "type":  "bp_abs",
-                    "asOf":  "2026-07-24",
+                    "asOf":  "2026-08-01",
                     "ok":  true,
-                    "current":  38.03
+                    "current":  38.2
                 }
             ],
     "sector":  [
