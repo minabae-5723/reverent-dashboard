@@ -91,14 +91,15 @@
                      "ytd":  101
                  },
                  {
-                     "mom":  -1,
-                     "current":  2.81,
-                     "static":  true,
-                     "ok":  true,
                      "key":  "CD91",
+                     "current":  2.93,
+                     "wow":  2,
+                     "mom":  1,
+                     "ytd":  12,
                      "type":  "bp",
-                     "wow":  0,
-                     "ytd":  4
+                     "asOf":  "2026-07-30",
+                     "ok":  true,
+                     "source":  "naver-mobile"
                  },
                  {
                      "key":  "US2Y",
