@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-08-02T07:22:10Z",
-    "updatedKr":  "2026-08-02 16:22:10",
+    "updated":  "2026-08-02T07:22:41Z",
+    "updatedKr":  "2026-08-02 16:22:41",
     "index":  [
                   {
                       "key":  "KOSPI",
@@ -71,26 +71,26 @@
               ],
     "rate":  [
                  {
-                     "key":  "KR3Y",
-                     "current":  3.758,
-                     "wow":  -20,
-                     "mom":  1,
+                     "source":  "investing",
                      "ytd":  82,
+                     "wow":  -16,
+                     "mom":  0,
+                     "key":  "KR3Y",
                      "type":  "bp",
                      "asOf":  "2026-07-31",
                      "ok":  true,
-                     "source":  "ecos-bok"
+                     "current":  3.757
                  },
                  {
-                     "key":  "KR10Y",
-                     "current":  4.261,
-                     "wow":  -19,
-                     "mom":  6,
+                     "source":  "investing",
                      "ytd":  88,
+                     "wow":  -13,
+                     "mom":  12,
+                     "key":  "KR10Y",
                      "type":  "bp",
                      "asOf":  "2026-07-31",
                      "ok":  true,
-                     "source":  "ecos-bok"
+                     "current":  4.262
                  },
                  {
                      "key":  "CD91",
