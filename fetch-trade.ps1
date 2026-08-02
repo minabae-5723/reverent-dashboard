@@ -1,7 +1,7 @@
 # =============================================================
 #  Korea Customs OpenAPI fetcher (관세청 품목별 수출입실적 GW)
 #  - API: data.go.kr #15101609
-#  - Endpoint: http://apis.data.go.kr/1220000/Itemtrade/getItemtradeList
+#  - Endpoint: https://apis.data.go.kr/1220000/Itemtrade/getItemtradeList  (http/:80 times out)
 #  - Limit: max 1-year range per call → loop yearly
 #  - Output: trade.json (월별 수출액·중량·단가)
 #
@@ -39,7 +39,7 @@ $HS_CODES = @(
     @{ key = 'mcp';  hs = '8542323000'; name = 'MCP'  }   # MCP (multi-chip package / HBM, 8542.32-3000)
 )
 
-$baseUrl = 'http://apis.data.go.kr/1220000/Itemtrade/getItemtradeList'
+$baseUrl = 'https://apis.data.go.kr/1220000/Itemtrade/getItemtradeList'
 
 function Fetch-YearForHs {
     param([string]$Hs, [int]$Year)
