@@ -71,8 +71,8 @@ $STATIC_DATA = @{
         #   during the weekly routine. On weekends refresh.ps1 captures them into
         #   capmkt-freeze.json (Fetch-InvestingCDS 403 -> this fallback).
         # Last manual update: 2026-07-24 (US 37.78 near 1y-high, CN 38.03; both ~flat MoM).
-        @{ key='CDS_US'; current=37.78; wow=0; mom=0; ytd=0; type='bp_abs'; ok=$true; source='wgb-manual'; asOf='2026-07-24' }
-        @{ key='CDS_CN'; current=38.03; wow=0; mom=0; ytd=0; type='bp_abs'; ok=$true; source='wgb-manual'; asOf='2026-07-24' }
+        @{ key='CDS_US'; current=35.96; wow=-2; mom=0; ytd=0; type='bp_abs'; ok=$true; source='wgb-manual'; asOf='2026-08-01' }
+        @{ key='CDS_CN'; current=38.20; wow=0;  mom=0; ytd=0; type='bp_abs'; ok=$true; source='wgb-manual'; asOf='2026-08-01' }
     )
     rate_kr = @(
         # KR3Y / KR10Y are now auto-fetched from Bank of Korea ECOS (Get-EcosYield).
