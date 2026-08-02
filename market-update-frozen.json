@@ -15,9 +15,9 @@
                          "importance":  3,
                          "indicator":  "CB Consumer Confidence",
                          "period":  "Jul",
-                         "actual":  "",
-                         "forecast":  "92.1",
-                         "previous":  "91.2",
+                         "actual":  "90.8",
+                         "forecast":  "92.4",
+                         "previous":  "92.2",
                          "type":  "review"
                      },
                      {
@@ -30,7 +30,7 @@
                          "importance":  3,
                          "indicator":  "Fed Interest Rate Decision",
                          "period":  "",
-                         "actual":  "",
+                         "actual":  "3.50%~3.75%",
                          "forecast":  "3.50%~3.75%",
                          "previous":  "3.50%~3.75%",
                          "type":  "review"
@@ -45,8 +45,8 @@
                          "importance":  3,
                          "indicator":  "GDP (QoQ)",
                          "period":  "Q2",
-                         "actual":  "",
-                         "forecast":  "2.3%",
+                         "actual":  "1.5%",
+                         "forecast":  "2.1%",
                          "previous":  "2.1%",
                          "type":  "review"
                      },
@@ -60,9 +60,9 @@
                          "importance":  3,
                          "indicator":  "Initial Jobless Claims",
                          "period":  "",
-                         "actual":  "",
-                         "forecast":  "206K",
-                         "previous":  "187K",
+                         "actual":  "197K",
+                         "forecast":  "201K",
+                         "previous":  "188K",
                          "type":  "review"
                      },
                      {
@@ -75,8 +75,8 @@
                          "importance":  3,
                          "indicator":  "Core PCE Price Index (YoY)",
                          "period":  "Jun",
-                         "actual":  "",
-                         "forecast":  "3.4%",
+                         "actual":  "3.3%",
+                         "forecast":  "3.3%",
                          "previous":  "3.4%",
                          "type":  "review"
                      },
@@ -90,7 +90,7 @@
                          "importance":  3,
                          "indicator":  "Employment Cost Index (QoQ)",
                          "period":  "Q2",
-                         "actual":  "",
+                         "actual":  "0.9%",
                          "forecast":  "0.8%",
                          "previous":  "0.9%",
                          "type":  "review"
