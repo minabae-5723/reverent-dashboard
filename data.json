@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-08-02T03:42:17Z",
-    "updatedKr":  "2026-08-02 12:42:17",
+    "updated":  "2026-08-02T04:02:15Z",
+    "updatedKr":  "2026-08-02 13:02:15",
     "index":  [
                   {
                       "key":  "KOSPI",
@@ -159,14 +159,24 @@
                       {
                           "key":  "COPPER",
                           "symbol":  "HG=F",
-                          "ok":  false,
-                          "error":  "fetch failed"
+                          "current":  6.4655,
+                          "wow":  2.3,
+                          "mom":  5.74,
+                          "ytd":  14.64,
+                          "type":  "pct",
+                          "asOf":  "2026-07-31",
+                          "ok":  true
                       },
                       {
                           "key":  "WHEAT",
                           "symbol":  "ZW=F",
-                          "ok":  false,
-                          "error":  "fetch failed"
+                          "current":  639.25,
+                          "wow":  -5.72,
+                          "mom":  8.26,
+                          "ytd":  26.21,
+                          "type":  "pct",
+                          "asOf":  "2026-07-31",
+                          "ok":  true
                       }
                   ],
     "fx":  [
@@ -259,8 +269,7 @@
                        "ytd":  14.9,
                        "type":  "pct",
                        "asOf":  "2026-07-17",
-                       "ok":  true,
-                       "stale":  true
+                       "ok":  true
                    },
                    {
                        "key":  "HEALTHCARE",
@@ -271,8 +280,7 @@
                        "ytd":  3.55,
                        "type":  "pct",
                        "asOf":  "2026-07-17",
-                       "ok":  true,
-                       "stale":  true
+                       "ok":  true
                    },
                    {
                        "key":  "DISCRET",
@@ -283,8 +291,7 @@
                        "ytd":  -0.85,
                        "type":  "pct",
                        "asOf":  "2026-07-17",
-                       "ok":  true,
-                       "stale":  true
+                       "ok":  true
                    },
                    {
                        "key":  "INDUSTRIALS",
@@ -295,8 +302,7 @@
                        "ytd":  13.53,
                        "type":  "pct",
                        "asOf":  "2026-07-17",
-                       "ok":  true,
-                       "stale":  true
+                       "ok":  true
                    },
                    {
                        "key":  "STAPLES",
@@ -307,8 +313,7 @@
                        "ytd":  9.23,
                        "type":  "pct",
                        "asOf":  "2026-07-17",
-                       "ok":  true,
-                       "stale":  true
+                       "ok":  true
                    },
                    {
                        "key":  "ENERGY",
@@ -319,8 +324,7 @@
                        "ytd":  25.59,
                        "type":  "pct",
                        "asOf":  "2026-07-17",
-                       "ok":  true,
-                       "stale":  true
+                       "ok":  true
                    },
                    {
                        "key":  "FINANCIALS",
@@ -331,8 +335,7 @@
                        "ytd":  2.43,
                        "type":  "pct",
                        "asOf":  "2026-07-17",
-                       "ok":  true,
-                       "stale":  true
+                       "ok":  true
                    },
                    {
                        "key":  "MATERIALS",
@@ -343,8 +346,7 @@
                        "ytd":  8.11,
                        "type":  "pct",
                        "asOf":  "2026-07-17",
-                       "ok":  true,
-                       "stale":  true
+                       "ok":  true
                    },
                    {
                        "key":  "UTILITIES",
@@ -355,8 +357,7 @@
                        "ytd":  4.5,
                        "type":  "pct",
                        "asOf":  "2026-07-17",
-                       "ok":  true,
-                       "stale":  true
+                       "ok":  true
                    },
                    {
                        "key":  "REALESTATE",
@@ -367,8 +368,7 @@
                        "ytd":  12.31,
                        "type":  "pct",
                        "asOf":  "2026-07-31",
-                       "ok":  true,
-                       "stale":  true
+                       "ok":  true
                    },
                    {
                        "key":  "COMM",
@@ -379,8 +379,7 @@
                        "ytd":  2.45,
                        "type":  "pct",
                        "asOf":  "2026-07-17",
-                       "ok":  true,
-                       "stale":  true
+                       "ok":  true
                    }
                ]
 }
