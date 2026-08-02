@@ -2216,7 +2216,6 @@ function renderValuationCard(cardId, weekDate, headline, title, data) {
       </div>
       <div class="valuation-foot">
         <div class="valuation-actions">
-          <button type="button" class="val-action-btn val-action-dart" onclick="autoFillValuationFromDart('${cardId}')" title="DART OpenAPI로 P&L/Net Debt 항목 자동 채우기 (corp_code 입력 필요)">📥 DART 자동 채우기</button>
           <button type="button" class="val-action-btn val-action-fix" onclick="saveValuationByCard('${cardId}')" title="현재 입력값을 브라우저에 영구 저장">📌 Fix (저장)</button>
           <button type="button" class="val-action-btn val-action-reset" onclick="resetValuationByCard('${cardId}')" title="저장값을 삭제하고 MD 기본값으로 되돌림">↺ 초기화</button>
         </div>
