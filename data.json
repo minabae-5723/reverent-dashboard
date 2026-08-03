@@ -1,12 +1,12 @@
 {
-    "updated":  "2026-08-02T17:15:11Z",
-    "updatedKr":  "2026-08-03 02:15:11",
+    "updated":  "2026-08-03T22:00:09Z",
+    "updatedKr":  "2026-08-04 07:00:09",
     "index":  [
                   {
                       "key":  "KOSPI",
                       "symbol":  "^KS11",
                       "current":  6257.45,
-                      "wow":  -7.38,
+                      "wow":  -6.47,
                       "mom":  -22.64,
                       "ytd":  45.2,
                       "type":  "pct",
@@ -17,7 +17,7 @@
                       "key":  "KOSDAQ",
                       "symbol":  "^KQ11",
                       "current":  737.35,
-                      "wow":  -3.6,
+                      "wow":  -1.45,
                       "mom":  -15.09,
                       "ytd":  -22.02,
                       "type":  "pct",
@@ -27,41 +27,41 @@
                   {
                       "key":  "DOW",
                       "symbol":  "^DJI",
-                      "current":  52485.03,
-                      "wow":  1.04,
-                      "mom":  -0.78,
-                      "ytd":  8.48,
+                      "current":  53178.41,
+                      "wow":  1.85,
+                      "mom":  0.53,
+                      "ytd":  9.91,
                       "type":  "pct",
-                      "asOf":  "2026-08-01T06:22:18",
+                      "asOf":  "2026-08-04T06:06:08",
                       "ok":  true
                   },
                   {
                       "key":  "SPX",
                       "symbol":  "^GSPC",
-                      "current":  7489.72,
-                      "wow":  1.05,
-                      "mom":  0.09,
-                      "ytd":  9.2,
+                      "current":  7600.5,
+                      "wow":  2.53,
+                      "mom":  1.57,
+                      "ytd":  10.82,
                       "type":  "pct",
-                      "asOf":  "2026-08-01T06:22:12",
+                      "asOf":  "2026-08-04T06:05:55",
                       "ok":  true
                   },
                   {
                       "key":  "NASDAQ",
                       "symbol":  "^IXIC",
-                      "current":  25373.854,
-                      "wow":  1.59,
-                      "mom":  -1.78,
-                      "ytd":  9.2,
+                      "current":  25913.896,
+                      "wow":  3.94,
+                      "mom":  0.31,
+                      "ytd":  11.53,
                       "type":  "pct",
-                      "asOf":  "2026-08-01T06:15:59",
+                      "asOf":  "2026-08-04T06:15:59",
                       "ok":  true
                   },
                   {
                       "key":  "SHANGHAI",
                       "symbol":  "000001.SS",
                       "current":  3809.6628,
-                      "wow":  -1.26,
+                      "wow":  -0.12,
                       "mom":  -5.79,
                       "ytd":  -5.31,
                       "type":  "pct",
@@ -71,26 +71,24 @@
               ],
     "rate":  [
                  {
-                     "source":  "investing",
-                     "ytd":  82,
-                     "wow":  -16,
-                     "mom":  0,
+                     "mom":  16,
+                     "current":  3.92,
+                     "static":  true,
+                     "ok":  true,
                      "key":  "KR3Y",
                      "type":  "bp",
-                     "asOf":  "2026-07-31",
-                     "ok":  true,
-                     "current":  3.757
+                     "wow":  7,
+                     "ytd":  98
                  },
                  {
-                     "source":  "investing",
-                     "ytd":  88,
-                     "wow":  -13,
-                     "mom":  12,
+                     "mom":  25,
+                     "current":  4.39,
+                     "static":  true,
+                     "ok":  true,
                      "key":  "KR10Y",
                      "type":  "bp",
-                     "asOf":  "2026-07-31",
-                     "ok":  true,
-                     "current":  4.262
+                     "wow":  10,
+                     "ytd":  101
                  },
                  {
                      "key":  "CD91",
@@ -248,13 +246,13 @@
                 {
                     "source":  "wgb-manual",
                     "ytd":  0,
-                    "wow":  -2,
+                    "wow":  0,
                     "mom":  0,
                     "key":  "CDS_US",
                     "type":  "bp_abs",
-                    "asOf":  "2026-08-01",
+                    "asOf":  "2026-07-24",
                     "ok":  true,
-                    "current":  35.96
+                    "current":  37.78
                 },
                 {
                     "source":  "wgb-manual",
@@ -263,9 +261,9 @@
                     "mom":  0,
                     "key":  "CDS_CN",
                     "type":  "bp_abs",
-                    "asOf":  "2026-08-01",
+                    "asOf":  "2026-07-24",
                     "ok":  true,
-                    "current":  38.2
+                    "current":  38.03
                 }
             ],
     "sector":  [
