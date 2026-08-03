@@ -315,6 +315,32 @@ body {
 .broker-table tr:last-child td { border-bottom: none; }
 
 .bold { font-weight: 600; color: var(--text); }
+
+/* ── Mobile ── */
+@media (max-width: 680px) {
+  .header {
+    flex-direction: column;
+    align-items: center;
+    padding: 14px 16px;
+    gap: 10px;
+    text-align: center;
+  }
+  .header h1 { font-size: 15px; }
+  .header .subtitle { font-size: 11px; }
+  .date-nav { margin-left: 0; }
+  .date-note { padding: 4px 16px 0; font-size: 10px; }
+  .report-meta { padding: 8px 16px; justify-content: center; }
+  .tabs { padding: 0 12px; }
+  .tab { padding: 10px 12px; font-size: 12px; }
+  .content { padding: 14px 16px 32px; }
+  .theme-bar { padding: 12px 14px; }
+  .theme-bar .themes { font-size: 13px; }
+  .theme-bar .overview { font-size: 12px; }
+  .section-card .card-header { padding: 10px 12px; }
+  .card-body { padding: 12px; }
+  .featured-stock { padding: 10px 12px; }
+  .key-messages, .interpretation, .watchlist { padding: 14px 16px; }
+}
 </style>
 </head>
 <body>
