@@ -617,7 +617,9 @@ function renderReport(r, date) {
   const d = new Date(date + 'T00:00:00');
   document.getElementById('current-date').textContent = date;
   document.getElementById('day-label').textContent = '(' + DAY_NAMES[d.getDay()] + ')';
-  document.getElementById('date-note').textContent = date + '(' + DAY_NAMES[d.getDay()] + ') 발행 리포트 요약본';
+  var today = new Date();
+  var ty = today.getFullYear(), tm = String(today.getMonth()+1).padStart(2,'0'), td = String(today.getDate()).padStart(2,'0');
+  document.getElementById('date-note').textContent = ty+'-'+tm+'-'+td + '(' + DAY_NAMES[today.getDay()] + ') — 전일(' + date + ') 리포트 요약본';
   document.getElementById('btn-prev').disabled = currentIdx >= dates.length - 1;
   document.getElementById('btn-next').disabled = currentIdx <= 0;
   renderMeta(r.meta);
