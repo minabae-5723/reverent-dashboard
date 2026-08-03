@@ -1,27 +1,27 @@
 {
-    "updated":  "2026-08-02T13:36:10Z",
-    "updatedKr":  "2026-08-02 22:36:10",
+    "updated":  "2026-08-02T17:15:11Z",
+    "updatedKr":  "2026-08-03 02:15:11",
     "index":  [
                   {
                       "key":  "KOSPI",
                       "symbol":  "^KS11",
-                      "current":  6595.45,
-                      "wow":  -1.42,
-                      "mom":  -13.76,
-                      "ytd":  53.04,
+                      "current":  6257.45,
+                      "wow":  -7.38,
+                      "mom":  -22.64,
+                      "ytd":  45.2,
                       "type":  "pct",
-                      "asOf":  "2026-07-31T18:05:30",
+                      "asOf":  "2026-08-03T18:05:30",
                       "ok":  true
                   },
                   {
                       "key":  "KOSDAQ",
                       "symbol":  "^KQ11",
-                      "current":  719.76,
-                      "wow":  -3.8,
-                      "mom":  -16.96,
-                      "ytd":  -23.88,
+                      "current":  737.35,
+                      "wow":  -3.6,
+                      "mom":  -15.09,
+                      "ytd":  -22.02,
                       "type":  "pct",
-                      "asOf":  "2026-07-31T18:05:30",
+                      "asOf":  "2026-08-03T18:05:30",
                       "ok":  true
                   },
                   {
@@ -60,12 +60,12 @@
                   {
                       "key":  "SHANGHAI",
                       "symbol":  "000001.SS",
-                      "current":  3832.2625,
-                      "wow":  0.47,
-                      "mom":  -4.88,
-                      "ytd":  -4.75,
+                      "current":  3809.6628,
+                      "wow":  -1.26,
+                      "mom":  -5.79,
+                      "ytd":  -5.31,
                       "type":  "pct",
-                      "asOf":  "2026-07-31T16:00:24",
+                      "asOf":  "2026-08-03T16:00:24",
                       "ok":  true
                   }
               ],
@@ -152,10 +152,10 @@
                       {
                           "key":  "GOLD",
                           "symbol":  "GC=F",
-                          "current":  4107,
-                          "wow":  0.97,
-                          "mom":  -0.14,
-                          "ytd":  -4.81,
+                          "current":  4049.1001,
+                          "wow":  -0.45,
+                          "mom":  -1.55,
+                          "ytd":  -6.15,
                           "type":  "pct",
                           "asOf":  "2026-07-31",
                           "ok":  true
@@ -163,10 +163,10 @@
                       {
                           "key":  "COPPER",
                           "symbol":  "HG=F",
-                          "current":  6.4655,
-                          "wow":  2.3,
-                          "mom":  5.74,
-                          "ytd":  14.64,
+                          "current":  6.436,
+                          "wow":  1.84,
+                          "mom":  5.26,
+                          "ytd":  14.11,
                           "type":  "pct",
                           "asOf":  "2026-07-31",
                           "ok":  true
