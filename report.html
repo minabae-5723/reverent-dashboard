@@ -94,6 +94,7 @@ body {
 .date-nav button:disabled { opacity: 0.3; cursor: default; }
 .date-nav .current-date { font-size: 14px; font-weight: 600; color: var(--text); min-width: 110px; text-align: center; }
 .date-nav .day-label { font-size: 12px; color: var(--text-light); }
+.date-note { font-size: 11px; color: var(--text-light); text-align: center; padding: 4px 32px 0; background: var(--bg-white); }
 
 .report-meta {
   padding: 10px 32px;
@@ -332,6 +333,7 @@ body {
   </div>
 </div>
 
+<div class="date-note" id="date-note"></div>
 <div class="report-meta" id="report-meta"></div>
 
 <div class="tabs" id="tabs">
@@ -615,6 +617,7 @@ function renderReport(r, date) {
   const d = new Date(date + 'T00:00:00');
   document.getElementById('current-date').textContent = date;
   document.getElementById('day-label').textContent = '(' + DAY_NAMES[d.getDay()] + ')';
+  document.getElementById('date-note').textContent = date + '(' + DAY_NAMES[d.getDay()] + ') 발행 리포트 요약본';
   document.getElementById('btn-prev').disabled = currentIdx >= dates.length - 1;
   document.getElementById('btn-next').disabled = currentIdx <= 0;
   renderMeta(r.meta);
