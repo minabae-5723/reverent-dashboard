@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-08-04T09:00:00Z",
-    "updatedKr":  "2026-08-04 18:00:00",
+    "updated":  "2026-08-04T09:01:19Z",
+    "updatedKr":  "2026-08-04 18:01:19",
     "frozenDow":  "Tuesday",
     "reviewRange":  "2026-08-03~2026-08-07",
     "previewRange":  "2026-08-10~2026-08-14",
@@ -31,7 +31,7 @@
                          "indicator":  "JOLTS Job Openings",
                          "period":  "Jun",
                          "actual":  "",
-                         "forecast":  "6.9M",
+                         "forecast":  "7.4M",
                          "previous":  "7.59M",
                          "type":  "review"
                      },
@@ -46,7 +46,7 @@
                          "indicator":  "ADP Employment Change",
                          "period":  "Jul",
                          "actual":  "",
-                         "forecast":  "",
+                         "forecast":  "70K",
                          "previous":  "98K",
                          "type":  "review"
                      },
@@ -61,7 +61,7 @@
                          "indicator":  "ISM Services PMI",
                          "period":  "Jul",
                          "actual":  "",
-                         "forecast":  "53.5",
+                         "forecast":  "54.5",
                          "previous":  "54.0",
                          "type":  "review"
                      },
@@ -74,10 +74,10 @@
                          "currency":  "USD",
                          "importance":  3,
                          "indicator":  "Initial Jobless Claims",
-                         "period":  "",
+                         "period":  "Aug 1",
                          "actual":  "",
-                         "forecast":  "",
-                         "previous":  "",
+                         "forecast":  "202K",
+                         "previous":  "197K",
                          "type":  "review"
                      },
                      {
@@ -91,7 +91,7 @@
                          "indicator":  "Nonfarm Payrolls",
                          "period":  "Jul",
                          "actual":  "",
-                         "forecast":  "",
+                         "forecast":  "80K",
                          "previous":  "57K",
                          "type":  "review"
                      },
@@ -106,7 +106,7 @@
                          "indicator":  "Unemployment Rate",
                          "period":  "Jul",
                          "actual":  "",
-                         "forecast":  "",
+                         "forecast":  "4.2%",
                          "previous":  "4.2%",
                          "type":  "review"
                      }
@@ -124,7 +124,7 @@
                          "period":  "Jul",
                          "actual":  "",
                          "forecast":  "3.4%",
-                         "previous":  "",
+                         "previous":  "3.5%",
                          "type":  "preview"
                      },
                      {
@@ -139,7 +139,7 @@
                          "period":  "Jul",
                          "actual":  "",
                          "forecast":  "2.5%",
-                         "previous":  "",
+                         "previous":  "2.6%",
                          "type":  "preview"
                      },
                      {
@@ -154,7 +154,7 @@
                          "period":  "Jul",
                          "actual":  "",
                          "forecast":  "5.0%",
-                         "previous":  "",
+                         "previous":  "5.5%",
                          "type":  "preview"
                      },
                      {
@@ -169,7 +169,7 @@
                          "period":  "Jul",
                          "actual":  "",
                          "forecast":  "4.7%",
-                         "previous":  "",
+                         "previous":  "4.7%",
                          "type":  "preview"
                      },
                      {
@@ -199,7 +199,7 @@
                          "period":  "Jul",
                          "actual":  "",
                          "forecast":  "0.5%",
-                         "previous":  "",
+                         "previous":  "0.2%",
                          "type":  "preview"
                      },
                      {
@@ -214,7 +214,7 @@
                          "period":  "Aug",
                          "actual":  "",
                          "forecast":  "54.6",
-                         "previous":  "",
+                         "previous":  "55.2",
                          "type":  "preview"
                      }
                  ]

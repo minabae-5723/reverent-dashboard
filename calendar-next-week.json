@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-08-04T08:51:20Z",
-    "updatedKr":  "2026-08-04 17:51:20",
+    "updated":  "2026-08-04T09:01:28Z",
+    "updatedKr":  "2026-08-04 18:01:28",
     "countries":  [
                       "5",
                       "35",
@@ -22,7 +22,7 @@
                        "period":  "Jul",
                        "actual":  "",
                        "forecast":  "3.4%",
-                       "previous":  "",
+                       "previous":  "3.5%",
                        "type":  "preview"
                    },
                    {
@@ -37,7 +37,7 @@
                        "period":  "Jul",
                        "actual":  "",
                        "forecast":  "2.5%",
-                       "previous":  "",
+                       "previous":  "2.6%",
                        "type":  "preview"
                    },
                    {
@@ -52,7 +52,7 @@
                        "period":  "Jul",
                        "actual":  "",
                        "forecast":  "5.0%",
-                       "previous":  "",
+                       "previous":  "5.5%",
                        "type":  "preview"
                    },
                    {
@@ -67,7 +67,7 @@
                        "period":  "Jul",
                        "actual":  "",
                        "forecast":  "4.7%",
-                       "previous":  "",
+                       "previous":  "4.7%",
                        "type":  "preview"
                    },
                    {
@@ -97,7 +97,7 @@
                        "period":  "Jul",
                        "actual":  "",
                        "forecast":  "0.5%",
-                       "previous":  "",
+                       "previous":  "0.2%",
                        "type":  "preview"
                    },
                    {
@@ -112,7 +112,7 @@
                        "period":  "Aug",
                        "actual":  "",
                        "forecast":  "54.6",
-                       "previous":  "",
+                       "previous":  "55.2",
                        "type":  "preview"
                    }
                ]
