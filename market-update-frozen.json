@@ -1,7 +1,7 @@
 {
-    "updated":  "2026-08-04T09:01:19Z",
-    "updatedKr":  "2026-08-04 18:01:19",
-    "frozenDow":  "Tuesday",
+    "updated":  "2026-08-04T23:27:01Z",
+    "updatedKr":  "2026-08-05 08:27:01",
+    "frozenDow":  "Wednesday",
     "reviewRange":  "2026-08-03~2026-08-07",
     "previewRange":  "2026-08-10~2026-08-14",
     "thisWeek":  [
@@ -30,9 +30,9 @@
                          "importance":  3,
                          "indicator":  "JOLTS Job Openings",
                          "period":  "Jun",
-                         "actual":  "",
+                         "actual":  "7.36M",
                          "forecast":  "7.4M",
-                         "previous":  "7.59M",
+                         "previous":  "7.54M",
                          "type":  "review"
                      },
                      {
@@ -181,7 +181,7 @@
                          "currency":  "USD",
                          "importance":  3,
                          "indicator":  "Initial Jobless Claims",
-                         "period":  "",
+                         "period":  "Aug 8",
                          "actual":  "",
                          "forecast":  "",
                          "previous":  "",

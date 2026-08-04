@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-08-04T22:00:24Z",
-    "updatedKr":  "2026-08-05 07:00:24",
+    "updated":  "2026-08-04T23:27:40Z",
+    "updatedKr":  "2026-08-05 08:27:40",
     "countries":  [
                       "5",
                       "35",
@@ -79,7 +79,7 @@
                        "currency":  "USD",
                        "importance":  3,
                        "indicator":  "Initial Jobless Claims",
-                       "period":  "",
+                       "period":  "Aug 8",
                        "actual":  "",
                        "forecast":  "",
                        "previous":  "",
