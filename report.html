@@ -28,6 +28,8 @@
   --tag-macro-bg: #fffbeb;
   --tag-company: #be185d;
   --tag-company-bg: #fdf2f8;
+  --tag-global: #0369a1;
+  --tag-global-bg: #f0f9ff;
   --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
   --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
   --radius: 8px;
@@ -119,6 +121,7 @@ body {
 .count-badge.telecom { background: var(--tag-telecom-bg); color: var(--tag-telecom); }
 .count-badge.macro { background: var(--tag-macro-bg); color: var(--tag-macro); }
 .count-badge.company { background: var(--tag-company-bg); color: var(--tag-company); }
+.count-badge.global { background: var(--tag-global-bg); color: var(--tag-global); }
 
 .tabs {
   display: flex; gap: 0;
@@ -183,6 +186,7 @@ body {
 .sector-tag.telecom { background: var(--tag-telecom-bg); color: var(--tag-telecom); }
 .sector-tag.macro { background: var(--tag-macro-bg); color: var(--tag-macro); }
 .sector-tag.company { background: var(--tag-company-bg); color: var(--tag-company); }
+.sector-tag.global { background: var(--tag-global-bg); color: var(--tag-global); }
 .sector-tag.featured { background: var(--accent-light); color: var(--accent); }
 
 .card-title { font-size: 13px; font-weight: 600; color: var(--text); flex: 1; }
@@ -366,6 +370,7 @@ body {
   <div class="tab active" data-tab="industry">산업</div>
   <div class="tab" data-tab="company">기업</div>
   <div class="tab" data-tab="macro">매크로(전략)</div>
+  <div class="tab" data-tab="global">글로벌</div>
   <div class="tab" data-tab="summary">종합</div>
 </div>
 
@@ -379,6 +384,7 @@ body {
   <div id="panel-industry" class="tab-panel active"></div>
   <div id="panel-company" class="tab-panel"></div>
   <div id="panel-macro" class="tab-panel"></div>
+  <div id="panel-global" class="tab-panel"></div>
   <div id="panel-summary" class="tab-panel"></div>
 </div>
 
@@ -422,7 +428,7 @@ async function loadReport(date) {
 }
 
 function clearPanels() {
-  ['industry', 'company', 'macro', 'summary'].forEach(id => {
+  ['industry', 'company', 'macro', 'global', 'summary'].forEach(id => {
     document.getElementById('panel-' + id).innerHTML = '';
   });
 }
@@ -430,7 +436,7 @@ function clearPanels() {
 function parseReport(md) {
   const report = {
     meta: '', themes: '', overview: '',
-    industry: [], macro: [], featured: [], otherStocks: [],
+    industry: [], macro: [], global: [], featured: [], otherStocks: [],
     keyMessages: [], interpretation: [], checkpoints: [], watchlist: [],
     raw: md
   };
@@ -470,6 +476,8 @@ function parseReport(md) {
       if (/화장품/.test(fl)) sector = '화장품';
       if (/통신/.test(fl)) sector = '통신';
       report.industry.push(...parseIndustrySection(sub, sector));
+    } else if (/글로벌/.test(fl)) {
+      report.global.push(...parseIndustrySection(sub, '글로벌'));
     } else if (/매크로|전략/.test(fl)) {
       report.macro = parseMacroSection(sub);
     } else if (/기업.*특징주|기업.*선별/.test(fl)) {
@@ -655,7 +663,7 @@ function renderReport(r, date) {
     bar.innerHTML = (r.themes ? '<div class="themes">[' + esc(r.themes) + ']</div>' : '') +
       (r.overview ? '<div class="overview">' + boldify(esc(r.overview)) + '</div>' : '');
   }
-  renderIndustry(r); renderCompany(r); renderMacro(r); renderSummary(r);
+  renderIndustry(r); renderCompany(r); renderMacro(r); renderGlobal(r); renderSummary(r);
 }
 
 function renderMeta(meta) {
@@ -667,7 +675,7 @@ function renderMeta(meta) {
   const sectors = [
     {re:/반도체\s*(\d+)/,cls:'semi',name:'반도체'},{re:/화장품\s*(\d+)/,cls:'cosmetics',name:'화장품'},
     {re:/통신\s*(\d+)/,cls:'telecom',name:'통신'},{re:/매크로[+\s]?(?:전략)?\s*(\d+)/,cls:'macro',name:'매크로'},
-    {re:/기업[^0-9]*(\d+)/,cls:'company',name:'기업'},
+    {re:/글로벌\s*(\d+)/,cls:'global',name:'글로벌'},{re:/기업[^0-9]*(\d+)/,cls:'company',name:'기업'},
   ];
   for (const s of sectors) { const m=meta.match(s.re); if(m) badges.push('<span class="count-badge '+s.cls+'">'+s.name+' '+m[1]+'</span>'); }
   el.innerHTML = badges.join('');
@@ -756,6 +764,25 @@ function renderMacro(r) {
   html += '<div class="card-body"><div class="macro-content">';
   for (const item of r.macro) html += '<div class="macro-bullet">'+boldify(esc(item))+'</div>';
   html += '</div></div></div>';
+  panel.innerHTML = html;
+}
+
+function renderGlobal(r) {
+  const panel = document.getElementById('panel-global');
+  if (r.global.length === 0) { panel.innerHTML = '<div class="empty-state">글로벌 리포트 없음</div>'; return; }
+  let html = '<div class="section-card"><div class="card-header" onclick="toggleCard(this)">';
+  html += '<span class="sector-tag global">글로벌</span>';
+  html += '<span class="card-title">'+r.global.length+'건</span><span class="toggle-icon">&#9660;</span></div>';
+  html += '<div class="card-body">';
+  for (const item of r.global) {
+    html += '<div class="report-item"><div class="report-title">'+boldify(esc(item.title))+'</div>';
+    if (item.source) html += '<div class="report-source">'+esc(item.source)+'</div>';
+    for (const b of item.bullets) {
+      html += '<div class="bullet'+(/^So what/i.test(b)?' so-what':'')+'">'+boldify(esc(b))+'</div>';
+    }
+    html += '</div>';
+  }
+  html += '</div></div>';
   panel.innerHTML = html;
 }
 
