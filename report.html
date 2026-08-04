@@ -648,12 +648,11 @@ function parseWatchlist(text) {
 
 function renderReport(r, date) {
   document.getElementById('loading').style.display = 'none';
-  const d = new Date(date + 'T00:00:00');
-  document.getElementById('current-date').textContent = date;
-  document.getElementById('day-label').textContent = '(' + DAY_NAMES[d.getDay()] + ')';
   var today = new Date();
   var ty = today.getFullYear(), tm = String(today.getMonth()+1).padStart(2,'0'), td = String(today.getDate()).padStart(2,'0');
-  document.getElementById('date-note').textContent = ty+'-'+tm+'-'+td + '(' + DAY_NAMES[today.getDay()] + ') — 전일(' + date + ') 리포트 요약본';
+  document.getElementById('current-date').textContent = ty+'-'+tm+'-'+td;
+  document.getElementById('day-label').textContent = '';
+  document.getElementById('date-note').textContent = '전일(' + date + ') 리포트 요약본';
   document.getElementById('btn-prev').disabled = currentIdx >= dates.length - 1;
   document.getElementById('btn-next').disabled = currentIdx <= 0;
   renderMeta(r.meta);
