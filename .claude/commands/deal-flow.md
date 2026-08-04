@@ -461,8 +461,7 @@ powershell -ExecutionPolicy Bypass -File .\fetch-ipo.ps1    # IPO(#peer): 신규
 
 ### 헤드라인 (2026.05.11)
 - bullet
-- bullet
-- **재무**: 매출 7,186억 / EV 1,641억 / EBITDA 356억 / **EV/EBITDA 4.6x**
+- bullet (딜 인사이트 — 재무 원수치 나열 금지, 상세 재무는 아래 Valuation 표로 갈음)
 - **출처**: [더벨](url)
 
 #### Valuation (단위: 억원, FY25 기준)
