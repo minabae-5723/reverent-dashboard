@@ -1,102 +1,10 @@
 {
-    "updated":  "2026-07-27T00:30:00Z",
-    "updatedKr":  "2026-07-27 09:30:00",
-    "frozenDow":  "Monday",
-    "reviewRange":  "2026-07-27~2026-07-31",
-    "previewRange":  "2026-08-03~2026-08-07",
+    "updated":  "2026-08-04T09:00:00Z",
+    "updatedKr":  "2026-08-04 18:00:00",
+    "frozenDow":  "Tuesday",
+    "reviewRange":  "2026-08-03~2026-08-07",
+    "previewRange":  "2026-08-10~2026-08-14",
     "thisWeek":  [
-                     {
-                         "id":  "554001",
-                         "datetime":  "2026/07/28 23:00:00",
-                         "date":  "7/28",
-                         "time":  "23:00",
-                         "flagKey":  "United_States",
-                         "currency":  "USD",
-                         "importance":  3,
-                         "indicator":  "CB Consumer Confidence",
-                         "period":  "Jul",
-                         "actual":  "90.8",
-                         "forecast":  "92.4",
-                         "previous":  "92.2",
-                         "type":  "review"
-                     },
-                     {
-                         "id":  "554010",
-                         "datetime":  "2026/07/30 03:00:00",
-                         "date":  "7/30",
-                         "time":  "03:00",
-                         "flagKey":  "United_States",
-                         "currency":  "USD",
-                         "importance":  3,
-                         "indicator":  "Fed Interest Rate Decision",
-                         "period":  "",
-                         "actual":  "3.50%~3.75%",
-                         "forecast":  "3.50%~3.75%",
-                         "previous":  "3.50%~3.75%",
-                         "type":  "review"
-                     },
-                     {
-                         "id":  "554020",
-                         "datetime":  "2026/07/30 21:30:00",
-                         "date":  "7/30",
-                         "time":  "21:30",
-                         "flagKey":  "United_States",
-                         "currency":  "USD",
-                         "importance":  3,
-                         "indicator":  "GDP (QoQ)",
-                         "period":  "Q2",
-                         "actual":  "1.5%",
-                         "forecast":  "2.1%",
-                         "previous":  "2.1%",
-                         "type":  "review"
-                     },
-                     {
-                         "id":  "554030",
-                         "datetime":  "2026/07/30 21:30:00",
-                         "date":  "7/30",
-                         "time":  "21:30",
-                         "flagKey":  "United_States",
-                         "currency":  "USD",
-                         "importance":  3,
-                         "indicator":  "Initial Jobless Claims",
-                         "period":  "",
-                         "actual":  "197K",
-                         "forecast":  "201K",
-                         "previous":  "188K",
-                         "type":  "review"
-                     },
-                     {
-                         "id":  "554040",
-                         "datetime":  "2026/07/30 21:30:00",
-                         "date":  "7/30",
-                         "time":  "21:30",
-                         "flagKey":  "United_States",
-                         "currency":  "USD",
-                         "importance":  3,
-                         "indicator":  "Core PCE Price Index (YoY)",
-                         "period":  "Jun",
-                         "actual":  "3.3%",
-                         "forecast":  "3.3%",
-                         "previous":  "3.4%",
-                         "type":  "review"
-                     },
-                     {
-                         "id":  "554050",
-                         "datetime":  "2026/07/31 21:30:00",
-                         "date":  "7/31",
-                         "time":  "21:30",
-                         "flagKey":  "United_States",
-                         "currency":  "USD",
-                         "importance":  3,
-                         "indicator":  "Employment Cost Index (QoQ)",
-                         "period":  "Q2",
-                         "actual":  "0.9%",
-                         "forecast":  "0.8%",
-                         "previous":  "0.9%",
-                         "type":  "review"
-                     }
-                 ],
-    "nextWeek":  [
                      {
                          "id":  "555010",
                          "datetime":  "2026/08/03 23:00:00",
@@ -107,10 +15,10 @@
                          "importance":  3,
                          "indicator":  "ISM Manufacturing PMI",
                          "period":  "Jul",
-                         "actual":  "",
-                         "forecast":  "52.8",
+                         "actual":  "55.6",
+                         "forecast":  "54.0",
                          "previous":  "53.3",
-                         "type":  "preview"
+                         "type":  "review"
                      },
                      {
                          "id":  "555020",
@@ -125,7 +33,7 @@
                          "actual":  "",
                          "forecast":  "6.9M",
                          "previous":  "7.59M",
-                         "type":  "preview"
+                         "type":  "review"
                      },
                      {
                          "id":  "555030",
@@ -140,7 +48,7 @@
                          "actual":  "",
                          "forecast":  "",
                          "previous":  "98K",
-                         "type":  "preview"
+                         "type":  "review"
                      },
                      {
                          "id":  "555040",
@@ -155,7 +63,7 @@
                          "actual":  "",
                          "forecast":  "53.5",
                          "previous":  "54.0",
-                         "type":  "preview"
+                         "type":  "review"
                      },
                      {
                          "id":  "555050",
@@ -170,7 +78,7 @@
                          "actual":  "",
                          "forecast":  "",
                          "previous":  "",
-                         "type":  "preview"
+                         "type":  "review"
                      },
                      {
                          "id":  "555060",
@@ -185,7 +93,7 @@
                          "actual":  "",
                          "forecast":  "",
                          "previous":  "57K",
-                         "type":  "preview"
+                         "type":  "review"
                      },
                      {
                          "id":  "555070",
@@ -200,6 +108,113 @@
                          "actual":  "",
                          "forecast":  "",
                          "previous":  "4.2%",
+                         "type":  "review"
+                     }
+                 ],
+    "nextWeek":  [
+                     {
+                         "id":  "556010",
+                         "datetime":  "2026/08/12 21:30:00",
+                         "date":  "8/12",
+                         "time":  "21:30",
+                         "flagKey":  "United_States",
+                         "currency":  "USD",
+                         "importance":  3,
+                         "indicator":  "CPI (YoY)",
+                         "period":  "Jul",
+                         "actual":  "",
+                         "forecast":  "3.4%",
+                         "previous":  "",
+                         "type":  "preview"
+                     },
+                     {
+                         "id":  "556020",
+                         "datetime":  "2026/08/12 21:30:00",
+                         "date":  "8/12",
+                         "time":  "21:30",
+                         "flagKey":  "United_States",
+                         "currency":  "USD",
+                         "importance":  3,
+                         "indicator":  "Core CPI (YoY)",
+                         "period":  "Jul",
+                         "actual":  "",
+                         "forecast":  "2.5%",
+                         "previous":  "",
+                         "type":  "preview"
+                     },
+                     {
+                         "id":  "556030",
+                         "datetime":  "2026/08/13 21:30:00",
+                         "date":  "8/13",
+                         "time":  "21:30",
+                         "flagKey":  "United_States",
+                         "currency":  "USD",
+                         "importance":  3,
+                         "indicator":  "PPI (YoY)",
+                         "period":  "Jul",
+                         "actual":  "",
+                         "forecast":  "5.0%",
+                         "previous":  "",
+                         "type":  "preview"
+                     },
+                     {
+                         "id":  "556040",
+                         "datetime":  "2026/08/13 21:30:00",
+                         "date":  "8/13",
+                         "time":  "21:30",
+                         "flagKey":  "United_States",
+                         "currency":  "USD",
+                         "importance":  3,
+                         "indicator":  "Core PPI (YoY)",
+                         "period":  "Jul",
+                         "actual":  "",
+                         "forecast":  "4.7%",
+                         "previous":  "",
+                         "type":  "preview"
+                     },
+                     {
+                         "id":  "556050",
+                         "datetime":  "2026/08/13 21:30:00",
+                         "date":  "8/13",
+                         "time":  "21:30",
+                         "flagKey":  "United_States",
+                         "currency":  "USD",
+                         "importance":  3,
+                         "indicator":  "Initial Jobless Claims",
+                         "period":  "",
+                         "actual":  "",
+                         "forecast":  "",
+                         "previous":  "",
+                         "type":  "preview"
+                     },
+                     {
+                         "id":  "556060",
+                         "datetime":  "2026/08/14 21:30:00",
+                         "date":  "8/14",
+                         "time":  "21:30",
+                         "flagKey":  "United_States",
+                         "currency":  "USD",
+                         "importance":  3,
+                         "indicator":  "Retail Sales (MoM)",
+                         "period":  "Jul",
+                         "actual":  "",
+                         "forecast":  "0.5%",
+                         "previous":  "",
+                         "type":  "preview"
+                     },
+                     {
+                         "id":  "556070",
+                         "datetime":  "2026/08/14 23:00:00",
+                         "date":  "8/14",
+                         "time":  "23:00",
+                         "flagKey":  "United_States",
+                         "currency":  "USD",
+                         "importance":  3,
+                         "indicator":  "Michigan Consumer Sentiment (Prelim)",
+                         "period":  "Aug",
+                         "actual":  "",
+                         "forecast":  "54.6",
+                         "previous":  "",
                          "type":  "preview"
                      }
                  ]
