@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-08-05T22:00:24Z",
-    "updatedKr":  "2026-08-06 07:00:24",
+    "updated":  "2026-08-05T23:22:39Z",
+    "updatedKr":  "2026-08-06 08:22:39",
     "countries":  [
                       "5",
                       "35",
@@ -50,7 +50,7 @@
                        "importance":  3,
                        "indicator":  "ADP Employment Change",
                        "period":  "Jul",
-                       "actual":  "",
+                       "actual":  "44K",
                        "forecast":  "70K",
                        "previous":  "98K",
                        "type":  "review"
@@ -65,7 +65,7 @@
                        "importance":  3,
                        "indicator":  "ISM Services PMI",
                        "period":  "Jul",
-                       "actual":  "",
+                       "actual":  "54.1",
                        "forecast":  "54.5",
                        "previous":  "54.0",
                        "type":  "review"

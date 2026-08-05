@@ -1,7 +1,7 @@
 {
-    "updated":  "2026-08-04T23:27:01Z",
-    "updatedKr":  "2026-08-05 08:27:01",
-    "frozenDow":  "Wednesday",
+    "updated":  "2026-08-05T23:21:00Z",
+    "updatedKr":  "2026-08-06 08:21:00",
+    "frozenDow":  "Thursday",
     "reviewRange":  "2026-08-03~2026-08-07",
     "previewRange":  "2026-08-10~2026-08-14",
     "thisWeek":  [
@@ -45,7 +45,7 @@
                          "importance":  3,
                          "indicator":  "ADP Employment Change",
                          "period":  "Jul",
-                         "actual":  "",
+                         "actual":  "44K",
                          "forecast":  "70K",
                          "previous":  "98K",
                          "type":  "review"
@@ -60,7 +60,7 @@
                          "importance":  3,
                          "indicator":  "ISM Services PMI",
                          "period":  "Jul",
-                         "actual":  "",
+                         "actual":  "54.1",
                          "forecast":  "54.5",
                          "previous":  "54.0",
                          "type":  "review"
