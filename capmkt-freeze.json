@@ -1,69 +1,71 @@
 {
-    "capturedAt":  "2026-08-02 11:31:59",
-    "capturedDow":  "Sunday",
+    "capturedAt":  "2026-08-07 07:00:16",
+    "capturedDow":  "Friday",
     "rate":  [
                  {
-                     "mom":  16,
-                     "current":  3.92,
-                     "static":  true,
-                     "ok":  true,
                      "key":  "KR3Y",
+                     "current":  3.742,
+                     "wow":  -9,
+                     "mom":  -4,
+                     "ytd":  81,
                      "type":  "bp",
-                     "wow":  7,
-                     "ytd":  98
+                     "asOf":  "2026-08-06",
+                     "ok":  true,
+                     "source":  "ecos-bok"
                  },
                  {
-                     "mom":  25,
-                     "current":  4.39,
-                     "static":  true,
-                     "ok":  true,
                      "key":  "KR10Y",
+                     "current":  4.195,
+                     "wow":  -12,
+                     "mom":  -5,
+                     "ytd":  81,
                      "type":  "bp",
-                     "wow":  10,
-                     "ytd":  101
+                     "asOf":  "2026-08-06",
+                     "ok":  true,
+                     "source":  "ecos-bok"
                  },
                  {
                      "key":  "CD91",
                      "current":  2.93,
-                     "wow":  2,
+                     "wow":  1,
                      "mom":  1,
                      "ytd":  12,
                      "type":  "bp",
-                     "asOf":  "2026-07-30",
+                     "asOf":  "2026-08-05",
                      "ok":  true,
                      "source":  "naver-mobile"
                  },
                  {
                      "key":  "US2Y",
-                     "current":  4.28,
-                     "wow":  -5,
-                     "mom":  14,
-                     "ytd":  81,
+                     "current":  4.25,
+                     "wow":  2,
+                     "mom":  9,
+                     "ytd":  78,
                      "type":  "bp",
-                     "asOf":  "2026-07-31",
+                     "asOf":  "2026-08-06",
                      "ok":  true,
                      "source":  "treasury.gov"
                  },
                  {
                      "key":  "US10Y",
                      "symbol":  "^TNX",
-                     "current":  4.745,
-                     "wow":  7,
-                     "mom":  26,
-                     "ytd":  56,
+                     "current":  4.67,
+                     "wow":  1,
+                     "mom":  14,
+                     "ytd":  48,
                      "type":  "bp",
-                     "asOf":  "2026-08-01T03:59:55",
+                     "asOf":  "2026-08-07T03:59:55",
                      "ok":  true
                  },
                  {
                      "key":  "US30Y",
                      "symbol":  "^TYX",
-                     "current":  5.275,
-                     "wow":  11,
-                     "mom":  29,
-                     "ytd":  41,
+                     "current":  5.213,
+                     "wow":  1,
+                     "mom":  17,
+                     "ytd":  35,
                      "type":  "bp",
-                     "asOf":  "2026-08-01T03:59:55",
+                     "asOf":  "2026-08-07T03:59:55",
                      "ok":  true
                  }
              ],
@@ -71,13 +73,13 @@
                 {
                     "source":  "wgb-manual",
                     "ytd":  0,
-                    "wow":  0,
+                    "wow":  -2,
                     "mom":  0,
                     "key":  "CDS_US",
                     "type":  "bp_abs",
-                    "asOf":  "2026-07-24",
+                    "asOf":  "2026-08-01",
                     "ok":  true,
-                    "current":  37.78
+                    "current":  35.96
                 },
                 {
                     "source":  "wgb-manual",
@@ -86,9 +88,9 @@
                     "mom":  0,
                     "key":  "CDS_CN",
                     "type":  "bp_abs",
-                    "asOf":  "2026-07-24",
+                    "asOf":  "2026-08-01",
                     "ok":  true,
-                    "current":  38.03
+                    "current":  38.2
                 }
             ]
 }
