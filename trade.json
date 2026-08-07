@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-08-06T23:27:32Z",
-    "updatedKr":  "2026-08-07 08:27:32",
+    "updated":  "2026-08-07T08:59:39Z",
+    "updatedKr":  "2026-08-07 17:59:39",
     "source":  "data.go.kr #15101609 (愿?몄껌 ?덈ぉ蹂??섏텧?낆떎??GW)",
     "range":  "2025-2026",
     "ssd":  [
@@ -8474,9 +8474,5 @@
                     "impWgtRaw":  null,
                     "preliminary":  true
                 }
-            ],
-    "preliminaryMonths":  [
-                              "2026-07"
-                          ],
-    "preliminaryNote":  "DRAM/MCP/NAND/SSD 2026-07 are provisional (jamjeongchi). fetch-trade.ps1 overwrites them once the Customs API publishes confirmed figures."
+            ]
 }
