@@ -2109,6 +2109,16 @@
                     "expDlrRaw":  5156249189,
                     "impDlrRaw":  285557352,
                     "impWgtRaw":  230757
+                },
+                {
+                    "month":  "2026-07",
+                    "value":  4510,
+                    "weight":  null,
+                    "unitPrice":  null,
+                    "expDlrRaw":  4510000000,
+                    "impDlrRaw":  null,
+                    "impWgtRaw":  null,
+                    "preliminary":  true
                 }
             ],
     "nand":  [
@@ -4217,6 +4227,16 @@
                      "expDlrRaw":  2486161310,
                      "impDlrRaw":  235182337,
                      "impWgtRaw":  11164
+                 },
+                 {
+                     "month":  "2026-07",
+                     "value":  1781,
+                     "weight":  28835,
+                     "unitPrice":  61751,
+                     "expDlrRaw":  1780650000,
+                     "impDlrRaw":  null,
+                     "impWgtRaw":  null,
+                     "preliminary":  true
                  }
              ],
     "dram":  [
@@ -6325,6 +6345,16 @@
                      "expDlrRaw":  11175623231,
                      "impDlrRaw":  907098680,
                      "impWgtRaw":  41655
+                 },
+                 {
+                     "month":  "2026-07",
+                     "value":  13552,
+                     "weight":  155819,
+                     "unitPrice":  86970,
+                     "expDlrRaw":  13551550000,
+                     "impDlrRaw":  null,
+                     "impWgtRaw":  null,
+                     "preliminary":  true
                  }
              ],
     "mcp":  [
@@ -8433,6 +8463,20 @@
                     "expDlrRaw":  12681112901,
                     "impDlrRaw":  1800652453,
                     "impWgtRaw":  13302
+                },
+                {
+                    "month":  "2026-07",
+                    "value":  10086,
+                    "weight":  105714,
+                    "unitPrice":  95407,
+                    "expDlrRaw":  10085850000,
+                    "impDlrRaw":  null,
+                    "impWgtRaw":  null,
+                    "preliminary":  true
                 }
-            ]
+            ],
+    "preliminaryMonths":  [
+                              "2026-07"
+                          ],
+    "preliminaryNote":  "DRAM/MCP/NAND/SSD 2026-07 are provisional (jamjeongchi). fetch-trade.ps1 overwrites them once the Customs API publishes confirmed figures."
 }
