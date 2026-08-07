@@ -2629,13 +2629,29 @@ function computeStats(series) {
   const lv = latest?.[f];
   const p1 = prev1?.[f];
   const p12 = prev12?.[f];
-  const mom = (p1 != null && p1 !== 0) ? ((lv - p1) / p1) * 100 : null;
-  const yoy = (p12 != null && p12 !== 0) ? ((lv - p12) / p12) * 100 : null;
+  // Guard on lv: a preliminary row can legitimately carry a null metric (e.g. a
+  // provisional month published without weight). Without this, `null - prev`
+  // coerces to `-prev` and renders a bogus -100.0%.
+  const mom = (lv != null && p1 != null && p1 !== 0) ? ((lv - p1) / p1) * 100 : null;
+  const yoy = (lv != null && p12 != null && p12 !== 0) ? ((lv - p12) / p12) * 100 : null;
+
+  // vs 3MA: latest month against the mean of the THREE PRIOR months (current
+  // month excluded). Semiconductor shipments are pushed out at quarter ends
+  // (Mar/Jun/Sep/Dec), so MoM alternates sign month to month and reads as a
+  // "surge/collapse" that is really just seasonality. Comparing against the
+  // preceding three-month mean strips that out and answers the question that
+  // actually matters: is this month off-trend, or only off last month's spike?
+  const prior3 = series.slice(-4, -1).map(d => d?.[f]).filter(v => v != null);
+  const ma3 = prior3.length === 3 ? prior3.reduce((s, v) => s + v, 0) / 3 : null;
+  const vsMa3 = (lv != null && ma3 != null && ma3 !== 0) ? ((lv - ma3) / ma3) * 100 : null;
+
   return {
     latest: lv,
     latestMonth: latest.month,
     mom,
     yoy,
+    ma3,
+    vsMa3,
     unit: cfg.unit,
     digits: cfg.digits,
   };
@@ -2647,8 +2663,14 @@ function renderStatsBlock(stats) {
   const yoy = stats.yoy;
   const momCls = mom > 0 ? 'pos' : mom < 0 ? 'neg' : '';
   const yoyCls = yoy > 0 ? 'pos' : yoy < 0 ? 'neg' : '';
+  const vsMa3 = stats.vsMa3;
+  const ma3Cls = vsMa3 > 0 ? 'pos' : vsMa3 < 0 ? 'neg' : '';
   const momTxt = mom === null || isNaN(mom) ? '—' : `${mom >= 0 ? '+' : ''}${mom.toFixed(1)}%`;
   const yoyTxt = yoy === null || isNaN(yoy) ? '—' : `${yoy >= 0 ? '+' : ''}${yoy.toFixed(1)}%`;
+  const ma3Txt = vsMa3 === null || isNaN(vsMa3) ? '—' : `${vsMa3 >= 0 ? '+' : ''}${vsMa3.toFixed(1)}%`;
+  const ma3Tip = stats.ma3 != null
+    ? `직전 3개월 평균 ${Number(stats.ma3).toLocaleString('en-US', { maximumFractionDigits: stats.digits })} ${stats.unit} 대비 — 분기말 밀어내기·조업일수 노이즈를 제거한 추세 대비 위치`
+    : '직전 3개월 평균 대비';
   const latest = stats.latest != null
     ? `${Number(stats.latest).toLocaleString('en-US', { maximumFractionDigits: stats.digits })} ${stats.unit}`
     : '—';
@@ -2660,6 +2682,10 @@ function renderStatsBlock(stats) {
     <div class="semicon-stat">
       <span class="stat-label">MoM</span>
       <span class="stat-value ${momCls}">${momTxt}</span>
+    </div>
+    <div class="semicon-stat" title="${ma3Tip}">
+      <span class="stat-label">vs 3MA</span>
+      <span class="stat-value ${ma3Cls}">${ma3Txt}</span>
     </div>
     <div class="semicon-stat">
       <span class="stat-label">YoY</span>
@@ -2680,6 +2706,16 @@ function drawChart(canvasId, label, series, color) {
   const labels = series.map(d => d.month);
   const values = series.map(d => d[f]);
 
+  // Trailing 3-month moving average (includes the current point). Overlaid as a
+  // dashed line so quarter-end shipment pushes read as spikes around the trend
+  // instead of as trend changes.
+  const ma3 = values.map((_, i) => {
+    if (i < 2) return null;
+    const w = values.slice(i - 2, i + 1);
+    if (w.some(v => v == null)) return null;
+    return w.reduce((s, v) => s + v, 0) / 3;
+  });
+
   const key = canvasId.replace('Chart', '');
   if (semiconCharts[key]) semiconCharts[key].destroy();
 
@@ -2697,6 +2733,17 @@ function drawChart(canvasId, label, series, color) {
         pointHoverRadius: 5,
         tension: 0.15,
         fill: true,
+      }, {
+        label: '3개월 이동평균',
+        data: ma3,
+        borderColor: '#c8a24a',
+        borderWidth: 1.6,
+        borderDash: [5, 4],
+        pointRadius: 0,
+        pointHoverRadius: 4,
+        tension: 0.15,
+        fill: false,
+        spanGaps: true,
       }],
     },
     options: {
@@ -2704,7 +2751,18 @@ function drawChart(canvasId, label, series, color) {
       maintainAspectRatio: false,
       interaction: { mode: 'index', intersect: false },
       plugins: {
-        legend: { display: false },
+        legend: {
+          display: true,
+          position: 'top',
+          align: 'end',
+          labels: {
+            boxWidth: 18,
+            boxHeight: 2,
+            font: { size: 10 },
+            padding: 8,
+            usePointStyle: false,
+          },
+        },
         tooltip: {
           callbacks: {
             label: (c) => {
@@ -2712,7 +2770,9 @@ function drawChart(canvasId, label, series, color) {
               const txt = v == null
                 ? '—'
                 : Number(v).toLocaleString('en-US', { maximumFractionDigits: cfg.digits });
-              return `${txt} ${cfg.unit}`;
+              // Two datasets share the axis (actual + 3MA), so name which is which
+              const who = c.datasetIndex === 1 ? '3MA' : cfg.label;
+              return `${who}: ${txt} ${cfg.unit}`;
             },
           },
         },
