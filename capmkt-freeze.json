@@ -1,5 +1,5 @@
 {
-    "capturedAt":  "2026-08-07 08:27:22",
+    "capturedAt":  "2026-08-07 16:17:34",
     "capturedDow":  "Friday",
     "rate":  [
                  {
@@ -27,11 +27,11 @@
                  {
                      "key":  "CD91",
                      "current":  2.93,
-                     "wow":  1,
+                     "wow":  0,
                      "mom":  1,
                      "ytd":  12,
                      "type":  "bp",
-                     "asOf":  "2026-08-05",
+                     "asOf":  "2026-08-06",
                      "ok":  true,
                      "source":  "naver-mobile"
                  },

@@ -1,31 +1,31 @@
 {
     "company":  "Gabia",
     "corp_code":  "00506294",
-    "fiscal_period":  "FY2024 Annual (Consolidated)",
+    "fiscal_period":  "LTM Q1 2026 (FY2025 + Q12026 - Q12025)",
     "unit":  "100M KRW",
-    "fetched_at":  "2026-07-31 18:08:31",
+    "fetched_at":  "2026-08-07 16:18:45",
     "pnl":  {
-                "revenue":  2824,
-                "operating_income":  351,
+                "revenue":  3437,
+                "operating_income":  454,
                 "depreciation":  null,
                 "ebitda":  null,
-                "net_income":  146
+                "net_income":  175
             },
-    "equity_total":  3467,
+    "equity_total":  3795,
     "debt":  {
-                 "st_borrowings":  202,
-                 "current_lt_borrowings":  38,
+                 "st_borrowings":  207,
+                 "current_lt_borrowings":  null,
                  "current_lease":  null,
-                 "lt_borrowings":  1376,
+                 "lt_borrowings":  null,
                  "nc_lease":  null
              },
     "cash":  {
-                 "cash_and_equivalents":  698,
-                 "st_financial_invest":  147
+                 "cash_and_equivalents":  646,
+                 "st_financial_invest":  119
              },
     "derived":  {
-                    "total_debt":  1616,
-                    "total_cash":  845,
-                    "net_debt":  771
+                    "total_debt":  207,
+                    "total_cash":  765,
+                    "net_debt":  -558
                 }
 }

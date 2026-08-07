@@ -1,14 +1,42 @@
 {
-    "updated":  "2026-07-31T07:34:39Z",
-    "updatedKr":  "2026-07-31 16:34:39",
+    "updated":  "2026-08-07T07:18:17Z",
+    "updatedKr":  "2026-08-07 16:18:17",
     "source":  "38.co.kr new-listings (o=nw) + Naver Finance (market cap)",
     "companies":  [
+                      {
+                          "name":  "해치텍",
+                          "listDate":  "2026/08/25",
+                          "listIso":  "2026-08-25",
+                          "code":  "0155E0",
+                          "detailNo":  2304,
+                          "ipoPrice":  null,
+                          "curPrice":  null,
+                          "openPrice":  null,
+                          "todayChg":  null,
+                          "curVsIpo":  null,
+                          "openVsIpo":  null,
+                          "mcap":  null
+                      },
                       {
                           "name":  "니어스랩",
                           "listDate":  "2026/08/24",
                           "listIso":  "2026-08-24",
                           "code":  "417030",
                           "detailNo":  2303,
+                          "ipoPrice":  null,
+                          "curPrice":  null,
+                          "openPrice":  null,
+                          "todayChg":  null,
+                          "curVsIpo":  null,
+                          "openVsIpo":  null,
+                          "mcap":  null
+                      },
+                      {
+                          "name":  "기도산업",
+                          "listDate":  "2026/08/21",
+                          "listIso":  "2026-08-21",
+                          "code":  "282620",
+                          "detailNo":  2305,
                           "ipoPrice":  null,
                           "curPrice":  null,
                           "openPrice":  null,
@@ -37,7 +65,7 @@
                           "listIso":  "2026-08-14",
                           "code":  "487400",
                           "detailNo":  2299,
-                          "ipoPrice":  null,
+                          "ipoPrice":  11000,
                           "curPrice":  null,
                           "openPrice":  null,
                           "todayChg":  null,
@@ -66,12 +94,12 @@
                           "code":  "0156T0",
                           "detailNo":  2301,
                           "ipoPrice":  21500,
-                          "curPrice":  9380,
+                          "curPrice":  10870,
                           "openPrice":  21500,
-                          "todayChg":  0.0308,
-                          "curVsIpo":  -0.5637,
+                          "todayChg":  0.0352,
+                          "curVsIpo":  -0.4944,
                           "openVsIpo":  0,
-                          "mcap":  730
+                          "mcap":  846
                       },
                       {
                           "name":  "레메디",
@@ -80,12 +108,12 @@
                           "code":  "387690",
                           "detailNo":  2296,
                           "ipoPrice":  20700,
-                          "curPrice":  8270,
+                          "curPrice":  10530,
                           "openPrice":  30750,
-                          "todayChg":  0.031200000000000002,
-                          "curVsIpo":  -0.6005,
+                          "todayChg":  0.081099999999999992,
+                          "curVsIpo":  -0.4913,
                           "openVsIpo":  0.4855,
-                          "mcap":  631
+                          "mcap":  803
                       },
                       {
                           "name":  "레몬헬스케어",
@@ -94,12 +122,12 @@
                           "code":  "365660",
                           "detailNo":  2293,
                           "ipoPrice":  10000,
-                          "curPrice":  5350,
+                          "curPrice":  6120,
                           "openPrice":  16560,
-                          "todayChg":  0,
-                          "curVsIpo":  -0.465,
+                          "todayChg":  -0.0825,
+                          "curVsIpo":  -0.388,
                           "openVsIpo":  0.65599999999999992,
-                          "mcap":  714
+                          "mcap":  823
                       },
                       {
                           "name":  "매드업",
@@ -108,12 +136,12 @@
                           "code":  "0039P0",
                           "detailNo":  2290,
                           "ipoPrice":  8000,
-                          "curPrice":  6500,
+                          "curPrice":  9550,
                           "openPrice":  22250,
-                          "todayChg":  -0.0152,
-                          "curVsIpo":  -0.1875,
+                          "todayChg":  -0.0392,
+                          "curVsIpo":  0.1938,
                           "openVsIpo":  1.7812999999999999,
-                          "mcap":  1222
+                          "mcap":  1796
                       },
                       {
                           "name":  "스트라드비젼",
@@ -122,12 +150,12 @@
                           "code":  "475040",
                           "detailNo":  2289,
                           "ipoPrice":  12000,
-                          "curPrice":  2550,
+                          "curPrice":  3070,
                           "openPrice":  11020,
-                          "todayChg":  0.051500000000000004,
-                          "curVsIpo":  -0.7875,
+                          "todayChg":  0.0098999999999999991,
+                          "curVsIpo":  -0.7442,
                           "openVsIpo":  -0.0817,
-                          "mcap":  1358
+                          "mcap":  1635
                       },
                       {
                           "name":  "져스텍",
@@ -136,12 +164,12 @@
                           "code":  "153890",
                           "detailNo":  2291,
                           "ipoPrice":  12500,
-                          "curPrice":  5920,
+                          "curPrice":  8750,
                           "openPrice":  35350,
-                          "todayChg":  0.0943,
-                          "curVsIpo":  -0.5264,
+                          "todayChg":  -0.10529999999999999,
+                          "curVsIpo":  -0.3,
                           "openVsIpo":  1.828,
-                          "mcap":  713
+                          "mcap":  1054
                       },
                       {
                           "name":  "피스피스스튜디오",
@@ -150,12 +178,12 @@
                           "code":  "0117P0",
                           "detailNo":  2287,
                           "ipoPrice":  21500,
-                          "curPrice":  5410,
+                          "curPrice":  5250,
                           "openPrice":  32000,
-                          "todayChg":  0.0464,
-                          "curVsIpo":  -0.7484,
+                          "todayChg":  -0.040199999999999993,
+                          "curVsIpo":  -0.7558,
                           "openVsIpo":  0.48840000000000006,
-                          "mcap":  767
+                          "mcap":  744
                       },
                       {
                           "name":  "마키나락스",
@@ -164,12 +192,12 @@
                           "code":  "477850",
                           "detailNo":  2285,
                           "ipoPrice":  15000,
-                          "curPrice":  19990,
+                          "curPrice":  29050,
                           "openPrice":  60000,
-                          "todayChg":  0.025099999999999997,
-                          "curVsIpo":  0.3327,
+                          "todayChg":  -0.08929999999999999,
+                          "curVsIpo":  0.9367,
                           "openVsIpo":  3,
-                          "mcap":  3549
+                          "mcap":  5158
                       },
                       {
                           "name":  "폴레드",
@@ -178,12 +206,12 @@
                           "code":  "487580",
                           "detailNo":  2286,
                           "ipoPrice":  5000,
-                          "curPrice":  3320,
+                          "curPrice":  3555,
                           "openPrice":  20000,
-                          "todayChg":  0.057300000000000004,
-                          "curVsIpo":  -0.336,
+                          "todayChg":  -0.0152,
+                          "curVsIpo":  -0.289,
                           "openVsIpo":  3,
-                          "mcap":  836
+                          "mcap":  895
                       },
                       {
                           "name":  "코스모로보틱스",
@@ -192,26 +220,12 @@
                           "code":  "439960",
                           "detailNo":  2278,
                           "ipoPrice":  6000,
-                          "curPrice":  14740,
+                          "curPrice":  17130,
                           "openPrice":  23500,
-                          "todayChg":  0.0943,
-                          "curVsIpo":  1.4567,
+                          "todayChg":  -0.072000000000000008,
+                          "curVsIpo":  1.855,
                           "openVsIpo":  2.9167,
-                          "mcap":  4783
-                      },
-                      {
-                          "name":  "채비",
-                          "listDate":  "2026/04/29",
-                          "listIso":  "2026-04-29",
-                          "code":  "0011T0",
-                          "detailNo":  2281,
-                          "ipoPrice":  12300,
-                          "curPrice":  4085,
-                          "openPrice":  15250,
-                          "todayChg":  0.1285,
-                          "curVsIpo":  -0.6679,
-                          "openVsIpo":  0.2398,
-                          "mcap":  1918
+                          "mcap":  5559
                       }
                   ]
 }

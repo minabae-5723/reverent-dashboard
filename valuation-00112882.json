@@ -1,0 +1,31 @@
+{
+    "company":  "KyoboLife",
+    "corp_code":  "00112882",
+    "fiscal_period":  "FY2025 Annual (Consolidated)",
+    "unit":  "100M KRW",
+    "fetched_at":  "2026-08-07 16:18:50",
+    "pnl":  {
+                "revenue":  null,
+                "operating_income":  10511,
+                "depreciation":  null,
+                "ebitda":  null,
+                "net_income":  7523
+            },
+    "equity_total":  87180,
+    "debt":  {
+                 "st_borrowings":  null,
+                 "current_lt_borrowings":  null,
+                 "current_lease":  null,
+                 "lt_borrowings":  null,
+                 "nc_lease":  null
+             },
+    "cash":  {
+                 "cash_and_equivalents":  22105,
+                 "st_financial_invest":  null
+             },
+    "derived":  {
+                    "total_debt":  0,
+                    "total_cash":  22105,
+                    "net_debt":  -22105
+                }
+}
