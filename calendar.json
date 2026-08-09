@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-08-07T08:59:38Z",
-    "updatedKr":  "2026-08-07 17:59:38",
+    "updated":  "2026-08-09T23:40:52Z",
+    "updatedKr":  "2026-08-10 08:40:52",
     "countries":  [
                       "5",
                       "35",
@@ -11,7 +11,7 @@
     "source":  "frozen-fallback",
     "events":  [
                    {
-                       "id":  "555010",
+                       "id":  "553429",
                        "datetime":  "2026/08/03 23:00:00",
                        "date":  "8/3",
                        "time":  "23:00",
@@ -26,7 +26,7 @@
                        "type":  "review"
                    },
                    {
-                       "id":  "555020",
+                       "id":  "553458",
                        "datetime":  "2026/08/04 23:00:00",
                        "date":  "8/4",
                        "time":  "23:00",
@@ -35,35 +35,35 @@
                        "importance":  3,
                        "indicator":  "JOLTS Job Openings",
                        "period":  "Jun",
-                       "actual":  "7.36M",
-                       "forecast":  "7.4M",
-                       "previous":  "7.54M",
+                       "actual":  "7.359M",
+                       "forecast":  "7.440M",
+                       "previous":  "7.537M",
                        "type":  "review"
                    },
                    {
-                       "id":  "555030",
+                       "id":  "553574",
                        "datetime":  "2026/08/05 21:15:00",
                        "date":  "8/5",
                        "time":  "21:15",
                        "flagKey":  "United_States",
                        "currency":  "USD",
                        "importance":  3,
-                       "indicator":  "ADP Employment Change",
+                       "indicator":  "ADP Nonfarm Employment Change",
                        "period":  "Jul",
                        "actual":  "44K",
-                       "forecast":  "70K",
-                       "previous":  "98K",
+                       "forecast":  "68K",
+                       "previous":  "95K",
                        "type":  "review"
                    },
                    {
-                       "id":  "555040",
+                       "id":  "553584",
                        "datetime":  "2026/08/05 23:00:00",
                        "date":  "8/5",
                        "time":  "23:00",
                        "flagKey":  "United_States",
                        "currency":  "USD",
                        "importance":  3,
-                       "indicator":  "ISM Services PMI",
+                       "indicator":  "ISM Non-Manufacturing PMI",
                        "period":  "Jul",
                        "actual":  "54.1",
                        "forecast":  "54.5",
@@ -71,7 +71,7 @@
                        "type":  "review"
                    },
                    {
-                       "id":  "555050",
+                       "id":  "554316",
                        "datetime":  "2026/08/06 21:30:00",
                        "date":  "8/6",
                        "time":  "21:30",
@@ -79,14 +79,14 @@
                        "currency":  "USD",
                        "importance":  3,
                        "indicator":  "Initial Jobless Claims",
-                       "period":  "Aug 1",
+                       "period":  "",
                        "actual":  "199K",
-                       "forecast":  "202K",
-                       "previous":  "197K",
+                       "forecast":  "203K",
+                       "previous":  "198K",
                        "type":  "review"
                    },
                    {
-                       "id":  "555060",
+                       "id":  "553726",
                        "datetime":  "2026/08/07 21:30:00",
                        "date":  "8/7",
                        "time":  "21:30",
@@ -95,13 +95,13 @@
                        "importance":  3,
                        "indicator":  "Nonfarm Payrolls",
                        "period":  "Jul",
-                       "actual":  "",
-                       "forecast":  "80K",
-                       "previous":  "57K",
+                       "actual":  "-23K",
+                       "forecast":  "85K",
+                       "previous":  "20K",
                        "type":  "review"
                    },
                    {
-                       "id":  "555070",
+                       "id":  "553736",
                        "datetime":  "2026/08/07 21:30:00",
                        "date":  "8/7",
                        "time":  "21:30",
@@ -110,9 +110,24 @@
                        "importance":  3,
                        "indicator":  "Unemployment Rate",
                        "period":  "Jul",
-                       "actual":  "",
+                       "actual":  "4.1%",
                        "forecast":  "4.2%",
                        "previous":  "4.2%",
+                       "type":  "review"
+                   },
+                   {
+                       "id":  "553725",
+                       "datetime":  "2026/08/07 21:30:00",
+                       "date":  "8/7",
+                       "time":  "21:30",
+                       "flagKey":  "United_States",
+                       "currency":  "USD",
+                       "importance":  3,
+                       "indicator":  "Average Hourly Earnings (MoM)",
+                       "period":  "Jul",
+                       "actual":  "0.1%",
+                       "forecast":  "0.3%",
+                       "previous":  "0.3%",
                        "type":  "review"
                    }
                ]
