@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-08-09T05:45:43Z",
-    "updatedKr":  "2026-08-09 14:45:43",
+    "updated":  "2026-08-09T06:28:12Z",
+    "updatedKr":  "2026-08-09 15:28:12",
     "index":  [
                   {
                       "key":  "KOSPI",
@@ -71,48 +71,48 @@
               ],
     "rate":  [
                  {
-                     "source":  "investing",
-                     "ytd":  82,
-                     "wow":  -16,
-                     "mom":  0,
                      "key":  "KR3Y",
+                     "current":  3.746,
+                     "wow":  -1,
+                     "mom":  -2,
+                     "ytd":  81,
                      "type":  "bp",
-                     "asOf":  "2026-07-31",
+                     "asOf":  "2026-08-07",
                      "ok":  true,
-                     "current":  3.757
+                     "source":  "ecos-bok"
                  },
                  {
-                     "source":  "investing",
-                     "ytd":  88,
-                     "wow":  -13,
-                     "mom":  12,
                      "key":  "KR10Y",
+                     "current":  4.208,
+                     "wow":  -5,
+                     "mom":  -2,
+                     "ytd":  82,
                      "type":  "bp",
-                     "asOf":  "2026-07-31",
+                     "asOf":  "2026-08-07",
                      "ok":  true,
-                     "current":  4.262
+                     "source":  "ecos-bok"
                  },
                  {
-                     "mom":  -1,
-                     "current":  2.81,
-                     "static":  true,
-                     "ok":  true,
                      "key":  "CD91",
-                     "type":  "bp",
+                     "current":  2.93,
                      "wow":  0,
-                     "ytd":  4
+                     "mom":  1,
+                     "ytd":  12,
+                     "type":  "bp",
+                     "asOf":  "2026-08-06",
+                     "ok":  true,
+                     "source":  "naver-mobile"
                  },
                  {
-                     "source":  "treasury.gov(static)",
-                     "ytd":  90,
-                     "wow":  21,
-                     "mom":  28,
                      "key":  "US2Y",
+                     "current":  4.19,
+                     "wow":  -9,
+                     "mom":  -2,
+                     "ytd":  72,
                      "type":  "bp",
-                     "asOf":  "2026-07-23",
+                     "asOf":  "2026-08-07",
                      "ok":  true,
-                     "static":  true,
-                     "current":  4.37
+                     "source":  "treasury.gov"
                  },
                  {
                      "key":  "US10Y",
