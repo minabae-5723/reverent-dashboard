@@ -44,18 +44,20 @@ $INSTRUMENTS = @{
     # Sector indices: S&P 500 GICS sector indices (not SPDR ETFs).
     # ^SP500-NN uses the 2-digit GICS sector code; ENERGY needs ^GSPE.
     # Cleaner benchmark than ETFs (no expense-ratio drag, matches headline prints).
+    # `fallback` = SPDR sector ETF, used only when the GICS index goes stale
+    # (see the fallback block in Fetch-Group). Same basket, published reliably.
     sector = @(
-        @{ key='IT';          symbol='^SP500-45' }
-        @{ key='HEALTHCARE';  symbol='^SP500-35' }
-        @{ key='DISCRET';     symbol='^SP500-25' }
-        @{ key='INDUSTRIALS'; symbol='^SP500-20' }
-        @{ key='STAPLES';     symbol='^SP500-30' }
-        @{ key='ENERGY';      symbol='^GSPE'     }
-        @{ key='FINANCIALS';  symbol='^SP500-40' }
-        @{ key='MATERIALS';   symbol='^SP500-15' }
-        @{ key='UTILITIES';   symbol='^SP500-55' }
-        @{ key='REALESTATE';  symbol='^SP500-60' }
-        @{ key='COMM';        symbol='^SP500-50' }
+        @{ key='IT';          symbol='^SP500-45'; fallback='XLK'  }
+        @{ key='HEALTHCARE';  symbol='^SP500-35'; fallback='XLV'  }
+        @{ key='DISCRET';     symbol='^SP500-25'; fallback='XLY'  }
+        @{ key='INDUSTRIALS'; symbol='^SP500-20'; fallback='XLI'  }
+        @{ key='STAPLES';     symbol='^SP500-30'; fallback='XLP'  }
+        @{ key='ENERGY';      symbol='^GSPE';     fallback='XLE'  }
+        @{ key='FINANCIALS';  symbol='^SP500-40'; fallback='XLF'  }
+        @{ key='MATERIALS';   symbol='^SP500-15'; fallback='XLB'  }
+        @{ key='UTILITIES';   symbol='^SP500-55'; fallback='XLU'  }
+        @{ key='REALESTATE';  symbol='^SP500-60'; fallback='XLRE' }
+        @{ key='COMM';        symbol='^SP500-50'; fallback='XLC'  }
     )
 }
 
@@ -675,11 +677,39 @@ function Fetch-Group {
         $invert = [bool]$item.invert
         $type = if ($item.type) { $item.type } else { 'pct' }
         $changes = Get-Changes -Data $data -Type $type -Invert $invert -FreezeFriday $FreezeFriday
+        $usedSymbol = $item.symbol
+
+        # Fallback symbol (sector group only — nothing else defines one).
+        # Yahoo kept returning daily bars for the ^SP500-NN GICS sector indices
+        # but with NULL closes after 2026-07-17, so 10 of 11 sectors silently
+        # froze: `current` stayed at the 7/17 bar and WoW computed that same bar
+        # against itself = exactly 0.00. Only ^SP500-60 (REALESTATE) kept real
+        # closes, which is why it alone showed a live WoW. When the primary
+        # series is stale relative to the anchor, use the SPDR sector ETF, which
+        # tracks the same GICS basket and is reliably published.
+        if ($item.fallback) {
+            $anchorRef = if ($script:AnchorFriday) { $script:AnchorFriday } else { (Get-Date).Date }
+            $isStale = $true
+            if ($changes -and $changes.asOf) {
+                try { $isStale = ([DateTime]::Parse($changes.asOf) -lt $anchorRef.AddDays(-6)) } catch { $isStale = $true }
+            }
+            if ($isStale) {
+                $fbData = Get-YahooChart -Symbol $item.fallback -TrimInProgress $TrimInProgress
+                $fbChanges = Get-Changes -Data $fbData -Type $type -Invert $invert -FreezeFriday $FreezeFriday
+                if ($fbChanges) {
+                    $was = if ($changes) { $changes.asOf } else { 'no data' }
+                    $changes = $fbChanges
+                    $usedSymbol = $item.fallback
+                    Write-Warning ("  fallback [{0}] {1} stale ({2}) -> {3} ({4})" -f `
+                        $item.key, $item.symbol, $was, $item.fallback, $fbChanges.asOf)
+                }
+            }
+        }
 
         if ($changes) {
             $rows += [PSCustomObject]@{
                 key     = $item.key
-                symbol  = $item.symbol
+                symbol  = $usedSymbol
                 current = $changes.current
                 wow     = $changes.wow
                 mom     = $changes.mom
