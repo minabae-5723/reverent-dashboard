@@ -3034,6 +3034,56 @@ html, body {
   gap: 18px;
 }
 
+/* --- Compact variant: one card grid per deal/macro article --------------- */
+.macro-notes-section-compact {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px dashed var(--border);
+  outline: none;
+}
+.macro-notes-section-compact:focus-within {
+  border-top-color: var(--navy-light);
+}
+.macro-notes-toolbar-compact {
+  margin: 0 0 8px 0;
+  gap: 10px;
+}
+.macro-add-btn-sm {
+  padding: 4px 10px;
+  font-size: 12px;
+  background: transparent;
+  color: var(--navy);
+  border: 1px solid var(--border-strong);
+}
+.macro-add-btn-sm:hover {
+  background: var(--navy);
+  color: #fff;
+  border-color: var(--navy);
+}
+.macro-notes-section-compact .macro-notes-grid {
+  gap: 12px;
+}
+.macro-notes-empty-compact {
+  grid-column: 1 / -1;
+  padding: 10px 12px;
+  font-size: 12px;
+  color: var(--text-muted);
+  background: var(--bg);
+  border: 1px dashed var(--border);
+  border-radius: 6px;
+  text-align: left;
+}
+.macro-notes-empty-compact kbd {
+  display: inline-block;
+  background: var(--card-bg, #fff);
+  border: 1px solid var(--border-strong);
+  border-radius: 3px;
+  padding: 1px 5px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 11px;
+  color: var(--text);
+}
+
 .macro-notes-empty {
   grid-column: 1 / -1;
   text-align: center;

@@ -73,6 +73,11 @@ const INDICATOR_KR = {
   'Nonfarm Payrolls': '비농업고용지수',
   'ADP Nonfarm Employment Change': 'ADP 민간고용',
   'JOLTs Job Openings': 'JOLTs',
+  'JOLTS Job Openings': 'JOLTs',
+  'Initial Jobless Claims': '신규 실업수당 청구',
+  'Average Hourly Earnings (MoM)': '시간당 평균임금 (MoM)',
+  'Michigan Consumer Sentiment': '미시간 소비자심리',
+  'Core PPI (MoM)': 'Core PPI (MoM)',
   'ISM Services PMI': 'ISM 비제조업 PMI',
   'ISM Non-Manufacturing PMI': 'ISM 비제조업 PMI',
   'ISM Manufacturing PMI': 'ISM 제조업 PMI',
@@ -1455,8 +1460,24 @@ function renderMacroCalendarCard() {
   `;
 }
 
-// ─── Macro Notes (paste screenshots + comments, per-week localStorage) ──
-function _macroNotesKey(weekDate) { return `macro-notes-${weekDate || 'default'}`; }
+// ─── Macro Notes (paste screenshots + comments, per-scope localStorage) ──
+// `scope` is the storage scope for a card grid:
+//   - section-level (Macro 동향)  : "<weekDate>"              e.g. "2026-08-07"
+//   - per-article (모든 기사)      : "<weekDate>--a<hash>"     e.g. "2026-08-07--a1f4k2p"
+// Section-level scopes keep their original key so previously saved cards load
+// unchanged. Both forms share the `macro-notes-` prefix, so the user-state
+// allowlist and the union-merge-by-id logic already cover them.
+function _macroNotesKey(scope) { return `macro-notes-${scope || 'default'}`; }
+
+// Stable short hash of an article headline → per-article scope suffix.
+// Must stay stable across renders/deploys, so it is derived from the headline
+// text only (not from render order).
+function _articleScope(weekDate, headline) {
+  const s = String(headline || '');
+  let h = 5381;
+  for (let i = 0; i < s.length; i++) h = ((h << 5) + h + s.charCodeAt(i)) >>> 0;
+  return `${weekDate || 'unknown'}--a${h.toString(36)}`;
+}
 
 function _loadMacroNotes(weekDate) {
   const key = _macroNotesKey(weekDate);
@@ -1527,9 +1548,14 @@ function _compressMacroImage(dataUrl) {
   });
 }
 
-function renderMacroNotesCard(weekDate) {
-  const notes = _loadMacroNotes(weekDate);
-  const empty = `
+function renderMacroNotesCard(scope, opts = {}) {
+  const compact = !!opts.compact;
+  const notes = _loadMacroNotes(scope);
+  const empty = compact
+    ? `<div class="macro-notes-empty macro-notes-empty-compact">
+         이 기사에 저장된 카드뉴스가 없습니다 — <strong>+ 카드뉴스</strong> 를 누르거나 이 영역을 클릭한 뒤 <kbd>Ctrl+V</kbd>
+       </div>`
+    : `
     <div class="macro-notes-empty">
       <div class="empty-icon">📋</div>
       <p class="empty-title">아직 저장된 카드가 없습니다</p>
@@ -1552,12 +1578,18 @@ function renderMacroNotesCard(weekDate) {
       </div>
     </div>
   `).join('');
+  const toolbar = compact
+    ? `<div class="macro-notes-toolbar macro-notes-toolbar-compact">
+         <button class="macro-add-btn macro-add-btn-sm" data-action="add" type="button">+ 카드뉴스</button>
+         <span class="macro-paste-hint">${notes.length > 0 ? `${notes.length}건` : '스크린샷 붙여넣기 가능'}</span>
+       </div>`
+    : `<div class="macro-notes-toolbar">
+         <button class="macro-add-btn" data-action="add" type="button">+ 새 카드</button>
+         <span class="macro-paste-hint">💡 스크린샷 복사 후 <kbd>Ctrl+V</kbd> 로 이 페이지에 붙여넣기 — 이번 주 저장소에 보관됩니다.</span>
+       </div>`;
   return `
-    <div class="macro-notes-section" data-week="${escapeHtml(weekDate || 'default')}">
-      <div class="macro-notes-toolbar">
-        <button class="macro-add-btn" data-action="add" type="button">+ 새 카드</button>
-        <span class="macro-paste-hint">💡 스크린샷 복사 후 <kbd>Ctrl+V</kbd> 로 이 페이지에 붙여넣기 — 이번 주 저장소에 보관됩니다.</span>
-      </div>
+    <div class="macro-notes-section${compact ? ' macro-notes-section-compact' : ''}" data-week="${escapeHtml(scope || 'default')}" data-compact="${compact ? '1' : '0'}" tabindex="-1">
+      ${toolbar}
       <div class="macro-notes-grid">
         ${notes.length === 0 ? empty : cards}
       </div>
@@ -1565,13 +1597,15 @@ function renderMacroNotesCard(weekDate) {
   `;
 }
 
-function _rerenderMacroNotes(sectionEl, weekDate) {
+function _rerenderMacroNotes(sectionEl, scope) {
+  const compact = sectionEl.dataset.compact === '1';
   const tmp = document.createElement('div');
-  tmp.innerHTML = renderMacroNotesCard(weekDate);
+  tmp.innerHTML = renderMacroNotesCard(scope, { compact });
   const next = tmp.firstElementChild;
   if (next && sectionEl.parentNode) {
     sectionEl.replaceWith(next);
-    _wireMacroNotesEvents(next, weekDate);
+    _wireMacroNotesEvents(next, scope);
+    if (_activeNotesSection === sectionEl) _activeNotesSection = next;
     return next;
   }
   return sectionEl;
@@ -1599,8 +1633,18 @@ async function _macroNotesAdd(sectionEl, weekDate, rawImage) {
   }, 60);
 }
 
+// The grid a Ctrl+V should land in. With per-article grids there are many on
+// the page, so remember the last one the user interacted with; fall back to the
+// first grid in the deals view.
+let _activeNotesSection = null;
+
 function _wireMacroNotesEvents(sectionEl, weekDate) {
   if (!sectionEl) return;
+
+  // Claim paste focus on any interaction inside this grid.
+  const claim = () => { _activeNotesSection = sectionEl; };
+  sectionEl.addEventListener('mousedown', claim);
+  sectionEl.addEventListener('focusin', claim);
 
   // Auto-resize every paste-card comment textarea to fit its content.
   const autoResize = (ta) => {
@@ -1655,7 +1699,10 @@ function _ensureMacroPasteHandler() {
   document.addEventListener('paste', (e) => {
     const dealsView = document.getElementById('view-deals');
     if (!dealsView || dealsView.hidden) return;
-    const sectionEl = dealsView.querySelector('.macro-notes-section');
+    // Prefer the grid the user last touched; otherwise the first one on screen.
+    let sectionEl = (_activeNotesSection && dealsView.contains(_activeNotesSection))
+      ? _activeNotesSection
+      : dealsView.querySelector('.macro-notes-section');
     if (!sectionEl) return;
     const items = e.clipboardData && e.clipboardData.items;
     if (!items || items.length === 0) return;
@@ -1678,6 +1725,13 @@ function _ensureMacroPasteHandler() {
 
 function _isMacroSection(name) {
   return /macro|매크로/i.test(name || '');
+}
+
+// Per-article card-news slots are only mounted in 자본시장 동향 (user request).
+// Other sections keep their articles clean; the Macro section still has its own
+// section-level card grid.
+function _isCapitalMarketSection(name) {
+  return /자본시장/.test(name || '');
 }
 
 function renderDealsContent(md) {
@@ -1720,8 +1774,9 @@ function renderDealsContent(md) {
         </div>
       `;
     }
+    const allowNotes = _isCapitalMarketSection(s.name);
     const articles = s.articles.length > 0
-      ? s.articles.map(a => renderDealArticle(a, weekDate)).join('')
+      ? s.articles.map(a => renderDealArticle(a, weekDate, allowNotes)).join('')
       : '<div class="news-card" style="color:var(--text-muted);font-style:italic;">이번 주 해당 카테고리 항목 없음</div>';
     const isMacro = _isMacroSection(s.name);
     const macroCalendar = isMacro ? renderMacroNotesCard(weekDate) : '';
@@ -1747,11 +1802,13 @@ function renderDealsContent(md) {
     if (window.computeValuation) window.computeValuation(card.id);
   });
 
-  // Wire up macro notes (paste images + comments)
-  const macroNotesSection = body.querySelector('.macro-notes-section');
+  // Wire up macro notes (paste images + comments) — the section-level Macro
+  // grid plus one grid per article.
+  _activeNotesSection = null;
+  const allNotesSections = body.querySelectorAll('.macro-notes-section');
+  allNotesSections.forEach(el => _wireMacroNotesEvents(el, el.dataset.week || 'default'));
+  const macroNotesSection = allNotesSections[0];
   if (macroNotesSection) {
-    const weekKey = macroNotesSection.dataset.week || 'default';
-    _wireMacroNotesEvents(macroNotesSection, weekKey);
     _ensureMacroPasteHandler();
   }
 
@@ -1871,7 +1928,7 @@ function setupDashboardMacroComment() {
 // Counter for per-render valuation card ids — reset every renderDealsContent call
 let _valuationCounter = 0;
 
-function renderDealArticle(a, weekDate) {
+function renderDealArticle(a, weekDate, allowNotes = false) {
   const dateBadge = a.date
     ? `<span class="deals-date-badge">${escapeHtml(a.date)}</span>`
     : '';
@@ -1886,6 +1943,12 @@ function renderDealArticle(a, weekDate) {
       valuationHtml = renderValuationCard(cardId, weekDate || 'unknown', a.headline, a.valuationTitle, data);
     }
   }
+  // Per-article card-news slot (screenshots + comments), same machinery as the
+  // section-level Macro grid but scoped to this article's headline.
+  // Only 자본시장 동향 articles get one — see _isCapitalMarketSection.
+  const notesHtml = allowNotes
+    ? renderMacroNotesCard(_articleScope(weekDate, a.headline), { compact: true })
+    : '';
   return `
     <div class="news-card deals-card">
       <div class="news-card-head">
@@ -1894,6 +1957,7 @@ function renderDealArticle(a, weekDate) {
       </div>
       ${bulletsHtml}
       ${valuationHtml}
+      ${notesHtml}
     </div>
   `;
 }
