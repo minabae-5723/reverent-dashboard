@@ -79,9 +79,30 @@ Write-Host "[1/5] Refresh market data..." -ForegroundColor Yellow
 Invoke-FetchScript -Name 'refresh.ps1' -Path (Join-Path $root 'refresh.ps1')
 
 # 2. Refresh calendar (Investing.com -- may fail if Cloudflare blocking)
+#
+# MONDAY-MORNING FREEZE (user rule, 2026-08-10): on Monday before noon the
+# Macro Economy board must keep the weekend's frozen state -- last week's
+# Review plus this week's Preview -- because the Monday Brief is written
+# against last week. Skip the calendar refresh entirely in that window so
+# nothing can re-freeze or roll it; every other deploy path is unchanged.
+# The roll is handled by the daily-weekly-calendar task, which runs Tue-Fri.
 Write-Host ""
-Write-Host "[2/5] Refresh calendar data..." -ForegroundColor Yellow
-Invoke-FetchScript -Name 'fetch-calendar.ps1' -Path (Join-Path $root 'fetch-calendar.ps1')
+$nowLocal = Get-Date
+$mondayFreeze = ($nowLocal.DayOfWeek -eq [DayOfWeek]::Monday -and $nowLocal.Hour -lt 12)
+if ($mondayFreeze) {
+    Write-Host "[2/5] Calendar refresh SKIPPED - Monday morning freeze" -ForegroundColor Cyan
+    Write-Host "        weekend frozen state kept (last week Review / this week Preview)" -ForegroundColor DarkGray
+    $frozenPath = Join-Path $root 'market-update-frozen.json'
+    if (Test-Path $frozenPath) {
+        try {
+            $fz = Get-Content -LiteralPath $frozenPath -Raw -Encoding UTF8 | ConvertFrom-Json
+            Write-Host ("        reviewRange=" + $fz.reviewRange + "  previewRange=" + $fz.previewRange) -ForegroundColor DarkGray
+        } catch {}
+    }
+} else {
+    Write-Host "[2/5] Refresh calendar data..." -ForegroundColor Yellow
+    Invoke-FetchScript -Name 'fetch-calendar.ps1' -Path (Join-Path $root 'fetch-calendar.ps1')
+}
 
 # 2.5. Refresh semiconductor trade data (Korea Customs OpenAPI) — last 2 years only
 Write-Host ""
