@@ -6,11 +6,40 @@
 #    powershell -ExecutionPolicy Bypass -File .\refresh.ps1
 #    powershell -ExecutionPolicy Bypass -File .\refresh.ps1 -Loop
 # =============================================================
-param([switch]$Loop, [string]$AnchorDate)
+param([switch]$Loop, [string]$AnchorDate, [switch]$Force)
 
 $ErrorActionPreference = 'Continue'
 $UserAgent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
 $DataFile  = Join-Path $PSScriptRoot 'data.json'
+
+# ----------------------------------------------------------------
+# MONDAY-MORNING FREEZE (user rule, 2026-08-10)
+#
+# Every Capital Market indicator (Index / Rate / Commodity / FX / CDS / Sector)
+# comes out of this script, so on Monday before noon it must not run at all --
+# the board has to keep the weekend state while the Monday Brief is written
+# against last week. Guarding here rather than at each caller because there are
+# three entry points: deploy-snapshot.ps1 step 1, refresh-push-market.ps1 (the
+# dashboard's 5-min auto-refresh timer via serve.ps1), and manual runs.
+#
+# Exits before any network call, so data.json is left byte-for-byte untouched
+# and refresh-push-market.ps1 finds no diff to commit. Use -Force to override.
+# ----------------------------------------------------------------
+$nowLocal = Get-Date
+if (-not $Force -and $nowLocal.DayOfWeek -eq [DayOfWeek]::Monday -and $nowLocal.Hour -lt 12) {
+    Write-Host ""
+    Write-Host " Capital Market refresh SKIPPED - Monday morning freeze" -ForegroundColor Cyan
+    Write-Host ("   {0} -> weekend snapshot kept (data.json untouched)" -f $nowLocal.ToString('yyyy-MM-dd HH:mm ddd')) -ForegroundColor DarkGray
+    if (Test-Path -LiteralPath $DataFile) {
+        try {
+            $prev = Get-Content -LiteralPath $DataFile -Raw -Encoding UTF8 | ConvertFrom-Json
+            Write-Host ("   data.json updatedKr = " + $prev.updatedKr) -ForegroundColor DarkGray
+        } catch {}
+    }
+    Write-Host "   (override with: .\refresh.ps1 -Force)" -ForegroundColor DarkGray
+    Write-Host ""
+    exit 0
+}
 
 # Ticker definitions (ASCII-only; UI labels mapped in app.js)
 $INSTRUMENTS = @{
