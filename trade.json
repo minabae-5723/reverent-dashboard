@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-08-10T22:00:28Z",
-    "updatedKr":  "2026-08-11 07:00:28",
+    "updated":  "2026-08-10T23:27:03Z",
+    "updatedKr":  "2026-08-11 08:27:03",
     "source":  "data.go.kr #15101609 (愿?몄껌 ?덈ぉ蹂??섏텧?낆떎??GW)",
     "range":  "2025-2026",
     "ssd":  [
@@ -2080,7 +2080,7 @@
                     "weight":  252535,
                     "unitPrice":  12630.06,
                     "expDlrRaw":  3189531184,
-                    "impDlrRaw":  233631499,
+                    "impDlrRaw":  233637073,
                     "impWgtRaw":  227235
                 },
                 {
@@ -2089,7 +2089,7 @@
                     "weight":  200108,
                     "unitPrice":  19155.17,
                     "expDlrRaw":  3833102251,
-                    "impDlrRaw":  235823971,
+                    "impDlrRaw":  235828616,
                     "impWgtRaw":  235496
                 },
                 {
@@ -2098,7 +2098,7 @@
                     "weight":  175831,
                     "unitPrice":  22533.01,
                     "expDlrRaw":  3962002029,
-                    "impDlrRaw":  235337207,
+                    "impDlrRaw":  235337863,
                     "impWgtRaw":  231408
                 },
                 {
@@ -2107,18 +2107,17 @@
                     "weight":  242779,
                     "unitPrice":  21238.45,
                     "expDlrRaw":  5156249189,
-                    "impDlrRaw":  285557352,
+                    "impDlrRaw":  285559219,
                     "impWgtRaw":  230757
                 },
                 {
                     "month":  "2026-07",
                     "value":  4510,
-                    "weight":  null,
-                    "unitPrice":  null,
-                    "expDlrRaw":  4510000000,
-                    "impDlrRaw":  null,
-                    "impWgtRaw":  null,
-                    "preliminary":  true
+                    "weight":  178371,
+                    "unitPrice":  25285.06,
+                    "expDlrRaw":  4510121755,
+                    "impDlrRaw":  208538839,
+                    "impWgtRaw":  234145
                 }
             ],
     "nand":  [
@@ -4222,21 +4221,20 @@
                  {
                      "month":  "2026-06",
                      "value":  2486,
-                     "weight":  40025,
-                     "unitPrice":  62115.21,
+                     "weight":  40030,
+                     "unitPrice":  62107.45,
                      "expDlrRaw":  2486161310,
-                     "impDlrRaw":  235182337,
+                     "impDlrRaw":  235181689,
                      "impWgtRaw":  11164
                  },
                  {
                      "month":  "2026-07",
                      "value":  1781,
-                     "weight":  28835,
-                     "unitPrice":  61751,
-                     "expDlrRaw":  1780650000,
-                     "impDlrRaw":  null,
-                     "impWgtRaw":  null,
-                     "preliminary":  true
+                     "weight":  28836,
+                     "unitPrice":  61750.85,
+                     "expDlrRaw":  1780647499,
+                     "impDlrRaw":  229162621,
+                     "impWgtRaw":  11578
                  }
              ],
     "dram":  [
@@ -6349,12 +6347,11 @@
                  {
                      "month":  "2026-07",
                      "value":  13552,
-                     "weight":  155819,
-                     "unitPrice":  86970,
-                     "expDlrRaw":  13551550000,
-                     "impDlrRaw":  null,
-                     "impWgtRaw":  null,
-                     "preliminary":  true
+                     "weight":  155818,
+                     "unitPrice":  86970.39,
+                     "expDlrRaw":  13551552131,
+                     "impDlrRaw":  1135537301,
+                     "impWgtRaw":  40047
                  }
              ],
     "mcp":  [
@@ -8457,10 +8454,10 @@
                 },
                 {
                     "month":  "2026-06",
-                    "value":  12681,
+                    "value":  12682,
                     "weight":  134717,
-                    "unitPrice":  94131.5,
-                    "expDlrRaw":  12681112901,
+                    "unitPrice":  94139.43,
+                    "expDlrRaw":  12682181416,
                     "impDlrRaw":  1800652453,
                     "impWgtRaw":  13302
                 },
@@ -8468,11 +8465,10 @@
                     "month":  "2026-07",
                     "value":  10086,
                     "weight":  105714,
-                    "unitPrice":  95407,
-                    "expDlrRaw":  10085850000,
-                    "impDlrRaw":  null,
-                    "impWgtRaw":  null,
-                    "preliminary":  true
+                    "unitPrice":  95406.9,
+                    "expDlrRaw":  10085845139,
+                    "impDlrRaw":  1600266240,
+                    "impWgtRaw":  10821
                 }
             ]
 }
