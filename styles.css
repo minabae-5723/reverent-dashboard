@@ -2930,6 +2930,14 @@ html, body {
   border: 1px solid var(--border);
   border-radius: 8px;
 }
+/* 반도체 수출입 board comment sits above the cards — shorter box, spaced from board */
+.semicon-comment-block {
+  margin-top: 4px;
+  margin-bottom: 16px;
+}
+.semicon-comment-block .macro-comment-area {
+  min-height: 84px;
+}
 .macro-comment-label {
   display: block;
   font-size: 12px;

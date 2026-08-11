@@ -520,6 +520,17 @@
         </div>
       </div>
 
+      <div class="macro-comment-block semicon-comment-block">
+        <label class="macro-comment-label" for="semiconCommentArea">💬 수출입 코멘트 — 금액·물량·가격 변동 원인</label>
+        <textarea id="semiconCommentArea" class="macro-comment-area"
+                  data-storage-key="semicon-comment"
+                  placeholder="수출액·수출중량·단가의 상승/하락 원인을 간략히 정리하세요. 데이터 업데이트 시 웹 리서치로 자동 작성되며, 직접 수정도 가능합니다. 작성 후 FIX 버튼으로 저장하세요."></textarea>
+        <div class="macro-comment-bottom">
+          <span class="macro-comment-status" id="semiconCommentStatus"></span>
+          <button type="button" class="macro-comment-fix" id="semiconCommentFix" disabled>FIX</button>
+        </div>
+      </div>
+
       <div id="semiconBody" class="semicon-body">
         <div class="semicon-card" data-key="ssd">
           <div class="semicon-card-head">

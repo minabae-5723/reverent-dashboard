@@ -1925,6 +1925,15 @@ function setupDashboardMacroComment() {
   });
 }
 
+// 반도체 수출입(#semicon) 코멘트 — 금액·물량·가격 변동 원인 (dashboard 코멘트와 동일 메커니즘)
+function setupSemiconComment() {
+  wireFixSaveTextarea({
+    textarea: document.getElementById('semiconCommentArea'),
+    fixBtn:   document.getElementById('semiconCommentFix'),
+    statusEl: document.getElementById('semiconCommentStatus'),
+  });
+}
+
 // Counter for per-render valuation card ids — reset every renderDealsContent call
 let _valuationCounter = 0;
 
@@ -3940,6 +3949,7 @@ setupShillerFilters();
 setupFedWatchFilters();
 setupCapMktComments();
 setupDashboardMacroComment();
+setupSemiconComment();
 initIpoShots();
 // Load deployed user-state (valuations + macro notes + comments), then
 // re-render deals view if it's already mounted and refill any comment
@@ -4012,6 +4022,26 @@ loadUserState().then(() => {
       const dmacStatus = document.getElementById('dashboardMacroCommentStatus');
       if (dmacStatus) dmacStatus.textContent = t ? `✓ ${t} 저장됨` : '';
       if (typeof dmac.dispatchEvent === 'function') dmac.dispatchEvent(new Event('input'));
+    }
+  }
+
+  // Refill empty 반도체 수출입 comment from server cache (same pattern as macro).
+  const smac = document.getElementById('semiconCommentArea');
+  if (smac && _userStateCache && document.activeElement !== smac) {
+    const v = _userStateCache['semicon-comment'];
+    if (typeof v === 'string' && v !== smac.value) {
+      smac.value = v;
+      smac._commentBaseline = v;
+      const t = _userStateCache['semicon-comment-time'];
+      try {
+        if (v) localStorage.setItem('semicon-comment', v); else localStorage.removeItem('semicon-comment');
+        if (t) localStorage.setItem('semicon-comment-time', t);
+      } catch (e) { /* ignore */ }
+      const smacFix = document.getElementById('semiconCommentFix');
+      if (smacFix) smacFix.disabled = true;
+      const smacStatus = document.getElementById('semiconCommentStatus');
+      if (smacStatus) smacStatus.textContent = t ? `✓ ${t} 저장됨` : '';
+      if (typeof smac.dispatchEvent === 'function') smac.dispatchEvent(new Event('input'));
     }
   }
 
