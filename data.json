@@ -1,27 +1,27 @@
 {
-    "updated":  "2026-08-11T01:21:21Z",
-    "updatedKr":  "2026-08-11 10:21:21",
+    "updated":  "2026-08-11T01:24:20Z",
+    "updatedKr":  "2026-08-11 10:24:20",
     "index":  [
                   {
                       "key":  "KOSPI",
                       "symbol":  "^KS11",
-                      "current":  6258.77,
-                      "wow":  -5.1,
-                      "mom":  -16.28,
-                      "ytd":  45.23,
+                      "current":  6299.6602,
+                      "wow":  0.67,
+                      "mom":  -15.73,
+                      "ytd":  46.18,
                       "type":  "pct",
-                      "asOf":  "2026-08-07",
+                      "asOf":  "2026-08-10",
                       "ok":  true
                   },
                   {
                       "key":  "KOSDAQ",
                       "symbol":  "^KQ11",
-                      "current":  798.81,
-                      "wow":  10.98,
-                      "mom":  -4.61,
-                      "ytd":  -15.52,
+                      "current":  854.47,
+                      "wow":  15.88,
+                      "mom":  2.03,
+                      "ytd":  -9.63,
                       "type":  "pct",
-                      "asOf":  "2026-08-07",
+                      "asOf":  "2026-08-10",
                       "ok":  true
                   },
                   {
@@ -61,7 +61,7 @@
                       "key":  "SHANGHAI",
                       "symbol":  "000001.SS",
                       "current":  3966.594,
-                      "wow":  3.51,
+                      "wow":  4.12,
                       "mom":  -0.74,
                       "ytd":  -1.41,
                       "type":  "pct",
