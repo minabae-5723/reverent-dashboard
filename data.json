@@ -1,27 +1,27 @@
 {
-    "updated":  "2026-08-11T05:06:21Z",
-    "updatedKr":  "2026-08-11 14:06:21",
+    "updated":  "2026-08-11T06:01:21Z",
+    "updatedKr":  "2026-08-11 15:01:21",
     "index":  [
                   {
                       "key":  "KOSPI",
                       "symbol":  "^KS11",
-                      "current":  6299.6602,
-                      "wow":  0.67,
-                      "mom":  -15.73,
-                      "ytd":  46.18,
+                      "current":  6365.63,
+                      "wow":  0.11,
+                      "mom":  -14.85,
+                      "ytd":  47.71,
                       "type":  "pct",
-                      "asOf":  "2026-08-10",
+                      "asOf":  "2026-08-11T14:41:20",
                       "ok":  true
                   },
                   {
                       "key":  "KOSDAQ",
                       "symbol":  "^KQ11",
-                      "current":  854.47,
-                      "wow":  15.88,
-                      "mom":  2.03,
-                      "ytd":  -9.63,
+                      "current":  854.56,
+                      "wow":  9.46,
+                      "mom":  2.05,
+                      "ytd":  -9.62,
                       "type":  "pct",
-                      "asOf":  "2026-08-10",
+                      "asOf":  "2026-08-11T14:41:20",
                       "ok":  true
                   },
                   {
