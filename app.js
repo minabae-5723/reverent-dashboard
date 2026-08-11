@@ -443,7 +443,10 @@ const KR_WEEKDAY = ['일','월','화','수','목','금','토'];
 
 function parseInvestingDateTime(s) {
   if (!s) return null;
-  const m = s.match(/^(\d{4})\/(\d{2})\/(\d{2})\s+(\d{2}):(\d{2}):(\d{2})$/);
+  // Accept BOTH "yyyy/MM/dd HH:mm:ss" (frozen/fetch-calendar) and
+  // "yyyy-MM-dd HH:mm:ss" (some scheduled-task writes) — a mismatched separator
+  // used to make every event fail to parse, blanking the whole #weekly board.
+  const m = s.match(/^(\d{4})[\/-](\d{2})[\/-](\d{2})\s+(\d{2}):(\d{2}):(\d{2})$/);
   if (!m) return null;
   return new Date(+m[1], +m[2] - 1, +m[3], +m[4], +m[5], +m[6]);
 }
