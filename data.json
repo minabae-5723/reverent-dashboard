@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-08-11T13:00:42Z",
-    "updatedKr":  "2026-08-11 22:00:42",
+    "updated":  "2026-08-11T13:30:42Z",
+    "updatedKr":  "2026-08-11 22:30:42",
     "index":  [
                   {
                       "key":  "KOSPI",
@@ -27,34 +27,34 @@
                   {
                       "key":  "DOW",
                       "symbol":  "^DJI",
-                      "current":  53975.98,
+                      "current":  53975.9805,
                       "wow":  1.5,
                       "mom":  2.54,
                       "ytd":  11.56,
                       "type":  "pct",
-                      "asOf":  "2026-08-11T05:40:36",
+                      "asOf":  "2026-08-10",
                       "ok":  true
                   },
                   {
                       "key":  "SPX",
                       "symbol":  "^GSPC",
-                      "current":  7753.11,
+                      "current":  7753.1099,
                       "wow":  2.01,
                       "mom":  2.35,
                       "ytd":  13.04,
                       "type":  "pct",
-                      "asOf":  "2026-08-11T05:38:36",
+                      "asOf":  "2026-08-10",
                       "ok":  true
                   },
                   {
                       "key":  "NASDAQ",
                       "symbol":  "^IXIC",
-                      "current":  26605.357,
+                      "current":  26605.3594,
                       "wow":  2.67,
                       "mom":  1.23,
                       "ytd":  14.5,
                       "type":  "pct",
-                      "asOf":  "2026-08-11T06:15:59",
+                      "asOf":  "2026-08-10",
                       "ok":  true
                   },
                   {
