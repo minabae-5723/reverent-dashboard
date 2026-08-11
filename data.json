@@ -1,12 +1,12 @@
 {
-    "updated":  "2026-08-11T14:51:21Z",
-    "updatedKr":  "2026-08-11 23:51:21",
+    "updated":  "2026-08-11T15:00:42Z",
+    "updatedKr":  "2026-08-12 00:00:42",
     "index":  [
                   {
                       "key":  "KOSPI",
                       "symbol":  "^KS11",
                       "current":  6345.53,
-                      "wow":  -0.21,
+                      "wow":  1.41,
                       "mom":  -15.12,
                       "ytd":  47.24,
                       "type":  "pct",
@@ -17,7 +17,7 @@
                       "key":  "KOSDAQ",
                       "symbol":  "^KQ11",
                       "current":  857.84,
-                      "wow":  9.88,
+                      "wow":  16.34,
                       "mom":  2.44,
                       "ytd":  -9.28,
                       "type":  "pct",
