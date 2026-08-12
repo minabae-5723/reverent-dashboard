@@ -588,10 +588,12 @@ try {
             }
 
             if ($relPath -eq '/refresh') {
-                Write-Host "[$stamp] >>> /refresh (market + calendar)..." -ForegroundColor Magenta
+                Write-Host "[$stamp] >>> /refresh (market + calendar, LIVE)..." -ForegroundColor Magenta
                 $sw = [System.Diagnostics.Stopwatch]::StartNew()
                 if (Test-Path -LiteralPath $refreshScript) {
-                    & powershell -NoProfile -ExecutionPolicy Bypass -File $refreshScript  | Out-Null
+                    # -Live: manual button shows today's LATEST values (Friday-freeze off).
+                    # Monday-morning freeze still applies inside refresh.ps1.
+                    & powershell -NoProfile -ExecutionPolicy Bypass -File $refreshScript -Live | Out-Null
                 } else {
                     Write-Host "[$stamp] !!! refresh.ps1 missing (AV-quarantined) — skipping market fetch" -ForegroundColor Red
                 }
