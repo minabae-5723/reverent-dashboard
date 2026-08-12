@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Daily Report | Reverent Partners</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg" />
 <style>
 :root {
   --bg: #f7f8fa;
@@ -30,6 +31,10 @@
   --tag-company-bg: #fdf2f8;
   --tag-global: #0369a1;
   --tag-global-bg: #f0f9ff;
+  --tag-airobot: #7c3aed;
+  --tag-airobot-bg: #f5f3ff;
+  --tag-power: #c2410c;
+  --tag-power-bg: #fff7ed;
   --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
   --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
   --radius: 8px;
@@ -122,6 +127,8 @@ body {
 .count-badge.macro { background: var(--tag-macro-bg); color: var(--tag-macro); }
 .count-badge.company { background: var(--tag-company-bg); color: var(--tag-company); }
 .count-badge.global { background: var(--tag-global-bg); color: var(--tag-global); }
+.count-badge.airobot { background: var(--tag-airobot-bg); color: var(--tag-airobot); }
+.count-badge.power { background: var(--tag-power-bg); color: var(--tag-power); }
 
 .tabs {
   display: flex; gap: 0;
@@ -187,6 +194,8 @@ body {
 .sector-tag.macro { background: var(--tag-macro-bg); color: var(--tag-macro); }
 .sector-tag.company { background: var(--tag-company-bg); color: var(--tag-company); }
 .sector-tag.global { background: var(--tag-global-bg); color: var(--tag-global); }
+.sector-tag.airobot { background: var(--tag-airobot-bg); color: var(--tag-airobot); }
+.sector-tag.power { background: var(--tag-power-bg); color: var(--tag-power); }
 .sector-tag.featured { background: var(--accent-light); color: var(--accent); }
 
 .card-title { font-size: 13px; font-weight: 600; color: var(--text); flex: 1; }
@@ -476,6 +485,10 @@ function parseReport(md) {
       if (/화장품/.test(fl)) sector = '화장품';
       if (/통신/.test(fl)) sector = '통신';
       report.industry.push(...parseIndustrySection(sub, sector));
+    } else if (/AI[\s\/]*로보틱스/.test(fl)) {
+      report.industry.push(...parseIndustrySection(sub, 'AI/로보틱스'));
+    } else if (/전력/.test(fl) && !/기업/.test(fl)) {
+      report.industry.push(...parseIndustrySection(sub, '전력'));
     } else if (/글로벌/.test(fl)) {
       report.global.push(...parseIndustrySection(sub, '글로벌'));
     } else if (/매크로|전략/.test(fl)) {
@@ -673,7 +686,8 @@ function renderMeta(meta) {
   if (tm) badges.push('<span class="count-badge total">리포트 '+tm[1]+'건</span>');
   const sectors = [
     {re:/반도체\s*(\d+)/,cls:'semi',name:'반도체'},{re:/화장품\s*(\d+)/,cls:'cosmetics',name:'화장품'},
-    {re:/통신\s*(\d+)/,cls:'telecom',name:'통신'},{re:/매크로[+\s]?(?:전략)?\s*(\d+)/,cls:'macro',name:'매크로'},
+    {re:/통신\s*(\d+)/,cls:'telecom',name:'통신'},{re:/AI[\s\/]*로보틱스\s*(\d+)/,cls:'airobot',name:'AI/로보틱스'},
+    {re:/전력\s*(\d+)/,cls:'power',name:'전력'},{re:/매크로[+\s]?(?:전략)?\s*(\d+)/,cls:'macro',name:'매크로'},
     {re:/글로벌\s*(\d+)/,cls:'global',name:'글로벌'},{re:/기업[^0-9]*(\d+)/,cls:'company',name:'기업'},
   ];
   for (const s of sectors) { const m=meta.match(s.re); if(m) badges.push('<span class="count-badge '+s.cls+'">'+s.name+' '+m[1]+'</span>'); }
@@ -687,7 +701,7 @@ function renderIndustry(r) {
   for (const item of r.industry) { if (!bySector[item.sector]) bySector[item.sector]=[]; bySector[item.sector].push(item); }
   let html = '';
   for (const [sector, items] of Object.entries(bySector)) {
-    const tc = sector==='반도체'?'semi':sector==='화장품'?'cosmetics':'telecom';
+    const tc = sector==='반도체'?'semi':sector==='화장품'?'cosmetics':sector==='AI/로보틱스'?'airobot':sector==='전력'?'power':'telecom';
     html += '<div class="section-card"><div class="card-header" onclick="toggleCard(this)">';
     html += '<span class="sector-tag '+tc+'">'+esc(sector)+'</span>';
     html += '<span class="card-title">'+items.length+'건</span><span class="toggle-icon">&#9660;</span></div>';
