@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-08-12T15:04:16Z",
-    "updatedKr":  "2026-08-13 00:04:16",
+    "updated":  "2026-08-12T16:04:14Z",
+    "updatedKr":  "2026-08-13 01:04:14",
     "index":  [
                   {
                       "key":  "KOSPI",
@@ -61,7 +61,7 @@
                       "key":  "SHANGHAI",
                       "symbol":  "000001.SS",
                       "current":  3946.675,
-                      "wow":  1.76,
+                      "wow":  3.25,
                       "mom":  0.84,
                       "ytd":  -1.91,
                       "type":  "pct",
