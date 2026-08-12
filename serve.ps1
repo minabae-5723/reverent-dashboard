@@ -6,6 +6,25 @@
 # =============================================================
 param([int]$Port = 8000)
 
+# ── Headless-safe logging ─────────────────────────────────────────────
+# When serve.ps1 runs without a real console (scheduled task / detached
+# process), the built-in Write-Host's GetConsoleScreenBufferInfo throws a
+# terminating HostException — which used to kill the listener mid-request and
+# take the whole dashboard server down. Wrap Write-Host so it still logs when a
+# console exists (START.bat) but silently no-ops when the console is missing,
+# so the server can never die on a log call.
+function global:Write-Host {
+    [CmdletBinding()]
+    param(
+        [Parameter(Position=0, ValueFromPipeline=$true, ValueFromRemainingArguments=$true)][object[]]$Object,
+        [switch]$NoNewline,
+        [object]$Separator,
+        [System.ConsoleColor]$ForegroundColor,
+        [System.ConsoleColor]$BackgroundColor
+    )
+    try { Microsoft.PowerShell.Utility\Write-Host @PSBoundParameters } catch { }
+}
+
 $ErrorActionPreference = 'Continue'
 $root = $PSScriptRoot
 # Never block on a git/GCM credential prompt during the startup sync or
