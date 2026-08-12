@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-08-12T19:04:13Z",
-    "updatedKr":  "2026-08-13 04:04:13",
+    "updated":  "2026-08-12T20:04:13Z",
+    "updatedKr":  "2026-08-13 05:04:13",
     "index":  [
                   {
                       "key":  "KOSPI",
@@ -27,34 +27,34 @@
                   {
                       "key":  "DOW",
                       "symbol":  "^DJI",
-                      "current":  53791.8516,
-                      "wow":  -0.54,
-                      "mom":  2.46,
-                      "ytd":  11.18,
+                      "current":  53770.16,
+                      "wow":  -1.07,
+                      "mom":  2.42,
+                      "ytd":  11.14,
                       "type":  "pct",
-                      "asOf":  "2026-08-11",
+                      "asOf":  "2026-08-13T05:04:18",
                       "ok":  true
                   },
                   {
                       "key":  "SPX",
                       "symbol":  "^GSPC",
-                      "current":  7728.2002,
-                      "wow":  -0.11,
-                      "mom":  2.83,
-                      "ytd":  12.68,
+                      "current":  7748.53,
+                      "wow":  0.32,
+                      "mom":  3.1,
+                      "ytd":  12.98,
                       "type":  "pct",
-                      "asOf":  "2026-08-11",
+                      "asOf":  "2026-08-13T05:04:18",
                       "ok":  true
                   },
                   {
                       "key":  "NASDAQ",
                       "symbol":  "^IXIC",
-                      "current":  26445.4492,
-                      "wow":  -0.52,
-                      "mom":  2.21,
-                      "ytd":  13.81,
+                      "current":  26588.488,
+                      "wow":  0.85,
+                      "mom":  2.76,
+                      "ytd":  14.43,
                       "type":  "pct",
-                      "asOf":  "2026-08-11",
+                      "asOf":  "2026-08-13T05:04:18",
                       "ok":  true
                   },
                   {
