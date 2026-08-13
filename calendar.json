@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-08-13T00:28:56Z",
-    "updatedKr":  "2026-08-13 09:28:56",
+    "updated":  "2026-08-13T23:56:13Z",
+    "updatedKr":  "2026-08-14 08:56:13",
     "countries":  [
                       "5",
                       "35",
@@ -65,9 +65,9 @@
                        "importance":  2,
                        "indicator":  "PPI (YoY)",
                        "period":  "Jul",
-                       "actual":  "",
-                       "forecast":  "7.2%",
-                       "previous":  "7.4%",
+                       "actual":  "7.2%",
+                       "forecast":  "7.4%",
+                       "previous":  "7.3%",
                        "type":  "review"
                    },
                    {
@@ -79,10 +79,10 @@
                        "currency":  "USD",
                        "importance":  2,
                        "indicator":  "Initial Jobless Claims",
-                       "period":  "",
-                       "actual":  "",
+                       "period":  "Aug/08",
+                       "actual":  "209K",
                        "forecast":  "204K",
-                       "previous":  "199K",
+                       "previous":  "200K",
                        "type":  "review"
                    },
                    {
@@ -95,8 +95,8 @@
                        "importance":  3,
                        "indicator":  "Core PPI (YoY)",
                        "period":  "Jul",
-                       "actual":  "",
-                       "forecast":  "4.7%",
+                       "actual":  "4.2%",
+                       "forecast":  "4.2%",
                        "previous":  "4.7%",
                        "type":  "review"
                    },
@@ -110,8 +110,8 @@
                        "importance":  3,
                        "indicator":  "PPI (YoY)",
                        "period":  "Jul",
-                       "actual":  "",
-                       "forecast":  "5.0%",
+                       "actual":  "4.7%",
+                       "forecast":  "4.9%",
                        "previous":  "5.5%",
                        "type":  "review"
                    },
@@ -125,9 +125,9 @@
                        "importance":  2,
                        "indicator":  "Import Prices (YoY)",
                        "period":  "Jul",
-                       "actual":  "",
+                       "actual":  "18.7%",
                        "forecast":  "",
-                       "previous":  "31.0%",
+                       "previous":  "20.9%",
                        "type":  "review"
                    },
                    {
@@ -140,9 +140,9 @@
                        "importance":  2,
                        "indicator":  "Export Prices (YoY)",
                        "period":  "Jul",
-                       "actual":  "",
+                       "actual":  "49.1%",
                        "forecast":  "",
-                       "previous":  "55.0%",
+                       "previous":  "48.7%",
                        "type":  "review"
                    },
                    {
