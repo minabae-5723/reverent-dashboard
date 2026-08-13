@@ -8,11 +8,80 @@ param([switch]$Loop, [int]$IntervalSec = 1800)
 $ErrorActionPreference = 'Continue'
 Add-Type -AssemblyName System.Web
 
-$UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+$UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36'
 $TodayFile    = Join-Path $PSScriptRoot 'calendar.json'
 $WeekFile     = Join-Path $PSScriptRoot 'calendar-week.json'
 $NextWeekFile = Join-Path $PSScriptRoot 'calendar-next-week.json'
 $FrozenFile   = Join-Path $PSScriptRoot 'market-update-frozen.json'
+
+# ── __NEXT_DATA__ scraper (fallback for 403-blocked AJAX API) ────────
+# The calendar page embeds all today's events as JSON in __NEXT_DATA__.
+# curl.exe bypasses PowerShell's TLS/redirect quirks and reliably gets 200.
+# Returns events in the same schema as Parse-Events so the patch logic can
+# match them against the frozen file by indicator + date.
+function Get-TodayFromNextData {
+    try {
+        $raw = & curl.exe -sL 'https://www.investing.com/economic-calendar/' `
+            -H "User-Agent: $UA" `
+            -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8' `
+            -H 'Accept-Language: en-US,en;q=0.5' `
+            -H 'Upgrade-Insecure-Requests: 1' 2>$null
+        if (-not $raw) { return @() }
+        $html = $raw -join "`n"
+
+        $m = [regex]::Match($html,
+            '<script id="__NEXT_DATA__"[^>]*>(.*?)</script>',
+            [System.Text.RegularExpressions.RegexOptions]::Singleline)
+        if (-not $m.Success) { return @() }
+
+        $pattern = '\{[^\{\}]*?"country"\s*:\s*"[^"]*"[^\{\}]*?"actual"\s*:\s*"[^"]*"[^\{\}]*?\}'
+        $hits = [regex]::Matches($m.Groups[1].Value, $pattern)
+        $events = @()
+        foreach ($h in $hits) {
+            try {
+                $obj = $h.Value | ConvertFrom-Json
+                $indicator = $obj.event
+                if ($obj.suffix) { $indicator = "$indicator $($obj.suffix)" }
+                $flagKey = ($obj.country -replace ' ', '_')
+                $kstTime = ''
+                $kstDate = $null
+                if ($obj.time -match 'T(\d{2}):(\d{2}):\d{2}Z') {
+                    $utcH = [int]$Matches[1]; $utcM = $Matches[2]
+                    if ($obj.date -match '^\d{4}-\d{2}-\d{2}') {
+                        $utcDt = [datetime]::ParseExact($obj.date, 'yyyy-MM-dd', $null)
+                        $kstH = $utcH + 9
+                        if ($kstH -ge 24) { $kstH -= 24; $utcDt = $utcDt.AddDays(1) }
+                        $kstTime = '{0:D2}:{1}' -f $kstH, $utcM
+                        $kstDate = $utcDt
+                    }
+                }
+                $shortDate = ''
+                if ($kstDate) {
+                    $shortDate = "{0}/{1}" -f $kstDate.Month, $kstDate.Day
+                }
+                $dtKst = ''
+                if ($kstDate -and $kstTime) {
+                    $dtKst = $kstDate.ToString('yyyy/MM/dd') + " ${kstTime}:00"
+                }
+                $events += [PSCustomObject]@{
+                    indicator  = $indicator
+                    flagKey    = $flagKey
+                    date       = $shortDate
+                    datetime   = $dtKst
+                    actual     = if ($obj.actual) { $obj.actual } else { '' }
+                    forecast   = if ($obj.forecast) { $obj.forecast } else { '' }
+                    previous   = if ($obj.previous) { $obj.previous } else { '' }
+                    importance = [int]$obj.importance
+                    period     = ($obj.period -replace '^\(|\)$', '')
+                }
+            } catch {}
+        }
+        return $events
+    } catch {
+        Write-Warning ("__NEXT_DATA__ fetch fail: " + $_.Exception.Message)
+        return @()
+    }
+}
 
 # Investing.com country IDs to fetch (US, Japan, South Korea, Eurozone)
 # Verified against investing.com page source: {id:5=US, id:35=Japan, id:11=South Korea, id:72=Eurozone}
@@ -354,8 +423,107 @@ do {
         [System.IO.File]::WriteAllText($FrozenFile, $json, (New-Object System.Text.UTF8Encoding($false)))
         Write-Host ("  frozen:   thisWeek={0} nextWeek={1} -> market-update-frozen.json" -f $thisTop5.Count, $nextTop5.Count) -ForegroundColor Yellow
     } else {
-        $why = if ($sameWeek) { "this week already frozen — manual curation kept" } else { "weekday $dow — last freeze stays" }
-        Write-Host ("  frozen:   skipped ($why)") -ForegroundColor DarkGray
+        # Event lineup stays frozen, but patch actual/forecast from the freshly-
+        # fetched calendar data so released values show up immediately.
+        $why = if ($sameWeek) { "lineup kept" } else { "weekday $dow" }
+        try {
+            $fz = Get-Content $FrozenFile -Raw -Encoding UTF8 | ConvertFrom-Json
+            $weekEvents = @()
+            $nextEvents = @()
+            if (Test-Path $WeekFile) {
+                try { $weekEvents = @((Get-Content $WeekFile -Raw -Encoding UTF8 | ConvertFrom-Json).events) } catch {}
+            }
+            if (Test-Path $NextWeekFile) {
+                try { $nextEvents = @((Get-Content $NextWeekFile -Raw -Encoding UTF8 | ConvertFrom-Json).events) } catch {}
+            }
+
+            # Also fetch today's events from __NEXT_DATA__ (bypasses 403 AJAX block)
+            $todayLive = @(Get-TodayFromNextData)
+            if ($todayLive.Count -gt 0) {
+                Write-Host ("  __NEXT_DATA__: {0} events for today" -f $todayLive.Count) -ForegroundColor DarkGray
+            }
+
+            $patched = 0
+            $patchFromCalendar = {
+                param($frozenEvents, $freshEvents)
+                if (-not $frozenEvents -or -not $freshEvents -or $freshEvents.Count -eq 0) { return 0 }
+                $count = 0
+                foreach ($fe in $frozenEvents) {
+                    $match = $freshEvents | Where-Object {
+                        $_.datetime -eq $fe.datetime -and $_.indicator -eq $fe.indicator
+                    } | Select-Object -First 1
+                    if (-not $match) { continue }
+                    if ($match.actual -and $match.actual -ne $fe.actual) {
+                        $fe.actual = $match.actual
+                        $fe.type = 'review'
+                        $count++
+                    }
+                    if ($match.forecast -and $match.forecast -ne $fe.forecast) {
+                        $fe.forecast = $match.forecast
+                        $count++
+                    }
+                }
+                return $count
+            }
+            $patchFromLive = {
+                param($frozenEvents, $liveEvents)
+                if (-not $frozenEvents -or -not $liveEvents -or $liveEvents.Count -eq 0) { return 0 }
+                $count = 0
+                foreach ($fe in $frozenEvents) {
+                    $match = $liveEvents | Where-Object {
+                        $_.date -eq $fe.date -and $_.indicator -eq $fe.indicator -and $_.flagKey -eq $fe.flagKey
+                    } | Select-Object -First 1
+                    if (-not $match) { continue }
+                    if ($match.actual -and $match.actual -ne $fe.actual) {
+                        $fe.actual = $match.actual
+                        $fe.type = 'review'
+                        $count++
+                    }
+                    if ($match.forecast -and $match.forecast -ne $fe.forecast) {
+                        $fe.forecast = $match.forecast
+                        $count++
+                    }
+                }
+                return $count
+            }
+
+            if ($fz.thisWeek) {
+                $patched += & $patchFromCalendar $fz.thisWeek $weekEvents
+                $patched += & $patchFromLive $fz.thisWeek $todayLive
+            }
+            if ($fz.nextWeek) {
+                $patched += & $patchFromCalendar $fz.nextWeek $nextEvents
+                $patched += & $patchFromLive $fz.nextWeek $todayLive
+            }
+
+            if ($patched -gt 0) {
+                # Re-apply Fed range formatting on patched values
+                foreach ($side in @($fz.thisWeek, $fz.nextWeek)) {
+                    if (-not $side) { continue }
+                    foreach ($e in $side) {
+                        if ($e.indicator -match '(?i)^Fed Interest Rate Decision$') {
+                            foreach ($fld in 'forecast','previous','actual') {
+                                $v = "$($e.$fld)"
+                                if ($v -match '^\s*([0-9]+(?:\.[0-9]+)?)\s*%\s*$') {
+                                    $hi = [double]$Matches[1]
+                                    $lo = $hi - 0.25
+                                    $e.$fld = ('{0:0.00}%~{1:0.00}%' -f $lo, $hi)
+                                }
+                            }
+                        }
+                    }
+                }
+                $fz.updated = (Get-Date).ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ")
+                $fz.updatedKr = (Get-Date).ToString('yyyy-MM-dd HH:mm:ss')
+                $json = $fz | ConvertTo-Json -Depth 8
+                [System.IO.File]::WriteAllText($FrozenFile, $json, (New-Object System.Text.UTF8Encoding($false)))
+                Write-Host ("  frozen:   $why — patched $patched actual/forecast value(s)") -ForegroundColor Yellow
+            } else {
+                Write-Host ("  frozen:   $why — no new actuals") -ForegroundColor DarkGray
+            }
+        } catch {
+            Write-Warning ("frozen patch fail: " + $_.Exception.Message)
+        }
     }
 
     Write-Host ("  done in {0}s" -f $elapsed) -ForegroundColor DarkGray
