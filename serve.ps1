@@ -274,9 +274,24 @@ Start-Process $prefix
 
 try {
     while ($listener.IsListening) {
-        $context = $listener.GetContext()
-        $req = $context.Request
-        $res = $context.Response
+        $context = $null
+        try {
+            $context = $listener.GetContext()
+        } catch {
+            if ($listener.IsListening) {
+                Write-Host "GetContext error (retrying): $($_.Exception.Message)" -ForegroundColor DarkYellow
+                Start-Sleep -Milliseconds 50
+                continue
+            }
+            break
+        }
+        try {
+            $req = $context.Request
+            $res = $context.Response
+        } catch {
+            Write-Host "Context error (skipping): $($_.Exception.Message)" -ForegroundColor DarkYellow
+            continue
+        }
 
         try {
             $relPath = [System.Uri]::UnescapeDataString($req.Url.AbsolutePath)
