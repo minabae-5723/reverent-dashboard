@@ -48,7 +48,7 @@ foreach ($d in '.git\rebase-merge', '.git\rebase-apply') {
 # day-old dirty data.json can't block the pull on a cross-day / cross-PC run.
 $dispose0 = @('data.json','calendar.json','calendar-week.json','calendar-next-week.json',
               'market-update-frozen.json','trade.json','shiller.json','fedwatch.json',
-              'fx-naver-snapshot.json','capmkt-freeze.json')
+              'fx-naver-snapshot.json','capmkt-freeze.json','peer.json')
 foreach ($f in $dispose0) { if (Test-Path (Join-Path $root $f)) { & git -C $root checkout -- $f 2>&1 | Out-Null } }
 $pullOut = & git -C $root pull --rebase --autostash origin main 2>&1
 if ($LASTEXITCODE -eq 0) {
@@ -126,6 +126,23 @@ Write-Host "[2.75/5] Refresh FX (Naver Seoul-close)..." -ForegroundColor Yellow
 Write-Host ""
 Write-Host "[2.8/5] Refresh FedWatch (Fed rate probability)..." -ForegroundColor Yellow
 & powershell -NoProfile -ExecutionPolicy Bypass -File (Join-Path $root 'fetch-fedwatch.ps1')
+
+# 2.85. Refresh Peer table (Yahoo + Naver) — skip Monday morning
+#        Monday Brief uses the Friday-frozen peer data, so re-fetching before
+#        KOSPI opens would overwrite it with stale pre-market values.
+if ($mondayFreeze) {
+    Write-Host ""
+    Write-Host "[2.85/5] Peer table refresh SKIPPED - Monday morning freeze" -ForegroundColor Cyan
+} else {
+    Write-Host ""
+    Write-Host "[2.85/5] Refresh Peer table (Yahoo + Naver)..." -ForegroundColor Yellow
+    $peerScript = Join-Path $root 'fetch-peer.ps1'
+    if (Test-Path -LiteralPath $peerScript) {
+        & powershell -NoProfile -ExecutionPolicy Bypass -File $peerScript
+    } else {
+        Write-Host "  fetch-peer.ps1 missing -- skipping" -ForegroundColor Yellow
+    }
+}
 
 # 2.9. Prune daily-rotation files older than 7 days
 #       `market/` (Daily Market Briefing) + `news/` (News Clipping) keep only
@@ -206,7 +223,7 @@ if ([string]::IsNullOrWhiteSpace($gitStatus)) {
     }
 
     # Force-add data snapshots (gitignored normally) + all index.json files
-    $forceFiles = @('data.json', 'calendar.json', 'calendar-week.json', 'calendar-next-week.json', 'market-update-frozen.json', 'trade.json', 'shiller.json', 'fedwatch.json', 'fx-naver-snapshot.json', 'capmkt-freeze.json', 'user-state.json') +
+    $forceFiles = @('data.json', 'calendar.json', 'calendar-week.json', 'calendar-next-week.json', 'market-update-frozen.json', 'trade.json', 'shiller.json', 'fedwatch.json', 'fx-naver-snapshot.json', 'capmkt-freeze.json', 'user-state.json', 'peer.json') +
                   ($INDEXED_FOLDERS | ForEach-Object { "$_/index.json" })
     git add -f $forceFiles 2>&1 | Out-Null
     # Add anything else (new .md files, code changes, etc.)

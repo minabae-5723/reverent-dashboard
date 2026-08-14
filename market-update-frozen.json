@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-08-13T23:56:14Z",
-    "updatedKr":  "2026-08-14 08:56:14",
+    "updated":  "2026-08-14T00:24:04Z",
+    "updatedKr":  "2026-08-14 09:24:04",
     "frozenDow":  "Friday",
     "reviewRange":  "2026-08-10~2026-08-14",
     "previewRange":  "2026-08-17~2026-08-21",
@@ -151,7 +151,7 @@
                          "indicator":  "Retail Sales (MoM)",
                          "period":  "Jul",
                          "actual":  "",
-                         "forecast":  "0.3%",
+                         "forecast":  "0.1%",
                          "previous":  "0.2%",
                          "type":  "review"
                      },

@@ -325,18 +325,39 @@ function renderMacroWeekly(data) {
     }
   }
 
-  // Fixed column titles (user convention, updated weekly):
-  //   left = REVIEW (이번 주 ~ 오늘, released events), right = PREVIEW (다음 주, upcoming).
-  // fetch-calendar.ps1 fetches the exact date ranges and labels them here.
   const reviewRange  = data?.reviewRange  || '';
   const previewRange = data?.previewRange || '';
   const lt = document.getElementById('macroLeftTitle');
   const rt = document.getElementById('macroRightTitle');
-  if (lt) lt.textContent = reviewRange  ? `REVIEW (${reviewRange})`  : 'REVIEW';
-  if (rt) rt.textContent = previewRange ? `PREVIEW (${previewRange})` : 'PREVIEW';
+
+  // Mon noon KST ~ Fri: hide PREVIEW, show only REVIEW (full width).
+  // Weekly calendar (#weekly) has the full list; this section is the curated digest.
+  const kst = new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Seoul' }));
+  const dow = kst.getDay();  // 0=Sun 1=Mon … 5=Fri 6=Sat
+  const h   = kst.getHours();
+  const hidePreview = (dow === 1 && h >= 12) || (dow >= 2 && dow <= 5);
+
+  const grid      = document.querySelector('.macro-week-grid');
+  const rightCard = rt?.closest('.card');
+  const subTitle  = document.getElementById('macroSubTitle');
+
+  if (hidePreview) {
+    if (grid) grid.classList.remove('grid-2');
+    if (rightCard) rightCard.style.display = 'none';
+    if (lt) lt.textContent = reviewRange ? `금주 주요 지표 (${reviewRange})` : '금주 주요 지표';
+    if (subTitle) subTitle.innerHTML = `금주 주요 지표 — Review only <a href="#weekly" class="see-all">캘린더 전체 보기 →</a>`;
+  } else {
+    if (grid) grid.classList.add('grid-2');
+    if (rightCard) rightCard.style.display = '';
+    if (lt) lt.textContent = reviewRange  ? `REVIEW (${reviewRange})`  : 'REVIEW';
+    if (rt) rt.textContent = previewRange ? `PREVIEW (${previewRange})` : 'PREVIEW';
+    if (subTitle) subTitle.innerHTML = `이번주 & 다음주 주요 지표 (각 5개 이내) <a href="#weekly" class="see-all">캘린더 전체 보기 →</a>`;
+  }
 
   renderMacroSide('macroThisWeekBody', data?.thisWeek);
-  renderMacroSide('macroNextWeekBody', data?.nextWeek);
+  if (!hidePreview) {
+    renderMacroSide('macroNextWeekBody', data?.nextWeek);
+  }
 }
 
 function renderMacroSide(tbodyId, events) {
