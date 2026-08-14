@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-08-14T00:24:03Z",
-    "updatedKr":  "2026-08-14 09:24:03",
+    "updated":  "2026-08-14T08:06:59Z",
+    "updatedKr":  "2026-08-14 17:06:59",
     "countries":  [
                       "5",
                       "35",
@@ -156,7 +156,7 @@
                        "indicator":  "Retail Sales (MoM)",
                        "period":  "Jul",
                        "actual":  "",
-                       "forecast":  "0.3%",
+                       "forecast":  "0.1%",
                        "previous":  "0.2%",
                        "type":  "review"
                    },

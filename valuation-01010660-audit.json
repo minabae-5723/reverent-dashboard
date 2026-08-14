@@ -1,0 +1,39 @@
+﻿{
+    "company":  "HLineShipping",
+    "corp_code":  "01010660",
+    "source":  "DART raw document",
+    "report_nm":  "연결감사보고서 (2025.12)",
+    "rcept_no":  "20260330001657",
+    "rcept_dt":  "20260330",
+    "fiscal_period":  "FY2025",
+    "unit":  "100M KRW",
+    "pnl":  {
+                "revenue":  12855,
+                "operating_income":  3694,
+                "depreciation":  3708,
+                "amortisation":  136,
+                "da_total":  3844,
+                "ebitda":  7538,
+                "net_income":  32
+            },
+    "equity_total":  18557,
+    "liabilities":  71352,
+    "assets":  89909,
+    "debt":  {
+                 "st_borrowings":  350,
+                 "current_lt_borrowings":  3305,
+                 "lt_borrowings":  51849,
+                 "bonds":  null,
+                 "current_lease":  null,
+                 "lease":  904
+             },
+    "cash":  {
+                 "cash_and_equivalents":  1013,
+                 "st_financial_invest":  13
+             },
+    "derived":  {
+                    "total_debt":  56408,
+                    "total_cash":  1026,
+                    "net_debt":  55382
+                }
+}

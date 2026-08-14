@@ -1,9 +1,9 @@
 {
-    "company":  "롯데렌탈",
+    "company":  "LotteRental",
     "corp_code":  "00545716",
     "fiscal_period":  "LTM Q1 2026 (FY2025 + Q12026 - Q12025)",
     "unit":  "100M KRW",
-    "fetched_at":  "2026-07-03 18:19:35",
+    "fetched_at":  "2026-08-14 16:35:09",
     "pnl":  {
                 "revenue":  29640,
                 "operating_income":  3291,
