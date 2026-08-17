@@ -235,6 +235,24 @@ function Save-Calendar {
     # leaving events empty and the #weekly view blank. market-update-frozen.json
     # holds this-week / next-week top events in the SAME schema (Monday snapshot),
     # so fill from it when the live scrape returns nothing -> calendar never empty.
+    #
+    # BUT: never let a 403 destroy a good file. The full calendar is periodically
+    # refilled by hand from a logged-in browser (same-origin fetch bypasses
+    # Cloudflare, ~50 events vs the frozen digest's ~6). Every server start used to
+    # overwrite that with the thin fallback. So if the existing file already holds
+    # real investing data for the SAME tab/range, keep it and bail out.
+    if ($events.Count -eq 0 -and (Test-Path $OutPath)) {
+        try {
+            $prev = Get-Content $OutPath -Raw -Encoding UTF8 | ConvertFrom-Json
+            $prevTab = if ($Tab -eq 'custom') { "custom $DateFrom~$DateTo" } else { $Tab }
+            if ($prev.source -eq 'investing' -and $prev.tab -eq $prevTab -and @($prev.events).Count -gt 0) {
+                Write-Host ("  keep existing investing data ({0} events) -> {1}" -f @($prev.events).Count, (Split-Path $OutPath -Leaf)) -ForegroundColor DarkYellow
+                $highImpPrev = (@($prev.events) | Where-Object { $_.importance -ge 2 }).Count
+                return [PSCustomObject]@{ count = @($prev.events).Count; highImp = $highImpPrev; path = $OutPath }
+            }
+        } catch {}
+    }
+
     $srcNote = 'investing'
     if ($events.Count -eq 0 -and $FrozenKey) {
         $frozenPath = Join-Path $PSScriptRoot 'market-update-frozen.json'
