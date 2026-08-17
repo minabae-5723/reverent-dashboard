@@ -1,34 +1,34 @@
 {
-    "updated":  "2026-08-14T17:07:40+09:00",
+    "updated":  "2026-08-18T08:25:57+09:00",
     "source":  "finance.naver.com exchangeDailyQuote (Seoul 留ㅻℓ湲곗???",
     "fx":  {
                "USDKRW":  {
-                              "current":  1414.3,
-                              "wow":  0.23,
-                              "mom":  -5.84,
-                              "ytd":  -2.33,
+                              "current":  1417.5,
+                              "wow":  0.46,
+                              "mom":  -5.63,
+                              "ytd":  -2.11,
                               "asOf":  "2026-08-14",
                               "prevDate":  "2026-08-07"
                           },
                "USDJPY":  {
-                              "current":  159.189,
-                              "wow":  0.92,
-                              "mom":  -1.52,
-                              "ytd":  2.6,
+                              "current":  159.426,
+                              "wow":  1.08,
+                              "mom":  -1.39,
+                              "ytd":  2.74,
                               "asOf":  "2026-08-14"
                           },
                "USDCNY":  {
-                              "current":  6.7428,
-                              "wow":  0,
+                              "current":  6.7433,
+                              "wow":  0.01,
                               "mom":  -0.57,
                               "ytd":  -2.25,
                               "asOf":  "2026-08-14"
                           },
                "USDEUR":  {
-                              "current":  0.8656,
-                              "wow":  0.11,
-                              "mom":  -1.22,
-                              "ytd":  2,
+                              "current":  0.8636,
+                              "wow":  -0.12,
+                              "mom":  -1.45,
+                              "ytd":  1.79,
                               "asOf":  "2026-08-14"
                           }
            }
