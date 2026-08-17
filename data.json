@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-08-17T23:34:13Z",
-    "updatedKr":  "2026-08-18 08:34:13",
+    "updated":  "2026-08-17T23:37:39Z",
+    "updatedKr":  "2026-08-18 08:37:39",
     "index":  [
                   {
                       "key":  "KOSPI",
@@ -141,34 +141,34 @@
                       {
                           "key":  "WTI",
                           "symbol":  "CL=F",
-                          "current":  85.03,
-                          "wow":  3.53,
-                          "mom":  3.08,
-                          "ytd":  48.34,
+                          "current":  85.04,
+                          "wow":  3.54,
+                          "mom":  3.09,
+                          "ytd":  48.36,
                           "type":  "pct",
-                          "asOf":  "2026-08-18T08:24:02",
+                          "asOf":  "2026-08-18T08:27:05",
                           "ok":  true
                       },
                       {
                           "key":  "GOLD",
                           "symbol":  "GC=F",
-                          "current":  4472.8,
-                          "wow":  2.54,
-                          "mom":  11.47,
-                          "ytd":  3.67,
+                          "current":  4477.6,
+                          "wow":  2.65,
+                          "mom":  11.59,
+                          "ytd":  3.78,
                           "type":  "pct",
-                          "asOf":  "2026-08-18T08:24:17",
+                          "asOf":  "2026-08-18T08:27:37",
                           "ok":  true
                       },
                       {
                           "key":  "COPPER",
                           "symbol":  "HG=F",
-                          "current":  6.61,
-                          "wow":  0.24,
-                          "mom":  6.27,
-                          "ytd":  17.2,
+                          "current":  6.613,
+                          "wow":  0.28,
+                          "mom":  6.32,
+                          "ytd":  17.25,
                           "type":  "pct",
-                          "asOf":  "2026-08-18T08:22:30",
+                          "asOf":  "2026-08-18T08:27:00",
                           "ok":  true
                       },
                       {
