@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-08-17T08:37:33Z",
-    "updatedKr":  "2026-08-17 17:37:33",
+    "updated":  "2026-08-17T08:38:58Z",
+    "updatedKr":  "2026-08-17 17:38:58",
     "index":  [
                   {
                       "key":  "KOSPI",
@@ -141,45 +141,45 @@
                       {
                           "key":  "WTI",
                           "symbol":  "CL=F",
-                          "current":  82.26,
-                          "wow":  0.16,
-                          "mom":  -0.28,
-                          "ytd":  43.51,
+                          "current":  82.11,
+                          "wow":  -0.02,
+                          "mom":  -0.46,
+                          "ytd":  43.25,
                           "type":  "pct",
-                          "asOf":  "2026-08-17T17:27:31",
+                          "asOf":  "2026-08-17T17:29:02",
                           "ok":  true
                       },
                       {
                           "key":  "GOLD",
                           "symbol":  "GC=F",
-                          "current":  4458.7,
-                          "wow":  2.22,
-                          "mom":  11.11,
-                          "ytd":  3.34,
+                          "current":  4457.8,
+                          "wow":  2.2,
+                          "mom":  11.09,
+                          "ytd":  3.32,
                           "type":  "pct",
-                          "asOf":  "2026-08-17T17:27:36",
+                          "asOf":  "2026-08-17T17:29:01",
                           "ok":  true
                       },
                       {
                           "key":  "COPPER",
                           "symbol":  "HG=F",
-                          "current":  6.694,
-                          "wow":  1.51,
-                          "mom":  7.62,
-                          "ytd":  18.69,
+                          "current":  6.693,
+                          "wow":  1.49,
+                          "mom":  7.6,
+                          "ytd":  18.67,
                           "type":  "pct",
-                          "asOf":  "2026-08-17T17:27:12",
+                          "asOf":  "2026-08-17T17:29:02",
                           "ok":  true
                       },
                       {
                           "key":  "WHEAT",
                           "symbol":  "ZW=F",
-                          "current":  686,
-                          "wow":  7.1,
-                          "mom":  0.48,
-                          "ytd":  35.44,
+                          "current":  685.75,
+                          "wow":  7.06,
+                          "mom":  0.44,
+                          "ytd":  35.39,
                           "type":  "pct",
-                          "asOf":  "2026-08-17T17:27:32",
+                          "asOf":  "2026-08-17T17:29:05",
                           "ok":  true
                       }
                   ],
@@ -235,12 +235,12 @@
                {
                    "key":  "DXY",
                    "symbol":  "DX-Y.NYB",
-                   "current":  99.311,
-                   "wow":  -0.5,
-                   "mom":  -1.43,
-                   "ytd":  0.91,
+                   "current":  99.298,
+                   "wow":  -0.51,
+                   "mom":  -1.44,
+                   "ytd":  0.89,
                    "type":  "pct",
-                   "asOf":  "2026-08-17T17:27:33",
+                   "asOf":  "2026-08-17T17:28:59",
                    "ok":  true
                }
            ],
