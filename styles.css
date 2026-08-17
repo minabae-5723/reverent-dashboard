@@ -1472,6 +1472,14 @@ html, body {
   color: var(--text);
 }
 
+/* Macro weekly cards — compact */
+.macro-week-grid { gap: 10px; }
+.macro-week-grid .card { padding: 10px 12px; }
+.macro-week-grid .card-title { font-size: 12px; margin: 0 0 6px 0; padding-bottom: 5px; }
+.macro-week-grid .indicator-table { font-size: 12px; }
+.macro-week-grid .indicator-table th { font-size: 10px; padding: 4px 6px; }
+.macro-week-grid .indicator-table td { padding: 4px 6px; }
+
 .event-indicator .period-tag,
 .macro-week-grid .period-tag {
   font-size: 10.5px;

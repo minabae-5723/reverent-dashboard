@@ -2626,7 +2626,7 @@ function showView(name) {
   if (name === 'weekly' && !weeklyCache) loadWeeklyCalendar();
   if (name === 'news') loadNewsIndex();
   if (name === 'market') loadMarketIndex();
-  if (name === 'deals') loadDealsIndex();
+  if (name === 'deals' && dealsState.dates.length === 0) loadDealsIndex();
   if (name === 'semicon') loadSemicon();
   if (name === 'peer') loadPeer();
   window.scrollTo({ top: 0 });
@@ -4068,6 +4068,7 @@ loadData();
 loadWeeklyCalendar();
 loadShiller();
 loadFedWatch();
+loadDealsIndex();
 // Manual refresh mode — no setInterval. Data is re-fetched only when:
 //   - User clicks the ↻ 새로고침 button (forceRefresh → /refresh → Yahoo + Investing)
 //   - User reloads the page
