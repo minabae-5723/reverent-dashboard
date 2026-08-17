@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-08-17T07:03:10Z",
-    "updatedKr":  "2026-08-17 16:03:10",
+    "updated":  "2026-08-17T07:03:14Z",
+    "updatedKr":  "2026-08-17 16:03:14",
     "index":  [
                   {
                       "key":  "KOSPI",
@@ -60,12 +60,12 @@
                   {
                       "key":  "SHANGHAI",
                       "symbol":  "000001.SS",
-                      "current":  3979.715,
+                      "current":  3979.6355,
                       "wow":  0.33,
-                      "mom":  5.73,
+                      "mom":  5.72,
                       "ytd":  -1.09,
                       "type":  "pct",
-                      "asOf":  "2026-08-17T15:48:05",
+                      "asOf":  "2026-08-17T15:48:10",
                       "ok":  true
                   }
               ],
@@ -152,23 +152,23 @@
                       {
                           "key":  "GOLD",
                           "symbol":  "GC=F",
-                          "current":  4459.9,
-                          "wow":  2.25,
-                          "mom":  11.14,
-                          "ytd":  3.37,
+                          "current":  4459.4,
+                          "wow":  2.24,
+                          "mom":  11.13,
+                          "ytd":  3.36,
                           "type":  "pct",
-                          "asOf":  "2026-08-17T15:53:05",
+                          "asOf":  "2026-08-17T15:53:09",
                           "ok":  true
                       },
                       {
                           "key":  "COPPER",
                           "symbol":  "HG=F",
-                          "current":  6.725,
-                          "wow":  1.98,
-                          "mom":  8.12,
-                          "ytd":  19.24,
+                          "current":  6.724,
+                          "wow":  1.96,
+                          "mom":  8.1,
+                          "ytd":  19.22,
                           "type":  "pct",
-                          "asOf":  "2026-08-17T15:53:07",
+                          "asOf":  "2026-08-17T15:53:09",
                           "ok":  true
                       },
                       {
