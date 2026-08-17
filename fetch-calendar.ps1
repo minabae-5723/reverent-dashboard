@@ -291,11 +291,14 @@ do {
     $wb = Get-WeekBounds
     # 라벨용 Review 구간(월~오늘) + #weekly 뷰용 이번주 전체(월~일)
     $reviewFrom  = '{0:yyyy-MM-dd}' -f $wb.thisMon
-    $reviewTo    = '{0:yyyy-MM-dd}' -f $wb.today
     $weekFrom    = '{0:yyyy-MM-dd}' -f $wb.thisMon
     $weekTo      = '{0:yyyy-MM-dd}' -f $wb.thisSun
     $previewFrom = '{0:yyyy-MM-dd}' -f $wb.nextMon
     $previewTo   = '{0:yyyy-MM-dd}' -f $wb.nextSun
+    # REVIEW/PREVIEW 카드 제목에 찍히는 라벨은 영업주(월~금) 기준으로 고정한다.
+    # (fetch 구간은 위 월~일 그대로 두고 라벨만 금요일에서 끊는다)
+    $reviewLabelTo  = '{0:yyyy-MM-dd}' -f $wb.thisMon.AddDays(4)
+    $previewLabelTo = '{0:yyyy-MM-dd}' -f $wb.nextMon.AddDays(4)
 
     $today    = Save-Calendar -Tab 'today' -OutPath $TodayFile -FrozenKey 'thisWeek'
     $week     = Save-Calendar -Tab 'custom' -DateFrom $weekFrom    -DateTo $weekTo    -OutPath $WeekFile     -FrozenKey 'thisWeek'
@@ -307,10 +310,11 @@ do {
     Write-Host ("  Preview ({0}~{1}): {2} events ({3} medium+) -> calendar-next-week.json" -f $previewFrom, $previewTo, $nextWeek.count, $nextWeek.highImp) -ForegroundColor Green
 
     # ─── Frozen weekly snapshot for Market Update dashboard section ───
-    # Refreshes only on Fri/Sat/Sun (or if missing), so the displayed top-5
-    # macro events Mon-Thu stay locked to last weekend's snapshot.
+    # REVIEW/PREVIEW 짝은 '일요일'에만 넘어간다 (사용자 규칙).
+    # 일요일 freeze → REVIEW = 막 끝난 주, PREVIEW = 다가오는 주.
+    # 월~토에는 그 짝이 그대로 유지되므로 주중에 라벨이 바뀌지 않는다.
     $dow = (Get-Date).DayOfWeek
-    $isWeekend = ($dow -eq [System.DayOfWeek]::Friday) -or ($dow -eq [System.DayOfWeek]::Saturday) -or ($dow -eq [System.DayOfWeek]::Sunday)
+    $isRollDay = ($dow -eq [System.DayOfWeek]::Sunday)
 
     # Preserve manual curation: if a freeze for THIS week already exists, keep it.
     # Week identity = this-week Monday ($reviewFrom) + next-week Monday ($previewFrom),
@@ -327,7 +331,7 @@ do {
             if ($exRevFrom -eq $reviewFrom -and $exPrevFrom -eq $previewFrom) { $sameWeek = $true }
         } catch {}
     }
-    $shouldFreeze = (-not (Test-Path $FrozenFile)) -or ($isWeekend -and -not $sameWeek)
+    $shouldFreeze = (-not (Test-Path $FrozenFile)) -or ($isRollDay -and -not $sameWeek)
     if ($shouldFreeze) {
         $weekData = $null; $nextData = $null
         try { $weekData = Get-Content $WeekFile     -Raw -Encoding UTF8 | ConvertFrom-Json } catch {}
@@ -414,8 +418,8 @@ do {
             updated      = (Get-Date).ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ")
             updatedKr    = (Get-Date).ToString('yyyy-MM-dd HH:mm:ss')
             frozenDow    = $dow.ToString()
-            reviewRange  = "$reviewFrom~$reviewTo"
-            previewRange = "$previewFrom~$previewTo"
+            reviewRange  = "$reviewFrom~$reviewLabelTo"
+            previewRange = "$previewFrom~$previewLabelTo"
             thisWeek     = @($thisTop5)   # legacy name kept for app.js compat — actually "Review" content
             nextWeek     = @($nextTop5)   # legacy name kept — actually "Preview" content
         }

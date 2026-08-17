@@ -330,34 +330,22 @@ function renderMacroWeekly(data) {
   const lt = document.getElementById('macroLeftTitle');
   const rt = document.getElementById('macroRightTitle');
 
-  // Mon noon KST ~ Fri: hide PREVIEW, show only REVIEW (full width).
-  // Weekly calendar (#weekly) has the full list; this section is the curated digest.
-  const kst = new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Seoul' }));
-  const dow = kst.getDay();  // 0=Sun 1=Mon … 5=Fri 6=Sat
-  const h   = kst.getHours();
-  const hidePreview = (dow === 1 && h >= 12) || (dow >= 2 && dow <= 5);
-
+  // Always REVIEW / PREVIEW, all week long. The pairing rolls over at the
+  // weekend freeze (Sun): REVIEW = the week that just ended, PREVIEW = the
+  // week ahead. Never relabel to 금주/이번주/다음주 — the user wants the
+  // REVIEW/PREVIEW wording permanently.
   const grid      = document.querySelector('.macro-week-grid');
   const rightCard = rt?.closest('.card');
   const subTitle  = document.getElementById('macroSubTitle');
 
-  if (hidePreview) {
-    if (grid) grid.classList.remove('grid-2');
-    if (rightCard) rightCard.style.display = 'none';
-    if (lt) lt.textContent = reviewRange ? `금주 주요 지표 (${reviewRange})` : '금주 주요 지표';
-    if (subTitle) subTitle.innerHTML = `금주 주요 지표 — Review only <a href="#weekly" class="see-all">캘린더 전체 보기 →</a>`;
-  } else {
-    if (grid) grid.classList.add('grid-2');
-    if (rightCard) rightCard.style.display = '';
-    if (lt) lt.textContent = reviewRange  ? `REVIEW (${reviewRange})`  : 'REVIEW';
-    if (rt) rt.textContent = previewRange ? `PREVIEW (${previewRange})` : 'PREVIEW';
-    if (subTitle) subTitle.innerHTML = `이번주 & 다음주 주요 지표 (각 5개 이내) <a href="#weekly" class="see-all">캘린더 전체 보기 →</a>`;
-  }
+  if (grid) grid.classList.add('grid-2');
+  if (rightCard) rightCard.style.display = '';
+  if (lt) lt.textContent = reviewRange  ? `REVIEW (${reviewRange})`  : 'REVIEW';
+  if (rt) rt.textContent = previewRange ? `PREVIEW (${previewRange})` : 'PREVIEW';
+  if (subTitle) subTitle.innerHTML = `REVIEW & PREVIEW 주요 지표 (각 5개 이내) <a href="#weekly" class="see-all">캘린더 전체 보기 →</a>`;
 
   renderMacroSide('macroThisWeekBody', data?.thisWeek);
-  if (!hidePreview) {
-    renderMacroSide('macroNextWeekBody', data?.nextWeek);
-  }
+  renderMacroSide('macroNextWeekBody', data?.nextWeek);
 }
 
 function renderMacroSide(tbodyId, events) {
