@@ -509,12 +509,17 @@ do {
                 return $count
             }
 
+            # 일요일 롤 정책(2026-08-17)에서 frozen.thisWeek = 막 끝난 주,
+            # frozen.nextWeek = '지금 진행 중인 주'다. 즉 nextWeek의 실제치는
+            # calendar-next-week.json이 아니라 calendar-week.json에 들어온다.
+            # 매칭 키가 datetime+indicator 완전일치라 두 소스를 합쳐도 오매칭 없음.
+            $allEvents = @($weekEvents) + @($nextEvents)
             if ($fz.thisWeek) {
-                $patched += & $patchFromCalendar $fz.thisWeek $weekEvents
+                $patched += & $patchFromCalendar $fz.thisWeek $allEvents
                 $patched += & $patchFromLive $fz.thisWeek $todayLive
             }
             if ($fz.nextWeek) {
-                $patched += & $patchFromCalendar $fz.nextWeek $nextEvents
+                $patched += & $patchFromCalendar $fz.nextWeek $allEvents
                 $patched += & $patchFromLive $fz.nextWeek $todayLive
             }
 

@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-08-17T05:20:00Z",
-    "updatedKr":  "2026-08-17 14:20:00",
+    "updated":  "2026-08-18T23:27:56Z",
+    "updatedKr":  "2026-08-19 08:27:56",
     "frozenDow":  "Sunday",
     "reviewRange":  "2026-08-10~2026-08-14",
     "previewRange":  "2026-08-17~2026-08-21",
@@ -138,7 +138,7 @@
                          "indicator":  "Core CPI (YoY)",
                          "period":  "Jul",
                          "actual":  "",
-                         "forecast":  "1.8%",
+                         "forecast":  "1.7%",
                          "previous":  "1.6%",
                          "type":  "preview"
                      },
@@ -153,7 +153,7 @@
                          "indicator":  "Headline CPI (YoY)",
                          "period":  "Jul",
                          "actual":  "",
-                         "forecast":  "",
+                         "forecast":  "1.7%",
                          "previous":  "1.7%",
                          "type":  "preview"
                      },
@@ -168,7 +168,7 @@
                          "indicator":  "S&P Global Manufacturing PMI (Flash)",
                          "period":  "Aug",
                          "actual":  "",
-                         "forecast":  "54.0",
+                         "forecast":  "53.5",
                          "previous":  "53.9",
                          "type":  "preview"
                      },
@@ -183,7 +183,7 @@
                          "indicator":  "S&P Global Services PMI (Flash)",
                          "period":  "Aug",
                          "actual":  "",
-                         "forecast":  "53.9",
+                         "forecast":  "53.8",
                          "previous":  "54.6",
                          "type":  "preview"
                      }
