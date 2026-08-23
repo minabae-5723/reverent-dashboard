@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-08-23T01:43:40Z",
-    "updatedKr":  "2026-08-23 10:43:40",
+    "updated":  "2026-08-23T04:17:56Z",
+    "updatedKr":  "2026-08-23 13:17:56",
     "frozenDow":  "Sunday",
     "reviewRange":  "2026-08-17~2026-08-21",
     "previewRange":  "2026-08-24~2026-08-28",
@@ -91,7 +91,7 @@
                          "indicator":  "S\u0026P Global Manufacturing PMI",
                          "period":  "Aug",
                          "actual":  "53.2",
-                         "forecast":  "53.9",
+                         "forecast":  "54.0",
                          "previous":  "53.9",
                          "type":  "review"
                      },
@@ -106,7 +106,7 @@
                          "indicator":  "S\u0026P Global Services PMI",
                          "period":  "Aug",
                          "actual":  "56.8",
-                         "forecast":  "54.0",
+                         "forecast":  "53.9",
                          "previous":  "54.6",
                          "type":  "review"
                      }
@@ -123,7 +123,7 @@
                          "indicator":  "S\u0026P/CS HPI Composite - 20 n.s.a. (YoY)",
                          "period":  "Jun",
                          "actual":  "",
-                         "forecast":  "",
+                         "forecast":  "1.9%",
                          "previous":  "1.6%",
                          "type":  "preview"
                      },
@@ -138,7 +138,7 @@
                          "indicator":  "New Home Sales",
                          "period":  "Jul",
                          "actual":  "",
-                         "forecast":  "",
+                         "forecast":  "620K",
                          "previous":  "628K",
                          "type":  "preview"
                      },
@@ -153,7 +153,7 @@
                          "indicator":  "CB Consumer Confidence",
                          "period":  "Aug",
                          "actual":  "",
-                         "forecast":  "",
+                         "forecast":  "90.3",
                          "previous":  "90.8",
                          "type":  "preview"
                      },
@@ -168,7 +168,7 @@
                          "indicator":  "Durable Goods Orders (MoM)",
                          "period":  "Jul",
                          "actual":  "",
-                         "forecast":  "",
+                         "forecast":  "0.5%",
                          "previous":  "0.5%",
                          "type":  "preview"
                      },
@@ -183,7 +183,7 @@
                          "indicator":  "Core PCE Price Index (YoY)",
                          "period":  "Jul",
                          "actual":  "",
-                         "forecast":  "",
+                         "forecast":  "3.3%",
                          "previous":  "3.3%",
                          "type":  "preview"
                      },
@@ -213,7 +213,7 @@
                          "indicator":  "GDP (QoQ)",
                          "period":  "Q2",
                          "actual":  "",
-                         "forecast":  "",
+                         "forecast":  "1.5%",
                          "previous":  "1.5%",
                          "type":  "preview"
                      }
