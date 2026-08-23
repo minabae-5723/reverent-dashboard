@@ -1735,8 +1735,18 @@ function _ensureMacroPasteHandler() {
   });
 }
 
+// Section-level card-news grid on Macro 동향.
+//
+// DISABLED 2026-08-23 (user request): "macro 동향 카드뉴스 ui ... 삭제" — the
+// paste/add card grid that sat above the Macro 동향 articles is gone, same as
+// the per-article slot on 자본시장 동향 below. Articles and the economic
+// calendar are untouched; only this grid was removed.
+//
+// To re-enable, restore the /macro|매크로/i test. Saved cards are untouched:
+// they live in localStorage under macro-notes-<weekDate> keys, so flipping
+// this back on brings any previously pasted cards straight back.
 function _isMacroSection(name) {
-  return /macro|매크로/i.test(name || '');
+  return false;
 }
 
 // Per-article card-news slots.
