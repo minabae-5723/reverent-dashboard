@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-08-22T11:21:57Z",
-    "updatedKr":  "2026-08-22 20:21:57",
+    "updated":  "2026-08-23T04:23:27Z",
+    "updatedKr":  "2026-08-23 13:23:27",
     "source":  "38.co.kr new-listings (o=nw) + Naver Finance (market cap)",
     "companies":  [
                       {
@@ -49,15 +49,15 @@
                           "name":  "인제니아테라퓨틱스",
                           "listDate":  "2026/08/18",
                           "listIso":  "2026-08-18",
-                          "code":  "952509",
+                          "code":  "950260",
                           "detailNo":  2298,
                           "ipoPrice":  12000,
-                          "curPrice":  17990,
+                          "curPrice":  15770,
                           "openPrice":  10960,
-                          "todayChg":  0,
-                          "curVsIpo":  0.4992,
+                          "todayChg":  -0.1397,
+                          "curVsIpo":  0.3142,
                           "openVsIpo":  -0.0867,
-                          "mcap":  null
+                          "mcap":  7797
                       },
                       {
                           "name":  "케이앤에스아이앤씨",

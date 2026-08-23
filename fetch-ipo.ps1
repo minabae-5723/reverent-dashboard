@@ -93,6 +93,12 @@ function Parse-Num {
 # under PS 5.1's cp949 source decoding.
 $spacKo = [string]([char]0xC2A4 + [char]0xD329)
 
+# 38.co.kr code -> code Naver Finance actually serves. See use site below.
+#   952509 -> 950260  INGENIA Therapeutics (Reg.S), listed 2026-08-18
+$CodeOverride = @{
+    '952509' = '950260'
+}
+
 $companies = @()
 $skippedSpac = 0
 foreach ($rm in $rowMatches) {
@@ -119,6 +125,12 @@ foreach ($rm in $rowMatches) {
     $code = $null
     $codeM = [regex]::Match($rowHtml, "chart_page_new\.php3\?code=([A-Za-z0-9]+)")
     if ($codeM.Success) { $code = $codeM.Groups[1].Value }
+
+    # 38.co.kr occasionally carries a code Naver Finance does not resolve
+    # (foreign-domiciled listings, Reg.S tranches). Naver 302s to the front
+    # page for those, so the mcap/curPrice scrape silently yields $null.
+    # Map the bad code to the one Naver actually serves.
+    if ($code -and $CodeOverride.ContainsKey($code)) { $code = $CodeOverride[$code] }
 
     # 38 detail page id (no=NNNN), for reference.
     $detailNo = $null
