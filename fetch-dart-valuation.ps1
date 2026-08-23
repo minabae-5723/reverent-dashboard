@@ -17,7 +17,8 @@ param(
     [string]$CorpName = '',
     [string]$CorpCode = '',
     [int]$Year       = 2025,
-    [switch]$LTM     = $false   # Build LTM = FY + Q1_next - Q1_curr (income); BS = latest quarter
+    [switch]$LTM     = $false,  # Build LTM = FY + interim_next - interim_curr (income); BS = latest interim
+    [int]$Quarter    = 2        # Interim report used for LTM: 1=Q1(11013), 2=H1/half-year(11012), 3=Q3cum(11014)
 )
 
 $ErrorActionPreference = 'Stop'
@@ -101,28 +102,44 @@ if (-not $rowsAnnual) {
     exit 1
 }
 
-# ── LTM: also fetch Q1 of (Year+1) and Q1 of Year ──
-# LTM_PnL[i] = annual[i] + q1_next[i] - q1_curr[i]   (for income statement)
-# LTM_BS[i]  = q1_next[i] (latest balance)
+# ── LTM: also fetch the interim report of (Year+1) and of Year ──
+# LTM_PnL[i] = annual[i] + interim_next[i] - interim_curr[i]   (for income statement)
+# LTM_BS[i]  = interim_next[i] (latest balance)
+#
+# Interim report code by -Quarter. IMPORTANT: for Q1 (11013) the DART field
+# 'thstrm_amount' already IS the cumulative 3-month figure, but for the
+# half-year (11012) and Q3 (11014) reports 'thstrm_amount' holds only the
+# standalone 3-month column -- the cumulative (6M / 9M) figure lives in
+# 'thstrm_add_amount'. Using the wrong field silently understates LTM P&L.
+$reprtByQuarter   = @{ 1 = '11013'; 2 = '11012'; 3 = '11014' }
+$labelByQuarter   = @{ 1 = 'Q1';    2 = '2Q(H1 cum)'; 3 = '3Q(9M cum)' }
+$interimReprtCode = $reprtByQuarter[$Quarter]
+$interimLabel     = $labelByQuarter[$Quarter]
+$interimField     = if ($Quarter -eq 1) { 'thstrm_amount' } else { 'thstrm_add_amount' }
+if (-not $interimReprtCode) {
+    Write-Host "FATAL: -Quarter must be 1, 2 or 3" -ForegroundColor Red
+    exit 1
+}
+
 $rowsQ1Next = $null
 $rowsQ1Curr = $null
 $useLtm = $false
 if ($LTM) {
-    Write-Host ("Fetching Q1 " + ($Year + 1) + " (CFS) for LTM...") -ForegroundColor Yellow
-    $rowsQ1Next = Fetch-DartStatements -Corp $CorpCode -BsnsYear ($Year + 1) -ReprtCode 11013 -FsDiv 'CFS'
+    Write-Host ("Fetching " + $interimLabel + " " + ($Year + 1) + " (CFS) for LTM...") -ForegroundColor Yellow
+    $rowsQ1Next = Fetch-DartStatements -Corp $CorpCode -BsnsYear ($Year + 1) -ReprtCode $interimReprtCode -FsDiv 'CFS'
     if (-not $rowsQ1Next) {
-        $rowsQ1Next = Fetch-DartStatements -Corp $CorpCode -BsnsYear ($Year + 1) -ReprtCode 11013 -FsDiv 'OFS'
+        $rowsQ1Next = Fetch-DartStatements -Corp $CorpCode -BsnsYear ($Year + 1) -ReprtCode $interimReprtCode -FsDiv 'OFS'
     }
-    Write-Host ("Fetching Q1 " + $Year + " (CFS) for LTM baseline...") -ForegroundColor Yellow
-    $rowsQ1Curr = Fetch-DartStatements -Corp $CorpCode -BsnsYear $Year -ReprtCode 11013 -FsDiv 'CFS'
+    Write-Host ("Fetching " + $interimLabel + " " + $Year + " (CFS) for LTM baseline...") -ForegroundColor Yellow
+    $rowsQ1Curr = Fetch-DartStatements -Corp $CorpCode -BsnsYear $Year -ReprtCode $interimReprtCode -FsDiv 'CFS'
     if (-not $rowsQ1Curr) {
-        $rowsQ1Curr = Fetch-DartStatements -Corp $CorpCode -BsnsYear $Year -ReprtCode 11013 -FsDiv 'OFS'
+        $rowsQ1Curr = Fetch-DartStatements -Corp $CorpCode -BsnsYear $Year -ReprtCode $interimReprtCode -FsDiv 'OFS'
     }
     if ($rowsQ1Next -and $rowsQ1Curr) {
         $useLtm = $true
-        Write-Host (" -> LTM mode active: FY$Year + Q1$($Year+1) - Q1$Year") -ForegroundColor Green
+        Write-Host (" -> LTM mode active: FY$Year + $interimLabel$($Year+1) - $interimLabel$Year  (P&L field: $interimField)") -ForegroundColor Green
     } else {
-        Write-Host (" -> Q1 data missing — using FY only") -ForegroundColor Yellow
+        Write-Host (" -> interim data missing -- using FY only") -ForegroundColor Yellow
     }
 }
 
@@ -156,18 +173,25 @@ function Get-PnL {
         [string]$NameKr2 = ''
     )
     $tryGet = {
-        param([array]$rows)
+        param([array]$rows, [string]$field = 'thstrm_amount')
         if (-not $rows) { return $null }
-        $v = Get-Value -Rows $rows -AccountIds $AccountIds
-        if ($null -eq $v -and $NameKr1) { $v = Get-ValueByName -Rows $rows -NameKr $NameKr1 }
-        if ($null -eq $v -and $NameKr2) { $v = Get-ValueByName -Rows $rows -NameKr $NameKr2 }
+        $v = Get-Value -Rows $rows -AccountIds $AccountIds -Field $field
+        if ($null -eq $v -and $NameKr1) { $v = Get-ValueByName -Rows $rows -NameKr $NameKr1 -Field $field }
+        if ($null -eq $v -and $NameKr2) { $v = Get-ValueByName -Rows $rows -NameKr $NameKr2 -Field $field }
+        # Half-year / Q3 filings sometimes leave the cumulative column blank;
+        # fall back to the 3-month column rather than dropping the whole LTM.
+        if ($null -eq $v -and $field -ne 'thstrm_amount') {
+            $v = Get-Value -Rows $rows -AccountIds $AccountIds
+            if ($null -eq $v -and $NameKr1) { $v = Get-ValueByName -Rows $rows -NameKr $NameKr1 }
+            if ($null -eq $v -and $NameKr2) { $v = Get-ValueByName -Rows $rows -NameKr $NameKr2 }
+        }
         return $v
     }
     $annual = & $tryGet $rowsAnnual
     if (-not $useLtm) { return $annual }
 
-    $q1Next = & $tryGet $rowsQ1Next
-    $q1Curr = & $tryGet $rowsQ1Curr
+    $q1Next = & $tryGet $rowsQ1Next $interimField
+    $q1Curr = & $tryGet $rowsQ1Curr $interimField
     if ($null -eq $annual -or $null -eq $q1Next -or $null -eq $q1Curr) {
         # Insufficient data for LTM — fall back to annual
         return $annual
@@ -236,7 +260,7 @@ $ebitda = if (($null -ne $opInc) -and ($null -ne $depr)) { $opInc + $depr } else
 $out = [ordered]@{
     company         = $CorpName
     corp_code       = $CorpCode
-    fiscal_period   = if ($useLtm) { ("LTM Q1 " + ($Year + 1) + " (FY$Year + Q1$($Year+1) - Q1$Year)") } else { "FY$Year Annual (Consolidated)" }
+    fiscal_period   = if ($useLtm) { ("LTM " + $Quarter + "Q" + (($Year + 1) % 100) + " (FY$Year + $interimLabel$($Year+1) - $interimLabel$Year)") } else { "FY$Year Annual (Consolidated)" }
     unit            = "100M KRW"
     fetched_at      = (Get-Date).ToString('yyyy-MM-dd HH:mm:ss')
     pnl             = [ordered]@{

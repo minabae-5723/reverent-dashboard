@@ -1,31 +1,31 @@
 {
     "company":  "Refine",
     "corp_code":  "01210066",
-    "fiscal_period":  "LTM Q1 2026 (FY2025 + Q12026 - Q12025)",
+    "fiscal_period":  "LTM 2Q26 (FY2025 + 2Q(H1 cum)2026 - 2Q(H1 cum)2025)",
     "unit":  "100M KRW",
-    "fetched_at":  "2026-08-22 20:21:40",
+    "fetched_at":  "2026-08-23 09:36:53",
     "pnl":  {
-                "revenue":  610,
-                "operating_income":  200,
+                "revenue":  581,
+                "operating_income":  185,
                 "depreciation":  null,
                 "ebitda":  null,
-                "net_income":  105
+                "net_income":  98
             },
-    "equity_total":  2242,
+    "equity_total":  2291,
     "debt":  {
                  "st_borrowings":  null,
                  "current_lt_borrowings":  null,
                  "current_lease":  1,
                  "lt_borrowings":  null,
-                 "nc_lease":  1
+                 "nc_lease":  0
              },
     "cash":  {
-                 "cash_and_equivalents":  60,
+                 "cash_and_equivalents":  81,
                  "st_financial_invest":  null
              },
     "derived":  {
-                    "total_debt":  2,
-                    "total_cash":  60,
-                    "net_debt":  -58
+                    "total_debt":  1,
+                    "total_cash":  81,
+                    "net_debt":  -80
                 }
 }

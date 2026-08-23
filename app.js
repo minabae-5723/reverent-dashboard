@@ -1739,11 +1739,19 @@ function _isMacroSection(name) {
   return /macro|매크로/i.test(name || '');
 }
 
-// Per-article card-news slots are only mounted in 자본시장 동향 (user request).
-// Other sections keep their articles clean; the Macro section still has its own
-// section-level card grid.
+// Per-article card-news slots.
+//
+// DISABLED 2026-08-22 (user request): "자본시장 카드뉴스 추가란만 없애라" — the
+// per-article "+ 카드뉴스" slot that used to hang off every 자본시장 동향 article
+// is gone. The 자본시장 동향 ARTICLES themselves stay; only the paste/add UI was
+// removed. The Macro section keeps its section-level card grid (see _isMacroSection
+// / macroCalendar below) — that one was not part of the request.
+//
+// To re-enable, restore the /자본시장/ test below. Saved cards are untouched:
+// they live in localStorage under macro-notes-<weekDate>::<headline> keys, so
+// flipping this back on brings any previously pasted cards straight back.
 function _isCapitalMarketSection(name) {
-  return /자본시장/.test(name || '');
+  return false;
 }
 
 function renderDealsContent(md) {
