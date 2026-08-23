@@ -1,0 +1,31 @@
+{
+    "company":  "KakaoMobility",
+    "corp_code":  "01250666",
+    "fiscal_period":  "FY2025 Annual (Consolidated)",
+    "unit":  "100M KRW",
+    "fetched_at":  "2026-08-22 20:22:09",
+    "pnl":  {
+                "revenue":  7393,
+                "operating_income":  1155,
+                "depreciation":  null,
+                "ebitda":  null,
+                "net_income":  514
+            },
+    "equity_total":  10970,
+    "debt":  {
+                 "st_borrowings":  0,
+                 "current_lt_borrowings":  null,
+                 "current_lease":  722,
+                 "lt_borrowings":  0,
+                 "nc_lease":  1046
+             },
+    "cash":  {
+                 "cash_and_equivalents":  5051,
+                 "st_financial_invest":  400
+             },
+    "derived":  {
+                    "total_debt":  1768,
+                    "total_cash":  5451,
+                    "net_debt":  -3683
+                }
+}
