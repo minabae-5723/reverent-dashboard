@@ -1,17 +1,17 @@
 {
     "company":  "KDBLife",
     "corp_code":  "00104069",
-    "fiscal_period":  "FY2025 Annual (Consolidated)",
+    "fiscal_period":  "LTM 2Q26 (FY2025 + 2Q(H1 cum)2026 - 2Q(H1 cum)2025)",
     "unit":  "100M KRW",
-    "fetched_at":  "2026-08-14 16:57:53",
+    "fetched_at":  "2026-08-23 14:27:14",
     "pnl":  {
                 "revenue":  null,
-                "operating_income":  -950,
-                "depreciation":  23,
-                "ebitda":  -927,
-                "net_income":  -1119
+                "operating_income":  -971,
+                "depreciation":  30,
+                "ebitda":  -940,
+                "net_income":  -887
             },
-    "equity_total":  4090,
+    "equity_total":  5262,
     "debt":  {
                  "st_borrowings":  null,
                  "current_lt_borrowings":  null,
@@ -20,12 +20,12 @@
                  "nc_lease":  null
              },
     "cash":  {
-                 "cash_and_equivalents":  6784,
+                 "cash_and_equivalents":  1275,
                  "st_financial_invest":  null
              },
     "derived":  {
                     "total_debt":  0,
-                    "total_cash":  6784,
-                    "net_debt":  -6784
+                    "total_cash":  1275,
+                    "net_debt":  -1275
                 }
 }
