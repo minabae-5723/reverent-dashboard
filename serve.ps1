@@ -4,7 +4,7 @@
 #  - Runs refresh.ps1 every 60 sec in background
 #  - Opens browser
 # =============================================================
-param([int]$Port = 8000)
+param([int]$Port = 8000, [switch]$NoBrowser)
 
 # ── Headless-safe logging ─────────────────────────────────────────────
 # When serve.ps1 runs without a real console (scheduled task / detached
@@ -270,7 +270,9 @@ Write-Host "  --> Press Ctrl+C in this window to stop everything" -ForegroundCol
 Write-Host ""
 
 Start-Sleep -Milliseconds 500
-Start-Process $prefix
+# -NoBrowser: used by the logon launcher / keepalive restart so a browser tab
+# does not pop open every time the server is (re)started in the background.
+if (-not $NoBrowser) { Start-Process $prefix }
 
 try {
     while ($listener.IsListening) {

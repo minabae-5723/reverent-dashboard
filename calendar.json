@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-08-23T00:59:59Z",
-    "updatedKr":  "2026-08-23 09:59:59",
+    "updated":  "2026-08-24T01:42:34Z",
+    "updatedKr":  "2026-08-24 10:42:34",
     "countries":  [
                       "5",
                       "35",
@@ -35,10 +35,10 @@
                        "importance":  3,
                        "indicator":  "Crude Oil Inventories",
                        "period":  "",
-                       "actual":  "",
+                       "actual":  "4.4M",
                        "forecast":  "",
                        "previous":  "17.423M",
-                       "type":  "preview"
+                       "type":  "review"
                    },
                    {
                        "id":  "555236",
@@ -53,7 +53,7 @@
                        "actual":  "",
                        "forecast":  "",
                        "previous":  "",
-                       "type":  "preview"
+                       "type":  "review"
                    },
                    {
                        "id":  "555079",
@@ -65,10 +65,10 @@
                        "importance":  3,
                        "indicator":  "Initial Jobless Claims",
                        "period":  "",
-                       "actual":  "",
+                       "actual":  "206K",
                        "forecast":  "210K",
-                       "previous":  "209K",
-                       "type":  "preview"
+                       "previous":  "212K",
+                       "type":  "review"
                    },
                    {
                        "id":  "554545",
@@ -80,10 +80,10 @@
                        "importance":  3,
                        "indicator":  "Philadelphia Fed Manufacturing Index",
                        "period":  "Aug",
-                       "actual":  "",
+                       "actual":  "47.4",
                        "forecast":  "24.3",
                        "previous":  "41.4",
-                       "type":  "preview"
+                       "type":  "review"
                    },
                    {
                        "id":  "554637",
@@ -95,10 +95,10 @@
                        "importance":  3,
                        "indicator":  "S\u0026P Global Manufacturing PMI",
                        "period":  "Aug",
-                       "actual":  "",
+                       "actual":  "53.2",
                        "forecast":  "54.0",
                        "previous":  "53.9",
-                       "type":  "preview"
+                       "type":  "review"
                    },
                    {
                        "id":  "554639",
@@ -110,10 +110,10 @@
                        "importance":  3,
                        "indicator":  "S\u0026P Global Services PMI",
                        "period":  "Aug",
-                       "actual":  "",
+                       "actual":  "56.8",
                        "forecast":  "53.9",
                        "previous":  "54.6",
-                       "type":  "preview"
+                       "type":  "review"
                    }
                ]
 }
