@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-08-25T22:00:25Z",
-    "updatedKr":  "2026-08-26 07:00:25",
+    "updated":  "2026-08-25T23:24:41Z",
+    "updatedKr":  "2026-08-26 08:24:41",
     "countries":  [
                       "5",
                       "35",
@@ -35,7 +35,7 @@
                        "importance":  2,
                        "indicator":  "S\u0026P/CS HPI Composite - 20 n.s.a. (YoY)",
                        "period":  "Jun",
-                       "actual":  "",
+                       "actual":  "2.1%",
                        "forecast":  "1.8%",
                        "previous":  "1.6%",
                        "type":  "review"
@@ -50,8 +50,8 @@
                        "importance":  3,
                        "indicator":  "CB Consumer Confidence",
                        "period":  "Aug",
-                       "actual":  "",
-                       "forecast":  "90.9",
+                       "actual":  "89.4",
+                       "forecast":  "90.3",
                        "previous":  "90.8",
                        "type":  "review"
                    },
@@ -65,7 +65,7 @@
                        "importance":  3,
                        "indicator":  "New Home Sales",
                        "period":  "Jul",
-                       "actual":  "",
+                       "actual":  "607K",
                        "forecast":  "620K",
                        "previous":  "628K",
                        "type":  "review"
@@ -80,7 +80,7 @@
                        "importance":  2,
                        "indicator":  "Business Confidence (BSI)",
                        "period":  "Aug",
-                       "actual":  "",
+                       "actual":  "81",
                        "forecast":  "83",
                        "previous":  "82",
                        "type":  "review"

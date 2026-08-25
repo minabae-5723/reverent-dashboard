@@ -1,7 +1,7 @@
 {
-    "updated":  "2026-08-25T22:00:27Z",
-    "updatedKr":  "2026-08-26 07:00:27",
-    "frozenDow":  "Tuesday",
+    "updated":  "2026-08-25T23:25:00Z",
+    "updatedKr":  "2026-08-26 08:25:00",
+    "frozenDow":  "Wednesday",
     "reviewRange":  "2026-08-24~2026-08-28",
     "previewRange":  "2026-08-31~2026-09-04",
     "thisWeek":  [
@@ -75,7 +75,7 @@
                          "importance":  2,
                          "indicator":  "Business Confidence (BSI)",
                          "period":  "Aug",
-                         "actual":  "",
+                         "actual":  "81",
                          "forecast":  "83",
                          "previous":  "82",
                          "type":  "review"
