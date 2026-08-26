@@ -330,19 +330,43 @@ function renderMacroWeekly(data) {
   const lt = document.getElementById('macroLeftTitle');
   const rt = document.getElementById('macroRightTitle');
 
-  // Always REVIEW / PREVIEW, all week long. The pairing rolls over at the
-  // weekend freeze (Sun): REVIEW = the week that just ended, PREVIEW = the
-  // week ahead. Never relabel to 금주/이번주/다음주 — the user wants the
-  // REVIEW/PREVIEW wording permanently.
   const grid      = document.querySelector('.macro-week-grid');
+  const leftCard  = lt?.closest('.card');
   const rightCard = rt?.closest('.card');
   const subTitle  = document.getElementById('macroSubTitle');
 
-  if (grid) grid.classList.add('grid-2');
-  if (rightCard) rightCard.style.display = '';
-  if (lt) lt.textContent = reviewRange  ? `REVIEW (${reviewRange})`  : 'REVIEW';
-  if (rt) rt.textContent = previewRange ? `PREVIEW (${previewRange})` : 'PREVIEW';
-  if (subTitle) subTitle.innerHTML = `REVIEW & PREVIEW 주요 지표 (각 5개 이내) <a href="#weekly" class="see-all">캘린더 전체 보기 →</a>`;
+  // Monday noon KST ~ Thursday: show only this-week card (single column)
+  // Friday ~ Monday morning: show both REVIEW + PREVIEW (two columns)
+  const kst = new Date(Date.now() + 9 * 3600000);
+  const kstDay = kst.getUTCDay();
+  const kstHour = kst.getUTCHours();
+  const singleCard = (kstDay === 1 && kstHour >= 12) || (kstDay >= 2 && kstDay <= 4);
+
+  if (singleCard) {
+    // Determine which side holds the current week by checking today vs ranges
+    const todayStr = kst.toISOString().slice(0, 10);
+    const revEnd  = (reviewRange.split('~')[1] || '').trim();
+    const thisWeekInReview = revEnd && todayStr <= revEnd;
+
+    if (grid) grid.classList.remove('grid-2');
+    if (thisWeekInReview) {
+      if (leftCard) leftCard.style.display = '';
+      if (rightCard) rightCard.style.display = 'none';
+      if (lt) lt.textContent = reviewRange ? `이번 주 (${reviewRange})` : '이번 주';
+    } else {
+      if (leftCard) leftCard.style.display = 'none';
+      if (rightCard) rightCard.style.display = '';
+      if (rt) rt.textContent = previewRange ? `이번 주 (${previewRange})` : '이번 주';
+    }
+    if (subTitle) subTitle.innerHTML = `이번 주 주요 지표 (5개 이내) <a href="#weekly" class="see-all">캘린더 전체 보기 →</a>`;
+  } else {
+    if (grid) grid.classList.add('grid-2');
+    if (leftCard) leftCard.style.display = '';
+    if (rightCard) rightCard.style.display = '';
+    if (lt) lt.textContent = reviewRange  ? `REVIEW (${reviewRange})`  : 'REVIEW';
+    if (rt) rt.textContent = previewRange ? `PREVIEW (${previewRange})` : 'PREVIEW';
+    if (subTitle) subTitle.innerHTML = `REVIEW & PREVIEW 주요 지표 (각 5개 이내) <a href="#weekly" class="see-all">캘린더 전체 보기 →</a>`;
+  }
 
   renderMacroSide('macroThisWeekBody', data?.thisWeek);
   renderMacroSide('macroNextWeekBody', data?.nextWeek);

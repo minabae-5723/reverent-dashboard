@@ -349,86 +349,73 @@ do {
             if ($exRevFrom -eq $reviewFrom -and $exPrevFrom -eq $previewFrom) { $sameWeek = $true }
         } catch {}
     }
+    # ── Shared helpers for freeze / Friday update ──
+    $maxN = 7
+    $pickTop5 = {
+        param($events)
+        if (-not $events) { return @() }
+        $filtered = @($events | Where-Object {
+            -not (
+                ($_.indicator -match '(?i)PCE.*\(MoM\)') -or
+                ($_.indicator -match '(?i)^(Core\s+)?CPI \(MoM\)$') -or
+                ($_.indicator -match '(?i)^CPI[,]?\s*(n\.s\.a|s\.a|Index)') -or
+                ($_.indicator -match '(?i)^Cleveland CPI') -or
+                ($_.indicator -match '(?i)Speaks$') -or
+                ($_.indicator -match '(?i)Press Conference') -or
+                ($_.indicator -match '(?i)^ECB (Monetary Policy Statement|Marginal Lending|Economic Bulletin)') -or
+                (($_.indicator -match '(?i)CPI') -and ($_.flagKey -eq 'Europe')) -or
+                ($_.indicator -match '(?i)^FOMC (Economic Projections|Statement)$')
+            )
+        })
+        $pinned = @($filtered | Where-Object {
+            ($_.indicator -match '(?i)^Nonfarm Payrolls$') -or
+            ($_.indicator -match '(?i)^(Core\s+)?PCE.*Price.*Index.*\(YoY\)$') -or
+            ($_.indicator -match '(?i)^(Core\s+)?CPI \(YoY\)$') -or
+            (($_.indicator -match '(?i)^(Core\s+)?PPI \(YoY\)$') -and ($_.flagKey -eq 'United_States')) -or
+            (($_.indicator -match '(?i)^ECB Interest Rate Decision$') -and ($_.flagKey -eq 'Europe')) -or
+            (($_.indicator -match '(?i)^Fed Interest Rate Decision$') -and ($_.flagKey -eq 'United_States'))
+        })
+        if ($pinned.Count -gt $maxN) {
+            $pinned = @($pinned |
+                Sort-Object @{Expression={ [int]$_.importance }; Descending=$true}, @{Expression='datetime'; Descending=$false} |
+                Select-Object -First $maxN)
+        }
+        $pinnedIds = @{}
+        foreach ($p in $pinned) { $pinnedIds[$p.id] = $true }
+        $remaining = @($filtered |
+            Where-Object { ($_.importance -as [int]) -ge 2 -and -not $pinnedIds.ContainsKey($_.id) } |
+            Sort-Object @{Expression={ [int]$_.importance }; Descending=$true}, @{Expression='datetime'; Descending=$false})
+        $needed = $maxN - $pinned.Count
+        if ($needed -lt 0) { $needed = 0 }
+        $picked = @($pinned) + @($remaining | Select-Object -First $needed)
+        return @($picked | Sort-Object datetime)
+    }
+    $applyFedRange = {
+        param($evs)
+        foreach ($e in $evs) {
+            if ($e.indicator -match '(?i)^Fed Interest Rate Decision$') {
+                foreach ($fld in 'forecast','previous','actual') {
+                    $v = "$($e.$fld)"
+                    if ($v -match '^\s*([0-9]+(?:\.[0-9]+)?)\s*%\s*$') {
+                        $hi = [double]$Matches[1]
+                        $lo = $hi - 0.25
+                        $e.$fld = ('{0:0.00}%~{1:0.00}%' -f $lo, $hi)
+                    }
+                }
+            }
+        }
+    }
+
     $shouldFreeze = (-not (Test-Path $FrozenFile)) -or ($isRollDay -and -not $sameWeek)
+    $isFriday = ($dow -eq [System.DayOfWeek]::Friday)
+
     if ($shouldFreeze) {
         $weekData = $null; $nextData = $null
         try { $weekData = Get-Content $WeekFile     -Raw -Encoding UTF8 | ConvertFrom-Json } catch {}
         try { $nextData = Get-Content $NextWeekFile -Raw -Encoding UTF8 | ConvertFrom-Json } catch {}
 
-        # Pick up to 7 by importance, but force-include tier-1 indicators
-        # (Nonfarm Payrolls, PCE YoY pair, ECB rate decision) when present.
-        # MoM/sub-index variants and ECB speaker/press-conf noise are filtered out.
-        $maxN = 7
-        $pickTop5 = {
-            param($events)
-            if (-not $events) { return @() }
-            # Drop MoM/sub-index variants (CPI/PPI/PCE show only YoY) + ECB 발언/회견/성명 noise.
-            $filtered = @($events | Where-Object {
-                -not (
-                    ($_.indicator -match '(?i)PCE.*\(MoM\)') -or
-                    ($_.indicator -match '(?i)^(Core\s+)?CPI \(MoM\)$') -or
-                    ($_.indicator -match '(?i)^CPI[,]?\s*(n\.s\.a|s\.a|Index)') -or
-                    ($_.indicator -match '(?i)^Cleveland CPI') -or
-                    ($_.indicator -match '(?i)Speaks$') -or
-                    ($_.indicator -match '(?i)Press Conference') -or
-                    ($_.indicator -match '(?i)^ECB (Monetary Policy Statement|Marginal Lending|Economic Bulletin)') -or
-                    (($_.indicator -match '(?i)CPI') -and ($_.flagKey -eq 'Europe')) -or
-                    ($_.indicator -match '(?i)^FOMC (Economic Projections|Statement)$')
-                )
-            })
-            # Pin tier-1 indicators (always included if present):
-            #   - Nonfarm Payrolls
-            #   - Core / Headline PCE YoY
-            #   - Headline CPI (YoY) + Core CPI (YoY)
-            #   - Headline PPI (YoY) + Core PPI (YoY) — US only
-            #   - ECB Interest Rate Decision / Deposit Facility Rate (Eurozone, flagKey=Europe)
-            $pinned = @($filtered | Where-Object {
-                ($_.indicator -match '(?i)^Nonfarm Payrolls$') -or
-                ($_.indicator -match '(?i)^(Core\s+)?PCE.*Price.*Index.*\(YoY\)$') -or
-                ($_.indicator -match '(?i)^(Core\s+)?CPI \(YoY\)$') -or
-                (($_.indicator -match '(?i)^(Core\s+)?PPI \(YoY\)$') -and ($_.flagKey -eq 'United_States')) -or
-                (($_.indicator -match '(?i)^ECB Interest Rate Decision$') -and ($_.flagKey -eq 'Europe')) -or
-                (($_.indicator -match '(?i)^Fed Interest Rate Decision$') -and ($_.flagKey -eq 'United_States'))
-            })
-            # If more than $maxN pinned, keep top by importance DESC then datetime ASC
-            if ($pinned.Count -gt $maxN) {
-                $pinned = @($pinned |
-                    Sort-Object @{Expression={ [int]$_.importance }; Descending=$true}, @{Expression='datetime'; Descending=$false} |
-                    Select-Object -First $maxN)
-            }
-            $pinnedIds = @{}
-            foreach ($p in $pinned) { $pinnedIds[$p.id] = $true }
-            # Fill remaining slots with top-importance non-pinned events
-            $remaining = @($filtered |
-                Where-Object { ($_.importance -as [int]) -ge 2 -and -not $pinnedIds.ContainsKey($_.id) } |
-                Sort-Object @{Expression={ [int]$_.importance }; Descending=$true}, @{Expression='datetime'; Descending=$false})
-            $needed = $maxN - $pinned.Count
-            if ($needed -lt 0) { $needed = 0 }
-            $picked = @($pinned) + @($remaining | Select-Object -First $needed)
-            # Final sort: by datetime ascending for chronological display
-            return @($picked | Sort-Object datetime)
-        }
         $thisTop5 = & $pickTop5 $weekData.events
         $nextTop5 = & $pickTop5 $nextData.events
-
-        # Fed Interest Rate Decision: investing.com reports the target-range upper bound
-        # (e.g. 3.75%); display the full 25bp band as "3.50%~3.75%". Auto-derived from the
-        # reported value (lower = upper - 0.25), so it stays correct when the Fed moves.
-        $applyFedRange = {
-            param($evs)
-            foreach ($e in $evs) {
-                if ($e.indicator -match '(?i)^Fed Interest Rate Decision$') {
-                    foreach ($fld in 'forecast','previous','actual') {
-                        $v = "$($e.$fld)"
-                        if ($v -match '^\s*([0-9]+(?:\.[0-9]+)?)\s*%\s*$') {
-                            $hi = [double]$Matches[1]
-                            $lo = $hi - 0.25
-                            $e.$fld = ('{0:0.00}%~{1:0.00}%' -f $lo, $hi)
-                        }
-                    }
-                }
-            }
-        }
         & $applyFedRange $thisTop5
         & $applyFedRange $nextTop5
 
@@ -438,8 +425,8 @@ do {
             frozenDow    = $dow.ToString()
             reviewRange  = "$reviewFrom~$reviewLabelTo"
             previewRange = "$previewFrom~$previewLabelTo"
-            thisWeek     = @($thisTop5)   # legacy name kept for app.js compat — actually "Review" content
-            nextWeek     = @($nextTop5)   # legacy name kept — actually "Preview" content
+            thisWeek     = @($thisTop5)
+            nextWeek     = @($nextTop5)
         }
         $json = $frozen | ConvertTo-Json -Depth 8
         [System.IO.File]::WriteAllText($FrozenFile, $json, (New-Object System.Text.UTF8Encoding($false)))
@@ -521,6 +508,18 @@ do {
             if ($fz.nextWeek) {
                 $patched += & $patchFromCalendar $fz.nextWeek $allEvents
                 $patched += & $patchFromLive $fz.nextWeek $todayLive
+            }
+
+            # Friday: refresh nextWeek PREVIEW lineup with next week's events
+            if ($isFriday) {
+                $nextData = $null
+                try { $nextData = Get-Content $NextWeekFile -Raw -Encoding UTF8 | ConvertFrom-Json } catch {}
+                $nextTop5 = & $pickTop5 $nextData.events
+                & $applyFedRange $nextTop5
+                $fz.nextWeek = @($nextTop5)
+                $fz.previewRange = "$previewFrom~$previewLabelTo"
+                $patched++
+                Write-Host ("  frozen:   Friday — PREVIEW refreshed ({0} events, {1})" -f $nextTop5.Count, $fz.previewRange) -ForegroundColor Cyan
             }
 
             if ($patched -gt 0) {
