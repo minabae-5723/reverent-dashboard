@@ -1,7 +1,7 @@
 {
-    "updated":  "2026-08-26T22:00:26Z",
-    "updatedKr":  "2026-08-27 07:00:26",
-    "frozenDow":  "Wednesday",
+    "updated":  "2026-08-26T23:25:45Z",
+    "updatedKr":  "2026-08-27 08:25",
+    "frozenDow":  "Thursday",
     "reviewRange":  "2026-08-24~2026-08-28",
     "previewRange":  "2026-08-31~2026-09-04",
     "thisWeek":  [
@@ -46,8 +46,8 @@
                          "indicator":  "CB Consumer Confidence",
                          "period":  "Aug",
                          "actual":  "89.4",
-                         "forecast":  "90.3",
-                         "previous":  "90.8",
+                         "forecast":  "90.9",
+                         "previous":  "90.2",
                          "type":  "review"
                      },
                      {
@@ -62,7 +62,7 @@
                          "period":  "Jul",
                          "actual":  "607K",
                          "forecast":  "620K",
-                         "previous":  "628K",
+                         "previous":  "678K",
                          "type":  "review"
                      },
                      {
@@ -151,7 +151,7 @@
                          "indicator":  "BOK Interest Rate Decision",
                          "period":  "Aug",
                          "actual":  "",
-                         "forecast":  "",
+                         "forecast":  "2.75%",
                          "previous":  "2.75%",
                          "type":  "review"
                      },

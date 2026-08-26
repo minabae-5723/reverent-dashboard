@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-08-26T22:00:24Z",
-    "updatedKr":  "2026-08-27 07:00:24",
+    "updated":  "2026-08-26T23:25:55Z",
+    "updatedKr":  "2026-08-27 08:25:55",
     "countries":  [
                       "5",
                       "35",
@@ -51,8 +51,8 @@
                        "indicator":  "CB Consumer Confidence",
                        "period":  "Aug",
                        "actual":  "89.4",
-                       "forecast":  "90.3",
-                       "previous":  "90.8",
+                       "forecast":  "90.9",
+                       "previous":  "90.2",
                        "type":  "review"
                    },
                    {
@@ -67,7 +67,7 @@
                        "period":  "Jul",
                        "actual":  "607K",
                        "forecast":  "620K",
-                       "previous":  "628K",
+                       "previous":  "678K",
                        "type":  "review"
                    },
                    {
@@ -95,7 +95,7 @@
                        "importance":  3,
                        "indicator":  "GDP (QoQ)",
                        "period":  "Q2",
-                       "actual":  "",
+                       "actual":  "1.5%",
                        "forecast":  "1.5%",
                        "previous":  "1.5%",
                        "type":  "review"
@@ -110,7 +110,7 @@
                        "importance":  3,
                        "indicator":  "Core PCE Price Index (YoY)",
                        "period":  "Jul",
-                       "actual":  "",
+                       "actual":  "3.3%",
                        "forecast":  "3.3%",
                        "previous":  "3.3%",
                        "type":  "review"
@@ -125,8 +125,8 @@
                        "importance":  2,
                        "indicator":  "PCE Price index (YoY)",
                        "period":  "Jul",
-                       "actual":  "",
-                       "forecast":  "3.7%",
+                       "actual":  "3.7%",
+                       "forecast":  "3.6%",
                        "previous":  "3.7%",
                        "type":  "review"
                    },
@@ -140,8 +140,8 @@
                        "importance":  3,
                        "indicator":  "Durable Goods Orders (MoM)",
                        "period":  "Jul",
-                       "actual":  "",
-                       "forecast":  "0.5%",
+                       "actual":  "1.1%",
+                       "forecast":  "0.4%",
                        "previous":  "0.3%",
                        "type":  "review"
                    },
@@ -156,7 +156,7 @@
                        "indicator":  "BOK Interest Rate Decision",
                        "period":  "Aug",
                        "actual":  "",
-                       "forecast":  "",
+                       "forecast":  "2.75%",
                        "previous":  "2.75%",
                        "type":  "review"
                    },
