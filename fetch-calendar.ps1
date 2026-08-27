@@ -350,7 +350,8 @@ do {
         } catch {}
     }
     # ── Shared helpers for freeze / Friday update ──
-    $maxN = 7
+    # 주당 10~16건 (미국+한국+일본). 종전 top-7은 너무 적어 preview가 매번 잘려나갔다.
+    $maxN = 14
     $pickTop5 = {
         param($events)
         if (-not $events) { return @() }

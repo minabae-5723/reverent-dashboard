@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-08-27T23:28:11Z",
-    "updatedKr":  "2026-08-28 08:28:11",
+    "updated":  "2026-08-27T23:30:53Z",
+    "updatedKr":  "2026-08-28 08:30:53",
     "countries":  [
                       "5",
                       "35",
@@ -41,21 +41,6 @@
                        "type":  "preview"
                    },
                    {
-                       "id":  "560204",
-                       "datetime":  "2026/09/01 09:00:00",
-                       "date":  "9/1",
-                       "time":  "09:00",
-                       "flagKey":  "South_Korea",
-                       "currency":  "KRW",
-                       "importance":  3,
-                       "indicator":  "Exports (YoY)",
-                       "period":  "Aug",
-                       "actual":  "",
-                       "forecast":  "",
-                       "previous":  "62.8%",
-                       "type":  "preview"
-                   },
-                   {
                        "id":  "560212",
                        "datetime":  "2026/09/01 09:00:00",
                        "date":  "9/1",
@@ -68,6 +53,21 @@
                        "actual":  "",
                        "forecast":  "",
                        "previous":  "$30.32B",
+                       "type":  "preview"
+                   },
+                   {
+                       "id":  "560204",
+                       "datetime":  "2026/09/01 09:00:00",
+                       "date":  "9/1",
+                       "time":  "09:00",
+                       "flagKey":  "South_Korea",
+                       "currency":  "KRW",
+                       "importance":  3,
+                       "indicator":  "Exports (YoY)",
+                       "period":  "Aug",
+                       "actual":  "",
+                       "forecast":  "",
+                       "previous":  "62.8%",
                        "type":  "preview"
                    },
                    {
@@ -86,21 +86,6 @@
                        "type":  "preview"
                    },
                    {
-                       "id":  "560207",
-                       "datetime":  "2026/09/01 23:00:00",
-                       "date":  "9/1",
-                       "time":  "23:00",
-                       "flagKey":  "United_States",
-                       "currency":  "USD",
-                       "importance":  3,
-                       "indicator":  "JOLTs Job Openings",
-                       "period":  "Jul",
-                       "actual":  "",
-                       "forecast":  "7.32M",
-                       "previous":  "7.359M",
-                       "type":  "preview"
-                   },
-                   {
                        "id":  "560206",
                        "datetime":  "2026/09/01 23:00:00",
                        "date":  "9/1",
@@ -113,6 +98,21 @@
                        "actual":  "",
                        "forecast":  "55.0",
                        "previous":  "55.6",
+                       "type":  "preview"
+                   },
+                   {
+                       "id":  "560207",
+                       "datetime":  "2026/09/01 23:00:00",
+                       "date":  "9/1",
+                       "time":  "23:00",
+                       "flagKey":  "United_States",
+                       "currency":  "USD",
+                       "importance":  3,
+                       "indicator":  "JOLTs Job Openings",
+                       "period":  "Jul",
+                       "actual":  "",
+                       "forecast":  "7.32M",
+                       "previous":  "7.359M",
                        "type":  "preview"
                    },
                    {
@@ -191,21 +191,6 @@
                        "type":  "preview"
                    },
                    {
-                       "id":  "560211",
-                       "datetime":  "2026/09/04 21:30:00",
-                       "date":  "9/4",
-                       "time":  "21:30",
-                       "flagKey":  "United_States",
-                       "currency":  "USD",
-                       "importance":  3,
-                       "indicator":  "Nonfarm Payrolls",
-                       "period":  "Aug",
-                       "actual":  "",
-                       "forecast":  "12K",
-                       "previous":  "-23K",
-                       "type":  "preview"
-                   },
-                   {
                        "id":  "560218",
                        "datetime":  "2026/09/04 21:30:00",
                        "date":  "9/4",
@@ -218,6 +203,21 @@
                        "actual":  "",
                        "forecast":  "4.2%",
                        "previous":  "4.1%",
+                       "type":  "preview"
+                   },
+                   {
+                       "id":  "560211",
+                       "datetime":  "2026/09/04 21:30:00",
+                       "date":  "9/4",
+                       "time":  "21:30",
+                       "flagKey":  "United_States",
+                       "currency":  "USD",
+                       "importance":  3,
+                       "indicator":  "Nonfarm Payrolls",
+                       "period":  "Aug",
+                       "actual":  "",
+                       "forecast":  "12K",
+                       "previous":  "-23K",
                        "type":  "preview"
                    }
                ]
