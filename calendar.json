@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-08-27T22:00:25Z",
-    "updatedKr":  "2026-08-28 07:00:25",
+    "updated":  "2026-08-27T23:25:45Z",
+    "updatedKr":  "2026-08-28 08:25:45",
     "countries":  [
                       "5",
                       "35",
@@ -155,7 +155,7 @@
                        "importance":  3,
                        "indicator":  "BOK Interest Rate Decision",
                        "period":  "Aug",
-                       "actual":  "",
+                       "actual":  "3.00%",
                        "forecast":  "2.75%",
                        "previous":  "2.75%",
                        "type":  "review"
@@ -170,8 +170,8 @@
                        "importance":  3,
                        "indicator":  "Initial Jobless Claims",
                        "period":  "",
-                       "actual":  "",
-                       "forecast":  "210K",
+                       "actual":  "203K",
+                       "forecast":  "208K",
                        "previous":  "206K",
                        "type":  "review"
                    },
@@ -201,7 +201,7 @@
                        "indicator":  "Tokyo Core CPI (YoY)",
                        "period":  "Aug",
                        "actual":  "",
-                       "forecast":  "2.0%",
+                       "forecast":  "1.8%",
                        "previous":  "1.9%",
                        "type":  "review"
                    },

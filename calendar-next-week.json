@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-08-27T22:00:25Z",
-    "updatedKr":  "2026-08-28 07:00:25",
+    "updated":  "2026-08-27T23:25:45Z",
+    "updatedKr":  "2026-08-28 08:25:45",
     "countries":  [
                       "5",
                       "35",
@@ -41,18 +41,18 @@
                        "type":  "preview"
                    },
                    {
-                       "id":  "560203",
-                       "datetime":  "2026/09/01 08:50:00",
+                       "id":  "560212",
+                       "datetime":  "2026/09/01 09:00:00",
                        "date":  "9/1",
-                       "time":  "08:50",
-                       "flagKey":  "Japan",
-                       "currency":  "JPY",
-                       "importance":  2,
-                       "indicator":  "Capital Spending (YoY)",
-                       "period":  "Q2",
+                       "time":  "09:00",
+                       "flagKey":  "South_Korea",
+                       "currency":  "KRW",
+                       "importance":  3,
+                       "indicator":  "Balance of Trade",
+                       "period":  "Aug",
                        "actual":  "",
                        "forecast":  "",
-                       "previous":  "0%",
+                       "previous":  "$30.32B",
                        "type":  "preview"
                    },
                    {
@@ -71,7 +71,7 @@
                        "type":  "preview"
                    },
                    {
-                       "id":  "560205",
+                       "id":  "560213",
                        "datetime":  "2026/09/01 09:30:00",
                        "date":  "9/1",
                        "time":  "09:30",
@@ -131,7 +131,37 @@
                        "type":  "preview"
                    },
                    {
-                       "id":  "560209",
+                       "id":  "560214",
+                       "datetime":  "2026/09/02 21:15:00",
+                       "date":  "9/2",
+                       "time":  "21:15",
+                       "flagKey":  "United_States",
+                       "currency":  "USD",
+                       "importance":  3,
+                       "indicator":  "ADP Nonfarm Employment Change",
+                       "period":  "Aug",
+                       "actual":  "",
+                       "forecast":  "59K",
+                       "previous":  "44K",
+                       "type":  "preview"
+                   },
+                   {
+                       "id":  "560215",
+                       "datetime":  "2026/09/03 09:30:00",
+                       "date":  "9/3",
+                       "time":  "09:30",
+                       "flagKey":  "Japan",
+                       "currency":  "JPY",
+                       "importance":  2,
+                       "indicator":  "S\u0026P Global Services PMI (Final)",
+                       "period":  "Aug",
+                       "actual":  "",
+                       "forecast":  "52.3",
+                       "previous":  "51.2",
+                       "type":  "preview"
+                   },
+                   {
+                       "id":  "560216",
                        "datetime":  "2026/09/03 21:30:00",
                        "date":  "9/3",
                        "time":  "21:30",
@@ -142,22 +172,37 @@
                        "period":  "",
                        "actual":  "",
                        "forecast":  "",
-                       "previous":  "",
+                       "previous":  "203K",
                        "type":  "preview"
                    },
                    {
-                       "id":  "560210",
+                       "id":  "560217",
                        "datetime":  "2026/09/03 23:00:00",
                        "date":  "9/3",
                        "time":  "23:00",
                        "flagKey":  "United_States",
                        "currency":  "USD",
                        "importance":  3,
-                       "indicator":  "ISM Services PMI",
+                       "indicator":  "ISM Non-Manufacturing PMI",
                        "period":  "Aug",
                        "actual":  "",
                        "forecast":  "53.8",
                        "previous":  "54.1",
+                       "type":  "preview"
+                   },
+                   {
+                       "id":  "560218",
+                       "datetime":  "2026/09/04 21:30:00",
+                       "date":  "9/4",
+                       "time":  "21:30",
+                       "flagKey":  "United_States",
+                       "currency":  "USD",
+                       "importance":  3,
+                       "indicator":  "Unemployment Rate",
+                       "period":  "Aug",
+                       "actual":  "",
+                       "forecast":  "4.2%",
+                       "previous":  "4.1%",
                        "type":  "preview"
                    },
                    {
@@ -173,36 +218,6 @@
                        "actual":  "",
                        "forecast":  "12K",
                        "previous":  "-23K",
-                       "type":  "preview"
-                   },
-                   {
-                       "id":  "560212",
-                       "datetime":  "2026/09/04 21:30:00",
-                       "date":  "9/4",
-                       "time":  "21:30",
-                       "flagKey":  "United_States",
-                       "currency":  "USD",
-                       "importance":  3,
-                       "indicator":  "Unemployment Rate",
-                       "period":  "Aug",
-                       "actual":  "",
-                       "forecast":  "4.2%",
-                       "previous":  "4.1%",
-                       "type":  "preview"
-                   },
-                   {
-                       "id":  "560213",
-                       "datetime":  "2026/09/04 21:30:00",
-                       "date":  "9/4",
-                       "time":  "21:30",
-                       "flagKey":  "United_States",
-                       "currency":  "USD",
-                       "importance":  2,
-                       "indicator":  "Average Hourly Earnings (YoY)",
-                       "period":  "Aug",
-                       "actual":  "",
-                       "forecast":  "3.3%",
-                       "previous":  "3.2%",
                        "type":  "preview"
                    }
                ]
