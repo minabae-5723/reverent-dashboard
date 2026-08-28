@@ -1,0 +1,39 @@
+﻿{
+    "company":  "WoojinA",
+    "corp_code":  "00492326",
+    "source":  "DART raw document",
+    "report_nm":  "감사보고서 (2025.12)",
+    "rcept_no":  "20260403000489",
+    "rcept_dt":  "20260403",
+    "fiscal_period":  "FY2025",
+    "unit":  "100M KRW",
+    "pnl":  {
+                "revenue":  2074,
+                "operating_income":  224,
+                "depreciation":  0,
+                "amortisation":  0,
+                "da_total":  0,
+                "ebitda":  224,
+                "net_income":  181
+            },
+    "equity_total":  721,
+    "liabilities":  950,
+    "assets":  1671,
+    "debt":  {
+                 "st_borrowings":  null,
+                 "current_lt_borrowings":  null,
+                 "lt_borrowings":  null,
+                 "bonds":  null,
+                 "current_lease":  null,
+                 "lease":  10
+             },
+    "cash":  {
+                 "cash_and_equivalents":  494,
+                 "st_financial_invest":  null
+             },
+    "derived":  {
+                    "total_debt":  10,
+                    "total_cash":  494,
+                    "net_debt":  -484
+                }
+}

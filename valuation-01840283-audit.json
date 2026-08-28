@@ -1,0 +1,39 @@
+﻿{
+    "company":  "JoongangTankTerminalHoldings",
+    "corp_code":  "01840283",
+    "source":  "DART raw document",
+    "report_nm":  "연결감사보고서 (2025.12)",
+    "rcept_no":  "20260406000172",
+    "rcept_dt":  "20260406",
+    "fiscal_period":  "FY2025",
+    "unit":  "100M KRW",
+    "pnl":  {
+                "revenue":  453,
+                "operating_income":  124,
+                "depreciation":  73,
+                "amortisation":  15,
+                "da_total":  88,
+                "ebitda":  212,
+                "net_income":  160
+            },
+    "equity_total":  1787,
+    "liabilities":  2476,
+    "assets":  4263,
+    "debt":  {
+                 "st_borrowings":  180,
+                 "current_lt_borrowings":  85,
+                 "lt_borrowings":  1414,
+                 "bonds":  null,
+                 "current_lease":  null,
+                 "lease":  0
+             },
+    "cash":  {
+                 "cash_and_equivalents":  172,
+                 "st_financial_invest":  0
+             },
+    "derived":  {
+                    "total_debt":  1679,
+                    "total_cash":  172,
+                    "net_debt":  1507
+                }
+}

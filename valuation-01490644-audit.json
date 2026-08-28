@@ -1,0 +1,39 @@
+﻿{
+    "company":  "SmartVision",
+    "corp_code":  "01490644",
+    "source":  "DART raw document",
+    "report_nm":  "감사보고서 (2025.12)",
+    "rcept_no":  "20260406004002",
+    "rcept_dt":  "20260406",
+    "fiscal_period":  "FY2025",
+    "unit":  "100M KRW",
+    "pnl":  {
+                "revenue":  305,
+                "operating_income":  54,
+                "depreciation":  0,
+                "amortisation":  0,
+                "da_total":  0,
+                "ebitda":  54,
+                "net_income":  46
+            },
+    "equity_total":  161,
+    "liabilities":  63,
+    "assets":  223,
+    "debt":  {
+                 "st_borrowings":  null,
+                 "current_lt_borrowings":  null,
+                 "lt_borrowings":  null,
+                 "bonds":  null,
+                 "current_lease":  0,
+                 "lease":  0
+             },
+    "cash":  {
+                 "cash_and_equivalents":  136,
+                 "st_financial_invest":  null
+             },
+    "derived":  {
+                    "total_debt":  0,
+                    "total_cash":  136,
+                    "net_debt":  -136
+                }
+}

@@ -1,0 +1,39 @@
+﻿{
+    "company":  "CentralTerminalKorea",
+    "corp_code":  "00153940",
+    "source":  "DART raw document",
+    "report_nm":  "감사보고서 (2025.12)",
+    "rcept_no":  "20260406000121",
+    "rcept_dt":  "20260406",
+    "fiscal_period":  "FY2025",
+    "unit":  "100M KRW",
+    "pnl":  {
+                "revenue":  453,
+                "operating_income":  149,
+                "depreciation":  67,
+                "amortisation":  null,
+                "da_total":  67,
+                "ebitda":  216,
+                "net_income":  272
+            },
+    "equity_total":  2188,
+    "liabilities":  859,
+    "assets":  3047,
+    "debt":  {
+                 "st_borrowings":  180,
+                 "current_lt_borrowings":  10,
+                 "lt_borrowings":  39,
+                 "bonds":  null,
+                 "current_lease":  null,
+                 "lease":  0
+             },
+    "cash":  {
+                 "cash_and_equivalents":  111,
+                 "st_financial_invest":  0
+             },
+    "derived":  {
+                    "total_debt":  229,
+                    "total_cash":  111,
+                    "net_debt":  118
+                }
+}

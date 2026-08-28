@@ -1,0 +1,39 @@
+﻿{
+    "company":  "WonikRobotics",
+    "corp_code":  "01846481",
+    "source":  "DART raw document",
+    "report_nm":  "감사보고서 (2025.12)",
+    "rcept_no":  "20260330001196",
+    "rcept_dt":  "20260330",
+    "fiscal_period":  "FY2025",
+    "unit":  "100M KRW",
+    "pnl":  {
+                "revenue":  326,
+                "operating_income":  -26,
+                "depreciation":  null,
+                "amortisation":  null,
+                "da_total":  null,
+                "ebitda":  null,
+                "net_income":  -28
+            },
+    "equity_total":  38,
+    "liabilities":  39,
+    "assets":  77,
+    "debt":  {
+                 "st_borrowings":  null,
+                 "current_lt_borrowings":  null,
+                 "lt_borrowings":  null,
+                 "bonds":  null,
+                 "current_lease":  null,
+                 "lease":  2
+             },
+    "cash":  {
+                 "cash_and_equivalents":  33,
+                 "st_financial_invest":  5
+             },
+    "derived":  {
+                    "total_debt":  2,
+                    "total_cash":  38,
+                    "net_debt":  -36
+                }
+}
