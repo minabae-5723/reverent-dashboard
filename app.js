@@ -1787,8 +1787,11 @@ function _isMacroSection(name) {
 // To re-enable, restore the /자본시장/ test below. Saved cards are untouched:
 // they live in localStorage under macro-notes-<weekDate>::<headline> keys, so
 // flipping this back on brings any previously pasted cards straight back.
+//
+// RE-ENABLED 2026-08-30 (user request) for 주요 거래 동향 ONLY — SK호라이즌 기사에
+// 카드뉴스를 붙이기 위함. 자본시장 동향은 8/22 요청대로 계속 꺼둔 상태를 유지한다.
 function _isCapitalMarketSection(name) {
-  return false;
+  return /주요\s*거래\s*동향/.test(String(name || ''));
 }
 
 function renderDealsContent(md) {
