@@ -9,6 +9,7 @@ const CAL_WEEK_URL = './calendar-week.json';
 const CAL_NEXT_WEEK_URL = './calendar-next-week.json';
 const REFRESH_MS   = 60_000;
 const MIN_IMPORTANCE = 2;   // 표시할 최소 importance (1=낮음, 2=중간, 3=높음)
+const MACRO_MIN_IMPORTANCE = 3;   // §3 Market Update — Macro Economy는 ★★★만 노출
 
 // ─── Static deploy mode detection ─────────────────────────
 // On localhost we're running serve.ps1 (full features).
@@ -375,11 +376,13 @@ function renderMacroWeekly(data) {
 function renderMacroSide(tbodyId, events) {
   const tbody = document.getElementById(tbodyId);
   if (!tbody) return;
-  if (!events || events.length === 0) {
+  // Macro Economy 섹션은 ★★★(importance 3)만 구성한다.
+  const rows = (events || []).filter((e) => (e.importance || 0) >= MACRO_MIN_IMPORTANCE);
+  if (rows.length === 0) {
     tbody.innerHTML = `<tr><td colspan="6" class="loading" style="text-align:center;color:var(--text-muted);">데이터 없음</td></tr>`;
     return;
   }
-  tbody.innerHTML = events.map(e => {
+  tbody.innerHTML = rows.map(e => {
     const actual   = (e.actual && e.actual !== '') ? `<td class="num-col actual">${e.actual}</td>` : `<td class="num-col actual">—</td>`;
     const forecast = (e.forecast && e.forecast !== '') ? `<td class="num-col">${e.forecast}</td>` : `<td class="num-col">—</td>`;
     const previous = (e.previous && e.previous !== '') ? `<td class="num-col previous">${e.previous}</td>` : `<td class="num-col previous">—</td>`;

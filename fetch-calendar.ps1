@@ -355,6 +355,8 @@ do {
     $pickTop5 = {
         param($events)
         if (-not $events) { return @() }
+        # Macro Economy 섹션은 ★★★만 구성한다 (app.js MACRO_MIN_IMPORTANCE = 3).
+        $events = @($events | Where-Object { ($_.importance -as [int]) -ge 3 })
         $filtered = @($events | Where-Object {
             -not (
                 ($_.indicator -match '(?i)PCE.*\(MoM\)') -or
