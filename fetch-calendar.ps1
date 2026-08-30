@@ -241,14 +241,31 @@ function Save-Calendar {
     # Cloudflare, ~50 events vs the frozen digest's ~6). Every server start used to
     # overwrite that with the thin fallback. So if the existing file already holds
     # real investing data for the SAME tab/range, keep it and bail out.
+    #
+    # The tab/range check used to require an EXACT match, which broke on Sundays:
+    # Get-WeekBounds calls Mon~Sun of the *calendar* week (e.g. 08-24~08-30) while
+    # the hand-filled file targets the upcoming week (08-31~09-06). The ranges
+    # differ, the guard fell through, and a 403 wiped ~60 real events. So also
+    # keep the file when its range simply has not expired yet (end date >= today).
     if ($events.Count -eq 0 -and (Test-Path $OutPath)) {
         try {
             $prev = Get-Content $OutPath -Raw -Encoding UTF8 | ConvertFrom-Json
             $prevTab = if ($Tab -eq 'custom') { "custom $DateFrom~$DateTo" } else { $Tab }
-            if ($prev.source -eq 'investing' -and $prev.tab -eq $prevTab -and @($prev.events).Count -gt 0) {
-                Write-Host ("  keep existing investing data ({0} events) -> {1}" -f @($prev.events).Count, (Split-Path $OutPath -Leaf)) -ForegroundColor DarkYellow
-                $highImpPrev = (@($prev.events) | Where-Object { $_.importance -ge 2 }).Count
-                return [PSCustomObject]@{ count = @($prev.events).Count; highImp = $highImpPrev; path = $OutPath }
+            # ISO yyyy-MM-dd sorts lexicographically, so a plain string compare is
+            # enough here — and avoids TryParseExact's [ref] binding quirks in PS 5.1
+            # (a throw there would be swallowed by the catch and silently skip the guard).
+            $stillValid = $false
+            if ($prev.tab -match 'custom\s+\d{4}-\d{2}-\d{2}~(\d{4}-\d{2}-\d{2})') {
+                $stillValid = ($Matches[1] -ge (Get-Date).ToString('yyyy-MM-dd'))
+            }
+            if ($prev.source -eq 'investing' -and @($prev.events).Count -gt 0 -and ($prev.tab -eq $prevTab -or $stillValid)) {
+                # Materialise the array once — inline `@($prev.events).Count` inside a
+                # format operator misreports as 1 in PS 5.1, which reads like data loss.
+                $prevEvents  = @($prev.events)
+                $prevCount   = $prevEvents.Count
+                $highImpPrev = @($prevEvents | Where-Object { $_.importance -ge 2 }).Count
+                Write-Host ("  keep existing investing data ({0} events) -> {1}" -f $prevCount, (Split-Path $OutPath -Leaf)) -ForegroundColor DarkYellow
+                return [PSCustomObject]@{ count = $prevCount; highImp = $highImpPrev; path = $OutPath }
             }
         } catch {}
     }
