@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-08-27T23:30:54Z",
-    "updatedKr":  "2026-08-28 08:30:54",
+    "updated":  "2026-08-30T23:40:08Z",
+    "updatedKr":  "2026-08-31 08:40:08",
     "frozenDow":  "Friday",
     "reviewRange":  "2026-08-24~2026-08-28",
     "previewRange":  "2026-08-31~2026-09-04",
@@ -167,10 +167,10 @@
                          "importance":  3,
                          "indicator":  "Industrial Production (YoY)",
                          "period":  "Jul",
-                         "actual":  "",
+                         "actual":  "3.6%",
                          "forecast":  "5.0%",
                          "previous":  "5.8%",
-                         "type":  "preview"
+                         "type":  "review"
                      },
                      {
                          "id":  "560202",
@@ -228,7 +228,7 @@
                          "indicator":  "JOLTs Job Openings",
                          "period":  "Jul",
                          "actual":  "",
-                         "forecast":  "7.32M",
+                         "forecast":  "7.330M",
                          "previous":  "7.359M",
                          "type":  "preview"
                      },
@@ -243,7 +243,7 @@
                          "indicator":  "ISM Manufacturing PMI",
                          "period":  "Aug",
                          "actual":  "",
-                         "forecast":  "55.0",
+                         "forecast":  "55.2",
                          "previous":  "55.6",
                          "type":  "preview"
                      },
@@ -273,7 +273,7 @@
                          "indicator":  "ADP Nonfarm Employment Change",
                          "period":  "Aug",
                          "actual":  "",
-                         "forecast":  "59K",
+                         "forecast":  "47K",
                          "previous":  "44K",
                          "type":  "preview"
                      },
@@ -288,7 +288,7 @@
                          "indicator":  "Initial Jobless Claims",
                          "period":  "",
                          "actual":  "",
-                         "forecast":  "",
+                         "forecast":  "205K",
                          "previous":  "203K",
                          "type":  "preview"
                      },
@@ -303,7 +303,7 @@
                          "indicator":  "ISM Non-Manufacturing PMI",
                          "period":  "Aug",
                          "actual":  "",
-                         "forecast":  "53.8",
+                         "forecast":  "54.1",
                          "previous":  "54.1",
                          "type":  "preview"
                      },
@@ -318,7 +318,7 @@
                          "indicator":  "Nonfarm Payrolls",
                          "period":  "Aug",
                          "actual":  "",
-                         "forecast":  "12K",
+                         "forecast":  "58K",
                          "previous":  "-23K",
                          "type":  "preview"
                      },
@@ -333,7 +333,7 @@
                          "indicator":  "Unemployment Rate",
                          "period":  "Aug",
                          "actual":  "",
-                         "forecast":  "4.2%",
+                         "forecast":  "4.1%",
                          "previous":  "4.1%",
                          "type":  "preview"
                      }
