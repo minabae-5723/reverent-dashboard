@@ -1,162 +1,10 @@
 {
-    "updated":  "2026-08-30T23:40:08Z",
-    "updatedKr":  "2026-08-31 08:40:08",
-    "frozenDow":  "Friday",
-    "reviewRange":  "2026-08-24~2026-08-28",
-    "previewRange":  "2026-08-31~2026-09-04",
+    "updated":  "2026-08-31T03:10:00Z",
+    "updatedKr":  "2026-08-31 12:10:00",
+    "frozenDow":  "Monday",
+    "reviewRange":  "2026-08-31~2026-09-04",
+    "previewRange":  "2026-09-07~2026-09-11",
     "thisWeek":  [
-                     {
-                         "id":  "554781",
-                         "datetime":  "2026/08/25 23:00:00",
-                         "date":  "8/25",
-                         "time":  "23:00",
-                         "flagKey":  "United_States",
-                         "currency":  "USD",
-                         "importance":  3,
-                         "indicator":  "CB Consumer Confidence",
-                         "period":  "Aug",
-                         "actual":  "89.4",
-                         "forecast":  "90.9",
-                         "previous":  "90.2",
-                         "type":  "review"
-                     },
-                     {
-                         "id":  "554782",
-                         "datetime":  "2026/08/25 23:00:00",
-                         "date":  "8/25",
-                         "time":  "23:00",
-                         "flagKey":  "United_States",
-                         "currency":  "USD",
-                         "importance":  3,
-                         "indicator":  "New Home Sales",
-                         "period":  "Jul",
-                         "actual":  "607K",
-                         "forecast":  "620K",
-                         "previous":  "678K",
-                         "type":  "review"
-                     },
-                     {
-                         "id":  "554841",
-                         "datetime":  "2026/08/26 21:30:00",
-                         "date":  "8/26",
-                         "time":  "21:30",
-                         "flagKey":  "United_States",
-                         "currency":  "USD",
-                         "importance":  3,
-                         "indicator":  "GDP (QoQ)",
-                         "period":  "Q2",
-                         "actual":  "1.5%",
-                         "forecast":  "1.5%",
-                         "previous":  "1.5%",
-                         "type":  "review"
-                     },
-                     {
-                         "id":  "554837",
-                         "datetime":  "2026/08/26 21:30:00",
-                         "date":  "8/26",
-                         "time":  "21:30",
-                         "flagKey":  "United_States",
-                         "currency":  "USD",
-                         "importance":  3,
-                         "indicator":  "Core PCE Price Index (YoY)",
-                         "period":  "Jul",
-                         "actual":  "3.3%",
-                         "forecast":  "3.3%",
-                         "previous":  "3.3%",
-                         "type":  "review"
-                     },
-                     {
-                         "id":  "554845",
-                         "datetime":  "2026/08/26 21:30:00",
-                         "date":  "8/26",
-                         "time":  "21:30",
-                         "flagKey":  "United_States",
-                         "currency":  "USD",
-                         "importance":  3,
-                         "indicator":  "Durable Goods Orders (MoM)",
-                         "period":  "Jul",
-                         "actual":  "1.1%",
-                         "forecast":  "0.4%",
-                         "previous":  "0.3%",
-                         "type":  "review"
-                     },
-                     {
-                         "id":  "560103",
-                         "datetime":  "2026/08/27 10:00:00",
-                         "date":  "8/27",
-                         "time":  "10:00",
-                         "flagKey":  "South_Korea",
-                         "currency":  "KRW",
-                         "importance":  3,
-                         "indicator":  "BOK Interest Rate Decision",
-                         "period":  "Aug",
-                         "actual":  "3.00%",
-                         "forecast":  "2.75%",
-                         "previous":  "2.75%",
-                         "type":  "review"
-                     },
-                     {
-                         "id":  "560104",
-                         "datetime":  "2026/08/27 21:30:00",
-                         "date":  "8/27",
-                         "time":  "21:30",
-                         "flagKey":  "United_States",
-                         "currency":  "USD",
-                         "importance":  3,
-                         "indicator":  "Initial Jobless Claims",
-                         "period":  "",
-                         "actual":  "203K",
-                         "forecast":  "208K",
-                         "previous":  "206K",
-                         "type":  "review"
-                     },
-                     {
-                         "id":  "560105",
-                         "datetime":  "2026/08/28 08:30:00",
-                         "date":  "8/28",
-                         "time":  "08:30",
-                         "flagKey":  "Japan",
-                         "currency":  "JPY",
-                         "importance":  3,
-                         "indicator":  "Unemployment Rate",
-                         "period":  "Jul",
-                         "actual":  "",
-                         "forecast":  "2.5%",
-                         "previous":  "2.5%",
-                         "type":  "review"
-                     },
-                     {
-                         "id":  "560106",
-                         "datetime":  "2026/08/28 08:30:00",
-                         "date":  "8/28",
-                         "time":  "08:30",
-                         "flagKey":  "Japan",
-                         "currency":  "JPY",
-                         "importance":  3,
-                         "indicator":  "Tokyo Core CPI (YoY)",
-                         "period":  "Aug",
-                         "actual":  "",
-                         "forecast":  "1.8%",
-                         "previous":  "1.9%",
-                         "type":  "review"
-                     },
-                     {
-                         "id":  "560108",
-                         "datetime":  "2026/08/28 23:00:00",
-                         "date":  "8/28",
-                         "time":  "23:00",
-                         "flagKey":  "United_States",
-                         "currency":  "USD",
-                         "importance":  3,
-                         "indicator":  "Michigan Consumer Sentiment (Final)",
-                         "period":  "Aug",
-                         "actual":  "",
-                         "forecast":  "51.0",
-                         "previous":  "51.0",
-                         "type":  "review"
-                     }
-                 ],
-    "nextWeek":  [
                      {
                          "id":  "560201",
                          "datetime":  "2026/08/31 08:00:00",
@@ -182,10 +30,10 @@
                          "importance":  3,
                          "indicator":  "Industrial Production (YoY) (Prel)",
                          "period":  "Jul",
-                         "actual":  "",
+                         "actual":  "4.1%",
                          "forecast":  "3.0%",
                          "previous":  "4.9%",
-                         "type":  "preview"
+                         "type":  "review"
                      },
                      {
                          "id":  "560204",
@@ -200,7 +48,7 @@
                          "actual":  "",
                          "forecast":  "",
                          "previous":  "62.8%",
-                         "type":  "preview"
+                         "type":  "review"
                      },
                      {
                          "id":  "560212",
@@ -213,9 +61,9 @@
                          "indicator":  "Balance of Trade",
                          "period":  "Aug",
                          "actual":  "",
-                         "forecast":  "",
+                         "forecast":  "$35.0B",
                          "previous":  "$30.32B",
-                         "type":  "preview"
+                         "type":  "review"
                      },
                      {
                          "id":  "560207",
@@ -230,7 +78,7 @@
                          "actual":  "",
                          "forecast":  "7.330M",
                          "previous":  "7.359M",
-                         "type":  "preview"
+                         "type":  "review"
                      },
                      {
                          "id":  "560206",
@@ -245,7 +93,7 @@
                          "actual":  "",
                          "forecast":  "55.2",
                          "previous":  "55.6",
-                         "type":  "preview"
+                         "type":  "review"
                      },
                      {
                          "id":  "560208",
@@ -258,9 +106,9 @@
                          "indicator":  "Inflation Rate (YoY)",
                          "period":  "Aug",
                          "actual":  "",
-                         "forecast":  "",
+                         "forecast":  "3.1%",
                          "previous":  "2.8%",
-                         "type":  "preview"
+                         "type":  "review"
                      },
                      {
                          "id":  "560214",
@@ -275,7 +123,7 @@
                          "actual":  "",
                          "forecast":  "47K",
                          "previous":  "44K",
-                         "type":  "preview"
+                         "type":  "review"
                      },
                      {
                          "id":  "560216",
@@ -290,7 +138,7 @@
                          "actual":  "",
                          "forecast":  "205K",
                          "previous":  "203K",
-                         "type":  "preview"
+                         "type":  "review"
                      },
                      {
                          "id":  "560217",
@@ -305,7 +153,7 @@
                          "actual":  "",
                          "forecast":  "54.1",
                          "previous":  "54.1",
-                         "type":  "preview"
+                         "type":  "review"
                      },
                      {
                          "id":  "560211",
@@ -320,7 +168,7 @@
                          "actual":  "",
                          "forecast":  "58K",
                          "previous":  "-23K",
-                         "type":  "preview"
+                         "type":  "review"
                      },
                      {
                          "id":  "560218",
@@ -335,6 +183,158 @@
                          "actual":  "",
                          "forecast":  "4.1%",
                          "previous":  "4.1%",
+                         "type":  "review"
+                     }
+                 ],
+    "nextWeek":  [
+                     {
+                         "id":  "560501",
+                         "datetime":  "2026/09/08 08:50:00",
+                         "date":  "9/8",
+                         "time":  "08:50",
+                         "flagKey":  "Japan",
+                         "currency":  "JPY",
+                         "importance":  3,
+                         "indicator":  "GDP Growth Annualized (Final)",
+                         "period":  "Q2",
+                         "actual":  "",
+                         "forecast":  "1.1%",
+                         "previous":  "1.1%",
+                         "type":  "preview"
+                     },
+                     {
+                         "id":  "560502",
+                         "datetime":  "2026/09/08 08:50:00",
+                         "date":  "9/8",
+                         "time":  "08:50",
+                         "flagKey":  "Japan",
+                         "currency":  "JPY",
+                         "importance":  3,
+                         "indicator":  "GDP Growth Rate (QoQ) (Final)",
+                         "period":  "Q2",
+                         "actual":  "",
+                         "forecast":  "0.3%",
+                         "previous":  "0.3%",
+                         "type":  "preview"
+                     },
+                     {
+                         "id":  "560503",
+                         "datetime":  "2026/09/09 08:00:00",
+                         "date":  "9/9",
+                         "time":  "08:00",
+                         "flagKey":  "South_Korea",
+                         "currency":  "KRW",
+                         "importance":  3,
+                         "indicator":  "Unemployment Rate",
+                         "period":  "Aug",
+                         "actual":  "",
+                         "forecast":  "",
+                         "previous":  "2.8%",
+                         "type":  "preview"
+                     },
+                     {
+                         "id":  "560504",
+                         "datetime":  "2026/09/10 21:30:00",
+                         "date":  "9/10",
+                         "time":  "21:30",
+                         "flagKey":  "United_States",
+                         "currency":  "USD",
+                         "importance":  3,
+                         "indicator":  "PPI (YoY)",
+                         "period":  "Aug",
+                         "actual":  "",
+                         "forecast":  "",
+                         "previous":  "4.7%",
+                         "type":  "preview"
+                     },
+                     {
+                         "id":  "560505",
+                         "datetime":  "2026/09/10 21:30:00",
+                         "date":  "9/10",
+                         "time":  "21:30",
+                         "flagKey":  "United_States",
+                         "currency":  "USD",
+                         "importance":  3,
+                         "indicator":  "Core PPI (YoY)",
+                         "period":  "Aug",
+                         "actual":  "",
+                         "forecast":  "",
+                         "previous":  "4.2%",
+                         "type":  "preview"
+                     },
+                     {
+                         "id":  "560506",
+                         "datetime":  "2026/09/10 21:30:00",
+                         "date":  "9/10",
+                         "time":  "21:30",
+                         "flagKey":  "United_States",
+                         "currency":  "USD",
+                         "importance":  3,
+                         "indicator":  "Initial Jobless Claims",
+                         "period":  "",
+                         "actual":  "",
+                         "forecast":  "",
+                         "previous":  "",
+                         "type":  "preview"
+                     },
+                     {
+                         "id":  "560507",
+                         "datetime":  "2026/09/11 08:50:00",
+                         "date":  "9/11",
+                         "time":  "08:50",
+                         "flagKey":  "Japan",
+                         "currency":  "JPY",
+                         "importance":  3,
+                         "indicator":  "PPI (YoY)",
+                         "period":  "Aug",
+                         "actual":  "",
+                         "forecast":  "",
+                         "previous":  "7.2%",
+                         "type":  "preview"
+                     },
+                     {
+                         "id":  "560508",
+                         "datetime":  "2026/09/11 21:30:00",
+                         "date":  "9/11",
+                         "time":  "21:30",
+                         "flagKey":  "United_States",
+                         "currency":  "USD",
+                         "importance":  3,
+                         "indicator":  "CPI (YoY)",
+                         "period":  "Aug",
+                         "actual":  "",
+                         "forecast":  "",
+                         "previous":  "3.4%",
+                         "type":  "preview"
+                     },
+                     {
+                         "id":  "560509",
+                         "datetime":  "2026/09/11 21:30:00",
+                         "date":  "9/11",
+                         "time":  "21:30",
+                         "flagKey":  "United_States",
+                         "currency":  "USD",
+                         "importance":  3,
+                         "indicator":  "Core CPI (YoY)",
+                         "period":  "Aug",
+                         "actual":  "",
+                         "forecast":  "2.5%",
+                         "previous":  "2.5%",
+                         "type":  "preview"
+                     },
+                     {
+                         "id":  "560510",
+                         "datetime":  "2026/09/11 23:00:00",
+                         "date":  "9/11",
+                         "time":  "23:00",
+                         "flagKey":  "United_States",
+                         "currency":  "USD",
+                         "importance":  3,
+                         "indicator":  "Michigan Consumer Sentiment (Prel)",
+                         "period":  "Sep",
+                         "actual":  "",
+                         "forecast":  "52.0",
+                         "previous":  "51.7",
                          "type":  "preview"
                      }
                  ]
