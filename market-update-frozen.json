@@ -1,7 +1,7 @@
-﻿{
-    "updated":  "2026-08-31T23:32:21Z",
-    "updatedKr":  "2026-09-01 08:32:21",
-    "frozenDow":  "Tuesday",
+{
+    "updated":  "2026-09-01T23:25:53Z",
+    "updatedKr":  "2026-09-02 08:25:53",
+    "frozenDow":  "Wednesday",
     "reviewRange":  "2026-08-31~2026-09-04",
     "previewRange":  "2026-09-07~2026-09-11",
     "thisWeek":  [
@@ -45,8 +45,8 @@
                          "importance":  3,
                          "indicator":  "Exports (YoY)",
                          "period":  "Aug",
-                         "actual":  "",
-                         "forecast":  "",
+                         "actual":  "68.7%",
+                         "forecast":  "62.6%",
                          "previous":  "62.8%",
                          "type":  "review"
                      },
@@ -60,7 +60,7 @@
                          "importance":  3,
                          "indicator":  "Balance of Trade",
                          "period":  "Aug",
-                         "actual":  "",
+                         "actual":  "$34.75B",
                          "forecast":  "$35.0B",
                          "previous":  "$30.32B",
                          "type":  "review"
@@ -75,7 +75,7 @@
                          "importance":  3,
                          "indicator":  "JOLTs Job Openings",
                          "period":  "Jul",
-                         "actual":  "",
+                         "actual":  "7.271M",
                          "forecast":  "7.330M",
                          "previous":  "7.359M",
                          "type":  "review"
@@ -90,7 +90,7 @@
                          "importance":  3,
                          "indicator":  "ISM Manufacturing PMI",
                          "period":  "Aug",
-                         "actual":  "",
+                         "actual":  "54.6",
                          "forecast":  "55.2",
                          "previous":  "55.6",
                          "type":  "review"
@@ -105,7 +105,7 @@
                          "importance":  3,
                          "indicator":  "Inflation Rate (YoY)",
                          "period":  "Aug",
-                         "actual":  "",
+                         "actual":  "3.1%",
                          "forecast":  "3.1%",
                          "previous":  "2.8%",
                          "type":  "review"

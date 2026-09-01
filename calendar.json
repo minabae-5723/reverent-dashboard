@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-08-31T23:33:19Z",
-    "updatedKr":  "2026-09-01 08:33:19",
+    "updated":  "2026-09-01T23:25:52Z",
+    "updatedKr":  "2026-09-02 08:25:52",
     "countries":  [
                       "5",
                       "35",
@@ -50,7 +50,7 @@
                        "importance":  3,
                        "indicator":  "Exports (YoY)",
                        "period":  "Aug",
-                       "actual":  "",
+                       "actual":  "68.7%",
                        "forecast":  "",
                        "previous":  "62.8%",
                        "type":  "review"
@@ -65,7 +65,7 @@
                        "importance":  3,
                        "indicator":  "Balance of Trade",
                        "period":  "Aug",
-                       "actual":  "",
+                       "actual":  "$34.75B",
                        "forecast":  "$35.0B",
                        "previous":  "$30.32B",
                        "type":  "review"
@@ -80,7 +80,7 @@
                        "importance":  3,
                        "indicator":  "JOLTs Job Openings",
                        "period":  "Jul",
-                       "actual":  "",
+                       "actual":  "7.271M",
                        "forecast":  "7.330M",
                        "previous":  "7.359M",
                        "type":  "review"
@@ -95,7 +95,7 @@
                        "importance":  3,
                        "indicator":  "ISM Manufacturing PMI",
                        "period":  "Aug",
-                       "actual":  "",
+                       "actual":  "54.6",
                        "forecast":  "55.2",
                        "previous":  "55.6",
                        "type":  "review"
@@ -110,7 +110,7 @@
                        "importance":  3,
                        "indicator":  "Inflation Rate (YoY)",
                        "period":  "Aug",
-                       "actual":  "",
+                       "actual":  "3.1%",
                        "forecast":  "3.1%",
                        "previous":  "2.8%",
                        "type":  "review"
