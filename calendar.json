@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-09-01T23:28:42Z",
-    "updatedKr":  "2026-09-02 08:28:42",
+    "updated":  "2026-09-02T01:49:51Z",
+    "updatedKr":  "2026-09-02 10:49:51",
     "countries":  [
                       "5",
                       "35",
@@ -126,7 +126,7 @@
                        "indicator":  "ADP Nonfarm Employment Change",
                        "period":  "Aug",
                        "actual":  "",
-                       "forecast":  "47K",
+                       "forecast":  "48K",
                        "previous":  "44K",
                        "type":  "review"
                    },

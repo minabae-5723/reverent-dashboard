@@ -572,6 +572,90 @@ do {
         }
     }
 
+    # --- frozen -> calendar-week / calendar-next-week reverse sync ---------
+    # #weekly view reads calendar-week.json / calendar-next-week.json, but
+    # Investing is Cloudflare-blocked (403) so those files stay pinned to the
+    # last hand-filled snapshot. Only market-update-frozen.json gets the
+    # curated lineup and the actuals filled in by the daily task (Trading
+    # Economics / WebSearch), so #weekly kept showing empty actuals while the
+    # dashboard Macro Economy card was current (2026-09-02 user report).
+    # Treat frozen as the source of truth and push its values back:
+    #   - match on date + indicator + flagKey (minute-level time differs by source)
+    #   - never overwrite with an empty frozen value (protects live-scraped data)
+    #   - append frozen events the calendar file does not have at all
+    #     (KR/JP indicators that only exist in the curated frozen lineup)
+    $syncFrozenToCalendar = {
+        param($FrozenPath, $Targets)
+        if (-not (Test-Path $FrozenPath)) { return }
+        $fz = $null
+        try { $fz = Get-Content $FrozenPath -Raw -Encoding UTF8 | ConvertFrom-Json } catch { return }
+        $frozenAll = @()
+        foreach ($k in 'thisWeek','nextWeek') { if ($fz.$k) { $frozenAll += @($fz.$k) } }
+        if ($frozenAll.Count -eq 0) { return }
+
+        foreach ($t in $Targets) {
+            if (-not (Test-Path $t.Path)) { continue }
+            $leaf = Split-Path $t.Path -Leaf
+            $data = $null
+            try { $data = Get-Content $t.Path -Raw -Encoding UTF8 | ConvertFrom-Json } catch { continue }
+            $events = @($data.events)
+            $changed = 0; $added = 0
+            foreach ($fe in $frozenAll) {
+                # frozen datetime is "yyyy/MM/dd HH:mm:ss" (slash separator is
+                # mandatory for parseInvestingDateTime); tolerate hyphen anyway.
+                $d = ''
+                if ("$($fe.datetime)" -match '^(\d{4})[/-](\d{2})[/-](\d{2})') {
+                    $d = "$($Matches[1])-$($Matches[2])-$($Matches[3])"
+                }
+                if (-not $d) { continue }
+                # route each frozen event by its own date, not by which array it
+                # sits in (the Sunday roll shifts thisWeek/nextWeek meaning)
+                if ($d -lt $t.From -or $d -gt $t.To) { continue }
+
+                $match = $events | Where-Object {
+                    $_.date -eq $fe.date -and
+                    "$($_.indicator)".Trim() -eq "$($fe.indicator)".Trim() -and
+                    $_.flagKey -eq $fe.flagKey
+                } | Select-Object -First 1
+
+                if (-not $match) {
+                    $events += $fe
+                    $added++
+                    continue
+                }
+                foreach ($fld in 'actual','forecast','previous') {
+                    $v = "$($fe.$fld)"
+                    if ($v -ne '' -and $v -ne "$($match.$fld)") { $match.$fld = $v; $changed++ }
+                }
+                if ("$($fe.actual)" -ne '' -and $match.type -ne 'review') {
+                    $match.type = 'review'
+                    $changed++
+                }
+                # frozen is hand-curated at importance 3; Investing sometimes rates
+                # the same indicator 2 (e.g. Core CPI YoY), which hid it behind the
+                # #weekly star filter while the Macro card showed it. Raise only.
+                if (($fe.importance -as [int]) -gt ($match.importance -as [int])) {
+                    $match.importance = ($fe.importance -as [int])
+                    $changed++
+                }
+            }
+            if ($changed -eq 0 -and $added -eq 0) {
+                Write-Host ("  sync:     {0} already matches frozen" -f $leaf) -ForegroundColor DarkGray
+                continue
+            }
+            $data.events    = @($events | Sort-Object datetime)
+            $data.updated   = (Get-Date).ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ")
+            $data.updatedKr = (Get-Date).ToString('yyyy-MM-dd HH:mm:ss')
+            $json = $data | ConvertTo-Json -Depth 6
+            [System.IO.File]::WriteAllText($t.Path, $json, (New-Object System.Text.UTF8Encoding($false)))
+            Write-Host ("  sync:     {0} <- frozen ({1} value(s) patched, {2} event(s) added)" -f $leaf, $changed, $added) -ForegroundColor Yellow
+        }
+    }
+    & $syncFrozenToCalendar $FrozenFile @(
+        [PSCustomObject]@{ Path = $WeekFile;     From = $weekFrom;    To = $weekTo },
+        [PSCustomObject]@{ Path = $NextWeekFile; From = $previewFrom; To = $previewTo }
+    )
+
     Write-Host ("  done in {0}s" -f $elapsed) -ForegroundColor DarkGray
 
     if ($Loop) { Start-Sleep -Seconds $IntervalSec }

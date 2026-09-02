@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-09-01T23:25:53Z",
-    "updatedKr":  "2026-09-02 08:25:53",
+    "updated":  "2026-09-02T01:48:50Z",
+    "updatedKr":  "2026-09-02 10:48:50",
     "frozenDow":  "Wednesday",
     "reviewRange":  "2026-08-31~2026-09-04",
     "previewRange":  "2026-09-07~2026-09-11",
@@ -121,7 +121,7 @@
                          "indicator":  "ADP Nonfarm Employment Change",
                          "period":  "Aug",
                          "actual":  "",
-                         "forecast":  "47K",
+                         "forecast":  "48K",
                          "previous":  "44K",
                          "type":  "review"
                      },
