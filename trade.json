@@ -1,8 +1,8 @@
 {
-    "updated":  "2026-09-02T06:43:30Z",
-    "updatedKr":  "2026-09-02 15:43:30",
+    "updated":  "2026-09-02T22:00:35Z",
+    "updatedKr":  "2026-09-03 07:00:35",
     "source":  "data.go.kr #15101609 (愿?몄껌 ?덈ぉ蹂??섏텧?낆떎??GW)",
-    "range":  "2007-2026",
+    "range":  "2025-2026",
     "ssd":  [
                 {
                     "month":  "2007-01",
@@ -8510,6 +8510,5 @@
                     "impWgtRaw":  null,
                     "prov":  true
                 }
-            ],
-    "provisionalMonth":  "2026-08"
+            ]
 }
