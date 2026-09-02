@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-09-02T22:00:32Z",
-    "updatedKr":  "2026-09-03 07:00:32",
+    "updated":  "2026-09-02T23:30:16Z",
+    "updatedKr":  "2026-09-03 08:30:16",
     "countries":  [
                       "5",
                       "35",
@@ -125,8 +125,8 @@
                        "importance":  3,
                        "indicator":  "ADP Nonfarm Employment Change",
                        "period":  "Aug",
-                       "actual":  "",
-                       "forecast":  "48K",
+                       "actual":  "38K",
+                       "forecast":  "47K",
                        "previous":  "44K",
                        "type":  "review"
                    },
@@ -158,6 +158,21 @@
                        "actual":  "",
                        "forecast":  "54.1",
                        "previous":  "54.1",
+                       "type":  "review"
+                   },
+                   {
+                       "id":  "560219",
+                       "datetime":  "2026/09/04 08:00:00",
+                       "date":  "9/4",
+                       "time":  "08:00",
+                       "flagKey":  "South_Korea",
+                       "currency":  "KRW",
+                       "importance":  3,
+                       "indicator":  "Current Account",
+                       "period":  "Jul",
+                       "actual":  "",
+                       "forecast":  "$50.0B",
+                       "previous":  "$49.73B",
                        "type":  "review"
                    },
                    {

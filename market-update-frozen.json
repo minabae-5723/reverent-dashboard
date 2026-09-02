@@ -1,7 +1,7 @@
 {
-    "updated":  "2026-09-02T22:00:34Z",
-    "updatedKr":  "2026-09-03 07:00:34",
-    "frozenDow":  "Wednesday",
+    "updated":  "2026-09-02T23:30:18Z",
+    "updatedKr":  "2026-09-03 08:30:18",
+    "frozenDow":  "Thursday",
     "reviewRange":  "2026-08-31~2026-09-04",
     "previewRange":  "2026-09-07~2026-09-11",
     "thisWeek":  [
@@ -156,6 +156,21 @@
                          "type":  "review"
                      },
                      {
+                         "id":  "560219",
+                         "datetime":  "2026/09/04 08:00:00",
+                         "date":  "9/4",
+                         "time":  "08:00",
+                         "flagKey":  "South_Korea",
+                         "currency":  "KRW",
+                         "importance":  3,
+                         "indicator":  "Current Account",
+                         "period":  "Jul",
+                         "actual":  "",
+                         "forecast":  "$50.0B",
+                         "previous":  "$49.73B",
+                         "type":  "review"
+                     },
+                     {
                          "id":  "560211",
                          "datetime":  "2026/09/04 21:30:00",
                          "date":  "9/4",
@@ -200,6 +215,21 @@
                          "actual":  "",
                          "forecast":  "0.6%",
                          "previous":  "1.8%",
+                         "type":  "preview"
+                     },
+                     {
+                         "id":  "560511",
+                         "datetime":  "2026/09/08 08:00:00",
+                         "date":  "9/8",
+                         "time":  "08:00",
+                         "flagKey":  "South_Korea",
+                         "currency":  "KRW",
+                         "importance":  3,
+                         "indicator":  "GDP Growth Rate (YoY) (Final)",
+                         "period":  "Q2",
+                         "actual":  "",
+                         "forecast":  "3.7%",
+                         "previous":  "3.8%",
                          "type":  "preview"
                      },
                      {
@@ -273,7 +303,7 @@
                          "indicator":  "Core PPI (YoY)",
                          "period":  "Aug",
                          "actual":  "",
-                         "forecast":  "",
+                         "forecast":  "4.1%",
                          "previous":  "4.2%",
                          "type":  "preview"
                      },
@@ -288,7 +318,7 @@
                          "indicator":  "PPI (YoY)",
                          "period":  "Aug",
                          "actual":  "",
-                         "forecast":  "",
+                         "forecast":  "4.5%",
                          "previous":  "4.7%",
                          "type":  "preview"
                      },
@@ -318,7 +348,7 @@
                          "indicator":  "Core CPI (YoY)",
                          "period":  "Aug",
                          "actual":  "",
-                         "forecast":  "2.5%",
+                         "forecast":  "2.4%",
                          "previous":  "2.5%",
                          "type":  "preview"
                      },
@@ -333,7 +363,7 @@
                          "indicator":  "CPI (YoY)",
                          "period":  "Aug",
                          "actual":  "",
-                         "forecast":  "",
+                         "forecast":  "3.4%",
                          "previous":  "3.4%",
                          "type":  "preview"
                      },
@@ -348,7 +378,7 @@
                          "indicator":  "Michigan Consumer Sentiment (Prel)",
                          "period":  "Sep",
                          "actual":  "",
-                         "forecast":  "52.0",
+                         "forecast":  "51.5",
                          "previous":  "51.7",
                          "type":  "preview"
                      }
