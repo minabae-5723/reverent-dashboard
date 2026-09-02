@@ -613,6 +613,21 @@ html, body {
   font-variant-numeric: tabular-nums;
 }
 
+/* 관세청 잠정치 배지 — 매월 1일 발표분, 15일경 확정치로 교체 */
+.semicon-prov {
+  display: inline-block;
+  font-size: 9px;
+  font-weight: 600;
+  color: #8a6d1f;
+  background: #fdf3d6;
+  border: 1px solid #e8d49a;
+  padding: 0 4px;
+  border-radius: 3px;
+  margin-left: 4px;
+  vertical-align: 1px;
+  letter-spacing: 0;
+}
+
 .semicon-stats {
   display: flex;
   gap: 18px;

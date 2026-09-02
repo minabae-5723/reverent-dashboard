@@ -2707,7 +2707,7 @@ if (IS_STATIC) {
 
 // ─── Semiconductor 수출입 View ────────────────────────────
 let tradeCache = null;
-let semiconCharts = { ssd: null, nand: null, dram: null, mcp: null };
+let semiconCharts = { ssd: null, nand: null, dram: null, module: null, mcp: null };
 let semiconRange = '5y';
 let semiconMetric = 'value';  // 'value' | 'weight' | 'unitPrice'
 
@@ -2756,9 +2756,17 @@ function computeStats(series) {
   const cfg = metricCfg();
   const f = cfg.field;
   if (!series || series.length < 13) return null;
-  const latest = series[series.length - 1];
-  const prev1  = series[series.length - 2];
-  const prev12 = series[series.length - 13];
+  // Anchor on the newest row that actually carries THIS metric. A 관세청 잠정치
+  // month is published with 수출액 only, so on the 중량/단가 tabs the final row is
+  // empty — anchoring blindly on the last row would blank every card and hide the
+  // P×Q signal for the fortnight until the 확정치 lands. Falling back one month
+  // keeps 단가 readable, and the month label tells the reader which month it is.
+  let li = series.length - 1;
+  while (li >= 0 && series[li]?.[f] == null) li--;
+  if (li < 12) return null;
+  const latest = series[li];
+  const prev1  = series[li - 1];
+  const prev12 = series[li - 12];
   const lv = latest?.[f];
   const p1 = prev1?.[f];
   const p12 = prev12?.[f];
@@ -2774,13 +2782,14 @@ function computeStats(series) {
   // "surge/collapse" that is really just seasonality. Comparing against the
   // preceding three-month mean strips that out and answers the question that
   // actually matters: is this month off-trend, or only off last month's spike?
-  const prior3 = series.slice(-4, -1).map(d => d?.[f]).filter(v => v != null);
+  const prior3 = series.slice(li - 3, li).map(d => d?.[f]).filter(v => v != null);
   const ma3 = prior3.length === 3 ? prior3.reduce((s, v) => s + v, 0) / 3 : null;
   const vsMa3 = (lv != null && ma3 != null && ma3 !== 0) ? ((lv - ma3) / ma3) * 100 : null;
 
   return {
     latest: lv,
     latestMonth: latest.month,
+    prov: latest.prov === true,   // 관세청 잠정치 (매월 1일) — 15일경 확정치로 교체됨
     mom,
     yoy,
     ma3,
@@ -2808,8 +2817,8 @@ function renderStatsBlock(stats) {
     ? `${Number(stats.latest).toLocaleString('en-US', { maximumFractionDigits: stats.digits })} ${stats.unit}`
     : '—';
   return `
-    <div class="semicon-stat">
-      <span class="stat-label">${stats.latestMonth}</span>
+    <div class="semicon-stat"${stats.prov ? ' title="관세청 잠정치 — 매월 15일경 확정치로 교체. 수출액만 발표되므로 중량·단가는 공백"' : ''}>
+      <span class="stat-label">${stats.latestMonth}${stats.prov ? ' <span class="semicon-prov">잠정</span>' : ''}</span>
       <span class="stat-value">${latest}</span>
     </div>
     <div class="semicon-stat">
@@ -2849,6 +2858,13 @@ function drawChart(canvasId, label, series, color) {
     return w.reduce((s, v) => s + v, 0) / 3;
   });
 
+  // The final point is a 관세청 잠정치 until the 확정치 lands mid-month. Draw the
+  // segment into it dashed so a provisional number never reads as settled data.
+  const lastProv = series.length > 0 && series[series.length - 1].prov === true;
+  const provSegment = lastProv
+    ? { borderDash: (c) => (c.p1DataIndex === values.length - 1 ? [4, 3] : undefined) }
+    : {};
+
   const key = canvasId.replace('Chart', '');
   if (semiconCharts[key]) semiconCharts[key].destroy();
 
@@ -2866,6 +2882,7 @@ function drawChart(canvasId, label, series, color) {
         pointHoverRadius: 5,
         tension: 0.15,
         fill: true,
+        segment: provSegment,
       }, {
         label: '3개월 이동평균',
         data: ma3,
@@ -2938,18 +2955,20 @@ function drawChart(canvasId, label, series, color) {
 function renderSemicon() {
   if (!tradeCache) return;
   const palette = {
-    ssd:  '#1e3a5f',
-    nand: '#b89968',
-    dram: '#2c5282',
-    mcp:  '#7b4a8c',
+    ssd:    '#1e3a5f',
+    nand:   '#b89968',
+    dram:   '#2c5282',
+    module: '#4a7c9c',
+    mcp:    '#7b4a8c',
   };
-  ['ssd', 'nand', 'dram', 'mcp'].forEach(key => {
+  const labels = { module: 'DRAM 모듈' };
+  ['ssd', 'nand', 'dram', 'module', 'mcp'].forEach(key => {
     const full = tradeCache[key] || [];
     const filtered = filterByRange(full, semiconRange);
     const stats = computeStats(full); // stats always from full series (latest is latest)
     const statsEl = document.getElementById(`${key}Stats`);
     if (statsEl) statsEl.innerHTML = renderStatsBlock(stats);
-    drawChart(`${key}Chart`, key.toUpperCase(), filtered, palette[key]);
+    drawChart(`${key}Chart`, labels[key] || key.toUpperCase(), filtered, palette[key]);
   });
 }
 
