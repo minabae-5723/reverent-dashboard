@@ -2707,7 +2707,7 @@ if (IS_STATIC) {
 
 // ─── Semiconductor 수출입 View ────────────────────────────
 let tradeCache = null;
-let semiconCharts = { ssd: null, nand: null, dram: null, module: null, mcp: null };
+let semiconCharts = { ssd: null, nand: null, dram: null, mcp: null };
 let semiconRange = '5y';
 let semiconMetric = 'value';  // 'value' | 'weight' | 'unitPrice'
 
@@ -2955,20 +2955,18 @@ function drawChart(canvasId, label, series, color) {
 function renderSemicon() {
   if (!tradeCache) return;
   const palette = {
-    ssd:    '#1e3a5f',
-    nand:   '#b89968',
-    dram:   '#2c5282',
-    module: '#4a7c9c',
-    mcp:    '#7b4a8c',
+    ssd:  '#1e3a5f',
+    nand: '#b89968',
+    dram: '#2c5282',
+    mcp:  '#7b4a8c',
   };
-  const labels = { module: 'DRAM 모듈' };
-  ['ssd', 'nand', 'dram', 'module', 'mcp'].forEach(key => {
+  ['ssd', 'nand', 'dram', 'mcp'].forEach(key => {
     const full = tradeCache[key] || [];
     const filtered = filterByRange(full, semiconRange);
     const stats = computeStats(full); // stats always from full series (latest is latest)
     const statsEl = document.getElementById(`${key}Stats`);
     if (statsEl) statsEl.innerHTML = renderStatsBlock(stats);
-    drawChart(`${key}Chart`, labels[key] || key.toUpperCase(), filtered, palette[key]);
+    drawChart(`${key}Chart`, key.toUpperCase(), filtered, palette[key]);
   });
 }
 

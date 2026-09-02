@@ -37,7 +37,6 @@ $HS_CODES = @(
     @{ key = 'nand'; hs = '8542321030'; name = 'NAND' }   # 메모리(낸드플래시)
     @{ key = 'dram'; hs = '8542321010'; name = 'DRAM' }   # 메모리(디램, 칩만)
     @{ key = 'mcp';  hs = '8542323000'; name = 'MCP'  }   # MCP (multi-chip package / HBM, 8542.32-3000)
-    @{ key = 'module'; hs = '8473304060'; name = 'DRAM MODULE' }  # 디램 모듈 (8473.30-4060, 컴퓨터 부분품으로 분류)
 )
 
 $baseUrl = 'https://apis.data.go.kr/1220000/Itemtrade/getItemtradeList'
