@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-09-02T01:57:56Z",
-    "updatedKr":  "2026-09-02 10:57:56",
+    "updated":  "2026-09-02T06:39:28Z",
+    "updatedKr":  "2026-09-02 15:39:28",
     "source":  "data.go.kr #15101609 (愿?몄껌 ?덈ぉ蹂??섏텧?낆떎??GW)",
     "range":  "2007-2026",
     "ssd":  [
@@ -2121,10 +2121,10 @@
                 },
                 {
                     "month":  "2026-08",
-                    "value":  5980,
-                    "weight":  null,
-                    "unitPrice":  null,
-                    "expDlrRaw":  5980000000,
+                    "value":  5979,
+                    "weight":  237601,
+                    "unitPrice":  25164,
+                    "expDlrRaw":  5979000000,
                     "impDlrRaw":  null,
                     "impWgtRaw":  null,
                     "prov":  true
@@ -4248,10 +4248,10 @@
                  },
                  {
                      "month":  "2026-08",
-                     "value":  2860,
-                     "weight":  null,
-                     "unitPrice":  null,
-                     "expDlrRaw":  2860000000,
+                     "value":  2862,
+                     "weight":  28377,
+                     "unitPrice":  100855,
+                     "expDlrRaw":  2862000000,
                      "impDlrRaw":  null,
                      "impWgtRaw":  null,
                      "prov":  true
@@ -6375,10 +6375,10 @@
                  },
                  {
                      "month":  "2026-08",
-                     "value":  15730,
-                     "weight":  null,
-                     "unitPrice":  null,
-                     "expDlrRaw":  15730000000,
+                     "value":  15733,
+                     "weight":  177728,
+                     "unitPrice":  88523,
+                     "expDlrRaw":  15733000000,
                      "impDlrRaw":  null,
                      "impWgtRaw":  null,
                      "prov":  true
@@ -8502,10 +8502,10 @@
                 },
                 {
                     "month":  "2026-08",
-                    "value":  12230,
-                    "weight":  null,
-                    "unitPrice":  null,
-                    "expDlrRaw":  12230000000,
+                    "value":  12225,
+                    "weight":  123657,
+                    "unitPrice":  98862,
+                    "expDlrRaw":  12225000000,
                     "impDlrRaw":  null,
                     "impWgtRaw":  null,
                     "prov":  true
