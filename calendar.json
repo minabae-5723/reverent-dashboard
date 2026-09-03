@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-09-03T22:00:23Z",
-    "updatedKr":  "2026-09-04 07:00:23",
+    "updated":  "2026-09-03T23:23:04Z",
+    "updatedKr":  "2026-09-04 08:23:04",
     "countries":  [
                       "5",
                       "35",
@@ -140,7 +140,7 @@
                        "importance":  3,
                        "indicator":  "Initial Jobless Claims",
                        "period":  "",
-                       "actual":  "",
+                       "actual":  "206K",
                        "forecast":  "205K",
                        "previous":  "203K",
                        "type":  "review"
@@ -155,7 +155,7 @@
                        "importance":  3,
                        "indicator":  "ISM Non-Manufacturing PMI",
                        "period":  "Aug",
-                       "actual":  "",
+                       "actual":  "55.4",
                        "forecast":  "54.1",
                        "previous":  "54.1",
                        "type":  "review"
@@ -170,7 +170,7 @@
                        "importance":  3,
                        "indicator":  "Current Account",
                        "period":  "Jul",
-                       "actual":  "",
+                       "actual":  "$42.08B",
                        "forecast":  "$50.0B",
                        "previous":  "$49.73B",
                        "type":  "review"

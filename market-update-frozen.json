@@ -1,7 +1,7 @@
 {
-    "updated":  "2026-09-03T22:00:25Z",
-    "updatedKr":  "2026-09-04 07:00:25",
-    "frozenDow":  "Thursday",
+    "updated":  "2026-09-03T23:23:06Z",
+    "updatedKr":  "2026-09-04 08:23:06",
+    "frozenDow":  "Friday",
     "reviewRange":  "2026-08-31~2026-09-04",
     "previewRange":  "2026-09-07~2026-09-11",
     "thisWeek":  [
@@ -165,7 +165,7 @@
                          "importance":  3,
                          "indicator":  "Current Account",
                          "period":  "Jul",
-                         "actual":  "",
+                         "actual":  "$42.08B",
                          "forecast":  "$50.0B",
                          "previous":  "$49.73B",
                          "type":  "review"
