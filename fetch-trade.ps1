@@ -1,4 +1,4 @@
-# =============================================================
+﻿# =============================================================
 #  Korea Customs OpenAPI fetcher (관세청 품목별 수출입실적 GW)
 #  - API: data.go.kr #15101609
 #  - Endpoint: https://apis.data.go.kr/1220000/Itemtrade/getItemtradeList  (http/:80 times out)
@@ -121,6 +121,10 @@ $merged = $result
 if (Test-Path -LiteralPath $outPath) {
     try {
         $existing = Get-Content -LiteralPath $outPath -Raw -Encoding UTF8 | ConvertFrom-Json
+        # 잠정치(prov=true)가 이번 fetch 로 확정치로 바뀐 건들. 얼마나 수정됐는지
+        # 찍어줘야 잠정치가 믿을 만했는지 다음 달에 판단할 수 있다.
+        $superseded = @()
+        $stillProv  = @()
         foreach ($spec in $HS_CODES) {
             $k = $spec.key
             $newRows = @($result[$k])
@@ -130,7 +134,18 @@ if (Test-Path -LiteralPath $outPath) {
             $kept = @()
             if ($existing.PSObject.Properties.Name -contains $k) {
                 foreach ($r in $existing.$k) {
-                    if (-not $newMonths.ContainsKey($r.month)) { $kept += $r }
+                    if (-not $newMonths.ContainsKey($r.month)) {
+                        $kept += $r
+                        if ($r.prov -eq $true) { $stillProv += ("{0} {1}" -f $spec.name, $r.month) }
+                    } elseif ($r.prov -eq $true) {
+                        # API가 이 월을 반환했다 -> 잠정치 행이 확정치로 교체된다
+                        $final = $newRows | Where-Object { $_.month -eq $r.month }
+                        $diff = if ($r.value) { (($final.value - $r.value) / $r.value) * 100 } else { $null }
+                        $superseded += [PSCustomObject]@{
+                            name = $spec.name; month = $r.month
+                            prov = $r.value; final = $final.value; diffPct = $diff
+                        }
+                    }
                 }
             }
             # Combine and sort
@@ -139,10 +154,47 @@ if (Test-Path -LiteralPath $outPath) {
         }
         Write-Host ""
         Write-Host " (Merged with existing trade.json — historical months preserved)" -ForegroundColor DarkGray
+
+        if ($superseded.Count -gt 0) {
+            Write-Host ""
+            Write-Host " 잠정치 -> 확정치 교체됨:" -ForegroundColor Cyan
+            foreach ($s in $superseded) {
+                $d = if ($null -eq $s.diffPct) { "-" } else { "{0,+6:N1}%" -f $s.diffPct }
+                Write-Host ("   {0,-6} {1}  잠정 {2,8:N0} -> 확정 {3,8:N0} `$mn  (수정폭 {4})" -f `
+                    $s.name, $s.month, $s.prov, $s.final, $d) -ForegroundColor Green
+            }
+        }
+        if ($stillProv.Count -gt 0) {
+            Write-Host ""
+            Write-Host (" 아직 잠정치로 남은 월 (API 미반영): " + ($stillProv -join ', ')) -ForegroundColor Yellow
+        }
+
+        # 최신 확정월이 전월보다 뒤처져 있으면 잠정치 주입이 필요하다는 신호.
+        $prevMonth = (Get-Date).AddMonths(-1).ToString('yyyy-MM')
+        $latestFinal = @($merged[$HS_CODES[0].key] | Where-Object { $_.prov -ne $true } | Sort-Object month)[-1].month
+        if ($latestFinal -lt $prevMonth) {
+            Write-Host ""
+            Write-Host (" 주의: API 최신 확정월은 {0}, 전월은 {1}." -f $latestFinal, $prevMonth) -ForegroundColor Yellow
+            Write-Host ("       품목별 OpenAPI는 매월 15일 갱신이라 1일 실행분에는 전월이 없다.") -ForegroundColor DarkGray
+            Write-Host ("       잠정치를 받으면: .\apply-provisional.ps1 -Month {0} -InputJson prov.json" -f $prevMonth) -ForegroundColor DarkGray
+        }
     } catch {
         Write-Host (" WARN: existing trade.json parse failed, writing fresh: " + $_.Exception.Message) -ForegroundColor Yellow
     }
 }
+
+# provisionalMonth 는 남아 있는 prov 행에서 다시 계산한다. $result 를 새로 짜기
+# 때문에 그냥 두면 매 fetch 마다 사라져, 확정치로 교체된 뒤에도 값이 남거나
+# 잠정치가 있는데 비어 있는 식으로 어긋난다.
+$provMonths = @()
+foreach ($spec in $HS_CODES) {
+    foreach ($r in @($merged[$spec.key])) {
+        if ($r.prov -eq $true -and $provMonths -notcontains $r.month) { $provMonths += $r.month }
+    }
+}
+# @() 필수: 원소가 1개면 Sort-Object 가 스칼라 문자열을 돌려주고, 거기에 [-1] 을
+# 걸면 마지막 "문자"('8')가 잡힌다.
+$merged['provisionalMonth'] = if ($provMonths.Count -gt 0) { @($provMonths | Sort-Object)[-1] } else { $null }
 
 $json = $merged | ConvertTo-Json -Depth 6
 [System.IO.File]::WriteAllText($outPath, $json, (New-Object System.Text.UTF8Encoding($false)))
