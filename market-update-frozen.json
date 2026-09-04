@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-09-03T23:25:56Z",
-    "updatedKr":  "2026-09-04 08:25:56",
+    "updated":  "2026-09-04T22:00:24Z",
+    "updatedKr":  "2026-09-05 07:00:24",
     "frozenDow":  "Friday",
     "reviewRange":  "2026-08-31~2026-09-04",
     "previewRange":  "2026-09-07~2026-09-11",
@@ -180,8 +180,8 @@
                          "importance":  3,
                          "indicator":  "Nonfarm Payrolls",
                          "period":  "Aug",
-                         "actual":  "",
-                         "forecast":  "58K",
+                         "actual":  "162K",
+                         "forecast":  "55K",
                          "previous":  "-23K",
                          "type":  "review"
                      },
@@ -195,7 +195,7 @@
                          "importance":  3,
                          "indicator":  "Unemployment Rate",
                          "period":  "Aug",
-                         "actual":  "",
+                         "actual":  "4.1%",
                          "forecast":  "4.1%",
                          "previous":  "4.1%",
                          "type":  "review"
