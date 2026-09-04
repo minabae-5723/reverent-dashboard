@@ -1,31 +1,31 @@
 {
     "company":  "LotteRental",
     "corp_code":  "00545716",
-    "fiscal_period":  "LTM Q1 2026 (FY2025 + Q12026 - Q12025)",
+    "fiscal_period":  "LTM 2Q26 (FY2025 + 2Q(H1 cum)2026 - 2Q(H1 cum)2025)",
     "unit":  "100M KRW",
-    "fetched_at":  "2026-08-14 16:35:09",
+    "fetched_at":  "2026-09-04 18:15:24",
     "pnl":  {
-                "revenue":  29640,
-                "operating_income":  3291,
+                "revenue":  29810,
+                "operating_income":  3366,
                 "depreciation":  null,
                 "ebitda":  null,
-                "net_income":  1290
+                "net_income":  1184
             },
-    "equity_total":  15470,
+    "equity_total":  15675,
     "debt":  {
                  "st_borrowings":  null,
                  "current_lt_borrowings":  null,
-                 "current_lease":  183,
-                 "lt_borrowings":  19755,
-                 "nc_lease":  153
+                 "current_lease":  190,
+                 "lt_borrowings":  24306,
+                 "nc_lease":  157
              },
     "cash":  {
-                 "cash_and_equivalents":  2282,
+                 "cash_and_equivalents":  3840,
                  "st_financial_invest":  null
              },
     "derived":  {
-                    "total_debt":  20091,
-                    "total_cash":  2282,
-                    "net_debt":  17809
+                    "total_debt":  24653,
+                    "total_cash":  3840,
+                    "net_debt":  20813
                 }
 }

@@ -1,0 +1,31 @@
+{
+    "company":  "SKOceanplant",
+    "corp_code":  "00480367",
+    "fiscal_period":  "LTM 2Q26 (FY2025 + 2Q(H1 cum)2026 - 2Q(H1 cum)2025)",
+    "unit":  "100M KRW",
+    "fetched_at":  "2026-09-04 18:15:26",
+    "pnl":  {
+                "revenue":  8128,
+                "operating_income":  691,
+                "depreciation":  null,
+                "ebitda":  null,
+                "net_income":  485
+            },
+    "equity_total":  8382,
+    "debt":  {
+                 "st_borrowings":  1380,
+                 "current_lt_borrowings":  null,
+                 "current_lease":  41,
+                 "lt_borrowings":  771,
+                 "nc_lease":  25
+             },
+    "cash":  {
+                 "cash_and_equivalents":  400,
+                 "st_financial_invest":  null
+             },
+    "derived":  {
+                    "total_debt":  2217,
+                    "total_cash":  400,
+                    "net_debt":  1817
+                }
+}

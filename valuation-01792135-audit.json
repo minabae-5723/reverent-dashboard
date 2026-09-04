@@ -1,0 +1,39 @@
+﻿{
+    "company":  "AsiaMasterTrade",
+    "corp_code":  "01792135",
+    "source":  "DART raw document",
+    "report_nm":  "감사보고서 (2025.12)",
+    "rcept_no":  "20260410002228",
+    "rcept_dt":  "20260410",
+    "fiscal_period":  "FY2025",
+    "unit":  "100M KRW",
+    "pnl":  {
+                "revenue":  null,
+                "operating_income":  null,
+                "depreciation":  0,
+                "amortisation":  0,
+                "da_total":  0,
+                "ebitda":  null,
+                "net_income":  212
+            },
+    "equity_total":  null,
+    "liabilities":  null,
+    "assets":  null,
+    "debt":  {
+                 "st_borrowings":  0,
+                 "current_lt_borrowings":  0,
+                 "lt_borrowings":  0,
+                 "bonds":  null,
+                 "current_lease":  null,
+                 "lease":  null
+             },
+    "cash":  {
+                 "cash_and_equivalents":  0,
+                 "st_financial_invest":  null
+             },
+    "derived":  {
+                    "total_debt":  0,
+                    "total_cash":  0,
+                    "net_debt":  0
+                }
+}

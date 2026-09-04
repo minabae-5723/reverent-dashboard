@@ -1,0 +1,39 @@
+﻿{
+    "company":  "LifeNBio",
+    "corp_code":  "01732513",
+    "source":  "DART raw document",
+    "report_nm":  "연결감사보고서 (2025.12)",
+    "rcept_no":  "20260428000102",
+    "rcept_dt":  "20260428",
+    "fiscal_period":  "FY2025",
+    "unit":  "100M KRW",
+    "pnl":  {
+                "revenue":  0,
+                "operating_income":  null,
+                "depreciation":  0,
+                "amortisation":  0,
+                "da_total":  0,
+                "ebitda":  null,
+                "net_income":  0
+            },
+    "equity_total":  null,
+    "liabilities":  null,
+    "assets":  null,
+    "debt":  {
+                 "st_borrowings":  0,
+                 "current_lt_borrowings":  null,
+                 "lt_borrowings":  0,
+                 "bonds":  null,
+                 "current_lease":  null,
+                 "lease":  null
+             },
+    "cash":  {
+                 "cash_and_equivalents":  null,
+                 "st_financial_invest":  0
+             },
+    "derived":  {
+                    "total_debt":  0,
+                    "total_cash":  0,
+                    "net_debt":  0
+                }
+}

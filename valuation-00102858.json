@@ -1,0 +1,31 @@
+{
+    "company":  "KoreaZinc",
+    "corp_code":  "00102858",
+    "fiscal_period":  "LTM 2Q26 (FY2025 + 2Q(H1 cum)2026 - 2Q(H1 cum)2025)",
+    "unit":  "100M KRW",
+    "fetched_at":  "2026-09-04 18:15:28",
+    "pnl":  {
+                "revenue":  213743,
+                "operating_income":  20351,
+                "depreciation":  null,
+                "ebitda":  null,
+                "net_income":  9846
+            },
+    "equity_total":  115939,
+    "debt":  {
+                 "st_borrowings":  null,
+                 "current_lt_borrowings":  5964,
+                 "current_lease":  336,
+                 "lt_borrowings":  11775,
+                 "nc_lease":  1505
+             },
+    "cash":  {
+                 "cash_and_equivalents":  9052,
+                 "st_financial_invest":  null
+             },
+    "derived":  {
+                    "total_debt":  19580,
+                    "total_cash":  9052,
+                    "net_debt":  10528
+                }
+}
