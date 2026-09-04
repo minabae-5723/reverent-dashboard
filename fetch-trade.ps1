@@ -11,7 +11,9 @@
 # =============================================================
 param(
     [int]$StartYear = 2007,
-    [int]$EndYear   = (Get-Date).Year
+    [int]$EndYear   = (Get-Date).Year,
+    # 기본은 잠정치 유지. 이 스위치를 주면 잠정치 행을 API 확정치로 갈아끼운다.
+    [switch]$RefreshProvisional
 )
 
 $ErrorActionPreference = 'Continue'
@@ -115,54 +117,64 @@ foreach ($spec in $HS_CODES) {
 $outPath = Join-Path $root 'trade.json'
 
 # Merge with existing trade.json if present:
-# - Fetched months replace whatever was there (for revisions/잠정치→확정치)
+# - 잠정치(prov=true) 월은 그대로 지킨다. 확정치가 나와도 덮지 않는다 (-RefreshProvisional 로만 교체)
+# - 그 외 fetched months 는 API 값으로 갱신
 # - Months outside fetched range are preserved as-is
 $merged = $result
 if (Test-Path -LiteralPath $outPath) {
     try {
         $existing = Get-Content -LiteralPath $outPath -Raw -Encoding UTF8 | ConvertFrom-Json
-        # 잠정치(prov=true)가 이번 fetch 로 확정치로 바뀐 건들. 얼마나 수정됐는지
-        # 찍어줘야 잠정치가 믿을 만했는지 다음 달에 판단할 수 있다.
-        $superseded = @()
+        # 🔴 잠정치 기준 유지 (2026-09-03 사용자 지시)
+        #   한 번 잠정치로 들어온 월은 확정치가 나와도 덮어쓰지 않는다. 보드 전체가
+        #   같은 기준(잠정)으로 유지돼야 MoM/YoY 비교에 기준 혼재가 안 생기기
+        #   때문이다. 확정치를 일부러 당겨오려면 -RefreshProvisional 을 준다.
+        #   대신 확정치와 얼마나 벌어졌는지는 매번 찍어서 눈으로 볼 수 있게 한다.
+        $divergence = @()
         $stillProv  = @()
         foreach ($spec in $HS_CODES) {
             $k = $spec.key
             $newRows = @($result[$k])
             $newMonths = @{}
             foreach ($r in $newRows) { $newMonths[$r.month] = $true }
-            # Keep existing months not in new range
+            # Keep existing months not in new range, plus every provisional month
             $kept = @()
+            $keptMonths = @{}
             if ($existing.PSObject.Properties.Name -contains $k) {
                 foreach ($r in $existing.$k) {
                     if (-not $newMonths.ContainsKey($r.month)) {
                         $kept += $r
+                        $keptMonths[$r.month] = $true
                         if ($r.prov -eq $true) { $stillProv += ("{0} {1}" -f $spec.name, $r.month) }
-                    } elseif ($r.prov -eq $true) {
-                        # API가 이 월을 반환했다 -> 잠정치 행이 확정치로 교체된다
+                    } elseif ($r.prov -eq $true -and -not $RefreshProvisional) {
+                        # API가 확정치를 내놨지만 잠정치 기준을 유지한다
+                        $kept += $r
+                        $keptMonths[$r.month] = $true
                         $final = $newRows | Where-Object { $_.month -eq $r.month }
                         $diff = if ($r.value) { (($final.value - $r.value) / $r.value) * 100 } else { $null }
-                        $superseded += [PSCustomObject]@{
+                        $divergence += [PSCustomObject]@{
                             name = $spec.name; month = $r.month
                             prov = $r.value; final = $final.value; diffPct = $diff
                         }
                     }
                 }
             }
-            # Combine and sort
-            $combined = ($kept + $newRows) | Sort-Object month
+            # 잠정치로 지킨 월은 API 행을 버린다
+            $incoming = @($newRows | Where-Object { -not $keptMonths.ContainsKey($_.month) })
+            $combined = ($kept + $incoming) | Sort-Object month
             $merged[$k] = @($combined)
         }
         Write-Host ""
         Write-Host " (Merged with existing trade.json — historical months preserved)" -ForegroundColor DarkGray
 
-        if ($superseded.Count -gt 0) {
+        if ($divergence.Count -gt 0) {
             Write-Host ""
-            Write-Host " 잠정치 -> 확정치 교체됨:" -ForegroundColor Cyan
-            foreach ($s in $superseded) {
-                $d = if ($null -eq $s.diffPct) { "-" } else { "{0,+6:N1}%" -f $s.diffPct }
-                Write-Host ("   {0,-6} {1}  잠정 {2,8:N0} -> 확정 {3,8:N0} `$mn  (수정폭 {4})" -f `
+            Write-Host " 잠정치 유지 (확정치로 덮어쓰지 않음 — 참고용 괴리):" -ForegroundColor Cyan
+            foreach ($s in $divergence) {
+                $d = if ($null -eq $s.diffPct) { "-" } else { "{0,6:N1}%" -f $s.diffPct }
+                Write-Host ("   {0,-6} {1}  잠정 {2,8:N0} (확정 {3,8:N0}) `$mn  괴리 {4}" -f `
                     $s.name, $s.month, $s.prov, $s.final, $d) -ForegroundColor Green
             }
+            Write-Host ("   * 확정치로 갈아끼우려면: .\fetch-trade.ps1 -RefreshProvisional") -ForegroundColor DarkGray
         }
         if ($stillProv.Count -gt 0) {
             Write-Host ""
@@ -183,9 +195,8 @@ if (Test-Path -LiteralPath $outPath) {
     }
 }
 
-# provisionalMonth 는 남아 있는 prov 행에서 다시 계산한다. $result 를 새로 짜기
-# 때문에 그냥 두면 매 fetch 마다 사라져, 확정치로 교체된 뒤에도 값이 남거나
-# 잠정치가 있는데 비어 있는 식으로 어긋난다.
+# provisionalMonth = 가장 최근 잠정 월. $result 를 매번 새로 짜기 때문에 다시
+# 계산해주지 않으면 fetch 마다 사라진다.
 $provMonths = @()
 foreach ($spec in $HS_CODES) {
     foreach ($r in @($merged[$spec.key])) {

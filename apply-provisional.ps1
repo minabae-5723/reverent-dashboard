@@ -8,8 +8,13 @@
 #    데이터를 API에서 받을 수 없다. 그 2주 공백을 이 스크립트로 메운다.
 #
 #  주입한 행은 prov=true 로 표시되고, 대시보드는 "잠정" 배지 + 차트 마지막
-#  구간 점선으로 렌더한다. fetch-trade.ps1 의 merge 는 API가 반환한 월을
-#  무조건 덮어쓰므로, 다음 달 실행 때 확정치로 자동 교체된다(수동 삭제 불필요).
+#  구간 점선으로 렌더한다.
+#
+#  🔴 잠정치 기준 유지 (2026-09-03 사용자 지시): 한 번 잠정치로 들어온 월은
+#  확정치가 나와도 덮어쓰지 않는다. 보드 전체가 같은 기준으로 유지돼야 MoM/YoY
+#  에 기준 혼재가 안 생기기 때문. fetch-trade.ps1 은 prov 행을 건너뛰고,
+#  확정치와의 괴리만 참고로 출력한다. 굳이 갈아끼우려면
+#  `.\fetch-trade.ps1 -RefreshProvisional`.
 #
 #  Usage:
 #    # 인라인 JSON
@@ -173,5 +178,5 @@ $json = $j | ConvertTo-Json -Depth 6
 [System.IO.File]::WriteAllText($outPath, $json, (New-Object System.Text.UTF8Encoding($false)))
 
 Write-Host (" 저장 완료 -> trade.json  (적용 {0}건, 건너뜀 {1}건)" -f $applied, $skipped) -ForegroundColor Green
-Write-Host (" 다음 달 fetch-trade.ps1 실행 시 확정치로 자동 교체됩니다.") -ForegroundColor DarkGray
+Write-Host (" 이 월은 잠정치 기준으로 유지됩니다 (확정치가 나와도 덮어쓰지 않음).") -ForegroundColor DarkGray
 Write-Host "========================================================" -ForegroundColor Cyan
