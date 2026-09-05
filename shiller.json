@@ -1,11 +1,11 @@
 {
-    "updated":  "2026-09-04T22:00:30Z",
-    "updatedKr":  "2026-09-05 07:00:30",
+    "updated":  "2026-09-05T22:00:30Z",
+    "updatedKr":  "2026-09-06 07:00:30",
     "source":  "multpl.com/shiller-pe/table/by-month",
     "latest":  {
                    "date":  "2026-09-04",
                    "raw":  "Sep 4, 2026",
-                   "value":  42.21
+                   "value":  41.41
                },
     "monthly":  [
                     {
@@ -7462,19 +7462,23 @@
                     },
                     {
                         "month":  "2026-05",
-                        "value":  40.28
+                        "value":  40.11
                     },
                     {
                         "month":  "2026-06",
-                        "value":  40.5
+                        "value":  40.16
                     },
                     {
                         "month":  "2026-07",
-                        "value":  40.73
+                        "value":  40.02
+                    },
+                    {
+                        "month":  "2026-08",
+                        "value":  41.13
                     },
                     {
                         "month":  "2026-09",
-                        "value":  42.21
+                        "value":  41.41
                     }
                 ]
 }
