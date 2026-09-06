@@ -1326,14 +1326,14 @@ function parseDealFlow(md) {
         date = dm[1];
         head = head.replace(/\s*\([0-9]{4}\.[0-9]{2}\.[0-9]{2}\)\s*$/, '').trim();
       }
-      article = { headline: head, date, bullets: [], valuationTitle: '', valuationLines: [] };
+      article = { headline: head, date, bullets: [], valuations: [] };
       continue;
     }
     // H4 — Valuation sub-section inside an article
     const h4 = line.match(/^####\s+(.+?)\s*$/);
     if (h4 && article) {
       if (/Valuation|밸류에이션|가치평가/i.test(h4[1])) {
-        article.valuationTitle = h4[1].trim();
+        article.valuations.push({ title: h4[1].trim(), lines: [] });
         inValuation = true;
       } else {
         inValuation = false;
@@ -1351,7 +1351,7 @@ function parseDealFlow(md) {
     // Valuation table lines
     if (inValuation && article) {
       if (/^\s*\|/.test(line)) {
-        article.valuationLines.push(line);
+        article.valuations[article.valuations.length - 1].lines.push(line);
         continue;
       }
       // Non-table, non-empty line exits valuation mode (but keeps article)
@@ -2006,13 +2006,18 @@ function renderDealArticle(a, weekDate, allowNotes = false) {
     ? `<ul class="deals-bullets">${a.bullets.map(b => `<li>${linkifyInline(b)}</li>`).join('')}</ul>`
     : '';
   let valuationHtml = '';
-  if (a.valuationLines && a.valuationLines.length > 0) {
-    const data = parseValuationTable(a.valuationLines);
-    if (data) {
-      const cardId = `val-${_valuationCounter++}`;
-      valuationHtml = renderValuationCard(cardId, weekDate || 'unknown', a.headline, a.valuationTitle, data);
-    }
-  }
+  const _vals = (a.valuations && a.valuations.length) ? a.valuations : [];
+  const _multi = _vals.length > 1;
+  valuationHtml = _vals.map((v) => {
+    const data = parseValuationTable(v.lines);
+    if (!data) return '';
+    const cardId = `val-${_valuationCounter++}`;
+    // 한 기사에 밸류에이션 카드가 여러 개면 저장 키(headline 기반)가 충돌하므로
+    // 카드 제목을 붙여 분리한다. 단일 카드 기사는 기존 headline-only 키를 유지해
+    // 이전에 저장된 Fix 값과의 하위호환을 지킨다.
+    const storeKey = _multi ? `${a.headline} ‖ ${v.title}` : a.headline;
+    return renderValuationCard(cardId, weekDate || 'unknown', storeKey, v.title, data);
+  }).join('');
   // Per-article card-news slot (screenshots + comments), same machinery as the
   // section-level Macro grid but scoped to this article's headline.
   // Only 자본시장 동향 articles get one — see _isCapitalMarketSection.
