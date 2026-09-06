@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-09-05T22:00:08Z",
-    "updatedKr":  "2026-09-06 07:00:08",
+    "updated":  "2026-09-06T03:10:35Z",
+    "updatedKr":  "2026-09-06 12:10:35",
     "index":  [
                   {
                       "key":  "KOSPI",
@@ -187,10 +187,10 @@
                {
                    "key":  "USDKRW",
                    "symbol":  "naver:USDKRW",
-                   "current":  1347.4,
-                   "wow":  -2.43,
-                   "mom":  -4.51,
-                   "ytd":  -10.11,
+                   "current":  1349.5,
+                   "wow":  -2.28,
+                   "mom":  -4.36,
+                   "ytd":  -9.97,
                    "type":  "pct",
                    "asOf":  "2026-09-04",
                    "ok":  true,
@@ -211,10 +211,10 @@
                {
                    "key":  "USDJPY",
                    "symbol":  "naver:USDJPY",
-                   "current":  156.266,
-                   "wow":  -2.4,
-                   "mom":  -0.89,
-                   "ytd":  -1.99,
+                   "current":  156.245,
+                   "wow":  -2.42,
+                   "mom":  -0.9,
+                   "ytd":  -2,
                    "type":  "pct",
                    "asOf":  "2026-09-04",
                    "ok":  true,
@@ -223,10 +223,10 @@
                {
                    "key":  "USDCNY",
                    "symbol":  "naver:USDCNY",
-                   "current":  6.7082,
-                   "wow":  -0.34,
+                   "current":  6.7079,
+                   "wow":  -0.35,
                    "mom":  -0.5,
-                   "ytd":  -2.63,
+                   "ytd":  -2.64,
                    "type":  "pct",
                    "asOf":  "2026-09-04",
                    "ok":  true,
