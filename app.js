@@ -2261,7 +2261,7 @@ function renderValuationCard(cardId, weekDate, headline, title, data) {
     ? `<span class="valuation-saved-badge" title="${escapeHtml(saved.savedAt)} 저장">📌 저장됨</span>`
     : '';
   return `
-    <div class="valuation-card" id="${cardId}" data-week="${escapeHtml(weekDate)}" data-headline="${escapeHtml(headline)}">
+    <div class="valuation-card val-collapsed" id="${cardId}" data-week="${escapeHtml(weekDate)}" data-headline="${escapeHtml(headline)}">
       <div class="valuation-head">
         <span class="valuation-title">💹 ${escapeHtml(titleStr)}</span>
         ${dealType ? `<span class="valuation-dealtype">${escapeHtml(dealType)}</span>` : ''}
@@ -2313,6 +2313,11 @@ function renderValuationCard(cardId, weekDate, headline, title, data) {
         </table>
       </div>
 
+      <button type="button" class="val-detail-toggle" onclick="toggleValuationDetail('${cardId}')" aria-expanded="false">
+        <span class="val-detail-caret">▸</span>
+        <span class="val-detail-label">상세 입력 (손익 · Net Debt · Multiples) 펼치기</span>
+      </button>
+
       <div class="valuation-grid">
 
         <div class="val-col">
@@ -2363,6 +2368,25 @@ function renderValuationCard(cardId, weekDate, headline, title, data) {
     </div>
   `;
 }
+
+// Fold/unfold the detail input grid (손익·Net Debt·Multiples) below the summary.
+// Cards render collapsed by default so the summary card stays clean; the button
+// toggles the `val-collapsed` class and swaps its caret/label.
+window.toggleValuationDetail = function (cardId) {
+  const card = document.getElementById(cardId);
+  if (!card) return;
+  const collapsed = card.classList.toggle('val-collapsed');
+  const btn = card.querySelector('.val-detail-toggle');
+  if (btn) {
+    btn.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
+    const caret = btn.querySelector('.val-detail-caret');
+    const label = btn.querySelector('.val-detail-label');
+    if (caret) caret.textContent = collapsed ? '▸' : '▾';
+    if (label) label.textContent = collapsed
+      ? '상세 입력 (손익 · Net Debt · Multiples) 펼치기'
+      : '상세 입력 접기';
+  }
+};
 
 // Debounced auto-save on input: every keystroke triggers a delayed save so
 // users never lose values to a forgotten Fix click. The Fix button remains as

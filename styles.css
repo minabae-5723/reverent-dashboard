@@ -2632,6 +2632,28 @@ html, body {
   gap: 12px;
 }
 
+/* Collapsible detail grid — fold/unfold the input tables below the summary */
+.val-detail-toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  margin-top: 6px;
+  padding: 8px 12px;
+  background: var(--surface-2, #f1f3f5);
+  border: 1px solid var(--border, #e2e4e8);
+  border-radius: 8px;
+  color: var(--text-muted, #6b7280);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+.val-detail-toggle:hover { background: var(--surface-3, #e9ecef); color: var(--text, #1a2b45); }
+.val-detail-caret { font-size: 11px; line-height: 1; }
+.valuation-card.val-collapsed .valuation-grid,
+.valuation-card.val-collapsed .valuation-foot { display: none; }
+
 .val-col-title {
   font-size: 11px;
   font-weight: 700;
