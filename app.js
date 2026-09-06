@@ -10,6 +10,7 @@ const CAL_NEXT_WEEK_URL = './calendar-next-week.json';
 const REFRESH_MS   = 60_000;
 const MIN_IMPORTANCE = 2;   // 표시할 최소 importance (1=낮음, 2=중간, 3=높음)
 const MACRO_MIN_IMPORTANCE = 3;   // §3 Market Update — Macro Economy는 ★★★만 노출
+const MACRO_EXCLUDE_COUNTRIES = new Set(["South_Korea", "Europe", "Euro_Zone"]); // Macro Economy: exclude Korea/Europe (weekly calendar keeps them)
 
 // ─── Static deploy mode detection ─────────────────────────
 // On localhost we're running serve.ps1 (full features).
@@ -377,7 +378,7 @@ function renderMacroSide(tbodyId, events) {
   const tbody = document.getElementById(tbodyId);
   if (!tbody) return;
   // Macro Economy 섹션은 ★★★(importance 3)만 구성한다.
-  const rows = (events || []).filter((e) => (e.importance || 0) >= MACRO_MIN_IMPORTANCE);
+  const rows = (events || []).filter((e) => (e.importance || 0) >= MACRO_MIN_IMPORTANCE && !MACRO_EXCLUDE_COUNTRIES.has(e.flagKey));
   if (rows.length === 0) {
     tbody.innerHTML = `<tr><td colspan="6" class="loading" style="text-align:center;color:var(--text-muted);">데이터 없음</td></tr>`;
     return;
