@@ -107,8 +107,9 @@ WebFetch  https://dealsite.co.kr/categories/075000                          (PEF
 WebFetch  https://www.investchosun.com/svc/news/list.html?catid=2&pn=3      (PEF·M&A 단독·심층 — 페이지 1~3)
 WebFetch  https://www.mk.co.kr/                                             (매일경제 — 자본시장·기업 종합)
 WebFetch  https://www.hankyung.com/                                         (한국경제 — 자본시장·기업 종합)
+WebFetch  https://www.newstopkorea.com/                                     (뉴스탑코리아 — 자본거래동향·딜)
 ```
-페이지네이션 2~3페이지까지 (news-clipping 정책과 동기화). 이 6개가 사용자 지정 Deal/자본시장 1순위.
+페이지네이션 2~3페이지까지 (news-clipping 정책과 동기화). 이 7개가 사용자 지정 Deal/자본시장 1순위.
 
 🟢 **Page 5 증시 전용 소스 (2026-05-29 사용자 지정 — 출자사업 편중 방지)**: Page 5의 한국 증시 기사 발굴을 위해 아래를 추가 fetch.
 ```
@@ -379,7 +380,8 @@ URL 날짜 없는 매체(dealsite 등) 또는 보강 필요 시:
 3. **investchosun.com** (catid=2) — 사용자 강조, 단독·심층
 4. **한국경제** (hankyung.com) — 자본시장·기업 종합
 5. **매일경제** (mk.co.kr) — 정책·산업 종합
-6. 보조: 서울경제 시그널, 인포맥스, 비즈워치, Bloomberg(폴백 매핑 적용)
+6. **newstopkorea.com** — 자본거래동향·딜
+7. 보조: 서울경제 시그널, 인포맥스, 비즈워치, Bloomberg(폴백 매핑 적용)
 
 **자체 검증**:
 - 인베스트조선·딜사이트·한경·매경 중 **최소 2~3개 매체**에서 후보 1건 이상 가져왔는가
