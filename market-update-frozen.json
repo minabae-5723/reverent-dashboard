@@ -1,7 +1,7 @@
 {
-    "updated":  "2026-09-07T23:26:04Z",
-    "updatedKr":  "2026-09-08 08:26:04",
-    "frozenDow":  "Tuesday",
+    "updated":  "2026-09-08T23:52:26Z",
+    "updatedKr":  "2026-09-09 08:52:26",
+    "frozenDow":  "Wednesday",
     "reviewRange":  "2026-09-07~2026-09-11",
     "previewRange":  "2026-09-14~2026-09-18",
     "thisWeek":  [
@@ -45,8 +45,8 @@
                          "importance":  3,
                          "indicator":  "GDP Growth Annualized (Final)",
                          "period":  "Q2",
-                         "actual":  "",
-                         "forecast":  "1.1%",
+                         "actual":  "1.4%",
+                         "forecast":  "1.6%",
                          "previous":  "1.1%",
                          "type":  "review"
                      },
@@ -60,8 +60,8 @@
                          "importance":  3,
                          "indicator":  "GDP Growth Rate (QoQ) (Final)",
                          "period":  "Q2",
-                         "actual":  "",
-                         "forecast":  "0.3%",
+                         "actual":  "0.4%",
+                         "forecast":  "0.4%",
                          "previous":  "0.3%",
                          "type":  "review"
                      },
@@ -75,7 +75,7 @@
                          "importance":  3,
                          "indicator":  "Unemployment Rate",
                          "period":  "Aug",
-                         "actual":  "",
+                         "actual":  "2.7%",
                          "forecast":  "2.7%",
                          "previous":  "2.8%",
                          "type":  "review"

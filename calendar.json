@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-09-07T23:29:04Z",
-    "updatedKr":  "2026-09-08 08:29:04",
+    "updated":  "2026-09-08T23:53:07Z",
+    "updatedKr":  "2026-09-09 08:53:07",
     "countries":  [
                       "5",
                       "35",
@@ -50,8 +50,8 @@
                        "importance":  3,
                        "indicator":  "GDP Growth Annualized (Final)",
                        "period":  "Q2",
-                       "actual":  "",
-                       "forecast":  "1.1%",
+                       "actual":  "1.4%",
+                       "forecast":  "1.6%",
                        "previous":  "1.1%",
                        "type":  "review"
                    },
@@ -65,8 +65,8 @@
                        "importance":  3,
                        "indicator":  "GDP Growth Rate (QoQ) (Final)",
                        "period":  "Q2",
-                       "actual":  "",
-                       "forecast":  "0.3%",
+                       "actual":  "0.4%",
+                       "forecast":  "0.4%",
                        "previous":  "0.3%",
                        "type":  "review"
                    },
@@ -80,7 +80,7 @@
                        "importance":  3,
                        "indicator":  "Unemployment Rate",
                        "period":  "Aug",
-                       "actual":  "",
+                       "actual":  "2.7%",
                        "forecast":  "2.7%",
                        "previous":  "2.8%",
                        "type":  "review"
