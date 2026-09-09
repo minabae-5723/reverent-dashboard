@@ -1,7 +1,7 @@
 {
-    "updated":  "2026-09-08T23:52:26Z",
-    "updatedKr":  "2026-09-09 08:52:26",
-    "frozenDow":  "Wednesday",
+    "updated":  "2026-09-09T23:26:31Z",
+    "updatedKr":  "2026-09-10 08:26:31",
+    "frozenDow":  "Thursday",
     "reviewRange":  "2026-09-07~2026-09-11",
     "previewRange":  "2026-09-14~2026-09-18",
     "thisWeek":  [
@@ -273,8 +273,8 @@
                          "indicator":  "Retail Sales (MoM)",
                          "period":  "Aug",
                          "actual":  "",
-                         "forecast":  "-0.6%",
-                         "previous":  "",
+                         "forecast":  "0.3%",
+                         "previous":  "-0.6%",
                          "type":  "preview"
                      },
                      {
@@ -288,8 +288,8 @@
                          "indicator":  "Fed Interest Rate Decision",
                          "period":  "Sep",
                          "actual":  "",
-                         "forecast":  "",
-                         "previous":  "3.75%",
+                         "forecast":  "3.75%~4.00%",
+                         "previous":  "3.50%~3.75%",
                          "type":  "preview"
                      },
                      {
@@ -303,8 +303,8 @@
                          "indicator":  "Housing Starts",
                          "period":  "Aug",
                          "actual":  "",
-                         "forecast":  "1.239M",
-                         "previous":  "",
+                         "forecast":  "1.35M",
+                         "previous":  "1.239M",
                          "type":  "preview"
                      },
                      {
@@ -333,8 +333,8 @@
                          "indicator":  "Philadelphia Fed Manufacturing Index",
                          "period":  "Sep",
                          "actual":  "",
-                         "forecast":  "",
-                         "previous":  "7",
+                         "forecast":  "47.0",
+                         "previous":  "47.4",
                          "type":  "preview"
                      },
                      {
@@ -408,8 +408,8 @@
                          "indicator":  "Industrial Production (MoM)",
                          "period":  "Aug",
                          "actual":  "",
-                         "forecast":  "0.2%",
-                         "previous":  "",
+                         "forecast":  "0.1%",
+                         "previous":  "0.2%",
                          "type":  "preview"
                      }
                  ]
