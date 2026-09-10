@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-09-09T23:28:21Z",
-    "updatedKr":  "2026-09-10 08:28:21",
+    "updated":  "2026-09-10T22:00:30Z",
+    "updatedKr":  "2026-09-11 07:00:30",
     "countries":  [
                       "5",
                       "35",
@@ -10,21 +10,6 @@
     "tab":  "custom 2026-09-07~2026-09-13",
     "source":  "frozen-fallback",
     "events":  [
-                   {
-                       "id":  "560301",
-                       "datetime":  "2026/09/08 08:00:00",
-                       "date":  "9/8",
-                       "time":  "08:00",
-                       "flagKey":  "South_Korea",
-                       "currency":  "KRW",
-                       "importance":  3,
-                       "indicator":  "GDP Growth Rate (QoQ) (Final)",
-                       "period":  "Q2",
-                       "actual":  "0.6%",
-                       "forecast":  "0.6%",
-                       "previous":  "1.8%",
-                       "type":  "review"
-                   },
                    {
                        "id":  "560511",
                        "datetime":  "2026/09/08 08:00:00",
@@ -41,18 +26,18 @@
                        "type":  "review"
                    },
                    {
-                       "id":  "560501",
-                       "datetime":  "2026/09/08 08:50:00",
+                       "id":  "560301",
+                       "datetime":  "2026/09/08 08:00:00",
                        "date":  "9/8",
-                       "time":  "08:50",
-                       "flagKey":  "Japan",
-                       "currency":  "JPY",
+                       "time":  "08:00",
+                       "flagKey":  "South_Korea",
+                       "currency":  "KRW",
                        "importance":  3,
-                       "indicator":  "GDP Growth Annualized (Final)",
+                       "indicator":  "GDP Growth Rate (QoQ) (Final)",
                        "period":  "Q2",
-                       "actual":  "1.4%",
-                       "forecast":  "1.6%",
-                       "previous":  "1.1%",
+                       "actual":  "0.6%",
+                       "forecast":  "0.6%",
+                       "previous":  "1.8%",
                        "type":  "review"
                    },
                    {
@@ -71,6 +56,21 @@
                        "type":  "review"
                    },
                    {
+                       "id":  "560501",
+                       "datetime":  "2026/09/08 08:50:00",
+                       "date":  "9/8",
+                       "time":  "08:50",
+                       "flagKey":  "Japan",
+                       "currency":  "JPY",
+                       "importance":  3,
+                       "indicator":  "GDP Growth Annualized (Final)",
+                       "period":  "Q2",
+                       "actual":  "1.4%",
+                       "forecast":  "1.6%",
+                       "previous":  "1.1%",
+                       "type":  "review"
+                   },
+                   {
                        "id":  "560503",
                        "datetime":  "2026/09/09 08:00:00",
                        "date":  "9/9",
@@ -86,18 +86,18 @@
                        "type":  "review"
                    },
                    {
-                       "id":  "560504",
+                       "id":  "560506",
                        "datetime":  "2026/09/10 21:30:00",
                        "date":  "9/10",
                        "time":  "21:30",
                        "flagKey":  "United_States",
                        "currency":  "USD",
                        "importance":  3,
-                       "indicator":  "PPI (YoY)",
-                       "period":  "Aug",
-                       "actual":  "",
-                       "forecast":  "4.5%",
-                       "previous":  "4.7%",
+                       "indicator":  "Initial Jobless Claims",
+                       "period":  "",
+                       "actual":  "206K",
+                       "forecast":  "205K",
+                       "previous":  "206K",
                        "type":  "review"
                    },
                    {
@@ -110,24 +110,24 @@
                        "importance":  3,
                        "indicator":  "Core PPI (YoY)",
                        "period":  "Aug",
-                       "actual":  "",
-                       "forecast":  "4.1%",
+                       "actual":  "4.6%",
+                       "forecast":  "4.6%",
                        "previous":  "4.2%",
                        "type":  "review"
                    },
                    {
-                       "id":  "560506",
+                       "id":  "560504",
                        "datetime":  "2026/09/10 21:30:00",
                        "date":  "9/10",
                        "time":  "21:30",
                        "flagKey":  "United_States",
                        "currency":  "USD",
                        "importance":  3,
-                       "indicator":  "Initial Jobless Claims",
-                       "period":  "",
-                       "actual":  "",
-                       "forecast":  "209K",
-                       "previous":  "206K",
+                       "indicator":  "PPI (YoY)",
+                       "period":  "Aug",
+                       "actual":  "5.4%",
+                       "forecast":  "5.3%",
+                       "previous":  "4.7%",
                        "type":  "review"
                    },
                    {
@@ -141,23 +141,8 @@
                        "indicator":  "PPI (YoY)",
                        "period":  "Aug",
                        "actual":  "",
-                       "forecast":  "",
+                       "forecast":  "7.4%",
                        "previous":  "7.2%",
-                       "type":  "review"
-                   },
-                   {
-                       "id":  "555915",
-                       "datetime":  "2026/09/11 21:30:00",
-                       "date":  "9/11",
-                       "time":  "21:30",
-                       "flagKey":  "United_States",
-                       "currency":  "USD",
-                       "importance":  3,
-                       "indicator":  "CPI (YoY)",
-                       "period":  "Aug",
-                       "actual":  "",
-                       "forecast":  "3.4%",
-                       "previous":  "3.4%",
                        "type":  "review"
                    },
                    {
@@ -173,6 +158,21 @@
                        "actual":  "",
                        "forecast":  "2.4%",
                        "previous":  "2.5%",
+                       "type":  "review"
+                   },
+                   {
+                       "id":  "555915",
+                       "datetime":  "2026/09/11 21:30:00",
+                       "date":  "9/11",
+                       "time":  "21:30",
+                       "flagKey":  "United_States",
+                       "currency":  "USD",
+                       "importance":  3,
+                       "indicator":  "CPI (YoY)",
+                       "period":  "Aug",
+                       "actual":  "",
+                       "forecast":  "3.4%",
+                       "previous":  "3.4%",
                        "type":  "review"
                    },
                    {

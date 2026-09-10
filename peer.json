@@ -1,8 +1,8 @@
 {
-    "updated":  "2026-09-09T23:29:41Z",
-    "updatedKr":  "2026-09-10 08:29:41",
-    "refDate":  "2026-09-09",
-    "prevDate":  "2026-09-02",
+    "updated":  "2026-09-10T22:01:47Z",
+    "updatedKr":  "2026-09-11 07:01:47",
+    "refDate":  "2026-09-10",
+    "prevDate":  "2026-09-03",
     "ytdDate":  "2026-01-02",
     "source":  "Yahoo Finance (prices) + Naver Finance (mcap/PER/PBR)",
     "companies":  [
@@ -11,23 +11,23 @@
                           "symbol":  "005930.KS",
                           "name":  "삼성전자",
                           "category":  "반도체 IDM",
-                          "price":  269500,
-                          "mcap":  15755721,
-                          "per":  12.09,
-                          "pbr":  3.13,
-                          "fwdPer":  5.59,
-                          "fwdPbr":  2.46,
-                          "eps":  22292,
+                          "price":  269000,
+                          "mcap":  null,
+                          "per":  null,
+                          "pbr":  null,
+                          "fwdPer":  null,
+                          "fwdPbr":  null,
+                          "eps":  null,
                           "bps":  null,
-                          "wow":  0.075848303393213579,
-                          "ytd":  1.0972762645914398,
+                          "wow":  0.076000000000000068,
+                          "ytd":  1.0933852140077822,
                           "priceRef":  {
-                                           "close":  269500,
-                                           "date":  "2026-09-09"
+                                           "close":  269000,
+                                           "date":  "2026-09-10"
                                        },
                           "pricePrev":  {
-                                            "close":  250500,
-                                            "date":  "2026-09-02"
+                                            "close":  250000,
+                                            "date":  "2026-09-03"
                                         },
                           "priceYtd":  {
                                            "close":  128500,
@@ -39,23 +39,23 @@
                           "symbol":  "000660.KS",
                           "name":  "SK하이닉스",
                           "category":  "반도체 IDM",
-                          "price":  1856000,
-                          "mcap":  13557938,
-                          "per":  8.27,
-                          "pbr":  5.01,
-                          "fwdPer":  5.13,
-                          "fwdPbr":  3.44,
-                          "eps":  224313,
+                          "price":  1853000,
+                          "mcap":  null,
+                          "per":  null,
+                          "pbr":  null,
+                          "fwdPer":  null,
+                          "fwdPbr":  null,
+                          "eps":  null,
                           "bps":  null,
-                          "wow":  0.15065096094234343,
-                          "ytd":  1.7415066469719349,
+                          "wow":  0.16102756892230574,
+                          "ytd":  1.7370753323485966,
                           "priceRef":  {
-                                           "close":  1856000,
-                                           "date":  "2026-09-09"
+                                           "close":  1853000,
+                                           "date":  "2026-09-10"
                                        },
                           "pricePrev":  {
-                                            "close":  1613000,
-                                            "date":  "2026-09-02"
+                                            "close":  1596000,
+                                            "date":  "2026-09-03"
                                         },
                           "priceYtd":  {
                                            "close":  677000,
@@ -67,23 +67,23 @@
                           "symbol":  "042700.KS",
                           "name":  "한미반도체",
                           "category":  "반도체 장비",
-                          "price":  250500,
-                          "mcap":  238757,
-                          "per":  107.51,
-                          "pbr":  31.81,
-                          "fwdPer":  67.41,
-                          "fwdPbr":  24.8,
-                          "eps":  2330,
+                          "price":  253000,
+                          "mcap":  null,
+                          "per":  null,
+                          "pbr":  null,
+                          "fwdPer":  null,
+                          "fwdPbr":  null,
+                          "eps":  null,
                           "bps":  null,
-                          "wow":  0.17330210772833721,
-                          "ytd":  0.73356401384083036,
+                          "wow":  0.20190023752969122,
+                          "ytd":  0.75086505190311414,
                           "priceRef":  {
-                                           "close":  250500,
-                                           "date":  "2026-09-09"
+                                           "close":  253000,
+                                           "date":  "2026-09-10"
                                        },
                           "pricePrev":  {
-                                            "close":  213500,
-                                            "date":  "2026-09-02"
+                                            "close":  210500,
+                                            "date":  "2026-09-03"
                                         },
                           "priceYtd":  {
                                            "close":  144500,
@@ -95,23 +95,23 @@
                           "symbol":  "403870.KQ",
                           "name":  "HPSP",
                           "category":  "반도체 장비",
-                          "price":  56000,
-                          "mcap":  46088,
-                          "per":  54.32,
-                          "pbr":  14.53,
-                          "fwdPer":  37.2,
-                          "fwdPbr":  11.02,
-                          "eps":  1031,
+                          "price":  55600,
+                          "mcap":  null,
+                          "per":  null,
+                          "pbr":  null,
+                          "fwdPer":  null,
+                          "fwdPbr":  null,
+                          "eps":  null,
                           "bps":  null,
-                          "wow":  0.11111111111111116,
-                          "ytd":  0.625544267053701,
+                          "wow":  0.10756972111553775,
+                          "ytd":  0.61393323657474608,
                           "priceRef":  {
-                                           "close":  56000,
-                                           "date":  "2026-09-09"
+                                           "close":  55600,
+                                           "date":  "2026-09-10"
                                        },
                           "pricePrev":  {
-                                            "close":  50400,
-                                            "date":  "2026-09-02"
+                                            "close":  50200,
+                                            "date":  "2026-09-03"
                                         },
                           "priceYtd":  {
                                            "close":  34450,
@@ -123,23 +123,23 @@
                           "symbol":  "039030.KQ",
                           "name":  "이오테크닉스",
                           "category":  "반도체 장비",
-                          "price":  470000,
-                          "mcap":  57902,
-                          "per":  53.36,
-                          "pbr":  7.74,
-                          "fwdPer":  47.75,
-                          "fwdPbr":  7.01,
-                          "eps":  8808,
+                          "price":  455000,
+                          "mcap":  null,
+                          "per":  null,
+                          "pbr":  null,
+                          "fwdPer":  null,
+                          "fwdPbr":  null,
+                          "eps":  null,
                           "bps":  null,
-                          "wow":  0.16915422885572129,
-                          "ytd":  0.62629757785467133,
+                          "wow":  0.088516746411483327,
+                          "ytd":  0.57439446366782,
                           "priceRef":  {
-                                           "close":  470000,
-                                           "date":  "2026-09-09"
+                                           "close":  455000,
+                                           "date":  "2026-09-10"
                                        },
                           "pricePrev":  {
-                                            "close":  402000,
-                                            "date":  "2026-09-02"
+                                            "close":  418000,
+                                            "date":  "2026-09-03"
                                         },
                           "priceYtd":  {
                                            "close":  289000,
@@ -151,23 +151,23 @@
                           "symbol":  "240810.KQ",
                           "name":  "원익IPS",
                           "category":  "반도체 장비",
-                          "price":  120100,
-                          "mcap":  58950,
-                          "per":  34.06,
-                          "pbr":  5.44,
-                          "fwdPer":  26.09,
-                          "fwdPbr":  4.78,
-                          "eps":  3526,
+                          "price":  118800,
+                          "mcap":  null,
+                          "per":  null,
+                          "pbr":  null,
+                          "fwdPer":  null,
+                          "fwdPbr":  null,
+                          "eps":  null,
                           "bps":  null,
-                          "wow":  0.094804010938924321,
-                          "ytd":  0.50125,
+                          "wow":  0.13142857142857145,
+                          "ytd":  0.4850000000000001,
                           "priceRef":  {
-                                           "close":  120100,
-                                           "date":  "2026-09-09"
+                                           "close":  118800,
+                                           "date":  "2026-09-10"
                                        },
                           "pricePrev":  {
-                                            "close":  109700,
-                                            "date":  "2026-09-02"
+                                            "close":  105000,
+                                            "date":  "2026-09-03"
                                         },
                           "priceYtd":  {
                                            "close":  80000,
@@ -179,23 +179,23 @@
                           "symbol":  "095610.KQ",
                           "name":  "테스",
                           "category":  "반도체 장비",
-                          "price":  154300,
-                          "mcap":  29872,
-                          "per":  37.31,
-                          "pbr":  5.85,
-                          "fwdPer":  26.8,
-                          "fwdPbr":  5.35,
-                          "eps":  4136,
+                          "price":  154900,
+                          "mcap":  null,
+                          "per":  null,
+                          "pbr":  null,
+                          "fwdPer":  null,
+                          "fwdPbr":  null,
+                          "eps":  null,
                           "bps":  null,
-                          "wow":  0.13455882352941173,
-                          "ytd":  1.9003759398496243,
+                          "wow":  0.15683345780433156,
+                          "ytd":  1.9116541353383458,
                           "priceRef":  {
-                                           "close":  154300,
-                                           "date":  "2026-09-09"
+                                           "close":  154900,
+                                           "date":  "2026-09-10"
                                        },
                           "pricePrev":  {
-                                            "close":  136000,
-                                            "date":  "2026-09-02"
+                                            "close":  133900,
+                                            "date":  "2026-09-03"
                                         },
                           "priceYtd":  {
                                            "close":  53200,
@@ -207,23 +207,23 @@
                           "symbol":  "140860.KQ",
                           "name":  "파크시스템스",
                           "category":  "반도체 장비",
-                          "price":  256000,
-                          "mcap":  17926,
-                          "per":  77.22,
-                          "pbr":  5.24,
-                          "fwdPer":  40.14,
-                          "fwdPbr":  5.83,
-                          "eps":  3315,
+                          "price":  255000,
+                          "mcap":  null,
+                          "per":  null,
+                          "pbr":  null,
+                          "fwdPer":  null,
+                          "fwdPbr":  null,
+                          "eps":  null,
                           "bps":  null,
-                          "wow":  0.021956087824351211,
-                          "ytd":  0.14285714285714279,
+                          "wow":  0.003937007874015741,
+                          "ytd":  0.13839285714285721,
                           "priceRef":  {
-                                           "close":  256000,
-                                           "date":  "2026-09-09"
+                                           "close":  255000,
+                                           "date":  "2026-09-10"
                                        },
                           "pricePrev":  {
-                                            "close":  250500,
-                                            "date":  "2026-09-02"
+                                            "close":  254000,
+                                            "date":  "2026-09-03"
                                         },
                           "priceYtd":  {
                                            "close":  224000,
@@ -235,23 +235,23 @@
                           "symbol":  "014680.KS",
                           "name":  "한솔케미칼",
                           "category":  "반도체 소재/부품",
-                          "price":  203000,
-                          "mcap":  21912,
-                          "per":  14.86,
-                          "pbr":  1.99,
-                          "fwdPer":  12.97,
-                          "fwdPbr":  1.76,
-                          "eps":  13662,
+                          "price":  202000,
+                          "mcap":  null,
+                          "per":  null,
+                          "pbr":  null,
+                          "fwdPer":  null,
+                          "fwdPbr":  null,
+                          "eps":  null,
                           "bps":  null,
-                          "wow":  0.047471620227038214,
-                          "ytd":  -0.15416666666666667,
+                          "wow":  0.049350649350649256,
+                          "ytd":  -0.15833333333333333,
                           "priceRef":  {
-                                           "close":  203000,
-                                           "date":  "2026-09-09"
+                                           "close":  202000,
+                                           "date":  "2026-09-10"
                                        },
                           "pricePrev":  {
-                                            "close":  193800,
-                                            "date":  "2026-09-02"
+                                            "close":  192500,
+                                            "date":  "2026-09-03"
                                         },
                           "priceYtd":  {
                                            "close":  240000,
@@ -263,23 +263,23 @@
                           "symbol":  "357780.KQ",
                           "name":  "솔브레인",
                           "category":  "반도체 소재/부품",
-                          "price":  338000,
-                          "mcap":  26292,
-                          "per":  20.6,
-                          "pbr":  2.25,
-                          "fwdPer":  14.88,
-                          "fwdPbr":  2.04,
-                          "eps":  16410,
+                          "price":  342000,
+                          "mcap":  null,
+                          "per":  null,
+                          "pbr":  null,
+                          "fwdPer":  null,
+                          "fwdPbr":  null,
+                          "eps":  null,
                           "bps":  null,
-                          "wow":  0.025796661608497695,
-                          "ytd":  0.21146953405017932,
+                          "wow":  0.070422535211267512,
+                          "ytd":  0.22580645161290325,
                           "priceRef":  {
-                                           "close":  338000,
-                                           "date":  "2026-09-09"
+                                           "close":  342000,
+                                           "date":  "2026-09-10"
                                        },
                           "pricePrev":  {
-                                            "close":  329500,
-                                            "date":  "2026-09-02"
+                                            "close":  319500,
+                                            "date":  "2026-09-03"
                                         },
                           "priceYtd":  {
                                            "close":  279000,
@@ -291,23 +291,23 @@
                           "symbol":  "058470.KQ",
                           "name":  "리노공업",
                           "category":  "반도체 소재/부품",
-                          "price":  70100,
-                          "mcap":  53424,
-                          "per":  28.44,
-                          "pbr":  6.85,
-                          "fwdPer":  27.08,
-                          "fwdPbr":  6.05,
-                          "eps":  2465,
+                          "price":  69300,
+                          "mcap":  null,
+                          "per":  null,
+                          "pbr":  null,
+                          "fwdPer":  null,
+                          "fwdPbr":  null,
+                          "eps":  null,
                           "bps":  null,
-                          "wow":  0.088509316770186253,
-                          "ytd":  0.08012326656394464,
+                          "wow":  0.077760497667185069,
+                          "ytd":  0.067796610169491567,
                           "priceRef":  {
-                                           "close":  70100,
-                                           "date":  "2026-09-09"
+                                           "close":  69300,
+                                           "date":  "2026-09-10"
                                        },
                           "pricePrev":  {
-                                            "close":  64400,
-                                            "date":  "2026-09-02"
+                                            "close":  64300,
+                                            "date":  "2026-09-03"
                                         },
                           "priceYtd":  {
                                            "close":  64900,
@@ -320,22 +320,22 @@
                           "name":  "ISC",
                           "category":  "반도체 소재/부품",
                           "price":  190600,
-                          "mcap":  40402,
-                          "per":  52.09,
-                          "pbr":  6.92,
-                          "fwdPer":  43.34,
-                          "fwdPbr":  6.21,
-                          "eps":  3659,
+                          "mcap":  null,
+                          "per":  null,
+                          "pbr":  null,
+                          "fwdPer":  null,
+                          "fwdPbr":  null,
+                          "eps":  null,
                           "bps":  null,
-                          "wow":  0.1178885630498534,
+                          "wow":  0.11007571345369827,
                           "ytd":  0.58833333333333337,
                           "priceRef":  {
                                            "close":  190600,
-                                           "date":  "2026-09-09"
+                                           "date":  "2026-09-10"
                                        },
                           "pricePrev":  {
-                                            "close":  170500,
-                                            "date":  "2026-09-02"
+                                            "close":  171700,
+                                            "date":  "2026-09-03"
                                         },
                           "priceYtd":  {
                                            "close":  120000,
@@ -347,23 +347,23 @@
                           "symbol":  "074600.KQ",
                           "name":  "원익QnC",
                           "category":  "반도체 소재/부품",
-                          "price":  26650,
-                          "mcap":  7006,
-                          "per":  14.49,
-                          "pbr":  1.31,
-                          "fwdPer":  9.7,
-                          "fwdPbr":  1.24,
-                          "eps":  1839,
+                          "price":  26900,
+                          "mcap":  null,
+                          "per":  null,
+                          "pbr":  null,
+                          "fwdPer":  null,
+                          "fwdPbr":  null,
+                          "eps":  null,
                           "bps":  null,
-                          "wow":  0.049212598425196763,
-                          "ytd":  0.16885964912280693,
+                          "wow":  0.0653465346534654,
+                          "ytd":  0.17982456140350878,
                           "priceRef":  {
-                                           "close":  26650,
-                                           "date":  "2026-09-09"
+                                           "close":  26900,
+                                           "date":  "2026-09-10"
                                        },
                           "pricePrev":  {
-                                            "close":  25400,
-                                            "date":  "2026-09-02"
+                                            "close":  25250,
+                                            "date":  "2026-09-03"
                                         },
                           "priceYtd":  {
                                            "close":  22800,
@@ -375,23 +375,23 @@
                           "symbol":  "166090.KQ",
                           "name":  "하나머티리얼즈",
                           "category":  "반도체 소재/부품",
-                          "price":  52100,
-                          "mcap":  10304,
-                          "per":  16.05,
-                          "pbr":  1.64,
-                          "fwdPer":  12.97,
-                          "fwdPbr":  1.71,
-                          "eps":  3246,
+                          "price":  55000,
+                          "mcap":  null,
+                          "per":  null,
+                          "pbr":  null,
+                          "fwdPer":  null,
+                          "fwdPbr":  null,
+                          "eps":  null,
                           "bps":  null,
-                          "wow":  0.039920159680638667,
-                          "ytd":  0.14884233737596464,
+                          "wow":  0.10998990918264373,
+                          "ytd":  0.21278941565600884,
                           "priceRef":  {
-                                           "close":  52100,
-                                           "date":  "2026-09-09"
+                                           "close":  55000,
+                                           "date":  "2026-09-10"
                                        },
                           "pricePrev":  {
-                                            "close":  50100,
-                                            "date":  "2026-09-02"
+                                            "close":  49550,
+                                            "date":  "2026-09-03"
                                         },
                           "priceYtd":  {
                                            "close":  45350,
@@ -403,23 +403,23 @@
                           "symbol":  "064760.KQ",
                           "name":  "티씨케이",
                           "category":  "반도체 소재/부품",
-                          "price":  257500,
-                          "mcap":  28787,
-                          "per":  35.34,
-                          "pbr":  5.22,
-                          "fwdPer":  27.54,
-                          "fwdPbr":  4.87,
-                          "eps":  7287,
+                          "price":  271500,
+                          "mcap":  null,
+                          "per":  null,
+                          "pbr":  null,
+                          "fwdPer":  null,
+                          "fwdPbr":  null,
+                          "eps":  null,
                           "bps":  null,
-                          "wow":  0.042510121457489891,
-                          "ytd":  0.76249144421629023,
+                          "wow":  0.12889812889812879,
+                          "ytd":  0.85831622176591371,
                           "priceRef":  {
-                                           "close":  257500,
-                                           "date":  "2026-09-09"
+                                           "close":  271500,
+                                           "date":  "2026-09-10"
                                        },
                           "pricePrev":  {
-                                            "close":  247000,
-                                            "date":  "2026-09-02"
+                                            "close":  240500,
+                                            "date":  "2026-09-03"
                                         },
                           "priceYtd":  {
                                            "close":  146100,
@@ -431,23 +431,23 @@
                           "symbol":  "272110.KQ",
                           "name":  "케이엔제이",
                           "category":  "반도체 소재/부품",
-                          "price":  25250,
-                          "mcap":  2026,
-                          "per":  8.4,
-                          "pbr":  1.91,
-                          "fwdPer":  7.37,
-                          "fwdPbr":  1.56,
-                          "eps":  3005,
+                          "price":  26050,
+                          "mcap":  null,
+                          "per":  null,
+                          "pbr":  null,
+                          "fwdPer":  null,
+                          "fwdPbr":  null,
+                          "eps":  null,
                           "bps":  null,
-                          "wow":  0.041237113402061931,
-                          "ytd":  0.090712742980561645,
+                          "wow":  0.092243186582809278,
+                          "ytd":  0.12526997840172793,
                           "priceRef":  {
-                                           "close":  25250,
-                                           "date":  "2026-09-09"
+                                           "close":  26050,
+                                           "date":  "2026-09-10"
                                        },
                           "pricePrev":  {
-                                            "close":  24250,
-                                            "date":  "2026-09-02"
+                                            "close":  23850,
+                                            "date":  "2026-09-03"
                                         },
                           "priceYtd":  {
                                            "close":  23150,
@@ -459,23 +459,23 @@
                           "symbol":  "101160.KQ",
                           "name":  "월덱스",
                           "category":  "반도체 소재/부품",
-                          "price":  30600,
-                          "mcap":  5052,
-                          "per":  6.66,
-                          "pbr":  1.33,
+                          "price":  31100,
+                          "mcap":  null,
+                          "per":  null,
+                          "pbr":  null,
                           "fwdPer":  null,
                           "fwdPbr":  null,
-                          "eps":  4594,
+                          "eps":  null,
                           "bps":  null,
-                          "wow":  0.030303030303030276,
-                          "ytd":  0.37837837837837829,
+                          "wow":  0.074265975820379859,
+                          "ytd":  0.4009009009009008,
                           "priceRef":  {
-                                           "close":  30600,
-                                           "date":  "2026-09-09"
+                                           "close":  31100,
+                                           "date":  "2026-09-10"
                                        },
                           "pricePrev":  {
-                                            "close":  29700,
-                                            "date":  "2026-09-02"
+                                            "close":  28950,
+                                            "date":  "2026-09-03"
                                         },
                           "priceYtd":  {
                                            "close":  22200,
@@ -487,23 +487,23 @@
                           "symbol":  "067310.KQ",
                           "name":  "하나마이크론",
                           "category":  "반도체 OSAT",
-                          "price":  35450,
-                          "mcap":  23571,
-                          "per":  13.75,
-                          "pbr":  4.27,
-                          "fwdPer":  10.93,
-                          "fwdPbr":  3.78,
-                          "eps":  2578,
+                          "price":  36000,
+                          "mcap":  null,
+                          "per":  null,
+                          "pbr":  null,
+                          "fwdPer":  null,
+                          "fwdPbr":  null,
+                          "eps":  null,
                           "bps":  null,
-                          "wow":  0.0028288543140029265,
-                          "ytd":  0.33020637898686678,
+                          "wow":  0.037463976945244948,
+                          "ytd":  0.35084427767354587,
                           "priceRef":  {
-                                           "close":  35450,
-                                           "date":  "2026-09-09"
+                                           "close":  36000,
+                                           "date":  "2026-09-10"
                                        },
                           "pricePrev":  {
-                                            "close":  35350,
-                                            "date":  "2026-09-02"
+                                            "close":  34700,
+                                            "date":  "2026-09-03"
                                         },
                           "priceYtd":  {
                                            "close":  26650,
@@ -515,23 +515,23 @@
                           "symbol":  "131970.KQ",
                           "name":  "두산테스나",
                           "category":  "반도체 OSAT",
-                          "price":  83800,
-                          "mcap":  16196,
-                          "per":  47.32,
-                          "pbr":  3.58,
-                          "fwdPer":  44.41,
-                          "fwdPbr":  3.33,
-                          "eps":  1771,
+                          "price":  89100,
+                          "mcap":  null,
+                          "per":  null,
+                          "pbr":  null,
+                          "fwdPer":  null,
+                          "fwdPbr":  null,
+                          "eps":  null,
                           "bps":  null,
-                          "wow":  0.071611253196930846,
-                          "ytd":  0.54898336414048066,
+                          "wow":  0.18958611481975973,
+                          "ytd":  0.64695009242144175,
                           "priceRef":  {
-                                           "close":  83800,
-                                           "date":  "2026-09-09"
+                                           "close":  89100,
+                                           "date":  "2026-09-10"
                                        },
                           "pricePrev":  {
-                                            "close":  78200,
-                                            "date":  "2026-09-02"
+                                            "close":  74900,
+                                            "date":  "2026-09-03"
                                         },
                           "priceYtd":  {
                                            "close":  54100,
@@ -543,23 +543,23 @@
                           "symbol":  "440110.KQ",
                           "name":  "파두",
                           "category":  "반도체 팹리스",
-                          "price":  74400,
-                          "mcap":  37283,
+                          "price":  79300,
+                          "mcap":  null,
                           "per":  null,
-                          "pbr":  58.35,
-                          "fwdPer":  72.58,
-                          "fwdPbr":  50.67,
-                          "eps":  -1985,
+                          "pbr":  null,
+                          "fwdPer":  null,
+                          "fwdPbr":  null,
+                          "eps":  null,
                           "bps":  null,
-                          "wow":  0.1847133757961783,
-                          "ytd":  2.5011764705882351,
+                          "wow":  0.2894308943089432,
+                          "ytd":  2.7317647058823531,
                           "priceRef":  {
-                                           "close":  74400,
-                                           "date":  "2026-09-09"
+                                           "close":  79300,
+                                           "date":  "2026-09-10"
                                        },
                           "pricePrev":  {
-                                            "close":  62800,
-                                            "date":  "2026-09-02"
+                                            "close":  61500,
+                                            "date":  "2026-09-03"
                                         },
                           "priceYtd":  {
                                            "close":  21250,
@@ -571,23 +571,23 @@
                           "symbol":  "445090.KQ",
                           "name":  "에이직랜드",
                           "category":  "반도체 디자인하우스",
-                          "price":  21150,
-                          "mcap":  2311,
+                          "price":  21400,
+                          "mcap":  null,
                           "per":  null,
-                          "pbr":  2.71,
-                          "fwdPer":  37.6,
-                          "fwdPbr":  3.68,
-                          "eps":  -624,
+                          "pbr":  null,
+                          "fwdPer":  null,
+                          "fwdPbr":  null,
+                          "eps":  null,
                           "bps":  null,
-                          "wow":  0.068181818181818121,
-                          "ytd":  -0.27692307692307694,
+                          "wow":  0.084642676127724359,
+                          "ytd":  -0.26837606837606842,
                           "priceRef":  {
-                                           "close":  21150,
-                                           "date":  "2026-09-09"
+                                           "close":  21400,
+                                           "date":  "2026-09-10"
                                        },
                           "pricePrev":  {
-                                            "close":  19800,
-                                            "date":  "2026-09-02"
+                                            "close":  19730,
+                                            "date":  "2026-09-03"
                                         },
                           "priceYtd":  {
                                            "close":  29250,
@@ -599,23 +599,23 @@
                           "symbol":  "394280.KQ",
                           "name":  "오픈엣지테크놀로지",
                           "category":  "반도체 IP",
-                          "price":  8390,
-                          "mcap":  2210,
+                          "price":  8570,
+                          "mcap":  null,
                           "per":  null,
-                          "pbr":  9.37,
+                          "pbr":  null,
                           "fwdPer":  null,
                           "fwdPbr":  null,
-                          "eps":  -1165,
+                          "eps":  null,
                           "bps":  null,
-                          "wow":  -0.032295271049596286,
-                          "ytd":  -0.46079691516709509,
+                          "wow":  0.035024154589371914,
+                          "ytd":  -0.44922879177377895,
                           "priceRef":  {
-                                           "close":  8390,
-                                           "date":  "2026-09-09"
+                                           "close":  8570,
+                                           "date":  "2026-09-10"
                                        },
                           "pricePrev":  {
-                                            "close":  8670,
-                                            "date":  "2026-09-02"
+                                            "close":  8280,
+                                            "date":  "2026-09-03"
                                         },
                           "priceYtd":  {
                                            "close":  15560,

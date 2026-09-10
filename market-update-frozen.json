@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-09-09T23:26:31Z",
-    "updatedKr":  "2026-09-10 08:26:31",
+    "updated":  "2026-09-10T22:00:30Z",
+    "updatedKr":  "2026-09-11 07:00:30",
     "frozenDow":  "Thursday",
     "reviewRange":  "2026-09-07~2026-09-11",
     "previewRange":  "2026-09-14~2026-09-18",
@@ -90,8 +90,8 @@
                          "importance":  3,
                          "indicator":  "PPI (YoY)",
                          "period":  "Aug",
-                         "actual":  "",
-                         "forecast":  "4.5%",
+                         "actual":  "5.4%",
+                         "forecast":  "5.3%",
                          "previous":  "4.7%",
                          "type":  "review"
                      },
@@ -105,8 +105,8 @@
                          "importance":  3,
                          "indicator":  "Core PPI (YoY)",
                          "period":  "Aug",
-                         "actual":  "",
-                         "forecast":  "4.1%",
+                         "actual":  "4.6%",
+                         "forecast":  "4.6%",
                          "previous":  "4.2%",
                          "type":  "review"
                      },
@@ -120,8 +120,8 @@
                          "importance":  3,
                          "indicator":  "Initial Jobless Claims",
                          "period":  "",
-                         "actual":  "",
-                         "forecast":  "209K",
+                         "actual":  "206K",
+                         "forecast":  "205K",
                          "previous":  "206K",
                          "type":  "review"
                      },
@@ -136,7 +136,7 @@
                          "indicator":  "PPI (YoY)",
                          "period":  "Aug",
                          "actual":  "",
-                         "forecast":  "",
+                         "forecast":  "7.4%",
                          "previous":  "7.2%",
                          "type":  "review"
                      },
@@ -203,21 +203,6 @@
                          "type":  "preview"
                      },
                      {
-                         "id":  "560602",
-                         "datetime":  "2026/09/15 06:00:00",
-                         "date":  "9/15",
-                         "time":  "06:00",
-                         "flagKey":  "South_Korea",
-                         "currency":  "KRW",
-                         "importance":  3,
-                         "indicator":  "Export Prices (YoY)",
-                         "period":  "Aug",
-                         "actual":  "",
-                         "forecast":  "",
-                         "previous":  "49.1%",
-                         "type":  "preview"
-                     },
-                     {
                          "id":  "560603",
                          "datetime":  "2026/09/15 06:00:00",
                          "date":  "9/15",
@@ -230,6 +215,21 @@
                          "actual":  "",
                          "forecast":  "",
                          "previous":  "18.7%",
+                         "type":  "preview"
+                     },
+                     {
+                         "id":  "560602",
+                         "datetime":  "2026/09/15 06:00:00",
+                         "date":  "9/15",
+                         "time":  "06:00",
+                         "flagKey":  "South_Korea",
+                         "currency":  "KRW",
+                         "importance":  3,
+                         "indicator":  "Export Prices (YoY)",
+                         "period":  "Aug",
+                         "actual":  "",
+                         "forecast":  "",
+                         "previous":  "49.1%",
                          "type":  "preview"
                      },
                      {
@@ -293,18 +293,18 @@
                          "type":  "preview"
                      },
                      {
-                         "id":  "560608",
+                         "id":  "560610",
                          "datetime":  "2026/09/17 21:30:00",
                          "date":  "9/17",
                          "time":  "21:30",
                          "flagKey":  "United_States",
                          "currency":  "USD",
                          "importance":  3,
-                         "indicator":  "Housing Starts",
-                         "period":  "Aug",
+                         "indicator":  "Philadelphia Fed Manufacturing Index",
+                         "period":  "Sep",
                          "actual":  "",
-                         "forecast":  "1.35M",
-                         "previous":  "1.239M",
+                         "forecast":  "47.0",
+                         "previous":  "47.4",
                          "type":  "preview"
                      },
                      {
@@ -323,18 +323,18 @@
                          "type":  "preview"
                      },
                      {
-                         "id":  "560610",
+                         "id":  "560608",
                          "datetime":  "2026/09/17 21:30:00",
                          "date":  "9/17",
                          "time":  "21:30",
                          "flagKey":  "United_States",
                          "currency":  "USD",
                          "importance":  3,
-                         "indicator":  "Philadelphia Fed Manufacturing Index",
-                         "period":  "Sep",
+                         "indicator":  "Housing Starts",
+                         "period":  "Aug",
                          "actual":  "",
-                         "forecast":  "47.0",
-                         "previous":  "47.4",
+                         "forecast":  "1.35M",
+                         "previous":  "1.239M",
                          "type":  "preview"
                      },
                      {
@@ -353,21 +353,6 @@
                          "type":  "preview"
                      },
                      {
-                         "id":  "560612",
-                         "datetime":  "2026/09/18 08:30:00",
-                         "date":  "9/18",
-                         "time":  "08:30",
-                         "flagKey":  "Japan",
-                         "currency":  "JPY",
-                         "importance":  3,
-                         "indicator":  "Inflation Rate (YoY)",
-                         "period":  "Aug",
-                         "actual":  "",
-                         "forecast":  "",
-                         "previous":  "2.0%",
-                         "type":  "preview"
-                     },
-                     {
                          "id":  "560613",
                          "datetime":  "2026/09/18 08:30:00",
                          "date":  "9/18",
@@ -383,6 +368,21 @@
                          "type":  "preview"
                      },
                      {
+                         "id":  "560612",
+                         "datetime":  "2026/09/18 08:30:00",
+                         "date":  "9/18",
+                         "time":  "08:30",
+                         "flagKey":  "Japan",
+                         "currency":  "JPY",
+                         "importance":  3,
+                         "indicator":  "Inflation Rate (YoY)",
+                         "period":  "Aug",
+                         "actual":  "",
+                         "forecast":  "",
+                         "previous":  "2.0%",
+                         "type":  "preview"
+                     },
+                     {
                          "id":  "560614",
                          "datetime":  "2026/09/18 12:00:00",
                          "date":  "9/18",
@@ -395,21 +395,6 @@
                          "actual":  "",
                          "forecast":  "1.25%",
                          "previous":  "1.00%",
-                         "type":  "preview"
-                     },
-                     {
-                         "id":  "560615",
-                         "datetime":  "2026/09/18 22:15:00",
-                         "date":  "9/18",
-                         "time":  "22:15",
-                         "flagKey":  "United_States",
-                         "currency":  "USD",
-                         "importance":  3,
-                         "indicator":  "Industrial Production (MoM)",
-                         "period":  "Aug",
-                         "actual":  "",
-                         "forecast":  "0.1%",
-                         "previous":  "0.2%",
                          "type":  "preview"
                      }
                  ]
