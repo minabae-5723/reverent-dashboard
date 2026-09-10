@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-09-10T22:00:31Z",
-    "updatedKr":  "2026-09-11 07:00:31",
+    "updated":  "2026-09-10T23:31:41Z",
+    "updatedKr":  "2026-09-11 08:31:41",
     "source":  "data.go.kr #15101609 (관세청 품목별 수출입실적 GW)",
     "range":  "2025-2026",
     "ssd":  [
@@ -2115,8 +2115,8 @@
                     "value":  4510,
                     "weight":  178371,
                     "unitPrice":  25285.06,
-                    "expDlrRaw":  4510121755,
-                    "impDlrRaw":  208538839,
+                    "expDlrRaw":  4510121060,
+                    "impDlrRaw":  208508858,
                     "impWgtRaw":  234145
                 },
                 {
@@ -4243,7 +4243,7 @@
                      "weight":  28836,
                      "unitPrice":  61750.85,
                      "expDlrRaw":  1780647499,
-                     "impDlrRaw":  229162621,
+                     "impDlrRaw":  229191198,
                      "impWgtRaw":  11578
                  },
                  {
@@ -8493,10 +8493,10 @@
                 },
                 {
                     "month":  "2026-07",
-                    "value":  10086,
+                    "value":  10087,
                     "weight":  105714,
-                    "unitPrice":  95406.9,
-                    "expDlrRaw":  10085845139,
+                    "unitPrice":  95417.3,
+                    "expDlrRaw":  10086944182,
                     "impDlrRaw":  1600266240,
                     "impWgtRaw":  10821
                 },
