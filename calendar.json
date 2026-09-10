@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-09-10T22:00:28Z",
-    "updatedKr":  "2026-09-11 07:00:28",
+    "updated":  "2026-09-10T23:30:14Z",
+    "updatedKr":  "2026-09-11 08:30:14",
     "countries":  [
                       "5",
                       "35",
@@ -95,8 +95,8 @@
                        "importance":  3,
                        "indicator":  "PPI (YoY)",
                        "period":  "Aug",
-                       "actual":  "",
-                       "forecast":  "4.5%",
+                       "actual":  "5.4%",
+                       "forecast":  "5.3%",
                        "previous":  "4.7%",
                        "type":  "review"
                    },
@@ -110,8 +110,8 @@
                        "importance":  3,
                        "indicator":  "Core PPI (YoY)",
                        "period":  "Aug",
-                       "actual":  "",
-                       "forecast":  "4.1%",
+                       "actual":  "4.6%",
+                       "forecast":  "4.6%",
                        "previous":  "4.2%",
                        "type":  "review"
                    },
@@ -125,8 +125,8 @@
                        "importance":  3,
                        "indicator":  "Initial Jobless Claims",
                        "period":  "",
-                       "actual":  "",
-                       "forecast":  "209K",
+                       "actual":  "206K",
+                       "forecast":  "205K",
                        "previous":  "206K",
                        "type":  "review"
                    },
@@ -141,7 +141,7 @@
                        "indicator":  "PPI (YoY)",
                        "period":  "Aug",
                        "actual":  "",
-                       "forecast":  "",
+                       "forecast":  "7.4%",
                        "previous":  "7.2%",
                        "type":  "review"
                    },

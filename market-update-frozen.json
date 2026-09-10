@@ -1,7 +1,7 @@
 {
-    "updated":  "2026-09-10T22:00:30Z",
-    "updatedKr":  "2026-09-11 07:00:30",
-    "frozenDow":  "Thursday",
+    "updated":  "2026-09-10T23:30:16Z",
+    "updatedKr":  "2026-09-11 08:30:16",
+    "frozenDow":  "Friday",
     "reviewRange":  "2026-09-07~2026-09-11",
     "previewRange":  "2026-09-14~2026-09-18",
     "thisWeek":  [
@@ -243,7 +243,7 @@
                          "indicator":  "Balance of Trade",
                          "period":  "Aug",
                          "actual":  "",
-                         "forecast":  "",
+                         "forecast":  "-650.0B",
                          "previous":  "-634.5B",
                          "type":  "preview"
                      },
@@ -318,8 +318,8 @@
                          "indicator":  "Initial Jobless Claims",
                          "period":  "",
                          "actual":  "",
-                         "forecast":  "",
-                         "previous":  "",
+                         "forecast":  "208K",
+                         "previous":  "206K",
                          "type":  "preview"
                      },
                      {
@@ -363,7 +363,7 @@
                          "indicator":  "Core Inflation Rate (YoY)",
                          "period":  "Aug",
                          "actual":  "",
-                         "forecast":  "",
+                         "forecast":  "1.8%",
                          "previous":  "1.8%",
                          "type":  "preview"
                      },
@@ -378,7 +378,7 @@
                          "indicator":  "Inflation Rate (YoY)",
                          "period":  "Aug",
                          "actual":  "",
-                         "forecast":  "",
+                         "forecast":  "2.1%",
                          "previous":  "2.0%",
                          "type":  "preview"
                      },

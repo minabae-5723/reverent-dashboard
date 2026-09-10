@@ -81,7 +81,7 @@
                        "indicator":  "Balance of Trade",
                        "period":  "Aug",
                        "actual":  "",
-                       "forecast":  "",
+                       "forecast":  "-650.0B",
                        "previous":  "-634.5B",
                        "type":  "preview"
                    },
@@ -141,8 +141,8 @@
                        "indicator":  "Initial Jobless Claims",
                        "period":  "",
                        "actual":  "",
-                       "forecast":  "",
-                       "previous":  "",
+                       "forecast":  "208K",
+                       "previous":  "206K",
                        "type":  "preview"
                    },
                    {
@@ -186,7 +186,7 @@
                        "indicator":  "Core Inflation Rate (YoY)",
                        "period":  "Aug",
                        "actual":  "",
-                       "forecast":  "",
+                       "forecast":  "1.8%",
                        "previous":  "1.8%",
                        "type":  "preview"
                    },
@@ -201,7 +201,7 @@
                        "indicator":  "Inflation Rate (YoY)",
                        "period":  "Aug",
                        "actual":  "",
-                       "forecast":  "",
+                       "forecast":  "2.1%",
                        "previous":  "2.0%",
                        "type":  "preview"
                    },
