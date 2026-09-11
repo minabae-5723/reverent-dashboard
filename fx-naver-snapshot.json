@@ -1,34 +1,34 @@
 {
-    "updated":  "2026-09-11T08:32:22+09:00",
+    "updated":  "2026-09-11T15:08:18+09:00",
     "source":  "finance.naver.com exchangeDailyQuote (Seoul 留ㅻℓ湲곗???",
     "fx":  {
                "USDKRW":  {
-                              "current":  1350,
-                              "wow":  0.04,
-                              "mom":  -4.76,
-                              "ytd":  -10.39,
+                              "current":  1346.6,
+                              "wow":  -0.21,
+                              "mom":  -5,
+                              "ytd":  -10.61,
                               "asOf":  "2026-09-11",
                               "prevDate":  "2026-09-04"
                           },
                "USDJPY":  {
-                              "current":  154.485,
-                              "wow":  -1.14,
-                              "mom":  -3.04,
-                              "ytd":  -2.78,
+                              "current":  154.075,
+                              "wow":  -1.4,
+                              "mom":  -3.3,
+                              "ytd":  -3.01,
                               "asOf":  "2026-09-11"
                           },
                "USDCNY":  {
-                              "current":  6.7137,
-                              "wow":  0.09,
-                              "mom":  -0.42,
-                              "ytd":  -2.55,
+                              "current":  6.7095,
+                              "wow":  0.03,
+                              "mom":  -0.48,
+                              "ytd":  -2.6,
                               "asOf":  "2026-09-11"
                           },
                "USDEUR":  {
-                              "current":  0.8614,
-                              "wow":  0.04,
-                              "mom":  -0.24,
-                              "ytd":  -0.42,
+                              "current":  0.8611,
+                              "wow":  0.01,
+                              "mom":  -0.27,
+                              "ytd":  -0.44,
                               "asOf":  "2026-09-11"
                           }
            }
