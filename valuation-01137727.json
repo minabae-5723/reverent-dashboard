@@ -1,31 +1,31 @@
 {
-    "company":  "Musinsa",
+    "company":  "Musinsa_LTM2Q26",
     "corp_code":  "01137727",
-    "fiscal_period":  "FY2025 Annual (Consolidated)",
+    "fiscal_period":  "LTM 2Q26 (FY2025 + 2Q(H1 cum)2026 - 2Q(H1 cum)2025)",
     "unit":  "100M KRW",
-    "fetched_at":  "2026-09-11 15:00:55",
+    "fetched_at":  "2026-09-11 15:24:45",
     "pnl":  {
-                "revenue":  14679,
-                "operating_income":  1405,
-                "depreciation":  211,
-                "ebitda":  1616,
-                "net_income":  105
+                "revenue":  16191,
+                "operating_income":  1339,
+                "depreciation":  251,
+                "ebitda":  1590,
+                "net_income":  -440
             },
-    "equity_total":  2948,
+    "equity_total":  2973,
     "debt":  {
                  "st_borrowings":  null,
                  "current_lt_borrowings":  null,
-                 "current_lease":  741,
+                 "current_lease":  896,
                  "lt_borrowings":  null,
-                 "nc_lease":  2745
+                 "nc_lease":  3300
              },
     "cash":  {
-                 "cash_and_equivalents":  5718,
+                 "cash_and_equivalents":  5808,
                  "st_financial_invest":  null
              },
     "derived":  {
-                    "total_debt":  3486,
-                    "total_cash":  5718,
-                    "net_debt":  -2232
+                    "total_debt":  4196,
+                    "total_cash":  5808,
+                    "net_debt":  -1612
                 }
 }
