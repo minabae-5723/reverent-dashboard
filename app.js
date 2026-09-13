@@ -1287,11 +1287,13 @@ function parseDealFlow(md) {
   let article = null;
   let tableLines = [];
   let inValuation = false;
+  let inTable = false;
 
   const closeArticle = () => {
     if (article && section) section.articles.push(article);
     article = null;
     inValuation = false;
+    inTable = false;
   };
 
   for (const line of lines) {
@@ -1326,17 +1328,22 @@ function parseDealFlow(md) {
         date = dm[1];
         head = head.replace(/\s*\([0-9]{4}\.[0-9]{2}\.[0-9]{2}\)\s*$/, '').trim();
       }
-      article = { headline: head, date, bullets: [], valuations: [] };
+      article = { headline: head, date, bullets: [], valuations: [], tables: [] };
       continue;
     }
-    // H4 — Valuation sub-section inside an article
+    // H4 — Valuation sub-section, or any other titled table block, inside an article
     const h4 = line.match(/^####\s+(.+?)\s*$/);
     if (h4 && article) {
       if (/Valuation|밸류에이션|가치평가/i.test(h4[1])) {
         article.valuations.push({ title: h4[1].trim(), lines: [] });
         inValuation = true;
+        inTable = false;
       } else {
+        // Generic sub-table (e.g. 카드뉴스 비교표) — rendered with renderMdTable,
+        // which unlike parseValuationTable handles any column count.
+        article.tables.push({ title: h4[1].trim(), lines: [] });
         inValuation = false;
+        inTable = true;
       }
       continue;
     }
@@ -1357,8 +1364,16 @@ function parseDealFlow(md) {
       // Non-table, non-empty line exits valuation mode (but keeps article)
       if (line.trim() !== '') inValuation = false;
     }
+    // Generic sub-table lines
+    if (inTable && article) {
+      if (/^\s*\|/.test(line)) {
+        article.tables[article.tables.length - 1].lines.push(line);
+        continue;
+      }
+      if (line.trim() !== '') inTable = false;
+    }
     // Bullets for article
-    if (article && !inValuation) {
+    if (article && !inValuation && !inTable) {
       const bm = line.match(/^[-•]\s+(.+)$/);
       if (bm) article.bullets.push(bm[1].trim());
     }
@@ -2018,6 +2033,13 @@ function renderDealArticle(a, weekDate, allowNotes = false) {
     const storeKey = _multi ? `${a.headline} ‖ ${v.title}` : a.headline;
     return renderValuationCard(cardId, weekDate || 'unknown', storeKey, v.title, data);
   }).join('');
+  // Generic titled tables inside an article (카드뉴스 비교표 등). Unlike the
+  // valuation card these are read-only — just a titled markdown table.
+  const tablesHtml = (a.tables || []).map((t) => {
+    const tbl = renderMdTable(t.lines);
+    if (!tbl) return '';
+    return `<div class="deals-subtable"><h4 class="deals-subtable-title">${escapeHtml(t.title)}</h4>${tbl}</div>`;
+  }).join('');
   // Per-article card-news slot (screenshots + comments), same machinery as the
   // section-level Macro grid but scoped to this article's headline.
   // Only 자본시장 동향 articles get one — see _isCapitalMarketSection.
@@ -2031,6 +2053,7 @@ function renderDealArticle(a, weekDate, allowNotes = false) {
         <h3 class="news-headline">${linkifyInline(a.headline)}</h3>
       </div>
       ${bulletsHtml}
+      ${tablesHtml}
       ${valuationHtml}
       ${notesHtml}
     </div>

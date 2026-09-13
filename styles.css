@@ -3487,3 +3487,26 @@ html, body {
   border-radius: 6px;
   box-shadow: 0 8px 40px rgba(0, 0, 0, .5);
 }
+
+/* 기사 내 일반 비교표 (#### 제목 + 마크다운 표). Valuation 카드와 달리 읽기 전용. */
+.deals-subtable {
+  margin: 14px 0 4px;
+  overflow-x: auto;
+}
+
+.deals-subtable-title {
+  margin: 0 0 7px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--navy);
+  letter-spacing: 0.01em;
+}
+
+.deals-subtable .deals-summary-table {
+  min-width: 520px;
+}
+
+.deals-subtable .deals-summary-table tbody td:first-child {
+  font-weight: 600;
+  white-space: nowrap;
+}
