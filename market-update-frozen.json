@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-09-11T06:07:37Z",
-    "updatedKr":  "2026-09-11 15:07:37",
+    "updated":  "2026-09-13T03:40:18Z",
+    "updatedKr":  "2026-09-13 12:40:18",
     "frozenDow":  "Friday",
     "reviewRange":  "2026-09-07~2026-09-11",
     "previewRange":  "2026-09-14~2026-09-18",
@@ -126,21 +126,6 @@
                          "type":  "review"
                      },
                      {
-                         "id":  "560521",
-                         "datetime":  "2026/09/11 08:50:00",
-                         "date":  "9/11",
-                         "time":  "08:50",
-                         "flagKey":  "Japan",
-                         "currency":  "JPY",
-                         "importance":  3,
-                         "indicator":  "PPI (YoY)",
-                         "period":  "Aug",
-                         "actual":  "",
-                         "forecast":  "7.4%",
-                         "previous":  "7.2%",
-                         "type":  "review"
-                     },
-                     {
                          "id":  "555915",
                          "datetime":  "2026/09/11 21:30:00",
                          "date":  "9/11",
@@ -150,7 +135,7 @@
                          "importance":  3,
                          "indicator":  "CPI (YoY)",
                          "period":  "Aug",
-                         "actual":  "",
+                         "actual":  "3.4%",
                          "forecast":  "3.4%",
                          "previous":  "3.4%",
                          "type":  "review"
@@ -165,7 +150,7 @@
                          "importance":  3,
                          "indicator":  "Core CPI (YoY)",
                          "period":  "Aug",
-                         "actual":  "",
+                         "actual":  "2.4%",
                          "forecast":  "2.4%",
                          "previous":  "2.5%",
                          "type":  "review"
@@ -180,28 +165,13 @@
                          "importance":  3,
                          "indicator":  "Michigan Consumer Sentiment (Prel)",
                          "period":  "Sep",
-                         "actual":  "",
-                         "forecast":  "51.5",
+                         "actual":  "47.8",
+                         "forecast":  "51.0",
                          "previous":  "51.7",
                          "type":  "review"
                      }
                  ],
     "nextWeek":  [
-                     {
-                         "id":  "560601",
-                         "datetime":  "2026/09/14 13:30:00",
-                         "date":  "9/14",
-                         "time":  "13:30",
-                         "flagKey":  "Japan",
-                         "currency":  "JPY",
-                         "importance":  3,
-                         "indicator":  "Industrial Production (YoY) (Final)",
-                         "period":  "Jul",
-                         "actual":  "",
-                         "forecast":  "",
-                         "previous":  "4.9%",
-                         "type":  "preview"
-                     },
                      {
                          "id":  "560603",
                          "datetime":  "2026/09/15 06:00:00",
@@ -233,36 +203,6 @@
                          "type":  "preview"
                      },
                      {
-                         "id":  "560604",
-                         "datetime":  "2026/09/16 08:50:00",
-                         "date":  "9/16",
-                         "time":  "08:50",
-                         "flagKey":  "Japan",
-                         "currency":  "JPY",
-                         "importance":  3,
-                         "indicator":  "Balance of Trade",
-                         "period":  "Aug",
-                         "actual":  "",
-                         "forecast":  "-650.0B",
-                         "previous":  "-634.5B",
-                         "type":  "preview"
-                     },
-                     {
-                         "id":  "560605",
-                         "datetime":  "2026/09/16 08:50:00",
-                         "date":  "9/16",
-                         "time":  "08:50",
-                         "flagKey":  "Japan",
-                         "currency":  "JPY",
-                         "importance":  3,
-                         "indicator":  "Exports (YoY)",
-                         "period":  "Aug",
-                         "actual":  "",
-                         "forecast":  "",
-                         "previous":  "23.2%",
-                         "type":  "preview"
-                     },
-                     {
                          "id":  "560606",
                          "datetime":  "2026/09/16 21:30:00",
                          "date":  "9/16",
@@ -273,7 +213,7 @@
                          "indicator":  "Retail Sales (MoM)",
                          "period":  "Aug",
                          "actual":  "",
-                         "forecast":  "0.3%",
+                         "forecast":  "0.8%",
                          "previous":  "-0.6%",
                          "type":  "preview"
                      },
@@ -303,7 +243,7 @@
                          "indicator":  "Philadelphia Fed Manufacturing Index",
                          "period":  "Sep",
                          "actual":  "",
-                         "forecast":  "47.0",
+                         "forecast":  "28.9",
                          "previous":  "47.4",
                          "type":  "preview"
                      },
@@ -318,7 +258,7 @@
                          "indicator":  "Initial Jobless Claims",
                          "period":  "",
                          "actual":  "",
-                         "forecast":  "208K",
+                         "forecast":  "209K",
                          "previous":  "206K",
                          "type":  "preview"
                      },
@@ -333,7 +273,7 @@
                          "indicator":  "Housing Starts",
                          "period":  "Aug",
                          "actual":  "",
-                         "forecast":  "1.35M",
+                         "forecast":  "1.320M",
                          "previous":  "1.239M",
                          "type":  "preview"
                      },
