@@ -1,0 +1,31 @@
+{
+    "company":  "Hanssem",
+    "corp_code":  "00161693",
+    "fiscal_period":  "FY2025 Annual (Consolidated)",
+    "unit":  "100M KRW",
+    "fetched_at":  "2026-09-13 15:51:02",
+    "pnl":  {
+                "revenue":  17445,
+                "operating_income":  185,
+                "depreciation":  null,
+                "ebitda":  null,
+                "net_income":  463
+            },
+    "equity_total":  3998,
+    "debt":  {
+                 "st_borrowings":  970,
+                 "current_lt_borrowings":  null,
+                 "current_lease":  null,
+                 "lt_borrowings":  0,
+                 "nc_lease":  null
+             },
+    "cash":  {
+                 "cash_and_equivalents":  982,
+                 "st_financial_invest":  null
+             },
+    "derived":  {
+                    "total_debt":  970,
+                    "total_cash":  982,
+                    "net_debt":  -12
+                }
+}
