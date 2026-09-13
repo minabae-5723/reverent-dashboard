@@ -71,69 +71,77 @@ function Find-ClosestClose {
 
 function Get-NaverSnapshot {
     param([string]$code)
-    $url = "https://finance.naver.com/item/main.naver?code=${code}"
-    try {
-        $r = Invoke-WebRequest -Uri $url -UseBasicParsing -UserAgent $UA -TimeoutSec 15
-        $rawBytes = [System.Text.Encoding]::GetEncoding('iso-8859-1').GetBytes($r.Content)
-        $html = [System.Text.Encoding]::GetEncoding('EUC-KR').GetString($rawBytes)
+    # 2026-09: finance.naver.com/item/main.naver was rebuilt as a Next.js app and
+    # the old scrape anchors (id="_market_sum", id="_per", th_cop_anal20 ...) no
+    # longer exist, so every field came back null. We now read the JSON APIs that
+    # the new front-end itself calls.
+    #   integration     -> marketValue / per / pbr / eps / bps / cnsPer (fwd PER)
+    #   finance/annual  -> PER & PBR rows by fiscal year; the highest tableYm
+    #                      column is the FY1 estimate (its PER matches cnsPer).
+    # ASCII-only source: Korean unit chars are built from code points, never typed.
+    $JO = [string][char]0xC870   # trillion marker
+    $result = [ordered]@{ mcap=$null; per=$null; pbr=$null; eps=$null; bps=$null; fwdPer=$null; fwdPbr=$null }
 
-        $result = [ordered]@{ mcap=$null; per=$null; pbr=$null; eps=$null; bps=$null; fwdPer=$null; fwdPbr=$null }
-
-        # Market cap: Naver renders inside <em id="_market_sum"> ... </em>
-        #   Large caps (>= 1 trillion KRW): "1,655<JO> 9,584" (two numbers, first=jo, second=eok)
-        #   Small caps (< 1 trillion KRW):  "3,069"           (one number = eok)
-        # The Korean unit chars ("조", "억") sit between/after the numbers.
-        # We avoid matching Korean directly (PS 5.1 source-encoding pitfalls) and
-        # just pull all numeric groups in the captured block.
-        $mcapM = [regex]::Match($html, 'id="_market_sum"[^>]*>(.*?)</em>', 'Singleline')
-        if ($mcapM.Success) {
-            $raw = $mcapM.Groups[1].Value -replace '<[^>]+>', '' -replace '&nbsp;', ' '
-            $nums = @([regex]::Matches($raw, '[\d,]+') | ForEach-Object { [double]($_.Value -replace ',', '') })
-            if ($nums.Count -ge 2) {
-                # First number = 조 (trillions), second = 억 (hundred-millions).
-                # Convert to 억원: 1조 = 10,000억.
-                $result.mcap = ($nums[0] * 10000) + $nums[1]
-            } elseif ($nums.Count -eq 1) {
-                # Single number — already in 억원 unit.
-                $result.mcap = $nums[0]
-            }
-        }
-
-        foreach ($key in @('per','pbr','eps','bps')) {
-            $m = [regex]::Match($html, ('id="_' + $key + '"[^>]*>(.*?)</em>'), 'Singleline')
-            if ($m.Success) {
-                $v = ($m.Groups[1].Value -replace '<[^>]+>', '' -replace ',', '').Trim()
-                if ($v -match '^-?\d+(\.\d+)?$') {
-                    $result[$key] = [double]$v
-                }
-            }
-        }
-
-        # Forward (FY1) PER & PBR from 기업실적분석 table.
-        # Layout: 3 actual annual columns + 1 FY1 estimate annual + 6 quarterly columns.
-        # PER row anchored on class th_cop_anal20, PBR row on th_cop_anal21.
-        # The 4th <td> in document order = FY1 (next fiscal year) estimate.
-        $fwdMap = @{ fwdPer = 'th_cop_anal20'; fwdPbr = 'th_cop_anal21' }
-        foreach ($key in $fwdMap.Keys) {
-            $cls = $fwdMap[$key]
-            $rowM = [regex]::Match($html, ('<tr[^>]*>\s*<th[^>]*' + $cls + '[^>]*>.*?</tr>'), 'Singleline')
-            if ($rowM.Success) {
-                $tdMatches = [regex]::Matches($rowM.Value, '<td[^>]*>(.*?)</td>', 'Singleline')
-                if ($tdMatches.Count -ge 4) {
-                    $cell = $tdMatches[3].Groups[1].Value
-                    $val = ($cell -replace '<[^>]+>', '' -replace '&nbsp;', '' -replace '[,\s]', '').Trim()
-                    if ($val -match '^-?\d+(\.\d+)?$') {
-                        $result[$key] = [double]$val
-                    }
-                }
-            }
-        }
-
-        return $result
-    } catch {
-        Write-Host ("    Naver error " + $code + ": " + $_.Exception.Message) -ForegroundColor DarkYellow
-        return @{ mcap=$null; per=$null; pbr=$null; eps=$null; bps=$null }
+    # --- numeric helper: "11.64<BAE>" -> 11.64 , "22,292<WON>" -> 22292
+    $ToNum = {
+        param([string]$s)
+        if ([string]::IsNullOrWhiteSpace($s)) { return $null }
+        $t = $s -replace ',', ''
+        $m = [regex]::Match($t, '-?\d+(\.\d+)?')
+        if ($m.Success) { return [double]$m.Value }
+        return $null
     }
+
+    try {
+        $api = "https://m.stock.naver.com/api/stock/${code}/integration"
+        $j = Invoke-RestMethod -Uri $api -UserAgent $UA -TimeoutSec 15
+
+        $map = @{}
+        foreach ($ti in $j.totalInfos) { $map[$ti.code] = [string]$ti.value }
+
+        # Market cap: "1,517<JO> 1,093<EOK>" (two groups) or "8,500<EOK>" (one).
+        $mv = $map['marketValue']
+        if ($mv) {
+            $nums = @([regex]::Matches($mv, '[\d,]+') | ForEach-Object { [double]($_.Value -replace ',', '') })
+            if ($nums.Count -ge 2) {
+                $result.mcap = ($nums[0] * 10000) + $nums[1]   # 1 trillion = 10,000 eok
+            } elseif ($nums.Count -eq 1) {
+                # One group only: trillions if the trillion marker is present, else eok.
+                if ($mv.Contains($JO)) { $result.mcap = $nums[0] * 10000 } else { $result.mcap = $nums[0] }
+            }
+        }
+
+        $result.per    = & $ToNum $map['per']
+        $result.pbr    = & $ToNum $map['pbr']
+        $result.eps    = & $ToNum $map['eps']
+        $result.bps    = & $ToNum $map['bps']
+        $result.fwdPer = & $ToNum $map['cnsPer']
+    } catch {
+        Write-Host ("    Naver integration error " + $code + ": " + $_.Exception.Message) -ForegroundColor DarkYellow
+    }
+
+    # --- Forward PBR: highest fiscal-year column of the annual PER/PBR rows.
+    try {
+        $fapi = "https://m.stock.naver.com/api/stock/${code}/finance/annual"
+        $f = Invoke-RestMethod -Uri $fapi -UserAgent $UA -TimeoutSec 15
+        foreach ($pair in @(@('PBR','fwdPbr'), @('PER','fwdPerAlt'))) {
+            $rowTitle = $pair[0]; $target = $pair[1]
+            $row = $f.financeInfo.rowList | Where-Object { $_.title -eq $rowTitle } | Select-Object -First 1
+            if (-not $row) { continue }
+            $props = @($row.columns.PSObject.Properties | Sort-Object Name)
+            if ($props.Count -eq 0) { continue }
+            $last = $props[$props.Count - 1]          # largest tableYm = FY1 estimate
+            $v = & $ToNum ([string]$last.Value.value)
+            if ($null -ne $v) {
+                if ($target -eq 'fwdPbr') { $result.fwdPbr = $v }
+                elseif ($null -eq $result.fwdPer) { $result.fwdPer = $v }
+            }
+        }
+    } catch {
+        Write-Host ("    Naver annual error " + $code + ": " + $_.Exception.Message) -ForegroundColor DarkYellow
+    }
+
+    return $result
 }
 
 # ----------- Date refs from pivot ticker (Samsung) -----------
