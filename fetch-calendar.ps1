@@ -255,8 +255,13 @@ function Save-Calendar {
             # enough here — and avoids TryParseExact's [ref] binding quirks in PS 5.1
             # (a throw there would be swallowed by the catch and silently skip the guard).
             $stillValid = $false
-            if ($prev.tab -match 'custom\s+\d{4}-\d{2}-\d{2}~(\d{4}-\d{2}-\d{2})') {
-                $stillValid = ($Matches[1] -ge (Get-Date).ToString('yyyy-MM-dd'))
+            if ($prev.tab -match 'custom\s+(\d{4}-\d{2}-\d{2})~(\d{4}-\d{2}-\d{2})') {
+                # 끝이 미래이기만 하면 재사용하던 종전 규칙은 롤(주 전환) 주에
+                # 지난 스냅샷(이번주)을 preview 파일에 그대로 남겨 버렸다.
+                # (2026-09-14: calendar-next-week.json에 9/14~9/19 78건이 남음)
+                # 요청 구간보다 앞선 스냅샷은 무효로 보고 frozen 폴백으로 넘긴다.
+                $stillValid = ($Matches[2] -ge (Get-Date).ToString('yyyy-MM-dd')) -and
+                              ([string]::IsNullOrEmpty($DateFrom) -or $Matches[1] -ge $DateFrom)
             }
             if ($prev.source -eq 'investing' -and @($prev.events).Count -gt 0 -and ($prev.tab -eq $prevTab -or $stillValid)) {
                 # Materialise the array once — inline `@($prev.events).Count` inside a
