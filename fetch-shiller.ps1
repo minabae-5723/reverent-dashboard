@@ -4,21 +4,27 @@
 #  Output: shiller.json
 #
 #  Usage: powershell -ExecutionPolicy Bypass -File .\fetch-shiller.ps1
+#         powershell -ExecutionPolicy Bypass -File .\fetch-shiller.ps1 -Quiet
+#
+#  -Quiet suppresses console output for the 5-min auto-refresh timer
+#  (refresh-push-market.ps1), matching fetch-fedwatch.ps1's convention.
 # =============================================================
+param([switch]$Quiet)
 $ErrorActionPreference = 'Continue'
 $root = $PSScriptRoot
 Set-Location $root
+function Say { param([string]$m, [string]$c = 'Gray') if (-not $Quiet) { Write-Host $m -ForegroundColor $c } }
 
 $UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120.0.0.0 Safari/537.36'
 $url = 'https://www.multpl.com/shiller-pe/table/by-month'
 
-Write-Host ""
-Write-Host "Fetching Shiller P/E table..." -ForegroundColor Yellow
+Say ""
+Say "Fetching Shiller P/E table..." Yellow
 try {
     $resp = Invoke-WebRequest -Uri $url -UseBasicParsing -UserAgent $UA -TimeoutSec 20
     $html = $resp.Content
 } catch {
-    Write-Host ("ERROR: " + $_.Exception.Message) -ForegroundColor Red
+    Say ("ERROR: " + $_.Exception.Message) Red
     exit 1
 }
 
@@ -35,7 +41,7 @@ foreach ($m in $matches) {
         $dt = [datetime]::ParseExact($dateStr, 'MMM d, yyyy', [System.Globalization.CultureInfo]::InvariantCulture)
     } catch {
         try { $dt = [datetime]::ParseExact($dateStr, 'MMM dd, yyyy', [System.Globalization.CultureInfo]::InvariantCulture) }
-        catch { Write-Host ("  skip unparseable date: " + $dateStr) -ForegroundColor DarkGray; continue }
+        catch { Say ("  skip unparseable date: " + $dateStr) DarkGray; continue }
     }
     $rows += [PSCustomObject]@{
         date  = $dt.ToString('yyyy-MM-dd')
@@ -46,7 +52,7 @@ foreach ($m in $matches) {
 }
 
 if ($rows.Count -eq 0) {
-    Write-Host "ERROR: no rows parsed (page structure may have changed)" -ForegroundColor Red
+    Say "ERROR: no rows parsed (page structure may have changed)" Red
     exit 1
 }
 
@@ -85,7 +91,7 @@ $out = Join-Path $root 'shiller.json'
 $json = $result | ConvertTo-Json -Depth 6
 [System.IO.File]::WriteAllText($out, $json, (New-Object System.Text.UTF8Encoding($false)))
 
-Write-Host ""
-Write-Host (" Latest: " + $latest.raw + "  =>  " + $latest.value) -ForegroundColor Green
-Write-Host (" Monthly rows: " + $monthly.Count + "  [" + $monthly[0].month + " .. " + $monthly[-1].month + "]") -ForegroundColor Green
-Write-Host (" Saved -> " + $out + "  (" + ((Get-Item -LiteralPath $out).Length) + " bytes)") -ForegroundColor Green
+Say ""
+Say (" Latest: " + $latest.raw + "  =>  " + $latest.value) Green
+Say (" Monthly rows: " + $monthly.Count + "  [" + $monthly[0].month + " .. " + $monthly[-1].month + "]") Green
+Say (" Saved -> " + $out + "  (" + ((Get-Item -LiteralPath $out).Length) + " bytes)") Green

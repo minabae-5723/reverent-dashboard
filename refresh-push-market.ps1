@@ -50,9 +50,41 @@ if ($fwStale) {
     }
 }
 
-# fedwatch.json is gitignored like data.json, hence add -f on both.
-& git -C $root add -f data.json fedwatch.json 2>&1 | Out-Null
-$diff = & git -C $root diff --cached -U0 -- data.json fedwatch.json 2>&1
+# Shiller P/E (CAPE) rides the same timer on the same terms as FedWatch
+# (user rule, 2026-09-14: refresh every cycle regardless of weekday/hour).
+#
+# Previously CAPE was only refreshed inside deploy-snapshot.ps1, which in
+# practice meant a manual Friday run -- so the board could sit on a stale
+# value for days. Like FedWatch it is deliberately NOT subject to the
+# Monday-morning freeze in refresh.ps1: that freeze exists to hold the
+# Capital Market weekly snapshot for the Monday Brief, and CAPE is not part
+# of that snapshot.
+#
+# Same 55-min throttle as FedWatch. multpl.com republishes at most once per
+# trading day, so hourly already oversamples the source; the point of this
+# block is removing the day/hour gate, not hammering multpl every 5 minutes.
+$capePath = Join-Path $root 'shiller.json'
+$capeStale = $true
+if (Test-Path -LiteralPath $capePath) {
+    try {
+        $cape = Get-Content -LiteralPath $capePath -Raw -Encoding UTF8 | ConvertFrom-Json
+        if ($cape.updated) {
+            $age = (Get-Date).ToUniversalTime() - ([DateTime]::Parse($cape.updated)).ToUniversalTime()
+            $capeStale = ($age.TotalMinutes -ge 55)
+        }
+    } catch { $capeStale = $true }
+}
+if ($capeStale) {
+    $capeScript = Join-Path $root 'fetch-shiller.ps1'
+    if (Test-Path -LiteralPath $capeScript) {
+        & powershell -NoProfile -ExecutionPolicy Bypass -File $capeScript -Quiet 2>&1 | Out-Null
+    }
+}
+
+# data.json and fedwatch.json are gitignored, hence add -f. shiller.json is
+# tracked normally but -f is harmless and keeps the three in one call.
+& git -C $root add -f data.json fedwatch.json shiller.json 2>&1 | Out-Null
+$diff = & git -C $root diff --cached -U0 -- data.json fedwatch.json shiller.json 2>&1
 $meaningful = @($diff | Where-Object {
     ($_ -match '^[+-]') -and ($_ -notmatch '^(\+\+\+|---)') -and ($_ -notmatch '"updated(Kr)?"\s*:')
 })
@@ -64,8 +96,8 @@ if ($meaningful.Count -gt 0) {
     & git -C $root push origin main 2>&1 | Out-Null
 } else {
     # Only the timestamp changed -> discard so the tree stays clean (no churn).
-    # Must cover fedwatch.json too, otherwise it sits staged until something
-    # else commits and gets swept into an unrelated change.
-    & git -C $root reset -q HEAD -- data.json fedwatch.json 2>&1 | Out-Null
-    & git -C $root checkout HEAD -- data.json fedwatch.json 2>&1 | Out-Null
+    # Must cover fedwatch.json and shiller.json too, otherwise they sit staged
+    # until something else commits and get swept into an unrelated change.
+    & git -C $root reset -q HEAD -- data.json fedwatch.json shiller.json 2>&1 | Out-Null
+    & git -C $root checkout HEAD -- data.json fedwatch.json shiller.json 2>&1 | Out-Null
 }
