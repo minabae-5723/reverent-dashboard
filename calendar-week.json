@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-09-14T22:00:25Z",
-    "updatedKr":  "2026-09-15 07:00:25",
+    "updated":  "2026-09-14T23:27:16Z",
+    "updatedKr":  "2026-09-15 08:27:16",
     "countries":  [
                       "5",
                       "35",
@@ -20,7 +20,7 @@
                        "importance":  3,
                        "indicator":  "Export Prices (YoY)",
                        "period":  "Aug",
-                       "actual":  "",
+                       "actual":  "42.4%",
                        "forecast":  "",
                        "previous":  "49.1%",
                        "type":  "review"
@@ -35,7 +35,7 @@
                        "importance":  3,
                        "indicator":  "Import Prices (YoY)",
                        "period":  "Aug",
-                       "actual":  "",
+                       "actual":  "15.6%",
                        "forecast":  "",
                        "previous":  "18.7%",
                        "type":  "review"

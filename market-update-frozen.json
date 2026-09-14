@@ -1,12 +1,12 @@
 {
-    "updated":  "2026-09-14T03:11:04Z",
-    "updatedKr":  "2026-09-14 12:11:04",
+    "updated":  "2026-09-14T23:27:06Z",
+    "updatedKr":  "2026-09-15 08:27:06",
     "frozenDow":  "Monday",
     "reviewRange":  "2026-09-14~2026-09-18",
     "previewRange":  "2026-09-21~2026-09-25",
     "thisWeek":  [
-        { "id": "560602", "datetime": "2026/09/15 06:00:00", "date": "9/15", "time": "06:00", "flagKey": "South_Korea", "currency": "KRW", "importance": 3, "indicator": "Export Prices (YoY)", "period": "Aug", "actual": "", "forecast": "", "previous": "49.1%", "type": "review" },
-        { "id": "560603", "datetime": "2026/09/15 06:00:00", "date": "9/15", "time": "06:00", "flagKey": "South_Korea", "currency": "KRW", "importance": 3, "indicator": "Import Prices (YoY)", "period": "Aug", "actual": "", "forecast": "", "previous": "18.7%", "type": "review" },
+        { "id": "560602", "datetime": "2026/09/15 06:00:00", "date": "9/15", "time": "06:00", "flagKey": "South_Korea", "currency": "KRW", "importance": 3, "indicator": "Export Prices (YoY)", "period": "Aug", "actual": "42.4%", "forecast": "", "previous": "49.1%", "type": "review" },
+        { "id": "560603", "datetime": "2026/09/15 06:00:00", "date": "9/15", "time": "06:00", "flagKey": "South_Korea", "currency": "KRW", "importance": 3, "indicator": "Import Prices (YoY)", "period": "Aug", "actual": "15.6%", "forecast": "", "previous": "18.7%", "type": "review" },
         { "id": "560615", "datetime": "2026/09/16 08:50:00", "date": "9/16", "time": "08:50", "flagKey": "Japan", "currency": "JPY", "importance": 3, "indicator": "Balance of Trade", "period": "Aug", "actual": "", "forecast": "-1052.6B", "previous": "-634.5B", "type": "review" },
         { "id": "560616", "datetime": "2026/09/16 08:50:00", "date": "9/16", "time": "08:50", "flagKey": "Japan", "currency": "JPY", "importance": 3, "indicator": "Exports (YoY)", "period": "Aug", "actual": "", "forecast": "18.2%", "previous": "23.2%", "type": "review" },
         { "id": "560606", "datetime": "2026/09/16 21:30:00", "date": "9/16", "time": "21:30", "flagKey": "United_States", "currency": "USD", "importance": 3, "indicator": "Retail Sales (MoM)", "period": "Aug", "actual": "", "forecast": "0.9%", "previous": "-0.6%", "type": "review" },
