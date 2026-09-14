@@ -3590,9 +3590,12 @@ function renderFedWatchMatrix(meetings) {
   const legendEl = document.getElementById('fedwatchMatrixLegend');
   if (!headEl || !bodyEl) return;
 
-  // Current rate column = top probability range of the nearest meeting (shared by all modes).
-  const top0 = fedwatchTopProb(meetings[0].probabilities);
-  const currentRange = top0 ? top0.range : null;
+  // Current rate column = actual Fed Funds target range from EFFR data.
+  const tFrom = fedwatchCache?.targetFrom;
+  const tTo   = fedwatchCache?.targetTo;
+  const currentRange = (tFrom != null && tTo != null)
+    ? `${tFrom.toFixed(2)} - ${tTo.toFixed(2)}`
+    : null;
 
   // Legend differs per view mode.
   if (legendEl) {
