@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-09-16T22:00:27Z",
-    "updatedKr":  "2026-09-17 07:00:27",
+    "updated":  "2026-09-16T23:22:39Z",
+    "updatedKr":  "2026-09-17 08:22:39",
     "countries":  [
                       "5",
                       "35",
@@ -50,7 +50,7 @@
                        "importance":  3,
                        "indicator":  "Balance of Trade",
                        "period":  "Aug",
-                       "actual":  "",
+                       "actual":  "-1106.0B",
                        "forecast":  "-1052.6B",
                        "previous":  "-634.5B",
                        "type":  "review"
@@ -65,7 +65,7 @@
                        "importance":  3,
                        "indicator":  "Exports (YoY)",
                        "period":  "Aug",
-                       "actual":  "",
+                       "actual":  "19.3%",
                        "forecast":  "18.2%",
                        "previous":  "23.2%",
                        "type":  "review"
@@ -80,8 +80,8 @@
                        "importance":  3,
                        "indicator":  "Retail Sales (MoM)",
                        "period":  "Aug",
-                       "actual":  "",
-                       "forecast":  "0.9%",
+                       "actual":  "1.2%",
+                       "forecast":  "0.8%",
                        "previous":  "-0.6%",
                        "type":  "review"
                    },
@@ -95,7 +95,7 @@
                        "importance":  3,
                        "indicator":  "Fed Interest Rate Decision",
                        "period":  "Sep",
-                       "actual":  "",
+                       "actual":  "3.75%~4.00%",
                        "forecast":  "3.75%~4.00%",
                        "previous":  "3.50%~3.75%",
                        "type":  "review"
@@ -111,7 +111,7 @@
                        "indicator":  "Housing Starts",
                        "period":  "Aug",
                        "actual":  "",
-                       "forecast":  "1.320M",
+                       "forecast":  "1.350M",
                        "previous":  "1.239M",
                        "type":  "review"
                    },
@@ -126,7 +126,7 @@
                        "indicator":  "Initial Jobless Claims",
                        "period":  "",
                        "actual":  "",
-                       "forecast":  "209K",
+                       "forecast":  "208K",
                        "previous":  "206K",
                        "type":  "review"
                    },

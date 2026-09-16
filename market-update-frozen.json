@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-09-16T22:00:29Z",
-    "updatedKr":  "2026-09-17 07:00:29",
+    "updated":  "2026-09-16T23:22:41Z",
+    "updatedKr":  "2026-09-17 08:22:41",
     "frozenDow":  "Monday",
     "reviewRange":  "2026-09-14~2026-09-18",
     "previewRange":  "2026-09-21~2026-09-25",
@@ -45,7 +45,7 @@
                          "importance":  3,
                          "indicator":  "Balance of Trade",
                          "period":  "Aug",
-                         "actual":  "",
+                         "actual":  "-1106.0B",
                          "forecast":  "-1052.6B",
                          "previous":  "-634.5B",
                          "type":  "review"
@@ -60,7 +60,7 @@
                          "importance":  3,
                          "indicator":  "Exports (YoY)",
                          "period":  "Aug",
-                         "actual":  "",
+                         "actual":  "19.3%",
                          "forecast":  "18.2%",
                          "previous":  "23.2%",
                          "type":  "review"
@@ -106,7 +106,7 @@
                          "indicator":  "Housing Starts",
                          "period":  "Aug",
                          "actual":  "",
-                         "forecast":  "1.320M",
+                         "forecast":  "1.350M",
                          "previous":  "1.239M",
                          "type":  "review"
                      },
@@ -121,7 +121,7 @@
                          "indicator":  "Initial Jobless Claims",
                          "period":  "",
                          "actual":  "",
-                         "forecast":  "209K",
+                         "forecast":  "208K",
                          "previous":  "206K",
                          "type":  "review"
                      },
