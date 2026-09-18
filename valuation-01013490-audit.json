@@ -1,0 +1,39 @@
+﻿{
+    "company":  "SamyoungInsp",
+    "corp_code":  "01013490",
+    "source":  "DART raw document",
+    "report_nm":  "[기재정정]연결감사보고서 (2025.12)",
+    "rcept_no":  "20260410002651",
+    "rcept_dt":  "20260410",
+    "fiscal_period":  "FY2025",
+    "unit":  "100M KRW",
+    "pnl":  {
+                "revenue":  342,
+                "operating_income":  55,
+                "depreciation":  0,
+                "amortisation":  0,
+                "da_total":  0,
+                "ebitda":  55,
+                "net_income":  -17
+            },
+    "equity_total":  187,
+    "liabilities":  196,
+    "assets":  383,
+    "debt":  {
+                 "st_borrowings":  2,
+                 "current_lt_borrowings":  42,
+                 "lt_borrowings":  22,
+                 "bonds":  null,
+                 "current_lease":  null,
+                 "lease":  0
+             },
+    "cash":  {
+                 "cash_and_equivalents":  81,
+                 "st_financial_invest":  2
+             },
+    "derived":  {
+                    "total_debt":  66,
+                    "total_cash":  83,
+                    "net_debt":  -17
+                }
+}

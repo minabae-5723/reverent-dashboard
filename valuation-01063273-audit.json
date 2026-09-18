@@ -1,0 +1,39 @@
+﻿{
+    "company":  "Woowa",
+    "corp_code":  "01063273",
+    "source":  "DART raw document",
+    "report_nm":  "연결감사보고서 (2025.12)",
+    "rcept_no":  "20260410001926",
+    "rcept_dt":  "20260410",
+    "fiscal_period":  "FY2025",
+    "unit":  "100M KRW",
+    "pnl":  {
+                "revenue":  52830,
+                "operating_income":  5929,
+                "depreciation":  null,
+                "amortisation":  null,
+                "da_total":  null,
+                "ebitda":  null,
+                "net_income":  4406
+            },
+    "equity_total":  7893,
+    "liabilities":  8179,
+    "assets":  16071,
+    "debt":  {
+                 "st_borrowings":  100,
+                 "current_lt_borrowings":  null,
+                 "lt_borrowings":  100,
+                 "bonds":  null,
+                 "current_lease":  0,
+                 "lease":  282
+             },
+    "cash":  {
+                 "cash_and_equivalents":  6166,
+                 "st_financial_invest":  null
+             },
+    "derived":  {
+                    "total_debt":  482,
+                    "total_cash":  6166,
+                    "net_debt":  -5684
+                }
+}

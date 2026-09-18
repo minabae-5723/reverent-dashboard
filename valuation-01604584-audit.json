@@ -1,0 +1,39 @@
+﻿{
+    "company":  "DeepX",
+    "corp_code":  "01604584",
+    "source":  "DART raw document",
+    "report_nm":  "연결감사보고서 (2025.12)",
+    "rcept_no":  "20260410000248",
+    "rcept_dt":  "20260410",
+    "fiscal_period":  "FY2025",
+    "unit":  "100M KRW",
+    "pnl":  {
+                "revenue":  33,
+                "operating_income":  -201,
+                "depreciation":  0,
+                "amortisation":  0,
+                "da_total":  0,
+                "ebitda":  -201,
+                "net_income":  -589
+            },
+    "equity_total":  -3639,
+    "liabilities":  4138,
+    "assets":  499,
+    "debt":  {
+                 "st_borrowings":  null,
+                 "current_lt_borrowings":  null,
+                 "lt_borrowings":  null,
+                 "bonds":  null,
+                 "current_lease":  0,
+                 "lease":  0
+             },
+    "cash":  {
+                 "cash_and_equivalents":  44,
+                 "st_financial_invest":  320
+             },
+    "derived":  {
+                    "total_debt":  0,
+                    "total_cash":  364,
+                    "net_debt":  -364
+                }
+}
