@@ -2100,24 +2100,20 @@ const VAL_CASH_FIELDS = [
 // the bridge instead, so adding it to net debt would double count. Always put
 // the actual reason in `tag`/`memo`; never let a row read as if it bears no
 // interest when it does.
-const VAL_EXTRA_DEBT_FIELDS = {
-  // 딥엑스(2026-09-18) — 차입금·사채는 0(감사보고서 "실행한 차입금 없음").
-  // 부채 4,138억의 실체는 RCPS/CPS 메자닌과 그 전환권 파생부채.
-  //
-  // RCPS·CPS는 명백히 이자부다: FY2025 금융비용 주석상 이자비용이 각각
-  // 64.5억·0.9억(유효이자율법, 상환할증금 accretion). 그럼에도 net debt에서
-  // 빼는 이유는 이자 유무가 아니라 bridge 정합성 때문 — 보도된 2.85조가
-  // as-converted 라운드 밸류라 RCPS/CPS 보유자가 이미 Equity Value 안에 있음.
-  // 상환으로 정산되는 딜이었다면 반대로 전액 가산해야 한다.
-  // 파생상품부채는 전환권 공정가치(FY2025 평가손실 335.4억)라 지분성.
-  // 확정급여부채는 전환되지 않는 실제 의무라 debt-like로 가산한다.
-  '01604584': [
-    { key: '확정급여부채',             ibd: true,  tag: 'debt-like',  memo: '순확정급여부채 · 이자비용 0.4억 · 전환 대상 아님' },
-    { key: '유동성상환전환우선주부채', ibd: false, tag: '지분 환산', memo: '이자비용 64.5억 발생하나 2.85조가 as-converted라 Equity Value에 포함됨' },
-    { key: '유동성전환우선주부채',     ibd: false, tag: '지분 환산', memo: '이자비용 0.9억 · as-converted' },
-    { key: '유동성파생상품부채',       ibd: false, tag: '지분 환산', memo: '전환권 공정가치 · 평가손실 335.4억 · 기업가치 연동' },
-  ],
-};
+// 현재 등록된 회사 없음. 딥엑스(01604584)가 이 기능의 첫 사용처였으나
+// 2026-09-20 사용자 요청으로 해당 Valuation 표 자체를 삭제해 항목을 뺐다
+// (RCPS 메자닌은 표 생략 기준 ②에 해당). 사용 예시는 아래 주석 참고.
+//
+//   '01604584': [
+//     { key: '확정급여부채',             ibd: true,  tag: 'debt-like', memo: '이자비용 0.4억 · 전환 대상 아님' },
+//     { key: '유동성상환전환우선주부채', ibd: false, tag: '지분 환산', memo: '이자비용 64.5억이 붙는 이자부부채지만,
+//                                                                            2.85조가 as-converted라 Equity Value에 이미 포함 → 가산 시 이중계상' },
+//   ],
+//
+// 핵심: ibd:false는 "무이자부"라는 뜻이 아니라 "bridge의 Equity 쪽에서
+// 잡히므로 net debt에 넣지 않는다"는 뜻이다. 상환으로 정산되는 딜이면
+// 같은 계정도 ibd:true로 가산해야 한다.
+const VAL_EXTRA_DEBT_FIELDS = {};
 
 function valExtraDebtFields(title) {
   const m = String(title || '').match(/corp_code\s*(\d{8})/);
