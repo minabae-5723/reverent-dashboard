@@ -58,6 +58,11 @@ $FOMC = @(
     @{ date = '2027-04-28'; time = '02:00PM ET' }
 )
 
+# Drop meetings that have already happened. A past meeting still in the chain
+# poisons every step after it: its implied "hike" clamps to 0/1 and the carried
+# $rPrev is then wrong, collapsing all later buckets to a bogus 100%.
+$FOMC = @($FOMC | Where-Object { [DateTime]::Parse($_.date) -ge (Get-Date).Date })
+
 # CME month codes for futures symbols
 $MCODE = @{ 1='F'; 2='G'; 3='H'; 4='J'; 5='K'; 6='M'; 7='N'; 8='Q'; 9='U'; 10='V'; 11='X'; 12='Z' }
 
