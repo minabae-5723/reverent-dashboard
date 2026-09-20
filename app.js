@@ -2090,6 +2090,30 @@ const VAL_CASH_FIELDS = [
   { key: '현금및현금성자산' },
   { key: '단기금융상품' },
 ];
+
+// Per-company extra Net Debt rows, keyed by corp_code (read from the
+// `#### Valuation (corp_code XXXXXXXX, …)` heading). Use this instead of
+// widening VAL_DEBT_FIELDS when an account only exists at one company.
+//
+// `ibd: false` = shown for transparency but NOT summed into IBD. The row still
+// saves/loads like any other input; it just never reaches the net-debt total.
+const VAL_EXTRA_DEBT_FIELDS = {
+  // 딥엑스(2026-09-18) — 차입금·사채는 0(감사보고서 "실행한 차입금 없음").
+  // 부채 4,138억의 실체는 RCPS/CPS 메자닌과 그 전환권 파생부채임.
+  // Pre-IPO 상장 시 보통주 전환이 전제라 셋 다 캡테이블 항목 → IBD 제외.
+  // 특히 파생상품부채는 전환권 공정가치라 기업가치가 오를수록 커지므로,
+  // 이걸 net debt에 넣으면 EV에 지분가치를 이중계상하게 됨.
+  '01604584': [
+    { key: '유동성상환전환우선주부채', ibd: false, memo: 'RCPS host · 전환 전제로 제외' },
+    { key: '유동성전환우선주부채',     ibd: false, memo: 'CPS host · 전환 전제로 제외' },
+    { key: '유동성파생상품부채',       ibd: false, memo: '전환권 공정가치 · 지분성' },
+  ],
+};
+
+function valExtraDebtFields(title) {
+  const m = String(title || '').match(/corp_code\s*(\d{8})/);
+  return (m && VAL_EXTRA_DEBT_FIELDS[m[1]]) || [];
+}
 const VAL_DEAL_FIELDS = [
   { key: 'Deal Value',      ph: '거래대금' },
   { key: '% Stake',         ph: '0~100' },
@@ -2287,6 +2311,19 @@ function renderValuationCard(cardId, weekDate, headline, title, data) {
       <td><input type="text" inputmode="decimal" data-key="${escapeHtml(f.key)}" value="${escapeHtml(v)}"${ph} oninput="onValuationInput('${cardId}')" /></td>
     </tr>`;
   };
+  // Per-company row. Same input machinery, but flagged when it is excluded from
+  // the IBD total so the reader can see it is a memo line, not hidden debt.
+  const renderExtraInput = (f) => {
+    const v = merged[f.key] !== undefined ? merged[f.key] : '';
+    const off = f.ibd === false;
+    const tag = off
+      ? `<span class="val-memo-tag" title="${escapeHtml(f.memo || '')}">IBD 제외</span>`
+      : '';
+    return `<tr class="${off ? 'val-memo-row' : ''}">
+      <th>${escapeHtml(f.key)} ${tag}</th>
+      <td><input type="text" inputmode="decimal" data-key="${escapeHtml(f.key)}" data-ibd="${off ? '0' : '1'}" value="${escapeHtml(v)}" oninput="onValuationInput('${cardId}')" /></td>
+    </tr>`;
+  };
   const titleStr = title || 'Valuation';
   const savedBadge = saved
     ? `<span class="valuation-saved-badge" title="${escapeHtml(saved.savedAt)} 저장">📌 저장됨</span>`
@@ -2358,6 +2395,7 @@ function renderValuationCard(cardId, weekDate, headline, title, data) {
           <table class="val-input-table">
             <tbody>
               ${VAL_DEBT_FIELDS.map(renderInput).join('')}
+              ${valExtraDebtFields(title).map(renderExtraInput).join('')}
               <tr class="val-subtotal"><th>IBD 총계</th><td data-out="IBD">—</td></tr>
               ${VAL_CASH_FIELDS.map(renderInput).join('')}
               <tr class="val-subtotal"><th>현금성 총계</th><td data-out="Cash">—</td></tr>
@@ -2623,6 +2661,12 @@ window.computeValuation = function (cardId) {
   // '유동성장기부채'(=차입금+사채 유동성대체 합산표시)·'사채'(비유동)도 포함.
   const debt = ['단기차입금', '유동성장기차입금', '유동성장기부채', '사채', '유동리스부채', '장기차입금', '리스부채']
     .map(read).filter(v => v !== null);
+  // Per-company extra rows (VAL_EXTRA_DEBT_FIELDS) opt in via data-ibd="1".
+  // data-ibd="0" rows are memo-only — e.g. 딥엑스 RCPS/전환권 파생부채, 전환 전제라 제외.
+  card.querySelectorAll('input[data-ibd="1"]').forEach((el) => {
+    const v = parseValNum(el.value);
+    if (v !== null) debt.push(v);
+  });
   const ibd = debt.length ? debt.reduce((a, b) => a + b, 0) : null;
 
   const cash = ['현금및현금성자산', '단기금융상품']

@@ -2696,6 +2696,26 @@ html, body {
   font-weight: 600;
 }
 
+/* Per-company memo rows (VAL_EXTRA_DEBT_FIELDS with ibd:false) — shown in the
+   Net Debt column for transparency but deliberately not summed into IBD. */
+.val-memo-row th,
+.val-memo-row td {
+  opacity: 0.72;
+}
+
+.val-memo-tag {
+  display: inline-block;
+  margin-left: 4px;
+  padding: 0 4px;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  font-size: 9px;
+  font-weight: 600;
+  line-height: 14px;
+  white-space: nowrap;
+  color: var(--text-muted);
+}
+
 .val-subtotal td {
   color: var(--navy-dark);
   padding-right: 6px;
