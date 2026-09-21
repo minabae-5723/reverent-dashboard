@@ -8,6 +8,8 @@
     { "code": "240810", "market": "KQ", "name": "원익IPS",         "category": "반도체 장비" },
     { "code": "095610", "market": "KQ", "name": "테스",            "category": "반도체 장비" },
     { "code": "140860", "market": "KQ", "name": "파크시스템스",    "category": "반도체 장비" },
+    { "code": "036930", "market": "KQ", "name": "주성엔지니어링",  "category": "반도체 장비" },
+    { "code": "420770", "market": "KQ", "name": "기가비스",        "category": "반도체 장비" },
     { "code": "014680", "market": "KS", "name": "한솔케미칼",      "category": "반도체 소재/부품" },
     { "code": "357780", "market": "KQ", "name": "솔브레인",        "category": "반도체 소재/부품" },
     { "code": "058470", "market": "KQ", "name": "리노공업",        "category": "반도체 소재/부품" },
