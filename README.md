@@ -3,6 +3,10 @@
 실시간 시장 데이터 + 경제 캘린더 + 뉴스 클리핑 통합 대시보드.
 Yahoo Finance + Investing.com 데이터 fetcher (PowerShell) + 정적 HTML/CSS/JS 프론트엔드 + Claude API AI 채팅.
 
+**공개 URL (외부 접속): https://minabae-5723.github.io/reverent-dashboard/**
+GitHub Pages(Actions) 배포. main push 시마다 자동 재배포되므로 daily deploy 워크플로가 그대로 공개본을 갱신.
+PEER TABLE & IPO 뷰에는 반도체 밸류체인 대시보드(https://minabae-5723.github.io/semi-dashboard/)가 임베드됨.
+
 ## 팀 협업 (Git 워크플로)
 
 ```
