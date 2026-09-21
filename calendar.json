@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-09-21T22:00:27Z",
-    "updatedKr":  "2026-09-22 07:00:27",
+    "updated":  "2026-09-21T23:20:35Z",
+    "updatedKr":  "2026-09-22 08:20:35",
     "countries":  [
                       "5",
                       "35",
@@ -126,7 +126,7 @@
                        "indicator":  "Current Account",
                        "period":  "Q2",
                        "actual":  "",
-                       "forecast":  "-215.0B",
+                       "forecast":  "-249.0B",
                        "previous":  "-226.8B",
                        "type":  "review"
                    },
@@ -156,7 +156,7 @@
                        "indicator":  "Durable Goods Orders (MoM)",
                        "period":  "Aug",
                        "actual":  "",
-                       "forecast":  "",
+                       "forecast":  "-0.4%",
                        "previous":  "1.1%",
                        "type":  "review"
                    },
