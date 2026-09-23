@@ -1,27 +1,27 @@
 {
-    "updated":  "2026-09-22T22:00:07Z",
-    "updatedKr":  "2026-09-23 07:00:07",
+    "updated":  "2026-09-23T07:11:27Z",
+    "updatedKr":  "2026-09-23 16:11:27",
     "index":  [
                   {
                       "key":  "KOSPI",
                       "symbol":  "^KS11",
-                      "current":  7017.91,
-                      "wow":  4.99,
-                      "mom":  1.52,
-                      "ytd":  62.84,
+                      "current":  7080.92,
+                      "wow":  2.71,
+                      "mom":  2.43,
+                      "ytd":  64.3,
                       "type":  "pct",
-                      "asOf":  "2026-09-22T20:05:40",
+                      "asOf":  "2026-09-23T15:32:40",
                       "ok":  true
                   },
                   {
                       "key":  "KOSDAQ",
                       "symbol":  "^KQ11",
-                      "current":  834.38,
-                      "wow":  3.42,
-                      "mom":  4.05,
-                      "ytd":  -11.76,
+                      "current":  844.48,
+                      "wow":  2.1,
+                      "mom":  5.31,
+                      "ytd":  -10.69,
                       "type":  "pct",
-                      "asOf":  "2026-09-22T20:05:40",
+                      "asOf":  "2026-09-23T15:30:00",
                       "ok":  true
                   },
                   {
@@ -94,12 +94,12 @@
                  },
                  {
                      "key":  "CD91",
-                     "current":  3.2,
+                     "current":  3.21,
                      "wow":  4,
-                     "mom":  25,
-                     "ytd":  39,
+                     "mom":  26,
+                     "ytd":  40,
                      "type":  "bp",
-                     "asOf":  "2026-09-21",
+                     "asOf":  "2026-09-22",
                      "ok":  true,
                      "source":  "naver-mobile"
                  },
@@ -187,12 +187,12 @@
                {
                    "key":  "USDKRW",
                    "symbol":  "KRW=X",
-                   "current":  1355.13,
-                   "wow":  -0.62,
-                   "mom":  -2.56,
-                   "ytd":  -6.13,
+                   "current":  1362.7,
+                   "wow":  -1.82,
+                   "mom":  -2.01,
+                   "ytd":  -5.6,
                    "type":  "pct",
-                   "asOf":  "2026-09-23T07:00:08",
+                   "asOf":  "2026-09-23T15:30:00",
                    "ok":  true
                },
                {
