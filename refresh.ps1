@@ -32,7 +32,13 @@ $DataFile  = Join-Path $PSScriptRoot 'data.json'
 # and refresh-push-market.ps1 finds no diff to commit. Use -Force to override.
 # ----------------------------------------------------------------
 $nowLocal = Get-Date
-if (-not $Force -and $nowLocal.DayOfWeek -eq [DayOfWeek]::Monday -and $nowLocal.Hour -lt 12) {
+# Freeze end = 12:00 by default. One-off date overrides (user request) push it
+# later for that Monday only; stale entries are harmless and can be pruned.
+$freezeEndOverrides = @{ '2026-09-28' = '15:30' }
+$freezeEnd = $nowLocal.Date.AddHours(12)
+$ovr = $freezeEndOverrides[$nowLocal.ToString('yyyy-MM-dd')]
+if ($ovr) { $freezeEnd = $nowLocal.Date.Add([TimeSpan]::Parse($ovr)) }
+if (-not $Force -and $nowLocal.DayOfWeek -eq [DayOfWeek]::Monday -and $nowLocal -lt $freezeEnd) {
     Write-Host ""
     Write-Host " Capital Market refresh SKIPPED - Monday morning freeze" -ForegroundColor Cyan
     Write-Host ("   {0} -> weekend snapshot kept (data.json untouched)" -f $nowLocal.ToString('yyyy-MM-dd HH:mm ddd')) -ForegroundColor DarkGray
