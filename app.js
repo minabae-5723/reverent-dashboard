@@ -341,8 +341,11 @@ function renderMacroWeekly(data) {
   // Friday ~ Monday morning: show both REVIEW + PREVIEW (two columns)
   const kst = new Date(Date.now() + 9 * 3600000);
   const kstDay = kst.getUTCDay();
-  const kstHour = kst.getUTCHours();
-  const singleCard = (kstDay === 1 && kstHour >= 12) || (kstDay >= 2 && kstDay <= 4);
+  const kstMin = kst.getUTCHours() * 60 + kst.getUTCMinutes();
+  // One-off Monday freeze-end overrides (KST minutes); mirrors refresh.ps1.
+  const freezeEndOverrides = { '2026-09-28': 15 * 60 + 30 };
+  const freezeEnd = freezeEndOverrides[kst.toISOString().slice(0, 10)] ?? 12 * 60;
+  const singleCard = (kstDay === 1 && kstMin >= freezeEnd) || (kstDay >= 2 && kstDay <= 4);
 
   if (singleCard) {
     // Determine which side holds the current week by checking today vs ranges
