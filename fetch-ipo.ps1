@@ -163,7 +163,8 @@ foreach ($rm in $rowMatches) {
         todayChg    = $todayChg
         curVsIpo    = $curVsIpo
         openVsIpo   = $openVsIpo
-        mcap        = $null   # filled below from Naver
+        mcap        = $null   # filled below from Naver (anchor-close basis)
+        mcapDate    = $null
     }
 }
 
@@ -171,45 +172,49 @@ Write-Host (" Parsed " + $companies.Count + " IPO rows from 38.co.kr (skipped " 
 
 # ---------- 2. Augment with Naver Finance 시가총액 ----------
 
+# 시가총액 = 전주 마지막 거래일 종가 기준 (user rule, 2026-09-28). Anchor =
+# latest trading day before this week's Monday; on Sat/Sun the week just
+# ended counts as "last week", so the anchor is that Friday (or earlier on
+# holidays -- the daily chart simply has no row for closed days).
+$todayD = (Get-Date).Date
+$dowI = [int]$todayD.DayOfWeek                                   # Sun=0 .. Sat=6
+if ($dowI -eq 0 -or $dowI -eq 6) { $weekStart = $todayD.AddDays((8 - $dowI) % 7) }
+else                             { $weekStart = $todayD.AddDays(-($dowI - 1)) }
+$anchorBefore = $weekStart.ToString('yyyyMMdd')
+
 function Get-NaverSnapshot {
-    # Returns @{ mcap = <억원>; curPrice = <원> } from Naver Finance's main page.
-    # Naver accepts both numeric (005930) and alphanumeric (0011T0) codes —
-    # the latter are used for newer listings, preferred classes, etc.
+    # Returns @{ mcap = <억원, anchor-close basis>; mcapDate; curPrice = <원> }.
+    # The old finance.naver.com/item/main.naver scrape (_market_sum) died when
+    # Naver reskinned the PC page (Npay 증권), so every mcap came back $null.
+    #   polling API -> marketValueFullRaw + closePriceRaw  => shares outstanding
+    #   chart API   -> daily closes                         => anchor close
     param([string]$code)
-    if ([string]::IsNullOrWhiteSpace($code) -or $code.Length -lt 6) {
-        return @{ mcap = $null; curPrice = $null }
-    }
-    $url = "https://finance.naver.com/item/main.naver?code=${code}"
+    $empty = @{ mcap = $null; mcapDate = $null; curPrice = $null }
+    if ([string]::IsNullOrWhiteSpace($code) -or $code.Length -lt 6) { return $empty }
+    $hdr = @{ 'User-Agent' = $UA }
     try {
-        $wc = New-Object System.Net.WebClient
-        $wc.Headers.Add('User-Agent', $UA)
-        $raw = $wc.DownloadData($url)
-        $wc.Dispose()
-        $html = [System.Text.Encoding]::GetEncoding('EUC-KR').GetString($raw)
+        $p = Invoke-RestMethod "https://polling.finance.naver.com/api/realtime/domestic/stock/${code}" -Headers $hdr -TimeoutSec 15
+        $d = @($p.datas)[0]
+        if (-not $d -or -not $d.marketValueFullRaw -or -not $d.closePriceRaw) { return $empty }
+        $mvFull = [double]$d.marketValueFullRaw
+        $price  = [double]$d.closePriceRaw
+        if ($price -le 0) { return $empty }
+        $shares = [Math]::Round($mvFull / $price)
 
-        $mcap = $null
-        $price = $null
-
-        # Market cap — em id="_market_sum" wraps "<jo> <eok>" digit groups.
-        $mcapM = [regex]::Match($html, 'id="_market_sum"[^>]*>(.*?)</em>', 'Singleline')
-        if ($mcapM.Success) {
-            $inner = $mcapM.Groups[1].Value -replace '<[^>]+>', '' -replace '&nbsp;', ' '
-            $nums = @([regex]::Matches($inner, '[\d,]+') | ForEach-Object { [double]($_.Value -replace ',', '') })
-            if ($nums.Count -ge 2) { $mcap = ($nums[0] * 10000) + $nums[1] }
-            elseif ($nums.Count -eq 1) { $mcap = $nums[0] }
+        $start = $weekStart.AddDays(-21).ToString('yyyyMMdd')
+        # PS 5.1 emits a JSON array as ONE object; assigning without @() and piping
+        # the variable unrolls it (@() would nest it and hide all but 1-bar series).
+        $bars = Invoke-RestMethod "https://api.stock.naver.com/chart/domestic/item/${code}/day?startDateTime=${start}0000&endDateTime=${anchorBefore}0000" -Headers $hdr -TimeoutSec 15
+        $bar = $bars | Where-Object { $_.localDate -lt $anchorBefore } | Sort-Object localDate | Select-Object -Last 1
+        if (-not $bar) {
+            # Listed this week: no prior-week close yet -> leave mcap for the user input.
+            return @{ mcap = $null; mcapDate = $null; curPrice = $price }
         }
-
-        # Current price — `<p class="no_today">` block contains
-        #   <span class="blind">283,250</span>  (accessibility-friendly full number)
-        # Capture the first such span inside no_today.
-        $priceM = [regex]::Match($html, 'class="no_today">.*?class="blind">([\d,]+)</span>', 'Singleline')
-        if ($priceM.Success) {
-            $price = [double]($priceM.Groups[1].Value -replace ',', '')
-        }
-
-        return @{ mcap = $mcap; curPrice = $price }
+        $mcap = [Math]::Round($shares * [double]$bar.closePrice / 1e8)   # 억원
+        $ld = [string]$bar.localDate
+        return @{ mcap = $mcap; mcapDate = ('{0}-{1}-{2}' -f $ld.Substring(0,4), $ld.Substring(4,2), $ld.Substring(6,2)); curPrice = $price }
     } catch {
-        return @{ mcap = $null; curPrice = $null }
+        return $empty
     }
 }
 
@@ -220,7 +225,7 @@ foreach ($c in $companies) {
     if (-not $c.code) { continue }
     $snap = Get-NaverSnapshot -code $c.code
     $touched = $false
-    if ($null -ne $snap.mcap)     { $c.mcap     = $snap.mcap;     $touched = $true }
+    if ($null -ne $snap.mcap)     { $c.mcap     = $snap.mcap; $c.mcapDate = $snap.mcapDate; $touched = $true }
     if ($null -ne $snap.curPrice) { $c.curPrice = $snap.curPrice; $touched = $true }
     # Recompute "(curPrice - ipoPrice) / ipoPrice" with the updated current price.
     if ($null -ne $c.curPrice -and $null -ne $c.ipoPrice -and $c.ipoPrice -gt 0) {

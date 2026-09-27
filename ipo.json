@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-09-27T23:11:29Z",
-    "updatedKr":  "2026-09-28 08:11:29",
+    "updated":  "2026-09-27T23:52:21Z",
+    "updatedKr":  "2026-09-28 08:52:21",
     "source":  "38.co.kr new-listings (o=nw) + Naver Finance (market cap)",
     "companies":  [
                       {
@@ -15,7 +15,8 @@
                           "todayChg":  null,
                           "curVsIpo":  null,
                           "openVsIpo":  null,
-                          "mcap":  null
+                          "mcap":  null,
+                          "mcapDate":  null
                       },
                       {
                           "name":  "덕산넵코어스",
@@ -29,7 +30,8 @@
                           "todayChg":  null,
                           "curVsIpo":  null,
                           "openVsIpo":  null,
-                          "mcap":  null
+                          "mcap":  null,
+                          "mcapDate":  null
                       },
                       {
                           "name":  "글로벌테크놀로지",
@@ -43,7 +45,8 @@
                           "todayChg":  null,
                           "curVsIpo":  null,
                           "openVsIpo":  null,
-                          "mcap":  null
+                          "mcap":  null,
+                          "mcapDate":  null
                       },
                       {
                           "name":  "빅웨이브로보틱스",
@@ -57,7 +60,8 @@
                           "todayChg":  null,
                           "curVsIpo":  null,
                           "openVsIpo":  null,
-                          "mcap":  null
+                          "mcap":  null,
+                          "mcapDate":  null
                       },
                       {
                           "name":  "와이즈플래닛컴퍼니",
@@ -66,12 +70,13 @@
                           "code":  "0010S0",
                           "detailNo":  2311,
                           "ipoPrice":  12000,
-                          "curPrice":  46200,
+                          "curPrice":  46300,
                           "openPrice":  42750,
                           "todayChg":  0,
-                          "curVsIpo":  2.85,
+                          "curVsIpo":  2.8583,
                           "openVsIpo":  2.5625,
-                          "mcap":  null
+                          "mcap":  4579,
+                          "mcapDate":  "2026-09-23"
                       },
                       {
                           "name":  "네오사피엔스",
@@ -80,12 +85,13 @@
                           "code":  "0161M0",
                           "detailNo":  2308,
                           "ipoPrice":  10000,
-                          "curPrice":  25550,
+                          "curPrice":  25800,
                           "openPrice":  25250,
                           "todayChg":  -0.1691,
-                          "curVsIpo":  1.555,
+                          "curVsIpo":  1.58,
                           "openVsIpo":  1.525,
-                          "mcap":  null
+                          "mcap":  3030,
+                          "mcapDate":  "2026-09-23"
                       },
                       {
                           "name":  "스카이랩스",
@@ -99,7 +105,8 @@
                           "todayChg":  -0.0418,
                           "curVsIpo":  1.295,
                           "openVsIpo":  -0.15,
-                          "mcap":  null
+                          "mcap":  4325,
+                          "mcapDate":  "2026-09-23"
                       },
                       {
                           "name":  "해치텍",
@@ -108,12 +115,13 @@
                           "code":  "0155E0",
                           "detailNo":  2304,
                           "ipoPrice":  23000,
-                          "curPrice":  12880,
+                          "curPrice":  12840,
                           "openPrice":  20500,
                           "todayChg":  0.0031,
-                          "curVsIpo":  -0.44,
+                          "curVsIpo":  -0.4417,
                           "openVsIpo":  -0.10869999999999999,
-                          "mcap":  null
+                          "mcap":  708,
+                          "mcapDate":  "2026-09-23"
                       },
                       {
                           "name":  "니어스랩",
@@ -122,12 +130,13 @@
                           "code":  "417030",
                           "detailNo":  2303,
                           "ipoPrice":  41200,
-                          "curPrice":  35600,
+                          "curPrice":  35700,
                           "openPrice":  40500,
                           "todayChg":  0.0394,
-                          "curVsIpo":  -0.1359,
+                          "curVsIpo":  -0.1335,
                           "openVsIpo":  -0.017,
-                          "mcap":  null
+                          "mcap":  2060,
+                          "mcapDate":  "2026-09-23"
                       },
                       {
                           "name":  "기도산업",
@@ -136,12 +145,13 @@
                           "code":  "282620",
                           "detailNo":  2305,
                           "ipoPrice":  28400,
-                          "curPrice":  12730,
+                          "curPrice":  12700,
                           "openPrice":  28000,
                           "todayChg":  0.0008,
-                          "curVsIpo":  -0.5518,
+                          "curVsIpo":  -0.5528,
                           "openVsIpo":  -0.0141,
-                          "mcap":  null
+                          "mcap":  746,
+                          "mcapDate":  "2026-09-23"
                       },
                       {
                           "name":  "인제니아테라퓨틱스",
@@ -150,12 +160,13 @@
                           "code":  "950260",
                           "detailNo":  2298,
                           "ipoPrice":  12000,
-                          "curPrice":  17990,
+                          "curPrice":  24400,
                           "openPrice":  10960,
                           "todayChg":  0,
-                          "curVsIpo":  0.4992,
+                          "curVsIpo":  1.0333,
                           "openVsIpo":  -0.0867,
-                          "mcap":  null
+                          "mcap":  11966,
+                          "mcapDate":  "2026-09-23"
                       },
                       {
                           "name":  "케이앤에스아이앤씨",
@@ -164,12 +175,13 @@
                           "code":  "487400",
                           "detailNo":  2299,
                           "ipoPrice":  11000,
-                          "curPrice":  7390,
+                          "curPrice":  7420,
                           "openPrice":  21000,
                           "todayChg":  0.077300000000000008,
-                          "curVsIpo":  -0.3282,
+                          "curVsIpo":  -0.3255,
                           "openVsIpo":  0.9091,
-                          "mcap":  null
+                          "mcap":  761,
+                          "mcapDate":  "2026-09-23"
                       },
                       {
                           "name":  "딜리셔스",
@@ -183,7 +195,8 @@
                           "todayChg":  0.050199999999999995,
                           "curVsIpo":  -0.5371,
                           "openVsIpo":  -0.1429,
-                          "mcap":  null
+                          "mcap":  716,
+                          "mcapDate":  "2026-09-23"
                       },
                       {
                           "name":  "에이치엘지노믹스",
@@ -192,12 +205,13 @@
                           "code":  "0156T0",
                           "detailNo":  2301,
                           "ipoPrice":  21500,
-                          "curPrice":  8380,
+                          "curPrice":  8370,
                           "openPrice":  21500,
                           "todayChg":  0.0048,
-                          "curVsIpo":  -0.6102,
+                          "curVsIpo":  -0.6107,
                           "openVsIpo":  0,
-                          "mcap":  null
+                          "mcap":  654,
+                          "mcapDate":  "2026-09-23"
                       },
                       {
                           "name":  "레메디",
@@ -206,12 +220,13 @@
                           "code":  "387690",
                           "detailNo":  2296,
                           "ipoPrice":  20700,
-                          "curPrice":  18770,
+                          "curPrice":  18850,
                           "openPrice":  30750,
                           "todayChg":  0.2094,
-                          "curVsIpo":  -0.0932,
+                          "curVsIpo":  -0.0894,
                           "openVsIpo":  0.4855,
-                          "mcap":  null
+                          "mcap":  1402,
+                          "mcapDate":  "2026-09-23"
                       },
                       {
                           "name":  "레몬헬스케어",
@@ -220,12 +235,13 @@
                           "code":  "365660",
                           "detailNo":  2293,
                           "ipoPrice":  10000,
-                          "curPrice":  4335,
+                          "curPrice":  4350,
                           "openPrice":  16560,
                           "todayChg":  -0.008,
-                          "curVsIpo":  -0.5665,
+                          "curVsIpo":  -0.565,
                           "openVsIpo":  0.65599999999999992,
-                          "mcap":  null
+                          "mcap":  585,
+                          "mcapDate":  "2026-09-23"
                       },
                       {
                           "name":  "매드업",
@@ -234,12 +250,13 @@
                           "code":  "0039P0",
                           "detailNo":  2290,
                           "ipoPrice":  8000,
-                          "curPrice":  7720,
+                          "curPrice":  7710,
                           "openPrice":  22250,
                           "todayChg":  0.0349,
-                          "curVsIpo":  -0.035,
+                          "curVsIpo":  -0.0362,
                           "openVsIpo":  1.7812999999999999,
-                          "mcap":  null
+                          "mcap":  1461,
+                          "mcapDate":  "2026-09-23"
                       }
                   ]
 }

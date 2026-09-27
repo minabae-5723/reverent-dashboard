@@ -3206,7 +3206,9 @@ function renderIpo() {
     let mcapCell;
     const override = getIpoMcapOverride(c.code);
     if (c.mcap != null) {
-      mcapCell = fmtNum(c.mcap);
+      mcapCell = c.mcapDate
+        ? `<span title="${c.mcapDate} 종가 기준">${fmtNum(c.mcap)}</span>`
+        : fmtNum(c.mcap);
     } else if (override != null) {
       mcapCell = `
         <span class="ipo-mcap-fixed">${fmtNum(override)}</span>
