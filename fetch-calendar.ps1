@@ -136,6 +136,43 @@ function Clean-Value {
     return $v.Trim()
 }
 
+# Market Update rule (user, 2026-09-27): Japanese indicators are shown only
+# when rate-related (BoJ decision/minutes/opinions/outlook, JGB auctions).
+function Test-EventAllowed {
+    param($e)
+    if ($e.flagKey -ne 'Japan') { return $true }
+    return ($e.indicator -match '(?i)interest rate|BoJ|monetary policy|policy rate|JGB|Summary of Opinions|Outlook Report|Ueda')
+}
+
+# Name tokens for fuzzy event matching (drops release-stage / filler words).
+function Get-NameTokens {
+    param([string]$Name)
+    $stop = @('flash','final','prel','preliminary','advance','second','third','estimate','growth','rate','s','p','global','the','of')
+    $t = ($Name.ToLower() -replace '[^a-z0-9]+', ' ').Trim() -split '\s+'
+    return @($t | Where-Object { $_ -and ($stop -notcontains $_) } | Select-Object -Unique)
+}
+
+# Best Investing event for a frozen event: same datetime + country, highest
+# token Jaccard similarity (>= 0.5). Returns $null when nothing is close enough.
+function Find-EventMatch {
+    param($fe, $cands)
+    $ft = Get-NameTokens $fe.indicator
+    $best = $null; $bestScore = 0.0
+    foreach ($c in $cands) {
+        if ($c.datetime -ne $fe.datetime -or $c.flagKey -ne $fe.flagKey) { continue }
+        if ($c.id -eq $fe.id) { continue }   # its own copy (reverse-synced frozen row)
+        if ($c.indicator -eq $fe.indicator) { return $c }
+        $ct = Get-NameTokens $c.indicator
+        $inter = @($ft | Where-Object { $ct -contains $_ }).Count
+        $union = @(@($ft) + @($ct) | Select-Object -Unique).Count
+        if ($union -eq 0) { continue }
+        $s = $inter / $union
+        if ($s -gt $bestScore) { $bestScore = $s; $best = $c }
+    }
+    if ($bestScore -ge 0.5) { return $best }
+    return $null
+}
+
 function Parse-Events {
     param([string]$Html)
     if (-not $Html) { return @() }
@@ -293,7 +330,7 @@ function Save-Calendar {
         countries = $COUNTRY_IDS
         tab       = $tabLabel
         source    = $srcNote
-        events    = @($events)
+        events    = @($events | Where-Object { Test-EventAllowed $_ })
     }
 
     $json = $output | ConvertTo-Json -Depth 6
@@ -378,7 +415,7 @@ do {
         param($events)
         if (-not $events) { return @() }
         # Macro Economy 섹션은 ★★★만 구성한다 (app.js MACRO_MIN_IMPORTANCE = 3).
-        $events = @($events | Where-Object { ($_.importance -as [int]) -ge 3 })
+        $events = @($events | Where-Object { ($_.importance -as [int]) -ge 3 -and (Test-EventAllowed $_) })
         $filtered = @($events | Where-Object {
             -not (
                 ($_.indicator -match '(?i)PCE.*\(MoM\)') -or
@@ -483,10 +520,12 @@ do {
                 if (-not $frozenEvents -or -not $freshEvents -or $freshEvents.Count -eq 0) { return 0 }
                 $count = 0
                 foreach ($fe in $frozenEvents) {
-                    $match = $freshEvents | Where-Object {
-                        $_.datetime -eq $fe.datetime -and $_.indicator -eq $fe.indicator
-                    } | Select-Object -First 1
+                    # Frozen names often differ from Investing's ("…PMI Flash", "(Final)",
+                    # "GDP Growth Rate", "ADP Employment Change"), so exact-name matching
+                    # silently left actuals blank. Match same datetime + country, best name.
+                    $match = Find-EventMatch $fe $freshEvents
                     if (-not $match) { continue }
+                    if ($match.previous -and $match.previous -ne $fe.previous) { $fe.previous = $match.previous; $count++ }
                     if ($match.actual -and $match.actual -ne $fe.actual) {
                         $fe.actual = $match.actual
                         $fe.type = 'review'
@@ -617,11 +656,17 @@ do {
                 # sits in (the Sunday roll shifts thisWeek/nextWeek meaning)
                 if ($d -lt $t.From -or $d -gt $t.To) { continue }
 
-                $match = $events | Where-Object {
-                    $_.date -eq $fe.date -and
-                    "$($_.indicator)".Trim() -eq "$($fe.indicator)".Trim() -and
-                    $_.flagKey -eq $fe.flagKey
-                } | Select-Object -First 1
+                if (-not (Test-EventAllowed $fe)) { continue }
+                $match = Find-EventMatch $fe $events
+                # A real Investing row exists → drop the stale reverse-synced copy of this frozen row.
+                if ($match) {
+                    $nBefore = $events.Count
+                    $events = @($events | Where-Object { $_.id -ne $fe.id })
+                    if ($events.Count -ne $nBefore) { $changed++ }
+                } else {
+                    # no Investing row: keep updating the existing copy instead of re-adding it
+                    $match = $events | Where-Object { $_.id -eq $fe.id } | Select-Object -First 1
+                }
 
                 if (-not $match) {
                     $events += $fe

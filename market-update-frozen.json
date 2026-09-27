@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-09-22T22:00:27Z",
-    "updatedKr":  "2026-09-23 07:00:27",
+    "updated":  "2026-09-27T03:38:08Z",
+    "updatedKr":  "2026-09-27 12:38:08",
     "frozenDow":  "Tuesday",
     "reviewRange":  "2026-09-21~2026-09-25",
     "previewRange":  "2026-09-28~2026-10-02",
@@ -45,8 +45,8 @@
                          "importance":  3,
                          "indicator":  "S\u0026P Global Manufacturing PMI Flash",
                          "period":  "Sep",
-                         "actual":  "",
-                         "forecast":  "53.0",
+                         "actual":  "57.0",
+                         "forecast":  "53.6",
                          "previous":  "53.9",
                          "type":  "review"
                      },
@@ -60,39 +60,9 @@
                          "importance":  3,
                          "indicator":  "S\u0026P Global Services PMI Flash",
                          "period":  "Sep",
-                         "actual":  "",
-                         "forecast":  "56.4",
+                         "actual":  "58.7",
+                         "forecast":  "55.8",
                          "previous":  "56.5",
-                         "type":  "review"
-                     },
-                     {
-                         "id":  "560705",
-                         "datetime":  "2026/09/24 09:30:00",
-                         "date":  "9/24",
-                         "time":  "09:30",
-                         "flagKey":  "Japan",
-                         "currency":  "JPY",
-                         "importance":  3,
-                         "indicator":  "S\u0026P Global Manufacturing PMI Flash",
-                         "period":  "Sep",
-                         "actual":  "",
-                         "forecast":  "55.2",
-                         "previous":  "54.9",
-                         "type":  "review"
-                     },
-                     {
-                         "id":  "560706",
-                         "datetime":  "2026/09/24 09:30:00",
-                         "date":  "9/24",
-                         "time":  "09:30",
-                         "flagKey":  "Japan",
-                         "currency":  "JPY",
-                         "importance":  3,
-                         "indicator":  "S\u0026P Global Services PMI Flash",
-                         "period":  "Sep",
-                         "actual":  "",
-                         "forecast":  "52.7",
-                         "previous":  "52.5",
                          "type":  "review"
                      },
                      {
@@ -105,7 +75,7 @@
                          "importance":  3,
                          "indicator":  "Initial Jobless Claims",
                          "period":  "",
-                         "actual":  "",
+                         "actual":  "197K",
                          "forecast":  "201K",
                          "previous":  "196K",
                          "type":  "review"
@@ -120,8 +90,8 @@
                          "importance":  3,
                          "indicator":  "Current Account",
                          "period":  "Q2",
-                         "actual":  "",
-                         "forecast":  "-249.0B",
+                         "actual":  "-246.0B",
+                         "forecast":  "-258.0B",
                          "previous":  "-226.8B",
                          "type":  "review"
                      },
@@ -135,8 +105,8 @@
                          "importance":  3,
                          "indicator":  "New Home Sales",
                          "period":  "Aug",
-                         "actual":  "",
-                         "forecast":  "0.626M",
+                         "actual":  "684K",
+                         "forecast":  "615K",
                          "previous":  "0.607M",
                          "type":  "review"
                      },
@@ -150,8 +120,8 @@
                          "importance":  3,
                          "indicator":  "Durable Goods Orders (MoM)",
                          "period":  "Aug",
-                         "actual":  "",
-                         "forecast":  "-0.4%",
+                         "actual":  "0.0%",
+                         "forecast":  "-0.3%",
                          "previous":  "1.1%",
                          "type":  "review"
                      },
@@ -165,7 +135,7 @@
                          "importance":  3,
                          "indicator":  "Michigan Consumer Sentiment (Final)",
                          "period":  "Sep",
-                         "actual":  "",
+                         "actual":  "48.1",
                          "forecast":  "47.8",
                          "previous":  "51.7",
                          "type":  "review"
@@ -183,7 +153,7 @@
                          "indicator":  "CB Consumer Confidence",
                          "period":  "Sep",
                          "actual":  "",
-                         "forecast":  "",
+                         "forecast":  "90.1",
                          "previous":  "89.4",
                          "type":  "preview"
                      },
@@ -203,21 +173,6 @@
                          "type":  "preview"
                      },
                      {
-                         "id":  "560803",
-                         "datetime":  "2026/09/30 08:50:00",
-                         "date":  "9/30",
-                         "time":  "08:50",
-                         "flagKey":  "Japan",
-                         "currency":  "JPY",
-                         "importance":  3,
-                         "indicator":  "Industrial Production (YoY, Prel)",
-                         "period":  "Aug",
-                         "actual":  "",
-                         "forecast":  "3.7%",
-                         "previous":  "3.9%",
-                         "type":  "preview"
-                     },
-                     {
                          "id":  "560804",
                          "datetime":  "2026/09/30 21:15:00",
                          "date":  "9/30",
@@ -228,7 +183,7 @@
                          "indicator":  "ADP Employment Change",
                          "period":  "Sep",
                          "actual":  "",
-                         "forecast":  "",
+                         "forecast":  "70K",
                          "previous":  "38K",
                          "type":  "preview"
                      },
@@ -243,8 +198,8 @@
                          "indicator":  "GDP Growth Rate (QoQ, Final)",
                          "period":  "Q2",
                          "actual":  "",
-                         "forecast":  "",
-                         "previous":  "2.1%",
+                         "forecast":  "1.5%",
+                         "previous":  "1.5%",
                          "type":  "preview"
                      },
                      {
@@ -260,21 +215,6 @@
                          "actual":  "",
                          "forecast":  "",
                          "previous":  "3.7%",
-                         "type":  "preview"
-                     },
-                     {
-                         "id":  "560807",
-                         "datetime":  "2026/10/01 08:50:00",
-                         "date":  "10/1",
-                         "time":  "08:50",
-                         "flagKey":  "Japan",
-                         "currency":  "JPY",
-                         "importance":  3,
-                         "indicator":  "Tankan Large Manufacturers Index",
-                         "period":  "Q3",
-                         "actual":  "",
-                         "forecast":  "23",
-                         "previous":  "22",
                          "type":  "preview"
                      },
                      {
@@ -318,8 +258,8 @@
                          "indicator":  "Initial Jobless Claims",
                          "period":  "",
                          "actual":  "",
-                         "forecast":  "",
-                         "previous":  "",
+                         "forecast":  "199K",
+                         "previous":  "197K",
                          "type":  "preview"
                      },
                      {
@@ -333,7 +273,7 @@
                          "indicator":  "ISM Manufacturing PMI",
                          "period":  "Sep",
                          "actual":  "",
-                         "forecast":  "54.0",
+                         "forecast":  "55.0",
                          "previous":  "54.6",
                          "type":  "preview"
                      },
@@ -353,36 +293,6 @@
                          "type":  "preview"
                      },
                      {
-                         "id":  "560813",
-                         "datetime":  "2026/10/02 08:30:00",
-                         "date":  "10/2",
-                         "time":  "08:30",
-                         "flagKey":  "Japan",
-                         "currency":  "JPY",
-                         "importance":  3,
-                         "indicator":  "Tokyo CPI (YoY)",
-                         "period":  "Sep",
-                         "actual":  "",
-                         "forecast":  "",
-                         "previous":  "1.9%",
-                         "type":  "preview"
-                     },
-                     {
-                         "id":  "560814",
-                         "datetime":  "2026/10/02 08:30:00",
-                         "date":  "10/2",
-                         "time":  "08:30",
-                         "flagKey":  "Japan",
-                         "currency":  "JPY",
-                         "importance":  3,
-                         "indicator":  "Tokyo Core CPI (YoY)",
-                         "period":  "Sep",
-                         "actual":  "",
-                         "forecast":  "",
-                         "previous":  "1.8%",
-                         "type":  "preview"
-                     },
-                     {
                          "id":  "560815",
                          "datetime":  "2026/10/02 21:30:00",
                          "date":  "10/2",
@@ -393,7 +303,7 @@
                          "indicator":  "Nonfarm Payrolls",
                          "period":  "Sep",
                          "actual":  "",
-                         "forecast":  "120K",
+                         "forecast":  "98K",
                          "previous":  "162K",
                          "type":  "preview"
                      },
@@ -408,7 +318,7 @@
                          "indicator":  "Unemployment Rate",
                          "period":  "Sep",
                          "actual":  "",
-                         "forecast":  "4.3%",
+                         "forecast":  "4.1%",
                          "previous":  "4.1%",
                          "type":  "preview"
                      }
