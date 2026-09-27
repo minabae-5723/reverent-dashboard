@@ -1862,8 +1862,11 @@ function renderDealsContent(md) {
       `;
     }
     const allowNotes = _isCapitalMarketSection(s.name);
+    // Outside 자본시장 동향, an article still shows cards that were attached to it
+    // on request (e.g. 9/23 더피플라이프 — 한화 비보험 포트폴리오 지도).
     const articles = s.articles.length > 0
-      ? s.articles.map(a => renderDealArticle(a, weekDate, allowNotes)).join('')
+      ? s.articles.map(a => renderDealArticle(a, weekDate,
+          allowNotes || _loadMacroNotes(_articleScope(weekDate, a.headline)).length > 0)).join('')
       : '<div class="news-card" style="color:var(--text-muted);font-style:italic;">이번 주 해당 카테고리 항목 없음</div>';
     const isMacro = _isMacroSection(s.name);
     const macroCalendar = isMacro ? renderMacroNotesCard(weekDate) : '';
