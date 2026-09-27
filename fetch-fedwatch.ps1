@@ -137,7 +137,18 @@ function Build-Probabilities {
         $dNew    = $n - $dOld
         if ($dNew -le 0) { continue }
 
-        $rNew = (($implied * $n) - ($dOld * $rPrev)) / $dNew
+        # CME FedWatch: when the following month has no meeting, its contract
+        # prices the post-decision rate directly. Much more robust for late-month
+        # meetings (e.g. Oct 28: only 4 post-decision days, so the day-weighted
+        # formula amplifies a 0.5bp price tick into ~15pp of probability).
+        $nx = $d.AddMonths(1)
+        $nxHasMeeting = @($FOMC | Where-Object { $md = [DateTime]::Parse($_.date); $md.Year -eq $nx.Year -and $md.Month -eq $nx.Month }).Count -gt 0
+        $nxPrice = if (-not $nxHasMeeting) { & $PriceAt $nx.Year $nx.Month } else { $null }
+        if ($null -ne $nxPrice) {
+            $rNew = 100.0 - $nxPrice
+        } else {
+            $rNew = (($implied * $n) - ($dOld * $rPrev)) / $dNew
+        }
         $p    = ($rNew - $rPrev) / 0.25
         if ($p -lt 0) { $p = 0.0 }        # this build tracks hikes only
         if ($p -gt 1) { $p = 1.0 }
@@ -187,12 +198,14 @@ Say ("  EFFR " + $effr.rate + "%  target " + $effr.from + "-" + $effr.to + "  ("
 # Pull every contract month a meeting falls in
 $series = @{}
 foreach ($m in $FOMC) {
-    $d = [DateTime]::Parse($m.date)
-    $key = "{0}-{1:00}" -f $d.Year, $d.Month
-    if (-not $series.ContainsKey($key)) {
-        $z = Get-ZQ -Year $d.Year -Month $d.Month
-        if ($z) { $series[$key] = $z }
-        Start-Sleep -Milliseconds 200
+    $d0 = [DateTime]::Parse($m.date)
+    foreach ($d in @($d0, $d0.AddMonths(1))) {   # meeting month + following month (CME method)
+        $key = "{0}-{1:00}" -f $d.Year, $d.Month
+        if (-not $series.ContainsKey($key)) {
+            $z = Get-ZQ -Year $d.Year -Month $d.Month
+            if ($z) { $series[$key] = $z }
+            Start-Sleep -Milliseconds 200
+        }
     }
 }
 if ($series.Count -eq 0) { Say "FATAL: no futures data, leaving fedwatch.json untouched" 'Red'; exit 1 }

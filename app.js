@@ -3484,8 +3484,8 @@ let fedwatchCache = null;
 let fedwatchView = 'current'; // 'current' | 'aggregated' | 'direction'
 let fedwatchActiveMeetingIdx = 0;
 
-async function loadFedWatch() {
-  if (fedwatchCache) { renderFedWatch(); return; }
+async function loadFedWatch(force = false) {
+  if (fedwatchCache && !force) { renderFedWatch(); return; }
   try {
     const res = await fetch(`${FEDWATCH_URL}?_=${Date.now()}`, { cache: 'no-store' });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
@@ -3497,6 +3497,8 @@ async function loadFedWatch() {
     if (nxt) nxt.innerHTML = '<div class="fedwatch-next-loading">FedWatch 데이터를 불러올 수 없습니다.</div>';
   }
 }
+// FedWatch must stay live: re-poll fedwatch.json every 5 min while the page is open.
+setInterval(() => { if (fedwatchCache) loadFedWatch(true); }, 5 * 60 * 1000);
 
 function fedwatchTopProb(probs) {
   if (!probs || !probs.length) return null;
@@ -4018,6 +4020,11 @@ function initCardComment(key) {
     if (badge)  badge.hidden = false;
     if (timeEl && savedTime) timeEl.textContent = `Saved · ${savedTime}`;
   }
+
+  // Capital Market comments are open by default.
+  wrap.hidden = false;
+  toggle.classList.add('expanded');
+  toggle.setAttribute('aria-expanded', 'true');
 
   // Toggle expand/collapse
   toggle.addEventListener('click', () => {

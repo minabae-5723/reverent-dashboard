@@ -99,7 +99,8 @@ $INSTRUMENTS = @{
 # Static data (Korean rates / CDS - fallback only; auto-fetched in main path)
 $STATIC_DATA = @{
     cds = @(
-        # 🔴 Sovereign 5Y CDS has NO keyless auto-fetch source:
+        # Fallback only — primary is Get-WgbCDS (WGB wp-json historical endpoint, auto).
+        # Old notes (pre-2026-09-27):
         #   - investing.com CDS pages return HTTP 403 (Cloudflare) — Fetch-InvestingCDS always fails
         #   - worldgovernmentbonds.com renders the value client-side behind a proof-of-work
         #     anti-bot, so PowerShell can't scrape it either
@@ -217,15 +218,56 @@ function Get-InvestingCDS {
     }
 }
 
-# Fetch US + CN 5Y CDS. Falls back to STATIC_DATA on failure.
+# worldgovernmentbonds.com 5Y CDS (primary source).
+# The page embeds `var jsGlobalVars = {...}`; POSTing {"GLOBALVAR": <that>} to
+# its wp-json historical endpoint (with an Origin header) returns the full daily
+# series. wow/mom/ytd = current minus the last close on/before the reference date.
+function Get-WgbCDS {
+    param([string]$Slug, [string]$Key)
+    try {
+        $pageUrl = "https://www.worldgovernmentbonds.com/cds-historical-data/$Slug/5-years/"
+        $page = (Invoke-WebRequest -Uri $pageUrl -UseBasicParsing -UserAgent $UserAgent -TimeoutSec 20).Content
+        $gv = [regex]::Match($page, 'var jsGlobalVars = (\{.*?\});')
+        if (-not $gv.Success) { return $null }
+        $body = '{"GLOBALVAR":' + $gv.Groups[1].Value + '}'
+        $resp = Invoke-WebRequest -Uri 'https://www.worldgovernmentbonds.com/wp-json/common/v1/historical' `
+            -Method Post -Body ([Text.Encoding]::UTF8.GetBytes($body)) -ContentType 'application/json; charset=UTF-8' `
+            -Headers @{ Origin = 'https://www.worldgovernmentbonds.com' } -UseBasicParsing -UserAgent $UserAgent -TimeoutSec 30
+        $ms = [regex]::Matches($resp.Content, '"CLOSE_VAL":([\d\.]+),"DATA_VAL":"(\d{4}-\d{2}-\d{2})"')
+        if ($ms.Count -lt 30) { return $null }
+        $pts = foreach ($m in $ms) { [PSCustomObject]@{ d = [datetime]$m.Groups[2].Value; v = [double]$m.Groups[1].Value } }
+        $pts = @($pts | Sort-Object d)
+        $last = $pts[-1]
+        $at = { param($ref) $p = @($pts | Where-Object { $_.d -le $ref }); if ($p.Count) { $p[-1].v } else { $null } }
+        $delta = { param($ref) $v = & $at $ref; if ($null -eq $v) { $null } else { [Math]::Round($last.v - $v, 1) } }
+        return [PSCustomObject]@{
+            key     = $Key
+            current = [Math]::Round($last.v, 2)
+            wow     = & $delta $last.d.AddDays(-7)
+            mom     = & $delta $last.d.AddMonths(-1)
+            ytd     = & $delta (Get-Date -Year $last.d.Year -Month 1 -Day 1).Date.AddDays(-1)
+            type    = 'bp_abs'
+            asOf    = $last.d.ToString('yyyy-MM-dd')
+            ok      = $true
+            source  = 'wgb'
+        }
+    } catch {
+        Write-Warning ("WGB CDS fail [{0}]: {1}" -f $Key, $_.Exception.Message)
+        return $null
+    }
+}
+
+# Fetch US + CN 5Y CDS: WGB first, then Investing (403 in practice), then STATIC_DATA.
 function Fetch-InvestingCDS {
     $urls = [ordered]@{
         CDS_US = 'https://www.investing.com/rates-bonds/united-states-cds-5-years-usd'
         CDS_CN = 'https://www.investing.com/rates-bonds/china-cds-5-years-usd'
     }
+    $wgbSlug = @{ CDS_US = 'united-states'; CDS_CN = 'china' }
     $rows = @()
     foreach ($key in $urls.Keys) {
-        $r = Get-InvestingCDS -Url $urls[$key] -Key $key
+        $r = Get-WgbCDS -Slug $wgbSlug[$key] -Key $key
+        if (-not $r) { $r = Get-InvestingCDS -Url $urls[$key] -Key $key }
         if ($r) {
             $rows += $r
         } else {

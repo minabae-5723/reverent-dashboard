@@ -21,7 +21,7 @@ if (Test-Path -LiteralPath $refresh) {
 }
 if (-not (Test-Path -LiteralPath (Join-Path $root 'data.json'))) { return }
 
-# FedWatch rides this same timer, throttled to roughly hourly.
+# FedWatch rides this same timer every cycle (~5 min) — user rule 2026-09-27: must be real-time.
 #
 # fetch-fedwatch.ps1 computes FOMC probabilities from CME fed funds futures, so
 # it tracks near-live (the contracts trade ~23h/day) -- but refetching 6
@@ -39,7 +39,7 @@ if (Test-Path -LiteralPath $fwPath) {
         $fw = Get-Content -LiteralPath $fwPath -Raw -Encoding UTF8 | ConvertFrom-Json
         if ($fw.updated) {
             $age = (Get-Date).ToUniversalTime() - ([DateTime]::Parse($fw.updated)).ToUniversalTime()
-            $fwStale = ($age.TotalMinutes -ge 55)
+            $fwStale = ($age.TotalMinutes -ge 4)
         }
     } catch { $fwStale = $true }
 }
