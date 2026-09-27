@@ -176,9 +176,14 @@ Write-Host (" Parsed " + $companies.Count + " IPO rows from 38.co.kr (skipped " 
 # latest trading day before this week's Monday; on Sat/Sun the week just
 # ended counts as "last week", so the anchor is that Friday (or earlier on
 # holidays -- the daily chart simply has no row for closed days).
-$todayD = (Get-Date).Date
+# Friday after the 15:30 KRX close also counts as "week ended": the weekly
+# deal-flow routine (Fri 16:00) refreshes this for the next Monday Brief, and
+# by then today's close IS last week's last close.
+$nowT = Get-Date
+$todayD = $nowT.Date
 $dowI = [int]$todayD.DayOfWeek                                   # Sun=0 .. Sat=6
-if ($dowI -eq 0 -or $dowI -eq 6) { $weekStart = $todayD.AddDays((8 - $dowI) % 7) }
+$friClosed = ($dowI -eq 5 -and $nowT.TimeOfDay -ge [TimeSpan]'15:30')
+if ($dowI -eq 0 -or $dowI -eq 6 -or $friClosed) { $weekStart = $todayD.AddDays((8 - $dowI) % 7) }
 else                             { $weekStart = $todayD.AddDays(-($dowI - 1)) }
 $anchorBefore = $weekStart.ToString('yyyyMMdd')
 

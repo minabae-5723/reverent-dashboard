@@ -457,8 +457,10 @@ URL 날짜 없는 매체(dealsite 등) 또는 보강 필요 시:
 ```
 powershell -ExecutionPolicy Bypass -File .\refresh.ps1      # Capital Market(#market 상단): 지수/금리(국고채·미국채 ECOS+재무부)/FX/CDS/commodity
 powershell -ExecutionPolicy Bypass -File .\fetch-peer.ps1   # PEER TABLE(#peer): 반도체 피어 22종목 → peer.json
-powershell -ExecutionPolicy Bypass -File .\fetch-ipo.ps1    # IPO(#peer): 신규상장 → ipo.json
+powershell -ExecutionPolicy Bypass -File .\fetch-ipo.ps1    # IPO(#peer): 신규상장 + 시가총액 → ipo.json
 ```
+
+- 🔴 **IPO 시가총액 = 전주 마지막 거래일 종가 기준** (2026-09-28 지시). 금요일 15:30 이후·주말 실행이면 이번 주 마지막 거래일(보통 당일 금요일) 종가, 월~금 장중이면 직전 주 마지막 거래일 종가로 자동 계산된다(네이버 모바일 API: 발행주식수 × 기준일 종가). 이미 상장된 종목은 사용자 수기 입력값보다 이 값이 우선하고, 기준일 이후 상장 종목만 FIX 입력칸이 남는다. peer 갱신과 **반드시 함께** 돌릴 것.
 
 - **peer.json / ipo.json / data.json** 세 파일 모두 stage·커밋해 배포에 포함시킨다 (안 하면 #peer·#market 카드가 지난주 값에 머무름).
 - 금리(KR3Y/KR10Y=한국은행 ECOS, US2Y=美 재무부)는 refresh.ps1이 자동 갱신 — Investing.com 스크래이프는 403 차단이라 폐기됨. ECOS 실키가 있으면 `ecos-key.local.txt`에 넣으면 10행 제한이 풀림(없으면 sample 키로 동작).
