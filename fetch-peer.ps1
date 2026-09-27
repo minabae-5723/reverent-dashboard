@@ -151,10 +151,21 @@ if (-not $pivot -or $pivot.Count -eq 0) {
     Write-Host "FATAL: pivot 005930.KS returned no history" -ForegroundColor Red
     exit 1
 }
-$refRow  = $pivot[-1]
+# Optional one-off date override from peer-config.json:
+#   "dateOverride": { "refDate": "yyyy-MM-dd", "prevDate": "yyyy-MM-dd", "validUntil": "yyyy-MM-dd" }
+# Honored while today <= validUntil (e.g. a holiday-shortened week), so scheduled
+# re-runs (deploy-snapshot / deploy-friday) keep the same basis; ignored afterwards.
+$ovRef = $null; $ovPrev = $null
+$ov = $cfg.dateOverride
+if ($ov -and $ov.validUntil -and ((Get-Date).ToString('yyyy-MM-dd') -le $ov.validUntil)) {
+    $ovRef = $ov.refDate; $ovPrev = $ov.prevDate
+    Write-Host (" Date override active (until " + $ov.validUntil + "): ref=" + $ovRef + " prev=" + $ovPrev) -ForegroundColor Magenta
+}
+
+$refRow  = if ($ovRef) { Find-ClosestClose -history $pivot -targetDate $ovRef } else { $pivot[-1] }
 $refDate = $refRow.date
 $refYear = ([datetime]$refDate).Year
-$prevTarget = ([datetime]$refDate).AddDays(-7).ToString('yyyy-MM-dd')
+$prevTarget = if ($ovPrev) { $ovPrev } else { ([datetime]$refDate).AddDays(-7).ToString('yyyy-MM-dd') }
 $prevRow = Find-ClosestClose -history $pivot -targetDate $prevTarget
 $ytdRow  = $pivot | Where-Object { ([datetime]$_.date).Year -eq $refYear } | Select-Object -First 1
 
@@ -172,7 +183,7 @@ foreach ($t in $tickers) {
     Write-Host ("[" + $i + "/" + $tickers.Count + "] " + $t.name + " (" + $sym + ")") -ForegroundColor Yellow
 
     $hist = Get-YahooHistory -symbol $sym
-    $closeRef  = if ($hist.Count -gt 0) { $hist[-1] } else { $null }
+    $closeRef  = if ($hist.Count -eq 0) { $null } elseif ($ovRef) { Find-ClosestClose -history $hist -targetDate $ovRef } else { $hist[-1] }
     $closePrev = Find-ClosestClose -history $hist -targetDate $prevTarget
     $closeYtd  = $hist | Where-Object { ([datetime]$_.date).Year -eq $refYear } | Select-Object -First 1
 
