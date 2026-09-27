@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-09-27T03:19:06Z",
-    "updatedKr":  "2026-09-27 12:19:06",
+    "updated":  "2026-09-27T03:50:07Z",
+    "updatedKr":  "2026-09-27 12:50:07",
     "index":  [
                   {
                       "key":  "KOSPI",
@@ -192,7 +192,7 @@
                    "mom":  -2.1,
                    "ytd":  -6.18,
                    "type":  "pct",
-                   "asOf":  "2026-09-26T12:30:32",
+                   "asOf":  "2026-09-27T12:30:32",
                    "ok":  true
                },
                {
@@ -220,12 +220,12 @@
                {
                    "key":  "USDCNY",
                    "symbol":  "CNY=X",
-                   "current":  6.7037,
-                   "wow":  -0.06,
-                   "mom":  -0.28,
-                   "ytd":  -4.18,
+                   "current":  6.7125,
+                   "wow":  0.08,
+                   "mom":  -0.15,
+                   "ytd":  -4.05,
                    "type":  "pct",
-                   "asOf":  "2026-09-27T11:32:11",
+                   "asOf":  "2026-09-27T12:30:32",
                    "ok":  true
                },
                {
@@ -242,26 +242,26 @@
            ],
     "cds":  [
                 {
-                    "source":  "wgb-manual",
-                    "ytd":  0,
-                    "wow":  -2,
-                    "mom":  0,
                     "key":  "CDS_US",
+                    "current":  33.75,
+                    "wow":  1.4,
+                    "mom":  -0.4,
+                    "ytd":  7.2,
                     "type":  "bp_abs",
-                    "asOf":  "2026-08-01",
+                    "asOf":  "2026-09-26",
                     "ok":  true,
-                    "current":  35.96
+                    "source":  "wgb"
                 },
                 {
-                    "source":  "wgb-manual",
-                    "ytd":  0,
-                    "wow":  0,
-                    "mom":  0,
                     "key":  "CDS_CN",
+                    "current":  33.96,
+                    "wow":  1.2,
+                    "mom":  -1.3,
+                    "ytd":  -9.5,
                     "type":  "bp_abs",
-                    "asOf":  "2026-08-01",
+                    "asOf":  "2026-09-27",
                     "ok":  true,
-                    "current":  38.2
+                    "source":  "wgb"
                 }
             ],
     "sector":  [
