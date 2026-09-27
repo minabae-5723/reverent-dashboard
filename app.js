@@ -1814,8 +1814,11 @@ function _isMacroSection(name) {
 // To re-enable, restore the /주요\s*거래\s*동향/ test. Saved cards are untouched:
 // they live in localStorage under macro-notes-<weekDate>::<headline> keys, so
 // flipping this back on brings any previously pasted cards straight back.
+//
+// RE-ENABLED 2026-09-27 (user request): "자본시장 동향에만 카드뉴스 추가란 만들자" —
+// 자본시장 동향 articles only; Macro 동향 / 주요 거래 동향 stay off.
 function _isCapitalMarketSection(name) {
-  return false;
+  return /자본시장\s*동향/.test(name);
 }
 
 function renderDealsContent(md) {
