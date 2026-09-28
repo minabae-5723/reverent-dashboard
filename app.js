@@ -1537,6 +1537,9 @@ function _articleScope(weekDate, headline) {
   return `${weekDate || 'unknown'}--a${h.toString(36)}`;
 }
 
+// Last-modified stamp of a card (edits set updatedAt; legacy cards fall back to createdAt).
+function _macroNoteTs(c) { return (c && (c.updatedAt || c.createdAt)) || 0; }
+
 function _loadMacroNotes(weekDate) {
   const key = _macroNotesKey(weekDate);
   // Defensive coercion: legacy data may have stored a single card object
@@ -1546,10 +1549,20 @@ function _loadMacroNotes(weekDate) {
     if (v && typeof v === 'object' && v.id) return [v];
     return [];
   };
-  // localStorage first (fresh edits)
+  // localStorage first (fresh edits) — but a card edited centrally (server copy
+  // carries a newer updatedAt) must beat this browser's stale copy, otherwise
+  // the stale card gets re-saved over the fix on the next /save-state.
   try {
     const raw = localStorage.getItem(key);
-    if (raw) return toArray(JSON.parse(raw));
+    if (raw) {
+      const local = toArray(JSON.parse(raw));
+      const server = (_userStateCache && _userStateCache[key] != null) ? toArray(_userStateCache[key]) : [];
+      const byId = new Map(server.filter(c => c && c.id).map(c => [c.id, c]));
+      return local.map(c => {
+        const s = c && c.id ? byId.get(c.id) : null;
+        return (s && _macroNoteTs(s) > _macroNoteTs(c)) ? s : c;
+      });
+    }
   } catch {}
   // Then user-state.json cache (deployed values, shared across browsers)
   if (_userStateCache && _userStateCache[key] != null) {
@@ -1737,9 +1750,11 @@ function _wireMacroNotesEvents(sectionEl, weekDate) {
     if (i < 0) return;
     if (e.target.classList.contains('macro-note-title')) {
       notes[i].title = e.target.value;
+      notes[i].updatedAt = Date.now();
       _saveMacroNotes(weekDate, notes);
     } else if (e.target.classList.contains('macro-note-comment')) {
       notes[i].comment = e.target.value;
+      notes[i].updatedAt = Date.now();
       _saveMacroNotes(weekDate, notes);
       // Grow textarea to fit new content
       e.target.style.height = 'auto';
@@ -2221,7 +2236,12 @@ function migrateLocalStorageToUserState() {
       const serverArr = Array.isArray(_userStateCache[key]) ? _userStateCache[key] : [];
       const byId = new Map();
       serverArr.forEach((c) => { if (c && c.id) byId.set(c.id, c); });
-      localArr.forEach((c)  => { if (c && c.id) byId.set(c.id, c); }); // local = freshest edit here
+      // local wins unless the server copy was modified more recently (central fix)
+      localArr.forEach((c)  => {
+        if (!c || !c.id) return;
+        const s = byId.get(c.id);
+        if (!s || _macroNoteTs(c) >= _macroNoteTs(s)) byId.set(c.id, c);
+      });
       const merged = Array.from(byId.values());
       if (JSON.stringify(merged) !== JSON.stringify(serverArr)) {
         try { localStorage.setItem(key, JSON.stringify(merged)); } catch {}
