@@ -213,7 +213,7 @@
                          "indicator":  "PCE Price Index (YoY)",
                          "period":  "Aug",
                          "actual":  "",
-                         "forecast":  "",
+                         "forecast": "3.8%",
                          "previous":  "3.7%",
                          "type":  "preview"
                      },

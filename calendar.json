@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-09-27T03:13:39Z",
-    "updatedKr":  "2026-09-27 12:13:39",
+    "updated":  "2026-09-28T06:32:51Z",
+    "updatedKr":  "2026-09-28 15:32:51",
     "countries":  [
                       "5",
                       "35",
@@ -50,8 +50,8 @@
                        "importance":  3,
                        "indicator":  "S\u0026P Global Manufacturing PMI Flash",
                        "period":  "Sep",
-                       "actual":  "",
-                       "forecast":  "53.0",
+                       "actual":  "57.0",
+                       "forecast":  "53.6",
                        "previous":  "53.9",
                        "type":  "review"
                    },
@@ -65,8 +65,8 @@
                        "importance":  3,
                        "indicator":  "S\u0026P Global Services PMI Flash",
                        "period":  "Sep",
-                       "actual":  "",
-                       "forecast":  "56.4",
+                       "actual":  "58.7",
+                       "forecast":  "55.8",
                        "previous":  "56.5",
                        "type":  "review"
                    },
@@ -80,7 +80,7 @@
                        "importance":  3,
                        "indicator":  "Initial Jobless Claims",
                        "period":  "",
-                       "actual":  "",
+                       "actual":  "197K",
                        "forecast":  "201K",
                        "previous":  "196K",
                        "type":  "review"
@@ -95,8 +95,8 @@
                        "importance":  3,
                        "indicator":  "Current Account",
                        "period":  "Q2",
-                       "actual":  "",
-                       "forecast":  "-249.0B",
+                       "actual":  "-246.0B",
+                       "forecast":  "-258.0B",
                        "previous":  "-226.8B",
                        "type":  "review"
                    },
@@ -110,8 +110,8 @@
                        "importance":  3,
                        "indicator":  "New Home Sales",
                        "period":  "Aug",
-                       "actual":  "",
-                       "forecast":  "0.626M",
+                       "actual":  "684K",
+                       "forecast":  "615K",
                        "previous":  "0.607M",
                        "type":  "review"
                    },
@@ -125,8 +125,8 @@
                        "importance":  3,
                        "indicator":  "Durable Goods Orders (MoM)",
                        "period":  "Aug",
-                       "actual":  "",
-                       "forecast":  "-0.4%",
+                       "actual":  "0.0%",
+                       "forecast":  "-0.3%",
                        "previous":  "1.1%",
                        "type":  "review"
                    },
@@ -140,7 +140,7 @@
                        "importance":  3,
                        "indicator":  "Michigan Consumer Sentiment (Final)",
                        "period":  "Sep",
-                       "actual":  "",
+                       "actual":  "48.1",
                        "forecast":  "47.8",
                        "previous":  "51.7",
                        "type":  "review"
