@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-09-27T03:38:08Z",
-    "updatedKr":  "2026-09-27 12:38:08",
+    "updated":  "2026-09-29T06:49:31Z",
+    "updatedKr":  "2026-09-29 15:49:31",
     "frozenDow":  "Tuesday",
     "reviewRange":  "2026-09-21~2026-09-25",
     "previewRange":  "2026-09-28~2026-10-02",
@@ -153,7 +153,7 @@
                          "indicator":  "CB Consumer Confidence",
                          "period":  "Sep",
                          "actual":  "",
-                         "forecast":  "90.1",
+                         "forecast":  "89.2",
                          "previous":  "89.4",
                          "type":  "preview"
                      },
@@ -213,7 +213,7 @@
                          "indicator":  "PCE Price Index (YoY)",
                          "period":  "Aug",
                          "actual":  "",
-                         "forecast": "3.8%",
+                         "forecast":  "3.8%",
                          "previous":  "3.7%",
                          "type":  "preview"
                      },

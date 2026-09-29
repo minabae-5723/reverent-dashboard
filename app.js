@@ -4277,3 +4277,31 @@ loadDealsIndex();
 //   - User reloads the page
 // This avoids hitting external API rate limits / anti-bot protection.
 
+// ─── Font size control (mobile zoom) ─────────────────────
+(function initFontControls() {
+  const STEPS = [85, 100, 115, 130, 145];
+  const KEY = 'rv-font-zoom';
+  const main = document.querySelector('.main-area');
+  const label = document.getElementById('fontLabel');
+  const btnUp = document.getElementById('fontUp');
+  const btnDown = document.getElementById('fontDown');
+  if (!main || !btnUp || !btnDown) return;
+
+  let saved = 100;
+  try { saved = parseInt(localStorage.getItem(KEY)) || 100; } catch (_) {}
+  let idx = STEPS.indexOf(saved);
+  if (idx < 0) idx = 1;
+
+  function apply() {
+    main.style.zoom = (STEPS[idx] / 100).toString();
+    if (label) label.textContent = STEPS[idx] + '%';
+    btnDown.disabled = idx === 0;
+    btnUp.disabled = idx === STEPS.length - 1;
+    try { localStorage.setItem(KEY, STEPS[idx]); } catch (_) {}
+  }
+
+  btnUp.addEventListener('click', () => { if (idx < STEPS.length - 1) { idx++; apply(); } });
+  btnDown.addEventListener('click', () => { if (idx > 0) { idx--; apply(); } });
+  apply();
+})();
+

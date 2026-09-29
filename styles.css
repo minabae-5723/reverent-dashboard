@@ -3563,3 +3563,54 @@ html, body {
   margin-left: 6px;
   white-space: nowrap;
 }
+
+/* ============================================================
+   Font Size Control (mobile floating bar)
+   ============================================================ */
+.font-controls {
+  display: none;
+  position: fixed;
+  bottom: 22px;
+  left: 16px;
+  z-index: 1001;
+  align-items: center;
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+  border-radius: 22px;
+  box-shadow: 0 4px 16px rgba(30, 58, 95, 0.35);
+  overflow: hidden;
+}
+.font-controls button {
+  background: none;
+  border: none;
+  color: white;
+  font-weight: 700;
+  font-size: 15px;
+  padding: 10px 14px;
+  cursor: pointer;
+  line-height: 1;
+  transition: background 0.12s;
+}
+.font-controls button:active {
+  background: rgba(255,255,255,0.15);
+}
+.font-controls button:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+.fc-divider {
+  width: 1px;
+  align-self: stretch;
+  background: rgba(255,255,255,0.2);
+}
+.fc-label {
+  padding: 0 10px;
+  font-size: 11px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.7);
+  white-space: nowrap;
+  min-width: 38px;
+  text-align: center;
+}
+@media (max-width: 720px) {
+  .font-controls { display: flex; }
+}
