@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-09-29T23:17:42Z",
-    "updatedKr":  "2026-09-30 08:17:42",
+    "updated":  "2026-09-29T23:18:33Z",
+    "updatedKr":  "2026-09-30 08:18:33",
     "countries":  [
                       "5",
                       "35",
@@ -36,7 +36,7 @@
                        "indicator":  "Industrial Production (YoY)",
                        "period":  "Aug",
                        "actual":  "-2.2%",
-                       "forecast":  "",
+                       "forecast":  "4.0%",
                        "previous":  "4.0%",
                        "type":  "preview"
                    },
