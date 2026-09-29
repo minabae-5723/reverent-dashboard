@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-09-29T22:00:31Z",
-    "updatedKr":  "2026-09-30 07:00:31",
+    "updated":  "2026-09-29T23:17:42Z",
+    "updatedKr":  "2026-09-30 08:17:42",
     "countries":  [
                       "5",
                       "35",
@@ -20,10 +20,10 @@
                        "importance":  3,
                        "indicator":  "CB Consumer Confidence",
                        "period":  "Sep",
-                       "actual":  "",
+                       "actual":  "81.9",
                        "forecast":  "89.2",
                        "previous":  "89.4",
-                       "type":  "preview"
+                       "type":  "review"
                    },
                    {
                        "id":  "560802",
@@ -35,9 +35,9 @@
                        "importance":  3,
                        "indicator":  "Industrial Production (YoY)",
                        "period":  "Aug",
-                       "actual":  "",
+                       "actual":  "-2.2%",
                        "forecast":  "",
-                       "previous":  "3.6%",
+                       "previous":  "4.0%",
                        "type":  "preview"
                    },
                    {
