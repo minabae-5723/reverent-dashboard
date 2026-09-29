@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-09-29T15:55:07Z",
-    "updatedKr":  "2026-09-30 00:55:07",
+    "updated":  "2026-09-29T16:00:07Z",
+    "updatedKr":  "2026-09-30 01:00:07",
     "index":  [
                   {
                       "key":  "KOSPI",
@@ -11,7 +11,8 @@
                       "ytd":  59.43,
                       "type":  "pct",
                       "asOf":  "2026-09-29T20:05:40",
-                      "ok":  true
+                      "ok":  true,
+                      "stale":  true
                   },
                   {
                       "key":  "KOSDAQ",
@@ -22,7 +23,8 @@
                       "ytd":  -10.13,
                       "type":  "pct",
                       "asOf":  "2026-09-29T20:05:40",
-                      "ok":  true
+                      "ok":  true,
+                      "stale":  true
                   },
                   {
                       "key":  "DOW",
@@ -33,7 +35,8 @@
                       "ytd":  6.41,
                       "type":  "pct",
                       "asOf":  "2026-09-28",
-                      "ok":  true
+                      "ok":  true,
+                      "stale":  true
                   },
                   {
                       "key":  "SPX",
@@ -44,7 +47,8 @@
                       "ytd":  12.03,
                       "type":  "pct",
                       "asOf":  "2026-09-28",
-                      "ok":  true
+                      "ok":  true,
+                      "stale":  true
                   },
                   {
                       "key":  "NASDAQ",
@@ -55,7 +59,8 @@
                       "ytd":  15.43,
                       "type":  "pct",
                       "asOf":  "2026-09-28",
-                      "ok":  true
+                      "ok":  true,
+                      "stale":  true
                   },
                   {
                       "key":  "SHANGHAI",
@@ -66,53 +71,54 @@
                       "ytd":  -4.8,
                       "type":  "pct",
                       "asOf":  "2026-09-29T16:00:24",
-                      "ok":  true
+                      "ok":  true,
+                      "stale":  true
                   }
               ],
     "rate":  [
                  {
+                     "source":  "investing",
+                     "ytd":  82,
+                     "wow":  -16,
+                     "mom":  0,
                      "key":  "KR3Y",
-                     "current":  4.076,
-                     "wow":  4,
-                     "mom":  20,
-                     "ytd":  114,
                      "type":  "bp",
-                     "asOf":  "2026-09-29",
+                     "asOf":  "2026-07-31",
                      "ok":  true,
-                     "source":  "ecos-bok"
+                     "current":  3.757
                  },
                  {
+                     "source":  "investing",
+                     "ytd":  88,
+                     "wow":  -13,
+                     "mom":  12,
                      "key":  "KR10Y",
-                     "current":  4.476,
-                     "wow":  1,
-                     "mom":  10,
-                     "ytd":  109,
                      "type":  "bp",
-                     "asOf":  "2026-09-29",
+                     "asOf":  "2026-07-31",
                      "ok":  true,
-                     "source":  "ecos-bok"
+                     "current":  4.262
                  },
                  {
+                     "mom":  -1,
+                     "current":  2.81,
+                     "static":  true,
+                     "ok":  true,
                      "key":  "CD91",
-                     "current":  3.22,
-                     "wow":  2,
-                     "mom":  9,
-                     "ytd":  41,
                      "type":  "bp",
-                     "asOf":  "2026-09-28",
-                     "ok":  true,
-                     "source":  "naver-mobile"
+                     "wow":  0,
+                     "ytd":  4
                  },
                  {
+                     "source":  "treasury.gov(static)",
+                     "ytd":  90,
+                     "wow":  21,
+                     "mom":  28,
                      "key":  "US2Y",
-                     "current":  4.92,
-                     "wow":  16,
-                     "mom":  58,
-                     "ytd":  145,
                      "type":  "bp",
-                     "asOf":  "2026-09-28",
+                     "asOf":  "2026-07-23",
                      "ok":  true,
-                     "source":  "treasury.gov"
+                     "static":  true,
+                     "current":  4.37
                  },
                  {
                      "key":  "US10Y",
@@ -123,7 +129,8 @@
                      "ytd":  109,
                      "type":  "bp",
                      "asOf":  "2026-09-30T00:40:05",
-                     "ok":  true
+                     "ok":  true,
+                     "stale":  true
                  },
                  {
                      "key":  "US30Y",
@@ -134,110 +141,66 @@
                      "ytd":  74,
                      "type":  "bp",
                      "asOf":  "2026-09-30T00:40:05",
-                     "ok":  true
+                     "ok":  true,
+                     "stale":  true
                  }
              ],
     "commodity":  [
                       {
                           "key":  "WTI",
                           "symbol":  "CL=F",
-                          "current":  91.58,
-                          "wow":  -3.18,
-                          "mom":  9.81,
-                          "ytd":  59.77,
-                          "type":  "pct",
-                          "asOf":  "2026-09-30T00:45:17",
-                          "ok":  true
+                          "ok":  false,
+                          "error":  "fetch failed"
                       },
                       {
                           "key":  "GOLD",
                           "symbol":  "GC=F",
-                          "current":  4188.2,
-                          "wow":  -4.3,
-                          "mom":  -7.54,
-                          "ytd":  -3.27,
-                          "type":  "pct",
-                          "asOf":  "2026-09-30T00:45:16",
-                          "ok":  true
+                          "ok":  false,
+                          "error":  "fetch failed"
                       },
                       {
                           "key":  "COPPER",
                           "symbol":  "HG=F",
-                          "current":  6.6185,
-                          "wow":  -2.09,
-                          "mom":  0.86,
-                          "ytd":  17.35,
-                          "type":  "pct",
-                          "asOf":  "2026-09-30T00:45:14",
-                          "ok":  true
+                          "ok":  false,
+                          "error":  "fetch failed"
                       },
                       {
                           "key":  "WHEAT",
                           "symbol":  "ZW=F",
-                          "current":  689.5,
-                          "wow":  -3.87,
-                          "mom":  -10.1,
-                          "ytd":  36.13,
-                          "type":  "pct",
-                          "asOf":  "2026-09-30T00:45:07",
-                          "ok":  true
+                          "ok":  false,
+                          "error":  "fetch failed"
                       }
                   ],
     "fx":  [
                {
                    "key":  "USDKRW",
                    "symbol":  "KRW=X",
-                   "current":  1355.48,
-                   "wow":  0.38,
-                   "mom":  -1.81,
-                   "ytd":  -6.11,
-                   "type":  "pct",
-                   "asOf":  "2026-09-30T00:55:08",
-                   "ok":  true
+                   "ok":  false,
+                   "error":  "fetch failed"
                },
                {
                    "key":  "USDEUR",
                    "symbol":  "EURUSD=X",
-                   "current":  0.8821,
-                   "wow":  0.98,
-                   "mom":  2.82,
-                   "ytd":  3.65,
-                   "type":  "pct",
-                   "asOf":  "2026-09-30T00:54:56",
-                   "ok":  true
+                   "ok":  false,
+                   "error":  "fetch failed"
                },
                {
                    "key":  "USDJPY",
                    "symbol":  "JPY=X",
-                   "current":  157.523,
-                   "wow":  0.04,
-                   "mom":  -1.13,
-                   "ytd":  0.51,
-                   "type":  "pct",
-                   "asOf":  "2026-09-30T00:55:09",
-                   "ok":  true
+                   "ok":  false,
+                   "error":  "fetch failed"
                },
                {
                    "key":  "USDCNY",
                    "symbol":  "CNY=X",
-                   "current":  6.6976,
-                   "wow":  -0.03,
-                   "mom":  -0.37,
-                   "ytd":  -4.27,
-                   "type":  "pct",
-                   "asOf":  "2026-09-30T00:48:22",
-                   "ok":  true
+                   "ok":  false,
+                   "error":  "fetch failed"
                },
                {
                    "key":  "DXY",
                    "symbol":  "DX-Y.NYB",
-                   "current":  101.495,
-                   "wow":  0.89,
-                   "mom":  1.8,
-                   "ytd":  3.12,
-                   "type":  "pct",
-                   "asOf":  "2026-09-30T00:45:09",
-                   "ok":  true
+                   "ok":  false,
+                   "error":  "fetch failed"
                }
            ],
     "cds":  [
@@ -267,123 +230,127 @@
     "sector":  [
                    {
                        "key":  "IT",
-                       "symbol":  "XLK",
+                       "symbol":  "^SP500-45",
                        "current":  194.87,
                        "wow":  -0.71,
                        "mom":  4.94,
                        "ytd":  35.05,
                        "type":  "pct",
                        "asOf":  "2026-09-30T00:55:17",
-                       "ok":  true
+                       "ok":  true,
+                       "stale":  true
                    },
                    {
                        "key":  "HEALTHCARE",
-                       "symbol":  "XLV",
+                       "symbol":  "^SP500-35",
                        "current":  169.52,
                        "wow":  -0.22,
                        "mom":  -0.96,
                        "ytd":  9.01,
                        "type":  "pct",
                        "asOf":  "2026-09-30T00:55:23",
-                       "ok":  true
+                       "ok":  true,
+                       "stale":  true
                    },
                    {
                        "key":  "DISCRET",
-                       "symbol":  "XLY",
+                       "symbol":  "^SP500-25",
                        "current":  108.78,
                        "wow":  -3.16,
                        "mom":  -7.19,
                        "ytd":  -8.09,
                        "type":  "pct",
                        "asOf":  "2026-09-30T00:55:15",
-                       "ok":  true
+                       "ok":  true,
+                       "stale":  true
                    },
                    {
                        "key":  "INDUSTRIALS",
-                       "symbol":  "XLI",
+                       "symbol":  "^SP500-20",
                        "current":  168.585,
                        "wow":  -0.99,
                        "mom":  -4.83,
                        "ytd":  6.71,
                        "type":  "pct",
                        "asOf":  "2026-09-30T00:55:21",
-                       "ok":  true
+                       "ok":  true,
+                       "stale":  true
                    },
                    {
                        "key":  "STAPLES",
                        "symbol":  "XLP",
-                       "current":  81.4,
-                       "wow":  -1.61,
-                       "mom":  -4.74,
-                       "ytd":  4.78,
+                       "current":  81.48,
+                       "wow":  -1.51,
+                       "mom":  -4.65,
+                       "ytd":  4.88,
                        "type":  "pct",
-                       "asOf":  "2026-09-30T00:55:17",
+                       "asOf":  "2026-09-30T01:03:01",
                        "ok":  true
                    },
                    {
                        "key":  "ENERGY",
                        "symbol":  "XLE",
-                       "current":  61.65,
-                       "wow":  -0.21,
-                       "mom":  -1.64,
-                       "ytd":  35.05,
+                       "current":  61.625,
+                       "wow":  -0.25,
+                       "mom":  -1.68,
+                       "ytd":  34.99,
                        "type":  "pct",
-                       "asOf":  "2026-09-30T00:55:21",
+                       "asOf":  "2026-09-30T01:03:03",
                        "ok":  true
                    },
                    {
                        "key":  "FINANCIALS",
                        "symbol":  "XLF",
-                       "current":  53.805,
-                       "wow":  -1.82,
-                       "mom":  -7.39,
-                       "ytd":  -2.05,
+                       "current":  53.735,
+                       "wow":  -1.94,
+                       "mom":  -7.51,
+                       "ytd":  -2.18,
                        "type":  "pct",
-                       "asOf":  "2026-09-30T00:55:22",
+                       "asOf":  "2026-09-30T01:03:03",
                        "ok":  true
                    },
                    {
                        "key":  "MATERIALS",
                        "symbol":  "XLB",
-                       "current":  49.005,
-                       "wow":  -3.02,
-                       "mom":  -7.85,
-                       "ytd":  6.26,
+                       "current":  49.01,
+                       "wow":  -3.01,
+                       "mom":  -7.84,
+                       "ytd":  6.27,
                        "type":  "pct",
-                       "asOf":  "2026-09-30T00:55:20",
+                       "asOf":  "2026-09-30T01:03:05",
                        "ok":  true
                    },
                    {
                        "key":  "UTILITIES",
                        "symbol":  "XLU",
-                       "current":  39.43,
-                       "wow":  -2.71,
-                       "mom":  -7.72,
-                       "ytd":  -8.68,
+                       "current":  39.505,
+                       "wow":  -2.53,
+                       "mom":  -7.55,
+                       "ytd":  -8.51,
                        "type":  "pct",
-                       "asOf":  "2026-09-30T00:55:21",
+                       "asOf":  "2026-09-30T01:03:06",
                        "ok":  true
                    },
                    {
                        "key":  "REALESTATE",
                        "symbol":  "^SP500-60",
-                       "current":  264.57,
-                       "wow":  -2.89,
-                       "mom":  -6.53,
-                       "ytd":  3.68,
+                       "current":  264.6,
+                       "wow":  -2.88,
+                       "mom":  -6.52,
+                       "ytd":  3.7,
                        "type":  "pct",
-                       "asOf":  "2026-09-30T00:55:24",
+                       "asOf":  "2026-09-30T01:02:54",
                        "ok":  true
                    },
                    {
                        "key":  "COMM",
                        "symbol":  "XLC",
-                       "current":  110.685,
-                       "wow":  -2.51,
+                       "current":  110.69,
+                       "wow":  -2.5,
                        "mom":  -2.04,
-                       "ytd":  -5.32,
+                       "ytd":  -5.31,
                        "type":  "pct",
-                       "asOf":  "2026-09-30T00:55:07",
+                       "asOf":  "2026-09-30T01:03:01",
                        "ok":  true
                    }
                ]
