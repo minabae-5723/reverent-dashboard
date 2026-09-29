@@ -3554,3 +3554,12 @@ html, body {
   min-height: 640px;
   border: 0;
 }
+
+/* 데이터 최근 갱신일자 배지 (홈 헤더) */
+.data-asof {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--navy);
+  margin-left: 6px;
+  white-space: nowrap;
+}
