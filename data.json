@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-09-29T21:40:07Z",
-    "updatedKr":  "2026-09-30 06:40:07",
+    "updated":  "2026-09-29T21:45:07Z",
+    "updatedKr":  "2026-09-30 06:45:07",
     "index":  [
                   {
                       "key":  "KOSPI",
@@ -187,34 +187,34 @@
                {
                    "key":  "USDKRW",
                    "symbol":  "KRW=X",
-                   "current":  1352.48,
-                   "wow":  0.16,
-                   "mom":  -2.03,
-                   "ytd":  -6.31,
+                   "current":  1352.28,
+                   "wow":  0.14,
+                   "mom":  -2.04,
+                   "ytd":  -6.33,
                    "type":  "pct",
-                   "asOf":  "2026-09-30T06:40:05",
+                   "asOf":  "2026-09-30T06:45:00",
                    "ok":  true
                },
                {
                    "key":  "USDEUR",
                    "symbol":  "EURUSD=X",
-                   "current":  0.8814,
-                   "wow":  0.9,
-                   "mom":  2.74,
+                   "current":  0.8813,
+                   "wow":  0.89,
+                   "mom":  2.73,
                    "ytd":  3.56,
                    "type":  "pct",
-                   "asOf":  "2026-09-30T06:39:58",
+                   "asOf":  "2026-09-30T06:44:58",
                    "ok":  true
                },
                {
                    "key":  "USDJPY",
                    "symbol":  "JPY=X",
-                   "current":  157.237,
-                   "wow":  -0.14,
-                   "mom":  -1.31,
-                   "ytd":  0.32,
+                   "current":  157.271,
+                   "wow":  -0.12,
+                   "mom":  -1.29,
+                   "ytd":  0.34,
                    "type":  "pct",
-                   "asOf":  "2026-09-30T06:40:08",
+                   "asOf":  "2026-09-30T06:45:09",
                    "ok":  true
                },
                {
@@ -236,7 +236,7 @@
                    "mom":  1.69,
                    "ytd":  3.01,
                    "type":  "pct",
-                   "asOf":  "2026-09-30T06:30:10",
+                   "asOf":  "2026-09-30T06:35:10",
                    "ok":  true
                }
            ],
