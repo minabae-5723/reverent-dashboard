@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-09-29T23:18:34Z",
-    "updatedKr":  "2026-09-30 08:18:34",
+    "updated":  "2026-09-30T22:00:35Z",
+    "updatedKr":  "2026-10-01 07:00:35",
     "countries":  [
                       "5",
                       "35",
@@ -200,10 +200,10 @@
                        "importance":  3,
                        "indicator":  "PCE Price Index (YoY)",
                        "period":  "Aug",
-                       "actual":  "",
-                       "forecast":  "3.8%",
+                       "actual":  "3.4%",
+                       "forecast":  "3.7%",
                        "previous":  "3.7%",
-                       "type":  "preview"
+                       "type":  "review"
                    },
                    {
                        "id":  "560805",

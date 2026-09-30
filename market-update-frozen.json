@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-09-29T23:17:43Z",
-    "updatedKr":  "2026-09-30 08:17:43",
+    "updated":  "2026-09-30T22:00:35Z",
+    "updatedKr":  "2026-10-01 07:00:35",
     "frozenDow":  "Tuesday",
     "reviewRange":  "2026-09-21~2026-09-25",
     "previewRange":  "2026-09-28~2026-10-02",
@@ -212,10 +212,10 @@
                          "importance":  3,
                          "indicator":  "PCE Price Index (YoY)",
                          "period":  "Aug",
-                         "actual":  "",
-                         "forecast":  "3.8%",
+                         "actual":  "3.4%",
+                         "forecast":  "3.7%",
                          "previous":  "3.7%",
-                         "type":  "preview"
+                         "type":  "review"
                      },
                      {
                          "id":  "560808",
