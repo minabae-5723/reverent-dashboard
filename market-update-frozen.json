@@ -182,7 +182,7 @@
                          "importance":  3,
                          "indicator":  "ADP Employment Change",
                          "period":  "Sep",
-                         "actual":  "",
+                         "actual":  "90K",
                          "forecast":  "70K",
                          "previous":  "38K",
                          "type":  "preview"
@@ -197,7 +197,7 @@
                          "importance":  3,
                          "indicator":  "GDP Growth Rate (QoQ, Final)",
                          "period":  "Q2",
-                         "actual":  "",
+                         "actual":  "2.2%",
                          "forecast":  "1.5%",
                          "previous":  "1.5%",
                          "type":  "preview"
