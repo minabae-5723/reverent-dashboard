@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-09-30T04:20:30Z",
-    "updatedKr":  "2026-09-30 13:20:30",
+    "updated":  "2026-09-30T04:25:29Z",
+    "updatedKr":  "2026-09-30 13:25:29",
     "source":  "CME 30-Day Fed Funds Futures (Yahoo ZQ) + NY Fed EFFR - CME FedWatch methodology",
     "effr":  3.88,
     "targetFrom":  3.75,
@@ -142,43 +142,43 @@
                          "meetingTime":  "Apr 28, 2027 02:00PM ET",
                          "futurePrice":  95.46,
                          "impliedRate":  4.54,
-                         "hikeProb":  43.7,
+                         "hikeProb":  45.7,
                          "probabilities":  [
                                                {
                                                    "range":  "3.75 - 4.00",
                                                    "current":  0.7,
-                                                   "prevDay":  0.4,
-                                                   "prevWeek":  0.5
+                                                   "prevDay":  0.5,
+                                                   "prevWeek":  0.2
                                                },
                                                {
                                                    "range":  "4.00 - 4.25",
-                                                   "current":  6.8,
-                                                   "prevDay":  4.5,
-                                                   "prevWeek":  9.5
+                                                   "current":  6.6,
+                                                   "prevDay":  5.7,
+                                                   "prevWeek":  5.2
                                                },
                                                {
                                                    "range":  "4.25 - 4.50",
-                                                   "current":  23,
-                                                   "prevDay":  19.1,
-                                                   "prevWeek":  31.3
+                                                   "current":  22.5,
+                                                   "prevDay":  22.7,
+                                                   "prevWeek":  22.9
                                                },
                                                {
                                                    "range":  "4.50 - 4.75",
-                                                   "current":  36.1,
-                                                   "prevDay":  36.1,
-                                                   "prevWeek":  37.9
+                                                   "current":  35.9,
+                                                   "prevDay":  38.8,
+                                                   "prevWeek":  39
                                                },
                                                {
                                                    "range":  "4.75 - 5.00",
-                                                   "current":  26.3,
-                                                   "prevDay":  30.6,
-                                                   "prevWeek":  18
+                                                   "current":  26.8,
+                                                   "prevDay":  27,
+                                                   "prevWeek":  27
                                                },
                                                {
                                                    "range":  "5.00 - 5.25",
-                                                   "current":  7.2,
-                                                   "prevDay":  9.3,
-                                                   "prevWeek":  2.9
+                                                   "current":  7.5,
+                                                   "prevDay":  5.3,
+                                                   "prevWeek":  5.5
                                                }
                                            ]
                      }
