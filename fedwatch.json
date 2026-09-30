@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-09-30T03:50:31Z",
-    "updatedKr":  "2026-09-30 12:50:31",
+    "updated":  "2026-09-30T03:55:30Z",
+    "updatedKr":  "2026-09-30 12:55:30",
     "source":  "CME 30-Day Fed Funds Futures (Yahoo ZQ) + NY Fed EFFR - CME FedWatch methodology",
     "effr":  3.88,
     "targetFrom":  3.75,
@@ -140,8 +140,8 @@
                          "date":  "Apr 28, 2027",
                          "iso":  "2027-04-28",
                          "meetingTime":  "Apr 28, 2027 02:00PM ET",
-                         "futurePrice":  95.465,
-                         "impliedRate":  4.535,
+                         "futurePrice":  95.46,
+                         "impliedRate":  4.54,
                          "hikeProb":  43.6,
                          "probabilities":  [
                                                {
