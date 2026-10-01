@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-10-01T21:50:05Z",
-    "updatedKr":  "2026-10-02 06:50:05",
+    "updated":  "2026-10-01T21:55:05Z",
+    "updatedKr":  "2026-10-02 06:55:05",
     "index":  [
                   {
                       "key":  "KOSPI",
@@ -187,34 +187,34 @@
                {
                    "key":  "USDKRW",
                    "symbol":  "KRW=X",
-                   "current":  1359.87,
+                   "current":  1359.84,
                    "wow":  -0.55,
                    "mom":  -0.95,
                    "ytd":  -5.8,
                    "type":  "pct",
-                   "asOf":  "2026-10-02T06:43:05",
+                   "asOf":  "2026-10-02T06:54:57",
                    "ok":  true
                },
                {
                    "key":  "USDEUR",
                    "symbol":  "EURUSD=X",
-                   "current":  0.889,
-                   "wow":  1.12,
-                   "mom":  3.08,
-                   "ytd":  4.46,
+                   "current":  0.8893,
+                   "wow":  1.15,
+                   "mom":  3.12,
+                   "ytd":  4.5,
                    "type":  "pct",
-                   "asOf":  "2026-10-02T06:49:56",
+                   "asOf":  "2026-10-02T06:54:56",
                    "ok":  true
                },
                {
                    "key":  "USDJPY",
                    "symbol":  "JPY=X",
-                   "current":  158.049,
+                   "current":  158.055,
                    "wow":  -0.48,
                    "mom":  -1.34,
                    "ytd":  0.84,
                    "type":  "pct",
-                   "asOf":  "2026-10-02T06:50:06",
+                   "asOf":  "2026-10-02T06:55:07",
                    "ok":  true
                },
                {
@@ -231,12 +231,12 @@
                {
                    "key":  "DXY",
                    "symbol":  "DX-Y.NYB",
-                   "current":  102.005,
-                   "wow":  0.71,
-                   "mom":  2.46,
-                   "ytd":  3.64,
+                   "current":  102.018,
+                   "wow":  0.72,
+                   "mom":  2.47,
+                   "ytd":  3.66,
                    "type":  "pct",
-                   "asOf":  "2026-10-02T06:40:05",
+                   "asOf":  "2026-10-02T06:45:07",
                    "ok":  true
                }
            ],
