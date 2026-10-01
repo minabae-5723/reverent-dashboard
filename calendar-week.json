@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-09-30T23:17:19Z",
-    "updatedKr":  "2026-10-01 08:17:19",
+    "updated":  "2026-10-01T22:00:32Z",
+    "updatedKr":  "2026-10-02 07:00:32",
     "countries":  [
                       "5",
                       "35",
@@ -191,21 +191,6 @@
                        "type":  "preview"
                    },
                    {
-                       "id":  "560806",
-                       "datetime":  "2026/09/30 21:30:00",
-                       "date":  "9/30",
-                       "time":  "21:30",
-                       "flagKey":  "United_States",
-                       "currency":  "USD",
-                       "importance":  3,
-                       "indicator":  "PCE Price Index (YoY)",
-                       "period":  "Aug",
-                       "actual":  "3.4%",
-                       "forecast":  "3.7%",
-                       "previous":  "3.7%",
-                       "type":  "review"
-                   },
-                   {
                        "id":  "560805",
                        "datetime":  "2026/09/30 21:30:00",
                        "date":  "9/30",
@@ -221,19 +206,19 @@
                        "type":  "preview"
                    },
                    {
-                       "id":  "560809",
-                       "datetime":  "2026/10/01 09:00:00",
-                       "date":  "10/1",
-                       "time":  "09:00",
-                       "flagKey":  "South_Korea",
-                       "currency":  "KRW",
+                       "id":  "560806",
+                       "datetime":  "2026/09/30 21:30:00",
+                       "date":  "9/30",
+                       "time":  "21:30",
+                       "flagKey":  "United_States",
+                       "currency":  "USD",
                        "importance":  3,
-                       "indicator":  "Balance of Trade",
-                       "period":  "Sep",
-                       "actual":  "",
-                       "forecast":  "",
-                       "previous":  "$34.75B",
-                       "type":  "preview"
+                       "indicator":  "PCE Price Index (YoY)",
+                       "period":  "Aug",
+                       "actual":  "3.4%",
+                       "forecast":  "3.7%",
+                       "previous":  "3.7%",
+                       "type":  "review"
                    },
                    {
                        "id":  "560808",
@@ -248,6 +233,21 @@
                        "actual":  "",
                        "forecast":  "",
                        "previous":  "68.7%",
+                       "type":  "preview"
+                   },
+                   {
+                       "id":  "560809",
+                       "datetime":  "2026/10/01 09:00:00",
+                       "date":  "10/1",
+                       "time":  "09:00",
+                       "flagKey":  "South_Korea",
+                       "currency":  "KRW",
+                       "importance":  3,
+                       "indicator":  "Balance of Trade",
+                       "period":  "Sep",
+                       "actual":  "",
+                       "forecast":  "",
+                       "previous":  "$34.75B",
                        "type":  "preview"
                    },
                    {
@@ -296,21 +296,6 @@
                        "type":  "preview"
                    },
                    {
-                       "id":  "560816",
-                       "datetime":  "2026/10/02 21:30:00",
-                       "date":  "10/2",
-                       "time":  "21:30",
-                       "flagKey":  "United_States",
-                       "currency":  "USD",
-                       "importance":  3,
-                       "indicator":  "Unemployment Rate",
-                       "period":  "Sep",
-                       "actual":  "",
-                       "forecast":  "4.1%",
-                       "previous":  "4.1%",
-                       "type":  "preview"
-                   },
-                   {
                        "id":  "560815",
                        "datetime":  "2026/10/02 21:30:00",
                        "date":  "10/2",
@@ -323,6 +308,21 @@
                        "actual":  "",
                        "forecast":  "98K",
                        "previous":  "162K",
+                       "type":  "preview"
+                   },
+                   {
+                       "id":  "560816",
+                       "datetime":  "2026/10/02 21:30:00",
+                       "date":  "10/2",
+                       "time":  "21:30",
+                       "flagKey":  "United_States",
+                       "currency":  "USD",
+                       "importance":  3,
+                       "indicator":  "Unemployment Rate",
+                       "period":  "Sep",
+                       "actual":  "",
+                       "forecast":  "4.1%",
+                       "previous":  "4.1%",
                        "type":  "preview"
                    }
                ]
