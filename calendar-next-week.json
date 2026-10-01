@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-10-01T22:00:31Z",
-    "updatedKr":  "2026-10-02 07:00:31",
+    "updated":  "2026-10-01T23:15:17Z",
+    "updatedKr":  "2026-10-02 08:15:17",
     "countries":  [
                       "5",
                       "35",
@@ -56,21 +56,6 @@
                        "type":  "preview"
                    },
                    {
-                       "id":  "560805",
-                       "datetime":  "2026/09/30 21:30:00",
-                       "date":  "9/30",
-                       "time":  "21:30",
-                       "flagKey":  "United_States",
-                       "currency":  "USD",
-                       "importance":  3,
-                       "indicator":  "GDP Growth Rate (QoQ, Final)",
-                       "period":  "Q2",
-                       "actual":  "2.2%",
-                       "forecast":  "1.5%",
-                       "previous":  "1.5%",
-                       "type":  "preview"
-                   },
-                   {
                        "id":  "560806",
                        "datetime":  "2026/09/30 21:30:00",
                        "date":  "9/30",
@@ -86,18 +71,18 @@
                        "type":  "review"
                    },
                    {
-                       "id":  "560808",
-                       "datetime":  "2026/10/01 09:00:00",
-                       "date":  "10/1",
-                       "time":  "09:00",
-                       "flagKey":  "South_Korea",
-                       "currency":  "KRW",
+                       "id":  "560805",
+                       "datetime":  "2026/09/30 21:30:00",
+                       "date":  "9/30",
+                       "time":  "21:30",
+                       "flagKey":  "United_States",
+                       "currency":  "USD",
                        "importance":  3,
-                       "indicator":  "Exports (YoY)",
-                       "period":  "Sep",
-                       "actual":  "",
-                       "forecast":  "",
-                       "previous":  "68.7%",
+                       "indicator":  "GDP Growth Rate (QoQ, Final)",
+                       "period":  "Q2",
+                       "actual":  "2.2%",
+                       "forecast":  "1.5%",
+                       "previous":  "1.5%",
                        "type":  "preview"
                    },
                    {
@@ -110,9 +95,24 @@
                        "importance":  3,
                        "indicator":  "Balance of Trade",
                        "period":  "Sep",
-                       "actual":  "",
-                       "forecast":  "",
+                       "actual":  "$49.85B",
+                       "forecast":  "$38.20B",
                        "previous":  "$34.75B",
+                       "type":  "preview"
+                   },
+                   {
+                       "id":  "560808",
+                       "datetime":  "2026/10/01 09:00:00",
+                       "date":  "10/1",
+                       "time":  "09:00",
+                       "flagKey":  "South_Korea",
+                       "currency":  "KRW",
+                       "importance":  3,
+                       "indicator":  "Exports (YoY)",
+                       "period":  "Sep",
+                       "actual":  "83.5%",
+                       "forecast":  "",
+                       "previous":  "68.7%",
                        "type":  "preview"
                    },
                    {
@@ -125,7 +125,7 @@
                        "importance":  3,
                        "indicator":  "Initial Jobless Claims",
                        "period":  "",
-                       "actual":  "",
+                       "actual":  "197K",
                        "forecast":  "199K",
                        "previous":  "197K",
                        "type":  "preview"
@@ -140,7 +140,7 @@
                        "importance":  3,
                        "indicator":  "ISM Manufacturing PMI",
                        "period":  "Sep",
-                       "actual":  "",
+                       "actual":  "54.5",
                        "forecast":  "55.0",
                        "previous":  "54.6",
                        "type":  "preview"
@@ -155,24 +155,9 @@
                        "importance":  3,
                        "indicator":  "CPI (YoY)",
                        "period":  "Sep",
-                       "actual":  "",
+                       "actual":  "2.9%",
                        "forecast":  "",
                        "previous":  "3.1%",
-                       "type":  "preview"
-                   },
-                   {
-                       "id":  "560815",
-                       "datetime":  "2026/10/02 21:30:00",
-                       "date":  "10/2",
-                       "time":  "21:30",
-                       "flagKey":  "United_States",
-                       "currency":  "USD",
-                       "importance":  3,
-                       "indicator":  "Nonfarm Payrolls",
-                       "period":  "Sep",
-                       "actual":  "",
-                       "forecast":  "98K",
-                       "previous":  "162K",
                        "type":  "preview"
                    },
                    {
@@ -188,6 +173,21 @@
                        "actual":  "",
                        "forecast":  "4.1%",
                        "previous":  "4.1%",
+                       "type":  "preview"
+                   },
+                   {
+                       "id":  "560815",
+                       "datetime":  "2026/10/02 21:30:00",
+                       "date":  "10/2",
+                       "time":  "21:30",
+                       "flagKey":  "United_States",
+                       "currency":  "USD",
+                       "importance":  3,
+                       "indicator":  "Nonfarm Payrolls",
+                       "period":  "Sep",
+                       "actual":  "",
+                       "forecast":  "98K",
+                       "previous":  "162K",
                        "type":  "preview"
                    }
                ]
