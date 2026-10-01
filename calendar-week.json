@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-10-01T23:15:18Z",
-    "updatedKr":  "2026-10-02 08:15:18",
+    "updated":  "2026-10-01T23:16:10Z",
+    "updatedKr":  "2026-10-02 08:16:10",
     "countries":  [
                       "5",
                       "35",
@@ -221,21 +221,6 @@
                        "type":  "review"
                    },
                    {
-                       "id":  "560809",
-                       "datetime":  "2026/10/01 09:00:00",
-                       "date":  "10/1",
-                       "time":  "09:00",
-                       "flagKey":  "South_Korea",
-                       "currency":  "KRW",
-                       "importance":  3,
-                       "indicator":  "Balance of Trade",
-                       "period":  "Sep",
-                       "actual":  "$49.85B",
-                       "forecast":  "$38.20B",
-                       "previous":  "$34.75B",
-                       "type":  "preview"
-                   },
-                   {
                        "id":  "560808",
                        "datetime":  "2026/10/01 09:00:00",
                        "date":  "10/1",
@@ -248,6 +233,21 @@
                        "actual":  "83.5%",
                        "forecast":  "",
                        "previous":  "68.7%",
+                       "type":  "preview"
+                   },
+                   {
+                       "id":  "560809",
+                       "datetime":  "2026/10/01 09:00:00",
+                       "date":  "10/1",
+                       "time":  "09:00",
+                       "flagKey":  "South_Korea",
+                       "currency":  "KRW",
+                       "importance":  3,
+                       "indicator":  "Balance of Trade",
+                       "period":  "Sep",
+                       "actual":  "$49.85B",
+                       "forecast":  "$38.20B",
+                       "previous":  "$34.75B",
                        "type":  "preview"
                    },
                    {
