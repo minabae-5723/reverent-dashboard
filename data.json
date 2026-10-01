@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-10-01T22:10:05Z",
-    "updatedKr":  "2026-10-02 07:10:05",
+    "updated":  "2026-10-01T22:15:05Z",
+    "updatedKr":  "2026-10-02 07:15:05",
     "index":  [
                   {
                       "key":  "KOSPI",
@@ -141,34 +141,34 @@
                       {
                           "key":  "WTI",
                           "symbol":  "CL=F",
-                          "current":  93.31,
-                          "wow":  -1.37,
-                          "mom":  2.53,
-                          "ytd":  62.79,
+                          "current":  93.15,
+                          "wow":  -1.54,
+                          "mom":  2.35,
+                          "ytd":  62.51,
                           "type":  "pct",
-                          "asOf":  "2026-10-02T07:00:19",
+                          "asOf":  "2026-10-02T07:05:14",
                           "ok":  true
                       },
                       {
                           "key":  "GOLD",
                           "symbol":  "GC=F",
-                          "current":  4206.2,
+                          "current":  4206,
                           "wow":  -2.14,
-                          "mom":  -4.72,
+                          "mom":  -4.73,
                           "ytd":  -2.85,
                           "type":  "pct",
-                          "asOf":  "2026-10-02T07:00:11",
+                          "asOf":  "2026-10-02T07:05:12",
                           "ok":  true
                       },
                       {
                           "key":  "COPPER",
                           "symbol":  "HG=F",
-                          "current":  6.582,
-                          "wow":  -2.03,
-                          "mom":  1.25,
-                          "ytd":  16.7,
+                          "current":  6.576,
+                          "wow":  -2.12,
+                          "mom":  1.15,
+                          "ytd":  16.6,
                           "type":  "pct",
-                          "asOf":  "2026-10-02T07:00:04",
+                          "asOf":  "2026-10-02T07:04:43",
                           "ok":  true
                       },
                       {
@@ -187,12 +187,12 @@
                {
                    "key":  "USDKRW",
                    "symbol":  "KRW=X",
-                   "current":  1359.48,
-                   "wow":  -0.58,
+                   "current":  1359.53,
+                   "wow":  -0.57,
                    "mom":  -0.97,
                    "ytd":  -5.83,
                    "type":  "pct",
-                   "asOf":  "2026-10-02T07:08:05",
+                   "asOf":  "2026-10-02T07:14:47",
                    "ok":  true
                },
                {
@@ -203,18 +203,18 @@
                    "mom":  3.11,
                    "ytd":  4.49,
                    "type":  "pct",
-                   "asOf":  "2026-10-02T07:09:56",
+                   "asOf":  "2026-10-02T07:14:56",
                    "ok":  true
                },
                {
                    "key":  "USDJPY",
                    "symbol":  "JPY=X",
-                   "current":  158.074,
+                   "current":  158.087,
                    "wow":  -0.46,
                    "mom":  -1.32,
-                   "ytd":  0.86,
+                   "ytd":  0.87,
                    "type":  "pct",
-                   "asOf":  "2026-10-02T07:10:06",
+                   "asOf":  "2026-10-02T07:15:08",
                    "ok":  true
                },
                {
@@ -231,12 +231,12 @@
                {
                    "key":  "DXY",
                    "symbol":  "DX-Y.NYB",
-                   "current":  102.045,
-                   "wow":  0.75,
-                   "mom":  2.5,
+                   "current":  102.043,
+                   "wow":  0.74,
+                   "mom":  2.49,
                    "ytd":  3.68,
                    "type":  "pct",
-                   "asOf":  "2026-10-02T07:00:08",
+                   "asOf":  "2026-10-02T07:04:59",
                    "ok":  true
                }
            ],
