@@ -1,11 +1,11 @@
 {
-    "updated":  "2026-10-01T12:55:34Z",
-    "updatedKr":  "2026-10-01 21:55:34",
+    "updated":  "2026-10-01T13:00:38Z",
+    "updatedKr":  "2026-10-01 22:00:38",
     "source":  "CME 30-Day Fed Funds Futures (Yahoo ZQ) + NY Fed EFFR - CME FedWatch methodology",
     "effr":  3.88,
     "targetFrom":  3.75,
     "targetTo":  4,
-    "effrDate":  "2026-09-29",
+    "effrDate":  "2026-09-30",
     "meetings":  [
                      {
                          "idx":  0,
