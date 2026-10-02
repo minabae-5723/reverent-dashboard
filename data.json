@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-10-02T21:35:03Z",
-    "updatedKr":  "2026-10-03 06:35:03",
+    "updated":  "2026-10-02T23:45:03Z",
+    "updatedKr":  "2026-10-03 08:45:03",
     "index":  [
                   {
                       "key":  "KOSPI",
@@ -254,10 +254,10 @@
                 },
                 {
                     "key":  "CDS_CN",
-                    "current":  35.4,
-                    "wow":  1.4,
-                    "mom":  0.3,
-                    "ytd":  -8.1,
+                    "current":  36.74,
+                    "wow":  2.8,
+                    "mom":  1.6,
+                    "ytd":  -6.8,
                     "type":  "bp_abs",
                     "asOf":  "2026-10-02",
                     "ok":  true,
