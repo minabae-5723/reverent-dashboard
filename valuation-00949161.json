@@ -1,0 +1,31 @@
+{
+    "company":  "TMC",
+    "corp_code":  "00949161",
+    "fiscal_period":  "FY2025 Annual (Consolidated)",
+    "unit":  "100M KRW",
+    "fetched_at":  "2026-10-02 17:31:45",
+    "pnl":  {
+                "revenue":  3409,
+                "operating_income":  64,
+                "depreciation":  null,
+                "ebitda":  null,
+                "net_income":  -4
+            },
+    "equity_total":  1108,
+    "debt":  {
+                 "st_borrowings":  null,
+                 "current_lt_borrowings":  null,
+                 "current_lease":  12,
+                 "lt_borrowings":  119,
+                 "nc_lease":  22
+             },
+    "cash":  {
+                 "cash_and_equivalents":  105,
+                 "st_financial_invest":  null
+             },
+    "derived":  {
+                    "total_debt":  153,
+                    "total_cash":  105,
+                    "net_debt":  48
+                }
+}

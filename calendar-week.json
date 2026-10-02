@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-10-01T23:16:10Z",
-    "updatedKr":  "2026-10-02 08:16:10",
+    "updated":  "2026-10-02T22:00:23Z",
+    "updatedKr":  "2026-10-03 07:00:23",
     "countries":  [
                       "5",
                       "35",
@@ -305,10 +305,10 @@
                        "importance":  3,
                        "indicator":  "Nonfarm Payrolls",
                        "period":  "Sep",
-                       "actual":  "",
-                       "forecast":  "98K",
+                       "actual":  "29K",
+                       "forecast":  "89K",
                        "previous":  "162K",
-                       "type":  "preview"
+                       "type":  "review"
                    },
                    {
                        "id":  "560816",
@@ -320,10 +320,10 @@
                        "importance":  3,
                        "indicator":  "Unemployment Rate",
                        "period":  "Sep",
-                       "actual":  "",
+                       "actual":  "4.2%",
                        "forecast":  "4.1%",
                        "previous":  "4.1%",
-                       "type":  "preview"
+                       "type":  "review"
                    }
                ]
 }

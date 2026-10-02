@@ -1,0 +1,31 @@
+{
+    "company":  "CSITE",
+    "corp_code":  "00492706",
+    "fiscal_period":  "LTM 2Q26 (FY2025 + 2Q(H1 cum)2026 - 2Q(H1 cum)2025)",
+    "unit":  "100M KRW",
+    "fetched_at":  "2026-10-02 17:31:43",
+    "pnl":  {
+                "revenue":  1647,
+                "operating_income":  0,
+                "depreciation":  null,
+                "ebitda":  null,
+                "net_income":  8
+            },
+    "equity_total":  555,
+    "debt":  {
+                 "st_borrowings":  null,
+                 "current_lt_borrowings":  null,
+                 "current_lease":  16,
+                 "lt_borrowings":  null,
+                 "nc_lease":  5
+             },
+    "cash":  {
+                 "cash_and_equivalents":  277,
+                 "st_financial_invest":  46
+             },
+    "derived":  {
+                    "total_debt":  21,
+                    "total_cash":  323,
+                    "net_debt":  -302
+                }
+}
