@@ -471,6 +471,25 @@ do {
     $shouldFreeze = (-not (Test-Path $FrozenFile)) -or ($isRollDay -and -not $sameWeek)
     $isFriday = ($dow -eq [System.DayOfWeek]::Friday)
 
+    # Roll only from real Investing data for the NEW ranges. When the fetch was
+    # 403'd, calendar-week/next-week.json hold the frozen-fallback copy of the OLD
+    # thisWeek/nextWeek, and freezing from that advances the range labels while
+    # leaving last week's events in place (2026-10-04 bug). Skip; the next cycle
+    # after the browser fetch lands investing data will roll correctly.
+    if ($shouldFreeze -and (Test-Path $FrozenFile)) {
+        $srcOk = $false
+        try {
+            $wd = Get-Content $WeekFile     -Raw -Encoding UTF8 | ConvertFrom-Json
+            $nd = Get-Content $NextWeekFile -Raw -Encoding UTF8 | ConvertFrom-Json
+            $srcOk = ($wd.source -eq 'investing') -and ($wd.tab -eq "custom $weekFrom~$weekTo") -and
+                     ($nd.source -eq 'investing') -and ($nd.tab -eq "custom $previewFrom~$previewTo")
+        } catch {}
+        if (-not $srcOk) {
+            Write-Host "  frozen:   roll skipped - calendar files are not investing data for the new weeks" -ForegroundColor DarkYellow
+            $shouldFreeze = $false
+        }
+    }
+
     if ($shouldFreeze) {
         $weekData = $null; $nextData = $null
         try { $weekData = Get-Content $WeekFile     -Raw -Encoding UTF8 | ConvertFrom-Json } catch {}
