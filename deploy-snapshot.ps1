@@ -88,12 +88,9 @@ Invoke-FetchScript -Name 'refresh.ps1' -Path (Join-Path $root 'refresh.ps1')
 # The roll is handled by the daily-weekly-calendar task, which runs Tue-Fri.
 Write-Host ""
 $nowLocal = Get-Date
-# Freeze end = 12:00; one-off date overrides mirror refresh.ps1.
-$freezeEndOverrides = @{ '2026-09-28' = '15:30' }
-$freezeEnd = $nowLocal.Date.AddHours(12)
-$ovr = $freezeEndOverrides[$nowLocal.ToString('yyyy-MM-dd')]
-if ($ovr) { $freezeEnd = $nowLocal.Date.Add([TimeSpan]::Parse($ovr)) }
-$mondayFreeze = ($nowLocal.DayOfWeek -eq [DayOfWeek]::Monday -and $nowLocal -lt $freezeEnd)
+# Freeze window (holiday-shifted, overrides in kr-holidays.json) mirrors refresh.ps1.
+. (Join-Path $root 'kr-calendar.ps1')
+$mondayFreeze = (Get-MondayFreeze $nowLocal).Active
 if ($mondayFreeze) {
     Write-Host "[2/5] Calendar refresh SKIPPED - Monday morning freeze" -ForegroundColor Cyan
     Write-Host "        weekend frozen state kept (last week Review / this week Preview)" -ForegroundColor DarkGray

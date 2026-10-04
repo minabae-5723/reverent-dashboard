@@ -306,6 +306,12 @@ async function loadCalendar() {
   // Market Update now shows a frozen weekly digest (this week + next week,
   // top 5 each), updated at weekend by fetch-calendar.ps1. The legacy "today"
   // single-table rendering and macro.js static fallback are gone.
+  if (!window.KR_CAL) {
+    try {
+      const r = await fetch(`kr-holidays.json?_=${Date.now()}`, { cache: 'no-store' });
+      if (r.ok) window.KR_CAL = await r.json();
+    } catch (e) { /* fall back to plain Monday freeze */ }
+  }
   try {
     const res = await fetch(`${MACRO_FROZEN_URL}?_=${Date.now()}`, { cache: 'no-store' });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
@@ -337,15 +343,27 @@ function renderMacroWeekly(data) {
   const rightCard = rt?.closest('.card');
   const subTitle  = document.getElementById('macroSubTitle');
 
-  // Monday noon KST ~ Thursday: show only this-week card (single column)
-  // Friday ~ Monday morning: show both REVIEW + PREVIEW (two columns)
+  // Freeze-day noon KST ~ Thursday: show only this-week card (single column)
+  // Friday ~ freeze end: show both REVIEW + PREVIEW (two columns)
+  // Freeze day = first non-holiday weekday (Mon, or Tue if Mon is a holiday);
+  // holidays + one-off end overrides come from kr-holidays.json (mirrors kr-calendar.ps1).
   const kst = new Date(Date.now() + 9 * 3600000);
   const kstDay = kst.getUTCDay();
   const kstMin = kst.getUTCHours() * 60 + kst.getUTCMinutes();
-  // One-off Monday freeze-end overrides (KST minutes); mirrors refresh.ps1.
-  const freezeEndOverrides = { '2026-09-28': 15 * 60 + 30 };
-  const freezeEnd = freezeEndOverrides[kst.toISOString().slice(0, 10)] ?? 12 * 60;
-  const singleCard = (kstDay === 1 && kstMin >= freezeEnd) || (kstDay >= 2 && kstDay <= 4);
+  const holidays = window.KR_CAL?.holidays || {};
+  const overrides = window.KR_CAL?.freezeEndOverrides || {};
+  const ymd = (d) => d.toISOString().slice(0, 10);
+  let freezeDow = 1;
+  for (let dow = 1; dow <= 5; dow++) {
+    const d = new Date(kst.getTime() + (dow - kstDay) * 86400000);
+    freezeDow = dow;
+    if (!holidays[ymd(d)]) break;
+  }
+  const freezeDate = ymd(new Date(kst.getTime() + (freezeDow - kstDay) * 86400000));
+  const [oh, om] = (overrides[freezeDate] || '12:00').split(':').map(Number);
+  const freezeEnd = oh * 60 + om;
+  const singleCard = kstDay >= 1 && kstDay <= 4 &&
+    (kstDay > freezeDow || (kstDay === freezeDow && kstMin >= freezeEnd));
 
   if (singleCard) {
     // Determine which side holds the current week by checking today vs ranges

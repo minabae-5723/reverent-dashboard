@@ -32,13 +32,12 @@ $DataFile  = Join-Path $PSScriptRoot 'data.json'
 # and refresh-push-market.ps1 finds no diff to commit. Use -Force to override.
 # ----------------------------------------------------------------
 $nowLocal = Get-Date
-# Freeze end = 12:00 by default. One-off date overrides (user request) push it
-# later for that Monday only; stale entries are harmless and can be pruned.
-$freezeEndOverrides = @{ '2026-09-28' = '15:30' }
-$freezeEnd = $nowLocal.Date.AddHours(12)
-$ovr = $freezeEndOverrides[$nowLocal.ToString('yyyy-MM-dd')]
-if ($ovr) { $freezeEnd = $nowLocal.Date.Add([TimeSpan]::Parse($ovr)) }
-if (-not $Force -and $nowLocal.DayOfWeek -eq [DayOfWeek]::Monday -and $nowLocal -lt $freezeEnd) {
+# Freeze window lives in kr-calendar.ps1 (user rule 2026-10-04): if Monday is a
+# public holiday the freeze rolls to the next workday (Mon 00:00 -> that day
+# 12:00). One-off end-time overrides are in kr-holidays.json.
+. (Join-Path $PSScriptRoot 'kr-calendar.ps1')
+$fz = Get-MondayFreeze $nowLocal
+if (-not $Force -and $fz.Active) {
     Write-Host ""
     Write-Host " Capital Market refresh SKIPPED - Monday morning freeze" -ForegroundColor Cyan
     Write-Host ("   {0} -> weekend snapshot kept (data.json untouched)" -f $nowLocal.ToString('yyyy-MM-dd HH:mm ddd')) -ForegroundColor DarkGray
