@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-10-02T22:00:23Z",
-    "updatedKr":  "2026-10-03 07:00:23",
+    "updated":  "2026-10-04T11:24:57Z",
+    "updatedKr":  "2026-10-04 20:24:57",
     "countries":  [
                       "5",
                       "35",
@@ -221,21 +221,6 @@
                        "type":  "review"
                    },
                    {
-                       "id":  "560808",
-                       "datetime":  "2026/10/01 09:00:00",
-                       "date":  "10/1",
-                       "time":  "09:00",
-                       "flagKey":  "South_Korea",
-                       "currency":  "KRW",
-                       "importance":  3,
-                       "indicator":  "Exports (YoY)",
-                       "period":  "Sep",
-                       "actual":  "83.5%",
-                       "forecast":  "",
-                       "previous":  "68.7%",
-                       "type":  "preview"
-                   },
-                   {
                        "id":  "560809",
                        "datetime":  "2026/10/01 09:00:00",
                        "date":  "10/1",
@@ -248,6 +233,21 @@
                        "actual":  "$49.85B",
                        "forecast":  "$38.20B",
                        "previous":  "$34.75B",
+                       "type":  "preview"
+                   },
+                   {
+                       "id":  "560808",
+                       "datetime":  "2026/10/01 09:00:00",
+                       "date":  "10/1",
+                       "time":  "09:00",
+                       "flagKey":  "South_Korea",
+                       "currency":  "KRW",
+                       "importance":  3,
+                       "indicator":  "Exports (YoY)",
+                       "period":  "Sep",
+                       "actual":  "83.5%",
+                       "forecast":  "",
+                       "previous":  "68.7%",
                        "type":  "preview"
                    },
                    {

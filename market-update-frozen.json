@@ -1,8 +1,8 @@
 {
-    "updated":  "2026-10-02T22:00:23Z",
-    "updatedKr":  "2026-10-03 07:00:23",
-    "frozenDow":  "Tuesday",
-    "reviewRange":  "2026-09-21~2026-09-25",
+    "updated":  "2026-10-04T11:24:57Z",
+    "updatedKr":  "2026-10-04 20:24:57",
+    "frozenDow":  "Sunday",
+    "reviewRange":  "2026-09-28~2026-10-02",
     "previewRange":  "2026-10-05~2026-10-09",
     "thisWeek":  [
                      {
@@ -218,21 +218,6 @@
                          "type":  "preview"
                      },
                      {
-                         "id":  "560809",
-                         "datetime":  "2026/10/01 09:00:00",
-                         "date":  "10/1",
-                         "time":  "09:00",
-                         "flagKey":  "South_Korea",
-                         "currency":  "KRW",
-                         "importance":  3,
-                         "indicator":  "Balance of Trade",
-                         "period":  "Sep",
-                         "actual":  "$49.85B",
-                         "forecast":  "$38.20B",
-                         "previous":  "$34.75B",
-                         "type":  "preview"
-                     },
-                     {
                          "id":  "560808",
                          "datetime":  "2026/10/01 09:00:00",
                          "date":  "10/1",
@@ -245,6 +230,21 @@
                          "actual":  "83.5%",
                          "forecast":  "",
                          "previous":  "68.7%",
+                         "type":  "preview"
+                     },
+                     {
+                         "id":  "560809",
+                         "datetime":  "2026/10/01 09:00:00",
+                         "date":  "10/1",
+                         "time":  "09:00",
+                         "flagKey":  "South_Korea",
+                         "currency":  "KRW",
+                         "importance":  3,
+                         "indicator":  "Balance of Trade",
+                         "period":  "Sep",
+                         "actual":  "$49.85B",
+                         "forecast":  "$38.20B",
+                         "previous":  "$34.75B",
                          "type":  "preview"
                      },
                      {
