@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-10-04T22:00:05Z",
-    "updatedKr":  "2026-10-05 07:00:05",
+    "updated":  "2026-10-05T02:49:03Z",
+    "updatedKr":  "2026-10-05 11:49:03",
     "source":  "data.go.kr #15101609 (관세청 품목별 수출입실적 GW)",
     "range":  "2025-2026",
     "ssd":  [
@@ -4265,6 +4265,16 @@
                      "impDlrRaw":  null,
                      "impWgtRaw":  null,
                      "prov":  true
+                 },
+                 {
+                     "month":  "2026-09",
+                     "value":  3296.75,
+                     "weight":  41915,
+                     "unitPrice":  78653,
+                     "expDlrRaw":  3296750000,
+                     "impDlrRaw":  null,
+                     "impWgtRaw":  null,
+                     "prov":  true
                  }
              ],
     "dram":  [
@@ -6392,6 +6402,16 @@
                      "impDlrRaw":  null,
                      "impWgtRaw":  null,
                      "prov":  true
+                 },
+                 {
+                     "month":  "2026-09",
+                     "value":  16777.02,
+                     "weight":  233546,
+                     "unitPrice":  71836,
+                     "expDlrRaw":  16777020000,
+                     "impDlrRaw":  null,
+                     "impWgtRaw":  null,
+                     "prov":  true
                  }
              ],
     "mcp":  [
@@ -8516,6 +8536,16 @@
                     "weight":  123657,
                     "unitPrice":  98862,
                     "expDlrRaw":  12225000000,
+                    "impDlrRaw":  null,
+                    "impWgtRaw":  null,
+                    "prov":  true
+                },
+                {
+                    "month":  "2026-09",
+                    "value":  15013.99,
+                    "weight":  147860,
+                    "unitPrice":  101542,
+                    "expDlrRaw":  15013990000,
                     "impDlrRaw":  null,
                     "impWgtRaw":  null,
                     "prov":  true
