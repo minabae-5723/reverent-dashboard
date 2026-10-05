@@ -1856,8 +1856,12 @@ function _isMacroSection(name) {
 //
 // RE-ENABLED 2026-09-27 (user request): "자본시장 동향에만 카드뉴스 추가란 만들자" —
 // 자본시장 동향 articles only; Macro 동향 / 주요 거래 동향 stay off.
+//
+// DISABLED 2026-10-05 (user request): "macro 동향의 카드뉴스란은 삭제, 내가 추가하라고
+// 할 때만 추가" — no per-article card-news slot on the Macro/자본시장/거래동향 page
+// by default. Re-enable (restore /자본시장\s*동향/) only when the user asks.
 function _isCapitalMarketSection(name) {
-  return /자본시장\s*동향/.test(name);
+  return false;
 }
 
 function renderDealsContent(md) {
