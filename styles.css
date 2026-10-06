@@ -2981,9 +2981,28 @@ html, body {
   margin-top: 4px;
   margin-bottom: 16px;
 }
+/* Comment shows in full (textarea auto-grows to its content, app.js
+   autosizeSemiconComment) and the whole block folds via <details>. */
 .semicon-comment-block .macro-comment-area {
-  min-height: 84px;
+  min-height: 160px;
+  overflow: hidden;
+  resize: none;
 }
+.semicon-comment-summary {
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+  margin-bottom: 0;
+}
+.semicon-comment-summary::-webkit-details-marker { display: none; }
+.semicon-comment-summary::before {
+  content: '▸';
+  display: inline-block;
+  width: 14px;
+  transition: transform 0.15s ease;
+}
+.semicon-comment-block[open] > .semicon-comment-summary { margin-bottom: 6px; }
+.semicon-comment-block[open] > .semicon-comment-summary::before { transform: rotate(90deg); }
 .macro-comment-label {
   display: block;
   font-size: 12px;

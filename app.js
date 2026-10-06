@@ -2060,11 +2060,38 @@ function setupDashboardMacroComment() {
 
 // 반도체 수출입(#semicon) 코멘트 — 금액·물량·가격 변동 원인 (dashboard 코멘트와 동일 메커니즘)
 function setupSemiconComment() {
+  const ta = document.getElementById('semiconCommentArea');
   wireFixSaveTextarea({
-    textarea: document.getElementById('semiconCommentArea'),
+    textarea: ta,
     fixBtn:   document.getElementById('semiconCommentFix'),
     statusEl: document.getElementById('semiconCommentStatus'),
   });
+  if (!ta) return;
+  // Show the whole comment at once: grow the box to its content.
+  ta.addEventListener('input', autosizeSemiconComment);
+  window.addEventListener('resize', autosizeSemiconComment);
+  // Re-measure when the board becomes visible (hidden sections report scrollHeight 0).
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver((es) => { if (es.some(e => e.isIntersecting)) autosizeSemiconComment(); }).observe(ta);
+  }
+  // Fold state is a per-viewer convenience.
+  const det = document.getElementById('semiconCommentDetails');
+  if (det) {
+    try { if (localStorage.getItem('semicon-comment-open') === '0') det.open = false; } catch (e) {}
+    det.addEventListener('toggle', () => {
+      try { localStorage.setItem('semicon-comment-open', det.open ? '1' : '0'); } catch (e) {}
+      if (det.open) autosizeSemiconComment();
+    });
+  }
+  autosizeSemiconComment();
+}
+
+function autosizeSemiconComment() {
+  const ta = document.getElementById('semiconCommentArea');
+  // Skip while hidden or not laid out yet (a near-zero width would measure a huge height).
+  if (!ta || !ta.offsetParent || ta.offsetWidth < 200) return;
+  ta.style.height = 'auto';
+  ta.style.height = ta.scrollHeight + 2 + 'px';
 }
 
 // Counter for per-render valuation card ids — reset every renderDealsContent call
