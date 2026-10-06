@@ -155,12 +155,16 @@ function Get-NameTokens {
 # Best Investing event for a frozen event: same datetime + country, highest
 # token Jaccard similarity (>= 0.5). Returns $null when nothing is close enough.
 function Find-EventMatch {
-    param($fe, $cands)
+    param($fe, $cands, $ExcludeIds = @())
     $ft = Get-NameTokens $fe.indicator
     $best = $null; $bestScore = 0.0
     foreach ($c in $cands) {
         if ($c.datetime -ne $fe.datetime -or $c.flagKey -ne $fe.flagKey) { continue }
-        if ($c.id -eq $fe.id) { continue }   # its own copy (reverse-synced frozen row)
+        # Same id = same event (Investing row or its reverse-synced frozen copy).
+        # Skipping it let fuzzy matching grab a sibling ("Core PCE YoY" -> "PCE YoY",
+        # "ISM PMI" -> "ISM Prices") and swap values (2026-10-06).
+        if ($c.id -eq $fe.id) { return $c }
+        if ($ExcludeIds -contains $c.id) { continue }   # another frozen event's row/copy
         if ($c.indicator -eq $fe.indicator) { return $c }
         $ct = Get-NameTokens $c.indicator
         $inter = @($ft | Where-Object { $ct -contains $_ }).Count
@@ -542,7 +546,7 @@ do {
                     # Frozen names often differ from Investing's ("…PMI Flash", "(Final)",
                     # "GDP Growth Rate", "ADP Employment Change"), so exact-name matching
                     # silently left actuals blank. Match same datetime + country, best name.
-                    $match = Find-EventMatch $fe $freshEvents
+                    $match = Find-EventMatch $fe $freshEvents @(@($fz.thisWeek) + @($fz.nextWeek) | ForEach-Object { $_.id })
                     if (-not $match) { continue }
                     if ($match.previous -and $match.previous -ne $fe.previous) { $fe.previous = $match.previous; $count++ }
                     if ($match.actual -and $match.actual -ne $fe.actual) {
@@ -676,13 +680,13 @@ do {
                 if ($d -lt $t.From -or $d -gt $t.To) { continue }
 
                 if (-not (Test-EventAllowed $fe)) { continue }
-                $match = Find-EventMatch $fe $events
+                $match = Find-EventMatch $fe $events @($frozenAll | ForEach-Object { $_.id })
                 # A real Investing row exists → drop the stale reverse-synced copy of this frozen row.
-                if ($match) {
+                if ($match -and $match.id -ne $fe.id) {
                     $nBefore = $events.Count
                     $events = @($events | Where-Object { $_.id -ne $fe.id })
                     if ($events.Count -ne $nBefore) { $changed++ }
-                } else {
+                } elseif (-not $match) {
                     # no Investing row: keep updating the existing copy instead of re-adding it
                     $match = $events | Where-Object { $_.id -eq $fe.id } | Select-Object -First 1
                 }
