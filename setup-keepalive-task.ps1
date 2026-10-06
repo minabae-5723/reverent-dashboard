@@ -10,13 +10,14 @@ if (-not (Test-Path $ka))  { throw "missing health check: $ka" }
 
 $act = New-ScheduledTaskAction -Execute 'wscript.exe' -Argument ('"{0}" "{1}"' -f $vbs, $ka)
 $t1  = New-ScheduledTaskTrigger -Once -At (Get-Date).AddMinutes(1) `
-         -RepetitionInterval (New-TimeSpan -Minutes 5) -RepetitionDuration ([TimeSpan]::MaxValue)
-$t2  = New-ScheduledTaskTrigger -AtLogOn
+         -RepetitionInterval (New-TimeSpan -Minutes 5) -RepetitionDuration (New-TimeSpan -Days 3650)
+$t2  = New-ScheduledTaskTrigger -AtLogOn -User $env:USERNAME   # user-scoped: a bare -AtLogOn needs admin (Access denied)
 $set = New-ScheduledTaskSettingsSet -MultipleInstances IgnoreNew `
          -ExecutionTimeLimit (New-TimeSpan -Minutes 2) `
          -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries -StartWhenAvailable
 
-Register-ScheduledTask -TaskName 'ReverentDashboard-KeepAlive' -Action $act -Trigger $t1,$t2 `
+$pr  = New-ScheduledTaskPrincipal -UserId $env:USERNAME -LogonType Interactive -RunLevel Limited
+Register-ScheduledTask -TaskName 'ReverentDashboard-KeepAlive' -Action $act -Trigger $t1,$t2 -Principal $pr `
     -Settings $set -Force `
     -Description 'Restart reverent-dashboard serve.ps1 (localhost:8000) if it is down. Every 5 min + at logon.' |
     Select-Object TaskName, State | Format-List

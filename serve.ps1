@@ -223,7 +223,12 @@ Write-Host "[1/3] Initial data fetch (background, non-blocking)..." -ForegroundC
 if (Test-Path -LiteralPath $refreshScript) {
     Start-Process powershell -ArgumentList '-NoProfile','-ExecutionPolicy','Bypass','-File',$refreshScript -WorkingDirectory $root -WindowStyle Hidden
 }
-if (Test-Path -LiteralPath $calendarScript) {
+# Monday-Brief freeze (holiday-shifted, kr-calendar.ps1): a server (re)start
+# inside the freeze must not rewrite the frozen calendar files.
+. (Join-Path $root 'kr-calendar.ps1')
+$startupFreeze = (Get-MondayFreeze (Get-Date)).Active
+if ($startupFreeze) { Write-Host "  calendar fetch skipped - Monday freeze" -ForegroundColor DarkGray }
+if ((Test-Path -LiteralPath $calendarScript) -and -not $startupFreeze) {
     Start-Process powershell -ArgumentList '-NoProfile','-ExecutionPolicy','Bypass','-File',$calendarScript -WorkingDirectory $root -WindowStyle Hidden
 }
 Write-Host ""
