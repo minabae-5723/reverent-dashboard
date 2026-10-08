@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-10-07T22:00:31Z",
-    "updatedKr":  "2026-10-08 07:00:31",
+    "updated":  "2026-10-08T22:00:27Z",
+    "updatedKr":  "2026-10-09 07:00:27",
     "countries":  [
                       "5",
                       "35",
@@ -50,10 +50,10 @@
                        "importance":  3,
                        "indicator":  "10-Year Note Auction",
                        "period":  "",
-                       "actual":  "",
+                       "actual":  "5.300%",
                        "forecast":  "",
                        "previous":  "4.834%",
-                       "type":  "preview"
+                       "type":  "review"
                    },
                    {
                        "id":  "558345",
