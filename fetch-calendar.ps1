@@ -362,56 +362,6 @@ function Get-WeekBounds {
     }
 }
 
-do {
-    $start = Get-Date
-    Write-Host ("[{0}] Calendar fetch (US/JP/KR)..." -f $start.ToString('HH:mm:ss')) -ForegroundColor Cyan
-
-    # Review = this calendar week Mon..today (라벨 전용 — 발표완료/과거 이벤트 구간)
-    # Preview = next calendar week Mon..Sun (upcoming events)
-    # calendar-week.json(#weekly 뷰)은 이번주 전체(월~일)를 담는다 — 주 초반에도 일주일치 다 보이도록
-    $wb = Get-WeekBounds
-    # 라벨용 Review 구간(월~오늘) + #weekly 뷰용 이번주 전체(월~일)
-    $reviewFrom  = '{0:yyyy-MM-dd}' -f $wb.thisMon
-    $weekFrom    = '{0:yyyy-MM-dd}' -f $wb.thisMon
-    $weekTo      = '{0:yyyy-MM-dd}' -f $wb.thisSun
-    $previewFrom = '{0:yyyy-MM-dd}' -f $wb.nextMon
-    $previewTo   = '{0:yyyy-MM-dd}' -f $wb.nextSun
-    # REVIEW/PREVIEW 카드 제목에 찍히는 라벨은 영업주(월~금) 기준으로 고정한다.
-    # (fetch 구간은 위 월~일 그대로 두고 라벨만 금요일에서 끊는다)
-    $reviewLabelTo  = '{0:yyyy-MM-dd}' -f $wb.thisMon.AddDays(4)
-    $previewLabelTo = '{0:yyyy-MM-dd}' -f $wb.nextMon.AddDays(4)
-
-    $today    = Save-Calendar -Tab 'today' -OutPath $TodayFile -FrozenKey 'thisWeek'
-    $week     = Save-Calendar -Tab 'custom' -DateFrom $weekFrom    -DateTo $weekTo    -OutPath $WeekFile     -FrozenKey 'thisWeek'
-    $nextWeek = Save-Calendar -Tab 'custom' -DateFrom $previewFrom -DateTo $previewTo -OutPath $NextWeekFile -FrozenKey 'nextWeek'
-
-    $elapsed = [int](New-TimeSpan -Start $start -End (Get-Date)).TotalSeconds
-    Write-Host ("  today:    {0} events ({1} medium+) -> calendar.json"           -f $today.count,    $today.highImp)    -ForegroundColor Green
-    Write-Host ("  Week ({0}~{1}): {2} events ({3} medium+) -> calendar-week.json" -f $weekFrom, $weekTo, $week.count, $week.highImp) -ForegroundColor Green
-    Write-Host ("  Preview ({0}~{1}): {2} events ({3} medium+) -> calendar-next-week.json" -f $previewFrom, $previewTo, $nextWeek.count, $nextWeek.highImp) -ForegroundColor Green
-
-    # ─── Frozen weekly snapshot for Market Update dashboard section ───
-    # REVIEW/PREVIEW 짝은 '일요일'에만 넘어간다 (사용자 규칙).
-    # 일요일 freeze → REVIEW = 막 끝난 주, PREVIEW = 다가오는 주.
-    # 월~토에는 그 짝이 그대로 유지되므로 주중에 라벨이 바뀌지 않는다.
-    $dow = (Get-Date).DayOfWeek
-    $isRollDay = ($dow -eq [System.DayOfWeek]::Sunday)
-
-    # Preserve manual curation: if a freeze for THIS week already exists, keep it.
-    # Week identity = this-week Monday ($reviewFrom) + next-week Monday ($previewFrom),
-    # both stable across Fri→Sun. The auto-pick below would clobber indicators the
-    # user manually added/removed in the dashboard, so only (re)freeze when the file
-    # is missing OR it's a genuinely NEW week. (The first freeze of the week is the
-    # auto-digest; the user curates it, and weekend restarts no longer overwrite it.)
-    $sameWeek = $false
-    if (Test-Path $FrozenFile) {
-        try {
-            $existingFrozen = Get-Content $FrozenFile -Raw -Encoding UTF8 | ConvertFrom-Json
-            $exRevFrom  = ($existingFrozen.reviewRange  -split '~')[0]
-            $exPrevFrom = ($existingFrozen.previewRange -split '~')[0]
-            if ($exRevFrom -eq $reviewFrom -and $exPrevFrom -eq $previewFrom) { $sameWeek = $true }
-        } catch {}
-    }
     # ── Shared helpers for freeze / Friday update ──
     # 주당 10~16건 (미국+한국+일본). 종전 top-7은 너무 적어 preview가 매번 잘려나갔다.
     $maxN = 14
@@ -427,6 +377,8 @@ do {
                 ($_.indicator -match '(?i)^CPI[,]?\s*(n\.s\.a|s\.a|Index)') -or
                 ($_.indicator -match '(?i)^Cleveland CPI') -or
                 ($_.indicator -match '(?i)Speaks$') -or
+                ($_.indicator -match '(?i)Crude Oil Inventories') -or
+                ($_.indicator -match '(?i)^S&P Global') -or
                 ($_.indicator -match '(?i)Press Conference') -or
                 ($_.indicator -match '(?i)^ECB (Monetary Policy Statement|Marginal Lending|Economic Bulletin)') -or
                 (($_.indicator -match '(?i)CPI') -and ($_.flagKey -eq 'Europe')) -or
@@ -471,6 +423,101 @@ do {
             }
         }
     }
+
+do {
+    $start = Get-Date
+    Write-Host ("[{0}] Calendar fetch (US/JP/KR)..." -f $start.ToString('HH:mm:ss')) -ForegroundColor Cyan
+
+    # Review = this calendar week Mon..today (라벨 전용 — 발표완료/과거 이벤트 구간)
+    # Preview = next calendar week Mon..Sun (upcoming events)
+    # calendar-week.json(#weekly 뷰)은 이번주 전체(월~일)를 담는다 — 주 초반에도 일주일치 다 보이도록
+    $wb = Get-WeekBounds
+    # 라벨용 Review 구간(월~오늘) + #weekly 뷰용 이번주 전체(월~일)
+    $reviewFrom  = '{0:yyyy-MM-dd}' -f $wb.thisMon
+    $weekFrom    = '{0:yyyy-MM-dd}' -f $wb.thisMon
+    $weekTo      = '{0:yyyy-MM-dd}' -f $wb.thisSun
+    $previewFrom = '{0:yyyy-MM-dd}' -f $wb.nextMon
+    $previewTo   = '{0:yyyy-MM-dd}' -f $wb.nextSun
+    # REVIEW/PREVIEW 카드 제목에 찍히는 라벨은 영업주(월~금) 기준으로 고정한다.
+    # (fetch 구간은 위 월~일 그대로 두고 라벨만 금요일에서 끊는다)
+    $reviewLabelTo  = '{0:yyyy-MM-dd}' -f $wb.thisMon.AddDays(4)
+    $previewLabelTo = '{0:yyyy-MM-dd}' -f $wb.nextMon.AddDays(4)
+
+    # --- Catch-up roll (2026-10-11) ---
+    # The roll below only fires on Sunday AND only when calendar-week/next-week.json
+    # already hold real Investing data for the new weeks (403 guard). If the browser
+    # fetch lands late (or the Sunday run is skipped), Sunday passes without a roll
+    # and the Macro Economy board stays one week behind until the NEXT Sunday
+    # (2026-10-11: REVIEW stuck on 09-28 week). Mon-Sat: if the frozen pairing is
+    # stale (expected REVIEW = last week, PREVIEW = this week) and the calendar files
+    # still hold Investing data for exactly those two weeks, freeze from them now,
+    # BEFORE Save-Calendar replaces the expired last-week file with a fallback.
+    if ($wb.today.DayOfWeek -ne [System.DayOfWeek]::Sunday -and (Test-Path $FrozenFile)) {
+        try {
+            $expRevMon  = $wb.thisMon.AddDays(-7)
+            $expRevFrom = '{0:yyyy-MM-dd}' -f $expRevMon
+            $fzNow = Get-Content $FrozenFile -Raw -Encoding UTF8 | ConvertFrom-Json
+            $fzRevFrom = ($fzNow.reviewRange -split '~')[0]
+            if ($fzRevFrom -lt $expRevFrom) {
+                $cw = Get-Content $WeekFile     -Raw -Encoding UTF8 | ConvertFrom-Json
+                $cn = Get-Content $NextWeekFile -Raw -Encoding UTF8 | ConvertFrom-Json
+                $revTab  = 'custom {0:yyyy-MM-dd}~{1:yyyy-MM-dd}' -f $expRevMon, $expRevMon.AddDays(6)
+                $prevTab = "custom $weekFrom~$weekTo"
+                if ($cw.source -eq 'investing' -and $cw.tab -eq $revTab -and $cn.source -eq 'investing' -and $cn.tab -eq $prevTab) {
+                    $cuRev  = & $pickTop5 $cw.events
+                    $cuPrev = & $pickTop5 $cn.events
+                    & $applyFedRange $cuRev
+                    & $applyFedRange $cuPrev
+                    $cu = [ordered]@{
+                        updated      = (Get-Date).ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ")
+                        updatedKr    = (Get-Date).ToString('yyyy-MM-dd HH:mm:ss')
+                        frozenDow    = 'catch-up ' + $wb.today.DayOfWeek.ToString()
+                        reviewRange  = '{0}~{1:yyyy-MM-dd}' -f $expRevFrom, $expRevMon.AddDays(4)
+                        previewRange = '{0}~{1:yyyy-MM-dd}' -f $weekFrom, $wb.thisMon.AddDays(4)
+                        thisWeek     = @($cuRev)
+                        nextWeek     = @($cuPrev)
+                    }
+                    [System.IO.File]::WriteAllText($FrozenFile, ($cu | ConvertTo-Json -Depth 8), (New-Object System.Text.UTF8Encoding($false)))
+                    Write-Host ("  frozen:   CATCH-UP roll -> REVIEW {0} / PREVIEW {1}" -f $cu.reviewRange, $cu.previewRange) -ForegroundColor Yellow
+                } else {
+                    Write-Warning ("frozen pairing is stale (REVIEW from {0}, expected {1}) and calendar files lack Investing data for those weeks - run the browser calendar fetch, then fetch-calendar.ps1" -f $fzRevFrom, $expRevFrom)
+                }
+            }
+        } catch { Write-Warning ("catch-up roll fail: " + $_.Exception.Message) }
+    }
+
+    $today    = Save-Calendar -Tab 'today' -OutPath $TodayFile -FrozenKey 'thisWeek'
+    $week     = Save-Calendar -Tab 'custom' -DateFrom $weekFrom    -DateTo $weekTo    -OutPath $WeekFile     -FrozenKey 'thisWeek'
+    $nextWeek = Save-Calendar -Tab 'custom' -DateFrom $previewFrom -DateTo $previewTo -OutPath $NextWeekFile -FrozenKey 'nextWeek'
+
+    $elapsed = [int](New-TimeSpan -Start $start -End (Get-Date)).TotalSeconds
+    Write-Host ("  today:    {0} events ({1} medium+) -> calendar.json"           -f $today.count,    $today.highImp)    -ForegroundColor Green
+    Write-Host ("  Week ({0}~{1}): {2} events ({3} medium+) -> calendar-week.json" -f $weekFrom, $weekTo, $week.count, $week.highImp) -ForegroundColor Green
+    Write-Host ("  Preview ({0}~{1}): {2} events ({3} medium+) -> calendar-next-week.json" -f $previewFrom, $previewTo, $nextWeek.count, $nextWeek.highImp) -ForegroundColor Green
+
+    # ─── Frozen weekly snapshot for Market Update dashboard section ───
+    # REVIEW/PREVIEW 짝은 '일요일'에만 넘어간다 (사용자 규칙).
+    # 일요일 freeze → REVIEW = 막 끝난 주, PREVIEW = 다가오는 주.
+    # 월~토에는 그 짝이 그대로 유지되므로 주중에 라벨이 바뀌지 않는다.
+    $dow = (Get-Date).DayOfWeek
+    $isRollDay = ($dow -eq [System.DayOfWeek]::Sunday)
+
+    # Preserve manual curation: if a freeze for THIS week already exists, keep it.
+    # Week identity = this-week Monday ($reviewFrom) + next-week Monday ($previewFrom),
+    # both stable across Fri→Sun. The auto-pick below would clobber indicators the
+    # user manually added/removed in the dashboard, so only (re)freeze when the file
+    # is missing OR it's a genuinely NEW week. (The first freeze of the week is the
+    # auto-digest; the user curates it, and weekend restarts no longer overwrite it.)
+    $sameWeek = $false
+    if (Test-Path $FrozenFile) {
+        try {
+            $existingFrozen = Get-Content $FrozenFile -Raw -Encoding UTF8 | ConvertFrom-Json
+            $exRevFrom  = ($existingFrozen.reviewRange  -split '~')[0]
+            $exPrevFrom = ($existingFrozen.previewRange -split '~')[0]
+            if ($exRevFrom -eq $reviewFrom -and $exPrevFrom -eq $previewFrom) { $sameWeek = $true }
+        } catch {}
+    }
+    # (freeze helpers $maxN / $pickTop5 / $applyFedRange are defined above the loop)
 
     $shouldFreeze = (-not (Test-Path $FrozenFile)) -or ($isRollDay -and -not $sameWeek)
     $isFriday = ($dow -eq [System.DayOfWeek]::Friday)
