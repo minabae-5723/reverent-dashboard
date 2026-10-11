@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-10-11T01:47:47Z",
-    "updatedKr":  "2026-10-11 10:47:47",
+    "updated":  "2026-10-11T02:12:45Z",
+    "updatedKr":  "2026-10-11 11:12:45",
     "index":  [
                   {
                       "key":  "KOSPI",
@@ -11,7 +11,8 @@
                       "ytd":  53.75,
                       "type":  "pct",
                       "asOf":  "2026-10-08T20:05:40",
-                      "ok":  true
+                      "ok":  true,
+                      "stale":  true
                   },
                   {
                       "key":  "KOSDAQ",
@@ -253,15 +254,15 @@
                     "source":  "wgb"
                 },
                 {
+                    "source":  "wgb-manual",
+                    "ytd":  0,
+                    "wow":  0,
+                    "mom":  0,
                     "key":  "CDS_CN",
-                    "current":  36.3,
-                    "wow":  -0.4,
-                    "mom":  1.3,
-                    "ytd":  -7.2,
                     "type":  "bp_abs",
-                    "asOf":  "2026-10-10",
+                    "asOf":  "2026-08-01",
                     "ok":  true,
-                    "source":  "wgb"
+                    "current":  38.2
                 }
             ],
     "sector":  [
