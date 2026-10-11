@@ -165,12 +165,19 @@ if ($ov -and $ov.validUntil -and ((Get-Date).ToString('yyyy-MM-dd') -le $ov.vali
 $refRow  = if ($ovRef) { Find-ClosestClose -history $pivot -targetDate $ovRef } else { $pivot[-1] }
 $refDate = $refRow.date
 $refYear = ([datetime]$refDate).Year
-$prevTarget = if ($ovPrev) { $ovPrev } else { ([datetime]$refDate).AddDays(-7).ToString('yyyy-MM-dd') }
+# WoW basis = LAST trading day of the PREVIOUS calendar week (normally that Friday).
+# "refDate - 7 days" broke on holiday weeks: ref 10/8 (10/9 Hangul Day closed)
+# compared against 10/1 instead of 10/2 (2026-10-11 user fix). Take the pivot's
+# last close dated before the Monday of the ref week.
+$refDt  = [datetime]$refDate
+$refMon = $refDt.AddDays(-((([int]$refDt.DayOfWeek) + 6) % 7)).ToString('yyyy-MM-dd')
+$lastPrevWeek = $pivot | Where-Object { $_.date -lt $refMon } | Select-Object -Last 1
+$prevTarget = if ($ovPrev) { $ovPrev } elseif ($lastPrevWeek) { $lastPrevWeek.date } else { $refDt.AddDays(-7).ToString('yyyy-MM-dd') }
 $prevRow = Find-ClosestClose -history $pivot -targetDate $prevTarget
 $ytdRow  = $pivot | Where-Object { ([datetime]$_.date).Year -eq $refYear } | Select-Object -First 1
 
 Write-Host (" Ref date (this week):  " + $refDate)
-if ($prevRow) { Write-Host (" Prev week (~7d ago):   " + $prevRow.date) }
+if ($prevRow) { Write-Host (" Prev week (last close):" + $prevRow.date) }
 if ($ytdRow)  { Write-Host (" Year start:            " + $ytdRow.date) }
 
 # ----------- Per-ticker fetch -----------
