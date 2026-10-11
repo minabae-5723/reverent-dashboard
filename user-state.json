@@ -1,6 +1,6 @@
 {
     "version":  1,
-    "updated":  "2026-10-05T02:51:27Z",
+    "updated":  "2026-10-11T01:30:47Z",
     "entries":  {
                     "rp::valuation::2026-05-15::fh8pl2":  {
                                                               "values":  {
@@ -564,7 +564,7 @@
                     "semicon-comment-time":  "10-05 12:10",
                     "ipo-mcap-365660":  1335,
                     "ipo-mcap-0156T0":  1669,
-                    "dashboard-macro-comment":  "차주는 장기금리 안정 여부가 핵심 — 6일 3년물·7일 10년물·8일 30년물 미 국채 입찰과 재무부 바이백, 8일 새벽 9월 FOMC(인상 결정) 의사록이 추가 인상 경로를 가늠할 변수이며 5일 ISM 서비스업(55.7 예상)·9일 미시간 소비자심리/기대인플레도 발표.\n6일 마벨 투자자의 날, 7일 MS·엔비디아 AI PC 행사, 8일 TSMC 9월 매출·삼성전자 3Q 잠정실적(7~8일)으로 AI 반도체 모멘텀 점검, 윌리엄스·월러·보우먼·로건·콜린스 등 연준 인사 발언도 대기.\n유럽은 8일 유로그룹·9일 EU 재무장관회의(프랑스 예산안), 일본은 5일 다카이치 총리 정책연설·6일 10년물 입찰 주목. 4일 OPEC+ 회의·브라질 대선, 국내는 5·9일 휴장.",
+                    "dashboard-macro-comment":  "차주는 미 물가·소비가 핵심 — 14일 9월 CPI(MoM 0.6%·YoY 3.6% 예상, 근원 0.2%)·15일 새벽 베이지북, 15일 PPI(0.5%)·소매판매(0.3%)·필라델피아 연은지수, 16일 산업생산(0.4%)과 워시 연준의장 연설. 10월 FOMC(27~28일)는 동결 80%대·12월 추가 인상 우세라 물가 결과가 인상 시점을 가를 변수.\n3분기 실적시즌 개막 — 13일 JPM·GS·C·WFC, 14일 BAC·MS·ASML, 15일 TSMC 실적과 OCP 글로벌 서밋(12~15일, AMD·엔비디아·MS 등 기조연설)·13일 애플 행사로 AI 투자 지속성 점검.\n13일 OPEC·14일 IEA 보고서와 비축유 방출 세부 논의, 프랑스 예산안 심의(13일~)·EU 정상회의(15~16일), 13일 IMF WEO, 14일 중국 CPI·수출입, 16일 유로존 CPI 확정(3.8%). 12일 미 채권시장·일본 휴장.",
                     "ipo-mcap-487580":  2000,
                     "macro-notes-2026-08-07--a6m3xk0":  {
                                                             "id":  "mslh3d9o6224eu",
@@ -670,8 +670,8 @@
                                                               "weekDate":  "2026-09-18",
                                                               "headline":  "네이버, 배민 인수 공식 철회 — 우버가 단독 인수로 정리"
                                                           },
-                    "capmkt-comment-rate":  "미 10년물은 장중 5.34%로 2002년 이후 최고 — 유가·ISM 물가지수 급등(77.9)에 영·불 재정 우려, 일본 10년물 3%대에 따른 엔캐리 이탈, 브로드컴 600억$ 등 AI 회사채 공급 부담이 겹쳐 장기물 기간 프리미엄 상승.\n8월 근원 PCE(YoY 3.0%, 예상 3.3%) 하회와 윌리엄스·제퍼슨의 \u0027추가 인상 서두를 필요 없다\u0027 발언, NFP 쇼크에 2년물은 4.8% 아래로 하락했으나 10년물은 5.28%대로 되돌아오며 커브 스티프닝.\n국내는 부총리가 \u0027국채금리 상승세 모니터링, 필요 시 즉시 안정조치\u0027를 언급했고, 9월 CPI는 석유류(+14.8%) 급등에 2.9% 상승.",
-                    "dashboard-macro-comment-time":  "10-04 20:25",
+                    "capmkt-comment-rate":  "미 10년물은 ISM 서비스 가격지수(74.0, 2022년 이후 최고)·뉴욕연은 1년 기대인플레(3.9%)·프랑스 재정 불안에 장중 5.36%로 2002년 이후 최고를 찍었으나, 10년물 입찰 응찰률 2.77배(2016년 이후 최고)·30년물 입찰 호조에 5.24%로 소폭 하락(주간 -3bp).\n9월 FOMC 의사록은 \u0027대다수가 연내 1회 추가 인상 적절\u0027로 확인됐고 월러도 인상 필요성을 언급했으나, FedWatch는 10월 동결 80%대·12월 인상에 무게를 두며 2년물 4.8% 부근 유지.\n국고채는 3년물 3.98%(-3bp)·10년물 4.40%(-4bp)로 미 장기금리 고점 통과에 소폭 하락.",
+                    "dashboard-macro-comment-time":  "10-11 10:30",
                     "rp::valuation::2026-06-26::9cz7z5":  {
                                                               "values":  {
                                                                              "매출액":  "7",
@@ -757,9 +757,9 @@
                                                               "weekDate":  "2026-08-28",
                                                               "headline":  "코스톤아시아, 우진기전 3,000억대 인수 — 미래에셋증권 인수금융 단독 주선"
                                                           },
-                    "capmkt-comment-time-rate":  "26. 10. 04. 20:25",
+                    "capmkt-comment-time-rate":  "26. 10. 11. 10:30",
                     "ipo-mcap-487400":  1129,
-                    "capmkt-comment-index":  "코스피는 주 초 미 장기금리 급등·외국인 3.2조원 매도에 2.7% 급락했으나, 마이크론 호실적과 9월 수출 역대 최대(반도체 +263%)에 반등해 7,004p로 마감 코스닥은 6거래일 연속 상승.\n미 증시는 10년물 5.3%대 금리 부담·OpenAI 최상위 모델 학습 중단 여파로 주 초 약세였으나, 금요일 9월 고용 쇼크(NFP 2.9만)에 금리가 일시 급락하며 나스닥이 장중 사상 최고치를 경신.\n필라델피아 반도체는 마이크론 Capex·장기계약 확대에 주간 +3%대 상승한 반면, 시게이트·WD는 도시바 HDD 증설 발표에 -10% 급락.",
+                    "capmkt-comment-index":  "코스피는 삼성전자 3Q 영업이익 107.4조원 사상 최대에도 55조 자사주 매입 종료·반도체 ETF 리밸런싱·옵션만기가 겹치고 외국인이 9거래일 연속 매도하며 주간 -5.4%(6,626p) 급락, 코스닥은 2차전지·소부장 강세로 보합(892p).\n미 증시는 마벨 투자자의 날·컨스텔레이션-구글 원전 계약에 S\u0026P500(7,800 첫 돌파)·나스닥이 사상 최고를 경신한 뒤, OpenAI 매출 과대추정 보도(FT)에 AI주가 급락했다가 \u0027연말 연환산 700억$\u0027 보도로 반등해 S\u0026P +1.2%·나스닥 +0.6%.\n필라델피아 반도체는 OpenAI 쇼크(8일 -3.4%)에 주간 -4%대, 유틸리티·필수소비재·헬스케어 등 방어주로 순환매.",
                     "rp::valuation::2026-06-12::6uwsr2":  {
                                                               "values":  {
                                                                              "매출액":  "8,830",
@@ -799,7 +799,7 @@
                                                               "weekDate":  "2026-06-19",
                                                               "headline":  "IMM PE, 대웅그룹 계열 시지바이오 약 1.1조 인수…경영권 51% 5,610억 SPA 임박"
                                                           },
-                    "capmkt-comment-commodity":  "국제유가는 트럼프의 이란 제안 거부·미 항모 추가 파병·중국 석유제품 수출 중단·우크라 러 정유시설 공격에 브렌트 100달러를 웃돌았으나, 금요일 G7의 비축유 1억 배럴 방출 합의에 상승분을 반납(WTI 91달러대, 주간 소폭 하락).\n금은 장기금리 급등·달러 6개월래 최고에 주 초 3% 급락하며 주간 약 -4%(4,100달러대), 구리도 칠레 생산 감소·에스콘디다 파업 위험에도 달러 강세·중국 수요 우려에 약 -4%.\n곡물은 옥수수가 분기 재고 예상 상회에 4% 급락, 설탕은 슈퍼 엘니뇨발 감산 우려에 18개월래 최고.",
+                    "capmkt-comment-commodity":  "국제유가는 G7 비축유 방출·중동 수출 정상화로 주 초 하락했으나, 트럼프의 대이란 타격 준비 지시·호르무즈 탱커 공격 급증·멕시코만 허리케인發 해상 원유생산 25% 중단에 8일 5% 급등, 이후 \u0027중간선거 전 공격 없다\u0027 발언에 상승분을 축소(WTI 91.9달러, 주간 +0.8%).\n금은 금리 급등에 약세였다가 금요일 반발 매수·인민은행 매입 지속에 4,216달러(+1.3%), 구리는 칠레 Centinela 광산 파업·미국 외 재고 부족에 +3.1%.\n곡물은 밀이 흑해 선적 지연에 주 중 상승 후 반락(-1.8%), 설탕은 브라질 과우에 19개월래 최고.",
                     "macro-notes-2026-09-23--aehu5zu":  {
                                                             "id":  "muj9v5le4k2cqo",
                                                             "title":  "",
@@ -1083,8 +1083,8 @@
                                                               "weekDate":  "2026-08-21",
                                                               "headline":  "스톤브릿지·LS증권, 리파인 공개매수 915억…주당 17,600원·30% 프리미엄"
                                                           },
-                    "capmkt-comment-fx":  "달러화는 미 장기금리 급등과 프랑스 재정 우려에 따른 유로 약세(17개월래 최저)로 4거래일 연속 올라 달러인덱스 102선, 6개월래 최고를 기록했으나 금요일 고용 부진에 약세 전환.\n원/달러는 주 초 외국인 대규모 매도에 1,365원까지 올랐으나 9월 수출 역대 최대·반도체 호조에 1,350.6원(9/23 1,358.4원)으로 하락, 금요일 NDF 1개월물은 1,344원.\n엔화는 일본 재무관 구두개입과 일본 금리 3%대에 따른 자금 환류 기대로 약세가 제한되며 달러/엔 158엔 안팎 등락.",
-                    "capmkt-comment-time-index":  "26. 10. 05. 오전 11:42",
+                    "capmkt-comment-fx":  "달러인덱스는 프랑스 재정 불안에 유로화가 17개월래 최저로 밀리고 유가발 금리 상승·월러의 인상 언급이 겹쳐 102.2로 소폭 강세(+0.3%), 주 중 르펜 긴축안 발표로 일시 101.8까지 밀리기도 함.\n원/달러는 외국인 주식 대규모 순매도에도 수출 호조·네고에 1,338.5원(8일, 연저점 부근)까지 내려 주간 -1.5%, NDF 1개월물은 1,340원 안팎.\n엔화는 다카이치 총리의 확장 재정 연설·가계지출 9개월 연속 감소에 일본은행 추가 인상 기대가 약화되며 달러/엔 158엔대 약세 지속.",
+                    "capmkt-comment-time-index":  "26. 10. 11. 10:30",
                     "rp::valuation::2026-08-28::83ba5w":  {
                                                               "values":  {
                                                                              "매출액":  "453",
@@ -1272,7 +1272,7 @@
                                                               "weekDate":  "2026-05-29",
                                                               "headline":  "SK이노베이션, KKR 3조 RCPS 도시가스 현물상환 수순"
                                                           },
-                    "capmkt-comment-time-commodity":  "26. 10. 04. 20:25",
+                    "capmkt-comment-time-commodity":  "26. 10. 11. 10:30",
                     "rp::valuation::2026-10-02::i8db9e":  {
                                                               "values":  {
                                                                              "매출액":  "507",
@@ -1341,7 +1341,7 @@
                                                              "image":  "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%201000%20612%22%20width%3D%221000%22%20height%3D%22612%22%3E%3Crect%20x%3D%222%22%20y%3D%222%22%20width%3D%22996%22%20height%3D%22608%22%20rx%3D%2214%22%20fill%3D%22%23fbfaf7%22%20stroke%3D%22%23e0ded6%22%20stroke-width%3D%221.5%22%2F%3E%3Crect%20x%3D%2260%22%20y%3D%2230%22%20width%3D%22300%22%20height%3D%2264%22%20rx%3D%2210%22%20fill%3D%22%231f2a44%22%2F%3E%3Ctext%20x%3D%2282%22%20y%3D%2270%22%20font-family%3D%22Pretendard%2C%20\u0027Malgun%20Gothic\u0027%2C%20\u0027Apple%20SD%20Gothic%20Neo\u0027%2C%20sans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22800%22%20fill%3D%22%23fff%22%3E%ED%95%9C%ED%99%94%EC%83%9D%EB%AA%85%3C%2Ftext%3E%3Ctext%20x%3D%22200%22%20y%3D%2269%22%20font-family%3D%22Pretendard%2C%20\u0027Malgun%20Gothic\u0027%2C%20\u0027Apple%20SD%20Gothic%20Neo\u0027%2C%20sans-serif%22%20font-size%3D%2217%22%20font-weight%3D%22500%22%20fill%3D%22%23c9d1e3%22%3E%EB%B3%B4%ED%97%98%20%C2%B7%20%EC%A7%80%EC%A3%BC%20%EC%97%AD%ED%95%A0%3C%2Ftext%3E%3Cline%20x1%3D%22100%22%20y1%3D%2294%22%20x2%3D%22100%22%20y2%3D%22553%22%20stroke%3D%22%23b9b4a7%22%20stroke-width%3D%222%22%2F%3E%3Cline%20x1%3D%22100%22%20y1%3D%22147%22%20x2%3D%22140%22%20y2%3D%22147%22%20stroke%3D%22%23b9b4a7%22%20stroke-width%3D%222%22%2F%3E%3Crect%20x%3D%22140%22%20y%3D%22124%22%20width%3D%22800%22%20height%3D%2246%22%20rx%3D%228%22%20fill%3D%22%23ffffff%22%20stroke%3D%22%23e6e2d8%22%2F%3E%3Crect%20x%3D%22152%22%20y%3D%22133%22%20width%3D%2286%22%20height%3D%2228%22%20rx%3D%2214%22%20fill%3D%22%231f2a44%22%2F%3E%3Ctext%20x%3D%22195%22%20y%3D%22153%22%20text-anchor%3D%22middle%22%20font-family%3D%22Pretendard%2C%20\u0027Malgun%20Gothic\u0027%2C%20\u0027Apple%20SD%20Gothic%20Neo\u0027%2C%20sans-serif%22%20font-size%3D%2215%22%20font-weight%3D%22700%22%20fill%3D%22%23fff%22%3E%EB%B3%B4%EC%9C%A0%3C%2Ftext%3E%3Ctext%20x%3D%22256%22%20y%3D%22154%22%20font-family%3D%22Pretendard%2C%20\u0027Malgun%20Gothic\u0027%2C%20\u0027Apple%20SD%20Gothic%20Neo\u0027%2C%20sans-serif%22%20font-size%3D%2220%22%20font-weight%3D%22700%22%20fill%3D%22%23222%22%3E%ED%95%9C%ED%99%94%ED%88%AC%EC%9E%90%EC%A6%9D%EA%B6%8C%3C%2Ftext%3E%3Ctext%20x%3D%22920%22%20y%3D%22153%22%20text-anchor%3D%22end%22%20font-family%3D%22Pretendard%2C%20\u0027Malgun%20Gothic\u0027%2C%20\u0027Apple%20SD%20Gothic%20Neo\u0027%2C%20sans-serif%22%20font-size%3D%2216%22%20font-weight%3D%22500%22%20fill%3D%22%23666%22%3E%EC%A6%9D%EA%B6%8C%3C%2Ftext%3E%3Cline%20x1%3D%22100%22%20y1%3D%22205%22%20x2%3D%22140%22%20y2%3D%22205%22%20stroke%3D%22%23b9b4a7%22%20stroke-width%3D%222%22%2F%3E%3Crect%20x%3D%22140%22%20y%3D%22182%22%20width%3D%22800%22%20height%3D%2246%22%20rx%3D%228%22%20fill%3D%22%23ffffff%22%20stroke%3D%22%23e6e2d8%22%2F%3E%3Crect%20x%3D%22152%22%20y%3D%22191%22%20width%3D%2286%22%20height%3D%2228%22%20rx%3D%2214%22%20fill%3D%22%231f2a44%22%2F%3E%3Ctext%20x%3D%22195%22%20y%3D%22211%22%20text-anchor%3D%22middle%22%20font-family%3D%22Pretendard%2C%20\u0027Malgun%20Gothic\u0027%2C%20\u0027Apple%20SD%20Gothic%20Neo\u0027%2C%20sans-serif%22%20font-size%3D%2215%22%20font-weight%3D%22700%22%20fill%3D%22%23fff%22%3E%EB%B3%B4%EC%9C%A0%3C%2Ftext%3E%3Ctext%20x%3D%22256%22%20y%3D%22212%22%20font-family%3D%22Pretendard%2C%20\u0027Malgun%20Gothic\u0027%2C%20\u0027Apple%20SD%20Gothic%20Neo\u0027%2C%20sans-serif%22%20font-size%3D%2220%22%20font-weight%3D%22700%22%20fill%3D%22%23222%22%3E%ED%95%9C%ED%99%94%EC%9E%90%EC%82%B0%EC%9A%B4%EC%9A%A9%3C%2Ftext%3E%3Ctext%20x%3D%22920%22%20y%3D%22211%22%20text-anchor%3D%22end%22%20font-family%3D%22Pretendard%2C%20\u0027Malgun%20Gothic\u0027%2C%20\u0027Apple%20SD%20Gothic%20Neo\u0027%2C%20sans-serif%22%20font-size%3D%2216%22%20font-weight%3D%22500%22%20fill%3D%22%23666%22%3E%EC%9E%90%EC%82%B0%EC%9A%B4%EC%9A%A9%3C%2Ftext%3E%3Cline%20x1%3D%22100%22%20y1%3D%22263%22%20x2%3D%22140%22%20y2%3D%22263%22%20stroke%3D%22%23b9b4a7%22%20stroke-width%3D%222%22%2F%3E%3Crect%20x%3D%22140%22%20y%3D%22240%22%20width%3D%22800%22%20height%3D%2246%22%20rx%3D%228%22%20fill%3D%22%23ffffff%22%20stroke%3D%22%23e6e2d8%22%2F%3E%3Crect%20x%3D%22152%22%20y%3D%22249%22%20width%3D%2286%22%20height%3D%2228%22%20rx%3D%2214%22%20fill%3D%22%23b26a00%22%2F%3E%3Ctext%20x%3D%22195%22%20y%3D%22269%22%20text-anchor%3D%22middle%22%20font-family%3D%22Pretendard%2C%20\u0027Malgun%20Gothic\u0027%2C%20\u0027Apple%20SD%20Gothic%20Neo\u0027%2C%20sans-serif%22%20font-size%3D%2215%22%20font-weight%3D%22700%22%20fill%3D%22%23fff%22%3E%EC%9D%B8%EC%88%98%20%EC%A4%91%3C%2Ftext%3E%3Ctext%20x%3D%22256%22%20y%3D%22270%22%20font-family%3D%22Pretendard%2C%20\u0027Malgun%20Gothic\u0027%2C%20\u0027Apple%20SD%20Gothic%20Neo\u0027%2C%20sans-serif%22%20font-size%3D%2220%22%20font-weight%3D%22700%22%20fill%3D%22%23222%22%3E%EC%95%A0%ED%81%90%EC%98%A8%EC%BA%90%ED%94%BC%ED%83%88%3C%2Ftext%3E%3Ctext%20x%3D%22920%22%20y%3D%22269%22%20text-anchor%3D%22end%22%20font-family%3D%22Pretendard%2C%20\u0027Malgun%20Gothic\u0027%2C%20\u0027Apple%20SD%20Gothic%20Neo\u0027%2C%20sans-serif%22%20font-size%3D%2216%22%20font-weight%3D%22500%22%20fill%3D%22%23666%22%3E%EC%97%AC%EC%8B%A0%EA%B8%88%EC%9C%B5%3C%2Ftext%3E%3Cline%20x1%3D%22100%22%20y1%3D%22321%22%20x2%3D%22140%22%20y2%3D%22321%22%20stroke%3D%22%23b9b4a7%22%20stroke-width%3D%222%22%2F%3E%3Crect%20x%3D%22140%22%20y%3D%22298%22%20width%3D%22800%22%20height%3D%2246%22%20rx%3D%228%22%20fill%3D%22%23ffffff%22%20stroke%3D%22%23e6e2d8%22%2F%3E%3Crect%20x%3D%22152%22%20y%3D%22307%22%20width%3D%2286%22%20height%3D%2228%22%20rx%3D%2214%22%20fill%3D%22%23b26a00%22%2F%3E%3Ctext%20x%3D%22195%22%20y%3D%22327%22%20text-anchor%3D%22middle%22%20font-family%3D%22Pretendard%2C%20\u0027Malgun%20Gothic\u0027%2C%20\u0027Apple%20SD%20Gothic%20Neo\u0027%2C%20sans-serif%22%20font-size%3D%2215%22%20font-weight%3D%22700%22%20fill%3D%22%23fff%22%3E%EC%9D%B8%EC%88%98%20%EC%A4%91%3C%2Ftext%3E%3Ctext%20x%3D%22256%22%20y%3D%22328%22%20font-family%3D%22Pretendard%2C%20\u0027Malgun%20Gothic\u0027%2C%20\u0027Apple%20SD%20Gothic%20Neo\u0027%2C%20sans-serif%22%20font-size%3D%2220%22%20font-weight%3D%22700%22%20fill%3D%22%23222%22%3E%EC%95%A0%ED%81%90%EC%98%A8%EC%A0%80%EC%B6%95%EC%9D%80%ED%96%89%3C%2Ftext%3E%3Ctext%20x%3D%22920%22%20y%3D%22327%22%20text-anchor%3D%22end%22%20font-family%3D%22Pretendard%2C%20\u0027Malgun%20Gothic\u0027%2C%20\u0027Apple%20SD%20Gothic%20Neo\u0027%2C%20sans-serif%22%20font-size%3D%2216%22%20font-weight%3D%22500%22%20fill%3D%22%23666%22%3E%EC%A0%80%EC%B6%95%EC%9D%80%ED%96%89%20%E2%86%92%20%EC%9D%B8%ED%84%B0%EB%84%B7%EC%9D%80%ED%96%89%20%EC%A0%84%ED%99%98%20%EA%B0%80%EB%8A%A5%EC%84%B1%3C%2Ftext%3E%3Cline%20x1%3D%22100%22%20y1%3D%22379%22%20x2%3D%22140%22%20y2%3D%22379%22%20stroke%3D%22%23b9b4a7%22%20stroke-width%3D%222%22%2F%3E%3Crect%20x%3D%22140%22%20y%3D%22356%22%20width%3D%22800%22%20height%3D%2246%22%20rx%3D%228%22%20fill%3D%22%23ffffff%22%20stroke%3D%22%23e6e2d8%22%2F%3E%3Crect%20x%3D%22152%22%20y%3D%22365%22%20width%3D%2286%22%20height%3D%2228%22%20rx%3D%2214%22%20fill%3D%22%230f7b6c%22%2F%3E%3Ctext%20x%3D%22195%22%20y%3D%22385%22%20text-anchor%3D%22middle%22%20font-family%3D%22Pretendard%2C%20\u0027Malgun%20Gothic\u0027%2C%20\u0027Apple%20SD%20Gothic%20Neo\u0027%2C%20sans-serif%22%20font-size%3D%2215%22%20font-weight%3D%22700%22%20fill%3D%22%23fff%22%3ESI%20%EC%B0%B8%EC%97%AC%3C%2Ftext%3E%3Ctext%20x%3D%22256%22%20y%3D%22386%22%20font-family%3D%22Pretendard%2C%20\u0027Malgun%20Gothic\u0027%2C%20\u0027Apple%20SD%20Gothic%20Neo\u0027%2C%20sans-serif%22%20font-size%3D%2220%22%20font-weight%3D%22700%22%20fill%3D%22%23222%22%3E%EB%8D%94%ED%94%BC%ED%94%8C%EB%9D%BC%EC%9D%B4%ED%94%84%3C%2Ftext%3E%3Ctext%20x%3D%22920%22%20y%3D%22385%22%20text-anchor%3D%22end%22%20font-family%3D%22Pretendard%2C%20\u0027Malgun%20Gothic\u0027%2C%20\u0027Apple%20SD%20Gothic%20Neo\u0027%2C%20sans-serif%22%20font-size%3D%2216%22%20font-weight%3D%22500%22%20fill%3D%22%23666%22%3E%EC%83%81%EC%A1%B0%20%C2%B7%20%EC%8B%9C%EB%8B%88%EC%96%B4%EC%84%9C%EB%B9%84%EC%8A%A4%3C%2Ftext%3E%3Cline%20x1%3D%22100%22%20y1%3D%22437%22%20x2%3D%22140%22%20y2%3D%22437%22%20stroke%3D%22%23b9b4a7%22%20stroke-width%3D%222%22%2F%3E%3Crect%20x%3D%22140%22%20y%3D%22414%22%20width%3D%22800%22%20height%3D%2246%22%20rx%3D%228%22%20fill%3D%22%23ffffff%22%20stroke%3D%22%23e6e2d8%22%2F%3E%3Crect%20x%3D%22152%22%20y%3D%22423%22%20width%3D%2286%22%20height%3D%2228%22%20rx%3D%2214%22%20fill%3D%22%234a5d7e%22%2F%3E%3Ctext%20x%3D%22195%22%20y%3D%22443%22%20text-anchor%3D%22middle%22%20font-family%3D%22Pretendard%2C%20\u0027Malgun%20Gothic\u0027%2C%20\u0027Apple%20SD%20Gothic%20Neo\u0027%2C%20sans-serif%22%20font-size%3D%2215%22%20font-weight%3D%22700%22%20fill%3D%22%23fff%22%3E%ED%95%B4%EC%99%B8%3C%2Ftext%3E%3Ctext%20x%3D%22256%22%20y%3D%22444%22%20font-family%3D%22Pretendard%2C%20\u0027Malgun%20Gothic\u0027%2C%20\u0027Apple%20SD%20Gothic%20Neo\u0027%2C%20sans-serif%22%20font-size%3D%2220%22%20font-weight%3D%22700%22%20fill%3D%22%23222%22%3E%EC%9D%B8%EB%8F%84%EB%84%A4%EC%8B%9C%EC%95%84%20%EB%85%B8%EB%B6%80%EC%9D%80%ED%96%89%2040%25%3C%2Ftext%3E%3Ctext%20x%3D%22920%22%20y%3D%22443%22%20text-anchor%3D%22end%22%20font-family%3D%22Pretendard%2C%20\u0027Malgun%20Gothic\u0027%2C%20\u0027Apple%20SD%20Gothic%20Neo\u0027%2C%20sans-serif%22%20font-size%3D%2216%22%20font-weight%3D%22500%22%20fill%3D%22%23666%22%3E%ED%95%B4%EC%99%B8%20%EC%9D%80%ED%96%89%3C%2Ftext%3E%3Cline%20x1%3D%22100%22%20y1%3D%22495%22%20x2%3D%22140%22%20y2%3D%22495%22%20stroke%3D%22%23b9b4a7%22%20stroke-width%3D%222%22%2F%3E%3Crect%20x%3D%22140%22%20y%3D%22472%22%20width%3D%22800%22%20height%3D%2246%22%20rx%3D%228%22%20fill%3D%22%23ffffff%22%20stroke%3D%22%23e6e2d8%22%2F%3E%3Crect%20x%3D%22152%22%20y%3D%22481%22%20width%3D%2286%22%20height%3D%2228%22%20rx%3D%2214%22%20fill%3D%22%234a5d7e%22%2F%3E%3Ctext%20x%3D%22195%22%20y%3D%22501%22%20text-anchor%3D%22middle%22%20font-family%3D%22Pretendard%2C%20\u0027Malgun%20Gothic\u0027%2C%20\u0027Apple%20SD%20Gothic%20Neo\u0027%2C%20sans-serif%22%20font-size%3D%2215%22%20font-weight%3D%22700%22%20fill%3D%22%23fff%22%3E%ED%95%B4%EC%99%B8%3C%2Ftext%3E%3Ctext%20x%3D%22256%22%20y%3D%22502%22%20font-family%3D%22Pretendard%2C%20\u0027Malgun%20Gothic\u0027%2C%20\u0027Apple%20SD%20Gothic%20Neo\u0027%2C%20sans-serif%22%20font-size%3D%2220%22%20font-weight%3D%22700%22%20fill%3D%22%23222%22%3E%EB%AF%B8%EA%B5%AD%20%EB%B2%A8%EB%A1%9C%EC%8B%9C%ED%8B%B0%20%EC%A6%9D%EA%B6%8C%EC%82%AC%2075%25%3C%2Ftext%3E%3Ctext%20x%3D%22920%22%20y%3D%22501%22%20text-anchor%3D%22end%22%20font-family%3D%22Pretendard%2C%20\u0027Malgun%20Gothic\u0027%2C%20\u0027Apple%20SD%20Gothic%20Neo\u0027%2C%20sans-serif%22%20font-size%3D%2216%22%20font-weight%3D%22500%22%20fill%3D%22%23666%22%3E%ED%95%B4%EC%99%B8%20%EC%A6%9D%EA%B6%8C%3C%2Ftext%3E%3Cline%20x1%3D%22100%22%20y1%3D%22553%22%20x2%3D%22140%22%20y2%3D%22553%22%20stroke%3D%22%23b9b4a7%22%20stroke-width%3D%222%22%2F%3E%3Crect%20x%3D%22140%22%20y%3D%22530%22%20width%3D%22800%22%20height%3D%2246%22%20rx%3D%228%22%20fill%3D%22%23ffffff%22%20stroke%3D%22%23e6e2d8%22%2F%3E%3Crect%20x%3D%22152%22%20y%3D%22539%22%20width%3D%2286%22%20height%3D%2228%22%20rx%3D%2214%22%20fill%3D%22%236b4fa0%22%2F%3E%3Ctext%20x%3D%22195%22%20y%3D%22559%22%20text-anchor%3D%22middle%22%20font-family%3D%22Pretendard%2C%20\u0027Malgun%20Gothic\u0027%2C%20\u0027Apple%20SD%20Gothic%20Neo\u0027%2C%20sans-serif%22%20font-size%3D%2215%22%20font-weight%3D%22700%22%20fill%3D%22%23fff%22%3E%ED%94%8C%EB%9E%AB%ED%8F%BC%3C%2Ftext%3E%3Ctext%20x%3D%22256%22%20y%3D%22560%22%20font-family%3D%22Pretendard%2C%20\u0027Malgun%20Gothic\u0027%2C%20\u0027Apple%20SD%20Gothic%20Neo\u0027%2C%20sans-serif%22%20font-size%3D%2220%22%20font-weight%3D%22700%22%20fill%3D%22%23222%22%3E%EC%84%BC%ED%8A%B8%EB%A1%9C%EC%9D%B4%EB%93%9CPE%2020%25%3C%2Ftext%3E%3Ctext%20x%3D%22920%22%20y%3D%22559%22%20text-anchor%3D%22end%22%20font-family%3D%22Pretendard%2C%20\u0027Malgun%20Gothic\u0027%2C%20\u0027Apple%20SD%20Gothic%20Neo\u0027%2C%20sans-serif%22%20font-size%3D%2216%22%20font-weight%3D%22500%22%20fill%3D%22%23666%22%3E%EB%94%9C%20%ED%8C%8C%EC%9D%B4%ED%94%84%EB%9D%BC%EC%9D%B8%20%ED%94%8C%EB%9E%AB%ED%8F%BC%3C%2Ftext%3E%3C%2Fsvg%3E",
                                                              "createdAt":  1790483198552
                                                          },
-                    "capmkt-comment-time-fx":  "26. 10. 04. 20:25",
+                    "capmkt-comment-time-fx":  "26. 10. 11. 10:30",
                     "rp::valuation::2026-07-10::t7xgai":  {
                                                               "values":  {
                                                                              "매출액":  "3,624",
@@ -1514,6 +1514,126 @@
                                                                 "createdAt":  1790481173752,
                                                                 "updatedAt":  1790569815358
                                                             }
-                                                        ]
+                                                        ],
+                    "rp::valuation::2026-10-09::iwel5d":  {
+                                                              "values":  {
+                                                                             "매출액":  "9,183",
+                                                                             "영업이익":  "983",
+                                                                             "감가상각비(D\u0026A)":  "159",
+                                                                             "당기순이익":  "762",
+                                                                             "자본총계":  "12,217",
+                                                                             "유동성장기차입금":  "7,597",
+                                                                             "사채":  "27,478",
+                                                                             "현금및현금성자산":  "2,586",
+                                                                             "Deal Value":  "9,000",
+                                                                             "% Stake":  "96.06"
+                                                                         },
+                                                              "savedAt":  "2026. 10. 5. 11시 15분 46초",
+                                                              "weekDate":  "2026-10-09",
+                                                              "headline":  "한화생명·센트로이드PE, EQT로부터 애큐온캐피탈·저축은행 약 9,000억원 인수 SPA"
+                                                          },
+                    "rp::valuation::2026-10-09::n6jwfm":  {
+                                                              "values":  {
+                                                                             "매출액":  "1,647",
+                                                                             "영업이익":  "0",
+                                                                             "감가상각비(D\u0026A)":  "41",
+                                                                             "당기순이익":  "8",
+                                                                             "자본총계":  "555",
+                                                                             "단기차입금":  "240",
+                                                                             "유동성장기차입금":  "0",
+                                                                             "유동리스부채":  "16",
+                                                                             "장기차입금":  "0",
+                                                                             "리스부채":  "5",
+                                                                             "현금및현금성자산":  "277",
+                                                                             "단기금융상품":  "46",
+                                                                             "Deal Value":  "504",
+                                                                             "% Stake":  "74.94",
+                                                                             "시가총액":  "394"
+                                                                         },
+                                                              "savedAt":  "2026. 10. 5. 11시 27분 13초",
+                                                              "weekDate":  "2026-10-09",
+                                                              "headline":  "범LG家 구미현, 의류 ODM 상장사 \u0027씨싸이트\u0027 지분 74.94%를 504억원에 인수"
+                                                          },
+                    "rp::valuation::2026-10-09::op0uc6":  {
+                                                              "values":  {
+                                                                             "매출액":  "1,647",
+                                                                             "영업이익":  "0",
+                                                                             "감가상각비(D\u0026A)":  "41",
+                                                                             "당기순이익":  "8",
+                                                                             "자본총계":  "555",
+                                                                             "단기차입금":  "240",
+                                                                             "유동성장기차입금":  "0",
+                                                                             "유동리스부채":  "16",
+                                                                             "장기차입금":  "0",
+                                                                             "리스부채":  "5",
+                                                                             "현금및현금성자산":  "277",
+                                                                             "단기금융상품":  "46",
+                                                                             "Deal Value":  "504",
+                                                                             "% Stake":  "74.94",
+                                                                             "시가총액":  "394"
+                                                                         },
+                                                              "savedAt":  "2026. 10. 5. 11시 27분 13초",
+                                                              "weekDate":  "2026-10-09",
+                                                              "headline":  "범LG家 구미현, 의류 ODM 상장사 \u0027씨싸이트\u0027 지분 74.94%를 504억원에 인수"
+                                                          },
+                    "rp::valuation::2026-10-09::ucnmg0":  {
+                                                              "values":  {
+                                                                             "매출액":  "9,183",
+                                                                             "영업이익":  "983",
+                                                                             "감가상각비(D\u0026A)":  "159",
+                                                                             "당기순이익":  "762",
+                                                                             "자본총계":  "12,217",
+                                                                             "유동성장기차입금":  "7,597",
+                                                                             "사채":  "27,478",
+                                                                             "현금및현금성자산":  "2,586",
+                                                                             "Deal Value":  "9,000",
+                                                                             "% Stake":  "96.06"
+                                                                         },
+                                                              "savedAt":  "2026. 10. 5. 11시 15분 46초",
+                                                              "weekDate":  "2026-10-09",
+                                                              "headline":  "한화생명·센트로이드PE, EQT로부터 애큐온캐피탈·저축은행 약 9,000억원 인수 SPA"
+                                                          },
+                    "rp::valuation::2026-10-09::i8db9e":  {
+                                                              "values":  {
+                                                                             "매출액":  "507",
+                                                                             "영업이익":  "33",
+                                                                             "감가상각비(D\u0026A)":  "42",
+                                                                             "당기순이익":  "15",
+                                                                             "자본총계":  "222",
+                                                                             "단기차입금":  "337",
+                                                                             "유동성장기차입금":  "135",
+                                                                             "유동리스부채":  "0",
+                                                                             "장기차입금":  "146",
+                                                                             "리스부채":  "0",
+                                                                             "현금및현금성자산":  "58",
+                                                                             "단기금융상품":  "0",
+                                                                             "Deal Value":  "1,000",
+                                                                             "% Stake":  "25.8"
+                                                                         },
+                                                              "savedAt":  "2026. 10. 5. 11시 18분 48초",
+                                                              "weekDate":  "2026-10-09",
+                                                              "headline":  "어펄마캐피탈, 아이웨어 \u0027블루엘리펀트\u0027에 기업가치 4,000억원으로 750억원 투자"
+                                                          },
+                    "rp::valuation::2026-10-09::an9xbv":  {
+                                                              "values":  {
+                                                                             "매출액":  "507",
+                                                                             "영업이익":  "33",
+                                                                             "감가상각비(D\u0026A)":  "42",
+                                                                             "당기순이익":  "15",
+                                                                             "자본총계":  "222",
+                                                                             "단기차입금":  "337",
+                                                                             "유동성장기차입금":  "135",
+                                                                             "유동리스부채":  "0",
+                                                                             "장기차입금":  "146",
+                                                                             "리스부채":  "0",
+                                                                             "현금및현금성자산":  "58",
+                                                                             "단기금융상품":  "0",
+                                                                             "Deal Value":  "1,000",
+                                                                             "% Stake":  "25.8"
+                                                                         },
+                                                              "savedAt":  "2026. 10. 5. 11시 18분 48초",
+                                                              "weekDate":  "2026-10-09",
+                                                              "headline":  "어펄마캐피탈, 아이웨어 \u0027블루엘리펀트\u0027에 기업가치 4,000억원으로 750억원 투자"
+                                                          }
                 }
 }
