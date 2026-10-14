@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-10-12T22:00:33Z",
-    "updatedKr":  "2026-10-13 07:00:33",
+    "updated":  "2026-10-14T22:00:25Z",
+    "updatedKr":  "2026-10-15 07:00:25",
     "countries":  [
                       "5",
                       "35",
@@ -110,10 +110,10 @@
                        "importance":  3,
                        "indicator":  "CPI (YoY)",
                        "period":  "Sep",
-                       "actual":  "",
+                       "actual":  "3.7%",
                        "forecast":  "3.6%",
                        "previous":  "3.4%",
-                       "type":  "preview"
+                       "type":  "review"
                    },
                    {
                        "id":  "558088",

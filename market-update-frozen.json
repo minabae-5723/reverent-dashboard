@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-10-11T06:28:51Z",
-    "updatedKr":  "2026-10-11 15:28:51",
+    "updated":  "2026-10-14T22:00:25Z",
+    "updatedKr":  "2026-10-15 07:00:25",
     "frozenDow":  "Sunday",
     "reviewRange":  "2026-10-05~2026-10-09",
     "previewRange":  "2026-10-12~2026-10-16",
@@ -107,10 +107,10 @@
                          "importance":  3,
                          "indicator":  "CPI (YoY)",
                          "period":  "Sep",
-                         "actual":  "",
+                         "actual":  "3.7%",
                          "forecast":  "3.6%",
                          "previous":  "3.4%",
-                         "type":  "preview"
+                         "type":  "review"
                      },
                      {
                          "id":  "558089",
