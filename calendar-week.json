@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-10-15T22:00:33Z",
-    "updatedKr":  "2026-10-16 07:00:33",
+    "updated":  "2026-10-15T23:15:04Z",
+    "updatedKr":  "2026-10-16 08:15:04",
     "countries":  [
                       "5",
                       "35",
@@ -125,10 +125,10 @@
                        "importance":  3,
                        "indicator":  "PPI (MoM)",
                        "period":  "Sep",
-                       "actual":  "",
+                       "actual":  "1.3%",
                        "forecast":  "0.5%",
                        "previous":  "0.4%",
-                       "type":  "preview"
+                       "type":  "review"
                    },
                    {
                        "id":  "558082",
@@ -140,10 +140,10 @@
                        "importance":  3,
                        "indicator":  "Retail Sales (MoM)",
                        "period":  "Sep",
-                       "actual":  "",
+                       "actual":  "0.8%",
                        "forecast":  "0.3%",
                        "previous":  "1.2%",
-                       "type":  "preview"
+                       "type":  "review"
                    },
                    {
                        "id":  "558095",
@@ -155,10 +155,10 @@
                        "importance":  3,
                        "indicator":  "Philadelphia Fed Manufacturing Index",
                        "period":  "Oct",
-                       "actual":  "",
+                       "actual":  "20.9",
                        "forecast":  "26.5",
                        "previous":  "37.8",
-                       "type":  "preview"
+                       "type":  "review"
                    },
                    {
                        "id":  "558089",
@@ -170,10 +170,10 @@
                        "importance":  3,
                        "indicator":  "Core Retail Sales (MoM)",
                        "period":  "Sep",
-                       "actual":  "",
+                       "actual":  "0.9%",
                        "forecast":  "0.5%",
                        "previous":  "1.4%",
-                       "type":  "preview"
+                       "type":  "review"
                    },
                    {
                        "id":  "558719",
@@ -185,10 +185,10 @@
                        "importance":  3,
                        "indicator":  "Initial Jobless Claims",
                        "period":  "",
-                       "actual":  "",
+                       "actual":  "199K",
                        "forecast":  "195K",
                        "previous":  "197K",
-                       "type":  "preview"
+                       "type":  "review"
                    }
                ]
 }
