@@ -1,6 +1,6 @@
 {
-    "capturedAt":  "2026-10-11 07:00:15",
-    "capturedDow":  "Sunday",
+    "capturedAt":  "2026-10-16 07:00:19",
+    "capturedDow":  "Friday",
     "cds":  [
                 {
                     "key":  "CDS_US",
@@ -15,12 +15,12 @@
                 },
                 {
                     "key":  "CDS_CN",
-                    "current":  36.3,
+                    "current":  36.28,
                     "wow":  -0.4,
-                    "mom":  1.3,
+                    "mom":  1.6,
                     "ytd":  -7.2,
                     "type":  "bp_abs",
-                    "asOf":  "2026-10-10",
+                    "asOf":  "2026-10-15",
                     "ok":  true,
                     "source":  "wgb"
                 }
