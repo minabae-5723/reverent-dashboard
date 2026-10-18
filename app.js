@@ -79,6 +79,9 @@ const INDICATOR_KR = {
   'Initial Jobless Claims': '신규 실업수당 청구',
   'Average Hourly Earnings (MoM)': '시간당 평균임금 (MoM)',
   'Michigan Consumer Sentiment': '미시간 소비자심리',
+  'Michigan 1-Year Inflation Expectations': '미시간 1년 기대인플레',
+  'Housing Starts': '주택착공',
+  'National Core CPI (YoY)': '전국 근원 CPI (YoY)',
   'Core PPI (MoM)': 'Core PPI (MoM)',
   'ISM Services PMI': 'ISM 비제조업 PMI',
   'ISM Non-Manufacturing PMI': 'ISM 비제조업 PMI',
@@ -399,7 +402,7 @@ function renderMacroSide(tbodyId, events) {
   const tbody = document.getElementById(tbodyId);
   if (!tbody) return;
   // Macro Economy 섹션은 ★★★(importance 3)만 구성한다.
-  const rows = (events || []).filter((e) => (e.importance || 0) >= MACRO_MIN_IMPORTANCE && !MACRO_EXCLUDE_COUNTRIES.has(e.flagKey));
+  const rows = (events || []).filter((e) => (e.pinned || (e.importance || 0) >= MACRO_MIN_IMPORTANCE) && !MACRO_EXCLUDE_COUNTRIES.has(e.flagKey)); // pinned: ★★ 수동 후보 예외 노출
   if (rows.length === 0) {
     tbody.innerHTML = `<tr><td colspan="6" class="loading" style="text-align:center;color:var(--text-muted);">데이터 없음</td></tr>`;
     return;
