@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-10-18T06:55:36Z",
-    "updatedKr":  "2026-10-18 15:55:36",
+    "updated":  "2026-10-18T06:59:36Z",
+    "updatedKr":  "2026-10-18 15:59:36",
     "index":  [
                   {
                       "key":  "KOSPI",
@@ -71,48 +71,48 @@
               ],
     "rate":  [
                  {
-                     "source":  "investing",
-                     "ytd":  82,
-                     "wow":  -16,
-                     "mom":  0,
                      "key":  "KR3Y",
-                     "type":  "bp",
-                     "asOf":  "2026-07-31",
-                     "ok":  true,
-                     "current":  3.757
-                 },
-                 {
-                     "source":  "investing",
-                     "ytd":  88,
+                     "current":  3.854,
                      "wow":  -13,
-                     "mom":  12,
+                     "mom":  -18,
+                     "ytd":  92,
+                     "type":  "bp",
+                     "asOf":  "2026-10-16",
+                     "ok":  true,
+                     "source":  "ecos-bok"
+                 },
+                 {
                      "key":  "KR10Y",
+                     "current":  4.182,
+                     "wow":  -21,
+                     "mom":  -28,
+                     "ytd":  80,
                      "type":  "bp",
-                     "asOf":  "2026-07-31",
+                     "asOf":  "2026-10-16",
                      "ok":  true,
-                     "current":  4.262
+                     "source":  "ecos-bok"
                  },
                  {
-                     "mom":  -1,
-                     "current":  2.81,
-                     "static":  true,
-                     "ok":  true,
                      "key":  "CD91",
+                     "current":  3.25,
+                     "wow":  1,
+                     "mom":  8,
+                     "ytd":  44,
                      "type":  "bp",
-                     "wow":  0,
-                     "ytd":  4
+                     "asOf":  "2026-10-15",
+                     "ok":  true,
+                     "source":  "naver-mobile"
                  },
                  {
-                     "source":  "treasury.gov(static)",
-                     "ytd":  90,
-                     "wow":  21,
-                     "mom":  28,
                      "key":  "US2Y",
+                     "current":  4.74,
+                     "wow":  -6,
+                     "mom":  -2,
+                     "ytd":  127,
                      "type":  "bp",
-                     "asOf":  "2026-07-23",
+                     "asOf":  "2026-10-16",
                      "ok":  true,
-                     "static":  true,
-                     "current":  4.37
+                     "source":  "treasury.gov"
                  },
                  {
                      "key":  "US10Y",
@@ -123,8 +123,7 @@
                      "ytd":  91,
                      "type":  "bp",
                      "asOf":  "2026-10-17T03:59:55",
-                     "ok":  true,
-                     "stale":  true
+                     "ok":  true
                  },
                  {
                      "key":  "US30Y",
@@ -135,8 +134,7 @@
                      "ytd":  57,
                      "type":  "bp",
                      "asOf":  "2026-10-17T03:59:55",
-                     "ok":  true,
-                     "stale":  true
+                     "ok":  true
                  }
              ],
     "commodity":  [
@@ -189,8 +187,13 @@
                {
                    "key":  "USDKRW",
                    "symbol":  "KRW=X",
-                   "ok":  false,
-                   "error":  "fetch failed"
+                   "current":  1329.6,
+                   "wow":  -1,
+                   "mom":  -3.62,
+                   "ytd":  -7.9,
+                   "type":  "pct",
+                   "asOf":  "2026-10-18T12:30:30",
+                   "ok":  true
                },
                {
                    "key":  "USDEUR",
