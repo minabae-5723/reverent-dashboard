@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-10-18T06:59:36Z",
-    "updatedKr":  "2026-10-18 15:59:36",
+    "updated":  "2026-10-18T13:19:37Z",
+    "updatedKr":  "2026-10-18 22:19:37",
     "index":  [
                   {
                       "key":  "KOSPI",
@@ -242,15 +242,15 @@
            ],
     "cds":  [
                 {
+                    "source":  "wgb-manual",
+                    "ytd":  0,
+                    "wow":  -2,
+                    "mom":  0,
                     "key":  "CDS_US",
-                    "current":  37.36,
-                    "wow":  0.9,
-                    "mom":  5.4,
-                    "ytd":  10.8,
                     "type":  "bp_abs",
-                    "asOf":  "2026-10-09",
+                    "asOf":  "2026-08-01",
                     "ok":  true,
-                    "source":  "wgb"
+                    "current":  35.96
                 },
                 {
                     "key":  "CDS_CN",
