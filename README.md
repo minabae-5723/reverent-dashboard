@@ -9,6 +9,8 @@ PEER TABLE & IPO 뷰에는 반도체 밸류체인 대시보드(https://minabae-5
 
 ## 팀 협업 (Git 워크플로)
 
+> **다른 PC로 이관 · 공동관리**: [`ops/README.md`](ops/README.md) — `ops\install.ps1` 한 번으로 세팅, `ops/hosts.json`으로 배포 담당 PC 지정.
+
 ```
 GitHub Enterprise (회사 계정, private repo)
         ↑↓ git push/pull

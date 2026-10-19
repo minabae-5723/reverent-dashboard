@@ -23,6 +23,17 @@ $ErrorActionPreference = 'Continue'
 $root = $PSScriptRoot
 Set-Location $root
 
+# Role guard: only the host that owns "us-close" in ops/hosts.json runs this job.
+# Replaces the old "never register this on 주 PC" convention. See ops/README.md.
+$roleGuard = Join-Path $root 'ops\role.ps1'
+if (Test-Path -LiteralPath $roleGuard) {
+    . $roleGuard
+    if (-not (Test-ReverentRole 'us-close')) {
+        Write-Host "Skipped: role 'us-close' is owned by another host (ops/hosts.json)" -ForegroundColor DarkGray
+        exit 0
+    }
+}
+
 Write-Host ""
 Write-Host "==============================================" -ForegroundColor Cyan
 Write-Host " US Close deploy - $($(Get-Date).ToString('yyyy-MM-dd HH:mm'))" -ForegroundColor Cyan

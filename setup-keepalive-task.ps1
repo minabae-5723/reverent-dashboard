@@ -3,7 +3,8 @@
 # if it is down. Mirrors DealAngleRadar-KeepAlive / FrontOfficeKeepAlive.
 #
 # Run once:  powershell -NoProfile -ExecutionPolicy Bypass -File .\setup-keepalive-task.ps1
-$vbs = Join-Path $env:USERPROFILE '.scripts\silent-ps.vbs'
+# Superseded by ops\install.ps1 (registers every job). Kept for the single-task case.
+$vbs = Join-Path $PSScriptRoot 'ops\silent-ps.vbs'
 $ka  = Join-Path $PSScriptRoot 'keepalive-check.ps1'
 if (-not (Test-Path $vbs)) { throw "missing launcher: $vbs" }
 if (-not (Test-Path $ka))  { throw "missing health check: $ka" }

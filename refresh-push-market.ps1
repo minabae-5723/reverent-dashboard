@@ -12,6 +12,14 @@
 $ErrorActionPreference = 'Continue'
 $root = $PSScriptRoot
 Set-Location $root
+
+# Role guard: only the "primary" host (ops/hosts.json) publishes the 5-min market
+# data; other PCs receive it through RepoSync instead of racing it on main.
+$roleGuard = Join-Path $root 'ops\role.ps1'
+if (Test-Path -LiteralPath $roleGuard) {
+    . $roleGuard
+    if (-not (Test-ReverentRole 'primary')) { return }
+}
 $env:GIT_TERMINAL_PROMPT = '0'
 $env:GCM_INTERACTIVE = 'Never'
 

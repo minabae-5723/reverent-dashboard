@@ -13,6 +13,17 @@ $ErrorActionPreference = 'Continue'
 $root = $PSScriptRoot
 Set-Location $root
 
+# Role guard: only the host that owns "primary" in ops/hosts.json runs this job
+# (co-management: other PCs skip it so their pushes never race). See ops/README.md.
+$roleGuard = Join-Path $root 'ops\role.ps1'
+if (Test-Path -LiteralPath $roleGuard) {
+    . $roleGuard
+    if (-not (Test-ReverentRole 'primary')) {
+        Write-Host "Skipped: role 'primary' is owned by another host (ops/hosts.json)" -ForegroundColor DarkGray
+        exit 0
+    }
+}
+
 # Never block on an interactive git/GCM credential prompt (scheduled-task hang
 # guard — see sync-repo.ps1). Cached creds work; else git fails fast.
 $env:GIT_TERMINAL_PROMPT = '0'

@@ -1,0 +1,43 @@
+{
+  "_comment": "Windows Task Scheduler jobs registered by ops/install.ps1 on EVERY PC that runs the dashboard. Each script is launched hidden through ops/silent-ps.vbs. Jobs with a role self-skip unless ops/hosts.json assigns that role to the PC, so changing the operator never needs a re-install.",
+  "tasks": [
+    {
+      "name": "ReverentDashboard-KeepAlive",
+      "script": "keepalive-check.ps1",
+      "trigger": { "type": "repeat", "minutes": 5, "atLogon": true },
+      "limitMinutes": 2,
+      "description": "Restart serve.ps1 (localhost:8000) if it is down. Every 5 min + at logon."
+    },
+    {
+      "name": "ReverentDashboard-RepoSync",
+      "script": "sync-repo.ps1",
+      "trigger": { "type": "repeat", "minutes": 5 },
+      "limitMinutes": 5,
+      "description": "Pull other PCs' commits and push local user-state edits. Every 5 min."
+    },
+    {
+      "name": "ReverentDashboard-DailyDeploy",
+      "script": "deploy-snapshot.ps1",
+      "role": "primary",
+      "trigger": { "type": "daily", "at": "07:00" },
+      "limitMinutes": 30,
+      "description": "Daily 07:00 snapshot (market + calendar + indexes) -> commit + push -> GitHub Pages."
+    },
+    {
+      "name": "ReverentDashboard-FridayDeploy",
+      "script": "deploy-friday.ps1",
+      "role": "primary",
+      "trigger": { "type": "weekly", "days": ["Friday"], "at": "16:30" },
+      "limitMinutes": 30,
+      "description": "Friday 16:30 KR-close snapshot (capmkt + peer + IPO) -> commit + push."
+    },
+    {
+      "name": "ReverentDashboard-USClose",
+      "script": "deploy-us-close.ps1",
+      "role": "us-close",
+      "trigger": { "type": "weekly", "days": ["Saturday"], "at": "06:30" },
+      "limitMinutes": 30,
+      "description": "Saturday 06:30 KST US-close snapshot -> commit + push. Skips unless ops/hosts.json assigns us-close."
+    }
+  ]
+}

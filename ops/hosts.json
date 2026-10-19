@@ -1,0 +1,7 @@
+{
+  "_comment": "Which machine runs which scheduled job. Value = that PC's COMPUTERNAME (or REVERENT_HOST_ID env var). \"*\" = every host, \"\" = nobody (job skips everywhere). Handover = change the name here, commit, push. See ops/README.md.",
+  "roles": {
+    "primary": "배미나",
+    "us-close": ""
+  }
+}
