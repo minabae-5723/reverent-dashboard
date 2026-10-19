@@ -1,1 +1,77 @@
-{"updated":"2026-10-18T02:31:30Z","updatedKr":"2026-10-18 11:31:30","countries":["5","35","11","72"],"tab":"custom 2026-10-19~2026-10-25","source":"investing","events":[{"id":"559549","datetime":"2026/10/19 15:00:00","date":"10/19","time":"15:00","flagKey":"Europe","currency":"EUR","importance":2,"indicator":"ECB's Elderson Speaks","period":"","actual":"","forecast":"","previous":"","type":"preview"},{"id":"558372","datetime":"2026/10/20 18:00:00","date":"10/20","time":"18:00","flagKey":"Europe","currency":"EUR","importance":2,"indicator":"ZEW Economic Sentiment","period":"Oct","actual":"","forecast":"23.6","previous":"25.8","type":"preview"},{"id":"559289","datetime":"2026/10/20 21:15:00","date":"10/20","time":"21:15","flagKey":"United_States","currency":"USD","importance":2,"indicator":"ADP Employment Change Weekly","period":"","actual":"","forecast":"","previous":"24.80K","type":"preview"},{"id":"558382","datetime":"2026/10/20 21:30:00","date":"10/20","time":"21:30","flagKey":"United_States","currency":"USD","importance":2,"indicator":"Building Permits","period":"Sep","actual":"","forecast":"1.390M","previous":"1.403M","type":"preview"},{"id":"558379","datetime":"2026/10/20 21:30:00","date":"10/20","time":"21:30","flagKey":"United_States","currency":"USD","importance":2,"indicator":"Housing Starts (MoM)","period":"Sep","actual":"","forecast":"","previous":"-2.6%","type":"preview"},{"id":"558380","datetime":"2026/10/20 21:30:00","date":"10/20","time":"21:30","flagKey":"United_States","currency":"USD","importance":2,"indicator":"Housing Starts","period":"Sep","actual":"","forecast":"1.300M","previous":"1.275M","type":"preview"},{"id":"556461","datetime":"2026/10/20 23:00:00","date":"10/20","time":"23:00","flagKey":"United_States","currency":"USD","importance":2,"indicator":"Atlanta Fed GDPNow","period":"Q3","actual":"","forecast":"","previous":"","type":"preview"},{"id":"558383","datetime":"2026/10/20 23:00:00","date":"10/20","time":"23:00","flagKey":"United_States","currency":"USD","importance":2,"indicator":"Pending Home Sales (MoM)","period":"Sep","actual":"","forecast":"-0.4%","previous":"0.3%","type":"preview"},{"id":"559362","datetime":"2026/10/21 05:30:00","date":"10/21","time":"05:30","flagKey":"United_States","currency":"USD","importance":2,"indicator":"API Weekly Crude Oil Stock","period":"","actual":"","forecast":"","previous":"-11.120M","type":"preview"},{"id":"559428","datetime":"2026/10/21 08:50:00","date":"10/21","time":"08:50","flagKey":"Japan","currency":"JPY","importance":2,"indicator":"Adjusted Trade Balance","period":"","actual":"","forecast":"-0.21T","previous":"-0.84T","type":"preview"},{"id":"558391","datetime":"2026/10/21 08:50:00","date":"10/21","time":"08:50","flagKey":"Japan","currency":"JPY","importance":2,"indicator":"Exports (YoY)","period":"Sep","actual":"","forecast":"","previous":"19.3%","type":"preview"},{"id":"558390","datetime":"2026/10/21 08:50:00","date":"10/21","time":"08:50","flagKey":"Japan","currency":"JPY","importance":2,"indicator":"Trade Balance","period":"Sep","actual":"","forecast":"-250.0B","previous":"-1,111.9B","type":"preview"},{"id":"559550","datetime":"2026/10/21 13:15:00","date":"10/21","time":"13:15","flagKey":"Europe","currency":"EUR","importance":2,"indicator":"ECB's Lane Speaks","period":"","actual":"","forecast":"","previous":"","type":"preview"},{"id":"559511","datetime":"2026/10/21 23:30:00","date":"10/21","time":"23:30","flagKey":"United_States","currency":"USD","importance":3,"indicator":"Crude Oil Inventories","period":"","actual":"","forecast":"","previous":"-8.557M","type":"preview"},{"id":"559508","datetime":"2026/10/21 23:30:00","date":"10/21","time":"23:30","flagKey":"United_States","currency":"USD","importance":2,"indicator":"Cushing Crude Oil Inventories","period":"","actual":"","forecast":"","previous":"1.862M","type":"preview"},{"id":"559551","datetime":"2026/10/22 01:00:00","date":"10/22","time":"01:00","flagKey":"Europe","currency":"EUR","importance":2,"indicator":"ECB President Lagarde Speaks","period":"","actual":"","forecast":"","previous":"","type":"preview"},{"id":"559235","datetime":"2026/10/22 02:00:00","date":"10/22","time":"02:00","flagKey":"United_States","currency":"USD","importance":2,"indicator":"20-Year Bond Auction","period":"","actual":"","forecast":"","previous":"5.420%","type":"preview"},{"id":"559168","datetime":"2026/10/22 21:30:00","date":"10/22","time":"21:30","flagKey":"United_States","currency":"USD","importance":2,"indicator":"Continuing Jobless Claims","period":"","actual":"","forecast":"","previous":"1,710K","type":"preview"},{"id":"559167","datetime":"2026/10/22 21:30:00","date":"10/22","time":"21:30","flagKey":"United_States","currency":"USD","importance":3,"indicator":"Initial Jobless Claims","period":"","actual":"","forecast":"200K","previous":"199K","type":"preview"},{"id":"558548","datetime":"2026/10/22 23:00:00","date":"10/22","time":"23:00","flagKey":"United_States","currency":"USD","importance":2,"indicator":"US Leading Index (MoM)","period":"Sep","actual":"","forecast":"-0.2%","previous":"-0.1%","type":"preview"},{"id":"559437","datetime":"2026/10/23 05:30:00","date":"10/23","time":"05:30","flagKey":"United_States","currency":"USD","importance":2,"indicator":"Fed's Balance Sheet","period":"","actual":"","forecast":"","previous":"6,756B","type":"preview"},{"id":"558568","datetime":"2026/10/23 08:30:00","date":"10/23","time":"08:30","flagKey":"Japan","currency":"JPY","importance":2,"indicator":"National Core CPI (YoY)","period":"Sep","actual":"","forecast":"2.1%","previous":"1.7%","type":"preview"},{"id":"559357","datetime":"2026/10/23 08:30:00","date":"10/23","time":"08:30","flagKey":"Japan","currency":"JPY","importance":2,"indicator":"National CPI (MoM)","period":"Sep","actual":"","forecast":"","previous":"0.1%","type":"preview"},{"id":"558573","datetime":"2026/10/23 09:30:00","date":"10/23","time":"09:30","flagKey":"Japan","currency":"JPY","importance":2,"indicator":"S&P Global Services PMI","period":"Oct","actual":"","forecast":"","previous":"51.3","type":"preview"},{"id":"558603","datetime":"2026/10/23 17:00:00","date":"10/23","time":"17:00","flagKey":"Europe","currency":"EUR","importance":2,"indicator":"HCOB Eurozone Manufacturing PMI","period":"Oct","actual":"","forecast":"52.7","previous":"52.9","type":"preview"},{"id":"558601","datetime":"2026/10/23 17:00:00","date":"10/23","time":"17:00","flagKey":"Europe","currency":"EUR","importance":2,"indicator":"HCOB Eurozone Composite PMI","period":"Oct","actual":"","forecast":"","previous":"53.1","type":"preview"},{"id":"558602","datetime":"2026/10/23 17:00:00","date":"10/23","time":"17:00","flagKey":"Europe","currency":"EUR","importance":2,"indicator":"HCOB Eurozone Services PMI","period":"Oct","actual":"","forecast":"52.6","previous":"53.0","type":"preview"},{"id":"558621","datetime":"2026/10/23 22:45:00","date":"10/23","time":"22:45","flagKey":"United_States","currency":"USD","importance":3,"indicator":"S&P Global Manufacturing PMI","period":"Oct","actual":"","forecast":"55.5","previous":"55.9","type":"preview"},{"id":"558620","datetime":"2026/10/23 22:45:00","date":"10/23","time":"22:45","flagKey":"United_States","currency":"USD","importance":2,"indicator":"S&P Global Composite PMI","period":"Oct","actual":"","forecast":"","previous":"58.4","type":"preview"},{"id":"558619","datetime":"2026/10/23 22:45:00","date":"10/23","time":"22:45","flagKey":"United_States","currency":"USD","importance":3,"indicator":"S&P Global Services PMI","period":"Oct","actual":"","forecast":"58.0","previous":"58.8","type":"preview"},{"id":"558622","datetime":"2026/10/23 23:00:00","date":"10/23","time":"23:00","flagKey":"United_States","currency":"USD","importance":2,"indicator":"Michigan 1-Year Inflation Expectations","period":"Oct","actual":"","forecast":"4.7%","previous":"4.7%","type":"preview"},{"id":"558626","datetime":"2026/10/23 23:00:00","date":"10/23","time":"23:00","flagKey":"United_States","currency":"USD","importance":2,"indicator":"Michigan 5-Year Inflation Expectations","period":"Oct","actual":"","forecast":"3.5%","previous":"3.5%","type":"preview"},{"id":"558623","datetime":"2026/10/23 23:00:00","date":"10/23","time":"23:00","flagKey":"United_States","currency":"USD","importance":2,"indicator":"Michigan Consumer Expectations","period":"Oct","actual":"","forecast":"47.3","previous":"47.3","type":"preview"},{"id":"558625","datetime":"2026/10/23 23:00:00","date":"10/23","time":"23:00","flagKey":"United_States","currency":"USD","importance":2,"indicator":"Michigan Consumer Sentiment","period":"Oct","actual":"","forecast":"46.3","previous":"46.3","type":"preview"},{"id":"559174","datetime":"2026/10/24 02:00:00","date":"10/24","time":"02:00","flagKey":"United_States","currency":"USD","importance":2,"indicator":"U.S. Baker Hughes Oil Rig Count","period":"","actual":"","forecast":"","previous":"459","type":"preview"},{"id":"559175","datetime":"2026/10/24 02:00:00","date":"10/24","time":"02:00","flagKey":"United_States","currency":"USD","importance":2,"indicator":"U.S. Baker Hughes Total Rig Count","period":"","actual":"","forecast":"","previous":"603","type":"preview"},{"id":"559535","datetime":"2026/10/24 04:30:00","date":"10/24","time":"04:30","flagKey":"United_States","currency":"USD","importance":2,"indicator":"CFTC Crude Oil speculative net positions","period":"","actual":"","forecast":"","previous":"100.3K","type":"preview"},{"id":"559533","datetime":"2026/10/24 04:30:00","date":"10/24","time":"04:30","flagKey":"United_States","currency":"USD","importance":2,"indicator":"CFTC Gold speculative net positions","period":"","actual":"","forecast":"","previous":"207.9K","type":"preview"},{"id":"559525","datetime":"2026/10/24 04:30:00","date":"10/24","time":"04:30","flagKey":"United_States","currency":"USD","importance":2,"indicator":"CFTC Nasdaq 100 speculative net positions","period":"","actual":"","forecast":"","previous":"48.5K","type":"preview"},{"id":"559523","datetime":"2026/10/24 04:30:00","date":"10/24","time":"04:30","flagKey":"United_States","currency":"USD","importance":2,"indicator":"CFTC S&P 500 speculative net positions","period":"","actual":"","forecast":"","previous":"-141.0K","type":"preview"},{"id":"559519","datetime":"2026/10/24 04:30:00","date":"10/24","time":"04:30","flagKey":"Japan","currency":"JPY","importance":2,"indicator":"CFTC JPY speculative net positions","period":"","actual":"","forecast":"","previous":"50.2K","type":"preview"},{"id":"559530","datetime":"2026/10/24 04:30:00","date":"10/24","time":"04:30","flagKey":"Europe","currency":"EUR","importance":2,"indicator":"CFTC EUR speculative net positions","period":"","actual":"","forecast":"","previous":"-137.6K","type":"preview"}]}
+{
+    "updated":  "2026-10-19T22:00:34Z",
+    "updatedKr":  "2026-10-20 07:00:34",
+    "countries":  [
+                      "5",
+                      "35",
+                      "11",
+                      "72"
+                  ],
+    "tab":  "custom 2026-10-26~2026-11-01",
+    "source":  "frozen-fallback",
+    "events":  [
+                   {
+                       "id":  "558380",
+                       "datetime":  "2026/10/20 21:30:00",
+                       "date":  "10/20",
+                       "time":  "21:30",
+                       "flagKey":  "United_States",
+                       "currency":  "USD",
+                       "importance":  2,
+                       "indicator":  "Housing Starts",
+                       "period":  "Sep",
+                       "actual":  "",
+                       "forecast":  "1.300M",
+                       "previous":  "1.275M",
+                       "type":  "preview",
+                       "pinned":  true
+                   },
+                   {
+                       "id":  "559167",
+                       "datetime":  "2026/10/22 21:30:00",
+                       "date":  "10/22",
+                       "time":  "21:30",
+                       "flagKey":  "United_States",
+                       "currency":  "USD",
+                       "importance":  3,
+                       "indicator":  "Initial Jobless Claims",
+                       "period":  "",
+                       "actual":  "",
+                       "forecast":  "200K",
+                       "previous":  "199K",
+                       "type":  "preview"
+                   },
+                   {
+                       "id":  "558625",
+                       "datetime":  "2026/10/23 23:00:00",
+                       "date":  "10/23",
+                       "time":  "23:00",
+                       "flagKey":  "United_States",
+                       "currency":  "USD",
+                       "importance":  2,
+                       "indicator":  "Michigan Consumer Sentiment",
+                       "period":  "Oct",
+                       "actual":  "",
+                       "forecast":  "46.3",
+                       "previous":  "46.3",
+                       "type":  "preview",
+                       "pinned":  true
+                   },
+                   {
+                       "id":  "558622",
+                       "datetime":  "2026/10/23 23:00:00",
+                       "date":  "10/23",
+                       "time":  "23:00",
+                       "flagKey":  "United_States",
+                       "currency":  "USD",
+                       "importance":  2,
+                       "indicator":  "Michigan 1-Year Inflation Expectations",
+                       "period":  "Oct",
+                       "actual":  "",
+                       "forecast":  "4.7%",
+                       "previous":  "4.7%",
+                       "type":  "preview",
+                       "pinned":  true
+                   }
+               ]
+}
