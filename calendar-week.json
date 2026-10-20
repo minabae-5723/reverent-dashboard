@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-10-19T22:00:35Z",
-    "updatedKr":  "2026-10-20 07:00:35",
+    "updated":  "2026-10-20T22:00:33Z",
+    "updatedKr":  "2026-10-21 07:00:33",
     "countries":  [
                       "5",
                       "35",
@@ -110,10 +110,10 @@
                        "importance":  2,
                        "indicator":  "Housing Starts",
                        "period":  "Sep",
-                       "actual":  "",
+                       "actual":  "1.221M",
                        "forecast":  "1.300M",
                        "previous":  "1.275M",
-                       "type":  "preview",
+                       "type":  "review",
                        "pinned":  true
                    },
                    {
