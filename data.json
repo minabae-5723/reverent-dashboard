@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-10-21T21:51:09Z",
-    "updatedKr":  "2026-10-22 06:51:09",
+    "updated":  "2026-10-21T21:56:09Z",
+    "updatedKr":  "2026-10-22 06:56:09",
     "index":  [
                   {
                       "key":  "KOSPI",
@@ -198,23 +198,23 @@
                {
                    "key":  "USDEUR",
                    "symbol":  "EURUSD=X",
-                   "current":  0.8899,
-                   "wow":  -0.37,
-                   "mom":  2.03,
-                   "ytd":  4.57,
+                   "current":  0.8902,
+                   "wow":  -0.34,
+                   "mom":  2.06,
+                   "ytd":  4.61,
                    "type":  "pct",
-                   "asOf":  "2026-10-22T06:50:27",
+                   "asOf":  "2026-10-22T06:55:27",
                    "ok":  true
                },
                {
                    "key":  "USDJPY",
                    "symbol":  "JPY=X",
-                   "current":  158.073,
+                   "current":  158.06,
                    "wow":  0.07,
-                   "mom":  0.45,
-                   "ytd":  0.86,
+                   "mom":  0.44,
+                   "ytd":  0.85,
                    "type":  "pct",
-                   "asOf":  "2026-10-22T06:51:09",
+                   "asOf":  "2026-10-22T06:56:02",
                    "ok":  true
                },
                {
@@ -231,12 +231,12 @@
                {
                    "key":  "DXY",
                    "symbol":  "DX-Y.NYB",
-                   "current":  101.702,
+                   "current":  101.699,
                    "wow":  -0.83,
-                   "mom":  1.1,
+                   "mom":  1.09,
                    "ytd":  3.33,
                    "type":  "pct",
-                   "asOf":  "2026-10-22T06:41:11",
+                   "asOf":  "2026-10-22T06:46:11",
                    "ok":  true
                }
            ],
