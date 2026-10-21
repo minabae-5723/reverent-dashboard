@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-10-21T21:56:09Z",
-    "updatedKr":  "2026-10-22 06:56:09",
+    "updated":  "2026-10-21T22:00:07Z",
+    "updatedKr":  "2026-10-22 07:00:07",
     "index":  [
                   {
                       "key":  "KOSPI",
@@ -192,29 +192,29 @@
                    "mom":  -3.43,
                    "ytd":  -8.11,
                    "type":  "pct",
-                   "asOf":  "2026-10-22T06:47:02",
+                   "asOf":  "2026-10-22T07:00:06",
                    "ok":  true
                },
                {
                    "key":  "USDEUR",
                    "symbol":  "EURUSD=X",
-                   "current":  0.8902,
-                   "wow":  -0.34,
-                   "mom":  2.06,
-                   "ytd":  4.61,
+                   "current":  0.8901,
+                   "wow":  -0.36,
+                   "mom":  2.04,
+                   "ytd":  4.59,
                    "type":  "pct",
-                   "asOf":  "2026-10-22T06:55:27",
+                   "asOf":  "2026-10-22T06:59:27",
                    "ok":  true
                },
                {
                    "key":  "USDJPY",
                    "symbol":  "JPY=X",
-                   "current":  158.06,
+                   "current":  158.074,
                    "wow":  0.07,
-                   "mom":  0.44,
-                   "ytd":  0.85,
+                   "mom":  0.45,
+                   "ytd":  0.86,
                    "type":  "pct",
-                   "asOf":  "2026-10-22T06:56:02",
+                   "asOf":  "2026-10-22T07:00:10",
                    "ok":  true
                },
                {
@@ -231,12 +231,12 @@
                {
                    "key":  "DXY",
                    "symbol":  "DX-Y.NYB",
-                   "current":  101.699,
-                   "wow":  -0.83,
+                   "current":  101.692,
+                   "wow":  -0.84,
                    "mom":  1.09,
-                   "ytd":  3.33,
+                   "ytd":  3.32,
                    "type":  "pct",
-                   "asOf":  "2026-10-22T06:46:11",
+                   "asOf":  "2026-10-22T06:50:10",
                    "ok":  true
                }
            ],
