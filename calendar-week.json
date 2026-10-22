@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-10-22T22:00:35Z",
-    "updatedKr":  "2026-10-23 07:00:35",
+    "updated":  "2026-10-22T23:13:42Z",
+    "updatedKr":  "2026-10-23 08:13:42",
     "countries":  [
                       "5",
                       "35",
@@ -101,6 +101,22 @@
                        "type":  "review"
                    },
                    {
+                       "id":  "558380",
+                       "datetime":  "2026/10/20 21:30:00",
+                       "date":  "10/20",
+                       "time":  "21:30",
+                       "flagKey":  "United_States",
+                       "currency":  "USD",
+                       "importance":  2,
+                       "indicator":  "Housing Starts",
+                       "period":  "Sep",
+                       "actual":  "1.221M",
+                       "forecast":  "1.300M",
+                       "previous":  "1.275M",
+                       "type":  "review",
+                       "pinned":  true
+                   },
+                   {
                        "id":  "559167",
                        "datetime":  "2026/10/22 21:30:00",
                        "date":  "10/22",
@@ -110,10 +126,42 @@
                        "importance":  3,
                        "indicator":  "Initial Jobless Claims",
                        "period":  "",
-                       "actual":  "",
+                       "actual":  "194K",
                        "forecast":  "200K",
-                       "previous":  "199K",
-                       "type":  "preview"
+                       "previous":  "200K",
+                       "type":  "review"
+                   },
+                   {
+                       "id":  "558622",
+                       "datetime":  "2026/10/23 23:00:00",
+                       "date":  "10/23",
+                       "time":  "23:00",
+                       "flagKey":  "United_States",
+                       "currency":  "USD",
+                       "importance":  2,
+                       "indicator":  "Michigan 1-Year Inflation Expectations",
+                       "period":  "Oct",
+                       "actual":  "",
+                       "forecast":  "4.7%",
+                       "previous":  "4.7%",
+                       "type":  "preview",
+                       "pinned":  true
+                   },
+                   {
+                       "id":  "558625",
+                       "datetime":  "2026/10/23 23:00:00",
+                       "date":  "10/23",
+                       "time":  "23:00",
+                       "flagKey":  "United_States",
+                       "currency":  "USD",
+                       "importance":  2,
+                       "indicator":  "Michigan Consumer Sentiment",
+                       "period":  "Oct",
+                       "actual":  "",
+                       "forecast":  "46.3",
+                       "previous":  "46.3",
+                       "type":  "preview",
+                       "pinned":  true
                    }
                ]
 }

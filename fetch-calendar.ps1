@@ -644,8 +644,10 @@ do {
                 $patched += & $patchFromLive $fz.nextWeek $todayLive
             }
 
-            # Friday: refresh nextWeek PREVIEW lineup with next week's events
-            if ($isFriday) {
+            # Friday PREVIEW refresh 비활성화(2026-10-23): 일요일 롤 정책에서 nextWeek는
+            # '진행 중인 주'라 금요일에 다음주 이벤트로 덮으면 이번주 pinned·actual이 소실됨
+            # (10/23 07:00 스냅샷이 그렇게 깨짐). 다음주 PREVIEW 구성은 일요일 롤이 담당.
+            if ($false -and $isFriday) {
                 $nextData = $null
                 try { $nextData = Get-Content $NextWeekFile -Raw -Encoding UTF8 | ConvertFrom-Json } catch {}
                 $nextTop5 = & $pickTop5 $nextData.events
