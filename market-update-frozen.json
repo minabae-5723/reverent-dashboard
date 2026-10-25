@@ -6,6 +6,36 @@
     "previewRange":  "2026-10-26~2026-10-30",
     "thisWeek":  [
                      {
+                         "id":  "558380",
+                         "datetime":  "2026/10/20 21:30:00",
+                         "date":  "10/20",
+                         "time":  "21:30",
+                         "flagKey":  "United_States",
+                         "currency":  "USD",
+                         "importance":  2,
+                         "indicator":  "Housing Starts",
+                         "period":  "Sep",
+                         "actual":  "1.221M",
+                         "forecast":  "1.300M",
+                         "previous":  "1.288M",
+                         "type":  "review"
+                     },
+                     {
+                         "id":  "558383",
+                         "datetime":  "2026/10/20 23:00:00",
+                         "date":  "10/20",
+                         "time":  "23:00",
+                         "flagKey":  "United_States",
+                         "currency":  "USD",
+                         "importance":  2,
+                         "indicator":  "Pending Home Sales (MoM)",
+                         "period":  "Sep",
+                         "actual":  "-7.3%",
+                         "forecast":  "-0.7%",
+                         "previous":  "0.3%",
+                         "type":  "review"
+                     },
+                     {
                          "id":  "559167",
                          "datetime":  "2026/10/22 21:30:00",
                          "date":  "10/22",
@@ -18,6 +48,36 @@
                          "actual":  "194K",
                          "forecast":  "200K",
                          "previous":  "200K",
+                         "type":  "review"
+                     },
+                     {
+                         "id":  "558625",
+                         "datetime":  "2026/10/23 23:00:00",
+                         "date":  "10/23",
+                         "time":  "23:00",
+                         "flagKey":  "United_States",
+                         "currency":  "USD",
+                         "importance":  2,
+                         "indicator":  "Michigan Consumer Sentiment",
+                         "period":  "Oct",
+                         "actual":  "48.0",
+                         "forecast":  "46.3",
+                         "previous":  "48.1",
+                         "type":  "review"
+                     },
+                     {
+                         "id":  "558622",
+                         "datetime":  "2026/10/23 23:00:00",
+                         "date":  "10/23",
+                         "time":  "23:00",
+                         "flagKey":  "United_States",
+                         "currency":  "USD",
+                         "importance":  2,
+                         "indicator":  "Michigan 1-Year Inflation Expectations",
+                         "period":  "Oct",
+                         "actual":  "4.7%",
+                         "forecast":  "4.7%",
+                         "previous":  "4.6%",
                          "type":  "review"
                      }
                  ],
