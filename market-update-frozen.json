@@ -18,7 +18,8 @@
                          "actual":  "1.221M",
                          "forecast":  "1.300M",
                          "previous":  "1.288M",
-                         "type":  "review"
+                         "type":  "review",
+                         "pinned":  true
                      },
                      {
                          "id":  "558383",
@@ -33,7 +34,8 @@
                          "actual":  "-7.3%",
                          "forecast":  "-0.7%",
                          "previous":  "0.3%",
-                         "type":  "review"
+                         "type":  "review",
+                         "pinned":  true
                      },
                      {
                          "id":  "559167",
@@ -63,7 +65,8 @@
                          "actual":  "48.0",
                          "forecast":  "46.3",
                          "previous":  "48.1",
-                         "type":  "review"
+                         "type":  "review",
+                         "pinned":  true
                      },
                      {
                          "id":  "558622",
@@ -78,7 +81,8 @@
                          "actual":  "4.7%",
                          "forecast":  "4.7%",
                          "previous":  "4.6%",
-                         "type":  "review"
+                         "type":  "review",
+                         "pinned":  true
                      }
                  ],
     "nextWeek":  [
