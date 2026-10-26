@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-10-25T01:20:02Z",
-    "updatedKr":  "2026-10-25 10:20:02",
+    "updated":  "2026-10-26T22:00:41Z",
+    "updatedKr":  "2026-10-27 07:00:41",
     "countries":  [
                       "5",
                       "35",
@@ -23,7 +23,8 @@
                        "actual":  "1.221M",
                        "forecast":  "1.300M",
                        "previous":  "1.288M",
-                       "type":  "review"
+                       "type":  "review",
+                       "pinned":  true
                    },
                    {
                        "id":  "558383",
@@ -38,7 +39,8 @@
                        "actual":  "-7.3%",
                        "forecast":  "-0.7%",
                        "previous":  "0.3%",
-                       "type":  "review"
+                       "type":  "review",
+                       "pinned":  true
                    },
                    {
                        "id":  "559167",
@@ -68,7 +70,8 @@
                        "actual":  "48.0",
                        "forecast":  "46.3",
                        "previous":  "48.1",
-                       "type":  "review"
+                       "type":  "review",
+                       "pinned":  true
                    },
                    {
                        "id":  "558622",
@@ -83,7 +86,8 @@
                        "actual":  "4.7%",
                        "forecast":  "4.7%",
                        "previous":  "4.6%",
-                       "type":  "review"
+                       "type":  "review",
+                       "pinned":  true
                    }
                ]
 }
