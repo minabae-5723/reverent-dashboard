@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-10-26T22:00:46Z",
-    "updatedKr":  "2026-10-27 07:00:46",
+    "updated":  "2026-10-27T22:00:50Z",
+    "updatedKr":  "2026-10-28 07:00:50",
     "countries":  [
                       "5",
                       "35",
@@ -99,10 +99,10 @@
                        "importance":  3,
                        "indicator":  "CB Consumer Confidence",
                        "period":  "Oct",
-                       "actual":  "",
-                       "forecast":  "80.5",
+                       "actual":  "91.7",
+                       "forecast":  "81.2",
                        "previous":  "81.9",
-                       "type":  "preview"
+                       "type":  "review"
                    },
                    {
                        "id":  "516973",
