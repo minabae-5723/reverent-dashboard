@@ -39,7 +39,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\ops\role.ps1 -Role primary
 
 ```powershell
 cd C:\Users\<you>\code          # OneDrive 폴더 안은 피할 것
-git clone https://github.com/minabae-5723/reverent-dashboard.git
+git clone https://github.com/reverent-partners/reverent-dashboard.git
 cd reverent-dashboard
 git fetch                       # 첫 인증 (브라우저 로그인 창)
 powershell -NoProfile -ExecutionPolicy Bypass -File .\ops\install.ps1

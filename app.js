@@ -3150,7 +3150,7 @@ async function loadPeer() {
   // 임베드된 반도체 대시보드를 열 때마다 캐시버스트로 새로 로드 → 갱신 즉시 반영
   const emb = document.querySelector('.peer-embed');
   if (emb) {
-    const base = (emb.getAttribute('src') || 'https://minabae-5723.github.io/semi-dashboard/').split('?')[0];
+    const base = (emb.getAttribute('src') || 'https://reverent-partners.github.io/semi-dashboard/').split('?')[0];
     emb.src = base + '?t=' + Date.now();
   }
   if (!peerCache) {
