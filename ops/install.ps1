@@ -153,7 +153,12 @@ foreach ($t in $tasksDef) {
                 -RepetitionDuration (New-TimeSpan -Days 3650)
             if ($t.trigger.atLogon) { $trg += New-ScheduledTaskTrigger -AtLogOn -User $env:USERNAME }
         }
-        'daily'  { $trg += New-ScheduledTaskTrigger -Daily -At $t.trigger.at }
+        'daily'  {
+            # "daily" + daysOfWeek (e.g. Mon-Fri) = a weekly trigger on those days;
+            # a plain -Daily trigger would silently run on weekends too.
+            if ($t.trigger.daysOfWeek) { $trg += New-ScheduledTaskTrigger -Weekly -DaysOfWeek $t.trigger.daysOfWeek -At $t.trigger.at }
+            else { $trg += New-ScheduledTaskTrigger -Daily -At $t.trigger.at }
+        }
         'weekly' { $trg += New-ScheduledTaskTrigger -Weekly -DaysOfWeek $t.trigger.days -At $t.trigger.at }
     }
     if ($trg.Count -eq 0) { Warn "$($t.name): unknown trigger type '$($t.trigger.type)' - skipped"; continue }
