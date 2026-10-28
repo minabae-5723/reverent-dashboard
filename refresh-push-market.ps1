@@ -3,11 +3,10 @@
 #  the market NUMBERS actually changed (ignores the updated/updatedKr timestamp
 #  so a flat/closed market doesn't spam commits).
 #
-#  Launched DETACHED by serve.ps1's /refresh-market endpoint, which the
-#  dashboard's 5-min auto-refresh timer hits. Running here (a child of the
-#  INTERACTIVE serve.ps1) means git push is reliable — unlike the windowless
-#  RepoSync/DailyDeploy scheduled tasks that exit 0xC000013A on push. Detached
-#  so the ~40s Yahoo fetch never blocks serve.ps1's HTTP listener.
+#  Launched DETACHED by serve.ps1's /refresh-market endpoint (manual trigger).
+#  The 5-min auto-refresh timer was removed 2026-10-28; data now updates only
+#  at KR market close (deploy-kr-close.ps1, 15:45) and 07:00 (deploy-snapshot).
+#  This script still works for on-demand manual refreshes via /refresh-market.
 # =============================================================
 $ErrorActionPreference = 'Continue'
 $root = $PSScriptRoot

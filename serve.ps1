@@ -610,7 +610,8 @@ try {
             # On-demand refresh endpoint: market data + calendar
             # /refresh-market — lightweight market-only refresh + push to Cloudflare,
             # launched DETACHED so it never blocks the listener (~40s Yahoo fetch).
-            # The dashboard's 5-min auto-refresh timer hits this. Runs as a child of
+            # Manual trigger only (5-min auto-timer removed 2026-10-28; scheduled
+            # refreshes: KR close 15:45 + DailyDeploy 07:00). Runs as a child of
             # this interactive serve.ps1, so git push is reliable.
             if ($relPath -eq '/refresh-market') {
                 $rpm = Join-Path $root 'refresh-push-market.ps1'

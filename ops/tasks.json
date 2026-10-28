@@ -24,6 +24,14 @@
       "description": "Daily 07:00 snapshot (market + calendar + indexes) -> commit + push -> GitHub Pages."
     },
     {
+      "name": "ReverentDashboard-KRClose",
+      "script": "deploy-kr-close.ps1",
+      "role": "primary",
+      "trigger": { "type": "daily", "at": "15:45", "daysOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"] },
+      "limitMinutes": 15,
+      "description": "Daily 15:45 KR-close snapshot (FX + capmkt + FedWatch + Shiller) -> commit + push."
+    },
+    {
       "name": "ReverentDashboard-FridayDeploy",
       "script": "deploy-friday.ps1",
       "role": "primary",

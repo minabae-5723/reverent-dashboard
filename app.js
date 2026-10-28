@@ -4231,17 +4231,6 @@ loadUserState().then(() => {
   _ipoShots = null;
   renderIpoShots();
 
-  // Auto-refresh market data every 5 min (localhost only) so Cloudflare tracks
-  // the intraday Capital Market data. /refresh-market launches a detached
-  // refresh+push on the server (interactive session → reliable git push; only
-  // commits when the numbers actually changed). The deployed static site has no
-  // such endpoint, so this no-ops there.
-  if (_isLocalHost()) {
-    setInterval(() => {
-      try { fetch('/refresh-market', { cache: 'no-store' }).catch(() => {}); } catch (e) {}
-    }, 300000);
-  }
-
   // Refill empty Capital Market comments from server cache.
   // (Initial setupCapMktComments() ran before _userStateCache existed —
   //  if this browser has empty localStorage, those inputs are blank now.)
