@@ -6,7 +6,7 @@
 | 무엇 | 어디에 | PC 바꿀 때 |
 |---|---|---|
 | 코드 · 데이터 · 큐레이션 md | 이 리포 (GitHub) | `git clone` |
-| 자동 배포 Windows 작업 5개 | `ops/tasks.json` | `ops/install.ps1`이 등록 |
+| 자동 배포 Windows 작업 6개 | `ops/tasks.json` | `ops/install.ps1`이 등록 |
 | 숨김 실행기 | `ops/silent-ps.vbs` | 리포에 포함 |
 | 어느 PC가 배포 담당인지 | `ops/hosts.json` | 이름 한 줄 고치고 push |
 | API 키 (`config.json`) | 각 PC 로컬 (gitignore) | `install.ps1`이 입력받음 |
@@ -24,7 +24,7 @@
 
 - 값은 그 PC의 `COMPUTERNAME` (PowerShell에서 `$env:COMPUTERNAME`). 환경변수 `REVERENT_HOST_ID`가 있으면 그것을 대신 씁니다.
 - `"*"` = 모든 PC, `""` = 아무도 안 함.
-- `primary`: 07:00 DailyDeploy, 금 16:30 FridayDeploy, 5분 시장데이터 push, Claude 예약작업 전부.
+- `primary`: 07:00 DailyDeploy(미국장 마감 기준), 평일 15:45 KRClose(한국장 마감 기준), 금 16:30 FridayDeploy, Claude 예약작업 전부. (장중 5분 자동 갱신은 없음 — 대시보드 ↻ 버튼으로만 수동 갱신)
 - `us-close`: 토 06:30 미국 마감 스냅샷 (현재 비활성).
 - 담당이 아닌 PC는 해당 작업이 시작되자마자 조용히 종료합니다. RepoSync(5분 pull)와 KeepAlive(로컬 서버)는 모든 PC에서 돕니다.
 
@@ -74,7 +74,7 @@ Claude Code 자동화와 리포트 다운로더는 운영 번들의 `install.ps1
 
 ## 공동관리 규칙
 
-- **자동 배포는 담당 PC 하나만.** 두 PC가 동시에 primary면 5분 커밋이 서로 충돌합니다.
+- **자동 배포는 담당 PC 하나만.** 두 PC가 동시에 primary면 배포 커밋이 서로 충돌합니다.
 - 코드 수정은 브랜치 → PR → 머지. main 체크아웃은 자동 커밋이 계속 들어오므로 그 폴더에서 브랜치를 바꾸지 말 것 (작업용 사본은 `git worktree` 사용).
 - 수기 입력값(`user-state.json`)은 어느 PC에서 저장해도 항목 단위로 병합됩니다 (`merge-userstate.ps1`).
 - API 키는 각자 본인 것. 키를 채팅·메일·리포로 주고받지 않기.
