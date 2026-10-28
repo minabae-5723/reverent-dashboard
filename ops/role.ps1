@@ -18,6 +18,13 @@
 #  Host id = $env:REVERENT_HOST_ID if set, else $env:COMPUTERNAME.
 #  Missing/unreadable hosts.json fails OPEN (job runs) so an old checkout keeps
 #  behaving exactly as before this file existed.
+#
+#  One-day stand-in: hosts.json may carry
+#    "today": { "date": "2026-10-29", "roles": { "primary": "<PC>" }, ... }
+#  On that date (local time) it overrides "roles"; on any other date it is
+#  ignored, so the default owner takes over again the next day with no cleanup.
+#  ops/take-today.ps1 writes and clears it. ($env:REVERENT_TODAY overrides the
+#  date, for testing only.)
 # =============================================================
 param([string]$Role)
 
@@ -26,11 +33,20 @@ function Get-ReverentHostId {
     return $env:COMPUTERNAME
 }
 
+function Get-ReverentToday {
+    if ($env:REVERENT_TODAY) { return $env:REVERENT_TODAY }
+    return (Get-Date).ToString('yyyy-MM-dd')
+}
+
 function Get-ReverentRoleOwner([string]$Role) {
     $path = Join-Path (Split-Path $PSScriptRoot -Parent) 'ops\hosts.json'
     if (-not (Test-Path -LiteralPath $path)) { return $null }
     try {
         $j = Get-Content -LiteralPath $path -Raw -Encoding UTF8 | ConvertFrom-Json
+        if ($j.today -and ("$($j.today.date)" -eq (Get-ReverentToday))) {
+            $t = $j.today.roles.PSObject.Properties[$Role]
+            if ($null -ne $t -and -not [string]::IsNullOrWhiteSpace([string]$t.Value)) { return [string]$t.Value }
+        }
         $p = $j.roles.PSObject.Properties[$Role]
         if ($null -eq $p) { return '' }
         return [string]$p.Value

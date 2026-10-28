@@ -30,12 +30,25 @@
 
 현재 담당 확인:
 ```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File .\ops\role.ps1 -Role primary
+powershell -NoProfile -ExecutionPolicy Bypass -File .\ops\take-today.ps1 -Status
 ```
+
+### 오늘 하루만 대타 (`today`)
+
+기본 당번은 `roles.primary`에 그대로 두고, 특정 날만 다른 PC가 맡을 수 있습니다.
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File .\ops\take-today.ps1            # 오늘은 이 PC가 당번
+powershell -NoProfile -ExecutionPolicy Bypass -File .\ops\take-today.ps1 -Release   # 같은 날 원래 당번에게 돌려주기
+```
+
+- `hosts.json`에 `"today": { "date": "<오늘>", "roles": { "primary": "<이 PC>" } }`가 기록되고 push됩니다.
+- 그 날짜에만 `roles`보다 우선합니다. **다음 날이면 자동으로 무시**되어 원래 당번이 다시 맡습니다. 지울 필요가 없습니다.
+- 예비 당번 PC에 운영 번들을 설치해 두었다면, Claude에게 "오늘 내가 RMM 당번이야"라고 말하는 것으로 위 명령 + 그날 이미 지나간 작업의 순차 실행까지 처리됩니다(번들의 `rmm-today` 스킬).
 
 ## 새 PC에 세팅하기
 
-준비물: Git for Windows, GitHub 계정(리포 **collaborator** 초대 수락), 본인 API 키들.
+준비물: Git for Windows, GitHub 계정(회사 org `reverent-partners`의 `market-monitor` 팀 초대 수락), 본인 API 키들.
 
 ```powershell
 cd C:\Users\<you>\code          # OneDrive 폴더 안은 피할 것

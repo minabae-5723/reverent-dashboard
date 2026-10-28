@@ -1,5 +1,5 @@
 {
-  "_comment": "Which machine runs which scheduled job. Value = that PC's COMPUTERNAME (or REVERENT_HOST_ID env var). \"*\" = every host, \"\" = nobody (job skips everywhere). Handover = change the name here, commit, push. See ops/README.md.",
+  "_comment": "Which PC runs the RMM scheduled jobs. roles = default owner per role (the PC COMPUTERNAME, or REVERENT_HOST_ID env var); \"*\" = every PC, \"\" = nobody. today = one-day stand-in written by ops/take-today.ps1, ignored on any other date. Permanent handover = change roles.primary, commit, push. See ops/README.md.",
   "roles": {
     "primary": "배미나",
     "us-close": ""
