@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-10-29T05:15:26Z",
-    "updatedKr":  "2026-10-29 14:15:26",
+    "updated":  "2026-10-29T22:00:34Z",
+    "updatedKr":  "2026-10-30 07:00:34",
     "countries":  [
                       "5",
                       "35",
@@ -129,10 +129,10 @@
                        "importance":  3,
                        "indicator":  "GDP (QoQ)",
                        "period":  "Q3",
-                       "actual":  "",
+                       "actual":  "3.4%",
                        "forecast":  "3.2%",
                        "previous":  "2.2%",
-                       "type":  "preview"
+                       "type":  "review"
                    },
                    {
                        "id":  "558922",
@@ -144,10 +144,10 @@
                        "importance":  3,
                        "indicator":  "Core PCE Price Index (YoY)",
                        "period":  "Sep",
-                       "actual":  "",
+                       "actual":  "3.1%",
                        "forecast":  "3.1%",
                        "previous":  "3.0%",
-                       "type":  "preview"
+                       "type":  "review"
                    },
                    {
                        "id":  "558932",
