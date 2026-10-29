@@ -708,7 +708,7 @@ async function loadNewsDate(date) {
   let md = newsState.cache[date];
   if (!md) {
     try {
-      const res = await fetch(`/news/${date}.md?_=${Date.now()}`, { cache: 'no-store' });
+      const res = await fetch(`./news/${date}.md?_=${Date.now()}`, { cache: 'no-store' });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       md = await res.text();
       newsState.cache[date] = md;
