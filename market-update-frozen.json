@@ -1,5 +1,5 @@
 {
-    "updated":  "2026-10-29T22:00:34Z",
+    "updated":  "2026-10-29T23:12:14Z",
     "updatedKr":  "2026-10-30 07:00:34",
     "frozenDow":  "Sunday",
     "reviewRange":  "2026-10-19~2026-10-23",
@@ -156,7 +156,7 @@
                          "importance":  3,
                          "indicator":  "ECB Interest Rate Decision",
                          "period":  "Oct",
-                         "actual":  "",
+                         "actual":  "2.65%",
                          "forecast":  "2.65%",
                          "previous":  "2.65%",
                          "type":  "preview"

@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-10-29T22:00:34Z",
-    "updatedKr":  "2026-10-30 07:00:34",
+    "updated":  "2026-10-29T23:12:22Z",
+    "updatedKr":  "2026-10-30 08:12:22",
     "countries":  [
                       "5",
                       "35",
@@ -159,7 +159,7 @@
                        "importance":  3,
                        "indicator":  "ECB Interest Rate Decision",
                        "period":  "Oct",
-                       "actual":  "",
+                       "actual":  "2.65%",
                        "forecast":  "2.65%",
                        "previous":  "2.65%",
                        "type":  "preview"
