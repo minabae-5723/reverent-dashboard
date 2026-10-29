@@ -2228,7 +2228,7 @@ let _userStateCache = null;
 
 async function loadUserState() {
   try {
-    const res = await fetch('/user-state.json?_=' + Date.now(), { cache: 'no-store' });
+    const res = await fetch('./user-state.json?_=' + Date.now(), { cache: 'no-store' });
     if (res.ok) {
       const data = await res.json();
       _userStateCache = data.entries || {};
