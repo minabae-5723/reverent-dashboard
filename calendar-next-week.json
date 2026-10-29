@@ -1,6 +1,6 @@
 {
-    "updated":  "2026-10-28T22:00:34Z",
-    "updatedKr":  "2026-10-29 07:00:34",
+    "updated":  "2026-10-29T05:15:25Z",
+    "updatedKr":  "2026-10-29 14:15:25",
     "countries":  [
                       "5",
                       "35",
@@ -35,10 +35,10 @@
                        "importance":  3,
                        "indicator":  "Fed Interest Rate Decision",
                        "period":  "",
-                       "actual":  "",
+                       "actual":  "3.75%~4.00%",
                        "forecast":  "3.75%~4.00%",
                        "previous":  "3.75%~4.00%",
-                       "type":  "preview"
+                       "type":  "review"
                    },
                    {
                        "id":  "558922",
