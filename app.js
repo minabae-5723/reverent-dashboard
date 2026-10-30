@@ -2119,8 +2119,16 @@ function renderDealArticle(a, weekDate, allowNotes = false) {
     // 한 기사에 밸류에이션 카드가 여러 개면 저장 키(headline 기반)가 충돌하므로
     // 카드 제목을 붙여 분리한다. 단일 카드 기사는 기존 headline-only 키를 유지해
     // 이전에 저장된 Fix 값과의 하위호환을 지킨다.
-    const storeKey = _multi ? `${a.headline} ‖ ${v.title}` : a.headline;
-    return renderValuationCard(cardId, weekDate || 'unknown', storeKey, v.title, data);
+    // "[접기]" suffix on the H4 → card wrapped in a <details> closed by default.
+    // The marker is stripped before building the store key so saved Fix values stay put.
+    const fold = /\s*\[접기\]\s*$/;
+    const folded = fold.test(v.title);
+    const title = v.title.replace(fold, '');
+    const storeKey = _multi ? `${a.headline} ‖ ${title}` : a.headline;
+    const card = renderValuationCard(cardId, weekDate || 'unknown', storeKey, title, data);
+    return folded
+      ? `<details class="val-fold"><summary class="val-fold-title">${escapeHtml(title)}</summary>${card}</details>`
+      : card;
   }).join('');
   // Generic titled tables inside an article (카드뉴스 비교표 등). Unlike the
   // valuation card these are read-only — just a titled markdown table.

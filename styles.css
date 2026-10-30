@@ -3564,6 +3564,26 @@ details[open] > summary.deals-subtable-title::before { transform: rotate(90deg);
 details:not([open]) > summary.deals-subtable-title { margin-bottom: 0; }
 .deals-subtable-body { overflow-x: auto; }
 
+/* Valuation 카드 토글 — H4 끝에 [접기] 붙은 카드만, 기본 접힘 */
+.val-fold { margin: 10px 0 4px; }
+summary.val-fold-title {
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--navy);
+  padding: 6px 0;
+}
+summary.val-fold-title::-webkit-details-marker { display: none; }
+summary.val-fold-title::before {
+  content: '▸';
+  display: inline-block;
+  width: 1.1em;
+  transition: transform 0.15s;
+}
+details[open] > summary.val-fold-title::before { transform: rotate(90deg); }
+
 /* 골프장 홀당 Comps 전용 열 폭 (위치 열이 있는 표만): 위치 넓게, 거래 좁게 */
 .deals-subtable:has(th[data-col="위치"]) .deals-summary-table [data-col="위치"] {
   white-space: nowrap;
