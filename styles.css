@@ -3546,6 +3546,40 @@ html, body {
   white-space: nowrap;
 }
 
+/* 카드뉴스 토글 — 기본 접힘 (<details> without open) */
+summary.deals-subtable-title {
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+}
+summary.deals-subtable-title::-webkit-details-marker { display: none; }
+summary.deals-subtable-title::before {
+  content: '▸';
+  display: inline-block;
+  width: 1.1em;
+  color: var(--navy);
+  transition: transform 0.15s;
+}
+details[open] > summary.deals-subtable-title::before { transform: rotate(90deg); }
+details:not([open]) > summary.deals-subtable-title { margin-bottom: 0; }
+.deals-subtable-body { overflow-x: auto; }
+
+/* 골프장 홀당 Comps 전용 열 폭 (위치 열이 있는 표만): 위치 넓게, 거래 좁게 */
+.deals-subtable:has(th[data-col="위치"]) .deals-summary-table [data-col="위치"] {
+  white-space: nowrap;
+  min-width: 10em;
+}
+.deals-subtable:has(th[data-col="위치"]) .deals-summary-table tbody td[data-col="거래"] {
+  white-space: normal;
+  min-width: 7em;
+  max-width: 10.5em;
+}
+.deals-subtable:has(th[data-col="위치"]) .deals-summary-table [data-col="구분"],
+.deals-subtable:has(th[data-col="위치"]) .deals-summary-table [data-col="홀"],
+.deals-subtable:has(th[data-col="위치"]) .deals-summary-table [data-col="홀당"] {
+  white-space: nowrap;
+}
+
 /* ── 반도체 밸류체인 임베드 (PEER 뷰) ── */
 .peer-embed-link {
   margin-left: auto;

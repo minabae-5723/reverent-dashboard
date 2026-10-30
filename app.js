@@ -1439,11 +1439,13 @@ function renderMdTable(tableLines) {
   const sepIdx = rows.findIndex(r => r.every(c => /^:?-+:?$/.test(c)));
   const header = rows[headerIdx];
   const body = sepIdx >= 0 ? rows.slice(sepIdx + 1) : rows.slice(1);
+  // data-col = plain header text, so CSS can size specific columns (e.g. 위치·거래)
+  const colKey = header.map(h => escapeHtml(h.replace(/\*\*/g, '').trim()));
   return `
     <table class="deals-summary-table">
-      <thead><tr>${header.map(h => `<th>${linkifyInline(h)}</th>`).join('')}</tr></thead>
+      <thead><tr>${header.map((h, i) => `<th data-col="${colKey[i]}">${linkifyInline(h)}</th>`).join('')}</tr></thead>
       <tbody>
-        ${body.map(r => `<tr>${r.map(c => `<td>${linkifyInline(c)}</td>`).join('')}</tr>`).join('')}
+        ${body.map(r => `<tr>${r.map((c, i) => `<td data-col="${colKey[i] || ''}">${linkifyInline(c)}</td>`).join('')}</tr>`).join('')}
       </tbody>
     </table>
   `;
@@ -2122,9 +2124,16 @@ function renderDealArticle(a, weekDate, allowNotes = false) {
   }).join('');
   // Generic titled tables inside an article (카드뉴스 비교표 등). Unlike the
   // valuation card these are read-only — just a titled markdown table.
+  // Opt-in collapsed toggle: an H4 title ending in "[접기]" renders as a
+  // <details> closed by default (2026-10-30, 골프존카운티 홀당 Comps only).
   const tablesHtml = (a.tables || []).map((t) => {
     const tbl = renderMdTable(t.lines);
     if (!tbl) return '';
+    const fold = /\s*\[접기\]\s*$/;
+    if (fold.test(t.title)) {
+      const title = t.title.replace(fold, '');
+      return `<details class="deals-subtable"><summary class="deals-subtable-title">${escapeHtml(title)}</summary><div class="deals-subtable-body">${tbl}</div></details>`;
+    }
     return `<div class="deals-subtable"><h4 class="deals-subtable-title">${escapeHtml(t.title)}</h4>${tbl}</div>`;
   }).join('');
   // Per-article card-news slot (screenshots + comments), same machinery as the
